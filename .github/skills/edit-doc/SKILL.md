@@ -135,7 +135,7 @@ const result = await fetchData();
 - No `var` — use `const` or `let`
 - Code examples should reflect current best practices
 
-### The Six Primitives
+### The Seven Primitives
 
 Always use the canonical name and location. Do not paraphrase these:
 
@@ -147,6 +147,7 @@ Always use the canonical name and location. Do not paraphrase these:
 | Skills | `.github/skills/*/SKILL.md` |
 | Custom Agents | `.github/agents/*.md` |
 | MCP | `.vscode/mcp.json` |
+| Hooks | `.github/hooks/*.json` |
 
 If someone writes "global instructions" when they mean "Always-on Instructions", fix it. Terminology must be consistent throughout the guide.
 

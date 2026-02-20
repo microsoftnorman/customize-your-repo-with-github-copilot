@@ -1,8 +1,8 @@
 ﻿# The Definitive Guide to Customizing GitHub Copilot
 
-**Short link:** [aka.ms/GitHubCopilotGuideForHumans](https://aka.ms/GithHubCopilotGuideForHumans)
+**Short link:** [aka.ms/GitHubCopilotGuideForHumans](https://aka.ms/GitHubCopilotGuideForHumans)
 
-*Published: February 10, 2026. File paths, configuration options, and feature availability may change as Copilot evolves—always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
+*Published: February 20, 2026. File paths, configuration options, and feature availability may change as Copilot evolves—always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
 
 GitHub Copilot is more than autocomplete. When properly configured, it becomes a context-aware development partner that understands your architecture, follows your conventions, and produces code that passes review on the first try.
 
@@ -29,24 +29,29 @@ By the end of this guide, you will understand:
 - **Iteration strategies** — How to refine your configuration based on feedback
 - **Measurement approaches** — How to track whether customization is working
 
+**Terminology:** Throughout this guide, *agent* refers to Copilot operating in agentic mode — autonomously planning, executing tool calls, and iterating on results. A *custom agent* is a user-defined persona file that configures Copilot's behavior for a specific role. *Primitives* are the configuration file types that customize Copilot.
+
 You can start anywhere using the table of contents below, but if you're new to Copilot customization, start with [Part I: Foundations](docs/part-1-foundations.md).
 
 ---
 
-## The Six Primitives
+## The Primitives
 
-GitHub Copilot provides six customization primitives. Each serves a distinct purpose and loads at different points in your workflow:
+GitHub Copilot provides seven customization primitives. Each serves a distinct purpose and loads at different points in your workflow:
 
 | Primitive | Location | Purpose |
 |-----------|----------|---------|
-| [**Always-on Instructions**](docs/part-2-1-always-on-instructions.md) | `.github/copilot-instructions.md` or `AGENTS.md` | Global rules applied to every Copilot request |
+| [**Always-on Instructions**](docs/part-2-1-always-on-instructions.md) | `.github/copilot-instructions.md`, `AGENTS.md`, or `CLAUDE.md` | Global rules applied to every Copilot request |
 | [**File-based Instructions**](docs/part-2-2-file-based-instructions.md) | `.github/instructions/*.instructions.md` | Rules that activate when working with specific file patterns |
 | [**Prompts**](docs/part-2-3-prompts.md) | `.github/prompts/*.prompt.md` | Reusable task templates invoked as slash commands |
 | [**Skills**](docs/part-2-4-skills.md) | `.github/skills/*/SKILL.md` | Procedural knowledge Copilot can discover and apply |
 | [**Custom Agents**](docs/part-2-5-custom-agents.md) | `.github/agents/*.md` | Specialized AI personas with defined behaviors |
 | [**MCP (Model Context Protocol)**](docs/part-2-6-mcp.md) | `.vscode/mcp.json` | Connections to external tools, APIs, and data sources |
+| [**Hooks (Preview)**](docs/part-2-7-hooks.md) | `.github/hooks/*.json` | Runtime enforcement and audit logging for agent sessions |
 
 Understanding when and how to use each primitive is the core of this guide.
+
+**Not sure which primitive to use?** Jump to the [Quick Decision Guide](docs/part-3-reference.md#quick-decision-guide) for a lookup table that maps common scenarios to the right primitive.
 
 ---
 
@@ -66,11 +71,11 @@ The heart of the guide. Each primitive receives comprehensive coverage including
 - [2.4 Skills](docs/part-2-4-skills.md) — Discoverable procedural knowledge
 - [2.5 Custom Agents](docs/part-2-5-custom-agents.md) — Specialized AI personas
 - [2.6 MCP](docs/part-2-6-mcp.md) — External tool integration
-- [2.7 Hooks](docs/part-2-7-hooks.md) — Runtime enforcement and audit logging
+- [2.7 Hooks (Preview)](docs/part-2-7-hooks.md) — Runtime enforcement and audit logging
 
 ### [Part III: Reference](docs/part-3-reference.md)
 
-Quick reference tables, starter templates, and a curated prompt library for common development tasks.
+Quick reference tables, starter templates, and configuration reference for all primitives.
 
 ---
 
@@ -88,4 +93,5 @@ For teams adopting Copilot customization, consider reading through the guide ind
 - [VS Code Copilot Extension](https://code.visualstudio.com/docs/copilot)
 - [Model Context Protocol](https://modelcontextprotocol.io/)
 - [VS Code Source Code](https://github.com/microsoft/vscode) — The authoritative reference when documentation is unclear
+- [Copilot Spaces](https://docs.github.com/en/copilot/how-tos/provide-context/use-copilot-spaces) — Organize relevant context into Spaces that ground Copilot's responses for specific tasks
 - [product-brain](https://github.com/digitarald/product-brain) — A product management approach to workspace instructions

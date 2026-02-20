@@ -1,6 +1,6 @@
 # Prompt Files (Slash Commands)
 
-[? File-Based Instructions](part-2-2-file-based-instructions.md) | [Part II Overview](part-2-primitives.md)
+[← File-Based Instructions](part-2-2-file-based-instructions.md) | [Part II Overview](part-2-primitives.md) | [Next: Skills →](part-2-4-skills.md)
 
 ---
 
@@ -9,6 +9,10 @@
 Prompt files enable reusable task templates that can be invoked on demand. They function as macros for common workflows, reducing repetitive typing and ensuring consistent outputs.
 
 **Location:** `.github/prompts/*.prompt.md`
+
+**Official docs:** [Prompt files](https://code.visualstudio.com/docs/copilot/customization/prompt-files)
+
+**See it in action:** [Customize Your Agents](https://www.youtube.com/watch?v=flpKLkZla2Q) — Courtney Webster shows how prompt files work as reusable slash commands, including combining them with custom agents and skills. Also in the [Agent Sessions Day livestream](https://www.youtube.com/watch?v=tAezuMSJuFs&t=10598s) at 02:56:38.
 
 Users invoke prompts by typing `/` in Copilot Chat and selecting from available options.
 
@@ -20,20 +24,22 @@ Prompt files use the `.prompt.md` extension and support these frontmatter fields
 |-------|-------------|
 | `name` | Display name shown when typing `/` in chat |
 | `description` | Brief description of what the prompt does |
-| `agent` | Execution mode: `ask`, `edit`, `agent`, or a custom agent name |
+| `agent` | Execution mode: `ask`, `plan`, `agent`, or a custom agent name |
 | `model` | AI model to use (e.g., `Claude Opus 4.6`, `GPT-5.2`) |
 | `tools` | Specific tools available for this prompt |
 | `argument-hint` | Hint text for user interaction |
+
+Prompt files can also reference tools inline with the `#tool:` syntax (e.g., `Use #tool:search to find existing patterns`) in addition to the `tools` frontmatter field.
 
 ```markdown
 ---
 agent: 'agent'
 description: 'Generate a new React component with tests'
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 tools: ['editFiles', 'createFile', 'runInTerminal']
 ---
 
-Create a new React component called `{{componentName}}` that:
+Create a new React component called `${input:componentName}` that:
 
 1. Is a functional component with TypeScript
 2. Uses our standard Props interface pattern
@@ -55,7 +61,7 @@ The `agent` field in the frontmatter determines how Copilot executes the prompt:
 | `ask` | Read-only — responds conversationally, no file changes | Questions, explanations, brainstorming, code review |
 | `agent` | Takes autonomous action — creates/edits files, runs commands | Multi-file changes, scaffolding, bug fixes, any task that modifies code |
 
-**Note:** An `edit` mode exists but is not recommended. Use `agent` for any task that requires modifying files.
+**Note:** A `plan` mode exists but is not recommended. Use `agent` for any task that requires modifying files.
 
 ### Essential Prompt Files Every Repo Needs
 
@@ -68,15 +74,15 @@ The following prompt templates address common development workflows:
 ---
 agent: 'agent'
 description: 'Scaffold a new React component with all the trimmings'
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 ---
 
-Create a new component called `{{componentName}}` in `src/components/{{componentName}}/`:
+Create a new component called `${input:componentName}` in `src/components/${input:componentName}/`:
 
 ## Required Files
-1. `{{componentName}}.tsx` - The component
-2. `{{componentName}}.test.tsx` - Unit tests  
-3. `{{componentName}}.stories.tsx` - Storybook stories
+1. `${input:componentName}.tsx` - The component
+2. `${input:componentName}.test.tsx` - Unit tests  
+3. `${input:componentName}.stories.tsx` - Storybook stories
 4. `index.ts` - Barrel export
 
 ## Component Requirements
@@ -96,13 +102,13 @@ Look at existing components for patterns. Follow the style guide in copilot-inst
 ---
 agent: 'agent'
 description: 'Create a new API endpoint with validation and error handling'
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 ---
 
-Create a new API route at `src/app/api/{{resourceName}}/route.ts`:
+Create a new API route at `src/app/api/${input:resourceName}/route.ts`:
 
 ## Requirements
-- Implement {{httpMethods}} methods
+- Implement ${input:httpMethods} methods
 - Use Zod schema for request validation
 - Include proper error handling with our ApiResponse type
 - Add rate limiting check
@@ -111,7 +117,7 @@ Create a new API route at `src/app/api/{{resourceName}}/route.ts`:
 ## Include
 - Request/response type definitions
 - Validation schemas
-- Integration tests in `__tests__/api/{{resourceName}}.test.ts`
+- Integration tests in `__tests__/api/${input:resourceName}.test.ts`
 ```
 
 #### 3. Bug Fix Assistant
@@ -121,14 +127,14 @@ Create a new API route at `src/app/api/{{resourceName}}/route.ts`:
 ---
 agent: 'agent'
 description: 'Analyze and fix a bug with explanation'
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 ---
 
 Analyze the selected code and fix the bug described below:
 
-**Bug Description:** {{bugDescription}}
-**Expected Behavior:** {{expectedBehavior}}
-**Current Behavior:** {{actualBehavior}}
+**Bug Description:** ${input:bugDescription}
+**Expected Behavior:** ${input:expectedBehavior}
+**Current Behavior:** ${input:actualBehavior}
 
 ## Your Response Should Include:
 1. Root cause analysis
@@ -144,7 +150,7 @@ Analyze the selected code and fix the bug described below:
 ---
 agent: 'ask'
 description: 'Prepare code for review'
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 ---
 
 Review the selected code and provide:
@@ -176,7 +182,7 @@ Review the selected code and provide:
 ---
 agent: 'agent'
 description: 'Generate comprehensive documentation'
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 ---
 
 Add documentation to the selected code including:
@@ -201,15 +207,15 @@ This example demonstrates how prompts can call MCP tools directly. With the GitH
 ---
 agent: 'agent'
 description: 'Create a GitHub issue from a bug report or feature request'
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 tools: ['githubRepo']
 ---
 
 Create a GitHub issue based on the following:
 
-**Type:** {{issueType}}  <!-- bug, feature, enhancement, documentation -->
-**Title:** {{issueTitle}}
-**Description:** {{issueDescription}}
+**Type:** ${input:issueType}  <!-- bug, feature, enhancement, documentation -->
+**Title:** ${input:issueTitle}
+**Description:** ${input:issueDescription}
 
 ## Instructions
 
@@ -218,16 +224,16 @@ Create a GitHub issue based on the following:
    - For features: Include "Problem Statement", "Proposed Solution", and "Alternatives Considered"
 
 2. Apply appropriate labels based on issue type:
-   - bug ? `bug`, `needs-triage`
-   - feature ? `enhancement`, `needs-discussion`
-   - documentation ? `documentation`
+   - bug → `bug`, `needs-triage`
+   - feature → `enhancement`, `needs-discussion`
+   - documentation → `documentation`
 
 3. Use the GitHub MCP server to create the issue in this repository
 
 4. Return the issue URL when complete
 ```
 
-**How it works:** When the GitHub MCP server is configured in `.vscode/mcp.json`, prompts with `agent` mode can invoke GitHub operations. The agent interprets the instructions and calls the appropriate MCP tool (like `mcp_github_issue_write`) to create the issue.
+**How it works:** When the GitHub MCP server is configured in `.vscode/mcp.json`, prompts with `agent` mode can invoke GitHub operations. The agent interprets the instructions and calls the appropriate MCP tool to create the issue.
 
 #### 7. Web Research Assistant (Fetch Tool)
 **File:** `.github/prompts/research.prompt.md`
@@ -238,15 +244,15 @@ This example shows how prompts can use the built-in `fetch` tool to retrieve inf
 ---
 agent: 'agent'
 description: 'Research a topic and summarize findings'
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 tools: ['fetch']
 ---
 
 Research the following topic and provide a summary:
 
-**Topic:** {{researchTopic}}
-**Focus Areas:** {{focusAreas}}
-**Depth:** {{depth}}  <!-- quick overview, detailed analysis, comprehensive report -->
+**Topic:** ${input:researchTopic}
+**Focus Areas:** ${input:focusAreas}
+**Depth:** ${input:depth}  <!-- quick overview, detailed analysis, comprehensive report -->
 
 ## Instructions
 
@@ -280,11 +286,11 @@ This advanced example demonstrates how to create a prompt that fetches authorita
 ---
 agent: 'agent'
 description: 'Create a new Agent Skill with live documentation lookup'
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 tools: ['fetch', 'createFile']
 ---
 
-Create a new Agent Skill for: **{{skillPurpose}}**
+Create a new Agent Skill for: **${input:skillPurpose}**
 
 ## Phase 1: Gather Current Documentation
 
@@ -313,7 +319,7 @@ Based on the fetched documentation and the user's purpose, create:
 
 ### Directory Structure
 ```
-.github/skills/{{skill-name}}/
+.github/skills/${input:skill-name}/
 +-- SKILL.md
 +-- [any supporting files if needed]
 ```
@@ -381,7 +387,7 @@ This section covers the process of creating well-structured prompt files using V
 
 Rather than manually writing prompt files, use Copilot to generate them:
 
-> **?? Try this prompt:**
+> 💬 **Try this prompt:**
 >
 > *Create a prompt file at .github/prompts/new-api-route.prompt.md that:*
 > *- Generates REST API routes with validation*
@@ -403,7 +409,7 @@ Every prompt file consists of two parts:
 ---
 agent: 'agent'                          # Execution mode or custom agent
 description: 'What this prompt does'    # Appears in the / menu
-model: 'Opus 4.6'                # Optional: specific model
+model: 'Claude Opus 4.6'                # Optional: specific model
 tools: ['editFiles', 'createFile']      # Optional: restrict tools
 ---
 
@@ -416,8 +422,8 @@ tools: ['editFiles', 'createFile']      # Optional: restrict tools
 |--------------|---------------------|------------------|
 | **Typing directly into .prompt.md files** | Syntax errors, inconsistent formatting | Use gear icon or ask agent to generate |
 | **Vague instructions** | "Make me a component" produces inconsistent results | Be specific about requirements, structure, patterns |
-| **Not using variables** | Prompt can only do one specific thing | Use `{{variableName}}` for reusable parts |
-| **Using edit mode** | Less reliable than agent mode | Use `ask` for read-only, `agent` for any changes |
+| **Not using variables** | Prompt can only do one specific thing | Use `${input:variableName}` for reusable parts |
+| **Using plan mode** | Less reliable than agent mode | Use `ask` for read-only, `agent` for any changes |
 | **No model specification** | Inconsistent results across sessions | Specify model for reproducibility |
 | **No reference to instructions** | Prompt ignores team conventions | Reference copilot-instructions.md explicitly |
 
@@ -429,22 +435,22 @@ tools: ['editFiles', 'createFile']      # Optional: restrict tools
 | `agent` | Create files, edit files, run commands | Any task that modifies code — scaffolding, bug fixes, refactoring |
 | Custom agent | Use that agent's persona and tools | Specialized workflows with defined behavior |
 
-**Note:** An `edit` mode exists but is not recommended. Use `agent` instead for any file modifications.
+**Note:** The `plan` mode is not recommended. Use `agent` instead for any file modifications.
 
 ### Implement Variables
 
-Use `{{variableName}}` syntax to create parameterized prompts:
+Use `${input:variableName}` syntax to create parameterized prompts:
 
 ```markdown
 ---
 agent: 'agent'
-description: 'Create a new {{frameworkType}} hook'
-model: 'Opus 4.6'
+description: 'Create a new ${input:frameworkType} hook'
+model: 'Claude Opus 4.6'
 ---
 
-Create a custom hook called `use{{hookName}}` that:
-- Handles {{primaryResponsibility}}
-- Returns {{returnShape}}
+Create a custom hook called `use${input:hookName}` that:
+- Handles ${input:primaryResponsibility}
+- Returns ${input:returnShape}
 - Follows our hook patterns in `src/hooks/`
 ```
 
@@ -462,7 +468,7 @@ Prompts can reference the instructions file to maintain consistency:
 ---
 agent: 'agent'
 description: 'Generate component following our standards'
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 ---
 
 Create a new component following the patterns defined in our 
@@ -480,14 +486,14 @@ This approach keeps prompts synchronized with team standards automatically.
 
 Use the agent directly to generate new prompt files:
 
-> **?? Try this prompt:**
+> 💬 **Try this prompt:**
 >
-> *Create a new prompt file at `.github/prompts/{{promptName}}.prompt.md`.*
+> *Create a new prompt file at `.github/prompts/${input:promptName}.prompt.md`.*
 >
 > *Prompt Requirements:*
-> *- Purpose: {{purposeDescription}}*
+> *- Purpose: ${input:purposeDescription}*
 > *- Mode: `ask` (read-only) or `agent` (makes changes)*
-> *- Model: Opus 4.6 (or specify)*
+> *- Model: Claude Opus 4.6 (or specify)*
 >
 > *Prompt Structure Guidelines:*
 > *1. Start with a clear, specific instruction*
@@ -499,7 +505,7 @@ Use the agent directly to generate new prompt files:
 > *The prompt should:*
 > *- Be specific enough to get consistent results*
 > *- Be general enough to be reusable*
-> *- Include `{{variables}}` for customizable parts*
+> *5. Include `${input:variables}` for customizable parts*
 > *- Reference existing codebase patterns when relevant*
 > *- Include success criteria so Copilot knows when it's "done"*
 >
@@ -515,7 +521,7 @@ This meta-prompt creates new prompt files that follow best practices.
 
 To improve an existing prompt file, ask the agent directly:
 
-> **?? Try this prompt:**
+> 💬 **Try this prompt:**
 >
 > *Analyze and improve the prompt file at .github/prompts/new-component.prompt.md:*
 >
@@ -545,7 +551,7 @@ Make me a component.
 
 **Effective Prompt:**
 ```markdown
-Create a React component called `{{componentName}}` in `src/components/`:
+Create a React component called `${input:componentName}` in `src/components/`:
 
 1. Use TypeScript with our Props interface pattern
 2. Include loading & error states
@@ -561,4 +567,4 @@ Specificity produces consistent, high-quality outputs.
 
 ---
 
-[? File-Based Instructions](part-2-2-file-based-instructions.md) | [Next: Skills ?](part-2-4-skills.md)
+[← File-Based Instructions](part-2-2-file-based-instructions.md) | [Next: Skills →](part-2-4-skills.md)

@@ -1,4 +1,3 @@
-```skill
 ---
 name: validate-docs-against-source
 description: Validates documentation content against official source repositories and documentation. Use when updating Copilot customization documentation, editing content about GitHub Copilot features, committing changes to docs, or when the user mentions verifying facts, checking sources, or validating accuracy.
@@ -404,4 +403,3 @@ These settings are frequently referenced and should be validated:
 | `chat.includeApplyingInstructions` | Auto-apply instructions with `applyTo` | Check docs |
 
 **Note:** Always fetch current documentation to verify default values, as they may change.
-```

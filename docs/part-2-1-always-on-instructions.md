@@ -2,7 +2,7 @@
 
 [← Part I: Foundations](part-1-foundations.md) | [Part II Overview](part-2-primitives.md)
 
-*Published: February 10, 2026. This guide serves as a primer for GitHub Copilot customization. File paths, configuration options, and feature availability may change as Copilot evolves—always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
+*Published: February 20, 2026. This guide serves as a primer for GitHub Copilot customization. File paths, configuration options, and feature availability may change as Copilot evolves—always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
 
 ---
 
@@ -10,15 +10,23 @@
 
 Always-on instructions (also known as the **Copilot Instructions File**) represent the foundational layer of Copilot customization. These instructions load automatically at the start of every Copilot session and apply to all interactions within the repository.
 
-**Location:** `.github/copilot-instructions.md` or `.github/AGENTS.md` [*](https://code.visualstudio.com/docs/copilot)
+**Location:** `.github/copilot-instructions.md`, `AGENTS.md`, or `CLAUDE.md` [*](https://code.visualstudio.com/docs/copilot)
 
-> **New in VS Code 1.109:** Both `copilot-instructions.md` and `AGENTS.md` are now recognized as workspace instruction files. The `/init` command can discover and update either format.
+**Official docs:** [Custom instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
+
+**New in VS Code 1.109:** `copilot-instructions.md`, `AGENTS.md`, and `CLAUDE.md` are all recognized as workspace instruction files. The `/init` command can discover and update any of these formats.
 
 **Required Setting:** `github.copilot.chat.codeGeneration.useInstructionFiles` must be enabled in VS Code settings for the instructions file to be applied. [*](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
 
 When this file exists in a repository and the setting is enabled, Copilot reads and applies its contents as persistent context. Chat responses and code generation will respect these guidelines without requiring explicit invocation.
 
-**Note:** Custom instructions are *not* applied to inline suggestions (ghost text) as you type in the editor—they only affect Copilot Chat interactions.
+## Inline Suggestions Are Not Affected
+
+Custom instructions are **not** applied to inline suggestions (ghost text) as you type in the editor — they only affect Copilot Chat interactions. This is a fundamental limitation: the autocomplete engine operates on a different pipeline than Chat and does not read instruction files.
+
+If Copilot's inline suggestions ignore your conventions, that's expected behavior. Use Chat-based interactions (ask mode, agent mode, prompts) for convention-aware code generation.
+
+**See it in action:** [Customize Your Agents](https://www.youtube.com/watch?v=flpKLkZla2Q) — Courtney Webster demos creating and iterating on `copilot-instructions.md`, including using `/init` to bootstrap instructions from an existing codebase. Also in the [Agent Sessions Day livestream](https://www.youtube.com/watch?v=tAezuMSJuFs&t=10598s) at 02:56:38.
 
 ## When to Use Always-On Instructions
 
@@ -139,7 +147,7 @@ src/
 
 ### React Patterns
 ```typescript
-// ? Good: Custom hook for data fetching
+// ✅ Good: Custom hook for data fetching
 function useInventoryItems(warehouseId: string) {
   return useQuery({
     queryKey: ['inventory', warehouseId],
@@ -147,7 +155,7 @@ function useInventoryItems(warehouseId: string) {
   });
 }
 
-// ? Bad: Fetching in useEffect
+// ❌ Bad: Fetching in useEffect
 useEffect(() => {
   fetch('/api/inventory').then(/* ... */);
 }, []);
@@ -155,7 +163,7 @@ useEffect(() => {
 
 ### Server Actions
 ```typescript
-// ? Good: Validated, authorized, audited
+// ✅ Good: Validated, authorized, audited
 export async function updateInventory(input: UpdateInventoryInput) {
   const validated = updateInventorySchema.parse(input);
   const session = await auth();
@@ -165,7 +173,7 @@ export async function updateInventory(input: UpdateInventoryInput) {
   return db.inventory.update({ where: { id: validated.id }, data: validated });
 }
 
-// ? Bad: No validation, no auth check
+// ❌ Bad: No validation, no auth check
 export async function updateInventory(data: any) {
   return db.inventory.update({ data });
 }
@@ -185,7 +193,7 @@ export async function updateInventory(data: any) {
 
 ### Testing Patterns
 ```typescript
-// ? Good: Descriptive test with clear arrange/act/assert
+// ✅ Good: Descriptive test with clear arrange/act/assert
 describe('updateInventory', () => {
   it('should update quantity and log audit event', async () => {
     // Arrange
@@ -201,7 +209,7 @@ describe('updateInventory', () => {
   });
 });
 
-// ? Bad: Vague test name, no clear structure
+// ❌ Bad: Vague test name, no clear structure
 test('inventory works', async () => {
   const result = await updateInventory({ id: '1', quantity: 5 });
   expect(result).toBeTruthy();
@@ -225,12 +233,12 @@ Use our custom error hierarchy:
 
 ### Error Pattern
 ```typescript
-// ? Good: Specific error with context
+// ✅ Good: Specific error with context
 if (!warehouse) {
   throw new NotFoundError('Warehouse', warehouseId);
 }
 
-// ? Bad: Generic error
+// ❌ Bad: Generic error
 if (!warehouse) {
   throw new Error('Not found');
 }
@@ -301,7 +309,7 @@ For a product management approach to workspace instructions, see [product-brain]
 
 The recommended approach for creating instructions files is through VS Code's built-in interface combined with agent-assisted generation.
 
-## Using the /init Command (Fastest)
+### Using the /init Command (Fastest)
 
 The quickest way to generate instructions for your workspace:
 
@@ -316,9 +324,9 @@ The `/init` command follows a structured workflow:
 2. **Analysis** — Examines your project structure and coding patterns
 3. **Generation** — Creates comprehensive workspace instructions tailored to your project
 
-> **New in VS Code 1.109:** The `/init` command is implemented as a contributed prompt file, meaning you can customize its behavior by modifying the underlying prompt in your workspace.
+**New in VS Code 1.109:** The `/init` command is implemented as a contributed prompt file, meaning you can customize its behavior by modifying the underlying prompt in your workspace.
 
-## Creating via the Configure Menu
+### Creating via the Configure Menu
 
 1. In the Chat view, click the **gear icon** (Configure Chat)
 2. Select **Generate Chat Instructions** to auto-generate, or
@@ -328,7 +336,7 @@ The `/init` command follows a structured workflow:
    - **User Profile:** Personal instructions across all workspaces
 5. Author the instructions or let the agent generate initial content
 
-## Agent-Driven Generation (Advanced)
+### Agent-Driven Generation (Advanced)
 
 Rather than manually writing instructions, let the agent analyze the repository and generate appropriate instructions:
 
@@ -382,7 +390,7 @@ Effective instructions files encode team knowledge. Use these questions to surfa
 3. **"What would a new hire need to know on day one?"** — This becomes context
 4. **"What libraries or patterns have been deprecated?"** — This becomes the "avoid" list
 
-> **Practical tip:** Review the last 10-20 PR comments from the team. Repeated feedback indicates rules that should be codified in the instructions file.
+**Practical tip:** Review the last 10-20 PR comments from the team. Repeated feedback indicates rules that should be codified in the instructions file.
 
 > **💬 Try this prompt:**
 >
@@ -402,14 +410,14 @@ Copilot responds more effectively to examples than to abstract rules. Instead of
 ```markdown
 ## Data Transformation
 
-? **Preferred:**
+✅ **Preferred:**
 ```typescript
 const activeUsers = users
   .filter(user => user.isActive)
   .map(user => user.name);
 ```
 
-? **Avoid:**
+❌ **Avoid:**
 ```typescript
 let activeUsers = [];
 for (let i = 0; i < users.length; i++) {
@@ -468,8 +476,8 @@ To verify the instructions file is working correctly:
 
 If instructions are not being applied, verify:
 - The `github.copilot.chat.codeGeneration.useInstructionFiles` setting is enabled
-- File is named exactly `copilot-instructions.md` or `AGENTS.md`
-- File is located in the `.github/` folder [*](https://code.visualstudio.com/docs/copilot)
+- File is named exactly `copilot-instructions.md`, `AGENTS.md`, or `CLAUDE.md`
+- File is in the correct location: `copilot-instructions.md` in `.github/`, `AGENTS.md` at workspace root, or `CLAUDE.md` at workspace root or `.claude/` folder
 - VS Code window has been reloaded after creating the file
 
 **Using Diagnostics:** Right-click in the Chat view and select **Diagnostics** to see all loaded instruction files, custom agents, prompt files, and skills—along with any errors.
@@ -495,7 +503,7 @@ All relevant instructions are provided to Copilot, but higher-priority instructi
 
 ## Organization-Wide Instructions
 
-> **New in VS Code 1.109:** Organization-level custom instructions are now supported in VS Code.
+**New in VS Code 1.109:** Organization-level custom instructions are now supported in VS Code.
 
 If your GitHub organization has configured custom instructions for Copilot, they are automatically applied to your chat sessions, ensuring consistent guidance across your team. This feature is enabled by default.
 
@@ -507,6 +515,56 @@ Organization instructions are particularly valuable for:
 - Enforcing company-wide coding standards
 - Maintaining compliance requirements across repositories
 - Sharing best practices without duplicating instructions in every repo
+
+## Referencing Tools in Instructions
+
+Instruction files can reference specific tools using the `#tool:` syntax. This signals to Copilot which tools are relevant for a given convention:
+
+```markdown
+## Testing
+- Always run tests with #tool:runInTerminal after making changes
+- Use #tool:search to find existing test patterns before writing new tests
+```
+
+Tool references help Copilot understand not just _what_ to do, but _how_ to accomplish it using available capabilities.
+
+## CLAUDE.md Compatibility
+
+VS Code also detects `CLAUDE.md` files and applies them as always-on instructions, providing compatibility with Claude Code and other Claude-based tools. This enables teams using multiple AI agents to maintain a single set of instructions recognized by all of them.
+
+**Detected locations:**
+
+| Location | Purpose |
+|----------|--------|
+| `CLAUDE.md` in workspace root | Primary workspace instructions |
+| `.claude/CLAUDE.md` | Alternative workspace location |
+| `~/.claude/CLAUDE.md` | Personal instructions across all projects |
+| `CLAUDE.local.md` | Local-only instructions (not committed to version control) |
+
+**Setting:** `chat.useClaudeMdFile` — enable or disable `CLAUDE.md` detection.
+
+For scoped rules, VS Code also detects instructions files in the `.claude/rules` workspace folder and the `~/.claude/rules` user folder. These use a `paths` property (instead of `applyTo`) for glob patterns, following the [Claude Rules format](https://code.claude.com/docs/en/memory#basic-structure). The `paths` property accepts an array of glob patterns and defaults to `**` (all files) when omitted.
+
+## Nested AGENTS.md Files (Experimental)
+
+For monorepos or projects with distinct subsystems, VS Code supports nested `AGENTS.md` files in subfolders. Each subfolder can have its own `AGENTS.md` with instructions scoped to that part of the project.
+
+**Setting:** `chat.useNestedAgentsMdFiles` — enable or disable nested `AGENTS.md` support.
+
+When enabled, VS Code searches recursively through all subfolders for `AGENTS.md` files and adds their relative paths to the chat context. The agent decides which instructions to use based on the files being edited.
+
+```
+my-monorepo/
+├── AGENTS.md              # Root-level instructions
+├── frontend/
+│   └── AGENTS.md          # Frontend-specific instructions
+├── backend/
+│   └── AGENTS.md          # Backend-specific instructions
+└── shared/
+    └── AGENTS.md          # Shared library instructions
+```
+
+For folder-specific instructions without the experimental setting, file-based instructions with targeted `applyTo` patterns provide the same scoping capability.
 
 ---
 

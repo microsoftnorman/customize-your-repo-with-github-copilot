@@ -1,7 +1,7 @@
 ---
 name: 'Skills Documentation'
 description: 'Guidelines for documenting Agent Skills following the agentskills.io specification'
-applyTo: '**/skills/**,**/skill*'
+applyTo: '**/skills/**,**/SKILL.md'
 ---
 
 # Skills Documentation Guidelines

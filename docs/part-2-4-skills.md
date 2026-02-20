@@ -1,6 +1,6 @@
 # Skills
 
-[? Prompt Files](part-2-3-prompts.md) | [Part II Overview](part-2-primitives.md)
+[← Prompt Files](part-2-3-prompts.md) | [Part II Overview](part-2-primitives.md)
 
 ---
 
@@ -11,8 +11,12 @@ Skills represent discrete capabilities that Copilot can invoke when contextually
 Unlike prompts (which users invoke explicitly via `/`), skills activate automatically based on description matching.
 
 **Location:** `.github/skills/`
-**Loading:** Description match  on-demand
+**Loading:** Description match → on-demand
 **Best For:** Reusable capabilities across tools
+
+**Official docs:** [Agent skills](https://code.visualstudio.com/docs/copilot/customization/agent-skills)
+
+**See it in action:** [Customize Your Agents](https://www.youtube.com/watch?v=flpKLkZla2Q) — Courtney Webster demos agent skills as portable capabilities, including how skills surface as `/` slash commands in chat. Also in the [Agent Sessions Day livestream](https://www.youtube.com/watch?v=tAezuMSJuFs&t=10598s) at 02:56:38.
 
 ### Agent Skills
 
@@ -152,17 +156,20 @@ magick input.jpg -quality 85 output.webp
 | `metadata` | No | Key-value pairs (author, version, etc.) |
 | `license` | No | License name or reference |
 | `compatibility` | No | Environment requirements |
+| `user-invokable` | No | Controls whether the skill appears as a `/` slash command in chat (default: `true`). Set to `false` to hide from the menu while still allowing automatic activation by the agent. |
+| `disable-model-invocation` | No | Controls whether the agent can automatically load the skill based on relevance (default: `false`). Set to `true` to require manual invocation via `/` only. |
+| `argument-hint` | No | Hint text shown to users when invoking the skill as a `/` slash command (e.g., `"Describe the skill you want to create"`) |
 
 ### Name Validation Rules
 
 Skill names must follow strict rules:
 
-? **Valid:**
+✅ **Valid:**
 - `image-manipulation`
 - `github-issues`
 - `web-testing`
 
-? **Invalid:**
+❌ **Invalid:**
 - `Image-Manipulation` (uppercase not allowed)
 - `-image` (cannot start with hyphen)
 - `image-` (cannot end with hyphen)
@@ -326,7 +333,7 @@ A [reference implementation](https://github.com/anthropics/skills) is available 
 
 With the skill-creator in your repo, bootstrapping new skills becomes conversational:
 
-> ?? Try this prompt:
+> 💬 **Try this prompt:**
 >
 > `Create a skill for linting SQL queries`
 
@@ -372,7 +379,7 @@ Check for common issues:
 
 For more control, provide context in your prompt:
 
-> ?? Try this prompt:
+> 💬 **Try this prompt:**
 >
 > `Create a skill for Kubernetes deployments. It should cover kubectl commands, common YAML patterns, and debugging pods. Include a scripts/ directory for helper scripts.`
 
@@ -388,7 +395,7 @@ kubernetes-deployments/
 
 #### The Recursive Pattern
 
-Here's the elegant part: **the skill-creator is itself a skill.**
+The recursive aspect: **the skill-creator is itself a skill.**
 
 This means:
 - It's only loaded into context when you're creating skills
@@ -439,11 +446,11 @@ If you find yourself thinking "this is useful, but it doesn't need to be in cont
 
 ### Skills vs. File-Based Instructions: Overlapping Territory
 
-Here's the honest truth: **skills and file-based instructions have significant overlap, and that's okay.**
+**Skills and file-based instructions have significant overlap, and that's okay.**
 
 Both primitives emerged from real needs as the AI coding assistant space evolved. File-based instructions use glob patterns (`applyTo: 'src/api/**/*'`) to load context when working on matching files. Skills use description matching to load context when the user's intent matches. Sometimes the same knowledge could reasonably live in either place.
 
-**There is no definitively "right" answer.** As of January 2026, this is still an emerging space. The boundaries between primitives are fuzzy, and that's by design — it gives teams flexibility to organize knowledge in ways that match their workflows.
+**There is no definitively "right" answer.** Agent Skills reached general availability in VS Code 1.109 (January 2026) and are enabled by default, but the boundaries between primitives are still being explored. That fuzziness is by design — it gives teams flexibility to organize knowledge in ways that match their workflows.
 
 #### When They Overlap
 
@@ -476,7 +483,7 @@ Both approaches work. Neither is wrong.
 
 #### The Experimentation Mindset
 
-Our recommendation: **try both and see what works for your team.**
+The recommended approach: **try both and see what works for the team.**
 
 Some patterns that teams have found useful:
 - Use file-based instructions for "rules when editing X" (linting rules for tests, conventions for components)
@@ -493,29 +500,30 @@ When you have new knowledge to encode, ask yourself these questions:
 
 ```
 Is this needed on EVERY request?
-+-- Yes ? Always-on instructions (.github/copilot-instructions.md)
++-- Yes → Always-on instructions (.github/copilot-instructions.md)
 —         BUT check if your instructions file is getting overloaded.
 —         If it's huge, consider moving specialized content elsewhere.
 —
-+-- No ? Is this reusable across multiple contexts/files?
-         +-- Yes ? Skill (.github/skills/)
++-- No → Is this reusable across multiple contexts/files?
+         +-- Yes → Skill (.github/skills/)
          —         Skills shine when the same knowledge applies
          —         in multiple places throughout the repo.
          —
-         +-- No ? File-based instruction (.github/instructions/)
+         +-- No → File-based instruction (.github/instructions/)
                   Good for single-purpose rules tied to specific
                   file patterns that won't be needed elsewhere.
 ```
 
-**Our current recommendation (January 2026):** Start with skills as your default. Skills are:
+**Current recommendation (February 2026):** Start with skills as your default. Agent Skills are now generally available and enabled by default in VS Code 1.109. They're:
 - Portable across AI agents (VS Code, GitHub CLI, coding agent)
 - Only loaded when relevant (keeps context lean)
 - Self-contained directories (can include templates, scripts, examples)
+- Also available as `/` slash commands alongside prompt files
 - Easy to share across repos or with the community
 
 Use always-on instructions for the core stuff that truly applies everywhere — your tech stack, universal coding conventions, security requirements. Use file-based instructions when you have rules that are genuinely file-pattern-specific and won't be reused.
 
-> **?? Editor's Note:** We're still learning what works best. The primitives overlap because this space is evolving rapidly. GitHub and the community are actively experimenting with these patterns. What we recommend today may shift as we learn more. The best approach is to try things, see what helps your team, and share what you learn.
+**Editor's Note:** The primitives overlap because this space is evolving rapidly. GitHub and the community are actively experimenting with these patterns. What we recommend today may shift as we learn more. The best approach is to try things, see what helps your team, and share what you learn.
 
 ### How Skills Load: Description Matching
 
@@ -564,14 +572,11 @@ The [agentskills.io](https://agentskills.io) specification intentionally leaves 
 This design allows the same skill to work across different agents while each host optimizes for its environment. A skill written for VS Code will also work with the GitHub CLI and coding agent without modification.
 
 **Compatibility Field:**
-Skills can declare which environments they support:
+Skills can declare which environments they support using a string value (max 500 characters):
 
 ```markdown
 ---
-compatibility:
-  - vscode
-  - github-cli
-  - coding-agent
+compatibility: Works with VS Code, GitHub CLI, and coding agent
 ---
 ```
 
@@ -633,7 +638,7 @@ When deciding between them, ask: **Does the capability require crossing a securi
 
 #### Practical Examples
 
-**Git Operations ? Skill**
+**Git Operations → Skill**
 
 Git is almost universally installed on developer machines. A skill can invoke git commands directly without needing external authentication.
 
@@ -698,7 +703,7 @@ Resolve conflicts: Edit files, then `git add` and `git rebase --continue`
 
 ---
 
-**Jira ? Skill + MCP Server**
+**Jira → Skill + MCP Server**
 
 This is an ideal hybrid case. The **MCP Server** handles authentication and Jira API access. The **Skill** provides team-specific templates, workflows, and conventions.
 
@@ -832,7 +837,7 @@ Read the appropriate template based on issue type:
 Once you've built the issue content from the template, use the MCP tool to create it:
 
 ```
-Use mcp_jira_create_issue with:
+Use the Jira MCP server's create-issue tool with:
 - project: "MYPROJECT"
 - issueType: "Story"
 - summary: [title from template]
@@ -845,7 +850,7 @@ Use mcp_jira_create_issue with:
 
 ---
 
-**File System Operations ? Skill**
+**File System Operations → Skill**
 
 The file system is local and doesn't require authentication. A skill provides enhanced operations that work across different AI agents.
 
@@ -907,4 +912,4 @@ For more on building skills, visit [agentskills.io/home](https://agentskills.io/
 
 ---
 
-[? Prompt Files](part-2-3-prompts.md) | [Next: Custom Agents ?](part-2-5-custom-agents.md)
+[← Prompt Files](part-2-3-prompts.md) | [Next: Custom Agents →](part-2-5-custom-agents.md)

@@ -1,6 +1,6 @@
 # Custom Agents
 
-[? Skills](part-2-4-skills.md) | [Part II Overview](part-2-primitives.md)
+[← Skills](part-2-4-skills.md) | [Part II Overview](part-2-primitives.md)
 
 ---
 
@@ -11,7 +11,11 @@ Custom Agents provide specialized AI personas with constrained tool access and d
 **Loading:** Top-level OR as subagent
 **Best For:** Constrained workflows
 
-**Location:** `.github/agents/*.md` (any `.md` file except `README.md`) or `**/*.agent.md` anywhere in the workspace
+**Official docs:** [Custom agents](https://code.visualstudio.com/docs/copilot/customization/custom-agents)
+
+**See it in action:** [Customize Your Agents](https://www.youtube.com/watch?v=flpKLkZla2Q) — Courtney Webster demos building custom agents, agent skills, and MCP integrations, showing how to create agents for specific roles and wire them together with handoffs. Also available in the [Agent Sessions Day livestream](https://www.youtube.com/watch?v=tAezuMSJuFs&t=10598s) at 02:56:38.
+
+**Location:** `.github/agents/*.md` (any `.md` file except `README.md`) or `**/*.agent.md` anywhere in the workspace. Configure additional search paths with the `chat.agentFilesLocations` setting to share agents across projects or keep them in a central location.
 
 ### When to Use Custom Agents
 
@@ -29,19 +33,21 @@ Custom Agent files use the `.agent.md` extension and support these frontmatter f
 | `name` | Display name in the agent picker |
 | `description` | Shown as placeholder text in chat input |
 | `tools` | List of tools available to this agent |
-| `model` | AI model to use (e.g., `Claude Opus 4.6`, `GPT-5.2`) |
+| `model` | AI model to use (e.g., `Claude Opus 4.6`, `GPT-5.2`). Supports arrays for fallback: `['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']` |
 | `handoffs` | Define transitions to other agents |
 | `argument-hint` | Hint text for user interaction |
 | `user-invokable` | Whether the agent appears in the agents dropdown (default: `true`). Set to `false` to create subagent-only agents |
 | `disable-model-invocation` | Prevents the agent from being invoked as a subagent by other agents (default: `false`). Set to `true` for user-only agents |
 | `agents` | Restrict which custom agents this agent can invoke as subagents. Accepts agent names, `*` (all), or `[]` (none) |
+| `target` | Execution target: `vscode` (default) or `github-copilot` for use with Copilot coding agent on GitHub |
+| `mcp-servers` | MCP server config JSON for agents targeting `github-copilot` |
 
 ```markdown
 ---
 name: 'Security Reviewer'
 description: 'Reviews code with a focus on security vulnerabilities'
 tools: ['search', 'readFile', 'usages']
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 ---
 
 You are a senior security engineer reviewing code for vulnerabilities.
@@ -80,7 +86,7 @@ The following agent configurations address common development scenarios:
 name: 'System Architect'
 description: 'High-level design and architecture decisions'
 tools: ['search', 'readFile', 'fetch', 'githubRepo']
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 handoffs:
   - label: 'Start Implementation'
     agent: 'agent'
@@ -118,7 +124,7 @@ distributed systems.
 name: 'Patient Mentor'
 description: 'Explains concepts thoroughly for learning'
 tools: ['search', 'readFile', 'fetch']
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 ---
 
 You are a patient senior developer mentoring a junior team member.
@@ -149,7 +155,7 @@ You are a patient senior developer mentoring a junior team member.
 name: 'Debug Detective'
 description: 'Methodical bug hunting and diagnosis'
 tools: ['search', 'readFile', 'usages', 'terminalLastCommand', 'getTerminalOutput']
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 ---
 
 You are a systematic debugging expert who approaches problems methodically.
@@ -182,7 +188,7 @@ You are a systematic debugging expert who approaches problems methodically.
 name: 'Code Reviewer'
 description: 'Thorough code review focused on quality'
 tools: ['search', 'readFile', 'usages', 'changes']
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 ---
 
 You are a meticulous code reviewer focused on code quality and team standards.
@@ -210,7 +216,7 @@ You are a meticulous code reviewer focused on code quality and team standards.
 
 Sub-agents run tasks in a **dedicated, isolated context window** separate from the main chat session. The main agent delegates work to a sub-agent, which executes autonomously and returns only its final result — keeping the primary context clean and focused.
 
-By default, sub-agents inherit the agent and model from the main chat session. By running a custom agent as a sub-agent, specialized behavior, tools, and models can be applied to specific sub-tasks.
+By default, subagents inherit the model and tools from the main chat session but start with a clean context window — they do not inherit instructions or conversation history from the parent agent. By running a custom agent as a sub-agent, specialized behavior, tools, and models can be applied to specific sub-tasks.
 
 **Why Sub-Agents Matter:**
 
@@ -404,8 +410,20 @@ handoffs:
   - label: 'Implement Fixes'
     agent: 'agent'
     prompt: 'Implement the fixes identified in the review above.'
+    send: false
+    model: 'GPT-5.2 (copilot)'
 ---
 ```
+
+Each handoff supports these fields:
+
+| Field | Description |
+|-------|-------------|
+| `label` | Display text on the handoff button |
+| `agent` | Target agent to switch to |
+| `prompt` | Prompt text to send to the target agent |
+| `send` | Auto-submit the prompt when the handoff is selected (default: `false`). Set to `true` to start the next step automatically. |
+| `model` | Language model for the handoff. Use qualified format like `GPT-5.2 (copilot)` or `Claude Opus 4.6 (copilot)`. |
 
 The `handoffs` field creates natural workflow transitions, where one agent can spawn another for specialized work.
 
@@ -418,8 +436,8 @@ This example demonstrates the sub-agent pattern — an orchestrator agent that d
 ---
 name: 'Feature Builder'
 description: 'End-to-end feature implementation with specialized sub-agents'
-tools: ['search', 'readFile', 'editFile', 'runInTerminal']
-model: 'Opus 4.6'
+tools: ['search', 'readFile', 'editFiles', 'runInTerminal']
+model: 'Claude Opus 4.6'
 handoffs:
   - label: 'Security Review'
     agent: 'security-reviewer'
@@ -502,7 +520,7 @@ The recommended approach for creating custom agents is through VS Code's built-i
 
 Rather than manually editing agent files, use Copilot to generate and refine them:
 
-> **?? Try this prompt:**
+> **💬 Try this prompt:**
 >
 > *Create a custom agent for security code review. It should:*
 > *- Focus on OWASP Top 10 vulnerabilities*
@@ -554,7 +572,7 @@ description: 'What this mode does (shows in picker)'
 [Guardrails and limitations]
 ```
 
-### Step 3: Define Specific Personas
+### Step 1: Define Specific Personas
 
 Specificity in persona definition produces consistency in outputs.
 
@@ -571,7 +589,7 @@ technical debt. You're kind but direct—you won't sugarcoat issues
 but you always explain your reasoning.
 ```
 
-### Step 4: Define Response Patterns
+### Step 2: Define Response Patterns
 
 Specify how the agent should structure its responses:
 
@@ -589,7 +607,7 @@ Always provide code examples, not just descriptions.
 Never say "it depends" without then explaining what it depends ON.
 ```
 
-### Step 5: Add Guardrails
+### Step 3: Add Guardrails
 
 Guardrails prevent the persona from producing off-target responses:
 
@@ -607,7 +625,7 @@ Guardrails prevent the persona from producing off-target responses:
 
 The following prompt generates new custom agent configurations through the agent:
 
-> **?? Try this prompt:**
+> **💬 Try this prompt:**
 >
 > *Create a new custom agent at `.github/agents/{{modeName}}.agent.md`.*
 >
@@ -615,7 +633,7 @@ The following prompt generates new custom agent configurations through the agent
 > *- Role: {{roleDescription}}*
 > *- Expertise area: {{expertiseArea}}*
 > *- Personality: {{personalityTraits}}*
-> *- Preferred Model: Opus 4.6 (or specify another)*
+> *- Preferred Model: Claude Opus 4.6 (or specify another)*
 >
 > *Generate an agent that includes:*
 >
@@ -659,7 +677,7 @@ The following prompt generates new custom agent configurations through the agent
 name: 'Rubber Duck'
 description: 'Helps you think through problems by asking questions'
 tools: ['search', 'readFile']
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 ---
 
 You are a rubber duck. Your job is NOT to solve problems—it's to help 
@@ -687,7 +705,7 @@ the user solve them themselves by asking good questions.
 name: "Devil's Advocate"
 description: 'Challenges decisions to find weaknesses'
 tools: ['search', 'readFile', 'fetch']
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 ---
 
 You argue the opposite position of whatever the user suggests.
@@ -705,6 +723,49 @@ After challenging, acknowledge good points.
 End with "If you can address these, you've got a solid plan."
 ```
 
+### Claude Agent Format
+
+VS Code also detects `.md` files in the `.claude/agents` folder, following the Claude sub-agents format. This enables teams to use the same agent definitions across VS Code and Claude Code.
+
+Claude agent files use plain `.md` files (not `.agent.md`) with slightly different frontmatter:
+
+| Field | Description |
+|-------|-------------|
+| `name` | Agent name (required) |
+| `description` | What the agent does |
+| `tools` | Comma-separated string of allowed tools (e.g., `"Read, Grep, Glob, Bash"`) |
+| `disallowedTools` | Comma-separated string of tools to block |
+
+VS Code maps Claude-specific tool names to the corresponding VS Code tools. Both the VS Code `.agent.md` format (with YAML arrays for tools) and the Claude format (with comma-separated strings) are supported.
+
+To create a Claude-compatible agent, select **Workspace (Claude format)** when creating a new custom agent via the Configure menu.
+
+### Background and Cloud Agents
+
+Custom agents can be reused in **background agents** and **cloud agents**, enabling autonomous tasks with the same specialized configurations defined in `.agent.md` files.
+
+- **Background agents** run tasks asynchronously in VS Code while the developer continues working
+- **Cloud agents** execute remotely on GitHub's infrastructure
+
+Background agents also support slash commands — including prompt files, hooks, and skills. All customization primitives now work across local, background, and cloud agent environments.
+
+This means agent definitions are portable: the same `.agent.md` file that drives an interactive chat session can also power automated coding tasks running in the background or in the cloud.
+
+**See it in action:** [A Unified Agent Experience](https://www.youtube.com/watch?v=YmpjvZ3xkx8) — Josh Spicer demos managing local, background, and cloud agent sessions from a single view, including delegating tasks to remote infrastructure and collaborating through PRs. Also in the [livestream](https://www.youtube.com/watch?v=tAezuMSJuFs&t=4350s) at 01:12:30.
+
+### Organization-Level Custom Agents
+
+Custom agents can be shared across an entire GitHub organization, providing consistent specialized personas across all repositories.
+
+**Setting:** `github.copilot.chat.organizationCustomAgents.enabled` — set to `true` to discover organization-level agents.
+
+Organization-level agents appear in the agents dropdown alongside built-in agents, personal agents, and workspace agents. This is useful for:
+- Standardizing review workflows across teams
+- Providing org-wide security or compliance agents
+- Sharing domain-specific expertise agents across repositories
+
+Learn more about [creating custom agents for your organization](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-custom-agents) in the GitHub documentation.
+
 ---
 
-[? Skills](part-2-4-skills.md) | [Next: MCP ?](part-2-6-mcp.md)
+[← Skills](part-2-4-skills.md) | [Next: MCP →](part-2-6-mcp.md)

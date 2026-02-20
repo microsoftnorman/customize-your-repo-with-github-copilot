@@ -1,4 +1,3 @@
-```skill
 ---
 name: editor
 description: Reviews and critiques documentation for quality, accuracy, and consistency. Use when files are modified, when reviewing content before commit, or when the user asks for editorial review. Identifies issues with grammar, formatting, broken links, outdated information, and style violations.
@@ -173,4 +172,3 @@ When verifying technical accuracy, check against:
 - https://code.visualstudio.com/docs/copilot (VS Code Copilot docs)
 - https://docs.github.com/en/copilot (GitHub Copilot docs)
 - Source code and configuration files in the repository
-```
