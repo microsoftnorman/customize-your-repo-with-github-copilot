@@ -117,22 +117,44 @@ Memory and explicit customization solve different problems. Neither replaces the
 |------|--------------|--------------|
 | **Copilot Pro / Pro+** | Enabled by default | Individual user in [Copilot settings](https://github.com/settings/copilot) |
 | **Copilot Business** | Disabled by default | Organization admin via Copilot policies |
-| **Copilot Enterprise** | Disabled by default | Enterprise admin, optionally delegated to org admins |
+| **Copilot Enterprise** | Disabled by default | Enterprise owner via AI controls, or delegated to org admins |
 
-For enterprise and organization plans, admins enable Memory through Copilot policies. Once enabled at the org/enterprise level, Memory applies to all members with a Copilot license. If a user receives Copilot from multiple organizations, the most restrictive setting applies — Memory is only used if *all* organizations have it enabled.
+If a user receives Copilot from multiple organizations, the most restrictive setting wins — Memory is only active when *all* assigning organizations have it enabled.
 
-For step-by-step enablement instructions, see [Managing and curating Copilot Memory](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory).
+### Enabling or Disabling Memory
+
+**Individual users (Pro / Pro+):**
+
+1. Click your profile picture → **Copilot settings**
+2. Under **Features**, scroll to **Copilot Memory**
+3. Select **Enabled** or **Disabled** from the dropdown
+
+**Organization admins (Business / Enterprise):**
+
+1. Go to **Organization Settings** → **Copilot** → **Policies**
+2. Under **Features**, scroll to **Copilot Memory**
+3. Select **Enabled** from the dropdown to turn it on for all licensed members
+
+**Enterprise owners:**
+
+1. Navigate to **Enterprise** → **AI controls** → **Copilot**
+2. Under **Features**, scroll to **Copilot Memory**
+3. Select a policy:
+   - **Let organizations decide** — delegates to org admins
+   - **Enabled everywhere** — turns on Memory for all licensed members across all orgs
+   - **Disabled everywhere** — turns off Memory and prevents orgs from enabling it
 
 ### Viewing and Deleting Memories
 
-Repository owners can review stored memories at any time:
+Repository owners can review and delete stored memories:
 
-1. Navigate to the repository on GitHub
-2. Go to **Settings → Code & automation → Copilot → Memory**
-3. Browse stored memories (sorted chronologically, newest first)
-4. Delete individual memories or select multiple for bulk deletion
+1. Go to the repository → **Settings** → **Copilot** → **Memory**
+2. A chronological list of stored memories is displayed (newest first)
+3. Click the trash icon next to any memory to delete it, or select multiple and click **Delete**
 
-Memories show the fact Copilot stored and the code citations that support it. If a memory looks incorrect or misleading, delete it — Copilot may recreate it if the pattern still exists in code, but validation ensures only currently-supported facts are applied.
+Memories auto-expire after 28 days, so manual deletion is only needed to remove memories that are incorrect or misleading before they expire naturally.
+
+For full details, see [Managing and curating Copilot Memory](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory).
 
 ---
 
