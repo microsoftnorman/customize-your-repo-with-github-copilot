@@ -1310,6 +1310,4 @@ git push
 
 ---
 
-[← MCP](part-2-6-mcp.md) | [Next: Part III - Reference →](part-3-reference.md)
-
-````
+[← MCP](part-2-6-mcp.md) | [Next: Copilot Memory →](part-2-8-memory.md)

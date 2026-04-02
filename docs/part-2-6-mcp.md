@@ -158,8 +158,8 @@ The best setups combine them: an MCP server handles "how to connect to Jira" whi
 |----------|------------------------|-----------| 
 | **Kubernetes** | Cluster state, pod logs, scaling, rollouts | Deployment skill for team conventions |
 | **Terraform / IaC** | Plan, apply, state queries | Infrastructure review agent |
-| **Cloud Provider** (Azure, AWS, GCP) | Resource management, metrics, cost data | SRE agent for incident response |
-| **Monitoring** (Datadog, Grafana, Prometheus) | Alerts, dashboards, metric queries | Incident response skill for triage runbooks |
+| **Cloud Provider** (Azure, AWS, GCP) | Resource management, metrics, cost data | Operations agent for infrastructure tasks |
+| **Monitoring** (Datadog, Grafana, Prometheus) | Alerts, dashboards, metric queries | Triage skill for runbook-based workflows |
 
 The same principle applies: the MCP server provides *access* to infrastructure APIs, while skills and instructions encode *how your team uses them*.
 

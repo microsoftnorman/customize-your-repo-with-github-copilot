@@ -67,6 +67,8 @@ The heart of the guide. Each primitive receives comprehensive coverage including
 - [2.5 Custom Agents](docs/part-2-5-custom-agents.md) — Specialized AI personas
 - [2.6 MCP](docs/part-2-6-mcp.md) — External tool integration
 - [2.7 Hooks](docs/part-2-7-hooks.md) — Runtime enforcement and audit logging
+- [2.8 Copilot Memory](docs/part-2-8-memory.md) — Automatic repository-level learning
+- [2.9 Agentic Workflows](docs/part-2-9-agentic-workflows.md) — Continuous AI via coding agents in GitHub Actions
 
 ### [Part III: Reference](docs/part-3-reference.md)
 
@@ -89,6 +91,7 @@ For teams adopting Copilot customization, consider reading through the guide ind
 - [GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) — Use Copilot as an AI agent directly from your terminal
 - [Model Context Protocol](https://modelcontextprotocol.io/)
 - [Agent Skills Specification](https://agentskills.io) — Open standard for portable agent capabilities
-- [Agentic DevOps](https://azure.microsoft.com/en-us/blog/agentic-devops-evolving-software-development-with-github-copilot-and-microsoft-azure/) — Microsoft's vision for agents across the software lifecycle
+- [Copilot Memory](https://docs.github.com/en/copilot/concepts/agents/copilot-memory) — Automatic repository-level learning that complements explicit customization
+- [GitHub Agentic Workflows](https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/) — Continuous AI via coding agents in GitHub Actions
 - [VS Code Source Code](https://github.com/microsoft/vscode) — The authoritative reference when documentation is unclear
 - [product-brain](https://github.com/digitarald/product-brain) — A product management approach to workspace instructions

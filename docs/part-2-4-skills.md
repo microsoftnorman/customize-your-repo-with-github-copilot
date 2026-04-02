@@ -510,7 +510,7 @@ Is this needed on EVERY request?
                   file patterns that won't be needed elsewhere.
 ```
 
-**Our current recommendation (January 2026):** Start with skills as your default. Skills are:
+**Our current recommendation (April 2026):** Start with skills as your default. Skills are:
 - Portable across AI agents (VS Code, GitHub Copilot CLI, coding agent)
 - Only loaded when relevant (keeps context lean)
 - Self-contained directories (can include templates, scripts, examples)

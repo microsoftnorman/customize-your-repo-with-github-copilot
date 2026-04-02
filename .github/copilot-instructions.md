@@ -20,7 +20,8 @@ This repository contains "The Definitive Guide to Customizing Your Repo for GitH
   - https://github.com/features/copilot/cli/
   - https://github.blog/changelog/label/copilot/
   - https://github.blog/ (announcements, feature deep-dives, and engineering posts)
-  - https://azure.microsoft.com/en-us/blog/agentic-devops-evolving-software-development-with-github-copilot-and-microsoft-azure/ (Agentic DevOps vision — coding agent, SRE agent, app modernization)
+  - https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/ (GitHub Agentic Workflows — Continuous AI via coding agents in GitHub Actions)
+  - https://docs.github.com/en/copilot/concepts/agents/copilot-memory (Copilot Memory — automatic repository-level learning)
 - **Always fetch the latest documentation before answering questions about Copilot features** — your training data may be outdated
 - Use the Microsoft docs tools to search and fetch from code.visualstudio.com
 - Use the fetch_webpage tool for docs.github.com/en/copilot, github.com/github/copilot-cli, github.com/features/copilot/cli, and github.blog pages

@@ -15,6 +15,7 @@
 | Custom Agents | `.github/agents/` OR anywhere | `.agent.md` or any `.md` in agents/ |
 | MCP Servers | `.vscode/mcp.json` | `.json` |
 | Hooks | `.github/hooks/` | `.json` |
+| Copilot Memory | Managed by GitHub | N/A — no repo file |
 
 ---
 
@@ -325,9 +326,9 @@ For comprehensive documentation with practical examples, see [Part 2.7: Hooks](p
 |-----------|----------|
 | Rules that apply everywhere | Always-On Instructions |
 | Rules for specific file types | File-Based Instructions |
-| Repeatable task template | Prompt File |
-| Reusable capability with resources | Skill |
+| Reusable workflow or procedural knowledge | Skill |
 | Specialized AI persona | Custom Agent |
+| Simple single-purpose slash command | Prompt File |
 | External API/database access | MCP Server |
 | Rules + external access | Skill + MCP together |
 | Block dangerous agent commands | Hook (`preToolUse`) |
@@ -644,7 +645,9 @@ Reference environment variables with `${env:VAR_NAME}`:
 | GitHub Copilot CLI | https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli |
 | MCP Specification | https://modelcontextprotocol.io |
 | Agent Skills Spec | https://agentskills.io |
-| Agentic DevOps | https://azure.microsoft.com/en-us/blog/agentic-devops-evolving-software-development-with-github-copilot-and-microsoft-azure/ |
+| Copilot Memory (concepts) | https://docs.github.com/en/copilot/concepts/agents/copilot-memory |
+| Copilot Memory (managing) | https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory |
+| GitHub Agentic Workflows | https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/ |
 | Awesome Copilot | https://github.com/github/awesome-copilot |
 
 ---
@@ -654,9 +657,10 @@ Reference environment variables with `${env:VAR_NAME}`:
 | Timeline | Action | Outcome |
 |----------|--------|---------|
 | Day 1 | Create `copilot-instructions.md` with 5 key rules | Immediate convention enforcement |
-| Week 1 | Add 2-3 prompt files for repeated tasks | Consistent task automation |
-| Month 1 | Implement custom agents for specialized workflows | Role-based AI assistance |
-| Quarter 1 | Evaluate MCP servers, Skills, and Hooks | External integrations, portable capabilities, runtime enforcement |
+| Week 1 | Add 2-3 skills for repeated workflows (scaffolding, testing, deployments) | Portable task automation across VS Code, CLI, and coding agent |
+| Week 2 | Create 1-2 custom agents (code reviewer, architect) | Role-based AI assistance |
+| Month 1 | Evaluate MCP servers and Hooks | External integrations, runtime enforcement |
+| Ongoing | Add prompt files for simple single-purpose slash commands as needed | Quick task shortcuts |
 
 ---
 

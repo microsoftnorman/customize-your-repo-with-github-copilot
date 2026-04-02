@@ -4,11 +4,11 @@
 
 ---
 
-GitHub Copilot provides six customization primitives that shape what Copilot knows and how it thinks. A seventh mechanism — hooks — provides runtime enforcement and observability for the coding agent.
+GitHub Copilot provides six customization primitives that shape what Copilot knows and how it thinks. Beyond the primitives, hooks provide runtime enforcement, and [Copilot Memory](part-2-8-memory.md) provides automatic repository-level learning.
 
-These primitives work across multiple Copilot surfaces — VS Code, Visual Studio, GitHub.com, and [GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) (a terminal-based AI agent). The table below notes where each primitive applies:
+These mechanisms work across multiple Copilot surfaces — VS Code, Visual Studio, GitHub.com, and [GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) (a terminal-based AI agent). The table below notes where each one applies:
 
-| Primitive | Location | When Loaded | Scope | CLI Support |
+| Mechanism | Location | When Loaded | Scope | CLI Support |
 |-----------|----------|-------------|-------|-------------|
 | [**Always-on Instructions**](part-2-1-always-on-instructions.md) | `.github/copilot-instructions.md` | Every request | Entire session | ✅ |
 | [**File-based Instructions**](part-2-2-file-based-instructions.md) | `.github/instructions/*.instructions.md` | File pattern match | While file in context | ✅ |
@@ -17,6 +17,7 @@ These primitives work across multiple Copilot surfaces — VS Code, Visual Studi
 | [**Custom Agents**](part-2-5-custom-agents.md) | `.github/agents/*.md` | User invokes `@name` | Until switched | ✅ |
 | [**MCP**](part-2-6-mcp.md) | `.vscode/mcp.json` | Session start | Entire session | ✅ |
 | [**Hooks**](part-2-7-hooks.md) | `.github/hooks/*.json` | Agent session events | Coding agent only | ✅ |
+| [**Copilot Memory**](part-2-8-memory.md) | Managed by GitHub | Automatic | Repository-wide | ✅ |
 
 ---
 
@@ -105,6 +106,14 @@ External service integrations. Connect Copilot to databases, APIs, ticketing sys
 ## 7. [Hooks](part-2-7-hooks.md)
 
 Runtime enforcement and observability for the coding agent. Execute custom shell commands at key points during agent sessions to enforce security policies, produce audit trails, block dangerous operations, and send notifications. Hooks operate outside the model's context — they don't influence how Copilot thinks, but they govern what the agent is allowed to do.
+
+## 8. [Copilot Memory](part-2-8-memory.md)
+
+Automatic repository-level learning that builds context over time. Unlike the explicit primitives above, Memory works passively — Copilot observes patterns in your codebase and conversations, then applies what it learned in future sessions. Memory complements explicit customization rather than replacing it.
+
+## 9. [Agentic Workflows](part-2-9-agentic-workflows.md)
+
+GitHub Agentic Workflows run coding agents inside GitHub Actions — on a schedule, on events, or on demand. This section covers how they work, how to configure the coding agent for autonomous tasks, and how the customization primitives from this guide feed into continuous AI automation.
 
 ---
 

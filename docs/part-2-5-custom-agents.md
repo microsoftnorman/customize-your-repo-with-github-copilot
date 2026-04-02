@@ -713,7 +713,7 @@ End with "If you can address these, you've got a solid plan."
 
 **SRE Agent** — Incident response and production reliability:
 
-This agent demonstrates Agentic DevOps in practice — a specialized persona that handles production operations, not just code. It pairs well with an [incident response skill](part-2-4-skills.md#skills-vs-mcp-servers-when-to-use-which) for runbook knowledge and monitoring MCP servers for infrastructure access.
+This agent is a specialized persona that handles production operations, not just code. It pairs well with an [incident response skill](part-2-4-skills.md#skills-vs-mcp-servers-when-to-use-which) for runbook knowledge and monitoring MCP servers for infrastructure access.
 
 ```markdown
 ---
