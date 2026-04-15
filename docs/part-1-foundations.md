@@ -2,7 +2,7 @@
 
 [← Back to Guide](../ReadMe.md)
 
-*Published: February 20, 2026 · Validated against VS Code 1.109 and GitHub Copilot docs as of this date.*
+*Published: February 20, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 15, 2026.*
 
 ---
 
@@ -10,17 +10,50 @@
 
 ### What is GitHub Copilot?
 
-GitHub Copilot is an AI coding assistant built into the editor. It ships as an extension for VS Code (and other IDEs) and operates in three modes:
+GitHub Copilot is an AI coding assistant built into the editor. As of VS Code 1.116 (April 2026), Copilot is **built-in** — no extension installation required. New users get chat, inline suggestions, and agent mode out of the box. (Those who prefer not to use AI features can disable them with `chat.disableAIFeatures`.)
+
+Copilot operates in three modes:
 
 | Mode | What It Does | How to Use It |
 |------|-------------|---------------|
 | **Inline suggestions** | Predicts the next lines of code as you type (ghost text) | Just type — suggestions appear automatically |
 | **Chat** | A conversational interface for asking questions, generating code, and explaining concepts | Open the Chat panel or press `Ctrl+I` / `Cmd+I` |
-| **Agent** | An autonomous mode where Copilot plans multi-step tasks, calls tools, edits files, and runs terminal commands | Type in Chat with agent mode enabled |
+| **Agent** | An autonomous mode where Copilot plans multi-step tasks, calls tools, edits files, and runs terminal commands. **Autopilot** (preview) adds a fully autonomous permission level — the agent approves its own actions with no manual confirmations required. | Type in Chat with agent mode enabled |
 
 Copilot connects to frontier language models (Claude, GPT, Gemini) hosted by GitHub. The models do the reasoning; the editor integration handles context — pulling in open files, workspace structure, and the customization files this guide covers.
 
-**This guide assumes Copilot is already installed and working.** If not, start at [github.com/features/copilot](https://github.com/features/copilot) to set up a subscription, then install the GitHub Copilot extension in VS Code.
+**This guide assumes Copilot is already installed and working.** If not, start at [github.com/features/copilot](https://github.com/features/copilot) to set up a subscription. With VS Code 1.116+, Copilot is available immediately — no separate extension needed.
+
+### GitHub Copilot CLI
+
+[GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) reached general availability on February 25, 2026, bringing the full agentic experience to the terminal. The same agent capabilities available in VS Code — tool calling, file editing, test running — work directly from the command line.
+
+| Mode | Behavior |
+|------|----------|
+| **Default** | Agent suggests actions; developer approves each one |
+| **Bypass Approvals** | Skip confirmations for low-risk actions |
+| **Autopilot** | Fully autonomous — agent approves its own actions, retries on errors, works until task completion |
+
+Copilot CLI supports **multi-model** hot-swapping between Claude Opus 4.6, GPT-5.4, Gemini 3 Pro, and others during a session. Enterprises can use **BYOK (Bring Your Own Key)** to connect their own API keys for supported providers.
+
+**Fleet mode** (`/fleet`) enables parallel sub-agent execution. Instead of one agent working sequentially, an orchestrator decomposes a task into independent subtasks, dispatches them to parallel sub-agents, tracks dependencies, and synthesizes the results. Use `/fleet` for large refactors, repo-wide maintenance, multi-file test generation, or any workload that can be divided and run concurrently:
+
+```text
+/fleet Refactor the auth module, update tests, and fix related docs
+```
+
+The orchestrator builds a task graph with dependency tracking — if Task C depends on A and B, it waits. Independent tasks run simultaneously. Monitor progress with `/tasks`.
+
+**Remote sessions** (`/remote`) let developers start a CLI session locally and control it from any device via the GitHub web interface or GitHub Mobile. The session streams in real time — send instructions, approve actions, switch modes, and answer questions from a browser or phone. Useful for long-running tasks, headless environments, or moving between devices without losing context:
+
+```text
+/remote          # enable remote access for the current session
+copilot --remote # start a new session with remote access
+```
+
+The CLI generates a URL and QR code. Only the authenticated GitHub account can access the session. Use `/keep-alive` to prevent the machine from sleeping during long tasks.
+
+Available to all paid Copilot subscribers (Pro, Pro+, Business, Enterprise). The repository customization primitives covered in this guide — instructions, skills, agents, MCP — apply to CLI sessions the same way they apply in VS Code.
 
 ### Key Terms
 
@@ -28,7 +61,7 @@ These terms appear throughout the guide:
 
 | Term | Meaning |
 |------|---------|
-| **Primitive** | A configuration file type that customizes Copilot (always-on instructions, file-based instructions, prompts, skills, custom agents, MCP, hooks, memory) |
+| **Primitive** | A configuration file type that customizes Copilot (always-on instructions, file-based instructions, prompts, skills, custom agents, MCP, hooks, memory, agentic workflows, Copilot SDK) |
 | **Agent** (agentic mode) | Copilot operating autonomously — planning steps, calling tools, iterating on results |
 | **Custom agent** | A `.agent.md` file that defines a specialized persona with constrained tools and behavior |
 | **Context window** | The total amount of text the model can consider at once — instructions, code, and conversation all compete for this space |
@@ -53,7 +86,7 @@ This guide fixes that.
 
 **The right mental model: Copilot is a new developer on your team.**
 
-But here's the twist: this new developer is already an excellent coder. Frontier models like Claude Opus 4.6, Codex 5.3, Gemini 3.1 Pro know language idioms, common patterns, and industry best practices. They've seen more code than any human ever will. You don't need to teach them how to write a for-loop or when to use async/await.
+But here's the twist: this new developer is already an excellent coder. Frontier models like Claude Opus 4.6, GPT-5.4, Gemini 3 Pro know language idioms, common patterns, and industry best practices. They've seen more code than any human ever will. You don't need to teach them how to write a for-loop or when to use async/await.
 
 Now imagine handing this brilliant new hire a 10,000-line document of coding rules. Every edge case. Every preference. Tabs vs. spaces. Whether to use `index` or `i` in loops. Exactly how many blank lines between functions. They'd be paralyzed—second-guessing every keystroke, drowning in rules instead of shipping code.
 
@@ -81,9 +114,9 @@ Copilot's output quality depends on three factors:
 |--------|--------|------------------|
 | **Model Selection** | Raw reasoning power and behavior | Choose frontier models for complex work; accept that different models work differently |
 | **Codebase Quality** | How well Copilot can understand your code | Write clean, well-documented, modular code |
-| **Repository Configuration** | The context and rules Copilot operates with | **This guide** — the eight customization primitives |
+| **Repository Configuration** | The context and rules Copilot operates with | **This guide** — the ten customization primitives |
 
-Your **model selection** matters more than most people realize. A frontier model with extended thinking will dramatically outperform a model from two years ago—it's not even close. Claude Opus 4.6, GPT-5.2-Codex, Gemini 3 Pro with thinking enabled will reason through multi-file refactors, catch edge cases, and produce code that actually works on the first try. Older or faster models may produce syntax-correct code that misses the point entirely.
+Your **model selection** matters more than most people realize. A frontier model with extended thinking will dramatically outperform a model from two years ago—it's not even close. Claude Opus 4.6, GPT-5.4, Gemini 3 Pro with thinking enabled will reason through multi-file refactors, catch edge cases, and produce code that actually works on the first try. Older or faster models (like GPT-5.4 mini) trade depth for speed — useful for simple tasks but prone to missing the point on complex ones.
 
 Different models also *behave* differently, and that's okay. Some are more verbose. Some ask more clarifying questions. Some jump straight to implementation. Learn your model's personality and work with it, not against it. The best model for your workflow might not be the newest or the fastest—it's the one whose behavior matches how you like to work.
 
@@ -95,7 +128,7 @@ But even with the best model and cleanest codebase, **repository configuration**
 
 ### The Over-Instruction Trap
 
-Every model arrives with **bias** — a set of default preferences baked in by training data. Claude Opus 4.6 prefers functional patterns and explicit error handling. GPT-5.2-Codex reaches for object-oriented structures and comprehensive type annotations. Gemini 3.1 Pro gravitates toward concise, pragmatic solutions. These biases aren't bugs. They're the distilled wisdom of millions of codebases, and most of the time they produce solid, idiomatic code without any instructions at all.
+Every model arrives with **bias** — a set of default preferences baked in by training data. Claude Opus 4.6 prefers functional patterns and explicit error handling. GPT-5.4 reaches for object-oriented structures and comprehensive type annotations. Gemini 3 Pro gravitates toward concise, pragmatic solutions. These biases aren't bugs. They're the distilled wisdom of millions of codebases, and most of the time they produce solid, idiomatic code without any instructions at all.
 
 This creates a spectrum with two failure modes:
 
@@ -385,4 +418,4 @@ For complete details — including workflow examples, coding agent configuration
 
 7. **Review quarterly** — Remove deprecated patterns, add new conventions, prune unused prompts.
 
-[Next: Part II - The Six Primitives →](part-2-primitives.md)
+[Next: Part II - The Primitives →](part-2-primitives.md)

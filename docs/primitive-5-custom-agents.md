@@ -33,7 +33,7 @@ Custom Agent files use the `.agent.md` extension and support these frontmatter f
 | `name` | Display name in the agent picker |
 | `description` | Shown as placeholder text in chat input |
 | `tools` | List of tools available to this agent |
-| `model` | AI model to use (e.g., `Claude Opus 4.6`, `GPT-5.2`). Supports arrays for fallback: `['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']` |
+| `model` | AI model to use (e.g., `Claude Opus 4.6`, `GPT-5.4`). Supports arrays for fallback: `['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']` |
 | `handoffs` | Define transitions to other agents |
 | `argument-hint` | Hint text for user interaction |
 | `user-invokable` | Whether the agent appears in the agents dropdown (default: `true`). Set to `false` to create subagent-only agents |
@@ -345,6 +345,17 @@ You are a personal development coach. This agent should only be
 triggered directly by the user, never delegated to by other agents.
 ```
 
+#### Nested Sub-Agents
+
+By default, sub-agents cannot invoke other sub-agents. The `chat.subagents.allowInvocationsFromSubagents` setting (available since VS Code 1.113) enables nested sub-agent invocation up to a maximum depth of 5.
+
+This setting is disabled by default to prevent accidental infinite recursion. Enable it cautiously for workflows that benefit from complex task decomposition — for example, an orchestrator agent that delegates to a research agent, which in turn spawns specialized analysis agents.
+
+| Setting | Default | Effect |
+|---------|---------|--------|
+| `chat.subagents.allowInvocationsFromSubagents` | `false` | Sub-agents cannot invoke other sub-agents |
+| When enabled | — | Sub-agents can nest up to 5 levels deep |
+
 #### Restricting Which Sub-Agents Can Be Used
 
 By default, all custom agents that don't have `disable-model-invocation: true` are available as sub-agents. If two or more agents have similar names or descriptions, the AI might select an unintended one.
@@ -413,7 +424,7 @@ handoffs:
     agent: 'agent'
     prompt: 'Implement the fixes identified in the review above.'
     send: false
-    model: 'GPT-5.2 (copilot)'
+    model: 'GPT-5.4 (copilot)'
 ---
 ```
 
@@ -724,7 +735,7 @@ This agent is a specialized persona that handles production operations, not just
 name: 'SRE'
 description: 'Site reliability engineering — incident response, root cause analysis, and production health'
 tools: ['search', 'readFile', 'editFiles', 'terminalCommand', 'fetch']
-model: 'Opus 4.6'
+model: 'Claude Opus 4.6'
 ---
 
 You are a Site Reliability Engineer. Your priority is production stability.
@@ -760,9 +771,11 @@ You think in terms of blast radius, rollback plans, and service dependencies.
 - Blame individuals — focus on systemic improvements
 ```
 
----
+### VS Code Agents Application (Preview)
 
-[← Skills](primitive-4-skills.md) | [Next: MCP →](primitive-6-mcp.md)
+VS Code Agents is a companion app shipping alongside VS Code Insiders, built for agent-native development. It provides a dedicated interface for agent sessions, changes review, and customization management — separate from the main editor.
+
+Launch it via the **Chat: Open Agents Application** command in VS Code, or directly from the Start menu (Windows) or Applications folder (macOS).
 
 ## Appendix: Custom Agents in GitHub Copilot CLI
 
@@ -800,6 +813,16 @@ Custom agents can be invoked three ways:
 3. **Command-line flag** — `copilot --agent=security-reviewer --prompt "Review this code"`
 
 The same agent definitions work in both VS Code and the CLI, so teams that invest in custom agents get value across both surfaces.
+
+### Fleet Mode and Remote Sessions
+
+Two CLI features extend the agent model beyond single-terminal usage:
+
+**Fleet mode** (`/fleet`) dispatches multiple sub-agents in parallel. The CLI decomposes a large task into independent subtasks, tracks dependencies, and runs them concurrently — each sub-agent with its own context but sharing the filesystem. Custom agents can participate in fleet workflows as specialized sub-agents (e.g., one agent handles test generation while another updates documentation).
+
+**Remote sessions** (`/remote`) stream the CLI session to the GitHub web interface and GitHub Mobile. Developers can start a session on one device, then monitor, steer, and approve actions from another. Combined with custom agents, this enables workflows like starting an `@deploy` agent session at the office and approving the final deployment step from a phone.
+
+For more on CLI modes (Default, Bypass Approvals, Autopilot), multi-model support, and BYOK, see [Part I: Foundations](part-1-foundations.md#github-copilot-cli).
 
 ---
 

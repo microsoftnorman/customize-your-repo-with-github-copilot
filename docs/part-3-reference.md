@@ -2,7 +2,7 @@
 
 [← Back to Guide](../ReadMe.md) | [← Part II: The Primitives](part-2-primitives.md)
 
-*Published: February 20, 2026 · Validated against VS Code 1.109 and GitHub Copilot docs as of this date.*
+*Published: February 20, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 15, 2026.*
 
 ---
 
@@ -18,6 +18,8 @@
 | MCP Servers | `.vscode/mcp.json` | `.json` |
 | Hooks | `.github/hooks/` | `.json` |
 | Copilot Memory | Managed by GitHub | N/A — no repo file |
+| Agentic Workflows | `.github/workflows/` | `.md` (workflow instructions) |
+| Copilot SDK | External dependency (npm, pip, etc.) | N/A — installed via package managers |
 
 ---
 
@@ -56,7 +58,7 @@ applyTo: 'src/components/**/*.tsx'
 |-------|----------|------|-------------|
 | `agent` | No | string | `ask`, `agent`, `plan`, or custom agent name |
 | `description` | No | string | Brief description for `/` menu |
-| `model` | No | string | AI model (e.g., `Claude Opus 4.6`, `GPT-5.2`) |
+| `model` | No | string | AI model (e.g., `Claude Opus 4.6`, `GPT-5.4`) |
 | `tools` | No | string[] | Restrict available tools |
 | `argument-hint` | No | string | Hint text for user input |
 
@@ -129,9 +131,13 @@ handoffs:
     agent: 'agent'
     prompt: 'Fix the security issues identified above.'
     send: false
-    model: 'GPT-5.2 (copilot)'
+    model: 'GPT-5.4 (copilot)'
 ---
 ```
+
+### Copilot SDK
+
+The Copilot SDK is installed via package managers, not configured as repo files. See [Primitive 10: Copilot SDK](primitive-10-copilot-sdk.md) for full documentation.
 
 ---
 
@@ -144,7 +150,15 @@ handoffs:
 | `plan` | Generate structured implementation plans | Breaking down tasks before implementation |
 | Custom agent | Use that agent's persona and tools | Specialized workflows |
 
-**Note:** `edit` mode is officially deprecated as of VS Code 1.110 and will be fully removed in VS Code 1.125. Use `agent` for any file modifications.
+**Edit Mode Deprecation:** `edit` mode is officially deprecated as of VS Code 1.110. Users can temporarily re-enable it via the `chat.editMode.hidden` setting, but `edit` mode will be fully removed in VS Code 1.125. Use `agent` for all file modifications.
+
+### Agent Permission Levels
+
+| Level | Behavior | Best For |
+|-------|----------|----------|
+| Default | Prompts for approval on each action | Production work requiring oversight |
+| Bypass Approvals | Skips low-risk confirmations automatically | Trusted workflows with repetitive actions |
+| Autopilot (Preview) | Fully autonomous — no confirmations | Batch operations, CI-driven agent tasks |
 
 ---
 
@@ -312,7 +326,7 @@ For comprehensive documentation with practical examples, see [Primitive 7: Hooks
 
 ### VS Code Hooks (Chat Agent Sessions)
 
-VS Code 1.109.3+ supports hooks in Chat agent sessions via file-based configuration in `.github/hooks/*.json`. Eight PascalCase events are available: `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PreCompact`, `SubagentStart`, `SubagentStop`, and `Stop`. See [Primitive 7: VS Code Hooks](primitive-7-hooks.md#vs-code-hooks-chat-agent-sessions) for configuration details.
+VS Code 1.116+ supports hooks in Chat agent sessions via file-based configuration in `.github/hooks/*.json`. Eight PascalCase events are available: `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PreCompact`, `SubagentStart`, `SubagentStop`, and `Stop`. See [Primitive 7: VS Code Hooks](primitive-7-hooks.md#vs-code-hooks-chat-agent-sessions) for configuration details.
 
 ---
 
@@ -391,7 +405,7 @@ Configure allowed file system paths and network domains via `chat.tools.terminal
 
 ### Chat Customization Diagnostics
 
-VS Code 1.109 includes a dedicated diagnostics view for troubleshooting customization issues:
+VS Code 1.116 includes a dedicated diagnostics view for troubleshooting customization issues:
 
 1. Right-click in the Chat view
 2. Select **Diagnostics**

@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This repository contains "The Definitive Guide to Customizing Your Repo for GitHub Copilot" — a comprehensive documentation guide covering GitHub Copilot's eight customization primitives. This is a documentation project, not a code project.
+This repository contains "The Definitive Guide to Customizing Your Repo for GitHub Copilot" — a comprehensive documentation guide covering GitHub Copilot's ten customization primitives. This is a documentation project, not a code project.
 
 ## Content Guidelines
 
@@ -15,20 +15,29 @@ This repository contains "The Definitive Guide to Customizing Your Repo for GitH
 ### Accuracy Requirements
 - All technical claims must align with official documentation:
   - https://code.visualstudio.com/docs/copilot
+  - https://code.visualstudio.com/docs/copilot/customization/overview (VS Code customization hub — agents, skills, hooks, MCP, plugins)
+  - https://code.visualstudio.com/docs/copilot/customization/agent-plugins (Agent Plugins — bundled customization packages)
   - https://docs.github.com/en/copilot
+  - https://docs.github.com/en/copilot/reference/custom-agents-configuration (Custom agents frontmatter reference)
   - https://github.com/github/copilot-cli
   - https://github.com/features/copilot/cli/
   - https://github.blog/changelog/label/copilot/
   - https://github.blog/ (announcements, feature deep-dives, and engineering posts)
   - https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/ (GitHub Agentic Workflows — Continuous AI via coding agents in GitHub Actions)
+  - https://github.github.com/gh-aw/ (Agentic Workflows documentation site — reference, patterns, and setup)
   - https://docs.github.com/en/copilot/concepts/agents/copilot-memory (Copilot Memory — automatic repository-level learning)
+  - https://github.com/github/copilot-sdk (Copilot SDK — embed agent runtime in custom applications)
+  - https://agentskills.io (Agent Skills specification — open standard for portable agent capabilities)
+  - https://modelcontextprotocol.io (MCP specification — standard for connecting AI agents to external tools)
+  - https://learn.microsoft.com/en-us/training/modules/configure-customize-github-copilot-visual-studio-code/ (Microsoft Learn training module for Copilot customization)
+  - https://github.com/github/awesome-copilot (Curated community plugins, skills, and agent examples)
 - **Always fetch the latest documentation before answering questions about Copilot features** — your training data may be outdated
 - Use the Microsoft docs tools to search and fetch from code.visualstudio.com
 - Use the fetch_webpage tool for docs.github.com/en/copilot, github.com/github/copilot-cli, github.com/features/copilot/cli, and github.blog pages
 - **Fallback to web search:** If none of the trusted sources above contain information on a topic, perform a Bing search to find relevant results, then critically evaluate the accuracy of what you find before incorporating it. Flag any claims sourced this way as unverified by official docs.
 - Never invent frontmatter fields, tool names, or configuration options
 
-### The Eight Primitives
+### The Ten Primitives
 
 When discussing customization options, reference the correct primitive:
 
@@ -42,6 +51,8 @@ When discussing customization options, reference the correct primitive:
 | MCP | `.vscode/mcp.json` | External integrations |
 | Hooks | `.github/hooks/*.json` | Runtime enforcement |
 | Memory | GitHub cloud (repository-scoped) | Learned codebase knowledge |
+| Agentic Workflows | `.github/workflows/*.md` | Continuous AI via GitHub Actions |
+| Copilot SDK | External dependency (npm, pip, etc.) | Embed agent runtime in custom tools |
 
 ### Detailed Topic References
 

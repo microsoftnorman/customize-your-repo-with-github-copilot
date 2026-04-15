@@ -2,7 +2,7 @@
 
 [← Part I: Foundations](part-1-foundations.md) | [Part II Overview](part-2-primitives.md)
 
-*Published: February 10, 2026. Updated: April 2, 2026. This guide serves as a primer for GitHub Copilot customization. File paths, configuration options, and feature availability may change as Copilot evolves—always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
+*Published: February 10, 2026. Updated: April 15, 2026. This guide serves as a primer for GitHub Copilot customization. File paths, configuration options, and feature availability may change as Copilot evolves—always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
 
 ---
 

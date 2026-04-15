@@ -1,6 +1,6 @@
 # The Definitive Guide to Customizing GitHub Copilot
 
-*Published: February 10, 2026. Updated: April 2, 2026. File paths, configuration options, and feature availability may change as Copilot evolves—always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
+*Published: February 10, 2026. Updated: April 15, 2026. File paths, configuration options, and feature availability may change as Copilot evolves—always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
 
 GitHub Copilot is more than autocomplete. When properly configured, it becomes a context-aware development partner that understands your architecture, follows your conventions, and produces code that passes review on the first try.
 
@@ -35,7 +35,7 @@ You can start anywhere using the table of contents below, but if you're new to C
 
 ## The Primitives
 
-GitHub Copilot provides nine customization primitives. Each serves a distinct purpose and loads at different points in your workflow:
+GitHub Copilot provides ten customization primitives. Each serves a distinct purpose and loads at different points in your workflow:
 
 | Primitive | Location | Purpose |
 |-----------|----------|---------|
@@ -48,6 +48,7 @@ GitHub Copilot provides nine customization primitives. Each serves a distinct pu
 | [**Hooks (Preview)**](docs/primitive-7-hooks.md) | `.github/hooks/*.json` | Runtime enforcement and audit logging for agent sessions |
 | [**Memory (Preview)**](docs/primitive-8-memory.md) | GitHub cloud (repository-scoped) | Learned codebase knowledge that persists across sessions |
 | [**Agentic Workflows (Preview)**](docs/primitive-9-agentic-workflows.md) | `.github/workflows/*.md` | Continuous AI via coding agents in GitHub Actions |
+| [**Copilot SDK (Preview)**](docs/primitive-10-copilot-sdk.md) | External dependency (npm, pip, etc.) | Embed the Copilot agent runtime in your own tools and applications |
 
 Understanding when and how to use each primitive is the core of this guide.
 
@@ -74,10 +75,11 @@ The heart of the guide. Each primitive gets comprehensive coverage — syntax, c
 - [Primitive 7: Hooks](docs/primitive-7-hooks.md) — Runtime enforcement and audit logging
 - [Primitive 8: Copilot Memory](docs/primitive-8-memory.md) — Automatic repository-level learning
 - [Primitive 9: Agentic Workflows](docs/primitive-9-agentic-workflows.md) — Continuous AI via coding agents in GitHub Actions
+- [Primitive 10: Copilot SDK](docs/primitive-10-copilot-sdk.md) — Embed the agent runtime in your own tools
 
 ### [Part III: Reference](docs/part-3-reference.md)
 
-Quick reference tables, starter templates, and configuration reference for all nine primitives.
+Quick reference tables, starter templates, and configuration reference for all ten primitives.
 
 ---
 
@@ -89,15 +91,23 @@ For teams, consider reading individually first, then convening to discuss which 
 
 ---
 
+## Data Collection Notice
+
+Starting April 24, 2026, GitHub uses Copilot interaction data from Free, Pro, and Pro+ accounts to train AI models by default. Users can opt out in [Copilot privacy settings](https://github.com/settings/copilot). Business and Enterprise plans are exempt from this policy. For details, see [GitHub's announcement](https://github.blog/changelog/label/copilot/).
+
+---
+
 ## Resources
 
 - [GitHub Copilot Documentation](https://docs.github.com/en/copilot)
 - [VS Code Copilot Extension](https://code.visualstudio.com/docs/copilot)
-- [GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) — Use Copilot as an AI agent directly from your terminal
+- [GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) — Use Copilot as an AI agent directly from your terminal (GA since February 2026)
+- [Copilot SDK](https://github.com/github/copilot-sdk) — Embed the Copilot agent runtime in your own applications (public preview)
 - [Model Context Protocol](https://modelcontextprotocol.io/)
 - [Agent Skills Specification](https://agentskills.io) — Open standard for portable agent capabilities
 - [Copilot Memory](https://docs.github.com/en/copilot/concepts/agents/copilot-memory) — Automatic repository-level learning that complements explicit customization
 - [GitHub Agentic Workflows](https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/) — Continuous AI via coding agents in GitHub Actions
+- [VS Code 1.116 Release Notes](https://code.visualstudio.com/updates/v1_116) — Latest VS Code release with Copilot built-in
 - [VS Code Source Code](https://github.com/microsoft/vscode) — The authoritative reference when documentation is unclear
 - [Copilot Spaces](https://docs.github.com/en/copilot/how-tos/provide-context/use-copilot-spaces) — Organize relevant context into Spaces that ground Copilot's responses for specific tasks
 - [product-brain](https://github.com/digitarald/product-brain) — A product management approach to workspace instructions

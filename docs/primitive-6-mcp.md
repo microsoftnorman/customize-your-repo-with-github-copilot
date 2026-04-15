@@ -157,7 +157,7 @@ Copilot performs best with fewer tools available. Each tool's name, description,
 - Not deploying to Azure? Turn off Azure MCP.
 - Finished with Jira integration? Remove it from config.
 
-```json
+```jsonc
 {
   "servers": {
     "github": { ... },
@@ -225,11 +225,11 @@ For a detailed exploration with practical examples (Git, Jira, file operations, 
 2. Fill in the server details using Tab to navigate between fields
 3. Press Ctrl+S to save
 
-Server configurations are stored in `~/.copilot/mcp-config.json` (or the location specified by `XDG_CONFIG_HOME`). The CLI uses the same JSON structure as VS Code's `mcp.json` for server definitions.
+CLI-specific server configurations are stored in `~/.copilot/mcp-config.json` (or the location specified by `XDG_CONFIG_HOME`). The CLI uses the same JSON structure as VS Code's `mcp.json` for server definitions.
 
 **Checking available MCP tools:** Type `/mcp` in interactive mode to see configured servers and their available tools.
 
-This means MCP configurations benefit developers across both VS Code and the CLI. While the configuration files are stored in different locations (`.vscode/mcp.json` for VS Code, `~/.copilot/mcp-config.json` for CLI), teams can standardize on the same MCP servers across both surfaces.
+**Shared configuration with VS Code:** Since the VS Code March 2026 releases, MCP servers configured in `.vscode/mcp.json` also work in Copilot CLI and Claude agent sessions automatically. The same configuration file serves all three surfaces — no separate setup required. Teams that maintain a workspace `mcp.json` get CLI and agent parity for free.
 
 ### Beyond Tools: Resources, Prompts, and Apps
 
@@ -262,6 +262,23 @@ When an MCP server supports apps, the UI appears inline in the chat conversation
 As MCP server count grows, so does the list of available tools. **Tool sets** group related tools for easier management and reference. Instead of toggling individual tools on and off, select or reference an entire tool set.
 
 Tool sets are defined alongside other tool configurations. Learn more about [creating and using tool sets](https://code.visualstudio.com/docs/copilot/agents/agent-tools#_group-tools-with-tool-sets).
+
+### Sandbox MCP Servers
+
+VS Code 1.111+ supports running local stdio MCP servers in a restricted sandbox on macOS and Linux. The sandbox limits file system and network access, reducing the risk of a malicious or buggy server affecting the host machine.
+
+This is useful in two scenarios:
+
+- **Evaluating untrusted servers** — Run a community MCP server in the sandbox before granting it full access. If it behaves well, promote it to unrestricted.
+- **Enforcing security policies** — Teams can require sandbox mode for all non-approved MCP servers, limiting blast radius even if a server is compromised.
+
+Sandbox mode is a VS Code-level feature, not part of the MCP protocol itself. It applies only to local stdio servers — HTTP servers connect over the network and are not sandboxed by this mechanism.
+
+### Chat Customizations Editor (Preview)
+
+VS Code 1.111+ includes a unified **Chat Customizations** editor that consolidates management of instructions, MCP servers, and other Copilot configuration in one place. The editor also lets teams browse MCP and plugin marketplaces directly from VS Code, making it easier to discover and add servers without editing JSON files manually.
+
+Open it via Command Palette > **"Chat Customizations"**.
 
 ### Centrally Control MCP Access
 

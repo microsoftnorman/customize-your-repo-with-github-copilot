@@ -102,8 +102,10 @@ Agentic Workflows enable six categories of repository automation:
 | **Continuous Documentation** | Keep READMEs and docs aligned with code changes |
 | **Continuous Code Simplification** | Identify code improvements and open PRs for them |
 | **Continuous Test Improvement** | Assess test coverage and add high-value tests |
-| **Continuous Quality Hygiene** | Investigate CI failures and propose targeted fixes |
+| **Continuous Quality Hygiene** | Investigate CI failures, remediate security alerts, and propose targeted fixes |
 | **Continuous Reporting** | Create regular reports on repository health, activity, and trends |
+
+Continuous Quality Hygiene extends beyond CI failures into automated security remediation. Dependabot alerts can be assigned directly to coding agents, which design and implement fixes — including complex dependency upgrades such as major version bumps — then submit PRs for human approval. For large codebases, batch code scanning applies multiple security fixes across PRs in a single pass, accelerating security hygiene at scale.
 
 If repetitive work in a repository can be described in words, it's probably a good fit for an agentic workflow.
 
@@ -296,6 +298,7 @@ When a coding agent runs autonomously — whether via an Agentic Workflow, an as
 | **MCP Servers** | External tool access (databases, APIs, monitoring) available during agent sessions |
 | **Hooks** | Runtime enforcement — applies identically to interactive and autonomous work |
 | **Copilot Memory** | Patterns learned over time that supplement explicit configuration |
+| **Copilot SDK** | Embed the agent runtime in custom tools, CI pipelines, and internal platforms |
 
 ---
 
@@ -328,7 +331,8 @@ Alternatively, use a coding agent to generate workflows interactively — provid
 - [Custom Agents](primitive-5-custom-agents.md) — Specialized agent personas
 - [Skills](primitive-4-skills.md) — Skills specification and patterns
 - [Copilot Memory](primitive-8-memory.md) — How Memory complements explicit customization
+- [Copilot SDK](primitive-10-copilot-sdk.md) — Embed the Copilot agent runtime in your own tools and applications
 
 ---
 
-[← Copilot Memory](primitive-8-memory.md) | [Next: Part III - Reference →](part-3-reference.md)
+[← Copilot Memory](primitive-8-memory.md) | [Next: Copilot SDK →](primitive-10-copilot-sdk.md)

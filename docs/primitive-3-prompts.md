@@ -25,7 +25,7 @@ Prompt files use the `.prompt.md` extension and support these frontmatter fields
 | `name` | Display name shown when typing `/` in chat |
 | `description` | Brief description of what the prompt does |
 | `agent` | Execution mode: `ask`, `agent`, `plan`, or the name of a custom agent |
-| `model` | AI model to use (e.g., `Claude Opus 4.6`, `GPT-5.2`) |
+| `model` | AI model to use (e.g., `Claude Opus 4.6`, `GPT-5.4`) |
 | `tools` | Specific tools available for this prompt |
 | `argument-hint` | Hint text for user interaction |
 

@@ -2,7 +2,7 @@
 
 [← MCP](primitive-6-mcp.md) | [Part II Overview](part-2-primitives.md)
 
-*Published: February 20, 2026 · Validated against VS Code 1.109 and GitHub Copilot docs as of this date.*
+*Published: February 20, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 15, 2026*
 
 ---
 
@@ -10,7 +10,7 @@
 
 **\* Items marked with an asterisk (\*) reflect current behavior that may change as the hooks system evolves. Verify against [official documentation](https://docs.github.com/en/copilot/reference/hooks-configuration) when making architectural decisions.**
 
-Seven of the eight customization primitives — instructions, file-based instructions, prompts, skills, custom agents, MCP, and Memory — operate inside Copilot's reasoning. They shape context, influence code generation, and extend capabilities. But none of them can *enforce* anything. A rule in `copilot-instructions.md` is a strong suggestion, not a guarantee.
+Most of the customization primitives — instructions, file-based instructions, prompts, skills, custom agents, MCP, and Memory — operate inside Copilot's reasoning. They shape context, influence code generation, and extend capabilities. But none of them can *enforce* anything. A rule in `copilot-instructions.md` is a strong suggestion, not a guarantee.
 
 Hooks fill that gap. They execute custom shell commands at key points during Copilot coding agent sessions, operating *outside* the model entirely. The LLM never sees hook logic, can't override it, and can't reason around it. This gives teams an enforcement layer that's independent of prompt engineering.
 
@@ -44,7 +44,7 @@ Hooks also apply to VS Code Chat agent sessions as of version 1.109.3 — see [V
 
 ### Hooks vs. Primitives: Different Layers, Complementary Purposes
 
-| Aspect | The Other Seven Primitives | Hooks |
+| Aspect | The Other Primitives | Hooks |
 |--------|-------------------------|-------|
 | **When they act** | Before and during LLM reasoning | At runtime, during agent execution |
 | **What they influence** | What Copilot knows and how it thinks | What Copilot is allowed to do |
@@ -214,6 +214,28 @@ Hook configuration files live in `.github/hooks/` and use JSON format. A reposit
 ```
 
 The hooks configuration must be present on the repository's **default branch** to be used by the coding agent. For Copilot CLI, hooks are loaded from the current working directory.
+
+### Monorepo Discovery
+
+VS Code 1.111+ discovers hooks from parent folders up to the repository root. This means team-wide hooks can live at the repo root while package-specific hooks live in subdirectories:
+
+```
+my-monorepo/
+├── .github/
+│   └── hooks/
+│       └── security.json        # Applies to ALL packages
+├── packages/
+│   ├── frontend/
+│   │   └── .github/
+│   │       └── hooks/
+│   │           └── lint.json    # Frontend-specific hooks
+│   └── backend/
+│       └── .github/
+│           └── hooks/
+│               └── db-check.json # Backend-specific hooks
+```
+
+Hooks at every level in the hierarchy are merged and executed. Root-level hooks enforce organization-wide policies (security, auditing), while package-level hooks handle context-specific concerns (linting rules, database access patterns). This eliminates the need to duplicate shared hooks across every package.
 
 ### Configuration Format
 
@@ -1107,6 +1129,10 @@ echo '{"timestamp":1704614600000,"cwd":"/tmp","toolName":"edit","toolArgs":"{\"p
   | ./scripts/hooks/security-check.sh | jq .
 ```
 
+### The `/troubleshoot` Command
+
+VS Code 1.111+ includes the `/troubleshoot` slash command, which analyzes agent debug logs directly in chat. This is particularly useful for hook-related issues — understanding why hooks fired unexpectedly, why instructions were ignored, or why responses were slow. It works with both current and past session logs, making it a first stop when hooks behave differently than expected.
+
 ### Troubleshooting
 
 | Problem | Likely Cause | Fix |
@@ -1341,7 +1367,7 @@ VS Code hooks are configured in file-based JSON. The primary shared location is 
 - `.claude/settings.json` (workspace)
 - `~/.claude/settings.json` (user-level)
 
-```json
+```jsonc
 // .github/hooks/security.json
 {
   "hooks": {
@@ -1371,10 +1397,32 @@ VS Code hooks also support additional output fields beyond the coding agent's `p
 | **Script format** | Same (JSON stdin, JSON stdout for PreToolUse) | Same |
 | **Sharing** | Version-controlled in repo | Version-controlled in repo (`.github/hooks/`) or local config files |
 
+### Agent-Scoped Hooks
+
+Hooks can be scoped to a specific custom agent by defining them directly in the agent's `.agent.md` YAML frontmatter using the `hooks:` field. These hooks execute only when that agent is active — they do not affect other agents or general chat interactions.
+
+This requires the `chat.useCustomAgentHooks` setting to be enabled (Preview).
+
+```yaml
+---
+name: 'Security Reviewer'
+description: 'Reviews code for security vulnerabilities'
+tools: ['search', 'readFile', 'usages']
+hooks:
+  PreToolUse:
+    - type: command
+      command: "./scripts/hooks/security-audit.sh"
+      timeout: 15
+---
+```
+
+Agent-scoped hooks are useful for attaching enforcement or logging to a specific workflow without adding noise to every chat session. A security reviewer agent might audit every file read; a deployment agent might block production commands. These hooks stay contained to the agent that defines them.
+
 ### When to Use Which
 
 - **Coding agent hooks** (`.github/hooks/*.json`) for enforcement that must apply to automated agent sessions on GitHub — security policies, compliance auditing, CI-level guardrails
 - **VS Code hooks** (`.github/hooks/*.json` or config files) for local development workflow enforcement — personal audit trails, local security checks, sub-agent monitoring
+- **Agent-scoped hooks** (`.agent.md` frontmatter) for hooks that should only fire when a specific custom agent is active — targeted auditing, agent-specific guardrails
 - **Both** when the same policies should apply everywhere — write scripts once in `.github/hooks/`, which is compatible with both systems
 
 ---
