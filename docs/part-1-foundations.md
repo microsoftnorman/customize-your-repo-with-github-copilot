@@ -10,7 +10,7 @@
 
 ### What is GitHub Copilot?
 
-GitHub Copilot is an AI coding assistant built into the editor. As of VS Code 1.116 (April 2026), Copilot is **built-in** — no extension installation required. New users get chat, inline suggestions, and agent mode out of the box. (Those who prefer not to use AI features can disable them with `chat.disableAIFeatures`.)
+[GitHub Copilot](https://github.com/features/copilot) is an AI coding assistant built into the editor. As of VS Code 1.116 (April 2026), Copilot is **built-in** — no extension installation required. New users get chat, inline suggestions, and agent mode out of the box. (Those who prefer not to use AI features can disable them with `chat.disableAIFeatures`.)
 
 Copilot operates in three modes:
 
@@ -57,7 +57,7 @@ Available to all paid Copilot subscribers (Pro, Pro+, Business, Enterprise). The
 
 ### Copilot in JetBrains IDEs
 
-GitHub Copilot is available across the JetBrains family — IntelliJ IDEA, PyCharm, WebStorm, GoLand, Rider, and others — via the [GitHub Copilot plugin](https://plugins.jetbrains.com/plugin/17718-github-copilot). The plugin provides code completion, Chat, agent mode, MCP, checkpoints, and workspace indexing.
+[GitHub Copilot for JetBrains](https://plugins.jetbrains.com/plugin/17718-github-copilot) is available across the JetBrains family — IntelliJ IDEA, PyCharm, WebStorm, GoLand, Rider, and others. The plugin provides code completion, Chat, agent mode, MCP, checkpoints, and workspace indexing.
 
 Customization primitive support is catching up to VS Code but is not yet at full parity:
 
@@ -77,7 +77,7 @@ Customization primitive support is catching up to VS Code but is not yet at full
 
 ### Copilot in Eclipse
 
-GitHub Copilot for Eclipse provides code completion, Chat, agent mode, and MCP support. The plugin is [open source under MIT](https://devblogs.microsoft.com/java/ghc-eclipse-is-going-open-source/) and actively developed by Microsoft and the community.
+[GitHub Copilot for Eclipse](https://marketplace.eclipse.org/content/github-copilot) provides code completion, Chat, agent mode, and MCP support. The plugin is [open source under MIT](https://devblogs.microsoft.com/java/ghc-eclipse-is-going-open-source/) and actively developed by Microsoft and the community.
 
 | Primitive | Eclipse Support |
 |-----------|----------------|
@@ -146,13 +146,13 @@ However, feature support varies by IDE and version. For the authoritative, up-to
 
 | Surface | Best For |
 |---------|----------|
-| **VS Code** | Full primitive support, fastest feature rollout, agent plugins, built-in Copilot |
-| **JetBrains** | Java/Kotlin/Python teams already on IntelliJ — growing customization support |
-| **Eclipse** | Java enterprise teams — open-source plugin with MCP and agent mode |
-| **Copilot CLI** | Terminal-first workflows, CI/CD integration, headless environments |
-| **Cloud Coding Agent** | Autonomous task execution — assign issues and get PRs back |
-| **Copilot SDK** | Embed the agent runtime in custom tools, internal platforms, CI pipelines |
-| **Visual Studio** | .NET teams — agent mode, MCP, custom instructions fully supported |
+| [**VS Code**](https://code.visualstudio.com/docs/copilot) | Full primitive support, fastest feature rollout, agent plugins, built-in Copilot |
+| [**JetBrains**](https://plugins.jetbrains.com/plugin/17718-github-copilot) | Java/Kotlin/Python teams already on IntelliJ — growing customization support |
+| [**Eclipse**](https://marketplace.eclipse.org/content/github-copilot) | Java enterprise teams — open-source plugin with MCP and agent mode |
+| [**Copilot CLI**](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) | Terminal-first workflows, CI/CD integration, headless environments |
+| [**Cloud Coding Agent**](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent) | Autonomous task execution — assign issues and get PRs back |
+| [**Copilot SDK**](https://github.com/github/copilot-sdk) | Embed the agent runtime in custom tools, internal platforms, CI pipelines |
+| [**Visual Studio**](https://marketplace.visualstudio.com/items?itemName=GitHub.copilotvs) | .NET teams — agent mode, MCP, custom instructions fully supported |
 
 This guide uses VS Code for examples and screenshots because it has the most complete primitive support. Where a feature is VS Code-specific, it is noted.
 
