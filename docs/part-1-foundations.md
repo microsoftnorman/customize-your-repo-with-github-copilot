@@ -6,25 +6,55 @@
 
 ---
 
-## Introduction
+## What is GitHub Copilot?
 
-### What is GitHub Copilot?
+[GitHub Copilot](https://github.com/features/copilot) is an AI coding assistant powered by frontier language models — Claude, GPT, Gemini — hosted by GitHub. Developers describe what they need in natural language or code, and Copilot generates suggestions, answers questions, writes implementations, and executes multi-step tasks. The models handle reasoning; the integration layer handles context — pulling in open files, workspace structure, and the customization files this guide covers.
 
-[GitHub Copilot](https://github.com/features/copilot) is an AI coding assistant that connects to frontier language models — Claude, GPT, Gemini — hosted by GitHub. The models do the reasoning; the integration layer handles context, pulling in open files, workspace structure, and the customization files this guide covers.
+### Core Capabilities
 
-Copilot operates in three modes:
+Copilot works in three modes, each suited to different tasks:
 
 | Mode | What It Does |
 |------|-------------|
-| **Inline suggestions** | Predicts the next lines of code as you type (ghost text) |
-| **Chat** | A conversational interface for asking questions, generating code, and explaining concepts |
-| **Agent** | An autonomous mode where Copilot plans multi-step tasks, calls tools, edits files, and runs terminal commands |
+| **Inline suggestions** | Predicts the next lines of code as you type — ghost text that appears automatically. Best for boilerplate, repetitive patterns, and finishing thoughts you've already started. |
+| **Chat** | A conversational interface for asking questions, generating code, explaining concepts, and working through problems interactively. |
+| **Agent** | An autonomous mode where Copilot plans multi-step tasks, calls tools, edits files, runs terminal commands, and iterates on results. This is where customization has the most impact — the quality of instructions and guardrails in the repository directly determines the quality of the agent's output. |
 
-Agent mode is where customization has the most impact. When Copilot operates as an agent — reasoning through multi-file changes, calling tools, iterating on results — the quality of instructions, skills, and guardrails in the repository directly determines the quality of the output. **Autopilot** (preview) takes this further: the agent approves its own actions and works until task completion with no manual confirmations required.
+**Autopilot** (preview) extends agent mode with a fully autonomous permission level: the agent approves its own actions, retries on errors, and works until the task is complete — no manual confirmations required.
+
+### Model Selection
+
+Copilot supports **multi-model hot-swapping** — switch between models during a session to match the task:
+
+| Model | Strengths |
+|-------|-----------|
+| **Claude Opus 4.6** | Deep reasoning, multi-file refactors, nuanced code review |
+| **GPT-5.4** | Broad knowledge, strong type annotations, fast iteration |
+| **GPT-5.4 mini** | Speed over depth — ideal for simple completions and quick questions |
+| **Gemini 3 Pro** | Concise, pragmatic solutions with large context windows |
+
+Model selection matters more than most people realize. A frontier model with extended thinking will dramatically outperform an older or lighter model on complex tasks. **Thinking effort** is now configurable — control how deeply reasoning models think before responding, balancing response quality and latency.
+
+Enterprises can use **BYOK (Bring Your Own Key)** to connect their own API keys for supported model providers (OpenAI, Anthropic, Azure), giving teams control over cost, privacy, and provider selection.
+
+### Plans
+
+| Plan | Who It's For |
+|------|-------------|
+| **Copilot Free** | Individual developers — limited access to core features |
+| **Copilot Pro / Pro+** | Individual developers — full access including agent mode, memory, and premium models |
+| **Copilot Business** | Teams — centralized management, policy controls, and org-wide customization |
+| **Copilot Enterprise** | Large organizations — enterprise governance, SSO, audit logging, and data residency |
+
+### What This Guide Teaches
+
+Out of the box, Copilot is a generic coding assistant. It knows how to write code but knows nothing about *your* codebase — your conventions, your architecture, your team's decisions. This guide covers the **ten customization primitives** that transform Copilot from a generic assistant into a team member who knows your repository. Each primitive is a configuration file or integration that shapes what Copilot knows, how it behaves, and what it can do.
 
 **This guide assumes Copilot is already installed and working.** If not, start at [github.com/features/copilot](https://github.com/features/copilot) to set up a subscription.
 
-### Where Copilot Runs
+---
+
+## Where Copilot Runs
 
 Copilot is available across seven surfaces. The customization primitives in this guide are **file-based and IDE-agnostic** — they live in the repository, not in any specific editor's configuration. A `.github/copilot-instructions.md` file works regardless of which surface a developer uses.
 
@@ -166,7 +196,15 @@ The SDK is for teams building their own surfaces. If the use case fits inside VS
 
 The SDK is in **public preview** — expect breaking API changes between versions. Pin dependency versions and monitor the [SDK repository](https://github.com/github/copilot-sdk/releases) for updates. For full documentation, see [Primitive 10: Copilot SDK](primitive-10-copilot-sdk.md).
 
-### Key Terms
+### Visual Studio
+
+[GitHub Copilot for Visual Studio](https://marketplace.visualstudio.com/items?itemName=GitHub.copilotvs) provides the full Copilot experience for .NET development. Agent mode, MCP, custom instructions, and prompt files are all supported. Custom agents are in preview. Visual Studio 18.0+ includes BYOK support and workspace indexing.
+
+Releases are tied to the **Visual Studio release cycle** (approximately monthly). Copilot features ship as part of Visual Studio updates rather than through a separate extension.
+
+---
+
+## Key Terms
 
 These terms appear throughout the guide:
 
