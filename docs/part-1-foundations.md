@@ -12,17 +12,18 @@
 
 ### Core Capabilities
 
-Copilot assists developers across five interaction patterns:
+Copilot assists developers across six interaction patterns:
 
 | Pattern | What It Does | Where It Runs |
 |---------|-------------|---------------|
 | **Code completion** | Predicts the next lines as you type — ghost text for boilerplate, repetitive patterns, and finishing thoughts already started | IDEs (VS Code, JetBrains, Eclipse, Visual Studio) |
 | **Chat** | A conversational interface for asking questions, generating code, explaining concepts, and working through problems interactively | IDEs, GitHub.com |
-| **Agentic coding** | Copilot plans multi-step tasks, calls tools, edits files, runs terminal commands, and iterates on results — autonomously | VS Code, Copilot CLI, cloud coding agent, GitHub Actions |
+| **Agentic coding** | Copilot plans multi-step tasks, calls tools, edits files, runs terminal commands, and iterates on results — autonomously | VS Code, Copilot CLI, cloud coding agent |
 | **Code review** | Automated review of pull requests — surfaces bugs, security issues, and convention violations | GitHub.com (PR reviews) |
+| **Agentic Workflows** | [Continuous AI](https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/) — coding agents run inside GitHub Actions on schedules, events, or on demand. Describe intent in Markdown; the agent executes it. Handles triage, docs sync, code simplification, test improvement, and reporting — all with sandboxed execution and human review before merge. | GitHub Actions (technical preview) |
 | **Custom integration** | Embed the Copilot agent runtime in your own tools, platforms, and pipelines via the [Copilot SDK](primitive-10-copilot-sdk.md) | Your applications (Node.js, Python, Go, .NET, Java) |
 
-**Agentic coding** is the most significant capability and where customization has the most impact. When Copilot operates as an agent — whether in VS Code, at the terminal, running on GitHub's cloud infrastructure, or as part of a scheduled GitHub Actions workflow — the quality of instructions, skills, and guardrails in the repository directly determines the quality of the output.
+**Agentic coding** is the most significant capability and where customization has the most impact. When Copilot operates as an agent — whether in VS Code, at the terminal, or running on GitHub's cloud infrastructure — the quality of instructions, skills, and guardrails in the repository directly determines the quality of the output.
 
 Agentic coding has three permission levels:
 
