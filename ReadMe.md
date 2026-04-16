@@ -6,8 +6,6 @@ GitHub Copilot is GitHub's platform for agentic software development. When prope
 
 This guide is the complete reference for GitHub Copilot's customization primitives—the configuration files and patterns that transform Copilot from a generic platform into one that knows your codebase.
 
-**In a hurry?** [Skip to the 5-Minute Quick Start](#5-minute-quick-start) — one file, immediate value.
-
 ---
 
 ## Table of Contents
@@ -18,7 +16,7 @@ This guide is the complete reference for GitHub Copilot's customization primitiv
 - [Platform Extensions](#platform-extensions) — Agentic Workflows and the Copilot SDK
 - [Guide Structure](#guide-structure) — how Parts I, II, and III fit together
 - [Find What You Need Fast](#find-what-you-need-fast) — task-based entry points
-- [Getting Started](#getting-started) — the 5-minute quick start
+- [Getting Started](#getting-started)
 - [Data Collection Notice](#data-collection-notice)
 - [Resources](#resources)
 
@@ -140,58 +138,36 @@ Quick reference tables, starter templates, and configuration reference for all p
 
 ## Find What You Need Fast
 
-Task-based entry points for common scenarios:
+Common problems and where in the guide to read about them.
 
-| I want to... | Go to |
-|--------------|-------|
-| Add my first customization file | [5-Minute Quick Start](#5-minute-quick-start) |
-| Understand *why* customization matters | [GitHub Copilot Without Customization](docs/part-1b-why-customize.md#github-copilot-without-customization) |
-| Pick the right primitive for a job | [Quick Decision Guide](docs/part-3-reference.md#quick-decision-guide) |
-| Learn the frontmatter for any primitive | [Frontmatter Reference](docs/part-3-reference.md#frontmatter-reference) |
-| Know which primitives work in my IDE | [Cross-Surface Support Matrix](docs/part-3-reference.md#cross-surface-primitive-support-matrix) |
-| See every primitive's feature support in one table | [IDE Surfaces overview](docs/surfaces.md) |
-| Debug why a primitive isn't loading | [Debugging: What's Loaded?](docs/part-3-reference.md#debugging-whats-loaded) |
-| Avoid common mistakes | [Anti-Patterns to Avoid](docs/part-3-reference.md#anti-patterns-to-avoid) |
-| Copy a working starting point | [Starter Templates](docs/part-3-reference.md#starter-templates) |
-| Connect Copilot to an external API or database | [MCP Configuration](docs/part-3-reference.md#mcp-configuration) · [MCP Tutorial](docs/primitive-6-mcp.md#end-to-end-tutorial-adding-a-github-mcp-server) |
-| Build a specialized agent persona | [Custom Agents](docs/primitive-5-custom-agents.md) |
-| Enforce runtime rules and audit logs | [Hooks (Preview)](docs/primitive-7-hooks.md) |
-| Run AI continuously in CI/CD | [Agentic Workflows](docs/agentic-workflows.md) |
-| Embed the agent runtime in my own app | [Copilot SDK](docs/copilot-sdk.md) |
-| Roll out customization to my team | [Rolling Out to Your Team](docs/part-1b-why-customize.md#rolling-out-to-your-team) |
-| Scale customization across an org | [Scaling Beyond One Team](docs/part-1b-why-customize.md#scaling-beyond-one-team) |
-| Measure whether customization is working | [Measuring Success](docs/part-1b-why-customize.md#measuring-success) |
+| Problem | Where in the guide |
+|---------|--------------------|
+| Copilot keeps picking the wrong libraries and patterns for my codebase | [Creating an Instructions File](docs/primitive-1-always-on-instructions.md#creating-an-instructions-file) |
+| I don't understand why customization matters in the first place | [GitHub Copilot Without Customization](docs/part-1b-why-customize.md#github-copilot-without-customization) |
+| I have too many primitives to choose from and don't know which fits my use case | [Quick Decision Guide](docs/part-3-reference.md#quick-decision-guide) |
+| Rules should only apply to certain files (tests, SQL, backend, etc.), not the whole repo | [File-based Instructions](docs/primitive-2-file-based-instructions.md) · [Glob patterns](docs/part-3-reference.md#glob-pattern-reference) |
+| My team keeps typing the same 10-line prompt over and over | [Prompts](docs/primitive-3-prompts.md) |
+| I want Copilot to follow a multi-step procedure (deploy, scaffold a component, run a checklist) | [Skills](docs/primitive-4-skills.md) |
+| Different tasks need different personas (reviewer, architect, security auditor) | [Custom Agents](docs/primitive-5-custom-agents.md) |
+| Copilot can't see my issue tracker, database, or internal API | [MCP Tutorial](docs/primitive-6-mcp.md#end-to-end-tutorial-adding-a-github-mcp-server) · [MCP Configuration](docs/part-3-reference.md#mcp-configuration) |
+| Agents sometimes run commands or touch files they shouldn't | [Hooks (Preview)](docs/primitive-7-hooks.md) |
+| Copilot forgets context across sessions — I have to re-explain the codebase every time | [Copilot Memory](docs/primitive-8-memory.md) |
+| I forget the frontmatter fields for instructions / prompts / skills / agents | [Frontmatter Reference](docs/part-3-reference.md#frontmatter-reference) |
+| My team uses JetBrains / Visual Studio / Xcode / Eclipse — what's supported there? | [Cross-Surface Support Matrix](docs/part-3-reference.md#cross-surface-primitive-support-matrix) · [IDE Surfaces overview](docs/surfaces.md) |
+| I added an instructions file but Copilot isn't picking it up | [Debugging: What's Loaded?](docs/part-3-reference.md#debugging-whats-loaded) |
+| I want to avoid the most common pitfalls before I write anything | [Anti-Patterns to Avoid](docs/part-3-reference.md#anti-patterns-to-avoid) |
+| I don't want to write customization from scratch | [Starter Templates](docs/part-3-reference.md#starter-templates) |
+| I want AI to run on my repo continuously — triage issues, review PRs, maintain docs | [Agentic Workflows](docs/agentic-workflows.md) |
+| I want to embed the Copilot agent runtime inside my own product or tool | [Copilot SDK](docs/copilot-sdk.md) |
+| I'm ready to roll this out to my team but don't know where to start | [Rolling Out to Your Team](docs/part-1b-why-customize.md#rolling-out-to-your-team) |
+| I need to scale customization across many teams without forcing uniformity | [Scaling Beyond One Team](docs/part-1b-why-customize.md#scaling-beyond-one-team) |
+| My leadership wants to know whether Copilot is actually paying off | [Measuring Success](docs/part-1b-why-customize.md#measuring-success) |
 
 ---
 
 ## Getting Started
 
-### 5-Minute Quick Start
-
-Create one file and get immediate value. Add `.github/copilot-instructions.md` to your repository root:
-
-```markdown
-# Copilot Instructions
-
-## Tech Stack
-- TypeScript with React 19
-- Vitest for testing
-- React Query for server state (not Redux)
-- date-fns for dates (not moment.js)
-
-## Conventions
-- Functional components only — no class components
-- All API responses use the ApiResponse<T> wrapper in src/types/
-- Tests live next to the code they test (e.g., Button.test.tsx)
-
-## Do Not
-- Do not use any deprecated libraries listed in DEPRECATED.md
-- Do not add console.log to production code
-```
-
-Replace the specifics with your stack and conventions. Commit the file and every Copilot Chat interaction in the repo will follow these rules. This single file eliminates the most common source of Copilot friction — suggestions that use the wrong libraries, patterns, or conventions.
-
-For the full guide, start with [Part I: Foundations](docs/part-1-foundations.md), then work through the primitives in order — each builds on the previous.
+Start with [Part I: Foundations](docs/part-1-foundations.md), then work through the primitives in order — each builds on the previous. To bootstrap your first customization file, see [Creating an Instructions File](docs/primitive-1-always-on-instructions.md#creating-an-instructions-file) — it covers `/init` in VS Code and the Copilot CLI, `/generateInstructions` in Visual Studio, and manual authoring for every other surface.
 
 For teams, consider reading individually first, then convening to discuss which primitives fit your workflows.
 
@@ -218,3 +194,28 @@ Starting April 24, 2026, GitHub uses Copilot interaction data from Free, Pro, an
 - [VS Code Source Code](https://github.com/microsoft/vscode) — The authoritative reference when documentation is unclear
 - [Copilot Spaces](https://docs.github.com/en/copilot/how-tos/provide-context/use-copilot-spaces) — Organize relevant context into Spaces that ground Copilot's responses for specific tasks
 - [product-brain](https://github.com/digitarald/product-brain) — A product management approach to workspace instructions
+
+### Recommended Video Channels
+
+The guide's "See it in action" links point to demos on these two official channels. Subscribe to stay current on new Copilot features.
+
+- [**@code** on YouTube](https://www.youtube.com/@code) — The official Visual Studio Code channel. Livestreams, release-note walkthroughs, and deep-dives from the VS Code and Copilot teams.
+- [**@GitHub** on YouTube](https://www.youtube.com/@GitHub) — The official GitHub channel. Product announcements, Copilot demos, and GitHub Universe sessions.
+
+### Recommended X / Twitter Accounts
+
+Official product and team accounts for real-time announcements, changelog updates, and behind-the-scenes commentary.
+
+**Organizations**
+
+- [**@github**](https://x.com/github) — GitHub's official account. Release announcements and Copilot news.
+- [**@GitHubNext**](https://x.com/githubnext) — GitHub Next. Experimental features and research previews (agentic workflows, coding agents).
+- [**@code**](https://x.com/code) — Visual Studio Code. Release highlights, tips, and Copilot integration updates.
+- [**@VisualStudio**](https://x.com/visualstudio) — Visual Studio. .NET and Copilot in Visual Studio.
+
+**GitHub Copilot and VS Code team members**
+
+- [**@martinwoodward**](https://x.com/martinwoodward) — Martin Woodward, VP of DevRel, GitHub.
+- [**@digitarald**](https://x.com/digitarald) — Harald Kirschner, Principal PM, GitHub Copilot and VS Code.
+- [**@pierceboggan**](https://x.com/pierceboggan) — Pierce Boggan, Group PM, VS Code.
+- [**@burkeholland**](https://x.com/burkeholland) — Burke Holland, Principal Cloud Advocate.
