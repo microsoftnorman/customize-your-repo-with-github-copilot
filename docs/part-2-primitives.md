@@ -338,7 +338,7 @@ Runtime enforcement and observability for agent sessions. Execute custom shell c
 
 Automatic repository-level learning that builds context over time. Unlike the explicit primitives above, Memory works passively — Copilot observes patterns in your codebase and conversations, then applies what it learned in future sessions. Memory complements explicit customization rather than replacing it.
 
----
+**Official docs:** [Copilot Memory](https://docs.github.com/en/copilot/concepts/agents/copilot-memory)
 
 ## Platform Extensions
 
@@ -348,9 +348,13 @@ The following are not configuration primitives — they don't shape what Copilot
 
 GitHub Agentic Workflows run coding agents inside GitHub Actions — on a schedule, on events, or on demand. This section covers how they work, how to configure the coding agent for autonomous tasks, and how the customization primitives from this guide feed into continuous AI automation.
 
+**Official docs:** [GitHub Agentic Workflows](https://github.github.com/gh-aw/)
+
 ### [Copilot SDK](copilot-sdk.md)
 
 The Copilot SDK packages the same agent runtime that powers Copilot CLI and the cloud agent as libraries for Node.js, Python, Go, .NET, and Java. Use it to embed Copilot's agentic capabilities — tool invocation, multi-turn sessions, streaming, and reasoning — in custom tools, internal platforms, and CI pipelines.
+
+**Official docs:** [Copilot SDK](https://github.com/github/copilot-sdk)
 
 ---
 

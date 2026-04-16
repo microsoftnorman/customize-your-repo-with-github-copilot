@@ -22,7 +22,7 @@ The plugin is compatible with the full IntelliJ Platform lineup. Per the [offici
 
 **Fleet is out of scope.** JetBrains Fleet is a separate product not built on the IntelliJ Platform; the `com.github.copilot` plugin does not install into it. **AppCode** was discontinued by JetBrains in December 2022 and is likewise not a supported target. **Android Studio** is supported, but Google's release train trails the IntelliJ Platform by one or two minor versions, so the plugin's minimum-IDE-build sometimes excludes the current Android Studio stable — verify compatibility on the [Marketplace versions page](https://plugins.jetbrains.com/plugin/17718-github-copilot/versions) before upgrading the plugin if Android Studio is the primary target.
 
-Older JetBrains IDE versions are deprecated on a rolling basis. The [plugin changelog](https://plugins.jetbrains.com/plugin/17718-github-copilot) announced end of support for IDE versions **2024.2** and **2024.3**; teams locked to long-term support builds should verify compatibility against the [JetBrains Marketplace versions page](https://plugins.jetbrains.com/plugin/17718-github-copilot/versions) before upgrading the plugin.
+Older JetBrains IDE versions are deprecated on a rolling basis. The [plugin changelog](https://plugins.jetbrains.com/plugin/17718-github-copilot) announced end of support for IDE versions **2024.2** and **2024.3**; teams locked to long-term support builds should verify compatibility against the Marketplace versions page before upgrading the plugin.
 
 ## What Ships in the Plugin
 
@@ -131,7 +131,7 @@ The settings page is a convenience layer over the filesystem. Editing the files 
 
 ## MCP Configuration in JetBrains
 
-MCP is the most-used integration point in JetBrains today because it is fully supported and reads the same `.vscode/mcp.json` the VS Code side uses. Per the [JetBrains MCP docs](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/extend-copilot-chat-with-mcp?tool=jetbrains), the plugin supports both remote and local MCP servers.
+[MCP](https://modelcontextprotocol.io) is the most-used integration point in JetBrains today because it is fully supported and reads the same `.vscode/mcp.json` the VS Code side uses. Per the [JetBrains MCP docs](https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/extend-copilot-chat-with-mcp?tool=jetbrains), the plugin supports both remote and local MCP servers.
 
 ### Opening the MCP Configuration
 
@@ -222,7 +222,7 @@ JetBrains ships its own AI product — **JetBrains AI Assistant** — in the sam
 Several primitives and diagnostic capabilities available in VS Code do not yet exist on the JetBrains side. Teams that depend on them should keep a VS Code path open for affected workflows, or do that work from the Copilot CLI (which has independent support for hooks-adjacent enforcement via GitHub Actions and external tooling).
 
 - **Hooks** (`.github/hooks/*.json`) — runtime enforcement of allow/deny rules, command interception, and pre/post-tool scripts is not implemented. Teams that need deterministic gates must run those workflows in VS Code or layer enforcement outside the IDE (pre-commit, CI, MCP server-side checks).
-- **Agent plugins** (bundled customization packages) — the distribution format for shipping a cohesive bundle of instructions, prompts, agents, and MCP servers is VS Code-specific.
+- **[Agent plugins](https://code.visualstudio.com/docs/copilot/customization/agent-plugins)** (bundled customization packages) — the distribution format for shipping a cohesive bundle of instructions, prompts, agents, and MCP servers is VS Code-specific.
 - **Agent debug logs parity** — JetBrains provides less visibility into the agent's step-by-step tool-call sequence than VS Code's timeline view. The IDE log (see **Logs and Diagnostics** above) is the fallback, but structured per-turn traces are a VS Code advantage.
 - **Fine-grained glob differences** — file-based instructions apply, but the matching engine may not handle every VS Code glob edge case identically while the primitive is in Preview. If a `.instructions.md` file mysteriously fails to activate in JetBrains, simplify the `applyTo` pattern before assuming the feature is broken.
 

@@ -362,7 +362,7 @@ For VS Code’s secret storage and environment variable handling, see [Variables
 
 ## End-to-End Tutorial: Adding a GitHub MCP Server
 
-This walkthrough covers every step from zero to a working GitHub MCP integration.
+This walkthrough covers every step from zero to a working [GitHub MCP](https://github.com/github/github-mcp-server) integration.
 
 ### Step 1: Create the Configuration File
 

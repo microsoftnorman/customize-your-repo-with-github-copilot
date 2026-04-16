@@ -4,7 +4,7 @@
 
 ---
 
-GitHub Copilot for Eclipse is a first-party plugin published by Microsoft on the [Eclipse Marketplace](https://marketplace.eclipse.org/content/github-copilot) and on a dedicated [Azure-hosted p2 update site](https://azuredownloads-g3ahgwb5b8bkbxhd.b01.azurefd.net/github-copilot/). It brings the core Copilot experience — completions, chat, agent mode, and MCP — into the Eclipse IDE and Eclipse-based distributions (Spring Tool Suite, JBoss Developer Studio, IBM Developer for z/OS, SAP ABAP Development Tools, eGovFrame, and others that inherit from the Eclipse Platform). The plugin is actively developed by Microsoft, has been [announced to go open source under the MIT license](https://devblogs.microsoft.com/java/ghc-eclipse-is-going-open-source/), and ships updates on an approximately monthly cadence alongside the rest of the Copilot IDE family.
+GitHub Copilot for Eclipse is a first-party plugin published by Microsoft on the [Eclipse Marketplace](https://marketplace.eclipse.org/content/github-copilot) and on a dedicated [Azure-hosted p2 update site](https://azuredownloads-g3ahgwb5b8bkbxhd.b01.azurefd.net/github-copilot/). It brings the core Copilot experience — completions, chat, agent mode, and [MCP](https://modelcontextprotocol.io) — into the Eclipse IDE and Eclipse-based distributions (Spring Tool Suite, JBoss Developer Studio, IBM Developer for z/OS, SAP ABAP Development Tools, eGovFrame, and others that inherit from the Eclipse Platform). The plugin is actively developed by Microsoft, has been [announced to go open source under the MIT license](https://devblogs.microsoft.com/java/ghc-eclipse-is-going-open-source/), and ships updates on an approximately monthly cadence alongside the rest of the Copilot IDE family.
 
 This page covers what the plugin does and does not ship today, how to install it reliably in corporate networks where the default update site is often blocked, which customization primitives are available in Preview versus Supported status, and the operational details — Java runtime requirements, proxy and certificate handling, Node.js language server architecture, log locations — that Eclipse-first teams need to run Copilot confidently.
 
@@ -125,7 +125,7 @@ MCP server configuration is read from the plugin's preference store (**Preferenc
 
 ### Custom Agents (Preview)
 
-Custom agent definitions following the frontmatter-based `.md` format are recognized on the two most recent Eclipse releases (2025-12 and 2025-09 at time of writing). See the [Copilot feature matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=eclipse) for the authoritative per-version support grid.
+Custom agent definitions following the [frontmatter-based `.md` format](https://docs.github.com/en/copilot/reference/custom-agents-configuration) are recognized on the two most recent Eclipse releases (2025-12 and 2025-09 at time of writing). See the [Copilot feature matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=eclipse) for the authoritative per-version support grid.
 
 ### Custom Instructions (Preview)
 

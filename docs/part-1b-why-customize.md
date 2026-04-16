@@ -6,7 +6,7 @@
 
 ---
 
-[Part I: Foundations](part-1-foundations.md) covered *what* GitHub Copilot is and *where* it runs. This half covers *why* customization matters, how to roll it out across a team, and how to measure whether the investment is paying off.
+[Part I: Foundations](part-1-foundations.md) covered *what* GitHub Copilot is and *where* it runs. This half covers *why* [customization](https://code.visualstudio.com/docs/copilot/customization/overview) matters, how to roll it out across a team, and how to measure whether the investment is paying off.
 
 ---
 
@@ -156,48 +156,83 @@ Use Copilot → Notice friction → Update customization → Repeat
 
 Customizations are first-class code. Change them as often as your codebase changes. Use PRs so the team stays aware.
 
+### Let Copilot Tune Itself
+
+The fastest way to find the gaps in your customization is to ask Copilot to reflect on its own sessions. It has more signal about what worked and what didn't than you do — it knows which instructions it followed, which it ignored because they were ambiguous, and which friction points kept showing up in the conversation.
+
+At the end of a work session, or after landing a non-trivial task, ask Copilot to self-review and propose improvements. Keep a human in the loop: Copilot proposes, you approve and commit.
+
+> 💬 **Try this prompt:**
+>
+> Reflect on this session and propose updates to our customization files. Specifically:
+>
+> 1. Look at `.github/copilot-instructions.md`, any files in `.github/instructions/`, and any skills in `.github/skills/` that were relevant.
+> 2. Identify moments in this session where you made a wrong assumption, asked me for context you should have found in the repo, or repeated a correction I had to give you.
+> 3. For each moment, propose a concrete change: a new rule, a clarified rule, an added ✅/❌ example, a new skill, or a rule to *remove* because it's redundant with the model's defaults or with another instruction.
+> 4. Output the proposals as a diff I can review, with a one-line rationale for each.
+>
+> Don't edit any files yet — just show me the proposed diff.
+
+Run this regularly (end of a feature, end of a sprint, after a long debugging session) and merge the proposals that hold up. Over time the instruction set converges on the rules that actually matter, and stops accumulating ones that don't.
+
 ---
 
 ## Measuring Success
 
 GitHub Copilot assists across the entire software development lifecycle — from planning and coding to testing, deployment, and maintenance. Measuring its impact requires looking at both immediate indicators and ultimate outcomes. Better Copilot outcomes in code should directly translate to better outcomes for your repo, team, and organization.
 
-### The Measurement Hierarchy
+### Start With Business Goals
 
-```text
-+-----------------------------------+
-|     Business Metrics              |  ← Time to market, cost per feature, developer capacity
-+-----------------------------------+
-|     Product Metrics               |  ← Feature adoption, ROI, revenue per feature
-+-----------------------------------+
-|     Engineering Metrics (DORA)    |  ← Deployment frequency, change failure rate, MTTR
-+-----------------------------------+
-|     Flow Metrics (Leading)        |  ← Cycle time, lead time, throughput
-+-----------------------------------+
-```
+Before picking metrics, pick *outcomes*. Metrics in isolation are noise — a cycle-time dashboard that nobody ties to a business goal becomes a vanity chart. The teams that get the most out of Copilot customization work the measurement hierarchy **top-down**: start with what the business is trying to achieve, then choose the metrics that prove (or disprove) you're getting there.
 
-Flow metrics move first and predict the layers above them. Business metrics move last but are what leadership actually tracks. Copilot customization primarily accelerates the bottom layer; the gains propagate upward over time.
+Typical business goals and the metrics that track them:
 
-### Leading Indicators: Flow Metrics
+| Business Goal | What It Means | Primary Metrics |
+|---------------|---------------|-----------------|
+| **Ship faster** | Reduce time from idea to customer | Cycle time, lead time, deployment frequency, time to market |
+| **Ship more** | Increase output without increasing headcount | Throughput, features shipped per engineer, developer capacity |
+| **Ship safer** | Reduce production incidents and rework | Change failure rate, defect escape rate, MTTR, rework rate |
+| **Lower total cost of ownership (TCO)** | Reduce fully loaded cost to build *and* run software | Engineering cost per feature, maintenance burden, cost to operate, infrastructure spend |
+| **Improve developer experience** | Retain engineers, reduce friction, speed onboarding | Developer satisfaction (DX surveys), onboarding time to first PR, time spent on toil vs. new work |
+| **Accelerate experimentation** | Learn faster by shipping more experiments cheaply | Experiments per quarter, cost of delay, cost to build per experiment, feature kill rate |
+| **Increase revenue impact per engineer** | Make the engineering org a revenue lever, not just a cost center | Revenue per feature, feature ROI, feature adoption |
+| **Improve customer satisfaction** | Ship the right things and ship them well — users notice quality, speed, and responsiveness | CSAT/NPS, time-to-resolution on customer-reported issues, support ticket volume |
+| **Reduce risk and compliance exposure** | Meet regulatory obligations without slowing delivery | Audit coverage, policy violations caught pre-merge, security review turnaround |
 
-These metrics show early impact and predict downstream improvements:
+Pick two or three goals that matter to *your* organization right now. Pin them to the wall. Every Copilot customization investment — instructions, skills, agents, hooks, workflows — should trace back to at least one. If it doesn't move any of the numbers that matter, it's optional.
 
-| Metric | What It Measures | How to Track |
-|--------|------------------|---------------|
-| **Cycle Time** | Time from work started to PR merged | GitHub Insights, LinearB, Jellyfish |
-| **Lead Time** | Time from issue created to deployed | Jira/GitHub + deployment tracking |
-| **Throughput** | PRs merged per week (team) | GitHub API |
-| **PR Review Time** | Time from PR opened to first review | GitHub Insights |
-| **Rework Rate** | % of PRs requiring changes after review | PR comment/commit analysis |
+The sections below walk the measurement stack top-down — business outcomes first (what leadership tracks), then DORA (engineering health), then flow metrics (leading indicators that move first). Flow metrics shift within days; DORA within weeks; business outcomes within quarters.
 
-**What to look for:**
-- Cycle time decreasing (faster delivery)
-- Throughput increasing (more work completed)
-- Rework rate decreasing (higher first-time quality)
+### Business Outcomes
+
+Business outcomes are the point. Everything below them — DORA, flow, adoption — exists to move these numbers. Not every team needs to think this way; open-source projects, internal tools, and prototypes have different success criteria. But if the software needs to generate revenue, justify its operating costs, or compete for continued investment, engineering speed alone doesn't tell the full story.
+
+**Organizational metrics** — the numbers a CFO or CTO reads on a quarterly dashboard:
+
+| Metric | What It Measures | Connection to Copilot |
+|--------|------------------|----------------------|
+| **Time to Market** | Elapsed time from concept to production | Faster cycles across the SDLC compress this directly |
+| **Engineering Cost per Feature** | Fully loaded cost to ship a capability | Copilot reduces effort per feature without adding headcount |
+| **Total Cost of Ownership (TCO)** | Fully loaded cost to build, run, and maintain software over its lifetime | Copilot lowers build cost up front and shortens maintenance and incident-response work over time |
+| **Defect Escape Rate** | Bugs reaching production per release | Better-generated tests and code review catch issues earlier |
+| **Maintenance Burden** | % of engineering time spent on upkeep vs. new work | Copilot accelerates maintenance tasks, freeing capacity for new features |
+| **Developer Capacity** | Effective output per engineer | The same team ships more — or the same output requires fewer people |
+
+**Product and feature metrics** — whether what you ship actually matters:
+
+| Metric | What It Measures | Why It Matters |
+|--------|------------------|----------------|
+| **Feature Adoption** | % of users who engage with a shipped feature | A feature nobody uses costs time to build and money to maintain |
+| **Feature ROI** | Value delivered relative to cost of building | Connects engineering effort directly to outcomes |
+| **Revenue per Feature** | Revenue attributable to a specific capability | Ties engineering output directly to business outcomes |
+| **Cost of Delay** | Revenue or value lost per unit of time a feature isn't shipped | Quantifies the price of slow delivery — makes the case for faster cycles |
+| **Feature Kill Rate** | % of shipped features retired or rolled back | High rates signal weak product judgment; low rates may signal over-caution |
+
+Copilot compresses the *cost to build*, but compressed build costs only improve ROI if the features being built are the right ones. By making each experiment cheaper, Copilot makes it economically viable to try more ideas, kill the losers faster, and concentrate investment on the winners — product judgment still belongs to humans. Track these numbers before and after adoption; if the trendlines move while team size and practices stay roughly constant, the investment is paying off. Engineering organizations that articulate impact in business terms — cost, revenue, risk — get more investment and more autonomy than those reporting on developer satisfaction alone.
 
 ### Engineering Metrics (DORA)
 
-The four DORA metrics connect flow to engineering outcomes:
+DORA is how you know your engineering machine is actually capable of producing the business outcomes above:
 
 | Metric | What It Measures | Target Impact |
 |--------|------------------|---------------|
@@ -206,46 +241,19 @@ The four DORA metrics connect flow to engineering outcomes:
 | **Mean Time to Recovery** | Time to fix production issues | Decrease |
 | **Lead Time for Changes** | Commit to production | Decrease |
 
-### Product Metrics
+### Leading Indicators: Flow Metrics
 
-DORA tells you how well your engineering machine runs. Product metrics tell you whether what comes out of that machine matters.
+Flow metrics move first — the earliest signal that a customization investment is paying off, and they predict the DORA and business numbers above.
 
-Not every team needs to think this way — open-source projects, internal tools, and prototypes have different success criteria. But if the software needs to generate revenue, justify its operating costs, or compete for continued investment, engineering speed alone doesn't tell the full story. Shipping faster only counts if what ships moves the needle.
+| Metric | What It Measures | Target Direction |
+|--------|------------------|------------------|
+| **Cycle Time** | Time from work started to PR merged | Decrease |
+| **Lead Time** | Time from issue created to deployed | Decrease |
+| **Throughput** | PRs merged per week (team) | Increase |
+| **PR Review Time** | Time from PR opened to first review | Decrease |
+| **Rework Rate** | % of PRs requiring changes after review | Decrease |
 
-| Metric | What It Measures | Why It Matters |
-|--------|------------------|----------------|
-| **Feature Adoption** | % of users who engage with a shipped feature | A feature nobody uses costs time to build and money to maintain |
-| **Feature ROI** | Value delivered relative to cost of building | Connects engineering effort directly to outcomes |
-| **Cost of Delay** | Revenue or value lost per unit of time a feature isn't shipped | Quantifies the price of slow delivery — makes the case for faster cycles |
-| **Cost to Build** | Total engineering investment (time, people, infrastructure) | Baseline for ROI calculations; Copilot should bend this curve down |
-| **Cost to Operate** | Ongoing infrastructure, maintenance, and support costs | Features that are cheap to build but expensive to run still erode margins |
-| **Revenue per Feature** | Revenue attributable to a specific capability | Ties engineering output directly to business outcomes |
-
-**Where Copilot fits:** Copilot compresses the *cost to build* — faster coding, faster testing, faster iteration. But compressed build costs only improve ROI if the features being built are the right ones. The most productive engineering team in the world still loses if it ships features nobody wants.
-
-This creates a feedback loop worth paying attention to:
-
-```text
-Lower cost to build → Ship more experiments → Learn faster → Pick better features → Higher feature ROI
-```
-
-Copilot doesn't pick the right features to build. Product judgment still belongs to humans. But by reducing the cost of each experiment, Copilot makes it economically viable to try more ideas, validate them faster, and kill the ones that don't work before they accumulate operating costs.
-
-### Business Metrics
-
-For organizations where software is a revenue driver — or where engineering is a cost center that needs to justify its budget — these metrics connect the dots between Copilot adoption and the numbers leadership actually cares about.
-
-| Metric | What It Measures | Connection to Copilot |
-|--------|------------------|----------------------|
-| **Time to Market** | Elapsed time from concept to production | Faster cycles across the SDLC compress this directly |
-| **Engineering Cost per Feature** | Fully loaded cost to ship a capability | Copilot reduces effort per feature without adding headcount |
-| **Defect Escape Rate** | Bugs reaching production per release | Better-generated tests and code review catch issues earlier |
-| **Maintenance Burden** | % of engineering time spent on upkeep vs. new work | Copilot accelerates maintenance tasks, freeing capacity for new features |
-| **Developer Capacity** | Effective output per engineer | The same team ships more — or the same output requires fewer people |
-
-None of these metrics require attributing every improvement to Copilot specifically. Track them before and after adoption. If the trendlines move in the right direction while engineering practices and team size stay roughly constant, the investment is paying off.
-
-**A note on framing:** Engineering organizations that can articulate their impact in business terms — cost savings, revenue acceleration, risk reduction — tend to get more investment, more autonomy, and more trust. Copilot customization is a lever worth measuring in those terms, not just developer satisfaction surveys.
+Track via GitHub Insights, the GitHub API, or third-party tooling (LinearB, Jellyfish).
 
 ### The New Benchmark: A Feature a Day
 
@@ -317,7 +325,7 @@ For complete details — including workflow examples, coding agent configuration
 
 ## Rolling Out to Your Team
 
-Adopting Copilot customization works best in phases. Each phase adds capability while giving teams time to build confidence:
+Adopting GitHub Copilot customization works best in phases. Each phase adds capability while giving teams time to build confidence:
 
 | Phase | What to Deploy | What to Measure | Move to Next When |
 |-------|---------------|-----------------|-------------------|
@@ -332,11 +340,19 @@ Start with the highest-value, lowest-risk primitive (`copilot-instructions.md`),
 
 ## Scaling Beyond One Team
 
-The four-phase rollout above works for a single team on a single repo. When the first team proves value and leadership asks "how do we roll this out across the org?", the operational questions change. Distribution, drift, ownership, and measurement become the bottlenecks — not authoring.
+The rollout above works for a single team on a single repo. When the first team proves value and leadership asks "how do we roll this out across the org?", the operational questions change. Distribution, drift, ownership, and measurement become the bottlenecks — not authoring.
+
+**Don't force every team onto the same rules.** The goal of scaling is to share what's genuinely reusable, not to impose uniformity. One team might require functional React with React Query; another might standardize on signals and a different state layer. One service might mandate strict typing and exhaustive error handling; another might optimize for rapid prototyping. Both can be right. Coupling every repo to a single source of truth turns customization into a political battleground and produces a baseline so watered-down it helps no one.
+
+Aim for a thin shared baseline (security rules, commit conventions, org-wide anti-patterns) and let teams extend, override, or ignore the rest. GitHub Copilot reads the most specific instruction that applies — use that to your advantage rather than fighting it.
+
+**Patterns will emerge as you reshape for the AI-native SDLC.** Don't try to design the perfect org-wide customization system up front. As teams adopt Copilot, rewire their workflows around autonomous agents, and push more work through the AI-assisted SDLC, shared conventions will surface on their own — a skill two teams independently wrote, a hook three teams copied, an instruction file that keeps showing up in PRs. *Those* are the patterns worth promoting to the shared baseline. Patterns imposed top-down before teams have discovered what actually works tend to calcify around yesterday's workflow and slow down tomorrow's.
+
+Let the shared layer grow from real usage, not from a governance committee's whiteboard.
 
 ### Distribution Patterns
 
-Three mechanisms ship customizations to many repos. Most organizations combine all three.
+Three mechanisms ship customizations to many repos. Most organizations combine all three — keeping the shared layer small and the team-specific layer fully under each team's control.
 
 | Pattern | Best for | Tradeoffs |
 |---------|----------|-----------|
@@ -363,11 +379,11 @@ Hooks and MCP configs deserve stricter ownership because they can execute code o
 
 ### Drift Detection
 
-Once customizations are distributed, they drift. Teams edit local copies, forget to pull upstream updates, and quietly diverge from the baseline. Detect drift with:
+Once customizations are distributed, they drift. Teams edit local copies, forget to pull upstream updates, and quietly diverge from the baseline. Some of that drift is healthy — a team adapting rules to fit their stack is exactly what you want. The goal isn't to eliminate drift, it's to distinguish *intentional divergence* from *silent rot* (outdated security rules, stale references, forgotten overrides). Detect drift with:
 
-- **Scheduled sync actions** — a GitHub Action that, on a schedule, opens a PR in each downstream repo when the baseline repo's `copilot-instructions.md` or skill bundle has changed. Uses the [`peter-evans/create-pull-request`](https://github.com/peter-evans/create-pull-request) pattern or a custom script.
-- **Drift reports** — a central workflow that clones every repo in the org, diffs its Copilot configuration against the canonical baseline, and posts a summary to Slack or an issue in the platform-DX repo.
-- **Agentic Workflows for enforcement** — a scheduled agent workflow that inspects customization files across repos and files issues for unexplained deviations. See [Agentic Workflows](agentic-workflows.md).
+- **Scheduled sync actions** — a GitHub Action that, on a schedule, opens a PR in each downstream repo when the baseline repo's `copilot-instructions.md` or skill bundle has changed. Teams can merge, modify, or close the PR. Uses the [`peter-evans/create-pull-request`](https://github.com/peter-evans/create-pull-request) pattern or a custom script.
+- **Drift reports** — a central workflow that clones every repo in the org, diffs its Copilot configuration against the canonical baseline, and posts a summary to Slack or an issue in the platform-DX repo. Treat it as visibility, not as a gate.
+- **Agentic Workflows for review** — a scheduled agent workflow that inspects customization files across repos and flags *security-relevant* deviations (hook removal, MCP server changes, credential handling) rather than every stylistic difference. See [Agentic Workflows](agentic-workflows.md).
 
 ### Measuring Adoption at Scale
 
@@ -403,7 +419,7 @@ For richer patterns — shared skills libraries, MCP server registries, governan
 
 2. **Start small** — Begin with 3-5 rules addressing common mistakes. Expand as friction points emerge.
 
-3. **Use examples** — Copilot learns better from ✅/❌ patterns than abstract rules.
+3. **Use examples** — GitHub Copilot learns better from ✅/❌ patterns than abstract rules.
 
 4. **Explain rationale** — When you specify a rule, explain *why*. Copilot uses this to make better edge-case decisions.
 

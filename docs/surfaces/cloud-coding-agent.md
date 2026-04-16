@@ -45,7 +45,7 @@ To skip straight to a PR (the pre-April behavior), include "Create a pull reques
 
 ## Environment Setup
 
-Define the agent's development environment in `.github/workflows/copilot-setup-steps.yml`:
+Define the agent's development environment in [`.github/workflows/copilot-setup-steps.yml`](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/customize-the-agent-environment):
 
 ```yaml
 name: "Copilot Setup Steps"
@@ -122,8 +122,8 @@ The cloud agent runs in GitHub's infrastructure, which is why enterprises can go
 | Control | Detail |
 |---------|--------|
 | **Commit signing** | As of April 3, 2026, the cloud agent supports signed commits on PRs it opens. Repositories with branch protection rules requiring signed commits now accept agent-authored PRs without exceptions. |
-| **Firewall allowlists** | Organization admins can restrict which network destinations the cloud agent's container can reach. Supply a list of allowed domains; anything outside the list is blocked at the network layer. |
-| **Custom runners** | Enterprise customers can route cloud agent jobs to **self-hosted runners** (large, GPU-equipped, or network-isolated fleets) instead of GitHub-hosted runners. This keeps source code and build artifacts inside the enterprise perimeter. |
+| **[Firewall allowlists](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/customize-the-agent-firewall)** | Organization admins can restrict which network destinations the cloud agent's container can reach. Supply a list of allowed domains; anything outside the list is blocked at the network layer. |
+| **Custom runners** | Enterprise customers can route cloud agent jobs to [**self-hosted runners**](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/customize-the-agent-environment#using-self-hosted-github-actions-runners) (large, GPU-equipped, or network-isolated fleets) instead of GitHub-hosted runners. This keeps source code and build artifacts inside the enterprise perimeter. |
 
 ### Merge Conflict Resolution
 

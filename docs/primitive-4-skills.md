@@ -4,7 +4,7 @@
 
 ---
 
-**Surface availability:** VS Code ✅ · JetBrains (Preview) · GitHub Copilot CLI ✅ · Visual Studio — · Eclipse — · Cloud Agent —
+**Surface availability:** VS Code ✅ · JetBrains (Preview) · [GitHub Copilot CLI](https://github.com/github/copilot-cli) ✅ · Visual Studio — · Eclipse — · Cloud Agent —
 
 **Ownership:** Skills that package domain procedures (deploy runbooks, migration steps) are owned by the **team that owns the procedure**. General-purpose skills (code review, test writing) are typically owned by **engineering productivity / DX teams** and distributed via agent plugins.
 
@@ -604,7 +604,6 @@ Unlike file-based instructions (which use `applyTo` patterns), skills load **on-
 
 **See it in action:** [Customize Your Agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=487s) — Courtney Webster asks Copilot to help debug a keystroke issue and shows the Chat Debug Log picking up the `debug` skill automatically, purely from its name and description.
 
-
 1. **Every system prompt includes a list of available skills** — just their names and descriptions
 2. **The agent decides which skills are relevant** based on matching the user's request to skill descriptions
 3. **Only then is the full skill content loaded** into context
@@ -675,7 +674,7 @@ When you see a skill wasn't activated, check whether its description clearly mat
 
 ### Skills vs. MCP Servers: When to Use Which
 
-Skills and MCP servers are complementary, not competing. **You can and should use them together.** The question isn't "which one?" — it's "what does each contribute?"
+Skills and [MCP](https://modelcontextprotocol.io) servers are complementary, not competing. **You can and should use them together.** The question isn't "which one?" — it's "what does each contribute?"
 
 - **MCP servers** provide *access* — authentication, API connections, external tool integration
 - **Skills** provide *knowledge* — templates, conventions, workflows, domain expertise

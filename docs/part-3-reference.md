@@ -128,6 +128,8 @@ Users are prompted for input variable values when invoking the prompt.
 
 ### Skills (SKILL.md)
 
+**Official docs:** [Agent Skills specification](https://agentskills.io)
+
 | Field | Required | Type | Description |
 |-------|----------|------|-------------|
 | `name` | **Yes** | string | 1-64 chars, lowercase, hyphens only |
@@ -156,6 +158,8 @@ metadata:
 - ❌ `image--manipulation` (no consecutive hyphens)
 
 ### Custom Agents
+
+**Official docs:** [Custom agents configuration reference](https://docs.github.com/en/copilot/reference/custom-agents-configuration)
 
 | Field | Required | Type | Description |
 |-------|----------|------|-------------|
@@ -249,6 +253,8 @@ handoffs:
 
 ## MCP Configuration
 
+**Official docs:** [MCP configuration reference](https://code.visualstudio.com/docs/copilot/reference/mcp-configuration) · [Add and manage MCP servers in VS Code](https://code.visualstudio.com/docs/copilot/customization/mcp-servers) · [Model Context Protocol specification](https://modelcontextprotocol.io)
+
 ### Workspace Config (`.vscode/mcp.json`)
 
 ```json
@@ -336,6 +342,8 @@ Use `http` for the newer streamable HTTP transport. Use `sse` for servers that e
 ---
 
 ## Hooks Configuration (Preview)
+
+**Official docs:** [Agent hooks in Visual Studio Code](https://code.visualstudio.com/docs/copilot/customization/hooks)
 
 ### Hook File Format
 

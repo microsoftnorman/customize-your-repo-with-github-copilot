@@ -1,4 +1,4 @@
-# Copilot SDK
+# GitHub Copilot SDK
 
 [← Agentic Workflows](agentic-workflows.md) | [Part II Overview](part-2-primitives.md)
 
@@ -22,7 +22,7 @@ For anything beyond "should I use this, and where does it sit in the stack," go 
 
 The eight customization primitives shape Copilot where it already runs — in the editor, in the terminal, and on GitHub. The Copilot SDK lets developers bring that same agent runtime into their own applications and workflows.
 
-The [Copilot SDK](https://github.com/github/copilot-sdk) is the production-tested runtime that powers Copilot CLI and the Copilot cloud agent, packaged as libraries for five languages. Instead of building agent orchestration from scratch — tool routing, context management, permission handling, streaming — teams embed the runtime directly and focus on domain logic.
+The [Copilot SDK](https://github.com/github/copilot-sdk) is the production-tested runtime that powers [GitHub Copilot CLI](https://github.com/github/copilot-cli) and the Copilot cloud agent, packaged as libraries for five languages. Instead of building agent orchestration from scratch — tool routing, context management, permission handling, streaming — teams embed the runtime directly and focus on domain logic.
 
 **Status:** Public preview (April 2, 2026)
 **Best For:** Embedding Copilot agent capabilities in custom tools, internal platforms, CI pipelines, and developer workflows
@@ -172,7 +172,7 @@ The SDK complements the in-repo primitives rather than replacing them.
 
 MCP and the SDK solve different integration problems:
 
-- **MCP** connects Copilot (running in VS Code or CLI) to external tools and data sources. The agent stays in its existing surface; MCP extends what it can reach.
+- **[MCP](https://modelcontextprotocol.io)** connects Copilot (running in VS Code or CLI) to external tools and data sources. The agent stays in its existing surface; MCP extends what it can reach.
 - **The SDK** brings the agent runtime itself into a new application. The agent runs inside your code.
 
 Use MCP when the agent needs to *call* your system. Use the SDK when your system needs to *be* the agent.

@@ -6,13 +6,13 @@
 
 The customization primitives in this guide are **file-based and IDE-agnostic**. A `.github/copilot-instructions.md` file applies whether the developer is in VS Code, JetBrains, Visual Studio, Xcode, Eclipse, the CLI, or working through the cloud coding agent.
 
-This page is the reference for surface-specific details — primitive support, authoring UX, and the gotchas that bite teams in each IDE. For the authoritative, continuously-updated feature matrix, always consult the [GitHub Copilot Feature Matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix). The tables below are a snapshot; the linked official docs are the source of truth.
+This page is the narrative reference for surface-specific details — authoring UX, setup gotchas, and the limitations that matter when picking an IDE.
 
 **See it in action:** [A Unified Agent Experience](https://www.youtube.com/watch?v=tAezuMSJuFs&t=4350s) — Josh Spicer demos how agent sessions work consistently across VS Code, the cloud agent, and the Copilot CLI from a single unified view.
 
 ## Primitive Support by Surface
 
-The **canonical, continuously-maintained matrix lives in [Part III: Cross-Surface Primitive Support Matrix](part-3-reference.md#cross-surface-primitive-support-matrix)**. This page is the narrative reference for surface-specific details — authoring UX, setup gotchas, and the limitations that matter when picking an IDE. For the at-a-glance table, follow the link above; for the authoritative upstream source, always consult the [GitHub Copilot Feature Matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix).
+The canonical, continuously-maintained matrix lives in [Part III: Cross-Surface Primitive Support Matrix](part-3-reference.md#cross-surface-primitive-support-matrix). For the authoritative upstream source, always consult the [GitHub Copilot Feature Matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix).
 
 Verify the live state before locking in tooling decisions — primitive parity on non-VS-Code surfaces is the active investment area and moves monthly.
 
@@ -66,7 +66,7 @@ See [surfaces/xcode.md](surfaces/xcode.md) for the full reference — install pa
 
 ### Eclipse
 
-**Official docs:** [Copilot for Eclipse on the Marketplace](https://marketplace.eclipse.org/content/github-copilot)
+**Official docs:** [Install for Eclipse](https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-extension?tool=eclipse) · [Feature matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=eclipse) · [Copilot for Eclipse on the Marketplace](https://marketplace.eclipse.org/content/github-copilot) · [Feedback repo](https://github.com/microsoft/copilot-eclipse-feedback)
 
 - **Open source (MIT)**, [released to open source in 2026](https://devblogs.microsoft.com/java/ghc-eclipse-is-going-open-source/). Maintained by Microsoft and community contributors.
 - **Agent mode, custom agents, and MCP are supported.** Prompt files, skills, and hooks are not.
@@ -74,13 +74,17 @@ See [surfaces/xcode.md](surfaces/xcode.md) for the full reference — install pa
 
 ### GitHub Copilot CLI
 
+**Official docs:** [GitHub Copilot CLI](https://github.com/features/copilot/cli/) · [copilot-cli repo](https://github.com/github/copilot-cli)
+
 See [surfaces/copilot-cli.md](surfaces/copilot-cli.md) for the full reference. The CLI has its own slash-command vocabulary (`/fleet`, `/delegate`, `/plan`, `/yolo`, `/remote`), YOLO mode, CLI-specific extensions (`.github/extensions/`), and is the only surface besides VS Code with full hooks support.
 
 ### GitHub Copilot Cloud Agent
 
 See [surfaces/cloud-coding-agent.md](surfaces/cloud-coding-agent.md) for the full reference. The cloud agent runs in GitHub Actions, reads the same customization primitives, and is governed through organization-level policy — a fundamentally different operational model from the IDE surfaces above.
 
-### Copilot SDK
+### GitHub Copilot SDK
+
+**Official docs:** [copilot-sdk repo](https://github.com/github/copilot-sdk)
 
 See [copilot-sdk.md](copilot-sdk.md) for the full reference. The SDK is not an IDE surface — it's a library for embedding the agent runtime in custom tools, internal platforms, or CI pipelines.
 
@@ -95,9 +99,9 @@ The primitives are portable, but surfaces have opinionated sweet spots:
 | **JetBrains** | The team is already standardized on IntelliJ-family IDEs (Kotlin/Android, Scala, Rider-based .NET, data-stack via PyCharm/DataSpell). |
 | **Xcode** | iOS/macOS/visionOS native development where Xcode is non-negotiable. |
 | **Eclipse** | Java enterprise environments or Eclipse Theia-based cloud IDEs. |
-| **Copilot CLI** | Terminal-first workflows, CI/automation, SSH-only hosts, or parallel sub-agent work (`/fleet`). |
+| **GitHub Copilot CLI** | Terminal-first workflows, CI/automation, SSH-only hosts, or parallel sub-agent work (`/fleet`). |
 | **Cloud Agent** | Autonomous tasks started from issues, Agents panel, or mobile — and anything that should produce a PR without a developer at a keyboard. |
-| **Copilot SDK** | You're building a custom surface that isn't covered by the above. |
+| **GitHub Copilot SDK** | You're building a custom surface that isn't covered by the above. |
 
 ---
 

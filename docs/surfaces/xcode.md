@@ -72,11 +72,11 @@ Agent mode is available and plans multi-step work across the project, reading fi
 
 ### Model Context Protocol (MCP)
 
-MCP client support lets Copilot for Xcode connect to external tools and data sources. MCP server configuration is managed within the app's settings panel; there is no on-disk `.vscode/mcp.json` discovery analogous to VS Code.
+[MCP](https://modelcontextprotocol.io) client support lets Copilot for Xcode connect to external tools and data sources. MCP server configuration is managed within the app's settings panel; there is no on-disk `.vscode/mcp.json` discovery analogous to VS Code.
 
 ### Custom Agents (Preview)
 
-Custom agent definitions (`.github/agents/*.md`) are recognized in Preview status. Behavior and frontmatter stability may lag VS Code; verify against the repo's current release notes before relying on a specific field.
+[Custom agent definitions](https://docs.github.com/en/copilot/reference/custom-agents-configuration) (`.github/agents/*.md`) are recognized in Preview status. Behavior and frontmatter stability may lag VS Code; verify against the repo's current release notes before relying on a specific field.
 
 ## Customization Primitive Support
 
@@ -88,10 +88,10 @@ The [official install docs](https://docs.github.com/en/copilot/how-tos/set-up/in
 | File-based instructions (`.github/instructions/*.instructions.md`) | Not supported | `applyTo` glob matching is not implemented on Xcode |
 | Prompt files (`.github/prompts/*.prompt.md`) | Preview | Invoke from chat; feature set lags VS Code |
 | Custom agents (`.github/agents/*.md`) | Preview | Persona selection available from chat |
-| Agent skills (`.github/skills/`) | Not supported | No Xcode implementation |
+| [Agent skills](https://agentskills.io) (`.github/skills/`) | Not supported | No Xcode implementation |
 | MCP servers | Supported | Configured from the app's preferences panel |
 | Hooks (`.github/hooks/*.json`) | Not supported | Runtime enforcement is VS Code / CLI / cloud agent only |
-| Memory (Copilot Memory) | Not surfaced in IDE | Learned knowledge that exists is cloud-side; the Xcode app does not expose Memory review or toggles |
+| [Memory](https://docs.github.com/en/copilot/concepts/agents/copilot-memory) (Copilot Memory) | Not surfaced in IDE | Learned knowledge that exists is cloud-side; the Xcode app does not expose Memory review or toggles |
 | Agent plugins | Not supported | VS Code / CLI only |
 
 **The practical takeaway:** because file-based instructions, skills, and hooks are not available on Xcode, teams doing iOS/macOS work should fold all conventions into the root `.github/copilot-instructions.md`. Swift-specific, SwiftUI-specific, and test-specific rules that would normally live in separate `.instructions.md` files need to land in the single always-on file for Xcode-using teammates to benefit.
@@ -119,6 +119,6 @@ File bugs and feature requests at [github.com/github/CopilotForXcode/issues](htt
 
 - [Install GitHub Copilot for Xcode](https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-extension?tool=xcode) — official GitHub docs
 - [`github/CopilotForXcode`](https://github.com/github/CopilotForXcode) — source repository, release notes, and issue tracker
-- [Copilot Feature Matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix) — cross-surface feature grid
+- [Copilot feature matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=xcode) — cross-surface feature grid
 - [Cross-Surface Primitive Support Matrix](../part-3-reference.md#cross-surface-primitive-support-matrix) — canonical Part III reference
 - [Always-on Instructions](../primitive-1-always-on-instructions.md) — the highest-leverage primitive for Xcode teams

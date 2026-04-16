@@ -52,7 +52,7 @@ copilot --yolo \
 
 **Multi-model hot-swapping** — switch between Claude Opus 4.7, GPT-5.4, Gemini 3 Pro, and others during a session. Enterprises can use **BYOK (Bring Your Own Key)** to connect their own API keys for supported providers.
 
-**Fleet mode** (`/fleet`) enables parallel sub-agent execution. An orchestrator decomposes a task into independent subtasks, dispatches them to parallel sub-agents, tracks dependencies, and synthesizes the results:
+**[Fleet mode](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/fleet)** (`/fleet`) enables parallel sub-agent execution. An orchestrator decomposes a task into independent subtasks, dispatches them to parallel sub-agents, tracks dependencies, and synthesizes the results:
 
 ```text
 /fleet Refactor the auth module, update tests, and fix related docs
@@ -60,7 +60,7 @@ copilot --yolo \
 
 The orchestrator builds a task graph — if Task C depends on A and B, it waits. Independent tasks run simultaneously. Monitor progress with `/tasks`.
 
-**Remote sessions** (`/remote`) let developers start a CLI session locally and control it from any device via the GitHub web interface or GitHub Mobile. The session streams in real time — send instructions, approve actions, switch modes, and answer questions from a browser or phone:
+**[Remote sessions](https://docs.github.com/en/copilot/how-tos/copilot-cli/steer-remotely)** (`/remote`) let developers start a CLI session locally and control it from any device via the GitHub web interface or GitHub Mobile. The session streams in real time — send instructions, approve actions, switch modes, and answer questions from a browser or phone:
 
 ```text
 /remote          # enable remote access for the current session
@@ -165,7 +165,7 @@ When using a local or third-party provider *with* network access, GitHub authent
 - [Copilot CLI documentation](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli)
 - [Steering a session from another device](https://docs.github.com/en/copilot/how-tos/copilot-cli/steer-remotely)
 - [Running tasks in parallel with /fleet](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/fleet)
-- [Copilot Feature Matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix)
+- [Copilot feature matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix)
 
 ---
 

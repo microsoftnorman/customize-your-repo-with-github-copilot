@@ -229,7 +229,7 @@ You are a meticulous code reviewer focused on code quality and team standards.
 
 ### Sub-Agents: Context Isolation for Complex Workflows
 
-Sub-agents run tasks in a **dedicated, isolated context window** separate from the main chat session. The main agent delegates work to a sub-agent, which executes autonomously and returns only its final result — keeping the primary context clean and focused.
+[Sub-agents](https://code.visualstudio.com/docs/copilot/agents/subagents) run tasks in a **dedicated, isolated context window** separate from the main chat session. The main agent delegates work to a sub-agent, which executes autonomously and returns only its final result — keeping the primary context clean and focused.
 
 By default, sub-agents inherit the model and tools from the main chat session but start with a clean context window — they do not inherit instructions or conversation history from the parent agent. Running a custom agent as a sub-agent applies specialized behavior, tools, and models to a specific sub-task.
 
@@ -523,7 +523,7 @@ After implementing the feature:
 
 ## Building Custom Agents
 
-The recommended approach for creating custom agents is through VS Code's built-in interface combined with agent-assisted iteration.
+The recommended approach for creating [custom agents](https://code.visualstudio.com/docs/copilot/customization/custom-agents) is through VS Code's built-in interface combined with agent-assisted iteration.
 
 ### Creating via the Configure Menu (Recommended)
 

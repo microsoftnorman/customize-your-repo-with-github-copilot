@@ -108,7 +108,7 @@ See [IDE Surfaces — JetBrains](surfaces.md#jetbrains-ides) for the current pri
 
 ### GitHub Copilot CLI
 
-The CLI supports path-specific instruction files (`.github/instructions/**/*.instructions.md`) and loads matching instructions on every session. There is no dedicated authoring command — create files manually or ask the CLI's agent to generate one:
+The [GitHub Copilot CLI](https://github.com/github/copilot-cli) supports path-specific instruction files (`.github/instructions/**/*.instructions.md`) and loads matching instructions on every session. There is no dedicated authoring command — create files manually or ask the CLI's agent to generate one:
 
 ```bash
 copilot
@@ -135,22 +135,6 @@ Not every surface honors glob-scoped instructions today. On surfaces without nat
 ### More Examples by Language
 
 File-based instructions are not just for TypeScript. Use them wherever a file-type or folder has distinct conventions.
-
-**Python data pipelines (`data-science/*.py` and notebooks):**
-
-```markdown
----
-name: 'Data Science Conventions'
-description: 'Pandas, PySpark, and notebook conventions for analytics work'
-applyTo: 'notebooks/**/*.ipynb,src/pipelines/**/*.py'
----
-
-- Use `pandas` for in-memory work and `pyspark` only when data exceeds 1 GB.
-- Every notebook cell that produces a dataframe must call `.head()` for review.
-- Never check in notebooks with executed outputs — strip with `nbstripout` pre-commit.
-- Type-hint function signatures with `pandas.DataFrame`; avoid `Any`.
-- All SQL in notebooks goes through `sqlalchemy` with parameterized queries.
-```
 
 **React components (`**/*.tsx` excluding tests):**
 
@@ -218,16 +202,6 @@ applyTo: '**/*.kt,**/*.kts'
 - Prefer `Result<T>` or sealed-class results over throwing from suspend functions.
 - Dependencies flow through Hilt modules; no service locators or `object Singleton`s.
 - Null-safety: no `!!`; use `requireNotNull`, `checkNotNull`, or elvis with a typed fallback.
-```
-
-**SQL migrations:**
-
-```yaml
----
-name: 'Migration Guardrails'
-description: 'Forward-only, reviewable SQL migrations'
-applyTo: 'db/migrations/**/*.sql'
----
 ```
 
 **Python data science (`**/*.ipynb` notebooks and `**/*.py` pipelines):**

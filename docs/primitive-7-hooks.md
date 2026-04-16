@@ -1308,7 +1308,7 @@ fi
 
 ## Using Hooks with GitHub Copilot CLI
 
-Hooks work in both the coding agent (on GitHub) and **GitHub Copilot CLI** (in the terminal). The behavior is identical, with one key difference in how hooks are loaded:
+Hooks work in both the coding agent (on GitHub) and **[GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli)** (in the terminal). The behavior is identical, with one key difference in how hooks are loaded:
 
 | Aspect | Coding Agent | Copilot CLI |
 |--------|-------------|-------------|
@@ -1349,7 +1349,7 @@ git push
 
 ## VS Code Hooks (Chat Agent Sessions)
 
-Hooks are supported in VS Code Chat agent sessions (VS Code 1.109.3+), extending coverage beyond the coding agent and Copilot CLI.
+Hooks are supported in [VS Code Chat agent sessions](https://code.visualstudio.com/docs/copilot/customization/hooks) (VS Code 1.109.3+), extending coverage beyond the coding agent and Copilot CLI.
 
 **See it in action:** [Let it Cook: Agent Steering, Queueing, Hooks, CLI Integration, & more!](https://www.youtube.com/watch?v=FjvtWeG6EEo&t=1969s) — Pierce Boggan opens a `.github/hooks/` configuration in VS Code showing `sessionStart`, `userPromptSubmit`, and `toolUse` events wired to shell commands, then triggers them live from chat.
 

@@ -8,7 +8,7 @@
 
 ## Overview
 
-> **⚠️ Heads up — inline suggestions ignore these files.** Always-on instructions apply to **Copilot Chat and agent sessions only**. Ghost text (inline autocomplete) runs on a separate pipeline and does **not** read `copilot-instructions.md`, `AGENTS.md`, `.instructions.md`, or any other customization primitive in this guide. If your goal is convention-aware code generation, use Chat, agent mode, or prompts. See [Inline Suggestions Are Not Affected](#inline-suggestions-are-not-affected) below.
+**Heads up — inline suggestions ignore these files.** Always-on instructions apply to Copilot Chat and agent sessions only. Ghost text (inline autocomplete) runs on a separate pipeline and does not read `copilot-instructions.md`, `AGENTS.md`, `.instructions.md`, or any other customization primitive in this guide. For convention-aware code generation, use Chat, agent mode, or prompts. See [Inline Suggestions Are Not Affected](#inline-suggestions-are-not-affected) below.
 
 Always-on instructions (also known as the **Copilot Instructions File**) represent the foundational layer of Copilot customization. These instructions load automatically at the start of every Copilot session and apply to all interactions within the repository.
 
@@ -399,7 +399,7 @@ JetBrains also supports a machine-global instructions file that applies across e
 
 The CLI recognizes both `.github/copilot-instructions.md` and `AGENTS.md` at the repository root but does not ship a dedicated generator. Two practical options:
 
-1. **Generate with the CLI's agent itself** — run `copilot` in the repo and ask it to analyze the codebase and write `.github/copilot-instructions.md` using the prompt from the [Agent-Driven Generation](#agent-driven-generation-advanced) section below.
+1. **Generate with the CLI's agent itself** — run `copilot` in the repo and ask it to analyze the codebase and write `.github/copilot-instructions.md` using the prompt from the [Agent-Driven Generation](#agent-driven-generation-any-surface) section below.
 2. **Create manually** — author the file in any editor and commit it. The CLI will pick it up on the next session.
 
 See [Copilot CLI](surfaces/copilot-cli.md) for session flags and session control.
@@ -410,7 +410,7 @@ On GitHub.com, the Copilot coding agent can generate instructions for a reposito
 
 1. Navigate to [github.com/copilot/agents](https://github.com/copilot/agents)
 2. Select your repository from the dropdown
-3. Use the onboarding prompt from [GitHub's documentation](https://docs.github.com/en/copilot)
+3. Use the onboarding prompt from [GitHub's documentation](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions)
 4. Review the generated PR with the instructions file and merge
 
 This is particularly effective because the agent validates build commands and tests them before documenting them in the file.
@@ -550,7 +550,7 @@ This means the same instructions file works whether your team uses different edi
 
 ## Instruction Priority
 
-When multiple types of custom instructions exist, Copilot applies them in this priority order:
+When multiple types of custom instructions exist, Copilot applies them in this [priority order](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-personal-instructions):
 
 1. **Personal instructions** (highest priority)
 2. **Repository instructions** (`.github/copilot-instructions.md` or `AGENTS.md`)
@@ -560,7 +560,7 @@ All relevant instructions are provided to Copilot, but higher-priority instructi
 
 ## Organization-Wide Instructions
 
-Organization-level custom instructions reached **general availability on April 2, 2026** and are supported in VS Code and other Copilot surfaces.
+Organization-level [custom instructions](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-organization-instructions) reached **general availability on April 2, 2026** and are supported in VS Code and other Copilot surfaces.
 
 If your GitHub organization has configured custom instructions for Copilot, they are automatically applied to your chat sessions, ensuring consistent guidance across your team. This feature is enabled by default.
 
@@ -587,7 +587,7 @@ Tool references help Copilot understand not just _what_ to do, but _how_ to acco
 
 ## CLAUDE.md Compatibility
 
-VS Code also detects `CLAUDE.md` files and applies them as always-on instructions, providing compatibility with Claude Code and other Claude-based tools. This enables teams using multiple AI agents to maintain a single set of instructions recognized by all of them.
+VS Code also [detects `CLAUDE.md` files](https://code.visualstudio.com/docs/copilot/customization/custom-instructions) and applies them as always-on instructions, providing compatibility with Claude Code and other Claude-based tools. This enables teams using multiple AI agents to maintain a single set of instructions recognized by all of them.
 
 **Detected locations:**
 
@@ -604,7 +604,7 @@ For scoped rules, VS Code also detects instructions files in the `.claude/rules`
 
 ## Nested AGENTS.md Files (Experimental)
 
-For monorepos or projects with distinct subsystems, VS Code supports nested `AGENTS.md` files in subfolders. Each subfolder can have its own `AGENTS.md` with instructions scoped to that part of the project.
+For monorepos or projects with distinct subsystems, VS Code supports [nested `AGENTS.md` files](https://code.visualstudio.com/docs/copilot/customization/custom-instructions) in subfolders. Each subfolder can have its own `AGENTS.md` with instructions scoped to that part of the project.
 
 **Setting:** `chat.useNestedAgentsMdFiles` — enable or disable nested `AGENTS.md` support.
 

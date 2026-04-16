@@ -29,7 +29,7 @@ These terms appear throughout the guide:
 | **Primitive** | A configuration file type that customizes Copilot. Think of a primitive as a Lego brick: each one has a specific shape (file path + format) and a specific purpose (always-on rules, task templates, personas, etc.). This guide covers all eight primitives. |
 | **Context window** | The total amount of text the model can consider at once — instructions, code, and conversation all compete for this space |
 | **Inline suggestions** | Ghost text (autocomplete) that appears as you type — a separate pipeline from Copilot Chat |
-| **MCP** | Model Context Protocol — a standard for connecting AI agents to external tools and data sources |
+| **MCP** | [Model Context Protocol](https://modelcontextprotocol.io) — a standard for connecting AI agents to external tools and data sources |
 | **`.github/`** | A conventional folder at the root of a Git repository that GitHub tools read for configuration. Copilot's customization primitives (instructions, prompts, skills, agents, hooks) live here so they travel with the repo and apply to everyone who clones it. |
 | **`.vscode/`** | A per-project folder that holds VS Code configuration (settings, tasks, launch configs, MCP servers). Unlike `.github/`, files here are VS Code-specific and are often checked in to share project-level editor settings with the team. |
 | **Command Palette** | VS Code's keyboard-driven command menu, opened with `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (macOS). Type a command name (e.g., "Chat: Open Chat Customizations") to run it. Most of the Copilot actions described in this guide can be reached from here. |
@@ -98,7 +98,7 @@ Not every primitive is available on every plan. The core customization files —
 | Feature | Availability |
 |---------|--------------|
 | **Hooks** | Pro, Pro+, Business, Enterprise |
-| **Memory** | Pro, Pro+ (on by default), Business, Enterprise (admin enables) |
+| **[Memory](https://docs.github.com/en/copilot/concepts/agents/copilot-memory)** | Pro, Pro+ (on by default), Business, Enterprise (admin enables) |
 | **Cloud Coding Agent** | Pro/Pro+ (public repos only), Business, Enterprise |
 | **Agentic Workflows** | Technical preview — Business, Enterprise |
 

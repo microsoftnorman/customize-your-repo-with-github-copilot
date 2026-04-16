@@ -49,7 +49,7 @@ GitHub publishes the canonical [Copilot feature matrix for Visual Studio](https:
 
 ## Installation and Sign-in
 
-Copilot components are bundled into every workload. To verify or re-install:
+See [Install the GitHub Copilot extension in Visual Studio](https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-extension?tool=visualstudio) for the canonical setup walkthrough. Copilot components are bundled into every workload. To verify or re-install:
 
 1. Open the **Visual Studio Installer**.
 2. Select **Modify** on the Visual Studio 2022 or 2026 instance.
@@ -111,7 +111,7 @@ Completion enablement is controlled at the Copilot badge menu on the title bar. 
 
 ## Copilot Chat
 
-Copilot Chat in Visual Studio has two surfaces:
+[GitHub Copilot Chat in Visual Studio](https://learn.microsoft.com/en-us/visualstudio/ide/visual-studio-github-copilot-chat) has two surfaces:
 
 - **Chat window** — opened from **View → GitHub Copilot Chat**. Best for open-ended questions, multi-turn dialogs, and tasks that span multiple files.
 - **Inline chat** — right-click in the editor and select **Ask Copilot → Chat**, or use the editor's context menu. Best for tightly scoped edits on the current selection; displays suggestions as an inline diff.
@@ -168,7 +168,7 @@ MCP tools are **only available in agent mode**. Ask mode cannot invoke MCP serve
 
 ## Agent Mode
 
-Agent mode requires **Visual Studio 2022 17.14 or later**, or any Visual Studio 2026 release. It evolved from Copilot Edits with a greater ability to iterate on errors, use tools, and apply code changes automatically.
+[Agent mode](https://learn.microsoft.com/en-us/visualstudio/ide/copilot-agent-mode) requires **Visual Studio 2022 17.14 or later**, or any Visual Studio 2026 release. It evolved from Copilot Edits with a greater ability to iterate on errors, use tools, and apply code changes automatically.
 
 ### How it works
 
@@ -239,7 +239,7 @@ The set of supported providers and specific model SKUs is published on the GitHu
 
 ## MCP Servers
 
-Visual Studio is a first-class MCP client starting in **VS 2022 17.14** (generally available) and in all Visual Studio 2026 releases.
+Visual Studio is a first-class [MCP](https://learn.microsoft.com/en-us/visualstudio/ide/mcp-servers) client starting in **VS 2022 17.14** (generally available) and in all Visual Studio 2026 releases.
 
 ### Configuration discovery
 
@@ -290,7 +290,7 @@ When a server is discovered, Visual Studio performs a handshake, queries the too
 
 ## Custom Instructions
 
-Visual Studio supports both always-on and file-based instructions. Both formats require explicit enablement in options.
+Visual Studio supports both always-on and file-based instructions. See [Customize chat responses and set context](https://learn.microsoft.com/en-us/visualstudio/ide/copilot-chat-context) for the upstream reference. Both formats require explicit enablement in options.
 
 ### `.github/copilot-instructions.md`
 
@@ -336,7 +336,7 @@ See the examples section below for concrete prompt file templates.
 
 ## Memory
 
-Visual Studio supports **Copilot memories** — repository-scoped memory that observes preferences during chat and can automatically write them into `%USERPROFILE%\copilot-instructions.md` or the repo-level instructions file. Memories are surfaced as references on responses that use them, and users can review, accept, or reject proposed additions before they are persisted. Memory is governed by the same enablement checkboxes as custom instructions.
+Visual Studio supports [**Copilot memories**](https://docs.github.com/en/copilot/concepts/agents/copilot-memory) — repository-scoped memory that observes preferences during chat and can automatically write them into `%USERPROFILE%\copilot-instructions.md` or the repo-level instructions file. Memories are surfaced as references on responses that use them, and users can review, accept, or reject proposed additions before they are persisted. Memory is governed by the same enablement checkboxes as custom instructions.
 
 ## Primitive Support Matrix
 

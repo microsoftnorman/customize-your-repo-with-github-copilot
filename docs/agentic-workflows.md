@@ -13,7 +13,7 @@
 
 **Official docs:** [Agentic Workflows](https://github.github.com/gh-aw/) · [Announcement](https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/)
 
-[GitHub Agentic Workflows](https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/) run coding agents inside GitHub Actions. You describe the desired outcome in plain Markdown, and a coding agent executes it — on a schedule, on events, or on demand. GitHub calls this pattern **Continuous AI**: the integration of AI into the software development lifecycle alongside CI/CD.
+[GitHub Agentic Workflows](https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/) run coding agents inside [GitHub Actions](https://docs.github.com/en/actions). You describe the desired outcome in plain Markdown, and a coding agent executes it — on a schedule, on events, or on demand. GitHub calls this pattern **Continuous AI**: the integration of AI into the software development lifecycle alongside CI/CD.
 
 Think of it this way: CI/CD automates the things you can express as deterministic steps (build, test, deploy). Continuous AI automates the things you can only express as intent — "triage new issues," "keep the docs in sync," "find and fix code quality regressions." Agentic Workflows bridge that gap.
 
@@ -294,10 +294,10 @@ When a coding agent runs autonomously — whether via an Agentic Workflow, an as
 
 **Hooks** enforce policies regardless of who triggered the agent. A deployment gate hook that blocks `git push` without passing tests applies the same way to a human developer, a cloud agent session, and an Agentic Workflow run. See [Primitive 7](primitive-7-hooks.md).
 
-### Primitives reference
+### Primitives and extensions reference
 
-| Primitive | Role in Autonomous Work |
-|-----------|-------------------------------|
+| Primitive or extension | Role in Autonomous Work |
+|------------------------|-------------------------|
 | **Always-on Instructions** | Build commands, test expectations, PR conventions — read on every task |
 | **File-based Instructions** | Pattern-matched rules that load when the agent touches matching files |
 | **Skills** | Procedural knowledge (scaffolding, testing, domain tasks) loaded by description match |
@@ -305,7 +305,7 @@ When a coding agent runs autonomously — whether via an Agentic Workflow, an as
 | **MCP Servers** | External tool access (databases, APIs, monitoring) available during agent sessions |
 | **Hooks** | Runtime enforcement — applies identically to interactive and autonomous work |
 | **Copilot Memory** | Patterns learned over time that supplement explicit configuration |
-| **Copilot SDK** | Embed the agent runtime in custom tools, CI pipelines, and internal platforms |
+| **GitHub Copilot SDK** *(platform extension)* | Embed the agent runtime in custom tools, CI pipelines, and internal platforms |
 
 ---
 
