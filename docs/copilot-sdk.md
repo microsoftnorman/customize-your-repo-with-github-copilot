@@ -1,16 +1,28 @@
 # Copilot SDK
 
-[← Agentic Workflows](primitive-9-agentic-workflows.md) | [Part II Overview](part-2-primitives.md)
+[← Agentic Workflows](agentic-workflows.md) | [Part II Overview](part-2-primitives.md)
 
-*Published: April 15, 2026 · Validated against the [Copilot SDK public preview](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/) as of this date.*
+*Updated: April 16, 2026 · Validated against the [Copilot SDK public preview](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/) as of this date.*
+
+---
+
+## Scope of This Page
+
+This page is a **brief orientation** to the Copilot SDK — what it is, when to reach for it, and how it fits alongside the eight primitives. It is **not** a full SDK guide. API surface area, authentication flows, tool-definition schemas, streaming semantics, error handling, and language-specific idioms live in the official SDK documentation and change frequently during public preview.
+
+For anything beyond "should I use this, and where does it sit in the stack," go straight to the source:
+
+- [github.com/github/copilot-sdk](https://github.com/github/copilot-sdk) — Canonical repository, per-language READMEs, API reference, and examples
+- [Public preview announcement](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/) — Release notes and capability scope at launch
+- [github.blog/changelog (Copilot label)](https://github.blog/changelog/label/copilot/) — Ongoing SDK updates
 
 ---
 
 ## Overview
 
-The first nine primitives customize Copilot where it already runs — in the editor, in the terminal, and in GitHub Actions. The Copilot SDK lets developers bring the same agent runtime into their own applications and workflows.
+The eight customization primitives shape Copilot where it already runs — in the editor, in the terminal, and on GitHub. The Copilot SDK lets developers bring that same agent runtime into their own applications and workflows.
 
-The [Copilot SDK](https://github.com/github/copilot-sdk) is the same production-tested runtime that powers Copilot CLI and the Copilot cloud agent, packaged as libraries for five languages. Instead of building agent orchestration from scratch — tool routing, context management, permission handling, streaming — teams embed the Copilot runtime directly and focus on domain logic.
+The [Copilot SDK](https://github.com/github/copilot-sdk) is the production-tested runtime that powers Copilot CLI and the Copilot cloud agent, packaged as libraries for five languages. Instead of building agent orchestration from scratch — tool routing, context management, permission handling, streaming — teams embed the runtime directly and focus on domain logic.
 
 **Status:** Public preview (April 2, 2026)
 **Best For:** Embedding Copilot agent capabilities in custom tools, internal platforms, CI pipelines, and developer workflows
@@ -132,7 +144,7 @@ const agent = new CopilotAgent({
   modelProvider: {
     type: 'anthropic',
     apiKey: process.env.ANTHROPIC_API_KEY,
-    model: 'claude-opus-4.6'
+    model: 'claude-opus-4.7'
   }
 });
 ```
@@ -202,9 +214,9 @@ The Copilot SDK is in public preview. Current constraints:
 - [Copilot SDK repository](https://github.com/github/copilot-sdk) — Source code, API reference, and examples
 - [Copilot SDK public preview announcement](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/) — Changelog entry
 - [MCP (Model Context Protocol)](primitive-6-mcp.md) — Connect Copilot to external tools (complementary to the SDK)
-- [Agentic Workflows](primitive-9-agentic-workflows.md) — Run coding agents in GitHub Actions (alternative for CI/CD use cases)
+- [Agentic Workflows](agentic-workflows.md) — Run coding agents in GitHub Actions (alternative for CI/CD use cases)
 - [Custom Agents](primitive-5-custom-agents.md) — Define specialized personas for the agent runtime
 
 ---
 
-[← Agentic Workflows](primitive-9-agentic-workflows.md) | [Next: Part III - Reference →](part-3-reference.md)
+[← Agentic Workflows](agentic-workflows.md) | [Next: Part III - Reference →](part-3-reference.md)

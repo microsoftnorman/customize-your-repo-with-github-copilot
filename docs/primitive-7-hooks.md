@@ -2,17 +2,23 @@
 
 [← MCP](primitive-6-mcp.md) | [Part II Overview](part-2-primitives.md)
 
-*Published: February 20, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 15, 2026*
+*Updated: April 16, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026*
 
 ---
 
 ## Overview
 
-**\* Items marked with an asterisk (\*) reflect current behavior that may change as the hooks system evolves. Verify against [official documentation](https://docs.github.com/en/copilot/reference/hooks-configuration) when making architectural decisions.**
-
 Most of the customization primitives — instructions, file-based instructions, prompts, skills, custom agents, MCP, and Memory — operate inside Copilot's reasoning. They shape context, influence code generation, and extend capabilities. But none of them can *enforce* anything. A rule in `copilot-instructions.md` is a strong suggestion, not a guarantee.
 
 Hooks fill that gap. They execute custom shell commands at key points during Copilot coding agent sessions, operating *outside* the model entirely. The LLM never sees hook logic, can't override it, and can't reason around it. This gives teams an enforcement layer that's independent of prompt engineering.
+
+**\* Items marked with an asterisk (\*) reflect current behavior that may change as the hooks system evolves. Verify against [official documentation](https://docs.github.com/en/copilot/reference/hooks-configuration) when making architectural decisions.**
+
+> **How strong is "enforcement"?** Hooks are **tripwires, not impenetrable guardrails**. `preToolUse` can deny a specific tool invocation based on the arguments the agent passes, but the agent can often reach the same outcome through a different tool or a slightly rephrased command. A regex `deny` list that blocks `rm -rf /` will not block `find / -delete`, `python -c "shutil.rmtree('/')"`, or an MCP tool that happens to offer a delete capability. Treat hooks as a high-signal audit layer and a last line of defense for known-bad patterns — not as a substitute for scoped credentials, sandboxed execution environments, read-only tokens, and branch protection. The strongest setups pair hooks with infrastructure-level controls so that even if the agent bypasses a hook, the blast radius is bounded.
+
+**Surface availability:** VS Code ✅ · GitHub Copilot CLI ✅ · Cloud Coding Agent ✅ · JetBrains — · Visual Studio — · Eclipse —
+
+**Ownership:** Hooks are typically owned by **Security / Platform teams** because they enforce organization-wide policy. Application teams may contribute package-scoped hooks in a monorepo (e.g., per-service lint), but deny-list hooks that govern dangerous commands should live under a single owning team to keep the rules coherent and auditable.
 
 **Loading:** During coding agent sessions (GitHub and GitHub Copilot CLI)*
 **Best For:** Security enforcement, audit logging, compliance, and runtime guardrails
@@ -40,7 +46,7 @@ Hooks are available with the **GitHub Copilot Pro, Pro+, Business, and Enterpris
 | **GitHub Copilot CLI** (terminal) | `.github/hooks/*.json` in the **current working directory** | Loads hooks from whoever is running the CLI locally |
 | **VS Code Chat** (agent sessions) | `.github/hooks/*.json` or Claude Code config files | Available in VS Code 1.109.3+. File-based configuration |
 
-Hooks also apply to VS Code Chat agent sessions as of version 1.109.3 — see [VS Code Hooks](#vs-code-hooks-chat-agent-sessions) below for configuration details.
+For VS Code Chat configuration details, see [VS Code Hooks](#vs-code-hooks-chat-agent-sessions) below.
 
 ### Hooks vs. Primitives: Different Layers, Complementary Purposes
 
@@ -142,6 +148,8 @@ Commit the file to your repository and merge it into the **default branch**. For
 ## The Hook Lifecycle
 
 Hooks fire at six points during an agent session. The following diagram shows when each hook type executes relative to the agent's workflow:
+
+**See it in action:** [Let it Cook: Agent Steering, Queueing, Hooks, CLI Integration, & more!](https://www.youtube.com/watch?v=FjvtWeG6EEo&t=1868s) — Pierce Boggan walks through the run-start, tool-call, and stop points in the agent loop and shows where hooks fire at each life-cycle event.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -820,7 +828,7 @@ fi
         "type": "command",
         "bash": "./scripts/hooks/slack-alert.sh",
         "env": {
-          "SLACK_WEBHOOK_URL": "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+          "SLACK_WEBHOOK_URL": "${env:SLACK_WEBHOOK_URL}"
         },
         "timeoutSec": 10,
         "comment": "Send Slack alert on agent errors"
@@ -831,7 +839,7 @@ fi
         "type": "command",
         "bash": "./scripts/hooks/session-complete-notify.sh",
         "env": {
-          "SLACK_WEBHOOK_URL": "https://hooks.slack.com/services/YOUR/WEBHOOK/URL"
+          "SLACK_WEBHOOK_URL": "${env:SLACK_WEBHOOK_URL}"
         },
         "timeoutSec": 10,
         "comment": "Notify team when agent session completes"
@@ -840,6 +848,8 @@ fi
   }
 }
 ```
+
+**⚠️ Never commit the webhook URL itself.** The `${env:SLACK_WEBHOOK_URL}` syntax above reads from the environment at hook execution time — don't substitute the literal `https://hooks.slack.com/services/...` URL into the JSON. For the Copilot coding agent, store the webhook as an [Actions secret](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions) on the repository and expose it to the agent environment. For local CLI sessions, export it in your shell or a gitignored `.env` file. A Slack incoming webhook grants anyone who holds it the ability to post into your channel — treat it like a credential.
 
 ### Example 5: Cost and Usage Tracking
 
@@ -1133,6 +1143,10 @@ echo '{"timestamp":1704614600000,"cwd":"/tmp","toolName":"edit","toolArgs":"{\"p
 
 VS Code 1.111+ includes the `/troubleshoot` slash command, which analyzes agent debug logs directly in chat. This is particularly useful for hook-related issues — understanding why hooks fired unexpectedly, why instructions were ignored, or why responses were slow. It works with both current and past session logs, making it a first stop when hooks behave differently than expected.
 
+### Agent Debug Logs
+
+VS Code 1.116 merges the previously separate "current session" and "historical session" debug log commands into a single **Chat: Show Agent Debug Logs** entry point. Open it from the Command Palette to browse logs from any agent session — current or past. The logs show every tool call, hook invocation, and context loading event in chronological order. Combined with `/troubleshoot`, this provides full observability into how hooks, instructions, and skills interacted during a session.
+
 ### Troubleshooting
 
 | Problem | Likely Cause | Fix |
@@ -1292,7 +1306,7 @@ fi
 
 ---
 
-## Using Hooks with Copilot CLI
+## Using Hooks with GitHub Copilot CLI
 
 Hooks work in both the coding agent (on GitHub) and **GitHub Copilot CLI** (in the terminal). The behavior is identical, with one key difference in how hooks are loaded:
 
@@ -1335,7 +1349,9 @@ git push
 
 ## VS Code Hooks (Chat Agent Sessions)
 
-**New in VS Code 1.109.3:** Hooks are now supported in VS Code Chat agent sessions, extending coverage beyond the coding agent and Copilot CLI.
+Hooks are supported in VS Code Chat agent sessions (VS Code 1.109.3+), extending coverage beyond the coding agent and Copilot CLI.
+
+**See it in action:** [Let it Cook: Agent Steering, Queueing, Hooks, CLI Integration, & more!](https://www.youtube.com/watch?v=FjvtWeG6EEo&t=1969s) — Pierce Boggan opens a `.github/hooks/` configuration in VS Code showing `sessionStart`, `userPromptSubmit`, and `toolUse` events wired to shell commands, then triggers them live from chat.
 
 VS Code hooks use **file-based configuration** in `.github/hooks/*.json` (and other config file locations). They support eight PascalCase event types — a different set from the coding agent's six events:
 
@@ -1347,10 +1363,10 @@ VS Code hooks use **file-based configuration** in `.github/hooks/*.json` (and ot
 | `UserPromptSubmit` | User submits a prompt | `userPromptSubmitted` |
 | `PreToolUse` | Before a tool call | `preToolUse` |
 | `PostToolUse` | After a tool call completes | `postToolUse` |
-| `PreCompact` | Before context window compaction | *New — VS Code only* |
-| `SubagentStart` | Before a sub-agent is invoked | *New — VS Code only* |
-| `SubagentStop` | After a sub-agent completes | *New — VS Code only* |
-| `Stop` | When the agent stops execution | *New — VS Code only* |
+| `PreCompact` | Before context window compaction | *VS Code only* |
+| `SubagentStart` | Before a sub-agent is invoked | *VS Code only* |
+| `SubagentStop` | After a sub-agent completes | *VS Code only* |
+| `Stop` | When the agent stops execution | *VS Code only* |
 
 VS Code hooks do not include `sessionEnd` or `errorOccurred` from the coding agent event model. The four VS Code-only event types address gaps in the coding agent hook model:
 
@@ -1424,6 +1440,22 @@ Agent-scoped hooks are useful for attaching enforcement or logging to a specific
 - **VS Code hooks** (`.github/hooks/*.json` or config files) for local development workflow enforcement — personal audit trails, local security checks, sub-agent monitoring
 - **Agent-scoped hooks** (`.agent.md` frontmatter) for hooks that should only fire when a specific custom agent is active — targeted auditing, agent-specific guardrails
 - **Both** when the same policies should apply everywhere — write scripts once in `.github/hooks/`, which is compatible with both systems
+
+---
+
+## Limitations and Failure Modes
+
+Hooks are a local enforcement mechanism, not a server-side policy system. Understanding what they can and cannot do prevents false confidence:
+
+| Limitation | Detail |
+|-----------|--------|
+| **Local enforcement only** | Hooks run in VS Code, Copilot CLI, and the coding agent — they do not prevent direct file edits, IDE actions outside agent mode, or changes made through other tools |
+| **Fail-closed on `preToolUse`** | If a `preToolUse` hook script exits with a non-zero code (crash, syntax error, unhandled exception), the tool call is **blocked**. This is safe by default but can stall the agent if hook scripts are unreliable |
+| **Timeout behavior** | If a hook exceeds its `timeoutSec`, it is killed and treated as a failure. For `preToolUse`, this means the tool call is blocked. Set timeouts appropriate to each hook's operation |
+| **Not a substitute for server-side policy** | Hooks run in the agent's environment. They complement — but do not replace — GitHub enterprise policies, branch protection rules, and CI checks |
+| **Cloud coding agent reads from default branch only** | Hook files must be merged to the default branch before the cloud agent uses them. Work-in-progress hooks on feature branches have no effect on cloud agent sessions |
+
+Design hooks as a defense-in-depth layer that works alongside other controls, not as the sole enforcement mechanism.
 
 ---
 

@@ -49,18 +49,24 @@ For each changed `.md` file in `ReadMe.md` or `docs/`:
 
 If the user approves fixes, apply them. If the user says "commit anyway", skip to Step 4.
 
-### Step 4: Update Published Dates
+### Step 4: Update Updated Dates
 
-Update the `Published:` date line in every file that contains one. The date format is `Month Day, Year` (e.g., `February 10, 2026`). Set it to today's date.
+Update the `Updated:` date line in every file that contains one. The date format is `Month Day, Year` (e.g., `February 10, 2026`). Set it to today's date.
 
-Files known to contain published dates:
-- `ReadMe.md` (line 5)
-- `docs/primitive-1-always-on-instructions.md` (line 5)
+Files known to contain updated dates:
+- `ReadMe.md` (line 3)
+- `docs/**/*.md` (most files have a metadata line near the top)
 
-Search for additional `Published:` lines in case new files have adopted the pattern. The published date line follows this format:
+Search for additional `Updated:` lines in case new files have adopted the pattern. The updated date line follows this format:
 
 ```
-*Published: {Month} {Day}, {Year}. {rest of the sentence remains unchanged}*
+*Updated: {Month} {Day}, {Year}. {rest of the sentence remains unchanged}*
+```
+
+or
+
+```
+*Updated: {Month} {Day}, {Year} · Validated against {rest of the sentence remains unchanged}*
 ```
 
 Update only the date portion. Do not alter the rest of the sentence.

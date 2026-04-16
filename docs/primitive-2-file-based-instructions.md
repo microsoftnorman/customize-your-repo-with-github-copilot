@@ -4,13 +4,15 @@
 
 ---
 
+**Surface availability:** VS Code ✅ · JetBrains (Preview) · GitHub Copilot CLI ✅ · Visual Studio — · Eclipse — · Cloud Agent —
+
+**Ownership:** **Application teams** own file-based instructions for their own code areas. In a monorepo, each package team owns the instructions under its folder; shared rules live in the root.
+
 ## Overview
 
 File-based instructions activate through glob pattern matching via the `applyTo` frontmatter field, or through semantic matching of the `description` field to the current task. This allows teams to define area-specific rules that only apply when working in relevant contexts.
 
 **Location:** `.github/instructions/*.instructions.md`
-
-Configure additional search paths with the `chat.instructionsFilesLocations` setting to load instruction files from outside `.github/instructions/` — useful for monorepos or shared instruction libraries.
 
 **Official docs:** [Custom instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
 
@@ -76,17 +78,50 @@ return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
 ## Creating File-Based Instructions
 
-1. In the Chat view, click the **gear icon** (Configure Chat)
-2. Select an option that opens the instruction file picker
-3. Choose **New instruction file...** from the picker
-4. Select **Workspace** to store in `.github/instructions/`
-5. Use the agent to generate context-specific rules
+Not every Copilot surface supports file-based instructions with glob-based `applyTo` matching. Where they are supported, each surface offers a different authoring path — the resulting `.instructions.md` file is identical and version-controlled in the repository.
 
-Alternatively, ask the agent directly:
+### VS Code
+
+VS Code has first-class support for `.instructions.md` files, including automatic selection by glob pattern and hover previews in the Chat view.
+
+1. In the Chat view, click the **gear icon** (Configure Chat)
+2. Select **Chat Instructions** > **New instruction file...**
+3. Choose **Workspace** to store in `.github/instructions/` (committed to version control) or **User Profile** for personal-only rules
+4. Enter a filename (e.g., `api-routes.instructions.md`) and author the rules, or let the agent fill them in
+
+**Agent-driven generation works equally well:**
 
 > **💬 Try this prompt:**
 >
 > *Create a file-based instruction at .github/instructions/react-components.instructions.md that applies to src/components/\*\*/\* and includes our React component conventions. Analyze existing components for patterns to document.*
+
+Configure additional search paths with the `chat.instructionsFilesLocations` setting to load instruction files from outside `.github/instructions/` — useful for monorepos or shared instruction libraries.
+
+### JetBrains IDEs (Preview)
+
+JetBrains support for file-based instructions is in preview. The plugin reads `.github/instructions/*.instructions.md` and matches them against the files under discussion, the same way VS Code does. Authoring paths:
+
+- **In the IDE:** Create the file directly in the Project view under `.github/instructions/` and add the YAML frontmatter (`description`, `applyTo`) by hand.
+- **Using the agent:** Ask the Copilot chat panel to generate an instructions file with the prompt above — the generated file will be written to the repo and picked up automatically.
+
+See [IDE Surfaces — JetBrains](surfaces.md#jetbrains-ides) for the current primitive status and verification steps.
+
+### GitHub Copilot CLI
+
+The CLI supports path-specific instruction files (`.github/instructions/**/*.instructions.md`) and loads matching instructions on every session. There is no dedicated authoring command — create files manually or ask the CLI's agent to generate one:
+
+```bash
+copilot
+```
+
+```
+> Create .github/instructions/api-routes.instructions.md with applyTo
+> 'src/api/**/*' documenting our REST API conventions based on existing code.
+```
+
+### Surfaces That Don't Support File-Based Instructions
+
+Not every surface honors glob-scoped instructions today. On surfaces without native support (notably **Visual Studio**, **Xcode**, **Eclipse**, and **cloud coding agent** runs before matching files are in context), fold area-specific rules into the root `.github/copilot-instructions.md` file instead, or keep the `.instructions.md` files in place so that VS Code, JetBrains, and CLI contributors still benefit. See [Part III: Reference](part-3-reference.md) for the current primitive-by-surface support matrix.
 
 ## Anti-Patterns to Avoid
 
@@ -97,11 +132,109 @@ Alternatively, ask the agent directly:
 | **Too broad patterns** | Instructions apply unexpectedly | Use precise glob patterns |
 | **No description** | Hard to understand what rules apply | Add clear description in frontmatter |
 
-File-based instructions complement always-on instructions by providing contextual specialization.
+### More Examples by Language
 
-### CLI Support
+File-based instructions are not just for TypeScript. Use them wherever a file-type or folder has distinct conventions.
 
-[GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) supports path-specific instruction files (`.github/instructions/**/*.instructions.md`). When working in a repository from the terminal, the CLI loads matching instructions the same way VS Code does, ensuring consistent context across surfaces.
+**Python data pipelines (`data-science/*.py` and notebooks):**
+
+```markdown
+---
+name: 'Data Science Conventions'
+description: 'Pandas, PySpark, and notebook conventions for analytics work'
+applyTo: 'notebooks/**/*.ipynb,src/pipelines/**/*.py'
+---
+
+- Use `pandas` for in-memory work and `pyspark` only when data exceeds 1 GB.
+- Every notebook cell that produces a dataframe must call `.head()` for review.
+- Never check in notebooks with executed outputs — strip with `nbstripout` pre-commit.
+- Type-hint function signatures with `pandas.DataFrame`; avoid `Any`.
+- All SQL in notebooks goes through `sqlalchemy` with parameterized queries.
+```
+
+**React components (`**/*.tsx` excluding tests):**
+
+```yaml
+---
+name: 'React Component Conventions'
+description: 'TSX component, props, and hook conventions for the web app'
+applyTo: 'src/components/**/*.tsx,!src/**/*.test.tsx'
+---
+
+- Functional components only — never class components.
+- Props interface named `<Component>Props`, exported alongside the component.
+- Prefer composition over prop-drilling; lift shared state into a custom hook in `src/hooks/`.
+- No inline `style={{ ... }}` — Tailwind utility classes or CSS modules only.
+- Event handlers prefixed with `handle` (`handleSubmit`, `handleChange`).
+- Fetch data via TanStack Query hooks — never `useEffect` + `fetch`.
+```
+
+**Test files (`**/*.test.*` and `**/*.spec.*`):**
+
+```yaml
+---
+name: 'Test File Conventions'
+description: 'Unit, integration, and component test conventions'
+applyTo: '**/*.test.ts,**/*.test.tsx,**/*.spec.ts,**/*.spec.tsx'
+---
+
+- Use Vitest (`describe`, `it`, `expect`) — never Jest or Mocha.
+- For React components, use Testing Library; query by accessible role before test IDs.
+- No snapshot tests for component output — assert on behavior, not markup.
+- Mock external calls with `vi.mock` at module scope; avoid manual `jest.fn()`-style mocks.
+- Each `describe` block covers one unit; use `it.each` for table-driven cases.
+- No conditional logic (`if`/`for`) inside test bodies — split into separate cases.
+```
+
+**iOS (`**/*.swift`):**
+
+```yaml
+---
+name: 'Swift Conventions'
+description: 'SwiftUI view and view-model conventions for iOS'
+applyTo: '**/*.swift'
+---
+
+- SwiftUI views are structs; keep them under 150 lines and extract subviews into their own files.
+- View-models conform to `ObservableObject` and live in `ViewModels/`; never put business logic in a `View`.
+- Use `@MainActor` on view-models that mutate UI state; mark async boundaries with `async`/`await`, not completion handlers.
+- Networking goes through `URLSession` wrapped in a protocol-backed client — no singleton `NetworkManager.shared`.
+- Prefer `Result<Success, Error>` return types over throwing initializers for recoverable failures.
+- No force-unwraps (`!`) outside of unit tests; use `guard let` or `if let` with a typed error.
+```
+
+**Android / Kotlin (`**/*.kt`):**
+
+```yaml
+---
+name: 'Kotlin Conventions'
+description: 'Kotlin coroutines and Jetpack Compose conventions'
+applyTo: '**/*.kt,**/*.kts'
+---
+
+- Composables are `@Composable fun` in PascalCase; state hoisting over internal `remember` where callers need control.
+- Use `StateFlow` / `SharedFlow` for view-model state; never `LiveData` in new code.
+- Launch coroutines on `viewModelScope` or an injected `CoroutineScope` — no `GlobalScope`.
+- Prefer `Result<T>` or sealed-class results over throwing from suspend functions.
+- Dependencies flow through Hilt modules; no service locators or `object Singleton`s.
+- Null-safety: no `!!`; use `requireNotNull`, `checkNotNull`, or elvis with a typed fallback.
+```
+
+**SQL migrations:**
+
+```yaml
+---
+name: 'Migration Guardrails'
+description: 'Forward-only, reviewable SQL migrations'
+applyTo: 'db/migrations/**/*.sql'
+---
+```
+
+The same pattern extends to any file type: write one `.instructions.md` per distinct convention, target it narrowly with `applyTo`, and keep shared rules in the always-on instructions file.
+
+### Monorepos
+
+In a monorepo with one Git root and many packages, file-based instructions layer naturally. Enable `chat.useCustomizationsInParentRepositories` so that instructions at the repo root apply to all packages, while package-specific instructions under `packages/<name>/.github/instructions/` add contextual rules. VS Code merges both sets when a file matches.
 
 ### File-Based Instructions vs. Skills
 

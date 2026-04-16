@@ -2,6 +2,8 @@
 
 [← Custom Agents](primitive-5-custom-agents.md) | [Part II Overview](part-2-primitives.md)
 
+*Updated: April 16, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
+
 ---
 
 ## Overview
@@ -10,6 +12,7 @@ MCP (Model Context Protocol) provides external gateway capabilities for Copilot.
 
 **Loading:** Session start
 **Best For:** External gateways
+**Ownership:** MCP server configuration is typically owned by the **Platform / DevEx team** for production integrations (databases, internal APIs), and by **Security** for approved-server allowlists. Individual developers may add personal MCP servers via user configuration.
 
 **Official docs:** [MCP servers](https://code.visualstudio.com/docs/copilot/customization/mcp-servers)
 
@@ -54,8 +57,6 @@ MCP servers expose capabilities as **tools** that Copilot can discover and invok
 **What Copilot sees:** A tool called `create_issue` that it can call when users want to create GitHub issues. Copilot reads the description and schema to understand when and how to use it.
 
 **What you see:** When Copilot decides to use the tool, it shows you the tool name and parameters before execution, giving you a chance to approve or modify.
-
-For a comparison of instructions vs. MCP capabilities, see the [Instructions vs. MCP Comparison](#instructions-vs-mcp-comparison) table below.
 
 ### Configuring MCP Servers
 
@@ -119,6 +120,20 @@ MCP servers are configured in dedicated `mcp.json` files:
 
 When the server starts, VS Code prompts for `databaseHost` and `databasePort` values. Combine with `${env:VAR}` for secrets that should come from the environment.
 
+**Variable syntax reference:** MCP configuration supports the following substitution patterns in `env` values and HTTP `headers`:
+
+| Syntax | Where | Resolves To |
+|--------|-------|-------------|
+| `${env:VAR}` | Workspace and user MCP | Local environment variable |
+| `${env:VAR:-default}` | Workspace and user MCP | Environment variable with a fallback default |
+| `${input:name}` | Workspace and user MCP | Prompts the user once per session |
+| `$VAR` / `${VAR}` | Cloud agent / custom-agent MCP | Environment variable from the Copilot environment (Claude Code compatibility) |
+| `${VAR:-default}` | Cloud agent / custom-agent MCP | Environment variable with a fallback default |
+| `${{ secrets.NAME }}` | Cloud agent custom-agent YAML | Secret from the repository's `copilot` environment |
+| `${{ vars.NAME }}` | Cloud agent custom-agent YAML | Variable from the repository's `copilot` environment |
+
+The `${{ secrets.* }}` and `${{ vars.* }}` forms intentionally mirror GitHub Actions syntax and are recognized inside `.github/agents/*.agent.md` frontmatter for MCP server configuration. For full details, see the [custom agents configuration reference](https://docs.github.com/en/copilot/reference/custom-agents-configuration#mcp-server-environment-variables-and-secrets).
+
 **For HTTP servers:**
 ```json
 {
@@ -132,20 +147,20 @@ When the server starts, VS Code prompts for `databaseHost` and `databasePort` va
 }
 ```
 
-**For HTTP (streamable) servers:**
+**For SSE (Server-Sent Events) servers:**
 ```json
 {
   "servers": {
-    "streamable-server": {
-      "type": "http",
-      "url": "https://example.com/mcp",
+    "sse-server": {
+      "type": "sse",
+      "url": "https://example.com/mcp/sse",
       "headers": { "Authorization": "Bearer ${env:TOKEN}" }
     }
   }
 }
 ```
 
-The `http` transport uses the newer MCP streamable HTTP protocol. Use `sse` for servers that support Server-Sent Events, and `http` for servers that support the streamable HTTP transport.
+The `http` transport uses the newer MCP streamable HTTP protocol. Use `sse` for servers that expose the older Server-Sent Events transport.
 
 ### Keep Your Tool Count Low
 
@@ -177,8 +192,6 @@ Fewer tools means faster tool selection, less context consumed, and more accurat
 
 ### Instructions vs. MCP Comparison
 
-This is an important distinction:
-
 | | Custom Instructions | MCP |
 |-|---------------------|-----|
 | **What** | Text context for AI | External tool access |
@@ -190,7 +203,7 @@ This is an important distinction:
 
 ### MCP vs. Skills: Complementary, Not Competing
 
-MCP servers and skills serve different purposes, but teams sometimes wonder which to use. The short answer: **use both together.**
+MCP servers and skills serve different purposes, but the two are complementary — **use both together.**
 
 - **MCP servers** provide *access* — authentication, API connections, external integrations
 - **Skills** provide *knowledge* — templates, conventions, workflows, domain expertise
@@ -214,6 +227,40 @@ The best setups combine them: an MCP server handles "how to connect to Jira" whi
 The same principle applies: the MCP server provides *access* to infrastructure APIs, while skills and instructions encode *how your team uses them*.
 
 For a detailed exploration with practical examples (Git, Jira, file operations, incident response), see [Skills vs. MCP Servers: When to Use Which](primitive-4-skills.md#skills-vs-mcp-servers-when-to-use-which).
+
+### Out-of-the-Box MCP Servers (Cloud Agent)
+
+The Copilot cloud agent ships with two MCP servers pre-configured — no setup required:
+
+| Server | Scope | What It Provides |
+|--------|-------|------------------|
+| `github/*` | Read-only by default, scoped to the source repository | Issues, PRs, code search, commits, workflow runs, and other GitHub resources. Reference the whole server with `github/*` in a custom agent's `tools` list, or target a specific tool with `github/<tool-name>`. |
+| `playwright/*` | Localhost only | Browser automation for testing and verification tasks (navigate, screenshot, inspect). Useful for cloud-agent workflows that validate a running preview deployment. |
+
+Both servers are processed before any custom-agent or repository-level MCP configuration, so custom servers can override or extend the defaults. Authentication tokens issued to these servers are **scoped to the source repository** — they cannot reach other repos or org resources.
+
+```yaml
+---
+name: triage-agent
+tools: ['github/*', 'read', 'search']
+---
+```
+
+For the full list of tools each out-of-box server exposes and the most current scopes, see the [custom agents configuration reference](https://docs.github.com/en/copilot/reference/custom-agents-configuration#tool-names-for-out-of-the-box-mcp-servers).
+
+### Security Considerations: Tool Output and Prompt Injection
+
+MCP tools return content that is fed back into the model's context window. That content can carry instructions — intentional or adversarial — that attempt to steer Copilot away from the user's request. A support-ticket tool that returns a user-submitted description, a web-fetch tool that returns an attacker-controlled page, or a database query that returns free-text fields are all **prompt-injection vectors**.
+
+Practical defenses when consuming MCP tools:
+
+- **Treat tool output as untrusted input.** The MCP protocol does not sign or validate tool responses. Anything a server returns is, from the model's perspective, additional context.
+- **Pin servers to specific versions and review updates.** A compromised or updated server can change the meaning of a tool response without changing its name.
+- **Prefer scoped tokens.** Give the server the minimum permissions it needs. A read-only GitHub token limits the blast radius of a successful injection.
+- **Sandbox untrusted stdio servers.** On macOS and Linux, VS Code 1.111+ can run local stdio servers in a restricted sandbox — see [Sandbox MCP Servers](#sandbox-mcp-servers) below.
+- **Don't echo tool output verbatim into approvals.** When a hook or agent uses tool output to make a security decision, extract structured fields rather than concatenating text.
+
+For MCP's overall threat model and the spec's stance on authentication and trust, see the [MCP specification](https://modelcontextprotocol.io).
 
 ### MCP in GitHub Copilot CLI
 
@@ -242,6 +289,8 @@ MCP servers can give direct access to **resources** — structured data that can
 To add a resource from an MCP server to a chat prompt: select **Add Context** > **MCP Resources** in the Chat view, then choose a resource type.
 
 Resources are useful when Copilot needs reference data without executing a tool call — schema definitions, configuration files, or documentation that informs the conversation.
+
+**See it in action:** [Extend Agents with MCP](https://www.youtube.com/watch?v=_g29UQjIAeI&t=230s) — Connor Peet demos a site-builder MCP server returning project metadata and a sketched layout as resources that flow directly into chat context.
 
 #### MCP Prompts
 
@@ -297,13 +346,27 @@ This maintains a consistent MCP environment across workstations — useful for d
 
 ---
 
+## Credential Management
+
+MCP servers frequently require API keys, tokens, or other credentials. Follow these practices to keep secrets out of version control:
+
+- **Never hardcode secrets in `mcp.json`.** Use `${env:VAR_NAME}` to reference environment variables. The examples throughout this section demonstrate this pattern.
+- **Use `.env` files for local development.** Point to them with the `envFile` field in your server configuration. Add `.env` to `.gitignore`.
+- **Rotate credentials on a schedule.** Treat MCP server tokens like any other service credential — rotate periodically and revoke immediately if compromised.
+- **Limit token scope.** Create tokens with the minimum permissions the MCP server needs. A GitHub MCP server that only reads issues does not need `repo` write access.
+- **MCP server authors are responsible for secure credential handling.** The MCP protocol does not enforce credential security — it passes environment variables to the server process. Review how a server uses credentials before granting sensitive tokens.
+
+For VS Code’s secret storage and environment variable handling, see [Variables reference](https://code.visualstudio.com/docs/reference/variables-reference).
+
+---
+
 ## End-to-End Tutorial: Adding a GitHub MCP Server
 
 This walkthrough covers every step from zero to a working GitHub MCP integration.
 
 ### Step 1: Create the Configuration File
 
-Create `.vscode/mcp.json` in your workspace root:
+Create `.vscode/mcp.json` in your workspace root. Pin the server package to a specific version so `npx` can't silently pull in a new release between sessions:
 
 ```json
 {
@@ -311,7 +374,7 @@ Create `.vscode/mcp.json` in your workspace root:
     "github": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "args": ["-y", "@modelcontextprotocol/server-github@2026.4.0"],
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_TOKEN}"
       }
@@ -320,9 +383,22 @@ Create `.vscode/mcp.json` in your workspace root:
 }
 ```
 
-### Step 2: Set the Environment Variable
+Replace `2026.4.0` with the version you actually verified — check the package's releases page and update deliberately. Unpinned `npx -y <package>` is a supply-chain risk; the agent will run whatever the package currently resolves to.
 
-Export your GitHub personal access token (requires `repo` scope):
+### Step 2: Create a Narrowly Scoped Token
+
+Create a [fine-grained personal access token](https://github.com/settings/personal-access-tokens/new) rather than a classic PAT:
+
+- **Resource owner** — the account or org that owns the target repositories.
+- **Repository access** — select only the specific repositories you need the agent to reach, not "All repositories."
+- **Permissions** — grant only what your workflow requires. A read-only triage tool needs `Contents: Read` and `Metadata: Read`; a tool that opens issues adds `Issues: Read and write`. Avoid `Administration`, `Secrets`, and `Actions` unless the workflow truly requires them.
+- **Expiration** — set the shortest expiration that fits your workflow; rotate when it expires.
+
+Classic PATs with `repo` scope grant read/write access to every repository the user can see — a blast radius that rarely matches what an MCP server actually needs.
+
+### Step 3: Set the Environment Variable
+
+Export the token into your shell, **not** into `mcp.json`:
 
 **macOS/Linux:**
 ```bash
@@ -334,16 +410,25 @@ export GITHUB_TOKEN=ghp_your_token_here
 $env:GITHUB_TOKEN = "ghp_your_token_here"
 ```
 
-For persistence, add the variable to your shell profile or use VS Code's `envFile` field pointing to a `.env` file (which should be gitignored).
+For persistence, add the variable to your shell profile or use VS Code's `envFile` field pointing to a `.env` file.
 
-### Step 3: Start the Server
+**🚨 Don't commit the token.** Before your next commit:
+
+1. Confirm `.env` (and any other local secret file) is listed in `.gitignore`.
+2. Run `git status` — no `.env`, no `mcp.local.json`, no files containing `ghp_` or `github_pat_` should appear as tracked.
+3. `grep -RniE 'ghp_[a-z0-9]{36}|github_pat_[a-z0-9_]{22,}' .` should return zero matches in your working tree.
+4. If you use GitHub Codespaces, store the token as a [Codespaces secret](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces) scoped to the target repositories — it is injected as an environment variable automatically and never touches the repo.
+
+`${env:GITHUB_TOKEN}` is the only reference that should appear in `mcp.json`.
+
+### Step 4: Start the Server
 
 1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
 2. Run **MCP: List Servers**
 3. The GitHub server should appear — click **Start** if it isn't running
 4. Verify the server shows a green status indicator
 
-### Step 4: Use It
+### Step 5: Use It
 
 Open Copilot Chat and try:
 
@@ -353,7 +438,7 @@ Open Copilot Chat and try:
 
 Copilot discovers the GitHub MCP tools, calls the appropriate one, and returns live data from the GitHub API.
 
-### Step 5: Combine with a Skill
+### Step 6: Combine with a Skill
 
 For team-consistent workflows, pair the MCP server with a skill that encodes your conventions. See [Skills vs. MCP Servers](primitive-4-skills.md#skills-vs-mcp-servers-when-to-use-which) for the hybrid pattern.
 

@@ -15,7 +15,7 @@ tools:
   - mcp_microsoft-doc_microsoft_docs_search
   - mcp_microsoft-doc_microsoft_docs_fetch
   - mcp_microsoft-doc_microsoft_code_sample_search
-model: 'Claude Opus 4.6'
+model: 'Claude Opus 4.7'
 agents: ['The Newb', 'The Intermediate', 'The Cook', 'The CTO']
 ---
 
@@ -87,7 +87,7 @@ You have six core capabilities:
 2. Identify all changed files via `git status` and `git diff`.
 3. **Sub-agent strategy:** Spawn a sub-agent per changed doc file to run all four editorial passes in parallel. Each sub-agent reviews one file and returns its findings.
 4. Collect sub-agent results and report consolidated findings. Wait for user approval before fixing.
-5. Update `Published:` dates in files that contain them.
+5. Update `Updated:` dates in files that contain them.
 6. Stage, generate a descriptive commit message, confirm with user, commit, and push.
 
 ## 4. Create Skills
@@ -104,23 +104,26 @@ You have six core capabilities:
 **Trigger:** User asks "what's new?", "what changed?", "any updates?", or wants to know if the guide needs updating based on recent Copilot changes.
 
 **Process:**
-1. Run `git log -1 --format="%ai %s" -- docs/ ReadMe.md` to find the date and subject of the last documentation commit.
-2. Run `git log -1 --format="%ai" -- docs/ ReadMe.md` to extract just the date for comparison.
+1. Read the first 5 lines of `ReadMe.md` and extract the `Updated:` date from the `*Updated: {date}.*` line. This is the **cutoff date** — the last time the guide was published as current.
+2. This cutoff date — not `git log` — is the source of truth for what counts as "NEW". A change is only NEW if it was announced, shipped, or documented **after** the cutoff date. Changes predating the cutoff are already considered covered by the guide (or were intentionally omitted) and must not be reported as new.
 3. Fetch the latest official documentation from both sources:
    - Search and fetch from https://code.visualstudio.com/docs/copilot using Microsoft docs tools
    - Fetch https://docs.github.com/en/copilot using the web fetch tool
    - Check the VS Code release notes at https://code.visualstudio.com/updates for Copilot-related changes
-4. Compare what the official docs describe against what the guide currently covers. Look for:
-   - New customization primitives or configuration options added since the last update
-   - Renamed or deprecated settings, file paths, or features
-   - New capabilities or behavioral changes to existing primitives
-   - New best practices or recommended patterns
-5. Present findings as a summary:
-   - **Last guide update:** {date} — "{commit subject}"
-   - **New since then:** Bulleted list of changes found, each with a source link
+   - Check the GitHub changelog at https://github.blog/changelog/label/copilot/ for dated announcements
+4. Compare what the official docs describe against what the guide currently covers. For each potential finding, verify its announcement or release date is **strictly after** the cutoff date before flagging it as NEW. If a date cannot be confirmed from the source, mark it as "unverified date" and do not label it NEW.
+5. Look for:
+   - New customization primitives or configuration options added since the cutoff date
+   - Renamed or deprecated settings, file paths, or features since the cutoff date
+   - New capabilities or behavioral changes to existing primitives since the cutoff date
+   - New best practices or recommended patterns since the cutoff date
+6. Present findings as a summary:
+   - **Guide cutoff date:** {Updated date from ReadMe.md}
+   - **New since then:** Bulleted list of changes dated after the cutoff, each with a source link and the announcement/release date
+   - **Unverified date:** Items that may be relevant but lack a confirmable date — flagged for human judgment, not labeled NEW
    - **Recommended actions:** Which doc files need updating and what to change
-   - **No changes found:** If everything is current, confirm the guide is up to date
-6. Do not apply changes automatically. Present the findings and let the user decide what to act on.
+   - **No changes found:** If nothing post-cutoff is found, confirm the guide is up to date
+7. Do not apply changes automatically. Present the findings and let the user decide what to act on.
 
 ## 6. Triage and Plan
 

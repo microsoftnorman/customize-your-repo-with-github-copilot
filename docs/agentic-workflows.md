@@ -1,10 +1,17 @@
 # GitHub Agentic Workflows
 
-[← Copilot Memory](primitive-8-memory.md) | [Part II Overview](part-2-primitives.md)
+[← Copilot Memory](primitive-8-memory.md) | [Part II Overview](part-2-primitives.md) | [Copilot SDK →](copilot-sdk.md)
+
+*Updated: April 16, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
 
 ---
 
 ## Overview
+
+**Location:** `.github/workflows/*.md`
+**Best For:** Scheduled, event-driven, and on-demand AI automation in GitHub Actions
+
+**Official docs:** [Agentic Workflows](https://github.github.com/gh-aw/) · [Announcement](https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/)
 
 [GitHub Agentic Workflows](https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/) run coding agents inside GitHub Actions. You describe the desired outcome in plain Markdown, and a coding agent executes it — on a schedule, on events, or on demand. GitHub calls this pattern **Continuous AI**: the integration of AI into the software development lifecycle alongside CI/CD.
 
@@ -331,8 +338,8 @@ Alternatively, use a coding agent to generate workflows interactively — provid
 - [Custom Agents](primitive-5-custom-agents.md) — Specialized agent personas
 - [Skills](primitive-4-skills.md) — Skills specification and patterns
 - [Copilot Memory](primitive-8-memory.md) — How Memory complements explicit customization
-- [Copilot SDK](primitive-10-copilot-sdk.md) — Embed the Copilot agent runtime in your own tools and applications
+- [Copilot SDK](copilot-sdk.md) — Embed the Copilot agent runtime in your own tools and applications
 
 ---
 
-[← Copilot Memory](primitive-8-memory.md) | [Next: Copilot SDK →](primitive-10-copilot-sdk.md)
+[← Copilot Memory](primitive-8-memory.md) | [Next: Copilot SDK →](copilot-sdk.md)

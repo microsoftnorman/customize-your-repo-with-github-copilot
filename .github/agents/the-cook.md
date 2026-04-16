@@ -8,7 +8,7 @@ tools:
   - createFile
   - fetch
   - agent
-model: 'Claude Opus 4.6'
+model: 'Claude Opus 4.7'
 handoffs:
   - label: 'Send to Doc Maintainer'
     agent: 'Doc Maintainer'

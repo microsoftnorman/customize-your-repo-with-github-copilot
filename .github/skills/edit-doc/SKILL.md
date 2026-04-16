@@ -135,7 +135,7 @@ const result = await fetchData();
 - No `var` — use `const` or `let`
 - Code examples should reflect current best practices
 
-### The Ten Primitives
+### The Eight Primitives and Two Platform Extensions
 
 Always use the canonical name and location. Do not paraphrase these:
 
@@ -149,6 +149,11 @@ Always use the canonical name and location. Do not paraphrase these:
 | MCP | `.vscode/mcp.json` |
 | Hooks | `.github/hooks/*.json` |
 | Memory | GitHub cloud (repository-scoped) |
+
+**Platform Extensions** (not primitives — they extend Copilot into new environments):
+
+| Extension | Location |
+|-----------|----------|
 | Agentic Workflows | `.github/workflows/*.md` |
 | Copilot SDK | External dependency (npm, pip, etc.) |
 

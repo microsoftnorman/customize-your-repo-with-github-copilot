@@ -2,7 +2,7 @@
 
 [← Back to Guide](../ReadMe.md) | [← Part II: The Primitives](part-2-primitives.md)
 
-*Published: February 20, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 15, 2026.*
+*Updated: April 16, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
 
 ---
 
@@ -20,6 +20,42 @@
 | Copilot Memory | Managed by GitHub | N/A — no repo file |
 | Agentic Workflows | `.github/workflows/` | `.md` (workflow instructions) |
 | Copilot SDK | External dependency (npm, pip, etc.) | N/A — installed via package managers |
+
+---
+
+## When Primitives Load
+
+| Primitive | Loads When |
+|-----------|------------|
+| Always-On Instructions | Session start (always) |
+| File-Based Instructions | File matches `applyTo` pattern |
+| Prompts | User invokes with `/` |
+| Skills | Description matches user request |
+| Custom Agents | User selects or handoff triggers |
+| MCP Servers | Session start (if configured) |
+| Hooks | During coding agent, CLI, and VS Code Chat sessions (on lifecycle events) |
+| Memory | Automatically retrieved and validated at session start and during reasoning |
+
+---
+
+## Cross-Surface Primitive Support Matrix
+
+Not every surface supports every primitive. This consolidated matrix shows current support across all Copilot surfaces:
+
+| Primitive | VS Code | JetBrains | Visual Studio | Eclipse | Xcode | Copilot CLI | Cloud Coding Agent |
+|-----------|---------|-----------|---------------|---------|-------|-------------|-------------------|
+| Always-on Instructions | ✅ | Preview | ✅ | Preview | Preview | ✅ | ✅ |
+| File-based Instructions | ✅ | Preview | — | — | — | ✅ | — |
+| Prompts | ✅ | Preview | ✅ | — | Preview | — | — |
+| Skills | ✅ | Preview | — | — | — | ✅ | — |
+| Custom Agents | ✅ | Preview | Preview | ✅ | Preview | ✅ | — |
+| MCP | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | — |
+| Hooks | ✅ | — | — | — | — | ✅ | ✅ |
+| Memory | ✅\* | ✅\* | ✅\* | — | — | ✅ | ✅ |
+
+**Key:** ✅ = Generally available · Preview = Available but subject to change · — = Not yet supported · \* = Available via the Copilot cloud agent and code review, not in IDE Chat/Completions/Inline Chat
+
+Features marked "Preview" may require enabling experimental settings. Consult the [Copilot Feature Matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix) for the latest status.
 
 ---
 
@@ -58,7 +94,7 @@ applyTo: 'src/components/**/*.tsx'
 |-------|----------|------|-------------|
 | `agent` | No | string | `ask`, `agent`, `plan`, or custom agent name |
 | `description` | No | string | Brief description for `/` menu |
-| `model` | No | string | AI model (e.g., `Claude Opus 4.6`, `GPT-5.4`) |
+| `model` | No | string | AI model (e.g., `Claude Opus 4.7`, `GPT-5.4`) |
 | `tools` | No | string[] | Restrict available tools |
 | `argument-hint` | No | string | Hint text for user input |
 
@@ -66,10 +102,28 @@ applyTo: 'src/components/**/*.tsx'
 ---
 agent: 'agent'
 description: 'Generate a new React component with tests'
-model: 'Claude Opus 4.6'
+model: 'Claude Opus 4.7'
 tools: ['editFiles', 'createFile', 'runInTerminal']
 ---
 ```
+
+#### Variable Syntax
+
+Prompts support both built-in variables (`${file}`, `${selection}`, etc.) and input variables that prompt the user for a value:
+
+| Syntax | Description |
+|--------|-------------|
+| `${file}`, `${selection}`, `${workspaceFolder}` | Built-in VS Code context variables |
+| `${input:variableName}` | Prompts the user for a value when invoked |
+| `${input:variableName:placeholder}` | Prompts the user, showing placeholder hint text |
+
+```markdown
+Create a component called `${input:componentName}` that:
+- Handles ${input:primaryResponsibility}
+- Returns ${input:returnShape}
+```
+
+Users are prompted for input variable values when invoking the prompt.
 
 ### Skills (SKILL.md)
 
@@ -83,9 +137,6 @@ tools: ['editFiles', 'createFile', 'runInTerminal']
 | `metadata` | No | object | Key-value pairs (author, version) |
 | `license` | No | string | License name or reference |
 | `compatibility` | No | string | Environment requirements |
-| `user-invokable` | No | boolean | Whether the skill appears as a `/` slash command (default: `true`) |
-| `disable-model-invocation` | No | boolean | Prevents automatic activation by the agent (default: `false`). Requires manual `/` invocation |
-| `argument-hint` | No | string | Hint text shown to users when invoking the skill as a `/` slash command |
 
 ```yaml
 ---
@@ -110,11 +161,11 @@ metadata:
 | `name` | No | string | Display name in agent picker |
 | `description` | No | string | Placeholder text in chat input |
 | `tools` | No | string[] | Available tools for this agent |
-| `model` | No | string or string[] | AI model to use. Supports arrays for fallback: `['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']` |
+| `model` | No | string or string[] | AI model to use. Supports arrays for fallback: `['Claude Sonnet 4.7 (copilot)', 'GPT-5 (copilot)']` |
 | `handoffs` | No | object[] | Transitions to other agents |
 | `argument-hint` | No | string | Hint text for user interaction |
-| `user-invokable` | No | boolean | Show in agents dropdown (default: `true`) |
-| `disable-model-invocation` | No | boolean | Prevent subagent invocation (default: `false`) |
+| `user-invocable` | No | boolean | Whether the agent can be manually selected (default: `true`) |
+| `disable-model-invocation` | No | boolean | Prevent automatic/subagent invocation (default: `false`); replaces retired `infer` field |
 | `agents` | No | string[] | Restrict available subagents: names, `*`, or `[]` |
 | `target` | No | string | Target environment: `vscode` or `github-copilot` |
 | `mcp-servers` | No | object[] | MCP servers for `github-copilot` target |
@@ -125,7 +176,7 @@ metadata:
 name: 'Security Reviewer'
 description: 'Reviews code for security vulnerabilities'
 tools: ['search', 'readFile', 'usages']
-model: 'Claude Opus 4.6'
+model: 'Claude Opus 4.7'
 handoffs:
   - label: 'Fix Issues'
     agent: 'agent'
@@ -133,11 +184,6 @@ handoffs:
     send: false
     model: 'GPT-5.4 (copilot)'
 ---
-```
-
-### Copilot SDK
-
-The Copilot SDK is installed via package managers, not configured as repo files. See [Primitive 10: Copilot SDK](primitive-10-copilot-sdk.md) for full documentation.
 
 ---
 
@@ -190,6 +236,10 @@ The Copilot SDK is installed via package managers, not configured as repo files.
 | `**/*.ts` | All .ts files recursively |
 | `src/**/*.ts` | All .ts files under src/ |
 | `**/*.{ts,tsx}` | All .ts and .tsx files |
+| `**/*.{swift,m,mm}` | iOS / Objective-C sources |
+| `**/*.{kt,kts}` | Kotlin sources and Gradle scripts |
+| `**/*.{py,ipynb}` | Python and Jupyter notebooks |
+| `**/*.{cs,csproj}` | C# and .NET project files |
 | `**/tests/**` | All files in any tests/ directory |
 | `src/components/**/*` | All files under src/components/ |
 | `!**/node_modules/**` | Exclude node_modules |
@@ -225,16 +275,16 @@ The Copilot SDK is installed via package managers, not configured as repo files.
       "url": "https://example.com/mcp",
       "headers": { "Authorization": "Bearer ${env:TOKEN}" }
     },
-    "streamable-server": {
-      "type": "http",
-      "url": "https://example.com/mcp",
+    "sse-server": {
+      "type": "sse",
+      "url": "https://example.com/mcp/sse",
       "headers": { "Authorization": "Bearer ${env:TOKEN}" }
     }
   }
 }
 ```
 
-Use `sse` for Server-Sent Events transport. Use `http` for the newer streamable HTTP transport.
+Use `http` for the newer streamable HTTP transport. Use `sse` for servers that expose Server-Sent Events.
 
 ### Disabling a Server
 
@@ -264,10 +314,15 @@ Use `sse` for Server-Sent Events transport. Use `http` for the newer streamable 
 
 **Variable types in `env` values:**
 
-| Syntax | Description |
-|--------|-------------|
-| `${env:VAR_NAME}` | Read from environment variable |
-| `${input:variableName}` | Prompt the user for a value at startup |
+| Syntax | Where | Description |
+|--------|-------|-------------|
+| `${env:VAR_NAME}` | Workspace / user MCP | Read from environment variable |
+| `${env:VAR:-default}` | Workspace / user MCP | Environment variable with fallback |
+| `${input:variableName}` | Workspace / user MCP | Prompt the user for a value at startup |
+| `$VAR` / `${VAR}` | Cloud agent / custom-agent YAML | Environment variable (Claude Code syntax) |
+| `${VAR:-default}` | Cloud agent / custom-agent YAML | Environment variable with fallback |
+| `${{ secrets.NAME }}` | Cloud agent custom-agent YAML | Secret from the repository's `copilot` environment |
+| `${{ vars.NAME }}` | Cloud agent custom-agent YAML | Variable from the repository's `copilot` environment |
 
 ### Tool Count Guidance
 
@@ -326,27 +381,25 @@ For comprehensive documentation with practical examples, see [Primitive 7: Hooks
 
 ### VS Code Hooks (Chat Agent Sessions)
 
-VS Code 1.116+ supports hooks in Chat agent sessions via file-based configuration in `.github/hooks/*.json`. Eight PascalCase events are available: `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PreCompact`, `SubagentStart`, `SubagentStop`, and `Stop`. See [Primitive 7: VS Code Hooks](primitive-7-hooks.md#vs-code-hooks-chat-agent-sessions) for configuration details.
+VS Code 1.109.3+ supports hooks in Chat agent sessions via file-based configuration in `.github/hooks/*.json`. Eight PascalCase events are available: `SessionStart`, `UserPromptSubmit`, `PreToolUse`, `PostToolUse`, `PreCompact`, `SubagentStart`, `SubagentStop`, and `Stop`. See [Primitive 7: VS Code Hooks](primitive-7-hooks.md#vs-code-hooks-chat-agent-sessions) for configuration details.
 
 ---
 
 ## Context Window Guidelines
 
+Every primitive consumes tokens. Keep them focused:
+
 | Content Type | Recommended Size |
 |--------------|------------------|
 | Always-on instructions | 500-2000 words |
-| File-based instructions | 200-500 words |
-| Individual skill | 500-1500 words |
+| File-based instructions | 200-500 words each |
 | Prompt file | 100-500 words |
+| Individual skill | 500-1500 words |
 | Custom agent | 200-1000 words |
 
-**Total active context:** Keep under 4000 words for optimal performance.
+**Total active context:** Keep under 4000 words for optimal performance. If Copilot seems to "forget" rules, your instructions may be too long — move specialized content to file-based instructions or skills.
 
----
-
-## Copilot Memory (Preview)
-
-For comprehensive coverage of Copilot Memory — including architecture, enablement, memory lifecycle, and practical guidance — see [Primitive 8: Memory](primitive-8-memory.md).
+For codebase conventions that Copilot discovers through usage — patterns, constraints, and preferences that are hard to author manually — consider enabling [Copilot Memory (Preview)](primitive-8-memory.md). Memory is repository-scoped: anything stored is shared with all users who have Memory enabled in that repo.
 
 ---
 
@@ -365,21 +418,6 @@ Terminal sandboxing restricts file system and network access for commands execut
 Configure allowed file system paths and network domains via `chat.tools.terminal.sandbox.linuxFileSystem`, `chat.tools.terminal.sandbox.macFileSystem`, and `chat.tools.terminal.sandbox.network`.
 
 **Note:** Terminal sandboxing is currently supported on macOS and Linux only. On Windows, the sandbox settings have no effect.
-
----
-
-## When Primitives Load
-
-| Primitive | Loads When |
-|-----------|------------|
-| Always-On Instructions | Session start (always) |
-| File-Based Instructions | File matches `applyTo` pattern |
-| Prompts | User invokes with `/` |
-| Skills | Description matches user request |
-| Custom Agents | User selects or handoff triggers |
-| MCP Servers | Session start (if configured) |
-| Hooks | During coding agent, CLI, and VS Code Chat sessions (on lifecycle events) |
-| Memory | Automatically retrieved and validated at session start and during reasoning |
 
 ---
 
@@ -542,7 +580,7 @@ applyTo: 'src/api/**/*'
 ---
 agent: 'agent'
 description: 'Brief description'
-model: 'Claude Opus 4.6'
+model: 'Claude Opus 4.7'
 ---
 
 [Clear instruction]
@@ -588,7 +626,7 @@ metadata:
 name: 'Agent Name'
 description: 'What this agent does'
 tools: ['search', 'readFile']
-model: 'Claude Opus 4.6'
+model: 'Claude Opus 4.7'
 ---
 
 You are [persona description].
@@ -673,55 +711,6 @@ You are [persona description].
 
 ---
 
-## Variable Syntax
-
-Prompts support both built-in variables (`${file}`, `${selection}`, etc.) and input variables that prompt the user for a value:
-
-| Syntax | Description |
-|--------|-------------|
-| `${file}`, `${selection}`, `${workspaceFolder}` | Built-in VS Code context variables |
-| `${input:variableName}` | Prompts the user for a value when invoked |
-| `${input:variableName:placeholder}` | Prompts the user, showing placeholder hint text |
-
-```markdown
-Create a component called `${input:componentName}` that:
-- Handles ${input:primaryResponsibility}
-- Returns ${input:returnShape}
-```
-
-Users are prompted for input variable values when invoking the prompt.
-
----
-
-## Handoffs (Custom Agents)
-
-```yaml
-handoffs:
-  - label: 'Start Implementation'
-    agent: 'agent'
-    prompt: 'Implement the design above.'
-  - label: 'Write Tests'
-    agent: '@workspace'
-    prompt: 'Write tests for this code.'
-```
-
----
-
-## Environment Variables in MCP
-
-Reference environment variables with `${env:VAR_NAME}`:
-
-```json
-{
-  "env": {
-    "API_KEY": "${env:MY_API_KEY}",
-    "DATABASE_URL": "${env:DATABASE_URL}"
-  }
-}
-```
-
----
-
 ## Official Resources
 
 | Resource | URL |
@@ -735,6 +724,7 @@ Reference environment variables with `${env:VAR_NAME}`:
 | Copilot Memory (managing) | https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory |
 | GitHub Agentic Workflows | https://github.blog/ai-and-ml/automate-repository-tasks-with-github-agentic-workflows/ |
 | Awesome Copilot | https://github.com/github/awesome-copilot |
+| `gh skill` CLI (preview) | https://github.blog/changelog/2026-04-16-manage-agent-skills-with-github-cli |
 
 ---
 

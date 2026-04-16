@@ -4,6 +4,10 @@
 
 ---
 
+**Surface availability:** VS Code ✅ · JetBrains (Preview) · GitHub Copilot CLI ✅ · Visual Studio — · Eclipse — · Cloud Agent —
+
+**Ownership:** Skills that package domain procedures (deploy runbooks, migration steps) are owned by the **team that owns the procedure**. General-purpose skills (code review, test writing) are typically owned by **engineering productivity / DX teams** and distributed via agent plugins.
+
 ## Overview
 
 Skills represent discrete capabilities that Copilot can invoke when contextually relevant. Unlike always-on instructions (which consume context on every request), **skills only load into context when their description matches the user's request**. This keeps context lean for routine tasks while enabling deep domain knowledge when needed.
@@ -33,6 +37,8 @@ For full documentation and the specification, visit [agentskills.io](https://age
 ### Directory Structure
 
 Every skill lives in its own folder with a `SKILL.md` file:
+
+**See it in action:** [Customize Your Agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=383s) — Courtney Webster opens her arcade app's `.github/skills/` folder and walks through a `debug` skill that pairs its `SKILL.md` with the naming and description the agent uses to discover it.
 
 ```
 .github/
@@ -159,9 +165,6 @@ magick input.jpg -quality 85 output.webp
 | `metadata` | No | Key-value pairs (author, version, etc.) |
 | `license` | No | License name or reference |
 | `compatibility` | No | Environment requirements |
-| `user-invokable` | No | Controls whether the skill appears as a `/` slash command in chat (default: `true`). Set to `false` to hide from the menu while still allowing automatic activation by the agent. |
-| `disable-model-invocation` | No | Controls whether the agent can automatically load the skill based on relevance (default: `false`). Set to `true` to require manual invocation via `/` only. |
-| `argument-hint` | No | Hint text shown to users when invoking the skill as a `/` slash command (e.g., `"Describe the skill you want to create"`) |
 
 ### Name Validation Rules
 
@@ -282,6 +285,73 @@ This skill works with the GitHub MCP server. Ensure it's configured in `.vscode/
 {Other approaches}
 ```
 ``````
+
+## Installing and Managing Skills with `gh skill`
+
+As of [April 16, 2026](https://github.blog/changelog/2026-04-16-manage-agent-skills-with-github-cli), the GitHub CLI ships a dedicated `gh skill` command (public preview) for discovering, installing, updating, and publishing agent skills. It replaces ad-hoc `git clone` or copy-paste flows with a package-manager-style workflow, and it works across agent hosts — GitHub Copilot, Claude Code, Cursor, Codex, Gemini CLI, and Antigravity — using a single command surface.
+
+**Requires GitHub CLI v2.90.0 or later.** `gh skill` is in public preview and subject to change.
+
+### Core Commands
+
+| Command | Purpose |
+|---------|---------|
+| `gh skill search <query>` | Discover skills across GitHub repositories |
+| `gh skill install OWNER/REPO [SKILL]` | Install one or all skills from a repository |
+| `gh skill preview OWNER/REPO SKILL` | Inspect a skill's contents before installing (strongly recommended — skills are not verified by GitHub) |
+| `gh skill update [NAME]` | Check for upstream changes and apply them; use `--all` for non-interactive updates |
+| `gh skill publish` | Validate your own skills repo against the [agentskills.io spec](https://agentskills.io/specification) and enable recommended supply-chain protections |
+
+### Install Examples
+
+```text
+# Browse and install interactively from a skills repo
+gh skill install github/awesome-copilot
+
+# Install a specific skill
+gh skill install github/awesome-copilot documentation-writer
+
+# Pin to a release tag for reproducibility
+gh skill install github/awesome-copilot documentation-writer --pin v1.2.0
+
+# Pin to a specific commit SHA
+gh skill install github/awesome-copilot documentation-writer --pin abc123def
+
+# Target a different agent host
+gh skill install github/awesome-copilot documentation-writer --agent claude-code --scope user
+```
+
+Skills are installed into the correct directory for the target host — `.github/skills/` for GitHub Copilot, the Claude Code skills directory for `--agent claude-code`, and so on.
+
+### Version Pinning and Provenance
+
+`gh skill` adds the same supply-chain guarantees package managers provide, using primitives GitHub already offers:
+
+- **Tags and releases.** `gh skill publish` offers to enable [immutable releases](https://docs.github.com/repositories/releasing-projects-on-github/about-releases) so published release content cannot be altered after the fact.
+- **Content-addressed change detection.** Each installed skill records the git tree SHA of its source directory. `gh skill update` compares local and remote SHAs to detect real content changes, not just version bumps.
+- **Version pinning.** `--pin <tag>` or `--pin <sha>` locks a skill to a specific version. Pinned skills are skipped during `gh skill update` so upgrades stay deliberate.
+- **Portable provenance.** When a skill is installed, `gh skill` writes tracking metadata (repository, ref, tree SHA) directly into the `SKILL.md` frontmatter. Because provenance lives in the skill file itself, it survives copying, moving, or reorganizing the skill across projects.
+
+The skill's frontmatter picks up fields like:
+
+```yaml
+---
+name: documentation-writer
+description: ...
+source:
+  repository: github/awesome-copilot
+  ref: v1.2.0
+  treeSha: abc123def...
+---
+```
+
+### Security Checkpoint
+
+Skills are executable instructions that shape agent behavior. A malicious or compromised skill can leak secrets, run destructive commands, or inject prompts into your sessions. Before installing anything from a repository you don't control:
+
+1. Run `gh skill preview OWNER/REPO SKILL` to inspect the `SKILL.md`, scripts, and any bundled assets.
+2. Prefer `--pin <tag>` over floating installs so a compromised upstream can't silently replace the skill on the next update.
+3. Review the publisher's repository settings — `gh skill publish` surfaces whether tag protection, secret scanning, code scanning, and immutable releases are enabled.
 
 ### Bootstrap Skills with a Skill-Creator Skill
 
@@ -531,6 +601,9 @@ Use always-on instructions for the core stuff that truly applies everywhere — 
 ### How Skills Load: Description Matching
 
 Unlike file-based instructions (which use `applyTo` patterns), skills load **on-demand via description matching**. Here's what happens under the hood:
+
+**See it in action:** [Customize Your Agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=487s) — Courtney Webster asks Copilot to help debug a keystroke issue and shows the Chat Debug Log picking up the `debug` skill automatically, purely from its name and description.
+
 
 1. **Every system prompt includes a list of available skills** — just their names and descriptions
 2. **The agent decides which skills are relevant** based on matching the user's request to skill descriptions
@@ -853,51 +926,6 @@ Use the Jira MCP server's create-issue tool with:
 
 ---
 
-**File System Operations → Skill**
-
-The file system is local and doesn't require authentication. A skill provides enhanced operations that work across different AI agents.
-
-**Directory:** `.github/skills/file-operations/SKILL.md`
-
-```
----
-name: file-operations
-description: Advanced file system operations including log analysis, directory searching, and batch file processing. Use when the user needs to search files, analyze logs, find patterns across directories, or run local scripts.
----
-
-# File System Operations
-
-## When to use this skill
-
-Use this skill when:
-- User wants to search for files by name or content
-- User needs to analyze log files for errors or patterns
-- User wants to batch rename or process files
-
-## How to analyze logs
-
-Find errors: `grep -r "ERROR\|FATAL" logs/ --include="*.log" | tail -50`
-Errors with context: `grep -B 2 -A 5 "ERROR" app.log`
-
-## How to search directories
-
-Find by name: `find . -name "*.ts" -type f`
-Find by content: `grep -rl "searchTerm" src/`
-Find large files: `find . -size +10M -type f`
-Recent files: `find . -mtime -1 -type f`
-
-## How to batch process files
-
-Rename extension: `for f in *.jpeg; do mv "$f" "${f%.jpeg}.jpg"; done`
-Delete node_modules: `find . -name "node_modules" -type d -prune -exec rm -rf {} +`
-Count lines: `wc -l filename`
-Disk usage: `du -sh directory`
-```
-
-#### The Hybrid Pattern
-
----
-
 **Incident Response → Skill + MCP Server**
 
 Incident response combines local diagnostic procedures (encoded as a skill) with external access to monitoring and ticketing systems (via MCP servers). The skill encodes triage runbooks and remediation patterns; the MCP server provides access to monitoring dashboards and ticketing APIs.
@@ -945,6 +973,49 @@ After resolution, create a postmortem issue with:
 ```
 
 ---
+
+**File System Operations → Skill**
+
+The file system is local and doesn't require authentication. A skill provides enhanced operations that work across different AI agents.
+
+**Directory:** `.github/skills/file-operations/SKILL.md`
+
+```
+---
+name: file-operations
+description: Advanced file system operations including log analysis, directory searching, and batch file processing. Use when the user needs to search files, analyze logs, find patterns across directories, or run local scripts.
+---
+
+# File System Operations
+
+## When to use this skill
+
+Use this skill when:
+- User wants to search for files by name or content
+- User needs to analyze log files for errors or patterns
+- User wants to batch rename or process files
+
+## How to analyze logs
+
+Find errors: `grep -r "ERROR\|FATAL" logs/ --include="*.log" | tail -50`
+Errors with context: `grep -B 2 -A 5 "ERROR" app.log`
+
+## How to search directories
+
+Find by name: `find . -name "*.ts" -type f`
+Find by content: `grep -rl "searchTerm" src/`
+Find large files: `find . -size +10M -type f`
+Recent files: `find . -mtime -1 -type f`
+
+## How to batch process files
+
+Rename extension: `for f in *.jpeg; do mv "$f" "${f%.jpeg}.jpg"; done`
+Delete node_modules: `find . -name "node_modules" -type d -prune -exec rm -rf {} +`
+Count lines: `wc -l filename`
+Disk usage: `du -sh directory`
+```
+
+#### The Hybrid Pattern
 
 In practice, many workflows combine both:
 

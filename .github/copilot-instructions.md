@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This repository contains "The Definitive Guide to Customizing Your Repo for GitHub Copilot" — a comprehensive documentation guide covering GitHub Copilot's ten customization primitives. This is a documentation project, not a code project.
+This repository contains "The Definitive Guide to Customizing Your Repo for GitHub Copilot" — a comprehensive documentation guide covering GitHub Copilot's eight customization primitives and two platform extensions. This is a documentation project, not a code project.
 
 ## Content Guidelines
 
@@ -11,6 +11,12 @@ This repository contains "The Definitive Guide to Customizing Your Repo for GitH
 - Write for an audience of experienced developers and team leads
 - Be direct and concise — avoid filler phrases
 - Match the existing document's voice and structure
+
+### Product Naming
+- Always refer to the product as **GitHub Copilot** — never shorten it to just "Copilot" in isolation, marketing-style references, or product names (e.g., "GitHub Copilot CLI", not "Copilot CLI" as a standalone brand)
+- After the full name "GitHub Copilot" has been introduced in a section, subsequent prose mentions within that section may use "Copilot" for readability
+- Headings, tables of contents, page titles, and the first mention in any standalone section must use the full name "GitHub Copilot"
+- Never use "Github Copilot", "github copilot", "GH Copilot", or other stylistic variants — the canonical form is "GitHub Copilot" with that exact capitalization
 
 ### Accuracy Requirements
 - All technical claims must align with official documentation:
@@ -31,13 +37,25 @@ This repository contains "The Definitive Guide to Customizing Your Repo for GitH
   - https://modelcontextprotocol.io (MCP specification — standard for connecting AI agents to external tools)
   - https://learn.microsoft.com/en-us/training/modules/configure-customize-github-copilot-visual-studio-code/ (Microsoft Learn training module for Copilot customization)
   - https://github.com/github/awesome-copilot (Curated community plugins, skills, and agent examples)
+  - https://github.com/github/CopilotForXcode (GitHub Copilot for Xcode — extension source, releases, and documentation)
+  - https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-extension?tool=xcode (GitHub Copilot for Xcode setup and installation)
+  - https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-extension?tool=eclipse (GitHub Copilot for Eclipse setup and installation)
+  - https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=eclipse (Copilot feature matrix for Eclipse — per-version support)
+  - https://marketplace.eclipse.org/content/github-copilot (GitHub Copilot on Eclipse Marketplace — versions, compatibility, reviews)
+  - https://github.com/microsoft/copilot-eclipse-feedback (Eclipse plugin feedback and issue tracker)
+  - https://github.com/microsoft/copilot-eclipse-feedback/releases (Eclipse plugin release notes)
+  - https://devblogs.microsoft.com/java/ghc-eclipse-is-going-open-source/ (Microsoft for Java Dev Blog — Copilot for Eclipse open source announcement)
+  - https://devblogs.microsoft.com/java/ (Microsoft for Java Dev Blogs — Eclipse Copilot updates and deep dives)
+  - https://github.com/orgs/community/discussions/151288 (GitHub Copilot for Eclipse community discussions)
+  - https://www.youtube.com/@code (VS Code YouTube channel — official demos, livestreams, and feature deep-dives; use with the `check-video-sources` skill to fetch transcripts and timestamps)
+  - https://www.youtube.com/@GitHub (GitHub YouTube channel — official product announcements, Copilot walkthroughs, and GitHub Universe sessions; use with the `check-video-sources` skill to fetch transcripts and timestamps)
 - **Always fetch the latest documentation before answering questions about Copilot features** — your training data may be outdated
 - Use the Microsoft docs tools to search and fetch from code.visualstudio.com
 - Use the fetch_webpage tool for docs.github.com/en/copilot, github.com/github/copilot-cli, github.com/features/copilot/cli, and github.blog pages
 - **Fallback to web search:** If none of the trusted sources above contain information on a topic, perform a Bing search to find relevant results, then critically evaluate the accuracy of what you find before incorporating it. Flag any claims sourced this way as unverified by official docs.
 - Never invent frontmatter fields, tool names, or configuration options
 
-### The Ten Primitives
+### The Eight Primitives
 
 When discussing customization options, reference the correct primitive:
 
@@ -51,6 +69,11 @@ When discussing customization options, reference the correct primitive:
 | MCP | `.vscode/mcp.json` | External integrations |
 | Hooks | `.github/hooks/*.json` | Runtime enforcement |
 | Memory | GitHub cloud (repository-scoped) | Learned codebase knowledge |
+
+### Platform Extensions
+
+| Extension | Location | Purpose |
+|-----------|----------|---------|
 | Agentic Workflows | `.github/workflows/*.md` | Continuous AI via GitHub Actions |
 | Copilot SDK | External dependency (npm, pip, etc.) | Embed agent runtime in custom tools |
 

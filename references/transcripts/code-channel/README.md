@@ -13,12 +13,15 @@ The Doc Maintainer agent searches these files when running the **Check Video Sou
 
 ## How to Add Transcripts
 
-1. Open the video on YouTube
-2. Click **"..."** > **"Show transcript"**
-3. Copy the full transcript text
-4. Paste it under the ## Full Transcript heading in the appropriate file
+Use the repository script to fetch a full timestamped transcript and append it to a stub file:
 
-Alternatively, use a transcript extraction tool with the ideo_id from the frontmatter.
+```powershell
+python scripts/fetch-transcript.py <video_id> references/transcripts/code-channel/<stub>.md
+```
+
+The script uses `youtube-transcript-api` (install once with `pip install youtube-transcript-api`) and writes one `[H:MM:SS] text` line per caption snippet under the `<!-- PASTE FULL TRANSCRIPT BELOW THIS LINE -->` marker.
+
+For videos without a prepared stub, create one with the standard frontmatter, then run the script to populate it.
 
 ## Index
 
@@ -29,12 +32,12 @@ Alternatively, use a transcript extraction tool with the ideo_id from the front
 | Feb 19 | [Agent Sessions Day](https://www.youtube.com/watch?v=tAezuMSJuFs) (full livestream) | All primitives, agents, MCP, skills, BYOM, CLI | 2026-02-19-agent-sessions-day.md |
 | Feb 20 | [Agent Sessions Day — Keynote](https://www.youtube.com/watch?v=2-Q_sdJ5H2c) (segment) | Keynote, AI SDLC | — (segment of above) |
 | Feb 20 | [How VS Code Builds with AI](https://www.youtube.com/watch?v=ee-obY-4rqk) (segment) | AI workflows, VS Code team practices | — (segment of above) |
-| Feb 20 | [A Unified Agent Experience](https://www.youtube.com/watch?v=YmpjvZ3xkx8) (segment) | Agent sessions, cloud agents, Codex | — (segment of above) |
-| Feb 20 | [Extend Agents with MCP](https://www.youtube.com/watch?v=_g29UQjIAeI) (segment) | MCP, MCP Apps, interactive UI | — (segment of above) |
+| Feb 20 | [A Unified Agent Experience](https://www.youtube.com/watch?v=YmpjvZ3xkx8) (segment) | Agent sessions, cloud agents, Codex | 2026-02-19-unified-agent-experience.md |
+| Feb 20 | [Extend Agents with MCP](https://www.youtube.com/watch?v=_g29UQjIAeI) (segment) | MCP, MCP Apps, interactive UI | 2026-02-19-extend-agents-with-mcp.md |
 | Feb 20 | [The Browser in your Editor](https://www.youtube.com/watch?v=xjprgyqp9Z0) (segment) | Browser tool, DevTools, agent context | — (segment of above) |
 | Feb 20 | [Bring Your Own Model in VS Code](https://www.youtube.com/watch?v=VBSVSxs16_I) (segment) | BYOM, BYOK, model selection | — (segment of above) |
-| Feb 20 | [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q) (segment) | Custom agents, skills, instructions, prompts | — (segment of above) |
-| Feb 20 | [Copilot CLI in VS Code](https://www.youtube.com/watch?v=_l3UO1oUoec) (segment) | CLI, terminal agent | — (segment of above) |
+| Feb 20 | [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q) (segment) | Custom agents, skills, instructions, prompts | 2026-02-19-customize-your-agents.md |
+| Feb 20 | [Copilot CLI in VS Code](https://www.youtube.com/watch?v=_l3UO1oUoec) (segment) | CLI, terminal agent | 2026-02-19-copilot-cli.md |
 | Feb 20 | [Live coding with Burke, Pierce, and Olivia](https://www.youtube.com/watch?v=MVwkFbYa1Xg) (segment) | Agent workflows, vibe coding | — (segment of above) |
 | Feb 20 | [Let it Cook - This changes EVERYTHING](https://www.youtube.com/watch?v=uquSQY10AGM) | Latest Copilot updates | 2026-02-20-let-it-cook-everything.md |
 

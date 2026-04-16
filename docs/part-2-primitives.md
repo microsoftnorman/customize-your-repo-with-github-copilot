@@ -2,26 +2,45 @@
 
 [← Back to Guide](../ReadMe.md) | [← Part I: Foundations](part-1-foundations.md)
 
-*Published: February 20, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 15, 2026.*
+*Updated: April 16, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
 
 ---
 
-GitHub Copilot provides ten customization primitives that shape what Copilot knows and how it thinks. The first six — always-on instructions, file-based instructions, prompts, skills, custom agents, and MCP — handle context and capabilities. The remaining four extend into enforcement, learning, automation, and embedding: [Hooks](primitive-7-hooks.md) provide runtime enforcement, [Copilot Memory](primitive-8-memory.md) provides automatic repository-level learning, [Agentic Workflows](primitive-9-agentic-workflows.md) enable continuous AI in GitHub Actions, and the [Copilot SDK](primitive-10-copilot-sdk.md) lets teams embed the agent runtime in their own tools.
+GitHub Copilot provides eight customization primitives that shape what Copilot knows and how it thinks. The first six — always-on instructions, file-based instructions, prompts, skills, custom agents, and MCP — handle context and capabilities. The remaining two extend into enforcement and learning: [Hooks](primitive-7-hooks.md) provide runtime enforcement, and [Copilot Memory](primitive-8-memory.md) provides automatic repository-level learning.
 
-These mechanisms work across multiple Copilot surfaces — VS Code, Visual Studio, GitHub.com, and [GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) (a terminal-based AI agent). The table below notes where each one applies:
+Beyond the primitives, two **platform extensions** take Copilot into new environments: [Agentic Workflows](agentic-workflows.md) run coding agents in GitHub Actions, and the [Copilot SDK](copilot-sdk.md) lets teams embed the agent runtime in their own tools. These aren't configuration primitives — they don't shape what Copilot knows about your codebase — but they consume the primitives you've defined.
+
+These mechanisms work across multiple Copilot surfaces — VS Code, Visual Studio, GitHub.com, and [GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) (a terminal-based AI agent). Because the primitives are plain files in your repository, any surface that reads `.github/` customization can consume them regardless of where they were authored. The tables below note each primitive's location, activation, scope, and CLI support.
 
 | Mechanism | Location | When Loaded | Scope | CLI Support |
 |-----------|----------|-------------|-------|-------------|
 | [**Always-on Instructions**](primitive-1-always-on-instructions.md) | `.github/copilot-instructions.md` | Every request | Entire session | ✅ |
 | [**File-based Instructions**](primitive-2-file-based-instructions.md) | `.github/instructions/*.instructions.md` | File pattern match | While file in context | ✅ |
-| [**Prompts**](primitive-3-prompts.md) | `.github/prompts/*.prompt.md` | User invokes `/name` | Single task | VS Code only |
+| [**Prompts**](primitive-3-prompts.md) | `.github/prompts/*.prompt.md` | User invokes `/name` | Single task | Multi-surface |
 | [**Skills**](primitive-4-skills.md) | `.github/skills/*/SKILL.md` | Description matches intent | Single task | ✅ |
 | [**Custom Agents**](primitive-5-custom-agents.md) | `.github/agents/*.md` | User invokes `@name` | Until switched | ✅ |
 | [**MCP**](primitive-6-mcp.md) | `.vscode/mcp.json` | Session start | Entire session | ✅ |
 | [**Hooks**](primitive-7-hooks.md) | `.github/hooks/*.json` | Agent session events | Coding agent only | ✅ |
 | [**Copilot Memory**](primitive-8-memory.md) | Managed by GitHub | Automatic | Repository-wide | ✅ |
-| [**Agentic Workflows**](primitive-9-agentic-workflows.md) | `.github/workflows/*.md` | Schedule, event, or dispatch | Repository-wide | GitHub Actions |
-| [**Copilot SDK**](primitive-10-copilot-sdk.md) | External dependency (npm, pip, etc.) | Application code | Custom surfaces | N/A — your app |
+
+**Platform Extensions:**
+
+| Extension | Location | When Loaded | Scope | CLI Support |
+|-----------|----------|-------------|-------|-------------|
+| [**Agentic Workflows**](agentic-workflows.md) | `.github/workflows/*.md` | Schedule, event, or dispatch | Repository-wide | GitHub Actions |
+| [**Copilot SDK**](copilot-sdk.md) | External dependency (npm, pip, etc.) | Application code | Custom surfaces | N/A — your app |
+
+### Authoring the Primitives
+
+The primitive files themselves are portable — they're just Markdown and JSON in `.github/`. How you *author* them, however, varies by surface:
+
+| Surface | Authoring experience |
+|---------|---------------------|
+| **VS Code** | Chat Customizations editor (gear icon in Chat view, or **Chat: Open Chat Customizations**). VS Code also provides `/create-instruction`, `/create-prompt`, `/create-skill`, `/create-agent`, and `/create-hook` slash commands in Chat to scaffold files from a plain-English description, plus `/init` to generate `copilot-instructions.md` from the existing codebase. |
+| **Copilot CLI** | `/init` generates `copilot-instructions.md`. Other primitive files are authored directly or with AI assistance in the terminal session. |
+| **Visual Studio, JetBrains, Xcode, Eclipse, GitHub.com** | Edit the files directly, or author them from VS Code / the CLI and commit. All surfaces read the same `.github/` layout. |
+
+Regardless of how a primitive is authored, the output is always the same set of files listed above, and every supported surface loads them from the repository.
 
 ---
 
@@ -54,9 +73,28 @@ Response
 
 Each layer adds specificity. The foundation (always-on instructions) applies everywhere; other primitives activate based on context.
 
+**When primitives conflict:** More specific primitives take precedence over less specific ones. File-based instructions override always-on instructions for the files they target. Agent-scoped instructions override global instructions while that agent is active. If a file-based instruction says "use spaces" and always-on instructions say "use tabs," the file-based rule wins for matching files. This mirrors CSS specificity — the most targeted rule applies.
+
 **Important limitation:** Custom instructions, prompts, skills, and agents affect **Copilot Chat interactions only**. Inline suggestions (ghost text autocomplete) operate on a separate pipeline and do not read customization files. Use Chat-based interactions for convention-aware code generation.
 
+**Monorepo support:** VS Code 1.116 added the `chat.useCustomizationsInParentRepositories` setting. When enabled, customization files (instructions, agents, skills, hooks) are discovered from parent repositories in a monorepo layout. Shared configurations at the repo root apply automatically to nested packages without duplication. This setting pairs with the existing monorepo hook discovery (VS Code 1.111+) to provide full customization inheritance across package boundaries.
+
 **Not sure which primitive to use?** See the [Quick Decision Guide](part-3-reference.md#quick-decision-guide) in Part III for a lookup table that maps common scenarios to the right primitive.
+
+### Where Primitives Overlap
+
+Several primitives look similar at first glance. These are the most common "but don't these do the same thing?" questions:
+
+| Confusion | The Difference | Rule of Thumb |
+|-----------|---------------|---------------|
+| **Always-on instructions vs. Custom agents** | Instructions are global rules that apply to every interaction. Agents are specialized personas with their own tools, model, and behavior — they *contain* instructions but also constrain scope. | Put universal rules (tech stack, conventions) in instructions. Put role-specific behavior (code reviewer persona, deployment specialist) in agents. |
+| **Prompts vs. Skills** | Both appear as `/` commands. Prompts are user-triggered templates — fire-and-forget. Skills are procedural knowledge that Copilot can also discover and load *automatically* based on context. | Use prompts for simple, single-purpose commands. Use skills when the knowledge should also activate without the user asking, or needs to work in Copilot CLI and the cloud agent. See [Skills vs. File-Based Instructions](primitive-4-skills.md#skills-vs-file-based-instructions-overlapping-territory) for the full decision framework. |
+| **Agents vs. Prompts** | Both are user-invoked. An agent is a persistent persona — it changes *who Copilot is* for the entire conversation (tools, model, behavior). A prompt is a single task template — it runs once and Copilot returns to normal. | If the user switches into a "mode" (reviewer, architect, mentor), that's an agent. If the user runs a repeatable task (scaffold component, generate tests), that's a prompt or skill. |
+| **Instructions vs. Memory** | Instructions are explicit rules you write. Memory is implicit knowledge Copilot learns from working in your repo. Instructions tell Copilot the right answer upfront. Memory captures patterns Copilot discovers over time. | Write instructions for decisions you've already made (tech stack, conventions). Let Memory learn the things that are hard to articulate (codebase patterns, naming conventions in specific areas). They reinforce each other — Memory won't contradict your instructions. |
+| **Hooks vs. Instructions** | Instructions *ask* Copilot to avoid something ("don't modify production configs"). Hooks *enforce* it — a hook script runs outside the model and can block the action before it happens. | Use instructions for guidance the model should follow. Use hooks when compliance is mandatory and you can't risk the model ignoring the rule. Defense in depth: use both together. |
+| **File-based instructions vs. Skills** | File-based instructions activate by file pattern (`applyTo: 'src/api/**'`). Skills activate by intent (description matching what the user is trying to do). | Use file-based instructions for "rules when editing these files." Use skills for "how to do this task." See [the detailed comparison](primitive-4-skills.md#skills-vs-file-based-instructions-overlapping-territory) in Primitive 4. |
+
+The overlap is intentional — these primitives evolved from real needs, and different teams organize the same knowledge differently. The cost of putting something in the "wrong" primitive is low. The cost of not encoding it anywhere is high.
 
 ---
 
@@ -129,7 +167,7 @@ Each primitive answers a different question:
 | What is it *not allowed* to do? | Hooks |
 | What has Copilot learned from working here? | Memory |
 
-When designing a workflow, start from the task and ask each question. If the answer is "not applicable," skip that primitive. Most tasks need two or three; complex workflows use four or five. If a setup requires all ten, it's probably doing too much — consider splitting it into separate agent-driven workflows that hand off to each other.
+When designing a workflow, start from the task and ask each question. If the answer is "not applicable," skip that primitive. Most tasks need two or three; complex workflows use four or five. If a setup uses every primitive, it's probably doing too much — consider splitting it into separate agent-driven workflows that hand off to each other.
 
 ---
 
@@ -162,6 +200,43 @@ my-testing-plugin/
 
 **Optional fields:** `description`, `version`, `author`, `skills`, `agents`, `hooks`, `mcpServers`
 
+**Naming rules:** Plugin names must be **kebab-case** (lowercase letters, digits, and hyphens). `My_Plugin` and `myPlugin` are invalid — use `my-plugin`. Plugin names must be unique within a marketplace.
+
+**Auto-detection order:** VS Code discovers plugins in this order (first match wins on name conflicts):
+
+1. User-installed plugins (`~/.vscode/plugins/`)
+2. Workspace-installed plugins (`.vscode/plugins/`)
+3. Plugins referenced by the `chat.plugins.installed` setting
+4. Plugins bundled inside a repository via `agent-plugins` in workspace settings
+
+Disable individual plugins with `chat.plugins.disabled` or gate installation with `chat.plugins.allowlist` at the organization level.
+
+**Path tokens for plugin authors:** Inside `plugin.json`, `SKILL.md`, `.agent.md`, and hook commands, two tokens resolve to the plugin's install directory:
+
+- `${PLUGIN_ROOT}` — VS Code / Copilot convention
+- `${CLAUDE_PLUGIN_ROOT}` — Claude Code compatibility alias (same value)
+
+Use these tokens to reference scripts, templates, or data files packaged inside the plugin (e.g., `bash: "${PLUGIN_ROOT}/scripts/lint.sh"`). Never hardcode absolute paths — plugins install to different locations per user.
+
+**`mcpServers` vs `servers`:** This trips up many authors. Plugin manifests declare MCP servers under a top-level **`mcpServers`** key. Workspace MCP configuration (`.vscode/mcp.json`) uses **`servers`**. The object shape inside each is the same, but the enclosing key differs:
+
+```jsonc
+// plugin.json (plugin manifest)
+{
+  "name": "my-plugin",
+  "mcpServers": {
+    "my-mcp": { "type": "stdio", "command": "node", "args": ["server.js"] }
+  }
+}
+
+// .vscode/mcp.json (workspace config)
+{
+  "servers": {
+    "my-mcp": { "type": "stdio", "command": "node", "args": ["server.js"] }
+  }
+}
+```
+
 ### Discovering and Installing Plugins
 
 Plugins are available through marketplaces accessible in VS Code and the Copilot CLI:
@@ -169,13 +244,18 @@ Plugins are available through marketplaces accessible in VS Code and the Copilot
 ```text
 # VS Code: search @agentPlugins in the Extensions view
 
-# CLI: browse and install from marketplaces
+# Skills — use the dedicated gh skill command (public preview, April 2026)
+gh skill search <query>
+gh skill install github/awesome-copilot <skill-name>
+gh skill install github/awesome-copilot <skill-name> --pin v1.2.0
+
+# Full plugin bundles (skills + agents + hooks + MCP) via the Copilot CLI
 copilot plugin marketplace browse awesome-copilot
 copilot plugin install PLUGIN-NAME@awesome-copilot
-
-# Or install from a Git repository
 copilot plugin install OWNER/REPO
 ```
+
+For skills specifically, prefer `gh skill install` — it works across agent hosts (GitHub Copilot, Claude Code, Cursor, Codex, Gemini CLI), supports version pinning with `--pin`, and writes provenance metadata into the skill's frontmatter. See [Installing and Managing Skills with `gh skill`](primitive-4-skills.md#installing-and-managing-skills-with-gh-skill) for details. Use `copilot plugin install` when you need the full plugin bundle (hooks, agents, MCP servers alongside skills).
 
 Plugin-provided customizations appear alongside locally defined ones — skills show up in the Configure Skills menu, MCP servers in the server list, and agents in the agent picker.
 
@@ -206,23 +286,13 @@ Extensions are auto-detected at session start. Use `/extensions reload` to hot-r
 
 For the full reference, see the [CLI plugin reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference).
 
+**See it in action:** For a live demo, watch Alex Weininger in [Copilot CLI in VS Code](https://www.youtube.com/watch?v=_l3UO1oUoec).
+
 ---
 
 ## Context Window Guidelines
 
-Every primitive consumes tokens. Keep them focused:
-
-| Primitive | Recommended Size |
-|-----------|------------------|
-| Always-on instructions | 500-2000 words |
-| File-based instructions | 200-500 words each |
-| Prompts | 100-500 words |
-| Skills | 500-1500 words |
-| Custom agents | 200-1000 words |
-
-If Copilot seems to "forget" rules, your instructions may be too long. Move specialized content to file-based instructions or skills.
-
-For codebase conventions that Copilot discovers through usage — patterns, constraints, and preferences that are hard to author manually — consider enabling [Copilot Memory (Preview)](primitive-8-memory.md). Memory is repository-scoped: anything stored is shared with all users who have Memory enabled in that repo.
+Every primitive consumes tokens. For recommended size limits per primitive and total active context guidance, see [Part III: Context Window Guidelines](part-3-reference.md#context-window-guidelines).
 
 ---
 
@@ -268,11 +338,17 @@ Runtime enforcement and observability for agent sessions. Execute custom shell c
 
 Automatic repository-level learning that builds context over time. Unlike the explicit primitives above, Memory works passively — Copilot observes patterns in your codebase and conversations, then applies what it learned in future sessions. Memory complements explicit customization rather than replacing it.
 
-## 9. [Agentic Workflows](primitive-9-agentic-workflows.md)
+---
+
+## Platform Extensions
+
+The following are not configuration primitives — they don't shape what Copilot knows about your codebase. Instead, they extend Copilot's reach into new environments, consuming the primitives defined above.
+
+### [Agentic Workflows](agentic-workflows.md)
 
 GitHub Agentic Workflows run coding agents inside GitHub Actions — on a schedule, on events, or on demand. This section covers how they work, how to configure the coding agent for autonomous tasks, and how the customization primitives from this guide feed into continuous AI automation.
 
-## 10. [Copilot SDK](primitive-10-copilot-sdk.md)
+### [Copilot SDK](copilot-sdk.md)
 
 The Copilot SDK packages the same agent runtime that powers Copilot CLI and the cloud agent as libraries for Node.js, Python, Go, .NET, and Java. Use it to embed Copilot's agentic capabilities — tool invocation, multi-turn sessions, streaming, and reasoning — in custom tools, internal platforms, and CI pipelines.
 
