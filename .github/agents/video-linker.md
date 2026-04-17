@@ -8,7 +8,7 @@ tools:
   - createFile
   - runInTerminal
   - fetch
-model: 'Claude Opus 4.7'
+model: GPT-5.4 (copilot)
 ---
 
 # Who You Are

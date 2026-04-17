@@ -2,13 +2,13 @@
 
 [← Skills](primitive-4-skills.md) | [Part II Overview](part-2-primitives.md)
 
-*Updated: April 16, 2026. This guide serves as a primer for GitHub Copilot customization. File paths, configuration options, and feature availability may change as Copilot evolves—always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
+*Updated: April 17, 2026. This guide serves as a primer for GitHub Copilot customization. File paths, configuration options, and feature availability may change as Copilot evolves. Always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
 
 ---
 
 **Surface availability:** VS Code ✅ · JetBrains (Preview) · Visual Studio (Preview) · Eclipse ✅ · GitHub Copilot CLI ✅ · Cloud Agent —
 
-**Ownership:** Role-specific agents (security reviewer, deploy agent) are typically owned by the team whose role they model — **Security** owns the security reviewer, **Platform / SRE** owns the deploy agent. Developer-productivity agents (mentor, debugger) are owned by **engineering productivity / DX teams** or individual contributors.
+**Ownership:** Role-specific agents (security reviewer, deploy agent) are typically owned by the team whose role they model. **Security** owns the security reviewer, and **Platform / SRE** owns the deploy agent. Developer-productivity agents (mentor, debugger) are owned by **engineering productivity / DX teams** or individual contributors.
 
 ## Overview
 
@@ -23,14 +23,24 @@ Custom Agents provide specialized AI personas with constrained tool access and d
 
 **Location:** `.github/agents/*.md` (any `.md` file except `README.md`) or `**/*.agent.md` anywhere in the workspace. Configure additional search paths with the `chat.agentFilesLocations` setting to share agents across projects or keep them in a central location.
 
-### Authoring Paths in VS Code
+### Creating This Primitive
+
+Sound off before you steer — let Copilot draft the agent. Custom agent files have a broad frontmatter surface (`tools`, `model`, `handoffs`, `user-invocable`, `disable-model-invocation`, `target`, `mcp-servers`) and small mistakes, like an unknown tool name or the wrong `target`, cause the agent to fail to register. Use the built-in authoring paths and read the draft before committing. See [Don't Hand-Type Primitives — Let the Helmsman Repeat the Order](part-2-primitives.md#dont-hand-type-primitives--let-the-helmsman-repeat-the-order) for the rationale.
 
 VS Code 1.116 ships two complementary authoring paths for custom agents, both available from the **Chat Customizations** welcome page (gear icon in the Chat view):
 
-- **`/create-agent` slash command** — a guided, template-driven flow. Pick a base template, fill in the frontmatter, and iterate on the body. Best when you already know the persona and tools you want.
-- **Customize Your Agent (natural-language generator)** — describe the agent you want in plain English ("a senior security reviewer that only reads code and focuses on OWASP Top 10") and VS Code generates a draft `.agent.md` with appropriate `tools`, `description`, and body prompt. Best for exploration or when you're translating a role description from elsewhere.
+- **`/create-agent` slash command**: a guided, template-driven flow. Pick a base template, fill in the frontmatter, and iterate on the body. Best when you already know the persona and tools you want.
+- **Customize Your Agent (natural-language generator)**: describe the agent you want in plain English ("a senior security reviewer that only reads code and focuses on OWASP Top 10") and VS Code generates a draft `.agent.md` with appropriate `tools`, `description`, and body prompt. Best for exploration or when translating a role description from elsewhere.
 
-Both paths produce the same file format — use whichever fits the starting point. The generated file is a normal `.md` file you can hand-edit, version, and share through `.github/agents/`.
+Both paths produce the same file format. The generated file is a normal `.md` file you can hand-edit, version, and share through `.github/agents/`.
+
+> **💬 Try this prompt:**
+>
+> *Create a custom agent at `.github/agents/security-reviewer.agent.md` for a senior security engineer. Read-only tools only: search, readFile, usages. Focus on OWASP Top 10, authentication, and input validation. The agent should cite CWE IDs in its findings.*
+
+> **💬 Try this prompt:**
+>
+> *Draft a `.github/agents/deploy.agent.md` that handles production deployments. Limit tools to the ones needed for running our deploy script and checking PagerDuty; use a model array with Claude Opus 4.7 primary and GPT-5.4 as fallback; and make it not user-invocable from the picker — it should only be reachable as a handoff from the release manager agent.*
 
 ### When to Use Custom Agents
 
@@ -41,7 +51,7 @@ Both paths produce the same file format — use whichever fits the starting poin
 
 ### File Format
 
-Custom Agent files support these frontmatter fields. For the authoritative list — including cloud-agent-specific fields like `target`, `mcp-servers`, and environment variable substitution — see the [custom agents configuration reference](https://docs.github.com/en/copilot/reference/custom-agents-configuration).
+Custom Agent files support these frontmatter fields. For the authoritative list (including cloud-agent-specific fields like `target`, `mcp-servers`, and environment variable substitution), see the [custom agents configuration reference](https://docs.github.com/en/copilot/reference/custom-agents-configuration).
 
 | Field | Description |
 |-------|-------------|
@@ -229,9 +239,9 @@ You are a meticulous code reviewer focused on code quality and team standards.
 
 ### Sub-Agents: Context Isolation for Complex Workflows
 
-[Sub-agents](https://code.visualstudio.com/docs/copilot/agents/subagents) run tasks in a **dedicated, isolated context window** separate from the main chat session. The main agent delegates work to a sub-agent, which executes autonomously and returns only its final result — keeping the primary context clean and focused.
+[Sub-agents](https://code.visualstudio.com/docs/copilot/agents/subagents) run tasks in a **dedicated, isolated context window** separate from the main chat session. The main agent delegates work to a sub-agent, which executes autonomously and returns only its final result, keeping the primary context clean and focused.
 
-By default, sub-agents inherit the model and tools from the main chat session but start with a clean context window — they do not inherit instructions or conversation history from the parent agent. Running a custom agent as a sub-agent applies specialized behavior, tools, and models to a specific sub-task.
+By default, sub-agents inherit the model and tools from the main chat session but start with a clean context window. They don't inherit instructions or conversation history from the parent agent. Running a custom agent as a sub-agent applies specialized behavior, tools, and models to a specific sub-task.
 
 **See it in action:** [Customize Your Agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=679s) — Courtney Webster explains sub-agent context isolation and then demos three sub-agents (game maker, accessibility expert, universal janitor) running in parallel from a single orchestrator prompt.
 
@@ -240,8 +250,8 @@ By default, sub-agents inherit the model and tools from the main chat session bu
 | Benefit | Description |
 |---------|-------------|
 | **Keep main context focused** | The main agent's context window accumulates information from every prompt and response. Offloading research, analysis, or implementation to sub-agents prevents context bloat. |
-| **Parallel execution** | VS Code can run multiple sub-agents simultaneously — research authentication patterns, analyze code structure, and review documentation all at once. |
-| **Isolate experimental work** | Sub-agents are ideal for exploration. If a sub-agent's research leads to a dead end, only the final summary affects the main context — not all the intermediate steps. |
+| **Parallel execution** | VS Code can run multiple sub-agents simultaneously: research authentication patterns, analyze code structure, and review documentation all at once. |
+| **Isolate experimental work** | Sub-agents are ideal for exploration. If a sub-agent's research leads to a dead end, only the final summary affects the main context, not all the intermediate steps. |
 | **Specialized behavior** | Combine sub-agents with custom agents to apply different tools, instructions, and models per sub-task. A security agent reviews for vulnerabilities while a docs agent generates user guides. |
 | **Reduce token usage** | Sub-agents have their own context windows and don't add full conversation history to the main agent. Only the final result returns, significantly reducing token consumption for complex tasks. |
 
@@ -259,7 +269,7 @@ Each sub-agent focuses on its specific task without inheriting irrelevant contex
 #### When to Use Sub-Agents
 
 **Research Before Implementation:**
-Before writing code, delegate research to a sub-agent. The sub-agent explores documentation, examines existing patterns, and returns a focused summary — without polluting the main context with all the intermediate exploration.
+Before writing code, delegate research to a sub-agent. The sub-agent explores documentation, examines existing patterns, and returns a focused summary, without polluting the main context with all the intermediate exploration.
 
 > **💬 Try this prompt:**
 >
@@ -288,7 +298,7 @@ Different review concerns benefit from isolated, focused analysis:
 
 #### Invoking Sub-Agents
 
-To invoke a sub-agent, the `runSubagent` (also called `agent`) tool must be available. Hint in the chat prompt that a sub-agent should be used — the main agent starts the sub-agent, passes the task, and receives only the final result.
+To invoke a sub-agent, the `runSubagent` (also called `agent`) tool must be available. Hint in the chat prompt that a sub-agent should be used. The main agent starts the sub-agent, passes the task, and receives only the final result.
 
 To optimize sub-agent performance, clearly define the task and expected output. This helps the sub-agent focus without passing unnecessary context back to the main agent.
 
@@ -364,7 +374,7 @@ triggered directly by the user, never delegated to by other agents.
 
 By default, sub-agents cannot invoke other sub-agents. The `chat.subagents.allowInvocationsFromSubagents` setting (available since VS Code 1.113) enables nested sub-agent invocation up to a maximum depth of 5.
 
-This setting is disabled by default to prevent accidental infinite recursion. Enable it cautiously for workflows that benefit from complex task decomposition — for example, an orchestrator agent that delegates to a research agent, which in turn spawns specialized analysis agents.
+This setting is disabled by default to prevent accidental infinite recursion. Enable it cautiously for workflows that benefit from complex task decomposition. For example, an orchestrator agent might delegate to a research agent, which in turn spawns specialized analysis agents.
 
 | Setting | Default | Effect |
 |---------|---------|--------|
@@ -464,7 +474,7 @@ handoffs:
     prompt: 'Review the implemented code for security vulnerabilities.'
   - label: 'Write Tests'
     agent: 'test-writer'
-    prompt: 'Write comprehensive tests for the new feature code.'
+    prompt: 'Write tests covering happy path and error cases for the new feature code.'
   - label: 'Create PR'
     agent: 'pr-creator'
     prompt: 'Create a pull request with all changes and a detailed description.'
@@ -503,7 +513,7 @@ After implementing the feature:
 - Summarize what each sub-agent should focus on
 ```
 
-**Why this works:** The Feature Builder stays focused on implementation. When it's time for security review, tests, or PR creation, it hands off to specialized agents that have their own isolated context. The sub-agents don't inherit the full implementation context — they receive only the relevant prompt and can focus deeply on their specialty.
+**Why this works:** The Feature Builder stays focused on implementation. When it's time for security review, tests, or PR creation, it hands off to specialized agents that have their own isolated context. The sub-agents don't inherit the full implementation context. They receive only the relevant prompt and can focus deeply on their specialty.
 
 ### Prompt vs. Custom Agent Comparison
 
@@ -550,14 +560,11 @@ Rather than manually editing agent files, use Copilot to generate and refine the
 >
 > *Store the result in .github/agents/security-reviewer.agent.md*
 
-This approach ensures:
-- Proper YAML frontmatter syntax
-- Consistent formatting
-- Human-verifiable output that can be reviewed in PRs
+Generating agents this way produces valid YAML frontmatter on the first pass, keeps formatting consistent with other agents in the repo, and leaves a plain-text `.agent.md` file that reviewers can diff in a PR.
 
 ### Anti-Patterns to Avoid
 
-| Anti-Pattern | Why It's Problematic | Better Approach |
+| Anti-Pattern | What Goes Wrong | Better Approach |
 |--------------|---------------------|------------------|
 | **Typing directly into .agent.md files** | Prone to syntax errors, hard to maintain consistency | Use the gear icon or ask the agent to generate/update |
 | **Vague persona definitions** | "You are helpful" produces inconsistent results | Be specific about expertise, experience, and approach |
@@ -594,7 +601,7 @@ description: 'What this mode does (shows in picker)'
 
 ### Step 1: Define Specific Personas
 
-Specificity in persona definition produces consistency in outputs.
+A persona like "You are a helpful assistant for reviewing code" will produce different tone, depth, and priorities every session. Nail down the role, years of experience, background, and stance so the agent gives the same kind of review whether you invoke it today or next month.
 
 **Too Vague:**
 ```markdown
@@ -605,7 +612,7 @@ You are a helpful assistant for reviewing code.
 ```markdown
 You are a principal engineer with 20 years of experience across 
 startups and enterprise. You've seen what works and what becomes 
-technical debt. You're kind but direct—you won't sugarcoat issues 
+technical debt. You're kind but direct. You won't sugarcoat issues, 
 but you always explain your reasoning.
 ```
 
@@ -700,7 +707,7 @@ tools: ['search', 'readFile']
 model: 'Claude Opus 4.7'
 ---
 
-You are a rubber duck. Your job is NOT to solve problems—it's to help 
+You are a rubber duck. Your job is NOT to solve problems. It's to help 
 the user solve them themselves by asking good questions.
 
 ## Your Technique
@@ -718,7 +725,7 @@ the user solve them themselves by asking good questions.
 - "Interesting! What made you think of that?"
 ```
 
-**The Devil's Advocate** — Challenges every decision:
+**The Devil's Advocate**: Challenges every decision:
 
 ```markdown
 ---
@@ -738,12 +745,12 @@ Your job is to find holes in their reasoning.
 - "What would a skeptical stakeholder say?"
 
 ## Important
-You're not being negative—you're being thorough.
+You're not being negative. You're being thorough.
 After challenging, acknowledge good points.
 End with "If you can address these, you've got a solid plan."
 ```
 
-**SRE Agent** — Incident response and production reliability:
+**SRE Agent**: Incident response and production reliability:
 
 This agent is a specialized persona that handles production operations, not just code. It pairs well with an [incident response skill](primitive-4-skills.md#skills-vs-mcp-servers-when-to-use-which) for runbook knowledge and monitoring MCP servers for infrastructure access.
 
@@ -769,7 +776,7 @@ You think in terms of blast radius, rollback plans, and service dependencies.
 1. Acknowledge and assess severity (P1/P2/P3)
 2. Check deployment history: `git log --oneline --since='6 hours ago'`
 3. Check service health and error rates
-4. Identify blast radius — which users/services are affected?
+4. Identify blast radius. Which users/services are affected?
 5. Decide: rollback, hotfix, or mitigation
 6. Communicate status to stakeholders
 7. After resolution, draft a postmortem
@@ -785,12 +792,12 @@ You think in terms of blast radius, rollback plans, and service dependencies.
 - Deploy to production without a rollback plan
 - Dismiss alerts without investigation
 - Skip postmortems after incidents
-- Blame individuals — focus on systemic improvements
+- Blame individuals instead of fixing systemic issues
 ```
 
 ### Visual Studio Code Agents - Insiders (Preview)
 
-Visual Studio Code Agents - Insiders is a companion app shipping alongside VS Code Insiders, built for agent-native development. It provides a dedicated interface for agent sessions, changes review, and customization management — separate from the main editor.
+Visual Studio Code Agents - Insiders is a companion app shipping alongside VS Code Insiders, built for agent-native development. It provides a dedicated interface for agent sessions, changes review, and customization management, separate from the main editor.
 
 Launch it via the **Chat: Open Agents Application** command in VS Code, or directly from the Start menu (Windows) or Applications folder (macOS).
 
@@ -806,7 +813,7 @@ Copilot CLI ships with specialized agents for common tasks:
 
 | Agent | Purpose |
 |-------|---------|
-| **Explore** | Quick codebase analysis — ask questions about code without adding to main context |
+| **Explore** | Quick codebase analysis. Answers questions about code without adding to main context |
 | **Task** | Execute commands (tests, builds) with brief summaries on success, full output on failure |
 | **Plan** | Analyze dependencies and structure to create implementation plans before making changes |
 | **Code-review** | Review changes with a focus on surfacing genuine issues, minimizing noise |
@@ -827,17 +834,17 @@ In naming conflicts, user-level agents override repository-level, and repository
 
 Custom agents can be invoked three ways:
 
-1. **Slash command** — Type `/agent` in interactive mode and select from the list
-2. **Natural language** — Reference the agent in a prompt: `Use the refactoring agent to refactor this code block`
-3. **Command-line flag** — `copilot --agent=security-reviewer --prompt "Review this code"`
+1. **Slash command**: Type `/agent` in interactive mode and select from the list
+2. **Natural language**: Reference the agent in a prompt: `Use the refactoring agent to refactor this code block`
+3. **Command-line flag**: `copilot --agent=security-reviewer --prompt "Review this code"`
 
-The same agent definitions work in both VS Code and the CLI, so teams that invest in custom agents get value across both surfaces.
+The same agent definitions work in both VS Code and the CLI, so a security-reviewer agent authored once runs unchanged in an editor chat session and in a `copilot --agent=security-reviewer` CLI invocation.
 
 ### Fleet Mode and Remote Sessions
 
 Two CLI features extend the agent model beyond single-terminal usage:
 
-**Fleet mode** (`/fleet`) dispatches multiple sub-agents in parallel. The CLI decomposes a large task into independent subtasks, tracks dependencies, and runs them concurrently — each sub-agent with its own context but sharing the filesystem. Custom agents can participate in fleet workflows as specialized sub-agents (e.g., one agent handles test generation while another updates documentation).
+**Fleet mode** (`/fleet`) dispatches multiple sub-agents in parallel. The CLI decomposes a large task into independent subtasks, tracks dependencies, and runs them concurrently. Each sub-agent gets its own context but shares the filesystem. Custom agents can participate in fleet workflows as specialized sub-agents (e.g., one agent handles test generation while another updates documentation).
 
 **Remote sessions** (`/remote`) stream the CLI session to the GitHub web interface and GitHub Mobile. Developers can start a session on one device, then monitor, steer, and approve actions from another. Combined with custom agents, this enables workflows like starting an `@deploy` agent session at the office and approving the final deployment step from a phone.
 

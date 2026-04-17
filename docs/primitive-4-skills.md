@@ -10,7 +10,7 @@
 
 ## Overview
 
-Skills represent discrete capabilities that Copilot can invoke when contextually relevant. Unlike always-on instructions (which consume context on every request), **skills only load into context when their description matches the user's request**. This keeps context lean for routine tasks while enabling deep domain knowledge when needed.
+A skill is a folder containing a `SKILL.md` plus any scripts or templates it needs. Copilot loads the skill into context only when its description matches what the user asked for — so an ImageMagick skill sits dormant during a CSS edit and activates when someone says "resize these images." Always-on instructions load on every request; skills load on demand.
 
 Unlike prompts (which users invoke explicitly via `/`), skills activate automatically based on description matching.
 
@@ -33,6 +33,22 @@ Unlike prompts (which users invoke explicitly via `/`), skills activate automati
 - Loaded on-demand, not always in context
 
 For full documentation and the specification, visit [agentskills.io](https://agentskills.io).
+
+### Creating This Primitive
+
+Sound off before you steer — let Copilot draft the skill. Skills have more moving parts than any other primitive: a folder, a `SKILL.md` with frontmatter whose `description` governs whether the skill ever activates, and often scripts or templates alongside. A hand-authored skill with a vague description or a misplaced `SKILL.md` is a skill that never loads. Use the built-in creation command and read the draft.
+
+**In VS Code**, run `/create-skill` in Chat. The command scaffolds the folder under `.github/skills/`, writes `SKILL.md` with valid frontmatter, and prompts for the metadata that drives discovery. **In the Copilot CLI**, ask the agent to create the skill directly — the CLI has access to the same generator. See [Don't Hand-Type Primitives — Let the Helmsman Repeat the Order](part-2-primitives.md#dont-hand-type-primitives--let-the-helmsman-repeat-the-order) for the rationale.
+
+> **💬 Try this prompt:**
+>
+> *Create a skill at `.github/skills/debug-flaky-tests/SKILL.md` that walks through our playbook for diagnosing flaky tests: re-run with `--repeat`, check for unmocked network calls, check test ordering dependencies, and bisect with `git`. Write a description that will match when someone asks Copilot to help debug a flaky test.*
+
+> **💬 Try this prompt:**
+>
+> *Package the release-notes generation procedure we've been running by hand as a skill under `.github/skills/release-notes/`. Read `CHANGELOG.md` for the format, include the script we use to gather merged PRs since the last tag, and make sure the description fires when someone asks to draft release notes.*
+
+This repository's own [`create-agent-skill`](../.github/skills/create-agent-skill/SKILL.md) skill is an example of the pattern: a packaged procedure that Copilot invokes to scaffold other skills.
 
 ### Directory Structure
 
@@ -288,7 +304,7 @@ This skill works with the GitHub MCP server. Ensure it's configured in `.vscode/
 
 ## Installing and Managing Skills with `gh skill`
 
-As of [April 16, 2026](https://github.blog/changelog/2026-04-16-manage-agent-skills-with-github-cli), the GitHub CLI ships a dedicated `gh skill` command (public preview) for discovering, installing, updating, and publishing agent skills. It replaces ad-hoc `git clone` or copy-paste flows with a package-manager-style workflow, and it works across agent hosts — GitHub Copilot, Claude Code, Cursor, Codex, Gemini CLI, and Antigravity — using a single command surface.
+As of [April 16, 2026](https://github.blog/changelog/2026-04-16-manage-agent-skills-with-github-cli), the GitHub CLI ships a dedicated `gh skill` command (public preview) for discovering, installing, updating, and publishing agent skills. It replaces ad-hoc `git clone` or copy-paste flows with a package-manager-style workflow, and it works across a single command surface for all supported agent hosts: GitHub Copilot, Claude Code, Cursor, Codex, Gemini CLI, and Antigravity.
 
 **Requires GitHub CLI v2.90.0 or later.** `gh skill` is in public preview and subject to change.
 
@@ -355,20 +371,13 @@ Skills are executable instructions that shape agent behavior. A malicious or com
 
 ### Bootstrap Skills with a Skill-Creator Skill
 
-This is where skills get interesting: **skills can create skills.**
+**Skills can create skills.**
 
-The agentskills.io specification defines a portable format for packaging agent capabilities. But writing SKILL.md files by hand — with correct frontmatter, proper name validation, good descriptions, organized sections — is tedious. The solution? A skill that knows how to create skills.
+The agentskills.io specification defines a portable format for packaging agent capabilities. Writing `SKILL.md` files by hand is tedious work: correct frontmatter, name validation rules, discoverable descriptions, consistent section structure. A skill-creator skill encodes all of that so the agent can scaffold new skills on request.
 
 #### Why This Matters
 
-The skill-creator pattern demonstrates the power of the skills model:
-
-1. **Meta-capability**: The agent gains the ability to extend itself
-2. **On-demand loading**: The skill-creator only loads when you're actually creating skills
-3. **Consistency**: Every skill follows the same structure and best practices
-4. **Velocity**: New skills take seconds instead of minutes
-
-This is the difference between "AI that follows instructions" and "AI that builds its own capabilities."
+The skill-creator pattern shows what on-demand loading enables. The skill stays out of context during normal coding and activates only when someone asks to build a new skill, at which point it enforces the spec and produces a scaffold in seconds. New skills end up consistent because one file governs how they're generated, not tribal knowledge.
 
 #### What the Skill-Creator Handles
 
@@ -456,7 +465,7 @@ For more control, provide context in your prompt:
 >
 > `Create a skill for Kubernetes deployments. It should cover kubectl commands, common YAML patterns, and debugging pods. Include a scripts/ directory for helper scripts.`
 
-The skill-creator uses your requirements to generate a more comprehensive skill:
+The skill-creator uses your requirements to generate a fuller skill with supporting files:
 
 ```
 kubernetes-deployments/
@@ -468,7 +477,7 @@ kubernetes-deployments/
 
 #### The Recursive Pattern
 
-The recursive aspect: **the skill-creator is itself a skill.**
+**The skill-creator is itself a skill.**
 
 This means:
 - It's only loaded into context when you're creating skills
@@ -480,12 +489,7 @@ When you open your repository and ask "help me resize some images," the skill-cr
 
 #### Building a Skill Library
 
-Teams using the skill-creator pattern report rapid capability growth:
-
-**Week 1:** Add skill-creator to repo
-**Week 2:** Create skills for common tasks (testing, deployment, documentation)
-**Week 3:** Team members contribute domain-specific skills
-**Month 2:** Library of 15-20 skills covering most workflows
+Once the skill-creator is in place, the library tends to grow quickly. Teams start with skills for common tasks (testing, deployment, documentation), then contributors add domain-specific skills as they encounter recurring workflows. A repo with fifteen to twenty focused skills covers most day-to-day work without bloating any single instruction file.
 
 Each skill is:
 - Version-controlled alongside code
@@ -493,7 +497,7 @@ Each skill is:
 - Discoverable via description matching
 - Maintainable by the whole team
 
-This is how you scale AI capabilities across an organization — not by writing longer instruction files, but by building composable skills that activate when needed.
+The scaling model is composition, not longer instruction files. Each skill stays small, focused, and activates only when it applies.
 
 ### Why Skills Instead of Always-On Instructions?
 
@@ -515,7 +519,7 @@ Moving ImageMagick to a skill means:
 - **Always-on instructions**: Rules that apply to most/all coding tasks (style, testing patterns, architecture)
 - **Skills**: Specialized capabilities used occasionally (image processing, specific integrations, complex workflows)
 
-If you find yourself thinking "this is useful, but it doesn't need to be in context all the time" — that's a skill.
+If you find yourself thinking "this is useful, but it doesn't need to be in context all the time," that's a skill.
 
 ### Skills vs. File-Based Instructions: Overlapping Territory
 
@@ -523,7 +527,7 @@ If you find yourself thinking "this is useful, but it doesn't need to be in cont
 
 Both primitives emerged from real needs as the AI coding assistant space evolved. File-based instructions use glob patterns (`applyTo: 'src/api/**/*'`) to load context when working on matching files. Skills use description matching to load context when the user's intent matches. Sometimes the same knowledge could reasonably live in either place.
 
-**There is no definitively "right" answer.** Agent Skills reached general availability in VS Code 1.109 (January 2026) and are enabled by default, but the boundaries between primitives are still being explored. That fuzziness is by design — it gives teams flexibility to organize knowledge in ways that match their workflows.
+**There is no definitively "right" answer.** Agent Skills reached general availability in VS Code 1.109 (January 2026) and are enabled by default, but the boundaries between primitives are still being explored. That fuzziness is by design. It gives teams flexibility to organize knowledge in ways that match their workflows.
 
 #### When They Overlap
 
@@ -563,7 +567,7 @@ Some patterns that teams have found useful:
 - Use skills for "how to do Y" (workflows, multi-step processes, domain knowledge)
 - Start with file-based instructions (simpler), graduate to skills when you need portability or supporting files
 
-If you're unsure, start somewhere. You can always refactor later — these are just markdown files in version control. The cost of experimenting is low, and you'll learn what works for your specific codebase and team.
+If you're unsure, start somewhere. You can always refactor later. These are just markdown files in version control, the cost of experimenting is low, and you'll learn what works for your specific codebase and team.
 
 **The goal isn't to pick the "correct" primitive. The goal is to get useful context to the AI when it needs it.** If your current approach does that, it's working.
 
@@ -579,7 +583,7 @@ Is this needed on EVERY request?
 —
 +-- No → Is this reusable across multiple contexts/files?
          +-- Yes → Skill (.github/skills/)
-         —         Skills shine when the same knowledge applies
+         —         Skills fit when the same knowledge applies
          —         in multiple places throughout the repo.
          —
          +-- No → File-based instruction (.github/instructions/)
@@ -608,7 +612,7 @@ Unlike file-based instructions (which use `applyTo` patterns), skills load **on-
 2. **The agent decides which skills are relevant** based on matching the user's request to skill descriptions
 3. **Only then is the full skill content loaded** into context
 
-This makes skills lightweight while enabling powerful capabilities. However, it means **your skill's description is critical**:
+Skills stay lightweight because only the matched skill gets loaded. That also means **your skill's description is critical**:
 
 ```markdown
 ---
@@ -659,7 +663,7 @@ This helps hosts decide whether to surface a skill in their environment.
 
 ### Debugging Skills: See What's Loaded
 
-VS Code's **Chat Diagnostics** reveals exactly what skills and instructions are loaded. This is invaluable for understanding why a skill did or didn't activate:
+VS Code's **Chat Diagnostics** reveals exactly what skills and instructions are loaded. This is useful for understanding why a skill did or didn't activate:
 
 1. In the Chat view, click the **gear icon** (Configure Chat)
 2. Select **Diagnostics**
@@ -674,10 +678,10 @@ When you see a skill wasn't activated, check whether its description clearly mat
 
 ### Skills vs. MCP Servers: When to Use Which
 
-Skills and [MCP](https://modelcontextprotocol.io) servers are complementary, not competing. **You can and should use them together.** The question isn't "which one?" — it's "what does each contribute?"
+Skills and [MCP](https://modelcontextprotocol.io) servers are complementary, not competing. **You can and should use them together.** The useful framing is what each contributes.
 
-- **MCP servers** provide *access* — authentication, API connections, external tool integration
-- **Skills** provide *knowledge* — templates, conventions, workflows, domain expertise
+- **MCP servers** provide *access*: authentication, API connections, external tool integration.
+- **Skills** provide *knowledge*: templates, conventions, workflows, domain expertise.
 
 Many of the best setups combine both: an MCP server handles the "how to connect" while a skill handles the "how we do things here."
 
@@ -921,7 +925,7 @@ Use the Jira MCP server's create-issue tool with:
 - customFields: { "story_points": 5 }
 ```
 
-**Why both?** The MCP server handles Jira authentication and API calls. The skill ensures every ticket follows team conventions — consistent formatting, required fields, proper story point values. The skill is your process; the MCP is your connection.
+The MCP server handles Jira authentication and API calls. The skill ensures every ticket follows team conventions: consistent formatting, required fields, proper story point values. The skill encodes process, the MCP provides connection.
 
 ---
 
@@ -1029,7 +1033,7 @@ Skill: Creates branch, makes changes, commits locally
 MCP Server: Pushes to GitHub, creates PR, links to Jira ticket
 ```
 
-This pattern keeps local operations fast and portable while properly securing external integrations.
+This pattern keeps local operations (git, file I/O, running tests) portable across agents, while routing anything that needs credentials or crosses an org boundary through an MCP server where auth and access controls live.
 
 For more on building skills, visit [agentskills.io/home](https://agentskills.io/home).
 

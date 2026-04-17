@@ -8,7 +8,7 @@ tools:
   - createFile
   - fetch
   - agent
-model: 'Claude Opus 4.7'
+model: GPT-5.4 (copilot)
 handoffs:
   - label: 'Send to Doc Maintainer'
     agent: 'Doc Maintainer'

@@ -2,31 +2,31 @@
 
 [← Agentic Workflows](agentic-workflows.md) | [Part II Overview](part-2-primitives.md)
 
-*Updated: April 16, 2026 · Validated against the [Copilot SDK public preview](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/) as of this date.*
+*Updated: April 17, 2026 · Validated against the [Copilot SDK public preview](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/) as of this date.*
 
 ---
 
 ## Scope of This Page
 
-This page is a **brief orientation** to the Copilot SDK — what it is, when to reach for it, and how it fits alongside the eight primitives. It is **not** a full SDK guide. API surface area, authentication flows, tool-definition schemas, streaming semantics, error handling, and language-specific idioms live in the official SDK documentation and change frequently during public preview.
+This page is a **brief orientation** to the Copilot SDK: what it is, when to reach for it, and how it fits alongside the eight primitives. It is **not** a full SDK guide. API surface area, authentication flows, tool-definition schemas, streaming semantics, error handling, and language-specific idioms live in the official SDK documentation and change frequently during public preview.
 
 For anything beyond "should I use this, and where does it sit in the stack," go straight to the source:
 
-- [github.com/github/copilot-sdk](https://github.com/github/copilot-sdk) — Canonical repository, per-language READMEs, API reference, and examples
-- [Public preview announcement](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/) — Release notes and capability scope at launch
-- [github.blog/changelog (Copilot label)](https://github.blog/changelog/label/copilot/) — Ongoing SDK updates
+- [github.com/github/copilot-sdk](https://github.com/github/copilot-sdk): Canonical repository, per-language READMEs, API reference, and examples
+- [Public preview announcement](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/): Release notes and capability scope at launch
+- [github.blog/changelog (Copilot label)](https://github.blog/changelog/label/copilot/): Ongoing SDK updates
 
 ---
 
 ## Overview
 
-The eight customization primitives shape Copilot where it already runs — in the editor, in the terminal, and on GitHub. The Copilot SDK lets developers bring that same agent runtime into their own applications and workflows.
+The eight customization primitives shape Copilot where it already runs: in the editor, in the terminal, and on GitHub. The Copilot SDK lets developers bring that same agent runtime into their own applications and workflows.
 
-The [Copilot SDK](https://github.com/github/copilot-sdk) is the production-tested runtime that powers [GitHub Copilot CLI](https://github.com/github/copilot-cli) and the Copilot cloud agent, packaged as libraries for five languages. Instead of building agent orchestration from scratch — tool routing, context management, permission handling, streaming — teams embed the runtime directly and focus on domain logic.
+The [Copilot SDK](https://github.com/github/copilot-sdk) is the runtime that powers [GitHub Copilot CLI](https://github.com/github/copilot-cli) and the Copilot cloud agent, packaged as libraries for five languages. Teams can embed the runtime directly instead of building agent orchestration from scratch (tool routing, context management, permission handling, streaming).
 
 **Status:** Public preview (April 2, 2026)
 **Best For:** Embedding Copilot agent capabilities in custom tools, internal platforms, CI pipelines, and developer workflows
-**Location:** External dependency — installed via package managers, not configured in-repo
+**Location:** External dependency, installed via package managers rather than configured in-repo
 
 **Official docs:** [Copilot SDK](https://github.com/github/copilot-sdk) · [Changelog](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/)
 
@@ -43,7 +43,7 @@ Use the Copilot SDK when the agent needs to run *outside* the surfaces GitHub al
 | **Custom chat interfaces** | A Slack bot or web UI that delegates coding tasks to the Copilot agent runtime |
 | **Platform engineering** | A self-service platform where teams request infrastructure changes described in natural language |
 
-If the use case fits inside VS Code, CLI, or GitHub Actions, use the existing primitives instead — they require zero custom code.
+If the use case fits inside VS Code, CLI, or GitHub Actions, use the existing primitives instead. They require zero custom code.
 
 ---
 
@@ -111,7 +111,7 @@ const result = await session.send('Implement suggestion #3');
 
 ### Streaming
 
-Token-by-token streaming supports responsive UIs where the agent's reasoning and output appear in real time:
+Token-by-token streaming lets a CLI, chat UI, or web front-end render the agent's output as it is generated, so users see progress on long-running tasks instead of waiting for the full response:
 
 ```typescript
 const stream = agent.stream('Explain the authentication flow in this codebase');
@@ -136,7 +136,7 @@ const deployTool = defineTool({
 
 ### Bring Your Own Key (BYOK)
 
-Enterprises can use their own API keys for supported model providers (OpenAI, Anthropic, Azure) instead of routing through GitHub's infrastructure. This gives teams control over cost, privacy, and provider selection:
+Enterprises can use their own API keys for supported model providers (OpenAI, Anthropic, Azure) instead of routing through GitHub's infrastructure:
 
 ```typescript
 const agent = new CopilotAgent({
@@ -151,7 +151,7 @@ const agent = new CopilotAgent({
 
 ### Observability
 
-Built-in [OpenTelemetry](https://opentelemetry.io/) support provides distributed tracing across agent sessions — useful for debugging complex workflows and understanding tool invocation patterns in production.
+Built-in [OpenTelemetry](https://opentelemetry.io/) support provides distributed tracing across agent sessions. That makes it easier to debug complex workflows and understand tool invocation patterns in production.
 
 ---
 
@@ -179,7 +179,7 @@ Use MCP when the agent needs to *call* your system. Use the SDK when your system
 
 ### SDK + Customization Primitives
 
-SDK-powered applications can still benefit from the repo-level primitives. When the SDK agent operates on a repository, it can read `copilot-instructions.md`, discover skills, and apply the same conventions that guide Copilot in VS Code. The primitives travel with the repository — any agent that works on the code benefits from them.
+SDK-powered applications can still benefit from the repo-level primitives. When the SDK agent operates on a repository, it can read `copilot-instructions.md`, discover skills, and apply the same conventions that guide Copilot in VS Code. The primitives travel with the repository, so any agent that works on the code benefits from them.
 
 ---
 
@@ -187,7 +187,7 @@ SDK-powered applications can still benefit from the repo-level primitives. When 
 
 1. **Install the SDK** for your language (see table above)
 2. **Authenticate** with a GitHub token (Copilot subscription required) or configure BYOK
-3. **Define tools** — functions the agent can call during its reasoning loop
+3. **Define tools**: functions the agent can call during its reasoning loop
 4. **Create an agent** with a system prompt and tool list
 5. **Run or stream** a prompt and handle the response
 
@@ -204,18 +204,18 @@ The Copilot SDK is in public preview. Current constraints:
 | **Preview status** | APIs may change. Pin dependency versions and monitor the changelog |
 | **Copilot subscription required** | Unless using BYOK, a Copilot Pro, Pro+, Business, or Enterprise subscription is needed |
 | **Premium request quotas** | SDK calls consume Copilot premium requests. BYOK users pay their model provider directly |
-| **No built-in VS Code tools** | The SDK doesn't include VS Code's file editing, terminal, or search tools — define your own equivalents |
+| **No built-in VS Code tools** | The SDK doesn't include VS Code's file editing, terminal, or search tools. Define your own equivalents |
 | **Model availability** | Available models depend on your subscription tier and region |
 
 ---
 
 ## Further Reading
 
-- [Copilot SDK repository](https://github.com/github/copilot-sdk) — Source code, API reference, and examples
-- [Copilot SDK public preview announcement](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/) — Changelog entry
-- [MCP (Model Context Protocol)](primitive-6-mcp.md) — Connect Copilot to external tools (complementary to the SDK)
-- [Agentic Workflows](agentic-workflows.md) — Run coding agents in GitHub Actions (alternative for CI/CD use cases)
-- [Custom Agents](primitive-5-custom-agents.md) — Define specialized personas for the agent runtime
+- [Copilot SDK repository](https://github.com/github/copilot-sdk): Source code, API reference, and examples
+- [Copilot SDK public preview announcement](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/): Changelog entry
+- [MCP (Model Context Protocol)](primitive-6-mcp.md): Connect Copilot to external tools (complementary to the SDK)
+- [Agentic Workflows](agentic-workflows.md): Run coding agents in GitHub Actions (alternative for CI/CD use cases)
+- [Custom Agents](primitive-5-custom-agents.md): Define specialized personas for the agent runtime
 
 ---
 

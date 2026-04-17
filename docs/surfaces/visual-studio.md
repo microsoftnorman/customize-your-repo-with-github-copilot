@@ -4,7 +4,7 @@
 
 ---
 
-[GitHub Copilot for Visual Studio](https://marketplace.visualstudio.com/items?itemName=GitHub.copilotvs) is the first-party AI assistant for the Windows-based Visual Studio IDE. It ships as a recommended component in the Visual Studio Installer and is installed by default with every workload. This page is the definitive reference for teams using Copilot inside **Visual Studio 2022 (17.x)** and **Visual Studio 2026 (18.x)** on .NET, C++, and game development projects.
+[GitHub Copilot for Visual Studio](https://marketplace.visualstudio.com/items?itemName=GitHub.copilotvs) is the AI assistant GitHub ships for the Windows-based Visual Studio IDE. It ships as a recommended component in the Visual Studio Installer and is installed by default with every workload. This page covers Copilot inside **Visual Studio 2022 (17.x)** and **Visual Studio 2026 (18.x)** on .NET, C++, and game development projects.
 
 ## Positioning
 
@@ -45,7 +45,7 @@ GitHub publishes the canonical [Copilot feature matrix for Visual Studio](https:
 | Copilot memories | ✓ | ✓ | ✓ | ✓ | ✓ |
 | Cloud coding agent integration | ✗ | ✗ | ✗ | Preview (18.1) | ✓ |
 
-**Edition notes.** Copilot is available across Visual Studio Community, Professional, and Enterprise editions on equal terms; there is no edition gating for Copilot features themselves. Copilot is **not** included in a Visual Studio subscription — it is a separate GitHub subscription (Free, Pro, Business, or Enterprise). Enterprise policy features (content exclusions, MCP allowlists, telemetry controls, preview feature toggles) are governed at the GitHub organization level, not the Visual Studio edition level.
+**Edition notes.** Copilot is available across Visual Studio Community, Professional, and Enterprise editions on equal terms; there is no edition gating for Copilot features themselves. Copilot is **not** included in a Visual Studio subscription. It ships as a separate GitHub subscription (Free, Pro, Business, or Enterprise). Enterprise policy features (content exclusions, MCP allowlists, telemetry controls, preview feature toggles) are governed at the GitHub organization level, not the Visual Studio edition level.
 
 ## Installation and Sign-in
 
@@ -68,10 +68,10 @@ The Copilot status badge on the Visual Studio title bar indicates connection sta
 
 For organization-managed accounts, administrators control Copilot behavior from the **GitHub Copilot dashboard** at the organization or enterprise level. Relevant policies include:
 
-- **Editor preview features** — governs agent mode, MCP usage, and other preview capabilities. When disabled, users on that subscription cannot use agent mode or MCP servers in Visual Studio.
-- **Public code matching** — controls whether completions that match public repositories are allowed or filtered.
-- **Content exclusions** — path and repository-level rules that prevent Copilot from sending certain files to the model.
-- **MCP server allowlist** — restricts which MCP servers the organization permits.
+- **Editor preview features:** governs agent mode, MCP usage, and other preview capabilities. When disabled, users on that subscription cannot use agent mode or MCP servers in Visual Studio.
+- **Public code matching:** controls whether completions that match public repositories are allowed or filtered.
+- **Content exclusions:** path and repository-level rules that prevent Copilot from sending certain files to the model.
+- **MCP server allowlist:** restricts which MCP servers the organization permits.
 
 See [Admin controls for GitHub Copilot](https://learn.microsoft.com/en-us/visualstudio/ide/visual-studio-github-copilot-admin) for the full administrator reference.
 
@@ -101,9 +101,9 @@ The default accept key can be remapped from `Tab` to `Right Arrow` under **Tools
 
 **Tools → Options → Text Editor → Inline Suggestions** exposes:
 
-- **Inline Suggestions Invocation** — switch from automatic to manual. In manual mode, suggestions appear only when invoked with `Alt+.` or `Alt+,`.
-- **Show inline suggestions only after a pause in typing** — adds a debounce delay so completions do not flash while typing.
-- **Use colorized text for code completions** — disable to fall back to the legacy single-color ghost text.
+- **Inline Suggestions Invocation:** switch from automatic to manual. In manual mode, suggestions appear only when invoked with `Alt+.` or `Alt+,`.
+- **Show inline suggestions only after a pause in typing:** adds a debounce delay so completions do not flash while typing.
+- **Use colorized text for code completions:** disable to fall back to the legacy single-color ghost text.
 
 ### Per-language enable/disable
 
@@ -113,8 +113,8 @@ Completion enablement is controlled at the Copilot badge menu on the title bar. 
 
 [GitHub Copilot Chat in Visual Studio](https://learn.microsoft.com/en-us/visualstudio/ide/visual-studio-github-copilot-chat) has two surfaces:
 
-- **Chat window** — opened from **View → GitHub Copilot Chat**. Best for open-ended questions, multi-turn dialogs, and tasks that span multiple files.
-- **Inline chat** — right-click in the editor and select **Ask Copilot → Chat**, or use the editor's context menu. Best for tightly scoped edits on the current selection; displays suggestions as an inline diff.
+- **Chat window:** opened from **View → GitHub Copilot Chat**. Best for open-ended questions, multi-turn dialogs, and tasks that span multiple files.
+- **Inline chat:** right-click in the editor and select **Ask Copilot → Chat**, or use the editor's context menu. Best for tightly scoped edits on the current selection; displays suggestions as an inline diff.
 
 ### Context references
 
@@ -174,7 +174,7 @@ MCP tools are **only available in agent mode**. Ask mode cannot invoke MCP serve
 
 1. The user enters a high-level prompt (for example, "Add pagination to the `/orders` endpoint, including integration tests").
 2. Copilot determines relevant files from the open solution.
-3. Copilot invokes tools — built-in or from connected MCP servers — to edit files, run terminal commands, execute builds, and run tests.
+3. Copilot invokes tools (built-in or from connected MCP servers) to edit files, run terminal commands, execute builds, and run tests.
 4. Copilot requests confirmation before running a terminal command or a non-built-in tool.
 5. As edits stream into the editor, Copilot monitors outcomes (compiler errors, test failures) and iterates until the goal is met or input is needed.
 
@@ -182,9 +182,9 @@ MCP tools are **only available in agent mode**. Ask mode cannot invoke MCP serve
 
 Each tool invocation prompts for confirmation. The **Allow** dropdown offers three scopes:
 
-- **This session** — auto-approve for the current chat session.
-- **This solution** — auto-approve for any session in this solution.
-- **Always** — auto-approve on every invocation.
+- **This session:** auto-approve for the current chat session.
+- **This solution:** auto-approve for any session in this solution.
+- **Always:** auto-approve on every invocation.
 
 Reset all approvals under **Tools → Options → GitHub → Copilot → Tools**. Terminal commands warrant extra scrutiny: the agent runs them with the same permissions as Visual Studio itself, and they are **not** restricted to the solution directory.
 
@@ -199,7 +199,7 @@ Files matched by organization content exclusions are never sent. Terminal comman
 
 ### Checkpoints and revert
 
-Each prompt that produces edits creates a **checkpoint**. Select **Restore** next to any checkpoint to revert all changes made since that point. Stepwise undo/redo of individual agent edits is not supported — revert operates at the checkpoint granularity. For finer control, review the **Total changes** list and accept or discard file-by-file.
+Each prompt that produces edits creates a **checkpoint**. Select **Restore** next to any checkpoint to revert all changes made since that point. Stepwise undo/redo of individual agent edits is not supported. Revert operates at the checkpoint granularity. For finer control, review the **Total changes** list and accept or discard file-by-file.
 
 ### Planning (Preview)
 
@@ -233,23 +233,23 @@ Visual Studio exposes a model picker at the bottom of the Copilot Chat window. T
 
 ### BYOK (Bring Your Own Key)
 
-BYOK is available in **Visual Studio 2026** only. With BYOK, teams can connect an API key from a supported model provider and use that provider's models inside Copilot Chat alongside the GitHub-hosted selection. BYOK respects organization policy — administrators can disable it. Configure BYOK from the model picker's **Manage models** entry.
+BYOK is available in **Visual Studio 2026** only. With BYOK, teams can connect an API key from a supported model provider and use that provider's models inside Copilot Chat alongside the GitHub-hosted selection. BYOK respects organization policy. Administrators can disable it. Configure BYOK from the model picker's **Manage models** entry.
 
 The set of supported providers and specific model SKUs is published on the GitHub Copilot product pages and the Visual Studio release notes rather than frozen in documentation; consult the in-product model picker for the current list.
 
 ## MCP Servers
 
-Visual Studio is a first-class [MCP](https://learn.microsoft.com/en-us/visualstudio/ide/mcp-servers) client starting in **VS 2022 17.14** (generally available) and in all Visual Studio 2026 releases.
+Visual Studio is a fully featured [MCP](https://learn.microsoft.com/en-us/visualstudio/ide/mcp-servers) client starting in **VS 2022 17.14** (generally available) and in all Visual Studio 2026 releases.
 
 ### Configuration discovery
 
 Visual Studio looks for MCP configuration in the following locations, in order:
 
-1. `%USERPROFILE%\.mcp.json` — global for all solutions.
-2. `<SOLUTIONDIR>\.vs\mcp.json` — per-solution, per-user; not source-controlled.
-3. `<SOLUTIONDIR>\.mcp.json` — per-solution; the recommended source-controlled location.
-4. `<SOLUTIONDIR>\.vscode\mcp.json` — shared with VS Code.
-5. `<SOLUTIONDIR>\.cursor\mcp.json` — shared with Cursor.
+1. `%USERPROFILE%\.mcp.json`: global for all solutions.
+2. `<SOLUTIONDIR>\.vs\mcp.json`: per-solution, per-user; not source-controlled.
+3. `<SOLUTIONDIR>\.mcp.json`: per-solution; the recommended source-controlled location.
+4. `<SOLUTIONDIR>\.vscode\mcp.json`: shared with VS Code.
+5. `<SOLUTIONDIR>\.cursor\mcp.json`: shared with Cursor.
 
 The cross-tool discovery is deliberate: teams that work across VS Code and Visual Studio can share a single `mcp.json` in either `.vscode` or `.mcp.json`.
 
@@ -276,9 +276,9 @@ Save the file. A CodeLens **Authentication Required** banner appears above the s
 
 ### Adding servers from the UI
 
-- **Install from the web** — one-click install links (for example, `vs-open.link/mcp-install?...`) register servers in the user's `%USERPROFILE%\.mcp.json`.
-- **Add from chat** — click the green `+` in the chat tool picker and fill in the name and connection details.
-- **Extensions → MCP Registries…** — browse and install servers from the GitHub MCP server registry.
+- **Install from the web:** one-click install links (for example, `vs-open.link/mcp-install?...`) register servers in the user's `%USERPROFILE%\.mcp.json`.
+- **Add from chat:** click the green `+` in the chat tool picker and fill in the name and connection details.
+- **Extensions → MCP Registries…:** browse and install servers from the GitHub MCP server registry.
 
 ### Enterprise MCP governance
 
@@ -315,7 +315,7 @@ The same **Enable custom instructions** option in Copilot Chat settings controls
 
 ### User-level preferences
 
-Personal preferences — the ones that should follow the developer across repositories — live at `%USERPROFILE%\copilot-instructions.md`. Repo-level instructions in `.github/copilot-instructions.md` still apply alongside user-level preferences, so team standards are not overridden.
+Personal preferences live at `%USERPROFILE%\copilot-instructions.md`. These are the ones that should follow the developer across repositories. Repo-level instructions in `.github/copilot-instructions.md` still apply alongside user-level preferences, so team standards are not overridden.
 
 ### Generating instructions
 
@@ -325,7 +325,7 @@ Use `/generateInstructions` in chat to have Copilot analyze the project structur
 
 Prompt files are supported in **Visual Studio 2026 (latest release)**. They are not yet supported on Visual Studio 2022.
 
-Prompt files are Markdown files with `.prompt.md` extension stored in `.github/prompts/` at the repository root. Invoke them by typing `/` in the chat input — custom prompts appear at the top of the IntelliSense list with a bookmark icon. They can also be referenced with `#prompt:name` to embed one prompt into another.
+Prompt files are Markdown files with `.prompt.md` extension stored in `.github/prompts/` at the repository root. Invoke them by typing `/` in the chat input. Custom prompts appear at the top of the IntelliSense list with a bookmark icon. They can also be referenced with `#prompt:name` to embed one prompt into another.
 
 Create prompt files in two ways:
 
@@ -336,15 +336,15 @@ See the examples section below for concrete prompt file templates.
 
 ## Memory
 
-Visual Studio supports [**Copilot memories**](https://docs.github.com/en/copilot/concepts/agents/copilot-memory) — repository-scoped memory that observes preferences during chat and can automatically write them into `%USERPROFILE%\copilot-instructions.md` or the repo-level instructions file. Memories are surfaced as references on responses that use them, and users can review, accept, or reject proposed additions before they are persisted. Memory is governed by the same enablement checkboxes as custom instructions.
+Visual Studio supports [**Copilot memories**](https://docs.github.com/en/copilot/concepts/agents/copilot-memory), repository-scoped memory that observes preferences during chat and can automatically write them into `%USERPROFILE%\copilot-instructions.md` or the repo-level instructions file. Memories are surfaced as references on responses that use them, and users can review, accept, or reject proposed additions before they are persisted. Memory is governed by the same enablement checkboxes as custom instructions.
 
 ## Code Review
 
-Copilot code review is supported in Visual Studio — request a review on github.com or from inside the IDE, and Copilot reads the same `.github/copilot-instructions.md` and path-scoped `*.instructions.md` files that steer chat and agent mode. Because reviews use the base branch's instruction files, a contributor cannot weaken review rules in their own pull request. For per-version detail, check the [Copilot feature matrix for Visual Studio](https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=visualstudio). See the [Code Review guide](../code-review.md) for the character budget, `excludeAgent` frontmatter, and review-oriented instruction patterns.
+Copilot code review is supported in Visual Studio. Request a review on github.com or from inside the IDE, and Copilot reads the same `.github/copilot-instructions.md` and path-scoped `*.instructions.md` files that steer chat and agent mode. Because reviews use the base branch's instruction files, a contributor cannot weaken review rules in their own pull request. For per-version detail, check the [Copilot feature matrix for Visual Studio](https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=visualstudio). See the [Code Review guide](../code-review.md) for the character budget, `excludeAgent` frontmatter, and review-oriented instruction patterns.
 
 ## Primitive Support Matrix
 
-This table is the **Visual Studio-specific subset** — it breaks support down by product line (VS 2022 vs. VS 2026). For the canonical cross-surface comparison across every Copilot surface, see [Part III: Cross-Surface Primitive Support Matrix](../part-3-reference.md#cross-surface-primitive-support-matrix). For the upstream source of truth, consult the [Copilot feature matrix for Visual Studio](https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=visualstudio).
+This table is the **Visual Studio-specific subset**. It breaks support down by product line (VS 2022 vs. VS 2026). For the canonical cross-surface comparison across every Copilot surface, see [Part III: Cross-Surface Primitive Support Matrix](../part-3-reference.md#cross-surface-primitive-support-matrix). For the upstream source of truth, consult the [Copilot feature matrix for Visual Studio](https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=visualstudio).
 
 | Primitive | Visual Studio 2022 17.14+ | Visual Studio 2026 (current) |
 |---|---|---|
@@ -363,21 +363,21 @@ Agentic workflows are a GitHub platform feature; they execute in GitHub Actions 
 
 ## What's Not Supported in Visual Studio
 
-- **Hooks** — runtime enforcement of agent behavior through the hook framework is a VS Code–only primitive.
-- **Agent plugins** — the bundled customization package format is VS Code–only.
-- **Prompt files on Visual Studio 2022** — available only in Visual Studio 2026 (current release).
-- **Custom agents on Visual Studio 2022** — require Visual Studio 2026 18.4 or later.
-- **BYOK on Visual Studio 2022** — Visual Studio 2026 only.
-- **Workspace indexing on Visual Studio 2022** — Visual Studio 2026 only.
-- **Agent picker UI** — currently available only in the Visual Studio 2026 Insiders builds; stable builds use `@` syntax.
+- **Hooks:** runtime enforcement of agent behavior through the hook framework is a VS Code–only primitive.
+- **Agent plugins:** the bundled customization package format is VS Code–only.
+- **Prompt files on Visual Studio 2022:** available only in Visual Studio 2026 (current release).
+- **Custom agents on Visual Studio 2022:** require Visual Studio 2026 18.4 or later.
+- **BYOK on Visual Studio 2022:** Visual Studio 2026 only.
+- **Workspace indexing on Visual Studio 2022:** Visual Studio 2026 only.
+- **Agent picker UI:** currently available only in the Visual Studio 2026 Insiders builds; stable builds use `@` syntax.
 
-The gap between VS Code and Visual Studio is closing with each Visual Studio 2026 servicing update, but feature cadence in Visual Studio remains slower than in VS Code Insiders because features ship with Visual Studio updates rather than through a separate weekly extension.
+The gap between VS Code and Visual Studio narrows with each Visual Studio 2026 servicing update. Cadence still trails VS Code Insiders because Copilot features ride Visual Studio servicing updates rather than a separate weekly extension.
 
 ## Tailoring `copilot-instructions.md`
 
-Because always-on instructions are the primitive with the broadest Visual Studio version support, they carry disproportionate weight. The following three examples target common Visual Studio audiences.
+Always-on instructions work on every supported Visual Studio version, so they are the primitive every team can rely on. The following three examples target common Visual Studio audiences.
 
-### Example 1 — Modern .NET / ASP.NET Core
+### Example 1: Modern .NET / ASP.NET Core
 
 ```markdown
 # Copilot Instructions — .NET Team
@@ -423,7 +423,7 @@ public static IActionResult CreateOrder(CreateOrderRequest r, IOrderService s) {
 ```
 ```
 
-### Example 2 — Enterprise WinForms / WPF + EF6
+### Example 2: Enterprise WinForms / WPF + EF6
 
 ```markdown
 # Copilot Instructions — Line-of-Business App
@@ -446,7 +446,7 @@ public static IActionResult CreateOrder(CreateOrderRequest r, IOrderService s) {
 - Integration tests run against LocalDB; do not touch the shared dev database.
 ```
 
-### Example 3 — Game Dev (Unreal Engine / C++)
+### Example 3: Game Dev (Unreal Engine / C++)
 
 ```markdown
 # Copilot Instructions — Game Client (Unreal)
@@ -555,15 +555,15 @@ Default Visual Studio keybindings on Windows. Remap any of these under **Tools �
 | Accept next line | `Ctrl+Down Arrow` |
 | Cancel build (to interrupt an agent-initiated build) | `Ctrl+Break` |
 
-Visual Studio 2026 18.5 introduced **customizable Copilot keyboard shortcuts** — the set of remappable actions is larger, and Chat/Agent-specific commands now appear as named commands in the keyboard options page.
+Visual Studio 2026 18.5 introduced **customizable Copilot keyboard shortcuts**. The set of remappable actions is larger, and Chat/Agent-specific commands now appear as named commands in the keyboard options page.
 
 ## Settings and Telemetry
 
 Copilot settings live under **Tools → Options → GitHub → Copilot**. Key sections:
 
-- **Copilot Chat** — enable agent mode, enable custom instructions (`copilot-instructions.md` and `.instructions.md`), enable planning, project-specific .NET instructions (for example, auto-attach WinForms expert on WinForms projects).
-- **Tools** — reset MCP tool confirmations, manage per-tool approval scope.
-- **Copilot** (top-level) — telemetry, public code matching override, chat history retention.
+- **Copilot Chat:** enable agent mode, enable custom instructions (`copilot-instructions.md` and `.instructions.md`), enable planning, project-specific .NET instructions (for example, auto-attach WinForms expert on WinForms projects).
+- **Tools:** reset MCP tool confirmations, manage per-tool approval scope.
+- **Copilot (top-level):** telemetry, public code matching override, chat history retention.
 
 Enterprise policy at the GitHub organization level governs:
 
@@ -577,22 +577,32 @@ Telemetry controls follow the broader Visual Studio diagnostic data settings at 
 
 ## Limitations and Known Issues
 
-- **Feature cadence is tied to Visual Studio servicing releases** — new capabilities typically arrive monthly rather than weekly. Expect lag behind VS Code for brand-new Copilot features.
+- **Feature cadence is tied to Visual Studio servicing releases:** new capabilities typically arrive monthly rather than weekly. Expect lag behind VS Code for brand-new Copilot features.
 - **Hooks and agent plugins** are not supported. Teams that rely on these primitives in VS Code must fall back to runtime enforcement via CI, MCP-provided guards, or agent-side instructions.
 - **Stepwise agent undo** is not supported; revert granularity is the checkpoint.
-- **Terminal command sandboxing** — agent-invoked terminal commands run with full Visual Studio process permissions. Review each terminal command before approval.
-- **Plan persistence** — agent-mode planning artifacts live under `%LOCALAPPDATA%\Temp\VisualStudio\copilot-vs` and are cleared at session end unless saved manually.
-- **Agent picker** — the visual agent picker is currently exclusive to Visual Studio 2026 Insiders; stable builds rely on `@` syntax.
-- **MCP server discovery across `.vs` and `.vscode` folders** — configuration in `.vs/mcp.json` is per-user and not source-controlled; teams that want shared configuration must use `.mcp.json` at the solution root.
+- **Terminal command sandboxing:** agent-invoked terminal commands run with full Visual Studio process permissions. Review each terminal command before approval.
+- **Plan persistence:** agent-mode planning artifacts live under `%LOCALAPPDATA%\Temp\VisualStudio\copilot-vs` and are cleared at session end unless saved manually.
+- **Agent picker:** the visual agent picker is currently exclusive to Visual Studio 2026 Insiders; stable builds rely on `@` syntax.
+- **MCP server discovery across `.vs` and `.vscode` folders:** configuration in `.vs/mcp.json` is per-user and not source-controlled; teams that want shared configuration must use `.mcp.json` at the solution root.
 
 Check the [Visual Studio 2026 release notes](https://learn.microsoft.com/en-us/visualstudio/releases/2026/release-notes) and [Visual Studio 2022 release history](https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-history) for current known issues.
 
 ## Release Cadence
 
-Copilot features ship as part of Visual Studio servicing updates, not through a separate extension. Cadence:
+Copilot features ship as part of Visual Studio servicing updates, not through a separate extension.
 
-- **Visual Studio 2026** — monthly updates; each minor (18.x.0) adds features, point releases (18.x.y) fix bugs and patch security. Recent examples: 18.0 GA Nov 2025, 18.1 Dec 2025 (MCP Authentication, Elicitations/sampling), 18.2 Jan 2026 (NuGet MCP server), 18.3 Feb 2026 (enterprise MCP governance), 18.4 Mar 2026 (custom agents, `find_symbol` tool), 18.5 Apr 2026 (agent skills, cloud agent integration, customizable shortcuts).
-- **Visual Studio 2022** — continues to receive monthly servicing updates on the 17.14 branch. Newer Copilot primitives (prompt files, custom agents, agent skills, BYOK, workspace indexing) are not being back-ported to 17.x.
+**Visual Studio 2026** ships monthly updates. Each minor release (18.x.0) adds features; point releases (18.x.y) fix bugs and patch security. Recent releases:
+
+| Release | Date | Notable Copilot additions |
+|---|---|---|
+| 18.0 | Nov 2025 | GA |
+| 18.1 | Dec 2025 | MCP authentication, elicitations/sampling |
+| 18.2 | Jan 2026 | NuGet MCP server |
+| 18.3 | Feb 2026 | Enterprise MCP governance |
+| 18.4 | Mar 2026 | Custom agents, `find_symbol` tool |
+| 18.5 | Apr 2026 | Agent skills, cloud agent integration, customizable shortcuts |
+
+**Visual Studio 2022** continues to receive monthly servicing updates on the 17.14 branch. Newer Copilot primitives (prompt files, custom agents, agent skills, BYOK, workspace indexing) are not being back-ported to 17.x.
 
 Track changes at the [Visual Studio 2026 release notes](https://learn.microsoft.com/en-us/visualstudio/releases/2026/release-notes) and the [GitHub Copilot changelog](https://github.blog/changelog/label/copilot/).
 
@@ -607,15 +617,15 @@ Track changes at the [Visual Studio 2026 release notes](https://learn.microsoft.
    - Planning, if you want structured multi-step runs (optional, preview).
 5. Add `.github/copilot-instructions.md` to the repository with the team's conventions. Use `/generateInstructions` as a starting point, then edit.
 6. For teams that use VS Code too, place shared MCP configuration at `.mcp.json` (solution root) so both editors discover it.
-7. Pilot agent mode on a small, well-defined task ("Add input validation to the `POST /orders` endpoint and update its tests") and review the checkpoint flow.
+7. Try agent mode on a small, well-defined task ("Add input validation to the `POST /orders` endpoint and update its tests") and review the checkpoint flow.
 8. Review and approve the first few MCP tool invocations individually before granting solution-scoped approval.
 9. On Visual Studio 2026, author a first prompt file for a high-frequency task (`/savePrompt` after a successful chat).
-10. Document the adoption decisions — which modes are encouraged, which MCP servers are approved, which models are preferred — in the repository's contributing guide.
+10. Document the team's adoption decisions in the repository's contributing guide. Cover the encouraged chat modes, the approved MCP servers, and the preferred models.
 
 ## Further Reading
 
-- [Visual Studio Marketplace — GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilotvs)
-- [Copilot feature matrix — Visual Studio](https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=visualstudio)
+- [GitHub Copilot on the Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilotvs)
+- [Copilot feature matrix for Visual Studio](https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=visualstudio)
 - [Get started with GitHub Copilot completions](https://learn.microsoft.com/en-us/visualstudio/ide/visual-studio-github-copilot-extension)
 - [GitHub Copilot Chat for Visual Studio](https://learn.microsoft.com/en-us/visualstudio/ide/visual-studio-github-copilot-chat)
 - [Customize chat responses and set context](https://learn.microsoft.com/en-us/visualstudio/ide/copilot-chat-context)
@@ -627,7 +637,7 @@ Track changes at the [Visual Studio 2026 release notes](https://learn.microsoft.
 - [Visual Studio 2026 release notes](https://learn.microsoft.com/en-us/visualstudio/releases/2026/release-notes)
 - [Visual Studio 2022 release history](https://learn.microsoft.com/en-us/visualstudio/releases/2022/release-history)
 - [GitHub Copilot changelog](https://github.blog/changelog/label/copilot/)
-- [awesome-copilot repository — curated agents and instructions](https://github.com/github/awesome-copilot)
+- [awesome-copilot repository: curated agents and instructions](https://github.com/github/awesome-copilot)
 
 ---
 

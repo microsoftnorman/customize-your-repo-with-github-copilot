@@ -15,7 +15,7 @@ tools:
   - mcp_microsoft-doc_microsoft_docs_search
   - mcp_microsoft-doc_microsoft_docs_fetch
   - mcp_microsoft-doc_microsoft_code_sample_search
-model: 'Claude Opus 4.7'
+model: GPT-5.4 (copilot)
 handoffs:
   - label: 'Doc Maintainer: What''s New'
     agent: 'Doc Maintainer'

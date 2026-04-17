@@ -2,7 +2,7 @@
 
 [← Part I: Foundations](part-1-foundations.md) | [Part II Overview](part-2-primitives.md)
 
-*Updated: April 16, 2026. This guide serves as a primer for GitHub Copilot customization. File paths, configuration options, and feature availability may change as Copilot evolves—always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
+*Updated: April 17, 2026. This guide serves as a primer for GitHub Copilot customization. File paths, configuration options, and feature availability may change as Copilot evolves—always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
 
 ---
 
@@ -10,7 +10,7 @@
 
 **Heads up — inline suggestions ignore these files.** Always-on instructions apply to Copilot Chat and agent sessions only. Ghost text (inline autocomplete) runs on a separate pipeline and does not read `copilot-instructions.md`, `AGENTS.md`, `.instructions.md`, or any other customization primitive in this guide. For convention-aware code generation, use Chat, agent mode, or prompts. See [Inline Suggestions Are Not Affected](#inline-suggestions-are-not-affected) below.
 
-Always-on instructions (also known as the **Copilot Instructions File**) represent the foundational layer of Copilot customization. These instructions load automatically at the start of every Copilot session and apply to all interactions within the repository.
+Always-on instructions (also known as the **Copilot Instructions File**) are a markdown file that Copilot reads at the start of every Chat and agent session in the repository. Its contents become persistent context for every turn, so coding standards, stack choices, and guardrails stay in scope without being re-prompted.
 
 **Location:** `.github/copilot-instructions.md`, `AGENTS.md`, or `CLAUDE.md` [*](https://code.visualstudio.com/docs/copilot)
 
@@ -26,7 +26,7 @@ When this file exists in a repository and the setting is enabled, Copilot reads 
 
 ## Inline Suggestions Are Not Affected
 
-Custom instructions are **not** applied to inline suggestions (ghost text) as you type in the editor — they only affect Copilot Chat interactions. This is a fundamental limitation: the autocomplete engine operates on a different pipeline than Chat and does not read instruction files.
+Custom instructions are **not** applied to inline suggestions (ghost text) as you type in the editor. They only affect Copilot Chat interactions. The autocomplete engine runs on a different pipeline than Chat and does not read instruction files.
 
 If Copilot's inline suggestions ignore your conventions, that's expected behavior. Use Chat-based interactions (ask mode, agent mode, prompts) for convention-aware code generation.
 
@@ -42,11 +42,27 @@ If Copilot's inline suggestions ignore your conventions, that's expected behavio
 - Error handling approaches
 - Deprecated patterns to avoid
 
+## Creating This Primitive
+
+Sound off before you steer — let Copilot draft the file. A hand-typed `copilot-instructions.md` at the wrong path, or an `AGENTS.md` the author forgot to enable, is the most common reason the file silently never loads. Use the built-in authoring commands and read the draft before committing.
+
+**In VS Code**, run `/init` in Chat to scaffold `copilot-instructions.md` from the existing codebase, or `/create-instruction` to generate a new instructions file from a prompt. **In the Copilot CLI**, `/init` does the same at the terminal. **In Visual Studio**, `/generateInstructions` is the equivalent. See [Don't Hand-Type Primitives — Let the Helmsman Repeat the Order](part-2-primitives.md#dont-hand-type-primitives--let-the-helmsman-repeat-the-order) for the rationale.
+
+> **💬 Try this prompt:**
+>
+> *Scan this repository and generate `.github/copilot-instructions.md` with our tech stack, code-style rules, security requirements, and the architectural patterns you can infer from the existing code. Flag anything you're uncertain about so I can review.*
+
+> **💬 Try this prompt:**
+>
+> *Update `.github/copilot-instructions.md` to add a section on how we handle errors in Express route handlers. Use the patterns already in `src/api/` as the source of truth and keep the existing structure.*
+
+Small tweaks to an existing file (fixing a typo, adjusting a bullet) are fine to make by hand. The repeat-back matters most the first time the file is created.
+
 ## Anatomy of Effective Instructions
 
 A well-structured instructions file typically includes the following sections:
 
-**See it in action:** [Customize Your Agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=221s) — Courtney Webster walks through the best practices that shape an effective instructions file: be specific about frameworks, include reasoning, add code examples, and skip rules that linters or formatters already enforce.
+**See it in action:** [Customize Your Agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=221s). Courtney Webster walks through the best practices that shape an effective instructions file: be specific about frameworks, include reasoning, add code examples, and skip rules that linters or formatters already enforce.
 
 ```markdown
 # Copilot Instructions for [Your Project Name]
@@ -100,7 +116,7 @@ Our team benchmarks showed functional components with hooks reduced our bundle
 size by 15% and made testing significantly easier.
 ```
 
-This helps Copilot understand not just *what* to do, but *why*—leading to better suggestions in edge cases.
+This helps Copilot understand not just *what* to do, but *why*. The result is better suggestions in edge cases.
 
 ## Complete Example: Production Next.js Project
 
@@ -269,7 +285,7 @@ if (!warehouse) {
 
 ## Accessibility Guidelines
 
-Accessibility is a first-class concern. Treat WCAG 2.2 AA as the minimum bar, not an afterthought.
+Treat WCAG 2.2 AA as the minimum bar for every feature.
 
 ### Component Requirements
 - All interactive elements must be keyboard-operable (Tab, Enter, Space, Esc)
@@ -334,17 +350,17 @@ Follow Conventional Commits:
 - `test(warehouse): add integration tests for transfer`
 ``````
 
-For a product management approach to workspace instructions, see [product-brain](https://github.com/digitarald/product-brain) — a template that structures AI interactions around product requirements, user stories, and feature specifications.
+For a product management approach to workspace instructions, see [product-brain](https://github.com/digitarald/product-brain). It structures AI interactions around product requirements, user stories, and feature specifications.
 
 ---
 
 ## Creating an Instructions File
 
-Every Copilot surface reads the same `.github/copilot-instructions.md` (or `AGENTS.md`) file, but each surface has a different path for authoring it. Pick the workflow that matches where your team works — the resulting file is identical and portable across every other surface.
+Every Copilot surface reads the same `.github/copilot-instructions.md` (or `AGENTS.md`) file, but each surface has a different path for authoring it. Pick the workflow that matches where your team works. The resulting file is identical and portable across every other surface.
 
 ### VS Code
 
-VS Code offers the richest authoring experience, with both an agent-driven command and a menu-driven flow.
+VS Code offers two authoring paths: an agent-driven command and a menu-driven flow.
 
 **Using the `/init` command (fastest):**
 
@@ -357,7 +373,7 @@ The `/init` command follows a structured workflow:
 
 1. **Discovery** — Searches for existing AI conventions in your workspace (such as `copilot-instructions.md` or `AGENTS.md`)
 2. **Analysis** — Examines your project structure and coding patterns
-3. **Generation** — Creates comprehensive workspace instructions tailored to your project
+3. **Generation** — Writes the instructions file based on what it found
 
 In VS Code 1.109 and later, the `/init` command is implemented as a contributed prompt file, meaning you can customize its behavior by modifying the underlying prompt in your workspace.
 
@@ -413,7 +429,7 @@ On GitHub.com, the Copilot coding agent can generate instructions for a reposito
 3. Use the onboarding prompt from [GitHub's documentation](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions)
 4. Review the generated PR with the instructions file and merge
 
-This is particularly effective because the agent validates build commands and tests them before documenting them in the file.
+The agent runs build commands and tests before documenting them in the file, so the recorded commands actually work.
 
 ### Xcode and Eclipse
 
@@ -436,11 +452,7 @@ Whichever surface you use, the highest-quality output usually comes from asking 
 >
 > *Examine the package.json, existing source files, and any documentation to ensure accuracy. Format as a human-readable markdown file I can review and refine.*
 
-This approach ensures:
-- Instructions reflect actual codebase patterns
-- Consistent formatting and structure
-- Human-verifiable output for PR review
-- No syntax errors or typos
+The output reflects the actual codebase in a consistent format you can review in a PR before merging.
 
 ## Anti-Patterns to Avoid
 
@@ -477,7 +489,7 @@ Effective instructions files encode team knowledge. Use these questions to surfa
 
 ## Use the "Good vs Bad" Pattern
 
-Copilot responds more effectively to examples than to abstract rules. Instead of stating "prefer functional patterns," demonstrate the preference:
+Copilot responds to concrete examples, not abstract rules. Instead of stating "prefer functional patterns," demonstrate the preference:
 
 ```markdown
 ## Data Transformation
@@ -519,8 +531,6 @@ After initial generation, refine the instructions file through conversation:
 >
 > *Make the changes and explain what you updated.*
 
-This creates a feedback loop where the agent refines its own guidelines based on human review.
-
 ## Validating the Configuration
 
 To verify the instructions file is working correctly:
@@ -546,7 +556,7 @@ The `.github/copilot-instructions.md` file is recognized by GitHub Copilot acros
 - GitHub.com (Copilot Chat, coding agent, code review)
 - [GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) (terminal-based AI agent)
 
-This means the same instructions file works whether your team uses different editors, interacts with Copilot on the web, or works from the command line. Copilot CLI also recognizes `AGENTS.md` as a workspace instruction file.
+The same instructions file works whether your team uses different editors, interacts with Copilot on the web, or works from the command line. Copilot CLI also recognizes `AGENTS.md` as a workspace instruction file.
 
 ## Instruction Priority
 
@@ -562,13 +572,13 @@ All relevant instructions are provided to Copilot, but higher-priority instructi
 
 Organization-level [custom instructions](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-organization-instructions) reached **general availability on April 2, 2026** and are supported in VS Code and other Copilot surfaces.
 
-If your GitHub organization has configured custom instructions for Copilot, they are automatically applied to your chat sessions, ensuring consistent guidance across your team. This feature is enabled by default.
+If your GitHub organization has configured custom instructions for Copilot, they apply automatically to every chat session for members of that org. This feature is enabled by default.
 
 **Setting:** `github.copilot.chat.organizationInstructions.enabled`
 
 Set to `false` to disable organization instructions if you need to override them for a specific workspace.
 
-Organization instructions are particularly valuable for:
+Use organization instructions for:
 - Enforcing company-wide coding standards
 - Maintaining compliance requirements across repositories
 - Sharing best practices without duplicating instructions in every repo

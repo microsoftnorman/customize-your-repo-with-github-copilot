@@ -2,7 +2,7 @@
 
 [← Back to Guide](../ReadMe.md) | [← Part II: The Primitives](part-2-primitives.md)
 
-*Updated: April 16, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
+*Updated: April 17, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
 
 ---
 
@@ -17,9 +17,9 @@
 | Custom Agents | `.github/agents/` OR anywhere | `.agent.md` or any `.md` in agents/ |
 | MCP Servers | `.vscode/mcp.json` | `.json` |
 | Hooks | `.github/hooks/` | `.json` |
-| Copilot Memory | Managed by GitHub | N/A — no repo file |
+| Copilot Memory | Managed by GitHub | N/A: no repo file |
 | Agentic Workflows | `.github/workflows/` | `.md` (workflow instructions) |
-| Copilot SDK | External dependency (npm, pip, etc.) | N/A — installed via package managers |
+| Copilot SDK | External dependency (npm, pip, etc.) | N/A: installed via package managers |
 
 ---
 
@@ -40,7 +40,7 @@
 
 ## Cross-Surface Primitive Support Matrix
 
-This is the **canonical primitive-by-surface matrix for this guide**. The [IDE Surfaces overview](surfaces.md) and each per-surface page link back here rather than duplicating it. Consult the authoritative [Copilot Feature Matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix) for the live, continuously-updated source of truth — the snapshot below was validated April 2026.
+This is the **canonical primitive-by-surface matrix for this guide**. The [IDE Surfaces overview](surfaces.md) and each per-surface page link back here rather than duplicating it. For the current state, check the [Copilot Feature Matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix). The snapshot below was validated April 2026.
 
 | Primitive | VS Code | JetBrains | Visual Studio 2026 | Eclipse | Xcode | Copilot CLI | Cloud Coding Agent |
 |-----------|---------|-----------|--------------------|---------|-------|-------------|-------------------|
@@ -201,7 +201,7 @@ handoffs:
 | `plan` | Generate structured implementation plans | Breaking down tasks before implementation |
 | Custom agent | Use that agent's persona and tools | Specialized workflows |
 
-**Edit Mode Deprecation:** `edit` mode is officially deprecated as of VS Code 1.110. Users can temporarily re-enable it via the `chat.editMode.hidden` setting, but `edit` mode will be fully removed in VS Code 1.125. Use `agent` for all file modifications.
+**Edit Mode Deprecation:** `edit` mode is deprecated as of VS Code 1.110. Users can temporarily re-enable it via the `chat.editMode.hidden` setting, but `edit` mode will be fully removed in VS Code 1.125. Use `agent` for all file modifications.
 
 ### Agent Permission Levels
 
@@ -209,7 +209,7 @@ handoffs:
 |-------|----------|----------|
 | Default | Prompts for approval on each action | Production work requiring oversight |
 | Bypass Approvals | Skips low-risk confirmations automatically | Trusted workflows with repetitive actions |
-| Autopilot (Preview) | Fully autonomous — no confirmations | Batch operations, CI-driven agent tasks |
+| Autopilot (Preview) | Fully autonomous, no confirmations | Batch operations, CI-driven agent tasks |
 
 ---
 
@@ -386,7 +386,7 @@ Hook configuration files live in `.github/hooks/` and require `version: 1`:
 | `postToolUse` | `timestamp`, `cwd`, `toolName`, `toolArgs`, `toolResult` | Ignored | No |
 | `errorOccurred` | `timestamp`, `cwd`, `error` | Ignored | No |
 
-For comprehensive documentation with practical examples, see [Primitive 7: Hooks](primitive-7-hooks.md).
+For full documentation with practical examples, see [Primitive 7: Hooks](primitive-7-hooks.md).
 
 ### VS Code Hooks (Chat Agent Sessions)
 
@@ -396,7 +396,7 @@ VS Code 1.109.3+ supports hooks in Chat agent sessions via file-based configurat
 
 ## Context Window Guidelines
 
-Every primitive consumes tokens. Keep them focused:
+Every primitive consumes tokens. Target sizes:
 
 | Content Type | Recommended Size |
 |--------------|------------------|
@@ -406,9 +406,9 @@ Every primitive consumes tokens. Keep them focused:
 | Individual skill | 500-1500 words |
 | Custom agent | 200-1000 words |
 
-**Total active context:** Keep under 4000 words for optimal performance. If Copilot seems to "forget" rules, your instructions may be too long — move specialized content to file-based instructions or skills.
+**Total active context:** Keep under 4000 words. If Copilot seems to "forget" rules, your instructions may be too long. Move specialized content to file-based instructions or skills.
 
-For codebase conventions that Copilot discovers through usage — patterns, constraints, and preferences that are hard to author manually — consider enabling [Copilot Memory (Preview)](primitive-8-memory.md). Memory is repository-scoped: anything stored is shared with all users who have Memory enabled in that repo.
+For codebase conventions that Copilot discovers through usage (patterns, constraints, and preferences that are hard to author manually), consider enabling [Copilot Memory (Preview)](primitive-8-memory.md). Memory is repository-scoped: anything stored is shared with all users who have Memory enabled in that repo.
 
 ---
 
@@ -452,7 +452,7 @@ Configure allowed file system paths and network domains via `chat.tools.terminal
 
 ### Chat Customization Diagnostics
 
-VS Code 1.116 includes a dedicated diagnostics view for troubleshooting customization issues:
+VS Code 1.116 includes a diagnostics view for inspecting active customization files:
 
 1. Right-click in the Chat view
 2. Select **Diagnostics**
