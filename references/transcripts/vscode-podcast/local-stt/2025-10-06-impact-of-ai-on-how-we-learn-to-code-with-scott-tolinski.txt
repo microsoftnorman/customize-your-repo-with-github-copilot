@@ -1,0 +1,951 @@
+[00:00:00.000] I recently had the opportunity to interview one of my heroes, the one and only Scott
+
+[00:00:04.800] Talinsky.
+
+[00:00:05.800] You may know Scott is one of the co-hosts of the syntax podcast, Level Up tutorials, or
+
+[00:00:10.960] his amazing work over his century.
+
+[00:00:13.640] Now this was an awesome conversation that I got to have about how Scott sees AI evolving
+
+[00:00:18.200] education, learning to code, and so much more, so let's get into it.
+
+[00:00:22.240] Alright, I'm sending down with Scott Talinsky Scott.
+
+[00:00:24.640] Thank you for being here, but before you even say a word, I do this thing that I just
+
+[00:00:28.400] started with you for the podcast, which is Read Your Bio from a random website that
+
+[00:00:32.960] I found on the internet.
+
+[00:00:33.960] Oh yeah, this one happens to be from the syntax website.
+
+[00:00:37.640] So I think it's probably accurate, but I know because whenever I speak at a conference,
+
+[00:00:41.840] I do a podcast, they read my bio and it's completely inaccurate.
+
+[00:00:45.400] So I'm super excited that Scott's here.
+
+[00:00:48.000] Scott's Lindsay is the co-host of syntax, so you can give me a pin, so we're repping it
+
+[00:00:51.440] today.
+
+[00:00:52.440] He's the creator of Level Up tutorials, and his free time, Scott enjoys dedicated
+
+[00:00:58.160] b-boy breakdancing, enjoys pushing yourself athletically through dance, and working out
+
+[00:01:04.120] and snowboarding.
+
+[00:01:05.120] Are those all accurate?
+
+[00:01:07.080] Sure.
+
+[00:01:08.080] Is that from the syntax website?
+
+[00:01:09.080] That's what it says.
+
+[00:01:10.080] Okay, then it's accurate.
+
+[00:01:12.080] Yes, it's accurate.
+
+[00:01:13.080] Yes.
+
+[00:01:14.080] Although I might need to take a pause on all of my snowboarding activities after some
+
+[00:01:19.080] recent injuries.
+
+[00:01:20.080] So I'm going to need to update that.
+
+[00:01:21.600] Yeah.
+
+[00:01:22.600] But the breakdancing, the b-blowing is still...
+
+[00:01:24.160] Oh yeah, I've been dancing for about 20 million years or so.
+
+[00:01:28.080] I used to perform for the Pistons and the Lions halftime shows, and I've competed all
+
+[00:01:33.400] over the US.
+
+[00:01:34.720] Yeah.
+
+[00:01:35.720] How did you get into that?
+
+[00:01:36.880] I thought it was really cool when I was in high school and music videos.
+
+[00:01:42.160] There's a specific music video that the crystal method name of the game, and I was like,
+
+[00:01:47.600] I have to learn this.
+
+[00:01:50.080] And then I just found over at the University of Michigan, which was kind of by where I
+
+[00:01:54.520] grew up, that there was a group there.
+
+[00:01:56.640] And I just started showing up.
+
+[00:01:57.960] They would sneak me into a campus building to teach me.
+
+[00:02:01.720] And then when I went to school there, I became the president of the club and just kept
+
+[00:02:08.240] with it for so long.
+
+[00:02:09.400] Yeah.
+
+[00:02:10.400] That was amazing.
+
+[00:02:11.400] I think that growing up, I did band for like...
+
+[00:02:15.360] Oh yeah.
+
+[00:02:16.360] ... several years.
+
+[00:02:17.360] I played the tuba.
+
+[00:02:18.360] Oh nice.
+
+[00:02:19.360] Yeah.
+
+[00:02:20.360] Yeah, it was my jam.
+
+[00:02:21.680] Yeah.
+
+[00:02:22.680] And then I started working.
+
+[00:02:23.680] I didn't keep up with anything.
+
+[00:02:24.680] And I feel like I could be like a star tuba player.
+
+[00:02:27.800] I don't know.
+
+[00:02:28.800] It's out there, but then look at us now.
+
+[00:02:31.280] It's a circle to that art tuba player.
+
+[00:02:33.400] I mean, someone needs that I think.
+
+[00:02:34.720] Oh yeah.
+
+[00:02:35.720] Well, I'm super sad about your injuries.
+
+[00:02:38.000] Downhill, cross country.
+
+[00:02:39.640] What's your...
+
+[00:02:40.640] I guess it's snowboarding.
+
+[00:02:41.640] Yeah.
+
+[00:02:42.640] So you're not boarding.
+
+[00:02:43.640] I ride very like a kind of freestyle.
+
+[00:02:46.000] I was doing a lot of terrain park stuff in general, but I am too old for doing this.
+
+[00:02:52.320] That is a fair share.
+
+[00:02:54.280] Yeah, I have friends that are all like downhill or snowboarding.
+
+[00:02:57.920] I'm like, I just cannot do it.
+
+[00:02:58.920] I have some people that they do the split boarding.
+
+[00:03:01.480] Okay.
+
+[00:03:02.480] Yeah, yeah.
+
+[00:03:03.480] That is...
+
+[00:03:04.480] Yeah.
+
+[00:03:05.480] Yeah.
+
+[00:03:06.480] It seems super intense, but awesome that they could do it.
+
+[00:03:07.480] Yeah.
+
+[00:03:08.480] Yeah.
+
+[00:03:09.480] And I mean, yeah.
+
+[00:03:10.480] Okay.
+
+[00:03:11.480] Well, brushing your nuts, just talk about break dancing and snowboarding.
+
+[00:03:14.480] Although we could.
+
+[00:03:15.480] Well, do you have like a favorite like snowboard area that are mountain that you've done?
+
+[00:03:20.480] Yeah.
+
+[00:03:21.480] You know, in color, I don't like to go to copper mountain a lot.
+
+[00:03:24.080] I like it because it's a big mountain, but it doesn't feel like breaking away a
+
+[00:03:29.480] jerk one of these like, you know, very traffic mountains in that sort of way.
+
+[00:03:33.640] So yeah, I really like copper because there's a lot of variety there and go to that one
+
+[00:03:38.080] the most.
+
+[00:03:39.080] Well, very cool.
+
+[00:03:40.080] A favorite out in Ben come to Mount Bachelore with me.
+
+[00:03:42.480] Okay.
+
+[00:03:43.480] Yeah.
+
+[00:03:44.480] Well, what's interesting about you is a lot of people know you from the syntax podcast.
+
+[00:03:49.520] That's how I definitely know about you.
+
+[00:03:51.120] Some people may know you from level up tutorials or other places on the internet.
+
+[00:03:54.240] And they've seen you talk and they've seen this you on the internet somewhere.
+
+[00:03:58.440] But I think what's fascinating about you is that reading your bio diving deep into Scott
+
+[00:04:04.840] as I prepare for this podcast, which was about funny minutes.
+
+[00:04:08.720] Last night was just kind of your background in developer education.
+
+[00:04:12.200] And I think one thing that I love and I've been doing for 14 years as a developer advocate,
+
+[00:04:17.280] is really just teaching people stuff.
+
+[00:04:18.800] Yeah.
+
+[00:04:19.800] That's my favorite part of my job.
+
+[00:04:23.200] Like just in general, I love it.
+
+[00:04:25.680] But a lot has changed.
+
+[00:04:26.720] I think a lot has come this way.
+
+[00:04:28.960] Like a lot of people now have these big courses and tutorials online.
+
+[00:04:31.880] You're not going to necessarily every single boot camp or there are bootyams now.
+
+[00:04:35.640] Like there's people still learning in university, but also things are evolving quickly.
+
+[00:04:40.080] It's like I want to break down with you just develop your education how you saw it in
+
+[00:04:47.160] the past, how you see it currently and how you see it in the future.
+
+[00:04:50.680] So maybe if it's okay, maybe you could kind of go a little bit deep into like your history
+
+[00:04:55.000] with developer education and even the level of tutorials like how that came about where
+
+[00:04:58.200] that's out today and how that's changing.
+
+[00:05:00.360] Yeah.
+
+[00:05:01.360] Yeah.
+
+[00:05:02.360] When I first started, YouTube didn't, I mean, it existed, but there was nothing on YouTube.
+
+[00:05:09.160] So for me, I was self taught as a developer.
+
+[00:05:13.520] And it was mostly through either at the time there were paid courses, but the platforms
+
+[00:05:20.160] were still like just a couple of them really.
+
+[00:05:23.000] So occasionally paid courses, but like when I was first learning, my options were to check
+
+[00:05:28.160] out books from the library.
+
+[00:05:29.960] I'm getting, you know, HTML for dummies or whatever from the library.
+
+[00:05:34.800] And I, for some reason, like those types of reading a book and typing into computer or whatever
+
+[00:05:42.440] never really was like great for me.
+
+[00:05:45.480] And it really wasn't until when I started working professionally, the video course things
+
+[00:05:49.600] started to become a little bit more prominent.
+
+[00:05:52.120] Still nothing on YouTube, but I could purchase a course on a specific topic and it unlocked
+
+[00:05:59.840] a lot for me.
+
+[00:06:01.640] And when I realized that like this medium can really like get me going in a different way
+
+[00:06:11.080] than reading a book or reading blogs because you know blogs are great, but I'm more of
+
+[00:06:15.920] like a, uh, see the demo, look at the code rather than read the paragraph of text.
+
+[00:06:20.920] Yeah.
+
+[00:06:21.920] Um, big pet paper mind about blogs is when they have a code snippet in the demo, but then
+
+[00:06:27.040] like the details are in the paragraph of the text and I'll copy and paste the code just
+
+[00:06:31.200] expecting it to work.
+
+[00:06:32.560] And then you read later, oh, this actually doesn't work for these reasons.
+
+[00:06:35.120] You're like, oh, why, why did you do that?
+
+[00:06:37.960] So for me, the video thing always like just gravitated towards me.
+
+[00:06:41.520] And, um, I had a lot of people tell me like videos a bad way to learn.
+
+[00:06:46.760] And I just never resonated with that sentiment.
+
+[00:06:49.040] It was, to me, was always like, I can put on a video.
+
+[00:06:51.520] I can launch somebody talk about it and do it.
+
+[00:06:54.520] And at the time, uh, this was like 2011, we were buying a lot of courses.
+
+[00:06:59.560] Part of like our education budget at work was courses, right?
+
+[00:07:04.400] YouTube, there was maybe one, one channel doing video tutorials on YouTube.
+
+[00:07:10.840] And after listening to so many and then seeing what was available on YouTube, uh, there
+
+[00:07:15.960] was just this huge gap in quality.
+
+[00:07:18.880] And I had come from a bit of a production background.
+
+[00:07:21.880] I had worked as professional as a video editor.
+
+[00:07:24.400] Um, I had gone to school for media art.
+
+[00:07:26.720] So I had an audio and video background.
+
+[00:07:29.720] I was a self-talk programmer and I was thinking like, I could just, I could just turn
+
+[00:07:35.120] on a screen.
+
+[00:07:36.120] I don't even show my face.
+
+[00:07:37.120] I don't even have to buy a camera.
+
+[00:07:38.120] Yeah.
+
+[00:07:39.120] Yeah.
+
+[00:07:40.120] I got a microphone.
+
+[00:07:41.120] I do.
+
+[00:07:42.120] Yeah.
+
+[00:07:43.120] I had a microphone at the time.
+
+[00:07:44.120] I was trying to make it as a musician.
+
+[00:07:45.120] So I had a microphone that was nice.
+
+[00:07:46.120] Um, and it's like, okay.
+
+[00:07:47.120] Well, let me just solve the problems that are bad with YouTube tutorials at the time,
+
+[00:07:50.840] which were people were using like, um, like the little windows microphones that were
+
+[00:07:56.440] like at the time that were just came with your Dell PC or something.
+
+[00:08:00.080] You know, um, and we just do just terrible screencast.
+
+[00:08:04.320] So I just started making them a little bit nicer and easier and like more of what I wanted
+
+[00:08:09.160] to see and maybe even more aligned with what I was paying for and then releasing them for
+
+[00:08:13.680] free on YouTube and like 2012.
+
+[00:08:18.160] And I don't know what it was about it.
+
+[00:08:21.480] I had a lot of time.
+
+[00:08:22.880] My wife was getting her doctorate.
+
+[00:08:24.560] I had gotten a concussion from dancing and so I couldn't do any exercise.
+
+[00:08:29.480] Um, and I was spending three nights a week dancing typically.
+
+[00:08:33.800] And now I have this big block of time that I had accounted for that I had nothing to do.
+
+[00:08:38.400] So it's like, I'm going to record three tutorials, uh, three days a week.
+
+[00:08:43.360] And I'm putting out nine tutorials a week on PHP like Drupal WordPress, CSS stuff, SaaS,
+
+[00:08:50.440] all these kinds of things.
+
+[00:08:51.800] And next thing you know, I got like a thousand videos on my YouTube channel.
+
+[00:08:55.040] I'm one of like the only channels that's like doing that kind of content and that niche.
+
+[00:09:00.160] And, uh, the channel just, you know, took off and kept getting bigger and bigger and
+
+[00:09:04.760] bigger and, um, eventually led me to this career path, which again, I was doing this in
+
+[00:09:10.600] my nights and weekends.
+
+[00:09:11.600] I had a day job as an agency and then, um, you know, I was just seeing the YouTube is a good
+
+[00:09:17.560] opportunity for me to have it something on my resume to get better jobs.
+
+[00:09:21.080] Um, but ultimately became my entire career.
+
+[00:09:24.760] When you started like, were there restrictions that were put in place by the platform,
+
+[00:09:29.960] by YouTube that actually like dictated how you crafted these videos because I think a lot
+
+[00:09:35.360] of folks, you think about buying a training course or going to a conference and doing a workshop
+
+[00:09:39.320] or thing like these eight hour videos.
+
+[00:09:40.880] Like at that time, which is 13, 14 years ago and now at this point, where there were
+
+[00:09:45.000] restrictions in place that like actually like, oh, this is a great platform, but it's
+
+[00:09:48.760] maybe not how I wanted to teach or like this is how I want to teach.
+
+[00:09:52.120] Yeah, there were, it kind of aligned really well for me because at the time, shorter,
+
+[00:09:58.160] you weren't penalized for really shorter videos, um, like six minutes or so.
+
+[00:10:03.440] And the way I wanted to do it, especially if I was like searching for a topic, um, I would
+
+[00:10:08.360] end up in IRC rooms or forums and there would be like incomplete information or even just
+
+[00:10:14.000] like not step by step instructions on things.
+
+[00:10:16.880] I was, I wanted so that if I had an issue, I could Google it.
+
+[00:10:21.240] My, a video and coincidentally would become my video would pop up and just give you six
+
+[00:10:26.600] minutes.
+
+[00:10:27.600] Here's just how you accomplish task and like no fluff, not any, and like at the time,
+
+[00:10:32.480] that would worked really well on YouTube.
+
+[00:10:34.600] Um, like the ad revenue was good enough that like it could pay my rent, you know?
+
+[00:10:39.800] And it felt like, oh, maybe this could be a job.
+
+[00:10:42.240] And then YouTube started deprioritizing shorter videos, going to more long form content.
+
+[00:10:47.120] Um, you would see ad revenue slashed and this last again and this last again and you're
+
+[00:10:51.480] just like, oh, I need to either change or, you know, find some other way to, to make
+
+[00:10:58.280] this, you know, viable.
+
+[00:11:00.920] Because you've been doing it for a while and I've been, you know, doing things professionally
+
+[00:11:04.280] for work and in my spare time as well.
+
+[00:11:06.360] I think the thing that people talk about is algorithm.
+
+[00:11:09.520] Yeah, because at the end of the day, you know, the vibe that I'm getting from you is like,
+
+[00:11:14.040] hey, I just want to teach people something cool, right?
+
+[00:11:16.280] And then hopefully they watch it and hopefully helps me pay my rent.
+
+[00:11:19.800] Right.
+
+[00:11:20.800] Oh, it would be a nice little goal, right?
+
+[00:11:22.480] Right.
+
+[00:11:23.480] But has the actual algorithm like changed how you create content or think about the content
+
+[00:11:27.720] that you create or you're like, no, I'm just going to do it my way.
+
+[00:11:31.080] Yeah, I think to an extent, um, if you salt immediately, then they want people to see,
+
+[00:11:36.400] um, the work.
+
+[00:11:37.760] But we, you know, I, to afford to live, I had to move to a paid bottle on my own platform.
+
+[00:11:44.000] Um, and so I moved to my own platform and then I'm still released videos for free on YouTube
+
+[00:11:48.480] but didn't have a paid platform.
+
+[00:11:50.280] Um, when we started the syntax podcast, one of the things was that a lot of people were
+
+[00:11:54.760] doing Patreon or pay well content.
+
+[00:11:57.360] Yeah.
+
+[00:11:58.360] And from the start, we talked about it and we determined that like, we will just do ads.
+
+[00:12:05.080] I know the ads are annoying, but we don't want to make people pay for anything here.
+
+[00:12:10.520] Right.
+
+[00:12:11.520] You can skip an ad.
+
+[00:12:12.520] You can't like get past something that has a pay well.
+
+[00:12:15.120] So like the focus on making it for free has always been such a like a priority for us.
+
+[00:12:20.800] And that's why when, um, the level of tutorials and syntax were acquired by century, um,
+
+[00:12:28.120] they were able to make everything free, uh, at least on my platform.
+
+[00:12:32.560] And then now what we're doing on syntax is I'm doing a lot of what I was doing on level
+
+[00:12:36.720] up tutorials just for free on YouTube again, um, with no expectation that anybody has to
+
+[00:12:42.800] pay for anything.
+
+[00:12:43.800] So that's always been number one goal.
+
+[00:12:46.560] Um, but as far as like, you know, really playing to the algorithm.
+
+[00:12:50.560] Yeah.
+
+[00:12:51.560] We do some of that.
+
+[00:12:52.560] We started Friday videos that are a little bit more like edutainment style where we're playing
+
+[00:12:56.600] games against each other.
+
+[00:12:57.960] We're, we're doing coding games.
+
+[00:12:59.560] Um, but they're ultimately just a lot of fun.
+
+[00:13:02.520] And in the challenge there is how do you keep it, um, still valuable like high value
+
+[00:13:07.560] content?
+
+[00:13:08.560] Like I want it to be fun and I want it to be entertaining.
+
+[00:13:11.200] But I'm making sure that when we're doing these coding battles, it's more than just like,
+
+[00:13:15.160] oh, I'm coding.
+
+[00:13:16.160] It's like, let me tell you why while I'm doing this, why you should be using this
+
+[00:13:21.040] transform syntax instead of this transform syntax for these following reasons.
+
+[00:13:25.760] Like I just have such an, an, like an 8 cent that I need to be bringing value in that
+
+[00:13:31.640] way beyond just like, oh, just have fun, you know, yeah.
+
+[00:13:34.880] Yeah.
+
+[00:13:35.880] That makes a lot of sense.
+
+[00:13:36.880] And I feel like that is kind of like kind of leads me to the next kind of topic, which
+
+[00:13:41.640] is as a platform to have evolved, I think as you talked about like I also had a big book.
+
+[00:13:47.240] My first job was like C sharp in that, not shell in that.
+
+[00:13:49.800] I think it was like that, that big.
+
+[00:13:51.200] Yeah.
+
+[00:13:52.200] It was about the size of my head as they say to become a monitor standard at some point.
+
+[00:13:55.360] Yeah, it's definitely.
+
+[00:13:56.360] Yeah.
+
+[00:13:57.360] After I read about 20 pages, I'm like, I think I'm good here.
+
+[00:14:01.160] Was that, you know, there's still books, there's still videos, there's still courses,
+
+[00:14:04.240] there's still conferences, there's still things have evolved, but I feel like there's
+
+[00:14:07.460] different generations of knowledge of how people are learning, but actually what people
+
+[00:14:10.840] are learning, right?
+
+[00:14:12.000] And I feel like I have teachers in my family, I have teachers that are friends that live
+
+[00:14:17.360] across the street from me.
+
+[00:14:19.080] And one of the things is really this impact of AI, right?
+
+[00:14:22.560] Not only just for developers like learning AI and fusing AI into our development, but actually
+
+[00:14:26.880] I like how AI is impact is how people live.
+
+[00:14:29.680] Yeah.
+
+[00:14:30.680] And I think as an educator, you have like this insight, not only just how like just like
+
+[00:14:33.920] algorithms like of YouTube and of different platforms affect how you create content or
+
+[00:14:39.500] it doesn't maybe impact your content, but actually how people are learning nowadays.
+
+[00:14:44.360] So when you get your insight on that and what you've seen through all this content,
+
+[00:14:48.280] like not only just in the courses, but even in the podcast media, right?
+
+[00:14:53.120] As well, like how people are diving into it and the mediums that are there.
+
+[00:14:56.440] Yeah, yeah, there's a number of things there.
+
+[00:14:58.400] I think AI has changed how a lot of us go to solve problems right away.
+
+[00:15:05.800] And so for me personally, it's changed how I solve problems.
+
+[00:15:09.120] I'm not always necessarily looking for blog answers personally.
+
+[00:15:15.920] You're utilizing it for learning specific types of things.
+
+[00:15:20.480] But in general, there's this weird issue where like if you don't know the topic deeply
+
+[00:15:28.280] that you're researching, sometimes AI seems like it's better than it is at that given
+
+[00:15:33.680] time because you're getting answers that seem like they're really good.
+
+[00:15:37.400] But sometimes when I know a lot about the topic and I'm seeing especially like CSS, right?
+
+[00:15:42.040] And AI is returning CSS to me regardless of the model right now.
+
+[00:15:47.160] I'm oftentimes critiquing it from like a really hyper like this to me is like not what
+
+[00:15:53.840] I would write myself.
+
+[00:15:55.760] But other times when I don't know the topic is deeply I'm like, yeah, it looks good to
+
+[00:16:00.280] me, right?
+
+[00:16:02.320] And so I think there is like a bit of an issue where you have newer developers who might
+
+[00:16:06.360] be utilizing these tools, they're either getting maybe not the best code back or they
+
+[00:16:14.760] don't know exactly what they don't know.
+
+[00:16:16.960] And therefore, you know, there's like a weird kind of like mismatch there.
+
+[00:16:22.880] And that can lead some people into a position of like all these tools are bad.
+
+[00:16:27.280] I'm not going to use these tools for learning or all these tools are bad.
+
+[00:16:30.880] I'm not going to use them for development.
+
+[00:16:33.480] And really ultimately what I think people need to understand is that these tools can be super
+
+[00:16:41.440] useful for all of the above as long as you have the willingness and the patience to dive
+
+[00:16:47.360] deeply into them and explore them.
+
+[00:16:49.720] So I've noticed it going a couple ways.
+
+[00:16:53.000] People pick up AI tools and they either work or they don't work.
+
+[00:16:57.360] They work for them.
+
+[00:16:58.360] They say, this is the greatest thing I'm going on in.
+
+[00:17:00.440] They don't work for them.
+
+[00:17:01.440] They say, this sucks.
+
+[00:17:02.440] They're like, I don't think this is worthwhile.
+
+[00:17:05.320] And ultimately like I think with most things, the answer right there somewhere in the
+
+[00:17:11.280] meshing of like, how do you get the total skeptics to realize that there is value there?
+
+[00:17:18.440] How do you get the people who are like very fanatical about them to be a little bit more
+
+[00:17:22.600] cautious about what they're putting out into the world?
+
+[00:17:25.240] So it's a major challenge in educating people about AI, but also getting people to be educated
+
+[00:17:30.880] about AI.
+
+[00:17:31.880] What is that first trip though?
+
+[00:17:34.440] What is the gateway into it?
+
+[00:17:36.680] What would you recommend?
+
+[00:17:37.680] So I'm a brand new student-normor career switcher or even me, I'm just trying to learn a new
+
+[00:17:42.400] turn out like what is the first sort of trickle that I should look at?
+
+[00:17:46.920] How do I, where should I look at and what should be my exploration steps?
+
+[00:17:51.280] Because often for me it's easy to just go, oh I'm an open-up VS code.
+
+[00:17:53.960] Yeah.
+
+[00:17:54.960] I'm a favorite code editor and just say I want to do this thing.
+
+[00:17:59.240] Yeah, it's so funny because I think a lot of times that experience can be overwhelming
+
+[00:18:04.440] to people where the AI is writing and updating files for you.
+
+[00:18:12.000] Sometimes many files at once ensure that the workflows where you're proving those changes,
+
+[00:18:16.480] those can ease some of that.
+
+[00:18:18.160] But I think the best gateway for people is to even just fire up your normal AI chat window
+
+[00:18:24.880] and just start asking questions about code.
+
+[00:18:28.200] We recently talked about like the, just the techniques of AI encoding in which ones we
+
+[00:18:36.880] feel like are better than others.
+
+[00:18:39.360] And the classic, let me just paste this question or paste this error into any sort of
+
+[00:18:44.720] chat window and get that answer back has been very underrated in terms of like being a low
+
+[00:18:51.200] friction way to see the value in something, especially things like solving errors or just
+
+[00:18:57.440] gaining insight or whatever.
+
+[00:18:59.600] Because once it starts getting into your code base and editing files and it starts making
+
+[00:19:02.880] mistakes or doing things that you're not planning on doing or wouldn't do yourself, you
+
+[00:19:07.760] can feel very like attacked by that in a way.
+
+[00:19:11.080] Oh, this is, this is my code you're ruining and I go, you know, off my lawn, you know,
+
+[00:19:15.320] not there, yeah, exactly.
+
+[00:19:16.560] So just like such a gentle introduction into that to me is like a nice way for people to
+
+[00:19:22.880] be like, oh, this doesn't have to be destroying the things I'm working on or whatever.
+
+[00:19:27.560] And then once you find the value in that, yeah, then you can get deeper and deeper.
+
+[00:19:33.880] And then eventually you're working in the terminal UIs that are just updating, you know,
+
+[00:19:38.760] tons of code for you and you're proving PRs and you're sending PRs to an agent that's
+
+[00:19:44.920] solving it for you.
+
+[00:19:45.960] Like there's like, there's definitely like a path to getting more and more advanced
+
+[00:19:52.160] with it that I think I think a lot of people would really like had they have like a more
+
+[00:19:57.800] gentle slope into it.
+
+[00:20:00.560] So it sounds like, you know, I think like even in in the US code, we talked about
+
+[00:20:03.520] there's just ask at an agent, right?
+
+[00:20:05.120] That ask mode is that safe space?
+
+[00:20:07.000] Yeah, yeah.
+
+[00:20:08.000] Form it's cozy.
+
+[00:20:09.000] It's not going to modify.
+
+[00:20:10.000] You can just ask and ask when I started at Canon, my first show about a college, I walked
+
+[00:20:13.680] in in the first week they gave me this binder.
+
+[00:20:15.680] And I said, this is the source code.
+
+[00:20:17.080] This is the reference is the architecture.
+
+[00:20:18.480] Oh, here you go.
+
+[00:20:19.640] And then they said, well, see you in two weeks.
+
+[00:20:21.880] Oh, and that was it.
+
+[00:20:22.960] And it wasn't it was like, it was set up processes and fireman variables.
+
+[00:20:26.440] It was this and that.
+
+[00:20:27.280] And they said, we'll see in two weeks and see if you can build it.
+
+[00:20:29.920] Yeah, see if you can build it, right?
+
+[00:20:31.720] And that would break me.
+
+[00:20:32.760] I had this like, but you could now like ask questions of that code base and really like
+
+[00:20:39.600] targeted stuff.
+
+[00:20:41.160] And to me, that's there's so much value in that like understanding the code.
+
+[00:20:44.760] Yeah.
+
+[00:20:45.760] And I think that's the way that I can do it.
+
+[00:20:46.760] And I think that's the way that I can do it.
+
+[00:20:47.760] And I think that's the way that I can do it.
+
+[00:20:48.760] And I think that's the way that I can do it.
+
+[00:20:49.760] And I think that's the way that I can do it.
+
+[00:20:50.760] And I think that's the way that I can do it.
+
+[00:20:51.760] And I think that's the way that I can do it.
+
+[00:20:52.760] And I think that's the way that I can do it.
+
+[00:20:53.760] And I think that's the way that I can do it.
+
+[00:20:54.760] And I think that's the way that I can do it.
+
+[00:20:55.760] And I think that's the way that I can do it.
+
+[00:20:56.760] And I think that's the way that I can do it.
+
+[00:20:57.760] And I think that's the way that I can do it.
+
+[00:20:58.760] And I think that's the way that I can do it.
+
+[00:20:59.760] And I think that's the way that I can do it.
+
+[00:21:01.760] And I think that's the way that I can do it.
+
+[00:21:03.760] And I think that's the way that I can do it.
+
+[00:21:05.760] And I think that's the way that I can do it.
+
+[00:21:07.760] And I think that's the way that I can do it.
+
+[00:21:09.760] And I think that's the way that I can do it.
+
+[00:21:11.760] And I think that's the way that I can do it.
+
+[00:21:13.760] And I think that's the way that I can do it.
+
+[00:21:15.760] And I think that's the way that I can do it.
+
+[00:21:16.760] And I think that's the way that I can do it.
+
+[00:21:17.760] And I think that's the way that I can do it.
+
+[00:21:18.760] And I think that's the way that I can do it.
+
+[00:21:19.760] And I think that's the way that I can do it.
+
+[00:21:20.760] And I think that's the way that I can do it.
+
+[00:21:21.760] And that's the way that I can do it.
+
+[00:21:23.760] And that's the way that I can do it.
+
+[00:21:25.760] And that's the way that I can do it.
+
+[00:21:27.760] And that's the way that I can do it.
+
+[00:21:29.760] And that's the way that I can do it.
+
+[00:21:31.760] And that's the way that I can do it.
+
+[00:21:33.760] And that's the way that I can do it.
+
+[00:21:34.760] And that's the way that I can do it.
+
+[00:21:36.760] And that's the way that I can do it.
+
+[00:21:37.760] And that's the way that I can do it.
+
+[00:21:38.760] And that's the way that I can do it.
+
+[00:21:39.760] And that's the way that I can do it.
+
+[00:21:40.760] And that's the way that I can do it.
+
+[00:21:41.760] And that's the way that I can do it.
+
+[00:21:42.760] And that's the way that I can do it.
+
+[00:21:43.760] And that's the way that I can do it.
+
+[00:21:44.760] And that's the way that I can do it.
+
+[00:21:45.760] And that's the way that I can do it.
+
+[00:21:47.760] And that's the way that I can do it.
+
+[00:21:48.760] And that's the way that I can do it.
+
+[00:21:50.760] And that's the way that I can do it.
+
+[00:21:52.760] And that's the way that I can do it.
+
+[00:21:54.760] And that's the way that I can do it.
+
+[00:21:56.760] And that's the way that I can do it.
+
+[00:21:58.760] And that's the way that I can do it.
+
+[00:22:00.760] And that's the way that I can do it.
+
+[00:22:02.760] And that's the way that I can do it.
+
+[00:22:04.760] And that's the way that I can do it.
+
+[00:22:06.760] And that's the way that I can do it.
+
+[00:22:07.760] And that's the way that I can do it.
+
+[00:22:08.760] And that's the way that I can do it.
+
+[00:22:09.760] And that's the way that I can do it.
+
+[00:22:10.760] And that's the way that I can do it.
+
+[00:22:11.760] And that's the way that I can do it.
+
+[00:22:12.760] Even maybe more now that there's so many new terms
+
+[00:22:15.320] for so many people.
+
+[00:22:16.480] That's cool.
+
+[00:22:16.980] Now I appreciate you kind of coming on talking about how
+
+[00:22:19.520] you evolved yourself and like at the education platforms
+
+[00:22:22.600] that have evolved and also how AI's impacting that as well.
+
+[00:22:25.360] All right, last question.
+
+[00:22:26.480] Do you have a favorite episode of syntax?
+
+[00:22:28.400] A favorite episode of syntax.
+
+[00:22:30.640] I have a favorite episode of syntax,
+
+[00:22:32.520] primarily for the name of the episode.
+
+[00:22:35.440] I named an episode, keeping up with the Kardashians
+
+[00:22:39.160] about about like keeping up to date with the new code stuff
+
+[00:22:44.600] and postress syndrome.
+
+[00:22:46.400] And I showed my wife this episode
+
+[00:22:50.000] and she goes, Wes is going to quit the podcast.
+
+[00:22:53.600] He is going to quit the podcast when he sees this.
+
+[00:22:55.800] And I was like, now, then he thought it was funny.
+
+[00:22:58.080] He people ended up loving the title.
+
+[00:22:59.480] And yeah, so that was probably one of my more favorite
+
+[00:23:02.400] episodes.
+
+[00:23:03.240] That's awesome.
+
+[00:23:04.080] All right, I'll put links everywhere in the show notes
+
+[00:23:05.920] for syntax or Scott.
+
+[00:23:07.120] Thanks for coming on and just talking about education
+
+[00:23:09.920] and all this goodness.
+
+[00:23:10.880] Thank you so much, awesome.
+
+[00:23:12.000] Cheers.

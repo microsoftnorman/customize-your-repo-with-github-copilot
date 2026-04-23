@@ -2,7 +2,7 @@
 
 [← Back to Guide](../ReadMe.md)
 
-*Updated: April 17, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
+*Updated: April 22, 2026 · Validated against VS Code 1.117 and GitHub Copilot docs as of April 22, 2026.*
 
 ---
 
@@ -10,7 +10,7 @@
 
 **Official docs:** [GitHub Copilot](https://docs.github.com/en/copilot) · [Supported AI models](https://docs.github.com/en/copilot/reference/ai-models/supported-models) · [Copilot feature matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix)
 
-[GitHub Copilot](https://github.com/features/copilot) is GitHub's platform for agentic software development (*agentic* means the AI plans multi-step work, runs tools, and iterates on results rather than answering a single question and stopping; see [Key Terms](#key-terms) below). It runs on frontier language models (Claude, GPT, Gemini) and operates across the entire software development lifecycle: writing code, reviewing pull requests, executing multi-step tasks autonomously, running continuous AI workflows in GitHub Actions, and integrating with external tools and data sources. Copilot is not a single tool in a single editor. It is a platform that spans IDEs, the terminal, GitHub.com, CI/CD pipelines, and custom applications.
+[GitHub Copilot](https://github.com/features/copilot) is GitHub's platform for AI-assisted software development. In the simplest case, it answers questions and suggests code. In the more advanced case, it plans multi-step work, runs tools, edits files, and checks its own results. That second behavior is what this guide means by *agentic* (see [Key Terms](#key-terms) below). Copilot is not a single tool in a single editor. It is a platform that spans IDEs, the terminal, GitHub.com, CI/CD pipelines, and custom applications.
 
 **See it in action:** [Agent Sessions Day Keynote](https://www.youtube.com/watch?v=2-Q_sdJ5H2c&t=0s) — Harald Kirschner frames Copilot as an agentic platform that spans IDEs, the terminal, GitHub.com, and CI/CD.
 
@@ -18,7 +18,16 @@
 
 Out of the box, Copilot is a generic platform. It knows how to write code, review PRs, and execute tasks. It knows nothing about *your* codebase, your conventions, your architecture, or your team's decisions. This guide covers the **eight customization primitives**, plus two platform extensions, that transform Copilot from a generic platform into one that understands your repository. Each primitive is a configuration file or integration that shapes what Copilot knows, how it behaves, and what it can do. Not sure where to start? The [Quick Decision Guide](part-3-reference.md#quick-decision-guide) maps common scenarios to the right primitive.
 
-**This guide assumes Copilot is already installed and working.** If not, start at [github.com/features/copilot](https://github.com/features/copilot) to set up a subscription. Already familiar with GitHub Copilot? Skip the rest of this chapter and jump straight to [Part I: Why Customize →](part-1b-why-customize.md).
+### Before You Go Deeper
+
+Use this checklist before spending time on customization:
+
+- Sign in to GitHub Copilot on one supported surface.
+- Confirm that Chat works at least once in a real repository.
+- Pick one host for the first pass. If the team is new, use VS Code for the examples in this guide.
+- Make sure the repository already builds and tests without AI help. Customization works best when the repo has a stable baseline.
+
+If Copilot is not installed or enabled yet, start at [github.com/features/copilot](https://github.com/features/copilot). Already familiar with GitHub Copilot? Skip the rest of this chapter and jump straight to [Part I: Why Customize →](part-1b-why-customize.md).
 
 ### Key Terms
 
@@ -55,6 +64,10 @@ Copilot assists developers across six interaction patterns:
 
 **Agentic coding** is the most significant capability and where customization has the most impact. When Copilot operates as an agent, whether in VS Code, at the terminal, or running on GitHub's cloud infrastructure, the quality of instructions, skills, and guardrails in the repository directly determines the quality of the output.
 
+The execution model behind that behavior deserves its own chapter. See [The Agent Loop](agent-loop.md) for the detailed mental model: how context is assembled, how tools and subagents fit, where hooks attach, and why model selection can vary across different parts of the same workflow.
+
+For the subagent portion of that mental model, pair that chapter with [VS Code Insiders Podcast Episode 19: Subagents: Parallel Execution and Context Isolation](https://www.vscodepodcast.com/19) and the official @code video [Subagents: Parallel Execution and Context Isolation](https://www.youtube.com/watch?v=GMAoTeD9siU&t=0s). Harald Kirschner explains why delegated work stays useful only when the parent agent gets the result, not the entire exploratory trail.
+
 Agentic coding has three permission levels:
 
 | Level | Behavior |
@@ -82,7 +95,7 @@ Model selection matters more than most people realize. A frontier model with ext
 
 Different models interpret the same instructions differently. Claude models tend toward thoroughness and may add defensive checks not explicitly requested. GPT models often produce more concise output and lean toward established patterns. Gemini models favor pragmatic solutions with minimal boilerplate. When switching models, review whether existing instructions produce the expected behavior. Some rules may need adjustment for a new model's defaults.
 
-Enterprises can use **BYOK (Bring Your Own Key)** to connect their own API keys for supported model providers (OpenAI, Anthropic, Azure), giving teams control over cost, privacy, and provider selection.
+VS Code 1.117 adds **BYOK (Bring Your Own Key)** for Copilot Business and Enterprise. Organizations can let developers use their own approved model-provider keys in chat while keeping policy control on GitHub.com. BYOK applies to VS Code Chat and agents, not inline code completions.
 
 **See it in action:** For a live demo of model configuration, watch Sandeep Somavarapu in [Bring Your Own Model in VS Code](https://www.youtube.com/watch?v=VBSVSxs16_I&t=0s).
 
@@ -105,6 +118,19 @@ Not every primitive is available on every plan. The core customization files (in
 | **Agentic Workflows** | Technical preview; Business, Enterprise |
 
 For the complete, up-to-date availability matrix, see the [Copilot Feature Matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix).
+
+### Who Owns What?
+
+The cleanest operating model is to split control by blast radius:
+
+| Decision area | Best owner | Why |
+|---------------|------------|-----|
+| Plan selection, model allowlists, BYOK policy, Memory enablement | Enterprise or organization platform team | These choices affect cost, compliance, and what surfaces are even allowed to run |
+| MCP approval rules, high-permission agent policy, hook rollout standards | Platform and security together | These are trust-boundary decisions, not local convenience settings |
+| Repo instructions, prompts, skills, and role-specific agents | Repository owners or application teams | These encode local architecture, workflow, and review expectations |
+| File-scoped conventions for subtrees in a monorepo | The team that owns those paths | The people closest to the code should own the narrowest rules |
+
+That gives a practical cascade: central teams define the allowed envelope, then repositories fill it with local context.
 
 ### Enterprise Policy Hierarchy
 
@@ -137,7 +163,9 @@ Copilot runs across many surfaces. The customization primitives in this guide ar
 
 For a consolidated per-surface reference (primitive support, authoring UX, and the gotchas that bite teams in each IDE), see [Where GitHub Copilot Runs: IDE Surfaces](surfaces.md). For the authoritative, continuously-updated feature matrix, see the [GitHub Copilot Feature Matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix).
 
-This guide uses VS Code for examples because it has the most complete primitive support. Where a feature is surface-specific, it is noted.
+This guide uses VS Code for examples because it has the most complete primitive support and the clearest authoring and inspection workflow. If the audience is new to GitHub Copilot customization, start there first.
+
+For most organizations, the rollout order should be: standardize in VS Code first, add GitHub Copilot CLI for terminal-heavy teams once trust boundaries are clear, then expand to the other IDEs where repository portability matters more than feature parity.
 
 ---
 

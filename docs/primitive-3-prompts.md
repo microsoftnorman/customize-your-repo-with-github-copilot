@@ -18,6 +18,8 @@ Prompt files are reusable task templates a user invokes on demand. When a team f
 
 **Official docs:** [Prompt files](https://code.visualstudio.com/docs/copilot/customization/prompt-files)
 
+**Code to study:** [VS Code Copilot Chat source](https://github.com/microsoft/vscode-copilot-chat) for the open-source host that discovers and renders prompt files.
+
 **See it in action:** [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=524s). Courtney Webster walks through prompt files as one-shot slash commands for repeatable workflows like test generation and PR cleanup.
 
 Users invoke prompts by typing `/` in [Copilot Chat](https://code.visualstudio.com/docs/copilot/chat/copilot-chat) and selecting from available options.
@@ -26,7 +28,7 @@ Users invoke prompts by typing `/` in [Copilot Chat](https://code.visualstudio.c
 
 ### Creating This Primitive
 
-Sound off before you steer — let Copilot draft the file. In VS Code, run `/create-prompt` in Chat, or open the Command Palette and run **Chat: New Prompt File**. The generator writes to `.github/prompts/` with the correct `.prompt.md` extension and scaffolds the `description`, `agent`, `model`, and `tools` frontmatter fields for you. Hand-typing these is where the silent failures live: a prompt saved as `.prompts.md` or committed outside `.github/prompts/` never appears in the slash-command picker. See [Don't Hand-Type Primitives — Let the Helmsman Repeat the Order](part-2-primitives.md#dont-hand-type-primitives--let-the-helmsman-repeat-the-order) for the rationale.
+Start with the built-in prompt generator rather than a blank file. In VS Code, run `/create-prompt` in Chat, or open the Command Palette and run **Chat: New Prompt File**. The generator writes to `.github/prompts/` with the correct `.prompt.md` extension and scaffolds the `description`, `agent`, `model`, and `tools` frontmatter fields for you. Hand-typing these is where the silent failures live: a prompt saved as `.prompts.md` or committed outside `.github/prompts/` never appears in the slash-command picker. See [Don't Hand-Type Primitives — Let the Helmsman Repeat the Order](part-2-primitives.md#dont-hand-type-primitives--let-the-helmsman-repeat-the-order) for the rationale.
 
 > **💬 Try this prompt:**
 >

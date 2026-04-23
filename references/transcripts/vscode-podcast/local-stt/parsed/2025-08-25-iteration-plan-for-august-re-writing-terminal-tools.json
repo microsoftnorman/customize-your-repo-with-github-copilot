@@ -1,0 +1,2720 @@
+{
+  "source_file": "2025-08-25-iteration-plan-for-august-re-writing-terminal-tools.md",
+  "transcript_format": "local_stt_segments",
+  "segment_count": 385,
+  "metadata": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 2,
+    "title": "Iteration Plan for August & Re-writing Terminal Tools",
+    "url": "https://www.vscodepodcast.com/2",
+    "transcript_url": "",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/bada80e5-d6fd-40b9-94c1-867091971eb4.mp3",
+    "published": "2025-08-25",
+    "duration": "31:27",
+    "transcript_available": false,
+    "source_file": "2025-08-25-iteration-plan-for-august-re-writing-terminal-tools.md",
+    "source_path": "references\\transcripts\\vscode-podcast\\2025-08-25-iteration-plan-for-august-re-writing-terminal-tools.md",
+    "local_stt": true,
+    "local_stt_model": "tiny",
+    "local_stt_language": "en",
+    "local_stt_device": "cpu",
+    "local_stt_compute_type": "auto"
+  },
+  "segments": [
+    {
+      "speaker": null,
+      "text": "Welcome back everyone to the VS Code Insiders podcast or behind the scenes scoop on everything VS Code",
+      "start": "00:00:00.110",
+      "end": "00:00:06.750",
+      "id": 1
+    },
+    {
+      "speaker": null,
+      "text": "I'm one of your host James Montemagno and with me again, Mr. Pierce Logan has a gone peers",
+      "start": "00:00:06.750",
+      "end": "00:00:10.990",
+      "id": 2
+    },
+    {
+      "speaker": null,
+      "text": "Hello doing amazing games what I love about this is like Pierce all of a sudden goes into like the serious mode like if you watch in this",
+      "start": "00:00:11.630",
+      "end": "00:00:18.350",
+      "id": 3
+    },
+    {
+      "speaker": null,
+      "text": "YouTube you're like all of a sudden like what's going on? It's like a a deer",
+      "start": "00:00:18.350",
+      "end": "00:00:21.990",
+      "id": 4
+    },
+    {
+      "speaker": null,
+      "text": "We also have Daniel and he's from the engineering team is going to give us a sneak peek behind the scenes on all the brand new",
+      "start": "00:00:22.430",
+      "end": "00:00:28.350",
+      "id": 5
+    },
+    {
+      "speaker": null,
+      "text": "Terminal updates, you know I'm a huge terminal fan if you follow me",
+      "start": "00:00:28.670",
+      "end": "00:00:31.870",
+      "id": 6
+    },
+    {
+      "speaker": null,
+      "text": "But we want to give you the behind the scenes kind of one of the point of this entire podcast because you can watch the YouTube",
+      "start": "00:00:32.190",
+      "end": "00:00:37.910",
+      "id": 7
+    },
+    {
+      "speaker": null,
+      "text": "You can watch and read the release notes and all the awesome things that are going in to the product itself",
+      "start": "00:00:37.910",
+      "end": "00:00:43.150",
+      "id": 8
+    },
+    {
+      "speaker": null,
+      "text": "But as everything is developing you see things in the open you get insider builds every single day",
+      "start": "00:00:43.150",
+      "end": "00:00:49.430",
+      "id": 9
+    },
+    {
+      "speaker": null,
+      "text": "You don't need to subscribe to anything everyone can be an insider and if you're listening to this",
+      "start": "00:00:49.430",
+      "end": "00:00:53.430",
+      "id": 10
+    },
+    {
+      "speaker": null,
+      "text": "You can also just use mainline to we talk about new features there, but the cool part that I've",
+      "start": "00:00:53.430",
+      "end": "00:00:57.950",
+      "id": 11
+    },
+    {
+      "speaker": null,
+      "text": "You've been following for a long time, but actually I had no idea how any of it worked is how the planning works",
+      "start": "00:00:58.350",
+      "end": "00:01:03.550",
+      "id": 12
+    },
+    {
+      "speaker": null,
+      "text": "Like you know I work in Microsoft we do a lot of planning and we do a lot of stuff",
+      "start": "00:01:03.550",
+      "end": "00:01:06.430",
+      "id": 13
+    },
+    {
+      "speaker": null,
+      "text": "But actually everything just open as well",
+      "start": "00:01:06.750",
+      "end": "00:01:09.670",
+      "id": 14
+    },
+    {
+      "speaker": null,
+      "text": "But I don't really know how it all works. So I want to appear as I kind of break down the August plan iteration plan",
+      "start": "00:01:09.670",
+      "end": "00:01:15.190",
+      "id": 15
+    },
+    {
+      "speaker": null,
+      "text": "What's in it? How do people like get involved like what's the actual actions that are going on because",
+      "start": "00:01:15.470",
+      "end": "00:01:20.990",
+      "id": 16
+    },
+    {
+      "speaker": null,
+      "text": "To me the cool part is like not only just when the new features are coming out in release, but following along giving feedback as well",
+      "start": "00:01:21.390",
+      "end": "00:01:27.510",
+      "id": 17
+    },
+    {
+      "speaker": null,
+      "text": "That's right. Yeah, so like any good team we have a giant Azure DevOps backlog with tons of ethics",
+      "start": "00:01:28.470",
+      "end": "00:01:35.070",
+      "id": 18
+    },
+    {
+      "speaker": null,
+      "text": "Now I'm just kidding. We're going to do any of that",
+      "start": "00:01:35.070",
+      "end": "00:01:37.070",
+      "id": 19
+    },
+    {
+      "speaker": null,
+      "text": "That's how we work at all",
+      "start": "00:01:37.230",
+      "end": "00:01:39.230",
+      "id": 20
+    },
+    {
+      "speaker": null,
+      "text": "So like you were saying James like the cool thing about this team that's very unique is like it's not only that we work in the open",
+      "start": "00:01:39.230",
+      "end": "00:01:45.670",
+      "id": 21
+    },
+    {
+      "speaker": null,
+      "text": "I think that's pretty common actually is like you know our code and issues and PRs are in the open",
+      "start": "00:01:45.670",
+      "end": "00:01:51.350",
+      "id": 22
+    },
+    {
+      "speaker": null,
+      "text": "That's pretty common for open source, but like our planning is also in the open, right?",
+      "start": "00:01:51.350",
+      "end": "00:01:55.190",
+      "id": 23
+    },
+    {
+      "speaker": null,
+      "text": "So every single month, basically, we do right as kind of forgetting ready to ship you",
+      "start": "00:01:56.150",
+      "end": "00:02:01.350",
+      "id": 24
+    },
+    {
+      "speaker": null,
+      "text": "Then you stable release. We kind of go through this process of planning and it's kind of",
+      "start": "00:02:01.550",
+      "end": "00:02:05.790",
+      "id": 25
+    },
+    {
+      "speaker": null,
+      "text": "Bottom up, so the individual engineers working in their areas. They know the features best",
+      "start": "00:02:06.470",
+      "end": "00:02:10.750",
+      "id": 26
+    },
+    {
+      "speaker": null,
+      "text": "They know the feedback for their areas best and they can really represent what needs to happen the next iteration",
+      "start": "00:02:10.750",
+      "end": "00:02:15.310",
+      "id": 27
+    },
+    {
+      "speaker": null,
+      "text": "Which is basically what we call a sprint on the team and so like everyone kind of sources some items",
+      "start": "00:02:15.430",
+      "end": "00:02:20.430",
+      "id": 28
+    },
+    {
+      "speaker": null,
+      "text": "At the same time, of course, there's like some goals that like from a leadership perspective",
+      "start": "00:02:20.990",
+      "end": "00:02:24.910",
+      "id": 29
+    },
+    {
+      "speaker": null,
+      "text": "We're like, well, we kind of want to take the product in this direction",
+      "start": "00:02:24.910",
+      "end": "00:02:27.230",
+      "id": 30
+    },
+    {
+      "speaker": null,
+      "text": "This is something we really need to take care of because of X-Wiresy reason and so there's kind of like this reasoning process",
+      "start": "00:02:27.470",
+      "end": "00:02:32.910",
+      "id": 31
+    },
+    {
+      "speaker": null,
+      "text": "We're you know people bring their bottoms up ask and there's some top-down ask and we kind of have a little bit of a process for working as things out",
+      "start": "00:02:32.910",
+      "end": "00:02:38.990",
+      "id": 32
+    },
+    {
+      "speaker": null,
+      "text": "Look for any conflicts things like that and then the first Monday of our next iteration",
+      "start": "00:02:40.350",
+      "end": "00:02:45.270",
+      "id": 33
+    },
+    {
+      "speaker": null,
+      "text": "We actually publish this plan on get up",
+      "start": "00:02:45.270",
+      "end": "00:02:47.270",
+      "id": 34
+    },
+    {
+      "speaker": null,
+      "text": "So the entire plan and what every single person on this team is working on you can actually go if you go to the",
+      "start": "00:02:47.510",
+      "end": "00:02:54.070",
+      "id": 35
+    },
+    {
+      "speaker": null,
+      "text": "GitHub issue if you go to the issues tab of the VS Code repo",
+      "start": "00:02:54.230",
+      "end": "00:02:57.350",
+      "id": 36
+    },
+    {
+      "speaker": null,
+      "text": "There's a pinned issue called iteration plan and you can actually look through that and you can see",
+      "start": "00:02:57.350",
+      "end": "00:03:02.910",
+      "id": 37
+    },
+    {
+      "speaker": null,
+      "text": "Exactly all the different things that every single person on the team is going to be working on with linked issues",
+      "start": "00:03:03.430",
+      "end": "00:03:08.270",
+      "id": 38
+    },
+    {
+      "speaker": null,
+      "text": "Right so you can see exactly",
+      "start": "00:03:08.510",
+      "end": "00:03:10.510",
+      "id": 39
+    },
+    {
+      "speaker": null,
+      "text": "You know that fall along with the process you go to the issue you can see any PRs or anything like that",
+      "start": "00:03:10.510",
+      "end": "00:03:14.790",
+      "id": 40
+    },
+    {
+      "speaker": null,
+      "text": "You can see the discussion about how we're going to implement it the design",
+      "start": "00:03:14.790",
+      "end": "00:03:17.990",
+      "id": 41
+    },
+    {
+      "speaker": null,
+      "text": "So all of that is actually happening in the open and like you said James like if you're using insiders",
+      "start": "00:03:18.190",
+      "end": "00:03:22.510",
+      "id": 42
+    },
+    {
+      "speaker": null,
+      "text": "You'll actually see like okay Daniel will deliver some feature",
+      "start": "00:03:22.510",
+      "end": "00:03:25.990",
+      "id": 43
+    },
+    {
+      "speaker": null,
+      "text": "He'll check it off on that how close the issue and then you'll actually see that show up and insiders",
+      "start": "00:03:25.990",
+      "end": "00:03:30.430",
+      "id": 44
+    },
+    {
+      "speaker": null,
+      "text": "Right and so that's like a really cool loop of not only are could being out in the open",
+      "start": "00:03:30.430",
+      "end": "00:03:34.510",
+      "id": 45
+    },
+    {
+      "speaker": null,
+      "text": "But also are plating being out in the open and so there's also some cool things like as you look through the plan that you'll notice like we have",
+      "start": "00:03:34.510",
+      "end": "00:03:40.950",
+      "id": 46
+    },
+    {
+      "speaker": null,
+      "text": "Amodis for everything so if something has like a running person next to it",
+      "start": "00:03:40.950",
+      "end": "00:03:45.310",
+      "id": 47
+    },
+    {
+      "speaker": null,
+      "text": "It means that's what the person on the team is actually working on",
+      "start": "00:03:45.310",
+      "end": "00:03:47.790",
+      "id": 48
+    },
+    {
+      "speaker": null,
+      "text": "Obviously if it's checked it's done",
+      "start": "00:03:48.430",
+      "end": "00:03:50.430",
+      "id": 49
+    },
+    {
+      "speaker": null,
+      "text": "So there's like cool little things like that in the issues that you can kind of go through and see and so",
+      "start": "00:03:50.430",
+      "end": "00:03:55.310",
+      "id": 50
+    },
+    {
+      "speaker": null,
+      "text": "One thing we really want to do in this podcast because this is the insiders podcast is be talking about",
+      "start": "00:03:56.110",
+      "end": "00:04:00.510",
+      "id": 51
+    },
+    {
+      "speaker": null,
+      "text": "What's on our plan for this month before you actually see it in the product and of course as week by week",
+      "start": "00:04:00.750",
+      "end": "00:04:06.110",
+      "id": 52
+    },
+    {
+      "speaker": null,
+      "text": "As we're adding these things have people like Daniel come on and talk about the improvements",
+      "start": "00:04:06.110",
+      "end": "00:04:09.470",
+      "id": 53
+    },
+    {
+      "speaker": null,
+      "text": "We're making inside the product. Yeah, like when you go on you look at this like the first thing you see from Kai here is",
+      "start": "00:04:09.470",
+      "end": "00:04:15.390",
+      "id": 54
+    },
+    {
+      "speaker": null,
+      "text": "Kind of like the date like this is the August work",
+      "start": "00:04:15.830",
+      "end": "00:04:18.230",
+      "id": 55
+    },
+    {
+      "speaker": null,
+      "text": "So it's working done in August deliver in the beginning of September and it means endgame like to someone coming in",
+      "start": "00:04:18.230",
+      "end": "00:04:23.890",
+      "id": 56
+    },
+    {
+      "speaker": null,
+      "text": "What does that actually mean like I know there's like an emoji",
+      "start": "00:04:23.890",
+      "end": "00:04:26.330",
+      "id": 57
+    },
+    {
+      "speaker": null,
+      "text": "I don't even know what endgame mean like the soon that I mean that's like done",
+      "start": "00:04:26.330",
+      "end": "00:04:29.910",
+      "id": 58
+    },
+    {
+      "speaker": null,
+      "text": "But what does there's begins and done but they're in September, but not in August",
+      "start": "00:04:29.910",
+      "end": "00:04:32.910",
+      "id": 59
+    },
+    {
+      "speaker": null,
+      "text": "What does that mean like from someone looking at this thing?",
+      "start": "00:04:32.910",
+      "end": "00:04:35.310",
+      "id": 60
+    },
+    {
+      "speaker": null,
+      "text": "Dean, you'll do you want to talk a little bit about like what in game entails",
+      "start": "00:04:36.030",
+      "end": "00:04:39.030",
+      "id": 61
+    },
+    {
+      "speaker": null,
+      "text": "Sure, so so our iterations are broken up into",
+      "start": "00:04:40.230",
+      "end": "00:04:44.030",
+      "id": 62
+    },
+    {
+      "speaker": null,
+      "text": "development weeks which are typically",
+      "start": "00:04:45.030",
+      "end": "00:04:46.830",
+      "id": 63
+    },
+    {
+      "speaker": null,
+      "text": "two to three weeks and then after that comes endgame, which is a week that we focus on",
+      "start": "00:04:47.270",
+      "end": "00:04:52.910",
+      "id": 64
+    },
+    {
+      "speaker": null,
+      "text": "Testing and stabilizing and then the week after that is called debt week where we try to focus on technical debt",
+      "start": "00:04:53.830",
+      "end": "00:05:00.590",
+      "id": 65
+    },
+    {
+      "speaker": null,
+      "text": "And it will also continue to stabilize the the release before it releases later",
+      "start": "00:05:00.590",
+      "end": "00:05:05.270",
+      "id": 66
+    },
+    {
+      "speaker": null,
+      "text": "So everything that kind of is there a point basically that's like if the features not done it just goes to the next iteration",
+      "start": "00:05:06.270",
+      "end": "00:05:12.110",
+      "id": 67
+    },
+    {
+      "speaker": null,
+      "text": "Like is it like I mean, obviously this this list has to be evolving through out like the month right",
+      "start": "00:05:12.110",
+      "end": "00:05:18.390",
+      "id": 68
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, so",
+      "start": "00:05:19.950",
+      "end": "00:05:21.550",
+      "id": 69
+    },
+    {
+      "speaker": null,
+      "text": "So they'll sometimes go over to the next month maybe they'll land in stable in like a partially implemented state",
+      "start": "00:05:21.550",
+      "end": "00:05:27.510",
+      "id": 70
+    },
+    {
+      "speaker": null,
+      "text": "Maybe defending on the future it could be experimental disabled by default you can turn it on",
+      "start": "00:05:27.510",
+      "end": "00:05:32.390",
+      "id": 71
+    },
+    {
+      "speaker": null,
+      "text": "It's very very fluid",
+      "start": "00:05:33.230",
+      "end": "00:05:35.230",
+      "id": 72
+    },
+    {
+      "speaker": null,
+      "text": "So and we actually have like our test plan items we later like our you can see our test plan",
+      "start": "00:05:35.710",
+      "end": "00:05:41.110",
+      "id": 73
+    },
+    {
+      "speaker": null,
+      "text": "For the release so each engineer also writes their own tests right in terms of like the flow",
+      "start": "00:05:41.830",
+      "end": "00:05:46.510",
+      "id": 74
+    },
+    {
+      "speaker": null,
+      "text": "We have some tooling internally that will automatically assign every single person no matter your role on the team",
+      "start": "00:05:46.830",
+      "end": "00:05:51.710",
+      "id": 75
+    },
+    {
+      "speaker": null,
+      "text": "VMs designers whoever might be to actually go and run through these issues",
+      "start": "00:05:51.710",
+      "end": "00:05:56.390",
+      "id": 76
+    },
+    {
+      "speaker": null,
+      "text": "You know depending on your OS you may get different issues and that sort of thing and then there's like this reconciliation process",
+      "start": "00:05:56.390",
+      "end": "00:06:01.950",
+      "id": 77
+    },
+    {
+      "speaker": null,
+      "text": "That kind of happens is part of that of like oh, I feel like pretty good about this like you know",
+      "start": "00:06:01.950",
+      "end": "00:06:06.710",
+      "id": 78
+    },
+    {
+      "speaker": null,
+      "text": "We didn't really have anything come up during you know the test plan",
+      "start": "00:06:06.710",
+      "end": "00:06:10.190",
+      "id": 79
+    },
+    {
+      "speaker": null,
+      "text": "We can promote this stable and then of course there's like the conversation of like okay",
+      "start": "00:06:10.590",
+      "end": "00:06:14.790",
+      "id": 80
+    },
+    {
+      "speaker": null,
+      "text": "Well, maybe this is in stable, but we have this as a setting and it's off by default",
+      "start": "00:06:14.790",
+      "end": "00:06:18.670",
+      "id": 81
+    },
+    {
+      "speaker": null,
+      "text": "Or maybe it's on by default or maybe we're gonna start with it off by default",
+      "start": "00:06:18.670",
+      "end": "00:06:22.350",
+      "id": 82
+    },
+    {
+      "speaker": null,
+      "text": "But there's some risk so we actually want to do a controlled rollout throughout the month",
+      "start": "00:06:22.350",
+      "end": "00:06:26.070",
+      "id": 83
+    },
+    {
+      "speaker": null,
+      "text": "So there's a the types of kind of conversations that happen in addition to the testing going on that week",
+      "start": "00:06:26.070",
+      "end": "00:06:30.590",
+      "id": 84
+    },
+    {
+      "speaker": null,
+      "text": "You know when you're in here like you also scroll the bottom so everything's broken down at different categories as well",
+      "start": "00:06:30.830",
+      "end": "00:06:35.510",
+      "id": 85
+    },
+    {
+      "speaker": null,
+      "text": "The very bottom it's interesting like how just all works. There's like deferred. It's like gain of you're like working on like a",
+      "start": "00:06:35.510",
+      "end": "00:06:41.310",
+      "id": 86
+    },
+    {
+      "speaker": null,
+      "text": "feature like",
+      "start": "00:06:42.310",
+      "end": "00:06:44.310",
+      "id": 87
+    },
+    {
+      "speaker": null,
+      "text": "what determines",
+      "start": "00:06:44.310",
+      "end": "00:06:46.310",
+      "id": 88
+    },
+    {
+      "speaker": null,
+      "text": "Like where it goes how it goes or if it does get deferred like and where in the process does that happen?",
+      "start": "00:06:46.310",
+      "end": "00:06:51.950",
+      "id": 89
+    },
+    {
+      "speaker": null,
+      "text": "Well the third specifically is about things that we were planning to do but we're no longer planning to do so it's like accountability",
+      "start": "00:06:53.150",
+      "end": "00:07:00.310",
+      "id": 90
+    },
+    {
+      "speaker": null,
+      "text": "Where we had it in the plan, but it's it's being removed",
+      "start": "00:07:00.310",
+      "end": "00:07:04.030",
+      "id": 91
+    },
+    {
+      "speaker": null,
+      "text": "We're not doing that anymore for what you might have thought at me",
+      "start": "00:07:04.270",
+      "end": "00:07:07.430",
+      "id": 92
+    },
+    {
+      "speaker": null,
+      "text": "And actually is that it carries over, but that's that's just the case for anything that's not complete typically",
+      "start": "00:07:07.430",
+      "end": "00:07:13.390",
+      "id": 93
+    },
+    {
+      "speaker": null,
+      "text": "God it that makes sense",
+      "start": "00:07:14.630",
+      "end": "00:07:16.630",
+      "id": 94
+    },
+    {
+      "speaker": null,
+      "text": "Is there anything Pierce and this sort of release? I see there's like all the emojis. There's there's red things. There's blocked work",
+      "start": "00:07:17.350",
+      "end": "00:07:25.390",
+      "id": 95
+    },
+    {
+      "speaker": null,
+      "text": "All the emojis is running. I go into the planning meetings on there's like it feels like the team",
+      "start": "00:07:25.390",
+      "end": "00:07:30.550",
+      "id": 96
+    },
+    {
+      "speaker": null,
+      "text": "I don't know Daniel like people they seem to want to report like different emojis statuses or like I really want to be a red dot today",
+      "start": "00:07:30.870",
+      "end": "00:07:37.390",
+      "id": 97
+    },
+    {
+      "speaker": null,
+      "text": "I really wanted to be a running person like",
+      "start": "00:07:37.390",
+      "end": "00:07:39.390",
+      "id": 98
+    },
+    {
+      "speaker": null,
+      "text": "Did to these emojis kind of excite the team like in in that stand-up on Monday the red dot specifically",
+      "start": "00:07:40.310",
+      "end": "00:07:46.110",
+      "id": 99
+    },
+    {
+      "speaker": null,
+      "text": "We call the clown nose and it's it's a",
+      "start": "00:07:46.110",
+      "end": "00:07:48.390",
+      "id": 100
+    },
+    {
+      "speaker": null,
+      "text": "This cold out every week that hey, yes, I don't got an issue tracking this",
+      "start": "00:07:49.510",
+      "end": "00:07:52.990",
+      "id": 101
+    },
+    {
+      "speaker": null,
+      "text": "But yeah, that most issues would have nothing or run a if it has a runner and it's checked",
+      "start": "00:07:55.390",
+      "end": "00:08:01.550",
+      "id": 102
+    },
+    {
+      "speaker": null,
+      "text": "It means we're gonna be talking about it in our planning sink",
+      "start": "00:08:01.550",
+      "end": "00:08:04.910",
+      "id": 103
+    },
+    {
+      "speaker": null,
+      "text": "If it's just checked, it means it's already been talked about the previous week",
+      "start": "00:08:05.550",
+      "end": "00:08:08.510",
+      "id": 104
+    },
+    {
+      "speaker": null,
+      "text": "But then there's other ones like the hands that means it's blocked",
+      "start": "00:08:09.470",
+      "end": "00:08:12.110",
+      "id": 105
+    },
+    {
+      "speaker": null,
+      "text": "There's the black box which means it'll take a bunch of iterations",
+      "start": "00:08:13.390",
+      "end": "00:08:17.150",
+      "id": 106
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, there's more, but I can't take it from now. Did these also include like community contributions?",
+      "start": "00:08:19.150",
+      "end": "00:08:24.430",
+      "id": 107
+    },
+    {
+      "speaker": null,
+      "text": "How are those part of like the planning iteration?",
+      "start": "00:08:24.430",
+      "end": "00:08:27.470",
+      "id": 108
+    },
+    {
+      "speaker": null,
+      "text": "Very rarely to community contributions show up here if if",
+      "start": "00:08:29.310",
+      "end": "00:08:32.910",
+      "id": 109
+    },
+    {
+      "speaker": null,
+      "text": "Say there's a big PR that comes in from the community it may show up as as in it's gonna take someone of the team",
+      "start": "00:08:33.790",
+      "end": "00:08:39.550",
+      "id": 110
+    },
+    {
+      "speaker": null,
+      "text": "Is significant around a ref it to look into it",
+      "start": "00:08:39.550",
+      "end": "00:08:41.790",
+      "id": 111
+    },
+    {
+      "speaker": null,
+      "text": "But typically community contributions are a smaller they come in through pull requests and then they go to the feature owners who review them",
+      "start": "00:08:43.150",
+      "end": "00:08:50.590",
+      "id": 112
+    },
+    {
+      "speaker": null,
+      "text": "As part of their regular work",
+      "start": "00:08:51.630",
+      "end": "00:08:53.630",
+      "id": 113
+    },
+    {
+      "speaker": null,
+      "text": "Gotcha, that makes that makes sense",
+      "start": "00:08:53.710",
+      "end": "00:08:55.470",
+      "id": 114
+    },
+    {
+      "speaker": null,
+      "text": "So that if it was something like really big and really juicy then you're like okay, like let's let's pull this in basically",
+      "start": "00:08:55.470",
+      "end": "00:09:00.910",
+      "id": 115
+    },
+    {
+      "speaker": null,
+      "text": "But it's less less looking",
+      "start": "00:09:00.910",
+      "end": "00:09:02.910",
+      "id": 116
+    },
+    {
+      "speaker": null,
+      "text": "So the the community contributions also get cold out in our release notes at the bottom",
+      "start": "00:09:03.710",
+      "end": "00:09:07.470",
+      "id": 117
+    },
+    {
+      "speaker": null,
+      "text": "And if if it is a big juicy one as you say they would get a call out in a",
+      "start": "00:09:08.510",
+      "end": "00:09:13.150",
+      "id": 118
+    },
+    {
+      "speaker": null,
+      "text": "Section above that as well, which is like you want to tell people about the new features",
+      "start": "00:09:13.710",
+      "end": "00:09:18.430",
+      "id": 119
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, if you haven't just I think",
+      "start": "00:09:19.230",
+      "end": "00:09:21.230",
+      "id": 120
+    },
+    {
+      "speaker": null,
+      "text": "We were doing this podcast. We kicked it off and a lot of people like oh, like I love you know",
+      "start": "00:09:21.950",
+      "end": "00:09:26.030",
+      "id": 121
+    },
+    {
+      "speaker": null,
+      "text": "Just like seeing like visual like just talking about the features like people like driving to work",
+      "start": "00:09:26.030",
+      "end": "00:09:29.390",
+      "id": 122
+    },
+    {
+      "speaker": null,
+      "text": "And not really in the release notes, but my favorite part of the release notes is that everyone that works on the features",
+      "start": "00:09:30.030",
+      "end": "00:09:34.990",
+      "id": 123
+    },
+    {
+      "speaker": null,
+      "text": "It appears to all me like does their part of the release notes and",
+      "start": "00:09:34.990",
+      "end": "00:09:37.870",
+      "id": 124
+    },
+    {
+      "speaker": null,
+      "text": "We put now this is like in the release notes from last one is it is it Josh?",
+      "start": "00:09:38.750",
+      "end": "00:09:43.470",
+      "id": 125
+    },
+    {
+      "speaker": null,
+      "text": "Is that what that has like crazy Josh Spicer's theme yeah, which everyone has their own screenshots, too",
+      "start": "00:09:44.670",
+      "end": "00:09:49.870",
+      "id": 126
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, and everyone on YouTube there's a reddit thread that I",
+      "start": "00:09:50.430",
+      "end": "00:09:54.430",
+      "id": 127
+    },
+    {
+      "speaker": null,
+      "text": "That will kick off on the videos code reddit that was like what is this theme because it's in the release notes",
+      "start": "00:09:55.310",
+      "end": "00:09:59.950",
+      "id": 128
+    },
+    {
+      "speaker": null,
+      "text": "And we had in the video I this is my new default theme is the Josh. I can't stand that theme",
+      "start": "00:09:59.950",
+      "end": "00:10:04.990",
+      "id": 129
+    },
+    {
+      "speaker": null,
+      "text": "I'm sorry to Josh. It's it thought it was me to death. I'm a little insulted no one's asked me about my queen",
+      "start": "00:10:04.990",
+      "end": "00:10:09.790",
+      "id": 130
+    },
+    {
+      "speaker": null,
+      "text": "Oh, I never like everyone someone asked me what my theme is I said default",
+      "start": "00:10:10.190",
+      "end": "00:10:13.630",
+      "id": 131
+    },
+    {
+      "speaker": null,
+      "text": "I don't know what are big defaults kind of big defaults guy that is for sure",
+      "start": "00:10:14.590",
+      "end": "00:10:18.590",
+      "id": 132
+    },
+    {
+      "speaker": null,
+      "text": "I call Josh is in the tattoo in theme. I think that is reminds me of a beautiful desert plan",
+      "start": "00:10:18.590",
+      "end": "00:10:24.110",
+      "id": 133
+    },
+    {
+      "speaker": null,
+      "text": "So what is in this what do people need to know about this august or kind of coming up the end of August?",
+      "start": "00:10:24.110",
+      "end": "00:10:28.430",
+      "id": 134
+    },
+    {
+      "speaker": null,
+      "text": "But obviously things roll out there what are the big",
+      "start": "00:10:28.750",
+      "end": "00:10:31.230",
+      "id": 135
+    },
+    {
+      "speaker": null,
+      "text": "Bolders pierce you want to kind of call out for people to kind of follow on",
+      "start": "00:10:31.710",
+      "end": "00:10:34.190",
+      "id": 136
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, so I mean I think",
+      "start": "00:10:35.230",
+      "end": "00:10:37.230",
+      "id": 137
+    },
+    {
+      "speaker": null,
+      "text": "Last month we started some work on kind of some source control features around supporting kit work trees and a lot of our source control",
+      "start": "00:10:37.230",
+      "end": "00:10:43.550",
+      "id": 138
+    },
+    {
+      "speaker": null,
+      "text": "features as you realize like how much we're gonna be doing with agents and multi agent and all that stuff",
+      "start": "00:10:43.710",
+      "end": "00:10:49.870",
+      "id": 139
+    },
+    {
+      "speaker": null,
+      "text": "You start to realize the importance of get in this workflow and where it is great and where it falls out",
+      "start": "00:10:49.870",
+      "end": "00:10:55.550",
+      "id": 140
+    },
+    {
+      "speaker": null,
+      "text": "So we started work on work trees which basically loves you to have multiple branches checked out at the same time last iteration",
+      "start": "00:10:56.190",
+      "end": "00:11:01.550",
+      "id": 141
+    },
+    {
+      "speaker": null,
+      "text": "And so there's some more kind of work on going from that this iteration",
+      "start": "00:11:01.550",
+      "end": "00:11:04.270",
+      "id": 142
+    },
+    {
+      "speaker": null,
+      "text": "But another big one that I've hit a lot with the coding agent is just you have a lot more merge complex, right?",
+      "start": "00:11:04.910",
+      "end": "00:11:09.950",
+      "id": 143
+    },
+    {
+      "speaker": null,
+      "text": "If you're just kicking off work all over the place, it's great",
+      "start": "00:11:10.110",
+      "end": "00:11:12.670",
+      "id": 144
+    },
+    {
+      "speaker": null,
+      "text": "But like then suddenly something changes in the branch that you base it off of and now you have a merge conflict",
+      "start": "00:11:12.670",
+      "end": "00:11:17.630",
+      "id": 145
+    },
+    {
+      "speaker": null,
+      "text": "And so we're kind of exploring this idea of how can we have co-private help you to resolve this merge complex?",
+      "start": "00:11:17.630",
+      "end": "00:11:22.670",
+      "id": 146
+    },
+    {
+      "speaker": null,
+      "text": "Because like we want multi agent to be making more productive, right?",
+      "start": "00:11:23.070",
+      "end": "00:11:26.750",
+      "id": 147
+    },
+    {
+      "speaker": null,
+      "text": "We don't want it to be oh you're having to do with merge complex all the time and so this is a cool scenario",
+      "start": "00:11:26.750",
+      "end": "00:11:31.390",
+      "id": 148
+    },
+    {
+      "speaker": null,
+      "text": "Where we're saying okay, how can AI help us? So that's super neat",
+      "start": "00:11:31.390",
+      "end": "00:11:35.150",
+      "id": 149
+    },
+    {
+      "speaker": null,
+      "text": "Bring your own key. I'm a big bring your own key guy and so we have a lot of improvements coming there",
+      "start": "00:11:35.790",
+      "end": "00:11:41.870",
+      "id": 150
+    },
+    {
+      "speaker": null,
+      "text": "So we just added support actually in incitors for open AI compatible",
+      "start": "00:11:41.870",
+      "end": "00:11:45.390",
+      "id": 151
+    },
+    {
+      "speaker": null,
+      "text": "In points so pretty much all the major LLM providers and friends providers at this point",
+      "start": "00:11:46.030",
+      "end": "00:11:50.910",
+      "id": 152
+    },
+    {
+      "speaker": null,
+      "text": "Follow that syntax to varying degrees and so if you have I have ever wanted to use like a model inside of co-pilot",
+      "start": "00:11:51.710",
+      "end": "00:11:57.950",
+      "id": 153
+    },
+    {
+      "speaker": null,
+      "text": "But we don't support it and it's not an Azure and throw off a group an AI or Jim and I",
+      "start": "00:11:58.350",
+      "end": "00:12:02.910",
+      "id": 154
+    },
+    {
+      "speaker": null,
+      "text": "Then this is a cool way that you can actually explore using that inside of",
+      "start": "00:12:03.870",
+      "end": "00:12:06.750",
+      "id": 155
+    },
+    {
+      "speaker": null,
+      "text": "GitHub co-pilot now the problem is you're not going to get any you know prompt specific tweaks or anything like that",
+      "start": "00:12:07.310",
+      "end": "00:12:12.190",
+      "id": 156
+    },
+    {
+      "speaker": null,
+      "text": "But if you just want to go give it a try it works pretty well",
+      "start": "00:12:12.190",
+      "end": "00:12:14.910",
+      "id": 157
+    },
+    {
+      "speaker": null,
+      "text": "But in the case that you want something a bit more integrated we also actually just",
+      "start": "00:12:15.710",
+      "end": "00:12:19.950",
+      "id": 158
+    },
+    {
+      "speaker": null,
+      "text": "Released a new proposed API that we're hoping to finalize this iteration that's basically",
+      "start": "00:12:21.870",
+      "end": "00:12:26.030",
+      "id": 159
+    },
+    {
+      "speaker": null,
+      "text": "Allows extensions to contribute models to GitHub pilot well, like if I have yeah like the fireworks.ai",
+      "start": "00:12:26.990",
+      "end": "00:12:33.950",
+      "id": 160
+    },
+    {
+      "speaker": null,
+      "text": "Extension that could actually contribute models that would show up in the model picker",
+      "start": "00:12:34.910",
+      "end": "00:12:38.990",
+      "id": 161
+    },
+    {
+      "speaker": null,
+      "text": "Which is really cool. So this is like another example of like how we build BS code and the",
+      "start": "00:12:39.230",
+      "end": "00:12:43.630",
+      "id": 162
+    },
+    {
+      "speaker": null,
+      "text": "Exincibility and how we want extensions to be able to hook into all this stuff we're doing with GitHub",
+      "start": "00:12:43.630",
+      "end": "00:12:47.790",
+      "id": 163
+    },
+    {
+      "speaker": null,
+      "text": "pilot so that's super exciting because now like every single inference for writer on earth",
+      "start": "00:12:47.790",
+      "end": "00:12:52.430",
+      "id": 164
+    },
+    {
+      "speaker": null,
+      "text": "Not just the ones that our team has time to go write a provider for can actually show up and that experience",
+      "start": "00:12:52.750",
+      "end": "00:12:57.310",
+      "id": 165
+    },
+    {
+      "speaker": null,
+      "text": "Couple other things just to hit quickly like mcp",
+      "start": "00:12:59.390",
+      "end": "00:13:01.630",
+      "id": 166
+    },
+    {
+      "speaker": null,
+      "text": "We've been really exploring this idea of registries like how can we",
+      "start": "00:13:02.430",
+      "end": "00:13:05.150",
+      "id": 167
+    },
+    {
+      "speaker": null,
+      "text": "Inside the kind of extensions view similar to what we do for the visual studio marketplace show mcp servers and there's a lot of kind of improvements there",
+      "start": "00:13:05.950",
+      "end": "00:13:12.750",
+      "id": 168
+    },
+    {
+      "speaker": null,
+      "text": "Coating agent continuing to like kind of iterate on the chat sessions view that we added last",
+      "start": "00:13:13.150",
+      "end": "00:13:17.630",
+      "id": 169
+    },
+    {
+      "speaker": null,
+      "text": "Interaction where you can basically see what's happening with your remote GitHub copilot coding agent session locally",
+      "start": "00:13:17.870",
+      "end": "00:13:22.910",
+      "id": 170
+    },
+    {
+      "speaker": null,
+      "text": "Also trying to do better with like packaging and defaults because it does require you to go and saw to get",
+      "start": "00:13:23.870",
+      "end": "00:13:28.270",
+      "id": 171
+    },
+    {
+      "speaker": null,
+      "text": "Whole requests extension and turn on some features and",
+      "start": "00:13:28.270",
+      "end": "00:13:30.750",
+      "id": 172
+    },
+    {
+      "speaker": null,
+      "text": "That's definitely not the happy path that was just kind of where we started to get some early feedback and so I think you're going to start seeing that more",
+      "start": "00:13:31.390",
+      "end": "00:13:36.910",
+      "id": 173
+    },
+    {
+      "speaker": null,
+      "text": "Kind of in the default experience and then I think last month if I remember correctly",
+      "start": "00:13:36.910",
+      "end": "00:13:42.190",
+      "id": 174
+    },
+    {
+      "speaker": null,
+      "text": "Mercad this awesome thread like what do you want to see as fix inside of chat and there's a ton of UX paper cuts and things like that and",
+      "start": "00:13:42.190",
+      "end": "00:13:49.310",
+      "id": 175
+    },
+    {
+      "speaker": null,
+      "text": "So we basically have a whole bunch of those that we want to tackle this iteration",
+      "start": "00:13:50.110",
+      "end": "00:13:53.070",
+      "id": 176
+    },
+    {
+      "speaker": null,
+      "text": "We tackled some last iteration like a checkpoints for example, but there's some we want to tackle this iteration",
+      "start": "00:13:53.070",
+      "end": "00:13:58.110",
+      "id": 177
+    },
+    {
+      "speaker": null,
+      "text": "Some of which are already inside of insideers like basically the the changed files thing you get inside of chat is now collapsed by default",
+      "start": "00:13:58.110",
+      "end": "00:14:05.150",
+      "id": 178
+    },
+    {
+      "speaker": null,
+      "text": "So it takes up a little less space",
+      "start": "00:14:05.230",
+      "end": "00:14:07.230",
+      "id": 179
+    },
+    {
+      "speaker": null,
+      "text": "We want to show how close you are to like filling the context window",
+      "start": "00:14:07.230",
+      "end": "00:14:10.430",
+      "id": 180
+    },
+    {
+      "speaker": null,
+      "text": "Because that's important for some people because they want to avoid summarization because it can reduce the quality of the outputs",
+      "start": "00:14:10.990",
+      "end": "00:14:16.030",
+      "id": 181
+    },
+    {
+      "speaker": null,
+      "text": "You get from the model because you can only fit so much context into the context window",
+      "start": "00:14:16.030",
+      "end": "00:14:19.950",
+      "id": 182
+    },
+    {
+      "speaker": null,
+      "text": "Show like thinking tokens so like for some of the models we support inside of",
+      "start": "00:14:20.350",
+      "end": "00:14:24.750",
+      "id": 183
+    },
+    {
+      "speaker": null,
+      "text": "Get help cope out. We actually have reasoning turned on but you can actually see that reasoning trace and so",
+      "start": "00:14:25.310",
+      "end": "00:14:29.710",
+      "id": 184
+    },
+    {
+      "speaker": null,
+      "text": "We're going to add like kind of thinking tokens to the UX",
+      "start": "00:14:30.670",
+      "end": "00:14:33.390",
+      "id": 185
+    },
+    {
+      "speaker": null,
+      "text": "You can actually see okay, here's how the model is reasoning about your problem before it actually starts streaming in the actual response tokens",
+      "start": "00:14:33.390",
+      "end": "00:14:39.550",
+      "id": 186
+    },
+    {
+      "speaker": null,
+      "text": "So we have a lot of kind of cool enhancements based off things we did last month that should be coming throughout this iteration and some of which have already landed",
+      "start": "00:14:40.110",
+      "end": "00:14:46.910",
+      "id": 187
+    },
+    {
+      "speaker": null,
+      "text": "That's awesome. Yeah, I'm super excited because I know at at build we talked a lot about the MCP",
+      "start": "00:14:47.230",
+      "end": "00:14:51.870",
+      "id": 188
+    },
+    {
+      "speaker": null,
+      "text": "Regres and the MCP dev days as well. I have an anthropic there and the worth is being done in the open and then yeah",
+      "start": "00:14:51.870",
+      "end": "00:14:56.830",
+      "id": 189
+    },
+    {
+      "speaker": null,
+      "text": "I am pretty sure handsome and was like the best feature ever was collapse a bull keep on",
+      "start": "00:14:56.830",
+      "end": "00:15:00.510",
+      "id": 190
+    },
+    {
+      "speaker": null,
+      "text": "Who's so I don't just blew his mind, but you know",
+      "start": "00:15:00.510",
+      "end": "00:15:03.710",
+      "id": 191
+    },
+    {
+      "speaker": null,
+      "text": "Handsomen is a terminal guy. I am not a terminal guy",
+      "start": "00:15:04.350",
+      "end": "00:15:07.150",
+      "id": 192
+    },
+    {
+      "speaker": null,
+      "text": "Unlike everybody else my terminals your big buttons guy as has been established in many of our life streams",
+      "start": "00:15:08.110",
+      "end": "00:15:13.870",
+      "id": 193
+    },
+    {
+      "speaker": null,
+      "text": "I love big I love buttons. I love buttons. You press on. I love a UI. I'm a big UI person",
+      "start": "00:15:13.870",
+      "end": "00:15:19.150",
+      "id": 194
+    },
+    {
+      "speaker": null,
+      "text": "I know I get over here. You know what my terminal is whatever the show whatever the default is now",
+      "start": "00:15:19.550",
+      "end": "00:15:23.710",
+      "id": 195
+    },
+    {
+      "speaker": null,
+      "text": "I do insult power show, but that's about it. There's no customizations no colors what's in the box",
+      "start": "00:15:23.710",
+      "end": "00:15:27.870",
+      "id": 196
+    },
+    {
+      "speaker": null,
+      "text": "It's in the box. I don't even know how to figure it out on a Mac and just whatever the position",
+      "start": "00:15:28.350",
+      "end": "00:15:33.070",
+      "id": 197
+    },
+    {
+      "speaker": null,
+      "text": "That's what it is. I don't I don't know and then you know what I do",
+      "start": "00:15:33.070",
+      "end": "00:15:35.710",
+      "id": 198
+    },
+    {
+      "speaker": null,
+      "text": "I just ask copilot run the commands build it fix it do it run it. I don't know I'm working on the VS code website right now",
+      "start": "00:15:35.950",
+      "end": "00:15:42.270",
+      "id": 199
+    },
+    {
+      "speaker": null,
+      "text": "We have dev day to work on some new community stuff and I'm like I don't know just do and then run it and all this stuff",
+      "start": "00:15:42.270",
+      "end": "00:15:46.910",
+      "id": 200
+    },
+    {
+      "speaker": null,
+      "text": "However, there's been I I've noticed because I've been using the terminal a lot because of all the amazing",
+      "start": "00:15:46.910",
+      "end": "00:15:52.430",
+      "id": 201
+    },
+    {
+      "speaker": null,
+      "text": "Integrations with the chat in the agent mode",
+      "start": "00:15:52.430",
+      "end": "00:15:54.510",
+      "id": 202
+    },
+    {
+      "speaker": null,
+      "text": "There's been tons of improvement improvement and that's why I brought Daniel on to not just talk about the process",
+      "start": "00:15:54.510",
+      "end": "00:15:58.190",
+      "id": 203
+    },
+    {
+      "speaker": null,
+      "text": "But to go deep on like what is happening in the terminal because if you actually go to the August iteration plan",
+      "start": "00:15:58.190",
+      "end": "00:16:02.830",
+      "id": 204
+    },
+    {
+      "speaker": null,
+      "text": "I just talked about there's a pretty beefy block Daniel of terminal stuff that's being worked on",
+      "start": "00:16:02.910",
+      "end": "00:16:07.870",
+      "id": 205
+    },
+    {
+      "speaker": null,
+      "text": "But also there's been a lot of stuff that's already shipping as well. It's like what is happening in the terminal in VS code?",
+      "start": "00:16:08.270",
+      "end": "00:16:16.030",
+      "id": 206
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, so I thought I'd cover",
+      "start": "00:16:17.230",
+      "end": "00:16:19.230",
+      "id": 207
+    },
+    {
+      "speaker": null,
+      "text": "Initially what what just landed in stable with the the rewrite of the terminal tool so",
+      "start": "00:16:19.710",
+      "end": "00:16:25.310",
+      "id": 208
+    },
+    {
+      "speaker": null,
+      "text": "Historically before code cop out chat was open source",
+      "start": "00:16:26.270",
+      "end": "00:16:29.630",
+      "id": 209
+    },
+    {
+      "speaker": null,
+      "text": "The tool was implemented in that extension and that means that we're bound to what the extension API can do",
+      "start": "00:16:30.510",
+      "end": "00:16:38.430",
+      "id": 210
+    },
+    {
+      "speaker": null,
+      "text": "But basically dealing with that has a lot of overhead especially when when it comes to anything to do with UI",
+      "start": "00:16:41.230",
+      "end": "00:16:47.630",
+      "id": 211
+    },
+    {
+      "speaker": null,
+      "text": "So much overhead that we didn't even pursue some things such as like trying to show the terminal in line inside the chat",
+      "start": "00:16:48.830",
+      "end": "00:16:54.830",
+      "id": 212
+    },
+    {
+      "speaker": null,
+      "text": "Instead of opening a terminal which is much easier to with the extension API",
+      "start": "00:16:55.150",
+      "end": "00:16:59.070",
+      "id": 213
+    },
+    {
+      "speaker": null,
+      "text": "But yeah, it comes with other things like it now has much richer access to like APIs and internally",
+      "start": "00:17:01.070",
+      "end": "00:17:07.870",
+      "id": 214
+    },
+    {
+      "speaker": null,
+      "text": "So instead of the very the very high level and easy to use API and extension host",
+      "start": "00:17:08.990",
+      "end": "00:17:15.790",
+      "id": 215
+    },
+    {
+      "speaker": null,
+      "text": "We have much lower level things that essentially allows us to",
+      "start": "00:17:16.510",
+      "end": "00:17:20.510",
+      "id": 216
+    },
+    {
+      "speaker": null,
+      "text": "Track down all of these cases with the terminal tool hanging and and fix them",
+      "start": "00:17:21.470",
+      "end": "00:17:26.590",
+      "id": 217
+    },
+    {
+      "speaker": null,
+      "text": "So when you say tool you mean like kind of like the tool drop down like inside the the cutting edge like these are things",
+      "start": "00:17:28.350",
+      "end": "00:17:33.710",
+      "id": 218
+    },
+    {
+      "speaker": null,
+      "text": "There was like a terminal tool and like you're saying the extension like the the copilot extension",
+      "start": "00:17:33.710",
+      "end": "00:17:39.470",
+      "id": 219
+    },
+    {
+      "speaker": null,
+      "text": "Kind of went down this route instead of just having direct access like like somewhat assumed because of is the integrated",
+      "start": "00:17:40.670",
+      "end": "00:17:47.310",
+      "id": 220
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, so there's been terminal extension APIs for many many years now",
+      "start": "00:17:48.110",
+      "end": "00:17:52.510",
+      "id": 221
+    },
+    {
+      "speaker": null,
+      "text": "And the the tool for that allowed copilot to run anything in the terminal was all built on these APIs",
+      "start": "00:17:53.630",
+      "end": "00:17:59.070",
+      "id": 222
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, does that in see question yeah, I think so so does that mean that like those APIs and approval for other extension creators at the same time during this read right",
+      "start": "00:18:01.950",
+      "end": "00:18:08.430",
+      "id": 223
+    },
+    {
+      "speaker": null,
+      "text": "So as I was trying to stabilize the",
+      "start": "00:18:10.670",
+      "end": "00:18:13.150",
+      "id": 224
+    },
+    {
+      "speaker": null,
+      "text": "The terminal tool on the extension host. I fixed a bunch of bugs actually in the extension host and I",
+      "start": "00:18:14.110",
+      "end": "00:18:18.990",
+      "id": 225
+    },
+    {
+      "speaker": null,
+      "text": "I improved some of the API there, but ultimately we needed lower level",
+      "start": "00:18:18.990",
+      "end": "00:18:23.390",
+      "id": 226
+    },
+    {
+      "speaker": null,
+      "text": "stuff in order to give the sort of experience that we want so",
+      "start": "00:18:24.350",
+      "end": "00:18:27.550",
+      "id": 227
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, and not on that experience that we want so",
+      "start": "00:18:29.070",
+      "end": "00:18:31.470",
+      "id": 228
+    },
+    {
+      "speaker": null,
+      "text": "It definitely wasn't where I wanted it we wanted it to be before and there were a whole bunch of",
+      "start": "00:18:32.110",
+      "end": "00:18:37.630",
+      "id": 229
+    },
+    {
+      "speaker": null,
+      "text": "cases where the terminal could hang when a command ran and",
+      "start": "00:18:38.350",
+      "end": "00:18:42.270",
+      "id": 230
+    },
+    {
+      "speaker": null,
+      "text": "The reason for that is it's quite complicated",
+      "start": "00:18:42.910",
+      "end": "00:18:45.710",
+      "id": 231
+    },
+    {
+      "speaker": null,
+      "text": "One of the major contributors is this is all built on shell integration which",
+      "start": "00:18:48.430",
+      "end": "00:18:52.830",
+      "id": 232
+    },
+    {
+      "speaker": null,
+      "text": "We have a script that we inject into the shell when it launches and that inserts little little markers basically that allows us to see okay",
+      "start": "00:18:53.710",
+      "end": "00:19:00.670",
+      "id": 233
+    },
+    {
+      "speaker": null,
+      "text": "This is where the prompt start this is where the command started this is where the output started",
+      "start": "00:19:00.670",
+      "end": "00:19:04.110",
+      "id": 234
+    },
+    {
+      "speaker": null,
+      "text": "Here's the exit code here's what the command line was exactly",
+      "start": "00:19:04.110",
+      "end": "00:19:07.070",
+      "id": 235
+    },
+    {
+      "speaker": null,
+      "text": "But when you launch your default terminal we might either get what we call rich shell integration which is exactly what we want",
+      "start": "00:19:07.630",
+      "end": "00:19:15.310",
+      "id": 236
+    },
+    {
+      "speaker": null,
+      "text": "We might get no shell integration and then we might get what we call basic shell integration which is that huge spectrum in between nothing and rich and",
+      "start": "00:19:16.030",
+      "end": "00:19:24.350",
+      "id": 237
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, there's just so many different configurations so many different ways to do things that it's hard to to capture everything",
+      "start": "00:19:26.670",
+      "end": "00:19:32.510",
+      "id": 238
+    },
+    {
+      "speaker": null,
+      "text": "Is there a like I mean, I do want to pick favorites, but like is there like a hey",
+      "start": "00:19:32.990",
+      "end": "00:19:38.670",
+      "id": 239
+    },
+    {
+      "speaker": null,
+      "text": "Like this shell",
+      "start": "00:19:39.310",
+      "end": "00:19:40.990",
+      "id": 240
+    },
+    {
+      "speaker": null,
+      "text": "Provides one of those better experiences are the box",
+      "start": "00:19:40.990",
+      "end": "00:19:43.630",
+      "id": 241
+    },
+    {
+      "speaker": null,
+      "text": "If you if you open your terminal and hover it",
+      "start": "00:19:44.990",
+      "end": "00:19:48.910",
+      "id": 242
+    },
+    {
+      "speaker": null,
+      "text": "We'll actually show what type of shell integration there is now",
+      "start": "00:19:49.390",
+      "end": "00:19:51.950",
+      "id": 243
+    },
+    {
+      "speaker": null,
+      "text": "If it says shell integration rich",
+      "start": "00:19:52.750",
+      "end": "00:19:54.510",
+      "id": 244
+    },
+    {
+      "speaker": null,
+      "text": "You're probably gonna have a good experience if it doesn't",
+      "start": "00:19:55.470",
+      "end": "00:19:58.270",
+      "id": 245
+    },
+    {
+      "speaker": null,
+      "text": "We hope you have a good experience",
+      "start": "00:19:59.470",
+      "end": "00:20:01.470",
+      "id": 246
+    },
+    {
+      "speaker": null,
+      "text": "So if you don't have any shell integration for example, it'll say that you don't have shell integration and what that means is",
+      "start": "00:20:03.310",
+      "end": "00:20:09.310",
+      "id": 247
+    },
+    {
+      "speaker": null,
+      "text": "The terminal is just a black box of text and",
+      "start": "00:20:10.590",
+      "end": "00:20:13.390",
+      "id": 248
+    },
+    {
+      "speaker": null,
+      "text": "We have to rely on things like waiting for the terminal to idle briefly in order to",
+      "start": "00:20:14.590",
+      "end": "00:20:19.950",
+      "id": 249
+    },
+    {
+      "speaker": null,
+      "text": "Before we send a command to make sure that the terminal's not doing anything",
+      "start": "00:20:21.150",
+      "end": "00:20:23.870",
+      "id": 250
+    },
+    {
+      "speaker": null,
+      "text": "That falls over in in many different places",
+      "start": "00:20:24.830",
+      "end": "00:20:26.830",
+      "id": 251
+    },
+    {
+      "speaker": null,
+      "text": "Um, another thing is when the command finishes we we don't know so",
+      "start": "00:20:27.390",
+      "end": "00:20:32.190",
+      "id": 252
+    },
+    {
+      "speaker": null,
+      "text": "One of the mechanisms we use is to wait on idle. It's not the only one",
+      "start": "00:20:33.230",
+      "end": "00:20:36.750",
+      "id": 253
+    },
+    {
+      "speaker": null,
+      "text": "But yeah, that can fall over say you you're command echoes something every two seconds it'll it'll prematurely exit so",
+      "start": "00:20:38.030",
+      "end": "00:20:44.750",
+      "id": 254
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, and inside as we'll show a warning saying you have no shell integration you should look into it to",
+      "start": "00:20:47.150",
+      "end": "00:20:53.310",
+      "id": 255
+    },
+    {
+      "speaker": null,
+      "text": "Improved command detection",
+      "start": "00:20:53.950",
+      "end": "00:20:55.710",
+      "id": 256
+    },
+    {
+      "speaker": null,
+      "text": "That's really bad. I feel like that needs a whole blog deep dive just like",
+      "start": "00:20:55.710",
+      "end": "00:20:59.070",
+      "id": 257
+    },
+    {
+      "speaker": null,
+      "text": "What that means for folks because as it so it was interesting is as a non",
+      "start": "00:20:59.790",
+      "end": "00:21:04.590",
+      "id": 258
+    },
+    {
+      "speaker": null,
+      "text": "Terminal",
+      "start": "00:21:05.230",
+      "end": "00:21:06.590",
+      "id": 259
+    },
+    {
+      "speaker": null,
+      "text": "User myself if I can stay away from the command line that's my goal in life like",
+      "start": "00:21:06.590",
+      "end": "00:21:10.670",
+      "id": 260
+    },
+    {
+      "speaker": null,
+      "text": "So just that's just my goal right, but but what's interesting is the more I use",
+      "start": "00:21:11.230",
+      "end": "00:21:15.790",
+      "id": 261
+    },
+    {
+      "speaker": null,
+      "text": "Like agents",
+      "start": "00:21:16.750",
+      "end": "00:21:18.750",
+      "id": 262
+    },
+    {
+      "speaker": null,
+      "text": "Is that the power not only of MCPs are like it calling CLIs for it to",
+      "start": "00:21:18.750",
+      "end": "00:21:23.150",
+      "id": 263
+    },
+    {
+      "speaker": null,
+      "text": "Different commands that are out there like I was just building an app this weekend and I needed icons",
+      "start": "00:21:24.270",
+      "end": "00:21:29.470",
+      "id": 264
+    },
+    {
+      "speaker": null,
+      "text": "So what did it do it generated SVGs and then it like converted them to PNGs",
+      "start": "00:21:29.470",
+      "end": "00:21:33.230",
+      "id": 265
+    },
+    {
+      "speaker": null,
+      "text": "I don't know what it did. It was just running stuff and I was like this is great",
+      "start": "00:21:33.230",
+      "end": "00:21:36.030",
+      "id": 266
+    },
+    {
+      "speaker": null,
+      "text": "So like those commands and those rebats are like really important at the end of the day for it to execute sort of different logic",
+      "start": "00:21:37.390",
+      "end": "00:21:42.350",
+      "id": 267
+    },
+    {
+      "speaker": null,
+      "text": "So you're actually kind of the perfect user in my eyes because you don't touch the defaults and the",
+      "start": "00:21:42.910",
+      "end": "00:21:49.230",
+      "id": 268
+    },
+    {
+      "speaker": null,
+      "text": "The most most of that uses we're things start to get wrong is when you use an obscure shell",
+      "start": "00:21:50.190",
+      "end": "00:21:56.030",
+      "id": 269
+    },
+    {
+      "speaker": null,
+      "text": "or if you use something like",
+      "start": "00:21:56.990",
+      "end": "00:21:58.990",
+      "id": 270
+    },
+    {
+      "speaker": null,
+      "text": "Aziz is show with with a bunch of plug-ins they can bet the show integration",
+      "start": "00:21:59.870",
+      "end": "00:22:04.270",
+      "id": 271
+    },
+    {
+      "speaker": null,
+      "text": "But yeah if you just use the defaults or if you just installed the the light up house show that's even better",
+      "start": "00:22:06.110",
+      "end": "00:22:10.510",
+      "id": 272
+    },
+    {
+      "speaker": null,
+      "text": "Then yeah, it should just work",
+      "start": "00:22:12.350",
+      "end": "00:22:14.590",
+      "id": 273
+    },
+    {
+      "speaker": null,
+      "text": "Like that yeah, I'm a big power shell person. That's that and I come from the down at background",
+      "start": "00:22:14.830",
+      "end": "00:22:18.430",
+      "id": 274
+    },
+    {
+      "speaker": null,
+      "text": "So I feel like the first thing I do in every new machine is like power shall done. I just feel like I know",
+      "start": "00:22:18.430",
+      "end": "00:22:22.350",
+      "id": 275
+    },
+    {
+      "speaker": null,
+      "text": "It'll figure it out in general",
+      "start": "00:22:22.430",
+      "end": "00:22:24.430",
+      "id": 276
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, and so this rewrite Daniel. This is all in stable right and what kind of improvements are we seeing like on our side in terms of the experience for folks",
+      "start": "00:22:26.000",
+      "end": "00:22:34.960",
+      "id": 277
+    },
+    {
+      "speaker": null,
+      "text": "So we went we went doing the best job tracking this behind the scenes before",
+      "start": "00:22:36.480",
+      "end": "00:22:41.120",
+      "id": 278
+    },
+    {
+      "speaker": null,
+      "text": "But what we were seeing was when an exception was thrown",
+      "start": "00:22:41.920",
+      "end": "00:22:44.640",
+      "id": 279
+    },
+    {
+      "speaker": null,
+      "text": "At 2.4% of all terminal calls an exception was thrown and what that meant was",
+      "start": "00:22:45.600",
+      "end": "00:22:51.360",
+      "id": 280
+    },
+    {
+      "speaker": null,
+      "text": "Either an unexpected exception or the tool was canceled",
+      "start": "00:22:52.000",
+      "end": "00:22:55.040",
+      "id": 281
+    },
+    {
+      "speaker": null,
+      "text": "After the new tool shipped",
+      "start": "00:22:56.800",
+      "end": "00:22:58.800",
+      "id": 282
+    },
+    {
+      "speaker": null,
+      "text": "We do do for differentiate those now and the unexpected exception case is like 0.007% or something",
+      "start": "00:22:58.800",
+      "end": "00:23:05.840",
+      "id": 283
+    },
+    {
+      "speaker": null,
+      "text": "Ridiculous this wall and then the cancel rate is 1% so",
+      "start": "00:23:06.400",
+      "end": "00:23:09.760",
+      "id": 284
+    },
+    {
+      "speaker": null,
+      "text": "It's great. It's very clearly improved",
+      "start": "00:23:10.560",
+      "end": "00:23:12.880",
+      "id": 285
+    },
+    {
+      "speaker": null,
+      "text": "Some canceles are expected",
+      "start": "00:23:13.200",
+      "end": "00:23:14.880",
+      "id": 286
+    },
+    {
+      "speaker": null,
+      "text": "It's hard to gauge whether we we call everything in that but it's certainly a significant improvement from what we see",
+      "start": "00:23:16.000",
+      "end": "00:23:22.000",
+      "id": 287
+    },
+    {
+      "speaker": null,
+      "text": "Together that baseline basically on there and the one thing I've noticed as well is that there seems to be this goal of",
+      "start": "00:23:22.320",
+      "end": "00:23:27.600",
+      "id": 288
+    },
+    {
+      "speaker": null,
+      "text": "Not having the user click continue as much or",
+      "start": "00:23:29.920",
+      "end": "00:23:33.600",
+      "id": 289
+    },
+    {
+      "speaker": null,
+      "text": "Approve or run as much like I actually kind of see this in some of the newer build where things just that are safe just kind of happen",
+      "start": "00:23:34.320",
+      "end": "00:23:41.200",
+      "id": 290
+    },
+    {
+      "speaker": null,
+      "text": "You know, there's this",
+      "start": "00:23:42.160",
+      "end": "00:23:44.160",
+      "id": 291
+    },
+    {
+      "speaker": null,
+      "text": "Thought of you're just just let me just call you know tell the agent want to do and just have it do it",
+      "start": "00:23:44.560",
+      "end": "00:23:50.880",
+      "id": 292
+    },
+    {
+      "speaker": null,
+      "text": "But in that case",
+      "start": "00:23:51.840",
+      "end": "00:23:53.840",
+      "id": 293
+    },
+    {
+      "speaker": null,
+      "text": "You know, you kind of want to be safe about it. So like every MCP call right ask for your permission",
+      "start": "00:23:53.840",
+      "end": "00:23:58.720",
+      "id": 294
+    },
+    {
+      "speaker": null,
+      "text": "Almost every single terminal call previously at least always ask for your permission even like get status like",
+      "start": "00:23:58.720",
+      "end": "00:24:04.640",
+      "id": 295
+    },
+    {
+      "speaker": null,
+      "text": "I just get the status like it's not gonna do anything, right?",
+      "start": "00:24:04.640",
+      "end": "00:24:07.120",
+      "id": 296
+    },
+    {
+      "speaker": null,
+      "text": "But that's also been vastly improved and I continue to see iterations there. I know that that's been in in this current iteration as well as further improvements",
+      "start": "00:24:07.280",
+      "end": "00:24:15.680",
+      "id": 297
+    },
+    {
+      "speaker": null,
+      "text": "I did notice that there was a beautiful UI",
+      "start": "00:24:16.560",
+      "end": "00:24:19.920",
+      "id": 298
+    },
+    {
+      "speaker": null,
+      "text": "Now, it's not a beautiful UI",
+      "start": "00:24:20.320",
+      "end": "00:24:21.920",
+      "id": 299
+    },
+    {
+      "speaker": null,
+      "text": "But I understand there's some beautiful UI so like in this approving world like what is going on there because the terminal is not working better",
+      "start": "00:24:22.080",
+      "end": "00:24:29.040",
+      "id": 300
+    },
+    {
+      "speaker": null,
+      "text": "That means that we should just be using the terminal more and then should just do more stuff, right?",
+      "start": "00:24:29.040",
+      "end": "00:24:32.560",
+      "id": 301
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, yeah, so if you're if your confirmations there are the more autonomous agent motors the more useful it is the less annoying it is",
+      "start": "00:24:33.520",
+      "end": "00:24:40.880",
+      "id": 302
+    },
+    {
+      "speaker": null,
+      "text": "So in the past in this this most recent release in the previous one we've been iterating on",
+      "start": "00:24:42.400",
+      "end": "00:24:47.200",
+      "id": 303
+    },
+    {
+      "speaker": null,
+      "text": "the terminal auto approve system",
+      "start": "00:24:47.920",
+      "end": "00:24:49.920",
+      "id": 304
+    },
+    {
+      "speaker": null,
+      "text": "It's it's kind of hidden you have to find the setting you have to configure your own rules right now",
+      "start": "00:24:52.160",
+      "end": "00:24:57.840",
+      "id": 305
+    },
+    {
+      "speaker": null,
+      "text": "But it's become pretty pretty capable and reliable",
+      "start": "00:24:58.880",
+      "end": "00:25:02.160",
+      "id": 306
+    },
+    {
+      "speaker": null,
+      "text": "And it didn't most recent one in particular so",
+      "start": "00:25:03.520",
+      "end": "00:25:06.800",
+      "id": 307
+    },
+    {
+      "speaker": null,
+      "text": "So yeah coming into inside is a whole bunch of stuff it's been happening",
+      "start": "00:25:08.080",
+      "end": "00:25:11.520",
+      "id": 308
+    },
+    {
+      "speaker": null,
+      "text": "So rules can now",
+      "start": "00:25:12.880",
+      "end": "00:25:14.080",
+      "id": 309
+    },
+    {
+      "speaker": null,
+      "text": "Target half a little a little nicer so if you have say scripts slash test that you want to always allow",
+      "start": "00:25:14.960",
+      "end": "00:25:22.400",
+      "id": 310
+    },
+    {
+      "speaker": null,
+      "text": "If you add that rule it'll it'll handle like dot slash prefixes",
+      "start": "00:25:23.520",
+      "end": "00:25:27.840",
+      "id": 311
+    },
+    {
+      "speaker": null,
+      "text": "It'll handle the different the different separators for windows and non windows",
+      "start": "00:25:28.240",
+      "end": "00:25:32.320",
+      "id": 312
+    },
+    {
+      "speaker": null,
+      "text": "Um, there's also a UI entry point so",
+      "start": "00:25:33.520",
+      "end": "00:25:36.000",
+      "id": 313
+    },
+    {
+      "speaker": null,
+      "text": "When you're at a command there'll be a continue button the regular continue button",
+      "start": "00:25:36.800",
+      "end": "00:25:40.640",
+      "id": 314
+    },
+    {
+      "speaker": null,
+      "text": "But also a drop down that allows you to",
+      "start": "00:25:41.200",
+      "end": "00:25:43.600",
+      "id": 315
+    },
+    {
+      "speaker": null,
+      "text": "I'd go to the setting or or add some some new rules based on you know what we suggest based on what was what was run",
+      "start": "00:25:44.880",
+      "end": "00:25:52.400",
+      "id": 316
+    },
+    {
+      "speaker": null,
+      "text": "Um",
+      "start": "00:25:54.080",
+      "end": "00:25:55.360",
+      "id": 317
+    },
+    {
+      "speaker": null,
+      "text": "Another thing that's that's nice is that so there is a new UI for the confirm and there's supplies to all tools",
+      "start": "00:25:55.360",
+      "end": "00:26:01.040",
+      "id": 318
+    },
+    {
+      "speaker": null,
+      "text": "But once once you confirm or once you add a rule",
+      "start": "00:26:01.920",
+      "end": "00:26:04.560",
+      "id": 319
+    },
+    {
+      "speaker": null,
+      "text": "We'll actually tell you exactly what the rule was that order will appear to this thing",
+      "start": "00:26:05.040",
+      "end": "00:26:08.960",
+      "id": 320
+    },
+    {
+      "speaker": null,
+      "text": "And you can click into it to go to the setting so it's like really transparent",
+      "start": "00:26:10.400",
+      "end": "00:26:14.960",
+      "id": 321
+    },
+    {
+      "speaker": null,
+      "text": "It's really clear",
+      "start": "00:26:14.960",
+      "end": "00:26:16.960",
+      "id": 322
+    },
+    {
+      "speaker": null,
+      "text": "How to change the rules if you want to back out you can you can click it and just undo it",
+      "start": "00:26:16.960",
+      "end": "00:26:21.040",
+      "id": 323
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, and then and then the other big thing is is we're adding a bunch of defaults",
+      "start": "00:26:24.320",
+      "end": "00:26:28.080",
+      "id": 324
+    },
+    {
+      "speaker": null,
+      "text": "Uh",
+      "start": "00:26:28.160",
+      "end": "00:26:30.160",
+      "id": 325
+    },
+    {
+      "speaker": null,
+      "text": "I like to call them safety faults. Okay, so",
+      "start": "00:26:30.640",
+      "end": "00:26:33.120",
+      "id": 326
+    },
+    {
+      "speaker": null,
+      "text": "So uh, yeah, there's a lot of a lot of things the terminal commands can do so",
+      "start": "00:26:35.040",
+      "end": "00:26:39.120",
+      "id": 327
+    },
+    {
+      "speaker": null,
+      "text": "As an example of of something we do",
+      "start": "00:26:40.800",
+      "end": "00:26:42.800",
+      "id": 328
+    },
+    {
+      "speaker": null,
+      "text": "There's the fine command that lets you find text as ad files",
+      "start": "00:26:44.720",
+      "end": "00:26:47.600",
+      "id": 329
+    },
+    {
+      "speaker": null,
+      "text": "You might think that that's safe to run generally. It's not actually because there's a whole bunch of arguments",
+      "start": "00:26:49.360",
+      "end": "00:26:54.720",
+      "id": 330
+    },
+    {
+      "speaker": null,
+      "text": "Such as the hyphen exact argument that lets you just execute a sub commit inside",
+      "start": "00:26:55.360",
+      "end": "00:27:02.320",
+      "id": 331
+    },
+    {
+      "speaker": null,
+      "text": "So for find we will allow that command",
+      "start": "00:27:03.200",
+      "end": "00:27:05.840",
+      "id": 332
+    },
+    {
+      "speaker": null,
+      "text": "But we'll block it when there is certain arguments used no are and this applies to a whole bunch of uh",
+      "start": "00:27:06.400",
+      "end": "00:27:13.760",
+      "id": 333
+    },
+    {
+      "speaker": null,
+      "text": "I think like sort has an issue like that and",
+      "start": "00:27:15.120",
+      "end": "00:27:18.240",
+      "id": 334
+    },
+    {
+      "speaker": null,
+      "text": "J2 I can we consider adding that but I ended up removing it because it's like trivial to execute anything from the JQ trend",
+      "start": "00:27:18.800",
+      "end": "00:27:26.560",
+      "id": 335
+    },
+    {
+      "speaker": null,
+      "text": "Oh, wow, you know you and I were talking about it quite a bit and the list you know",
+      "start": "00:27:27.440",
+      "end": "00:27:31.440",
+      "id": 336
+    },
+    {
+      "speaker": null,
+      "text": "I was like I do they here's my defaults like you're batting like you know",
+      "start": "00:27:31.440",
+      "end": "00:27:34.480",
+      "id": 337
+    },
+    {
+      "speaker": null,
+      "text": "Don't have build on a test like you then PM things all the stuff and then actually like talking through with you",
+      "start": "00:27:34.480",
+      "end": "00:27:39.280",
+      "id": 338
+    },
+    {
+      "speaker": null,
+      "text": "I was like oh things are actually like a lot more complex than I thought think about because I never think about the additional arguments",
+      "start": "00:27:39.280",
+      "end": "00:27:44.960",
+      "id": 339
+    },
+    {
+      "speaker": null,
+      "text": "And the complexity of it because like I'm memorizing like every argument that could be passed into a pretty single command on there like",
+      "start": "00:27:45.520",
+      "end": "00:27:51.440",
+      "id": 340
+    },
+    {
+      "speaker": null,
+      "text": "Was this a collaboration with like a bunch of people on the team like with the community?",
+      "start": "00:27:51.840",
+      "end": "00:27:55.200",
+      "id": 341
+    },
+    {
+      "speaker": null,
+      "text": "Obviously, I think it's just rolling to the get-up issue and on it as well, but like how did you actually make that decision?",
+      "start": "00:27:55.200",
+      "end": "00:28:01.360",
+      "id": 342
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, I've asked a whole lot of people for feedback on this",
+      "start": "00:28:02.080",
+      "end": "00:28:05.360",
+      "id": 343
+    },
+    {
+      "speaker": null,
+      "text": "Oh, so internally inside the team",
+      "start": "00:28:06.080",
+      "end": "00:28:08.560",
+      "id": 344
+    },
+    {
+      "speaker": null,
+      "text": "internally side Microsoft we have dog-feeding channels where a whole bunch of people get together",
+      "start": "00:28:09.520",
+      "end": "00:28:13.520",
+      "id": 345
+    },
+    {
+      "speaker": null,
+      "text": "I think I asked on Twitter. I'm certainly tweeted at people saying can you review this?",
+      "start": "00:28:14.160",
+      "end": "00:28:17.760",
+      "id": 346
+    },
+    {
+      "speaker": null,
+      "text": "Security of people and say get her live reviewed it and then I also just last week",
+      "start": "00:28:20.000",
+      "end": "00:28:25.760",
+      "id": 347
+    },
+    {
+      "speaker": null,
+      "text": "Like sat down with with opus and",
+      "start": "00:28:26.480",
+      "end": "00:28:29.200",
+      "id": 348
+    },
+    {
+      "speaker": null,
+      "text": "Did like several security reviews iterating on it and it found a whole bunch of cases. Oh, wow",
+      "start": "00:28:30.000",
+      "end": "00:28:35.760",
+      "id": 349
+    },
+    {
+      "speaker": null,
+      "text": "So it's in a pretty good state now and it's uh",
+      "start": "00:28:36.160",
+      "end": "00:28:38.960",
+      "id": 350
+    },
+    {
+      "speaker": null,
+      "text": "It's interesting because you might think that at having these defaults",
+      "start": "00:28:39.920",
+      "end": "00:28:43.680",
+      "id": 351
+    },
+    {
+      "speaker": null,
+      "text": "Could be more risky, but when you consider things like we've done the research about these arguments",
+      "start": "00:28:44.960",
+      "end": "00:28:50.080",
+      "id": 352
+    },
+    {
+      "speaker": null,
+      "text": "It's actually much more safe if you'll allow us to approve find but not these special arguments rather than",
+      "start": "00:28:50.080",
+      "end": "00:28:56.160",
+      "id": 353
+    },
+    {
+      "speaker": null,
+      "text": "The user seeing this and saying I'll find a safe, you know check I think the other thing about that is like when",
+      "start": "00:28:56.800",
+      "end": "00:29:04.560",
+      "id": 354
+    },
+    {
+      "speaker": null,
+      "text": "There is no good defaults then the user is way more because it is frustrating, right?",
+      "start": "00:29:05.520",
+      "end": "00:29:10.560",
+      "id": 355
+    },
+    {
+      "speaker": null,
+      "text": "Like when you're working with the agent and there's like definitely some friction there of like as a user",
+      "start": "00:29:10.560",
+      "end": "00:29:14.560",
+      "id": 356
+    },
+    {
+      "speaker": null,
+      "text": "I just want things to happen, right? And so",
+      "start": "00:29:14.560",
+      "end": "00:29:16.480",
+      "id": 357
+    },
+    {
+      "speaker": null,
+      "text": "Sometimes there's like a user preference to just be like",
+      "start": "00:29:17.200",
+      "end": "00:29:19.760",
+      "id": 358
+    },
+    {
+      "speaker": null,
+      "text": "I just want everything to happen, right? And so if you have no defaults you actually end up pushing the user to a more extreme position",
+      "start": "00:29:20.800",
+      "end": "00:29:26.480",
+      "id": 359
+    },
+    {
+      "speaker": null,
+      "text": "Then just taking a reasonable one to begin with",
+      "start": "00:29:26.480",
+      "end": "00:29:28.880",
+      "id": 360
+    },
+    {
+      "speaker": null,
+      "text": "Yep, something else please something else we might add",
+      "start": "00:29:29.760",
+      "end": "00:29:33.600",
+      "id": 361
+    },
+    {
+      "speaker": null,
+      "text": "Along this is deferring some of this to to an element so if it's something's like",
+      "start": "00:29:34.560",
+      "end": "00:29:39.840",
+      "id": 362
+    },
+    {
+      "speaker": null,
+      "text": "Script files it's really hard to for us to say oh, that's that's safe because the script file could do anything",
+      "start": "00:29:40.560",
+      "end": "00:29:47.040",
+      "id": 363
+    },
+    {
+      "speaker": null,
+      "text": "But if we",
+      "start": "00:29:47.600",
+      "end": "00:29:49.280",
+      "id": 364
+    },
+    {
+      "speaker": null,
+      "text": "Ask a LMM is this fine to run then it could add it to the approved list",
+      "start": "00:29:49.280",
+      "end": "00:29:53.760",
+      "id": 365
+    },
+    {
+      "speaker": null,
+      "text": "the terminal auto approved mechanism also has a denialist so if",
+      "start": "00:29:54.480",
+      "end": "00:29:58.720",
+      "id": 366
+    },
+    {
+      "speaker": null,
+      "text": "If that's that was allowed by LMM but it was denied by say it used the RM command",
+      "start": "00:29:59.680",
+      "end": "00:30:05.200",
+      "id": 367
+    },
+    {
+      "speaker": null,
+      "text": "It still wouldn't run despite the LMM saying we say so it's just an extra thing",
+      "start": "00:30:06.480",
+      "end": "00:30:10.480",
+      "id": 368
+    },
+    {
+      "speaker": null,
+      "text": "That's not in the inside as yet, but it maybe it will be in the future",
+      "start": "00:30:11.120",
+      "end": "00:30:14.560",
+      "id": 369
+    },
+    {
+      "speaker": null,
+      "text": "I like that because I think I kind of just like Pearson you kind of been mentioning is like right now",
+      "start": "00:30:14.560",
+      "end": "00:30:18.720",
+      "id": 370
+    },
+    {
+      "speaker": null,
+      "text": "If every single terminal command I have to you know, yes, yes, yes, yes, yes",
+      "start": "00:30:18.720",
+      "end": "00:30:22.640",
+      "id": 371
+    },
+    {
+      "speaker": null,
+      "text": "Your default turns into yes, but now",
+      "start": "00:30:22.960",
+      "end": "00:30:25.200",
+      "id": 372
+    },
+    {
+      "speaker": null,
+      "text": "With this and since I've been using it, I'm like, okay, I know the VS codes only gonna really prompt me",
+      "start": "00:30:25.920",
+      "end": "00:30:32.000",
+      "id": 373
+    },
+    {
+      "speaker": null,
+      "text": "When it really needs to prompt me more right and then I can start to say, okay, yeah, I want Donette builder",
+      "start": "00:30:32.800",
+      "end": "00:30:38.080",
+      "id": 374
+    },
+    {
+      "speaker": null,
+      "text": "I want Donette test, but I don't want Donette run really because I don't want you running things in general, right?",
+      "start": "00:30:38.080",
+      "end": "00:30:42.240",
+      "id": 375
+    },
+    {
+      "speaker": null,
+      "text": "So kind of having this step through this is awesome",
+      "start": "00:30:42.240",
+      "end": "00:30:45.280",
+      "id": 376
+    },
+    {
+      "speaker": null,
+      "text": "I will put links to everything then you link so much for coming on and talking through",
+      "start": "00:30:45.920",
+      "end": "00:30:49.200",
+      "id": 377
+    },
+    {
+      "speaker": null,
+      "text": "I'll be back as the terminal continues to evolve and of course, you know",
+      "start": "00:30:49.200",
+      "end": "00:30:53.360",
+      "id": 378
+    },
+    {
+      "speaker": null,
+      "text": "Check out the iteration plans. I'm sure some time will be here in no time and personal will be back",
+      "start": "00:30:53.680",
+      "end": "00:30:58.160",
+      "id": 379
+    },
+    {
+      "speaker": null,
+      "text": "With more VS code inside as podcast",
+      "start": "00:30:58.720",
+      "end": "00:31:00.640",
+      "id": 380
+    },
+    {
+      "speaker": null,
+      "text": "I don't forget that you can subscribe of course on our YouTube if you want to see our beautiful faces",
+      "start": "00:31:00.640",
+      "end": "00:31:04.320",
+      "id": 381
+    },
+    {
+      "speaker": null,
+      "text": "There, but you can also now subscribe in your favorite podcast app run everything. I woke up really early",
+      "start": "00:31:04.880",
+      "end": "00:31:10.880",
+      "id": 382
+    },
+    {
+      "speaker": null,
+      "text": "After launching the first video and got everything up on the apple podcast on the Spotify's on the podcast and all the things",
+      "start": "00:31:11.440",
+      "end": "00:31:16.240",
+      "id": 383
+    },
+    {
+      "speaker": null,
+      "text": "You can go to VS code podcast.com to find links to everything",
+      "start": "00:31:16.400",
+      "end": "00:31:20.240",
+      "id": 384
+    },
+    {
+      "speaker": null,
+      "text": "Let's go do for this VS code inside as podcast Daniel. Thank you. Pierce. Thank you. Okay, gen the next one",
+      "start": "00:31:20.240",
+      "end": "00:31:26.240",
+      "id": 385
+    }
+  ]
+}

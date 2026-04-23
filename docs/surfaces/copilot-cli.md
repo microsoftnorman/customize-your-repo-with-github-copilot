@@ -4,20 +4,29 @@
 
 ---
 
-[GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) runs the Copilot agent in a terminal. It reached general availability on February 25, 2026. Tool calling, file editing, and test running all work from the command line, the same as in VS Code.
+[GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) runs the Copilot agent in a terminal. It reached general availability on February 25, 2026. It can search, edit, run commands, and work with GitHub.com directly from the shell. That makes it powerful. It also makes the trust boundary very different from an IDE tab: the CLI runs with the user's shell identity, process environment, file permissions, and network reach.
 
 **Official docs:** [About Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) · [Copilot CLI repository](https://github.com/github/copilot-cli)
 
-**See it in action:** [How to use agents, skills, and instructions in Copilot CLI](https://www.youtube.com/watch?v=-yKALFS5ewY&t=4s). The GitHub Copilot CLI for Beginners series walks through `copilot-instructions.md`, `.instructions.md` files, skills, and custom agents running end-to-end in the terminal.
+**See it in action:** [How to use agents, skills, and instructions in Copilot CLI](https://www.youtube.com/watch?v=-yKALFS5ewY&t=4s) — GitHub demos instructions, skills, and custom agents running end-to-end in a terminal session.
 
-## Permission Levels
+## Start Here First
+
+If this is the first Copilot CLI session, keep the first run boring:
+
+1. Launch `copilot` inside a narrow, trusted repository rather than `$HOME` or a shared workspace.
+2. Start with a read-only prompt or plan-mode task.
+3. Add write and shell approvals only after the agent has shown it understands the repo.
+
+GitHub's own guidance is explicit here: trusted-directory scoping is heuristic, not a hard sandbox. Do not launch the CLI from directories that contain untrusted files or sensitive data you do not want touched.
+
+## Approval Posture
 
 | Level | Behavior |
 |-------|----------|
-| **Default** | Agent suggests actions; developer approves each one |
-| **Bypass Approvals** | Skip confirmations for low-risk actions |
-| **YOLO / allow-all** | Skip all permission prompts for tools, paths, and URLs. Enable with `--yolo` (alias of `--allow-all`) at launch, `/yolo` (alias of `/allow-all`) mid-session, or `COPILOT_ALLOW_ALL=true`. Deny rules still override: `--deny-tool` and `--deny-url` take precedence, even with `--yolo` set |
-| **Autopilot** (preview) | Agent retries on errors and works until the task is complete without asking for approval |
+| **Manual approvals** | Copilot asks before using risky tools or making writes |
+| **Scoped auto-approval** | Use `--allow-tool` and per-session approvals for specific tools or categories |
+| **YOLO / allow-all** | Skip all permission prompts for tools, paths, and URLs. Enable with `--yolo` / `--allow-all`, then carve back risk with deny rules |
 
 ### YOLO Mode in Depth
 
@@ -35,6 +44,8 @@
 - Repos with untrusted MCP servers or third-party plugins
 - Anywhere deny rules are the only thing keeping the agent out of secrets or production systems. Deny rules still fire, but they must be configured explicitly
 
+**Minimum containment bar:** use ephemeral or disposable environments, mount only the filesystem the agent actually needs, avoid long-lived credentials, and add explicit deny rules for destructive operations such as `rm`, `git push`, or secret-bearing paths.
+
 **Scoping YOLO safely:**
 
 ```text
@@ -50,7 +61,9 @@ copilot --yolo \
 
 ## Key Features
 
-Switch models mid-session between Claude Opus 4.7, GPT-5.4, Gemini 3 Pro, and others. Enterprises on supported providers bring their own API keys with BYOK (Bring Your Own Key).
+**Copilot auto model selection** is now generally available in the CLI for all Copilot plans. `auto` picks an efficient model for the task, shows which model was actually used, respects administrator model policy, and currently applies a 10% premium-request discount compared with selecting the same model directly. Use `/model` to switch between `auto` and a specific model whenever you need tighter control.
+
+Switch models mid-session between Claude Opus 4.7, GPT-5.4, Gemini 3 Pro, and others. The CLI can also connect to your own model provider through environment-based provider settings, but that is a trust-boundary choice, not just a flexibility feature. A self-hosted or third-party provider may still log prompts, retain outputs, or have network egress unless you verify otherwise.
 
 **[Fleet mode](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/fleet)** (`/fleet`) enables parallel sub-agent execution. An orchestrator decomposes a task into independent subtasks, dispatches them to parallel sub-agents, tracks dependencies, and synthesizes the results:
 
@@ -60,16 +73,18 @@ Switch models mid-session between Claude Opus 4.7, GPT-5.4, Gemini 3 Pro, and ot
 
 The orchestrator builds a task graph. If Task C depends on A and B, it waits. Independent tasks run simultaneously. Monitor progress with `/tasks`.
 
-**[Remote sessions](https://docs.github.com/en/copilot/how-tos/copilot-cli/steer-remotely)** (`/remote`) let developers start a CLI session locally and control it from any device via the GitHub web interface or GitHub Mobile. The session streams in real time. Send instructions, approve actions, switch modes, and answer questions from a browser or phone:
+**[Remote sessions](https://docs.github.com/en/copilot/how-tos/copilot-cli/steer-remotely)** (`/remote`) let developers start a CLI session locally and control it from any browser, or from GitHub Mobile beta, while the original shell keeps running. The session streams in real time. You can send instructions, approve actions, switch modes, and answer questions from GitHub.com or mobile:
 
 ```text
 /remote          # enable remote access for the current session
 copilot --remote # start a new session with remote access
 ```
 
-The CLI generates a URL and QR code. Only the authenticated GitHub account can access the session. Use `/keep-alive` to prevent the machine from sleeping during long tasks.
+The CLI generates a URL and QR code. Only the authenticated GitHub account can access the session. Remote access is still a real remote execution channel into that workstation, so unattended keep-alive sessions deserve the same caution as leaving an SSH session open. Remote access is in public preview, requires a GitHub-hosted repository, can be enabled by default with `"remoteSessions": true` in `~/.copilot/config.json`, and can be forced off per session with `--no-remote`. Use `/keep-alive busy` or a bounded window such as `/keep-alive 30m` instead of leaving a workstation awake indefinitely.
 
 Reasoning models expose a thinking-effort setting that controls how deeply they think before responding. Set it from the model picker or via `/model` with a thinking-effort flag.
+
+**C++ code intelligence** entered public preview on April 22, 2026. With the Microsoft C++ Language Server, the CLI can use semantic data such as definitions, references, call hierarchies, and type information instead of relying only on grep-style search. It currently requires project setup such as `compile_commands.json`.
 
 ## Slash Commands
 
@@ -93,6 +108,15 @@ The CLI exposes its own set of slash commands for session control. Type `/` in a
 | `/tasks` | Inspect task graph progress when running `/fleet` |
 
 For the full reference, see the [CLI command reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference).
+
+## Trust Boundaries and Policy Limits
+
+The CLI is a later-wave rollout surface for most organizations. It has broad reach and weak natural boundaries compared with an editor sandbox.
+
+- Standardize the repository assets in VS Code first, then add the CLI for terminal-first teams and automation-heavy workflows.
+- Treat `--yolo`, remote sessions, and custom model providers as controlled-use features, not the default posture for every developer.
+- Do not assume organization-level MCP controls are complete here. GitHub's docs call out known policy limitations for MCP server usage in the CLI.
+- Prefer dedicated worktrees, containers, VMs, or ephemeral CI hosts when the CLI is expected to operate with high autonomy.
 
 ### Installing Skills with `gh skill`
 
@@ -130,7 +154,7 @@ Copilot CLI ships weekly. Homebrew, WinGet, and the shell installer pick up new 
 
 ## Getting Started
 
-Available to all paid Copilot subscribers (Pro, Pro+, Business, Enterprise). Install via:
+Available with all Copilot plans, subject to organization policy when Copilot is provided by an employer. Install via:
 
 ```text
 # macOS / Linux
@@ -140,9 +164,9 @@ brew install gh-copilot
 winget install GitHub.CopilotCLI
 ```
 
-## Local Models & Offline Mode
+## Custom Providers and Offline Mode
 
-Copilot CLI supports local model providers for air-gapped environments or teams that prefer self-hosted inference:
+Copilot CLI supports custom model providers for teams that need self-hosted inference, private gateways, or non-GitHub-hosted models:
 
 | Provider | Setup |
 |----------|-------|
@@ -156,9 +180,9 @@ Copilot CLI supports local model providers for air-gapped environments or teams 
 export COPILOT_OFFLINE=true
 ```
 
-When `COPILOT_OFFLINE=true` is set, the CLI skips GitHub authentication entirely and uses only the configured local provider. GitHub-hosted models, Memory, and cloud-based features become unavailable. All local primitives (instructions, skills, hooks, MCP) still apply.
+When `COPILOT_OFFLINE=true` is set, the CLI skips GitHub authentication entirely and uses only the configured local provider. GitHub-hosted models, Memory, and cloud-based features become unavailable. All local primitives still apply.
 
-When using a local or third-party provider that has network access, GitHub authentication is optional. The CLI authenticates only when accessing GitHub-hosted models or cloud features like Memory.
+Self-hosted does not automatically mean offline. A third-party or internal provider can still retain prompts or send data over the network. Treat provider configuration as a security review item, not a convenience toggle.
 
 ## Further Reading
 

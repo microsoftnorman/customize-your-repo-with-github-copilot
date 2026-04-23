@@ -6,6 +6,8 @@
 
 GitHub Copilot for Eclipse is a first-party plugin published by Microsoft on the [Eclipse Marketplace](https://marketplace.eclipse.org/content/github-copilot) and on a dedicated [Azure-hosted p2 update site](https://azuredownloads-g3ahgwb5b8bkbxhd.b01.azurefd.net/github-copilot/). It brings the Copilot experience (completions, chat, agent mode, and [MCP](https://modelcontextprotocol.io)) into the Eclipse IDE and Eclipse-based distributions (Spring Tool Suite, JBoss Developer Studio, IBM Developer for z/OS, SAP ABAP Development Tools, eGovFrame, and others that inherit from the Eclipse Platform). The plugin has been [announced to go open source under the MIT license](https://devblogs.microsoft.com/java/ghc-eclipse-is-going-open-source/) and ships updates on an approximately monthly cadence alongside the rest of the Copilot IDE family.
 
+**Official docs:** [Install for Eclipse](https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-extension?tool=eclipse) · [Copilot feature matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=eclipse) · [Eclipse Marketplace listing](https://marketplace.eclipse.org/content/github-copilot)
+
 This page covers what the plugin does and does not ship today, how to install it reliably in corporate networks where the default update site is often blocked, which customization primitives are available in Preview versus Supported status, and the operational details that Eclipse-first teams need: Java runtime requirements, proxy and certificate handling, Node.js language server architecture, and log locations.
 
 ## Plugin Identity and Distribution

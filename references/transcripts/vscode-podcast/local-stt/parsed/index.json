@@ -1,0 +1,122 @@
+[
+  {
+    "episode": 1,
+    "title": "Hello GPT-5 & GPT-5 mini",
+    "published": "2025-08-18",
+    "transcript_available": false,
+    "transcript_format": "local_stt_segments",
+    "segment_count": 103,
+    "source_file": "2025-08-18-hello-gpt-5-gpt-5-mini.md",
+    "parsed_file": "2025-08-18-hello-gpt-5-gpt-5-mini.json"
+  },
+  {
+    "episode": 2,
+    "title": "Iteration Plan for August & Re-writing Terminal Tools",
+    "published": "2025-08-25",
+    "transcript_available": false,
+    "transcript_format": "local_stt_segments",
+    "segment_count": 385,
+    "source_file": "2025-08-25-iteration-plan-for-august-re-writing-terminal-tools.md",
+    "parsed_file": "2025-08-25-iteration-plan-for-august-re-writing-terminal-tools.json"
+  },
+  {
+    "episode": 3,
+    "title": "Building a MCP to Build VS Code & The Impact of AI on Kent C. Dodds",
+    "published": "2025-09-01",
+    "transcript_available": false,
+    "transcript_format": "local_stt_segments",
+    "segment_count": 700,
+    "source_file": "2025-09-01-building-a-mcp-to-build-vs-code-the-impact-of-ai-on-kent-c-dodds.md",
+    "parsed_file": "2025-09-01-building-a-mcp-to-build-vs-code-the-impact-of-ai-on-kent-c-dodds.json"
+  },
+  {
+    "episode": 4,
+    "title": "Language Model Chat Provider (aka BYOK) API with Logan Ramos",
+    "published": "2025-09-08",
+    "transcript_available": false,
+    "transcript_format": "local_stt_segments",
+    "segment_count": 342,
+    "source_file": "2025-09-08-language-model-chat-provider-aka-byok-api-with-logan-ramos.md",
+    "parsed_file": "2025-09-08-language-model-chat-provider-aka-byok-api-with-logan-ramos.json"
+  },
+  {
+    "episode": 5,
+    "title": "Life of a VS Code SWE Intern with Christy Nguyen",
+    "published": "2025-09-15",
+    "transcript_available": false,
+    "transcript_format": "local_stt_segments",
+    "segment_count": 269,
+    "source_file": "2025-09-15-life-of-a-vs-code-swe-intern-with-christy-nguyen.md",
+    "parsed_file": "2025-09-15-life-of-a-vs-code-swe-intern-with-christy-nguyen.json"
+  },
+  {
+    "episode": 6,
+    "title": "The Future of Coding Agents in VS Code",
+    "published": "2025-09-22",
+    "transcript_available": false,
+    "transcript_format": "local_stt_segments",
+    "segment_count": 273,
+    "source_file": "2025-09-22-the-future-of-coding-agents-in-vs-code.md",
+    "parsed_file": "2025-09-22-the-future-of-coding-agents-in-vs-code.json"
+  },
+  {
+    "episode": 7,
+    "title": "The Origins & Evolution of the GitHub MCP Registry",
+    "published": "2025-09-29",
+    "transcript_available": false,
+    "transcript_format": "local_stt_segments",
+    "segment_count": 318,
+    "source_file": "2025-09-29-the-origins-evolution-of-the-github-mcp-registry.md",
+    "parsed_file": "2025-09-29-the-origins-evolution-of-the-github-mcp-registry.json"
+  },
+  {
+    "episode": 8,
+    "title": "Impact of AI on How We Learn to Code with Scott Tolinski",
+    "published": "2025-10-06",
+    "transcript_available": false,
+    "transcript_format": "local_stt_segments",
+    "segment_count": 476,
+    "source_file": "2025-10-06-impact-of-ai-on-how-we-learn-to-code-with-scott-tolinski.md",
+    "parsed_file": "2025-10-06-impact-of-ai-on-how-we-learn-to-code-with-scott-tolinski.json"
+  },
+  {
+    "episode": 9,
+    "title": "Building agent memory for VS Code with Harald Kirschner",
+    "published": "2025-10-13",
+    "transcript_available": false,
+    "transcript_format": "local_stt_segments",
+    "segment_count": 362,
+    "source_file": "2025-10-13-building-agent-memory-for-vs-code-with-harald-kirschner.md",
+    "parsed_file": "2025-10-13-building-agent-memory-for-vs-code-with-harald-kirschner.json"
+  },
+  {
+    "episode": 10,
+    "title": "Mastering Chat Modes in VS Code with Burke Holland",
+    "published": "2025-10-20",
+    "transcript_available": false,
+    "transcript_format": "local_stt_segments",
+    "segment_count": 394,
+    "source_file": "2025-10-20-mastering-chat-modes-in-vs-code-with-burke-holland.md",
+    "parsed_file": "2025-10-20-mastering-chat-modes-in-vs-code-with-burke-holland.json"
+  },
+  {
+    "episode": 11,
+    "title": "Building & Scaling Open Source Communities with Steve Francia",
+    "published": "2025-10-27",
+    "transcript_available": false,
+    "transcript_format": "local_stt_segments",
+    "segment_count": 395,
+    "source_file": "2025-10-27-building-scaling-open-source-communities-with-steve-francia.md",
+    "parsed_file": "2025-10-27-building-scaling-open-source-communities-with-steve-francia.json"
+  },
+  {
+    "episode": 12,
+    "title": "Behind the Scenes of VS Code’s Planning Agent with Bhavya U",
+    "published": "2025-11-03",
+    "transcript_available": false,
+    "transcript_format": "local_stt_segments",
+    "segment_count": 254,
+    "source_file": "2025-11-03-behind-the-scenes-of-vs-codes-planning-agent-with-bhavya-u.md",
+    "parsed_file": "2025-11-03-behind-the-scenes-of-vs-codes-planning-agent-with-bhavya-u.json"
+  }
+]

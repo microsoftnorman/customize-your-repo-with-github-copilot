@@ -1,0 +1,1138 @@
+{
+  "source_file": "2026-04-20-inside-the-agent-loop-with-pierce-boggan.md",
+  "transcript_format": "speaker_turns",
+  "segment_count": 224,
+  "metadata": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 21,
+    "title": "Inside The Agent Loop with Pierce Boggan",
+    "url": "https://www.vscodepodcast.com/21",
+    "transcript_url": "https://media24.fireside.fm/file/fireside-images-2024/podcasts/transcripts/f/fc261209-0765-4b49-be13-c610671ae141/episodes/a/ac60a3b2-3a13-47ff-9005-30308cf73661/transcript.txt",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/ac60a3b2-3a13-47ff-9005-30308cf73661.mp3",
+    "published": "2026-04-20",
+    "duration": "33:13",
+    "transcript_available": true
+  },
+  "segments": [
+    {
+      "start": "00:00.63",
+      "speaker": "James",
+      "text": "Welcome back, everyone, to the VS Code Insiders podcast, your one-stop shop for everything VS Code, your favorite code editor in the entire world. I'm James Montemagno, and with me, back for the 18th time, I don't know, 20th time. We only have, like, 20 podcast episodes, so it can't be that many. Pierce Bogan, how's it going, buddy?"
+    },
+    {
+      "start": "00:16.74",
+      "speaker": "Pierce",
+      "text": "It's going great."
+    },
+    {
+      "start": "00:18.53",
+      "speaker": "James",
+      "text": "I'm going put your face directly into my teleprompter, so now it's just like, wow, I can steer directly into your soul."
+    },
+    {
+      "start": "00:23.70",
+      "speaker": "Pierce",
+      "text": "Right into my eyes."
+    },
+    {
+      "start": "00:23.65",
+      "speaker": "James",
+      "text": "I love it. I love it. I'm here in a garage. You're here in, like, some new setup. What is going on? You're, like, upstairs."
+    },
+    {
+      "start": "00:30.01",
+      "speaker": "Pierce",
+      "text": "and Yeah, I finally moved into a real office after all this time. i got out of my basement, so I figured it was time for the upgrade in 2026."
+    },
+    {
+      "start": "00:35.87",
+      "speaker": "James",
+      "text": "Oh, you're so grown up. I love it. Very nice. looks good."
+    },
+    {
+      "start": "00:39.96",
+      "speaker": "Pierce",
+      "text": "Yeah, I can get you fast."
+    },
+    {
+      "start": "00:40.92",
+      "speaker": "James",
+      "text": "ah That's good. ah Today, so we're kind of building on a bunch of ah exciting enhancements that have really come over the last several months ah in and around how developers are working with agents and actually how the agents are working with themselves and other things."
+    },
+    {
+      "start": "00:47.61",
+      "speaker": "Pierce",
+      "text": "Yeah. Yep. Yeah."
+    },
+    {
+      "start": "00:56.30",
+      "speaker": "James",
+      "text": "We had Harold on a while ago talking about sub-agents and we ended up kind of going into even custom agents and orchestration. And I think that's a really cool like advanced scenario. However, what I've noticed is that there's seems to be I send a prompt and inherently there seems to be this loop happening that is that is churning. And at the end of the loop, there's a response that comes back."
+    },
+    {
+      "start": "01:18.33",
+      "speaker": "James",
+      "text": "And that loop has changed dramatically over the last you know six, seven, eight months. as sort of agentic development has evolved. And this agent loop, if you would call it that, has really evolved."
+    },
+    {
+      "start": "01:30.22",
+      "speaker": "Pierce",
+      "text": "Yep. Yeah."
+    },
+    {
+      "start": "01:30.98",
+      "speaker": "James",
+      "text": "And I think we get tons of questions on Twitter and on Reddit about what is this thing? What is that? What is that? Oh, is that the model? I didn't pick that model. What's this model? And and what about my context window? And what's going what's going on here, right?"
+    },
+    {
+      "start": "01:43.03",
+      "speaker": "James",
+      "text": "And I think because things are evolving so quickly and we get updates every day or every single week, for me at least, like just happening, right? and And I can dive through the documentation and figure out what's going on."
+    },
+    {
+      "start": "01:55.58",
+      "speaker": "James",
+      "text": "But then I have these questions, it's like, what is a sub-agent actually doing? And how does it actually work? And should I actually care? like so I wanna dive deeper into the agent loop and maybe you can peel back the layers of of of what I just said as far as like how the agent loop maybe has started, how it evolved and where it's at today and where it's going."
+    },
+    {
+      "start": "02:14.71",
+      "speaker": "Pierce",
+      "text": "Yeah. I mean, it's such a big topic. I literally, it's funny that this was the topic for today because I just got back from visiting a customer and I did a six hour presentation. love this topic So we'll try not to have a six hour podcast because there's a lot you could dive into here."
+    },
+    {
+      "start": "02:23.99",
+      "speaker": "James",
+      "text": "Wow."
+    },
+    {
+      "start": "02:29.66",
+      "speaker": "Pierce",
+      "text": "um But yeah, you're right. Like, we talk about this agent loop. So what is it? So I'm going to use some like approximations. They may not be exactly correct, but I think they're helpful for understanding mentally how this thing works."
+    },
+    {
+      "start": "02:42.04",
+      "speaker": "Pierce",
+      "text": "um So imagine you just basically have a giant while loop, right? um And ah that while loop starts when you hit enter on your first prompt. And Basically what's happening in this loop is ever there's many, many interactions with the model, right?"
+    },
+    {
+      "start": "02:58.14",
+      "speaker": "Pierce",
+      "text": "um And in each interaction, you basically, it's just an API request to a model, right? And within that API request, there's several components. So you have the system prompt."
+    },
+    {
+      "start": "03:10.36",
+      "speaker": "Pierce",
+      "text": "This is actually dynamically built for every single kind of combination of things you pick in the picker. So if you're picking a different model, a different family, that's giving you a different set of prompts, actually."
+    },
+    {
+      "start": "03:16.38",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "03:21.56",
+      "speaker": "Pierce",
+      "text": "So there is no one prompt for Copilot. There are some basic responsible AI safety prompts that every single a Copilot request has. But outside of that, it's dynamically built and optimized specifically for that model. So we work a lot with the model providers in advance of shipping the model to really tune the prompts for the best possible results. um So there's a huge feedback loop that happens pre-launch on that, and then also a huge feedback loop that happens post-launch on that. So we'll do like things like A-B b experiments, test alternative prompts based off hypotheses we have. And there's a huge kind of pre-launch optimization loop with offline evaluations, and then a post-launch improvement loop with online evaluations."
+    },
+    {
+      "start": "03:59.00",
+      "speaker": "Pierce",
+      "text": "So you have the system prompt, right? Then you have ah other things we append to that. So explicit context, things you mentioned, like you're like at hello.tsx, that's mentioned. We have implicit context that we include."
+    },
+    {
+      "start": "04:12.50",
+      "speaker": "Pierce",
+      "text": "So if you have an editor... ah like a file open in the editor and you start an agent session, we consider that to be pretty high signal that like your thing might relate to the the the editor you have open, right? So we attach that."
+    },
+    {
+      "start": "04:25.50",
+      "speaker": "Pierce",
+      "text": "If you have running terminals, things like dates, right, your environment information, your you know terminal configuration, things like that are auto attached."
+    },
+    {
+      "start": "04:30.28",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "04:32.54",
+      "speaker": "Pierce",
+      "text": "um Then you have tools, right? So this is really the foundation of the agent loop. When you think about like chat, um chat was like you send a prompt yes to the model. So from that perspective, it's similar to what we have today. But then the model can just send me back a text response."
+    },
+    {
+      "start": "04:47.67",
+      "speaker": "Pierce",
+      "text": "And now actually what happens is there is a set of built-in tools um as well as ah tools that you can add from things like MCP and other things. um And basically, you can say to the model,"
+    },
+    {
+      "start": "05:00.06",
+      "speaker": "Pierce",
+      "text": "you can pick one of these tools or you can give me back a text response. So like maybe it's searching, maybe it's ah creating a file, maybe it's editing a file, right? Maybe it's calling the GitHub MCP server and each of those tools has a schema and a description. So it says, this is what this tool does."
+    },
+    {
+      "start": "05:16.62",
+      "speaker": "Pierce",
+      "text": "Here's the parameters, right? So then the model, if it says, okay, the first thing I think I need to do is search. Okay, well, we'll use the search tool and then the model will fill in those parameters. and then pass that back to us and we'll execute the tool. So then you have tools, right? And then we have your user prompt, right? And so that's into the model."
+    },
+    {
+      "start": "05:32.86",
+      "speaker": "Pierce",
+      "text": "So that's that's kind of the basic foundation. And then what's happening in the agent loop is that's just continuously going, right? So the model is given the outputs of the previous thing and able to iterate on it. So, okay, we do a search."
+    },
+    {
+      "start": "05:45.14",
+      "speaker": "Pierce",
+      "text": "Okay, so now we have a list of files we could potentially read. Okay, now the agent might call the tool to read some of these files. Okay, now we have the right context. Okay, now I think I have the information I need so that I can go place an edit in a file. Okay, I'll call the edit tool, right?"
+    },
+    {
+      "start": "05:59.06",
+      "speaker": "Pierce",
+      "text": "Okay, now I think I'm done. So I'm going to respond with that kind of some text to the user summarizing what happened. And then the agent will basically return like a stop message and say, hey I'm done. And then that's when like the conversation in VS Code wraps up and and you're able to send another prompt."
+    },
+    {
+      "start": "06:14.58",
+      "speaker": "Pierce",
+      "text": "So that's the the basic foundation of the agent loop."
+    },
+    {
+      "start": "06:17.50",
+      "speaker": "James",
+      "text": "It makes a lot of sense. There's actually a lot of things happening pre, you know, before the actual user prompt, right?"
+    },
+    {
+      "start": "06:20.76",
+      "speaker": "Pierce",
+      "text": "Yes."
+    },
+    {
+      "start": "06:23.78",
+      "speaker": "James",
+      "text": "And I think it feels as though, you know, the set of tools and options have grown, right? Because not only do you have bypass, you have autopilot mode?"
+    },
+    {
+      "start": "06:34.03",
+      "speaker": "James",
+      "text": "Do you have just normal interaction mode? do you have planning mode? Do you have custom agents? you have ask mode? you have these normal agent interactive mode, right?"
+    },
+    {
+      "start": "06:38.49",
+      "speaker": "Pierce",
+      "text": "Yes. Mm-hmm."
+    },
+    {
+      "start": "06:39.95",
+      "speaker": "James",
+      "text": "And then inside that you have all the models and reasoning levels and all these different things. That's fascinating to kind of learn about this. And then also, like you said, all the tools that are available, what I've noticed a lot is those agents are going off and there's a lot of like research and investigation happening, And this has kind of always happened."
+    },
+    {
+      "start": "06:56.83",
+      "speaker": "Pierce",
+      "text": "Yes. Yes. Yes."
+    },
+    {
+      "start": "06:57.20",
+      "speaker": "James",
+      "text": "It's like, okay, I need to go figure out how to add this button somewhere. Well, where am I going to put it? What file is that it? It's greps around and reads around and reads files. Um,"
+    },
+    {
+      "start": "07:05.14",
+      "speaker": "Pierce",
+      "text": "yes"
+    },
+    {
+      "start": "07:06.01",
+      "speaker": "James",
+      "text": "in general. But I think in that loop that you're talking about, it feels as though, is that all happening in ah in just one single agent, one single thing?"
+    },
+    {
+      "start": "07:17.25",
+      "speaker": "James",
+      "text": "Because I feel as though there's branches that are happening that I'm seeing. Because I'm a big like reader, right? like I love to read what's happening in the chat. Like, oh, and drop downs, they collapse, and there's a little output here."
+    },
+    {
+      "start": "07:26.48",
+      "speaker": "Pierce",
+      "text": "Yes."
+    },
+    {
+      "start": "07:28.74",
+      "speaker": "James",
+      "text": "And it's doing this thing, it's doing that thing. So who who is calling what in this agent? Who is deciding what gets called."
+    },
+    {
+      "start": "07:37.69",
+      "speaker": "Pierce",
+      "text": "ah the model is deciding based off the context it's given and it's just iterating over the previous output and appending that to the message um so like i think the foundations that we just said are very important there's much more advanced techniques that we can talk about now like okay when you start thinking about sub-agents and orchestration and all those things how do those things actually work uh how do all these customizations work when i have a skill versus an instruction versus a prompt file like the The reality is all of these things are just modifying that basic construct in different ways. So ah let's think about something basic like an instruction."
+    },
+    {
+      "start": "08:11.74",
+      "speaker": "Pierce",
+      "text": "It is text that is appended to your prompt. If it's a global instruction, it's always appended. If it is ah ah an instruction file where you have the glob pattern, it's selectively appended. right ah If you have a skill, right basically in the prompt, ah the model is given a list of skills, just like it's given a list of tools. It can choose to go read that skill. And then what happens?"
+    },
+    {
+      "start": "08:33.46",
+      "speaker": "Pierce",
+      "text": "It's just appending text, right? And then this is more context for the model to make its decision, right? um What happens when you have MCP servers? Well, this is just appending the built-in tool list, right, that you see um in the agent loop. So now you've given the model more tools. And I think when we think about like harnessing and like all the decisions we have to make, there's ah actually an enormous amount of trade-offs we have to make as a product team to decide What are the different strategies we want to use?"
+    },
+    {
+      "start": "09:01.72",
+      "speaker": "Pierce",
+      "text": "Right? So um sure, we can add a million things to the prompt, right? But this fills context, right? Sure, we can add, like, I see some people like, I'm going to have a thousand tools, a tool for everything."
+    },
+    {
+      "start": "09:13.62",
+      "speaker": "Pierce",
+      "text": "Okay, well, going back to the foundations for how these models work, the The model has to make a choice, right? It has to decide between these all these options you give, which is the most optimal. And just like a human, when you give people more choices, their ability to pick the right choice degrades, right?"
+    },
+    {
+      "start": "09:23.43",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "09:28.50",
+      "speaker": "Pierce",
+      "text": "And so there's enormous amount of optimization going in from our side that you don't actually see and we don't really talk about, we should talk about. But we don't talk about very much around like tool optimization and like, what are the right tools?"
+    },
+    {
+      "start": "09:40.26",
+      "speaker": "Pierce",
+      "text": "How many tools should we have? We have custom models that will basically take the tool list if you did have 1000 tools and basically refine that to like, these are the tools we actually think are important for this session based off what the model says."
+    },
+    {
+      "start": "09:52.66",
+      "speaker": "Pierce",
+      "text": "Some of these tools also have their own like custom models we've built behind the scenes. So like you mentioned, in context gathering. right We have a custom model for agentic code retrieval. Because it turns out, if you don't have the right context, you don't know where to place an edit, which is pretty important for the agent loop."
+    },
+    {
+      "start": "10:06.01",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "10:06.08",
+      "speaker": "Pierce",
+      "text": "right So there's a lot of kind of micro decisions you make with these things."
+    },
+    {
+      "start": "10:06.87",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "10:10.27",
+      "speaker": "Pierce",
+      "text": "And like then as someone prompting, it's ah it's kind of helpful to know when you do certain things, what does that mean? So if you tell the model to do something, and they're like, no, wait, do something else. right Going back to those first principles, right, each of those messages are just getting appended to the end as text, right?"
+    },
+    {
+      "start": "10:26.90",
+      "speaker": "Pierce",
+      "text": "So it's possible that the model is smart enough to say, hey, I understand the last message the user sent me was correcting a previous thing. But you can also understand how now in this history of text, the model in in the same request API request has two different instructions, right?"
+    },
+    {
+      "start": "10:44.09",
+      "speaker": "Pierce",
+      "text": "This is generally good that the agent is building on the last thing it did, right? I wanted to build on the i wanted to make an edit based off the context that we have gathered, right?"
+    },
+    {
+      "start": "10:50.87",
+      "speaker": "James",
+      "text": "Exactly."
+    },
+    {
+      "start": "10:51.09",
+      "speaker": "Pierce",
+      "text": "It can also lead to bad behaviors, right?"
+    },
+    {
+      "start": "10:51.23",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "10:53.85",
+      "speaker": "Pierce",
+      "text": "So that's when the agent starts going down a really bad path. That's why it's important to kill it, back up, and and understand why do you think it's going down this path? Because the previous token that the model gets informs the next token, right?"
+    },
+    {
+      "start": "11:05.72",
+      "speaker": "Pierce",
+      "text": "um So yeah, there's ah there's a whole bunch of really interesting things there in terms of like how this agent loop is optimized and all the choices we make. I think on the VS Code team, we have 15, 20 people probably who are working exclusively on this problem, right? Of building the best harness that we can so that you get really, really good code quality results from this thing."
+    },
+    {
+      "start": "11:24.86",
+      "speaker": "Pierce",
+      "text": "With Opus 4.6, James, I think we're getting 90% of Opus 4.6 code in our harness committed. um this is This is pretty amazing."
+    },
+    {
+      "start": "11:31.21",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "11:33.54",
+      "speaker": "Pierce",
+      "text": "GPT-4-1, when I first started on this team we were 52, 53%. So this is the improvement we see in one year. um So there's an enormous amount of work that goes in not just to partnering with our model friends, but optimizing those prompts and tools so that we give you the best results."
+    },
+    {
+      "start": "11:47.80",
+      "speaker": "James",
+      "text": "Yeah, I think like this loop and it's what's fascinating and why this is so important is because what people may not know is is is that work in the harness is really custom tailored, not only to the tools, but to the model."
+    },
+    {
+      "start": "12:00.84",
+      "speaker": "James",
+      "text": "And that evolves over time, right? these These evaluations, these prompts."
+    },
+    {
+      "start": "12:02.92",
+      "speaker": "Pierce",
+      "text": "right"
+    },
+    {
+      "start": "12:04.80",
+      "speaker": "James",
+      "text": "And we've talked about on the pod before, but in general, when you think about it, Like today's a launch day. Opus 4.7 came out when we're recording this pod. And I like to say like today is like the worst day to use that model because it's a brand new model."
+    },
+    {
+      "start": "12:13.82",
+      "speaker": "Pierce",
+      "text": "yes yeah yes"
+    },
+    {
+      "start": "12:18.01",
+      "speaker": "James",
+      "text": "Like everyone's going to be trying to use it because it's a capacity. And then the system prompt, it's fresh. It's it's it's a newborn. It's it's an an infant state, right? And there's, yes, been time to go work and and hone it, but..."
+    },
+    {
+      "start": "12:31.80",
+      "speaker": "James",
+      "text": "you really see within a few weeks, even like that first week, you know, the the system prompt, like things, how we're working, how it works with tools, how things work, because all the models work different, even incrementally from like four, five to four, six, to four, seven, right?"
+    },
+    {
+      "start": "12:42.76",
+      "speaker": "Pierce",
+      "text": "Yep."
+    },
+    {
+      "start": "12:43.40",
+      "speaker": "James",
+      "text": "You know, and in ah and and a five, three to the five, three codecs, all think a little bit different, but then it quickly evolves over time."
+    },
+    {
+      "start": "12:51.10",
+      "speaker": "Pierce",
+      "text": "Yeah, definitely. um like Of course, we try our best pre-launch. we We usually get access to the model several weeks, if not several months before. And then we're working with kind of people from Anthropic, Gemini, OpenAI, XAI, et cetera, to like really refine those prompts based off what we're seeing basically in our harness. So we run a ton of... We have our own kind of SWE bench equivalent called VSC bench."
+    },
+    {
+      "start": "13:16.63",
+      "speaker": "Pierce",
+      "text": "built on custom problems it doesn't have all the pollution issues that sweet bench has now i don't even think the labs actually use sweet bench anymore because of all the pollution we see in the training data for this benchmark so we built our own um and then basically we have a ton of different cases and we run many many runs not just one but many many runs to to reduce variance and you spot patterns you look at what we call the agent trajectory uh so that's basically the path at which the agent takes to solve your problem right So it's not even just, did we solve your problem? Yes, no."
+    },
+    {
+      "start": "13:46.90",
+      "speaker": "Pierce",
+      "text": "That's a very simplistic way of looking at something like resolution rate in a benchmark. No, we're we're actually going and saying, like what is the path the model took? And was that an optimal path? How can we influence the path the model takes? How can we get you to that really good resolution rate in fewer steps? right? So that you get actually really high quality results, but instead of waiting one hour, right, you're waiting, you know, one minute, right? And so those are the sorts of things we do. And every problem kind of brings its own thing. So we do a lot of optimization there. And then as you say, like, we do the best we can, but offline evaluations are always flawed, right? It's a very small subset of data as much as we try to improve the the cases that we have."
+    },
+    {
+      "start": "14:23.35",
+      "speaker": "Pierce",
+      "text": "um So then post-launch, as you say, like, that There's capacity things like both on our end and upstream providers. Right. um And we have to kind of figure out what demand looks like. It's different for every single model. It's hard to predict demand in an agentic world where people run now 10 agents at once. Right. And more and more people are using it agents every day. So demand prediction is very difficult."
+    },
+    {
+      "start": "14:44.22",
+      "speaker": "Pierce",
+      "text": "And then also like to your point, like, When it's out there, we can do things like run A-B tests and and basically actually know in the wild what is better, right? Not a hypothetical in our in our offline evaluation cases, but actually know what's better. And of course, the model providers also have their own updates they make to the models. And so they see things and improve stuff like that."
+    },
+    {
+      "start": "15:03.90",
+      "speaker": "Pierce",
+      "text": "um So yeah, like that's all part of the continuous loop that's happening. So there's like continuous work on models that have we have already shipped to optimize them. There's new models in the queue we're working on optimizing. There's generic kind of prompt and tool optimizations that are constantly happening. And then for many of these things, there's also custom purpose-built models actually being created by our data science team to go and actually solve really hard problems there."
+    },
+    {
+      "start": "15:26.90",
+      "speaker": "James",
+      "text": "Yeah, it's crazy. There's, there's a lot of little tiny things that are happening that I think people don't actually even realize. Like when you start a chat, like it updates the name of the chat."
+    },
+    {
+      "start": "15:34.28",
+      "speaker": "Pierce",
+      "text": "Yeah."
+    },
+    {
+      "start": "15:36.06",
+      "speaker": "James",
+      "text": "Like that, that's be sure it's a custom."
+    },
+    {
+      "start": "15:36.33",
+      "speaker": "Pierce",
+      "text": "That's right. That's a model call, right? Yeah, we're passing the conversation history to a cheap model, admittedly, because there's no reason to use Opus for this. We need to get ah we need to get a title back very quickly, and it's okay if it's not exactly the perfect title."
+    },
+    {
+      "start": "15:48.96",
+      "speaker": "Pierce",
+      "text": "But yeah, that's an LLN call, right?"
+    },
+    {
+      "start": "15:49.46",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "15:50.88",
+      "speaker": "Pierce",
+      "text": "So there's ah there's a lot of other things always happening in the product that maybe like you don't appreciate."
+    },
+    {
+      "start": "15:55.94",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "15:56.14",
+      "speaker": "Pierce",
+      "text": "There's not just like some random if statement that generate the title in this way based on this heuristic. That's actually going and getting a model, right? So..."
+    },
+    {
+      "start": "16:03.45",
+      "speaker": "James",
+      "text": "Yeah. it's and And some of the things that become like second nature to me, which is like, oh, I just like, you know, click a button to like generate a commit message, generate the PR, click a little button."
+    },
+    {
+      "start": "16:13.87",
+      "speaker": "James",
+      "text": "And those are all things happening. And those are also things that are tweaking. it they They have their own little tiny agent loop of things that are happening as well, right?"
+    },
+    {
+      "start": "16:20.29",
+      "speaker": "Pierce",
+      "text": "That's correct."
+    },
+    {
+      "start": "16:20.83",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "16:21.53",
+      "speaker": "Pierce",
+      "text": "Yeah, that's correct."
+    },
+    {
+      "start": "16:21.63",
+      "speaker": "James",
+      "text": "And that that are just transparent to you, those AI edits, and just actually like and modifying code and editing code by hand, right? There's tons of things happening in those next edits and the suggestions."
+    },
+    {
+      "start": "16:30.00",
+      "speaker": "Pierce",
+      "text": "Yep."
+    },
+    {
+      "start": "16:31.42",
+      "speaker": "James",
+      "text": "I think the biggest question we get part of this agent loop, which is more of the advanced scenario, and we've seen it time and time again, which is why I really wanted to talk about the agent loop, was part of when the agent is figuring out if it should do something or if it should delegate work"
+    },
+    {
+      "start": "16:31.64",
+      "speaker": "Pierce",
+      "text": "Yep."
+    },
+    {
+      "start": "16:40.81",
+      "speaker": "Pierce",
+      "text": "Yep."
+    },
+    {
+      "start": "16:47.35",
+      "speaker": "James",
+      "text": "And when I mean delegate work, I mean sub agents."
+    },
+    {
+      "start": "16:51.32",
+      "speaker": "Pierce",
+      "text": "Yes."
+    },
+    {
+      "start": "16:51.38",
+      "speaker": "James",
+      "text": "Now we got this question recently on Twitter. i forget forgot by exactly who it was from."
+    },
+    {
+      "start": "16:56.07",
+      "speaker": "Pierce",
+      "text": "Yeah."
+    },
+    {
+      "start": "16:57.06",
+      "speaker": "James",
+      "text": "I had a we a big conversation um and i was pulling up docs from open AI, our documentation, the cloud code docs, like all the different docs, right?"
+    },
+    {
+      "start": "16:57.97",
+      "speaker": "Pierce",
+      "text": "Yeah."
+    },
+    {
+      "start": "17:04.02",
+      "speaker": "James",
+      "text": "And understanding here's how these models works, how these harnesses work."
+    },
+    {
+      "start": "17:04.61",
+      "speaker": "Pierce",
+      "text": "Right."
+    },
+    {
+      "start": "17:06.86",
+      "speaker": "James",
+      "text": "When I say harness, like, like the, I guess describe harness,"
+    },
+    {
+      "start": "17:09.48",
+      "speaker": "Pierce",
+      "text": "it's problem will on It's kind of a a rough definition, but it's like all the things that combine to basically make that agent loop. So like the the prompts we have, the context that it's able to gather, the tools that we provide it, like the custom models behind the scenes, that's all the the magic that actually gives you good results."
+    },
+    {
+      "start": "17:27.22",
+      "speaker": "James",
+      "text": "yeah So CLI has a harness, VS Code has a harness, VS has a harness, other coding agents have harnesses, harnesses in general."
+    },
+    {
+      "start": "17:31.29",
+      "speaker": "Pierce",
+      "text": "Yes. Yes. Yes."
+    },
+    {
+      "start": "17:34.84",
+      "speaker": "James",
+      "text": "And that's why you get different behavior between different things because there's different harnesses, different prompts."
+    },
+    {
+      "start": "17:38.07",
+      "speaker": "Pierce",
+      "text": "Correct."
+    },
+    {
+      "start": "17:39.12",
+      "speaker": "James",
+      "text": "So the question we got was, hey, I chose, i think, Opus 4.6 or maybe 5, or OpenAI, you know, GPT-5.4 or Codex."
+    },
+    {
+      "start": "17:51.03",
+      "speaker": "James",
+      "text": "And I see a bunch of work being done."
+    },
+    {
+      "start": "17:51.09",
+      "speaker": "Pierce",
+      "text": "Yes."
+    },
+    {
+      "start": "17:53.32",
+      "speaker": "James",
+      "text": "I see this loop happening. And then I see a bunch of sub-agents exploring, grabbing code, doing things, but it's using a different model."
+    },
+    {
+      "start": "17:55.26",
+      "speaker": "Pierce",
+      "text": "Yeah."
+    },
+    {
+      "start": "18:02.01",
+      "speaker": "Pierce",
+      "text": "Yes."
+    },
+    {
+      "start": "18:04.22",
+      "speaker": "James",
+      "text": "It's using Haiku or it's using a mini model, for example."
+    },
+    {
+      "start": "18:06.06",
+      "speaker": "Pierce",
+      "text": "Mm-hmm."
+    },
+    {
+      "start": "18:09.14",
+      "speaker": "James",
+      "text": "And the question I got was, how is this actually working? Why is it using different models? And"
+    },
+    {
+      "start": "18:16.02",
+      "speaker": "Pierce",
+      "text": "Yeah."
+    },
+    {
+      "start": "18:16.92",
+      "speaker": "James",
+      "text": "what is is is the VS Code team pulling a fast one over my eyes?"
+    },
+    {
+      "start": "18:21.91",
+      "speaker": "Pierce",
+      "text": "Yeah."
+    },
+    {
+      "start": "18:21.96",
+      "speaker": "James",
+      "text": "That's that's how that's how it read."
+    },
+    {
+      "start": "18:22.58",
+      "speaker": "Pierce",
+      "text": "Yeah."
+    },
+    {
+      "start": "18:23.16",
+      "speaker": "James",
+      "text": "It didn't actually how it didn't that wasn't what was written, but that was my interpretation. Like, hey, are you guys pulling one over my eyes here because are you guys pulling a bait and switch?"
+    },
+    {
+      "start": "18:27.42",
+      "speaker": "Pierce",
+      "text": "yeah"
+    },
+    {
+      "start": "18:31.48",
+      "speaker": "James",
+      "text": "I thought I'm 3Xing over here. Now you're 0.33ing over here. What's going on? And what's at the advantage? I think at the end of the day, we could talk about the solution, but actually talking about the problem, the why is more important than like how it actually works."
+    },
+    {
+      "start": "18:46.78",
+      "speaker": "Pierce",
+      "text": "Yeah, that's that's correct. um Well, first, like we're all of our incentives on on the VS Code and GitHub Co-Pilot teams are to build the best possible experience for you. right so So that is our North Star goal. And we will like we will not pull a fast one on you because that is not what we are as a team incentivized to do. right I don't want to do this. That's never been part of our culture in GitHub or VS Code."
+    },
+    {
+      "start": "19:09.66",
+      "speaker": "Pierce",
+      "text": "um Yeah, so like going back to to basic primitives, right? um Let's just talk about sub-agents and then we'll get into the specific case of this sub-agent, right? um"
+    },
+    {
+      "start": "19:19.33",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "19:20.09",
+      "speaker": "Pierce",
+      "text": "So like for instance, um going back to the basic mechanism for agent loop. So a sub-agent is basically like this main agent can decide, I want to go ah basically do this workflow, run this agent loop again with fresh context,"
+    },
+    {
+      "start": "19:35.32",
+      "speaker": "Pierce",
+      "text": "I want to tell it what to do as a goal. So the main agent is basically prompting this other agent to go do something with fresh context. The agent will run its own kind of loop, like just like the main one."
+    },
+    {
+      "start": "19:47.06",
+      "speaker": "Pierce",
+      "text": "And then it will just like a function, it has a result and then we'll return back to main thread. Right. So that's essentially what a sub agent is. So how does it work? um How does it decide when to call a sub agent?"
+    },
+    {
+      "start": "19:58.74",
+      "speaker": "Pierce",
+      "text": "Well, let's go back to basic mechanisms. A sub sub-agent is just a tool the model can choose to use. So the the model can selectively say, I want to use the run sub-agent tool."
+    },
+    {
+      "start": "20:04.96",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "20:11.29",
+      "speaker": "Pierce",
+      "text": "right It can choose to so so to so to select this in the major loop, and that will ah be returned back to vs Code in this case. And then VS Code will go spin a sub-agent based off the input parameters that has been ah filled by the model. right um So it is just basically a tool call, right? Which is interesting. This is why it's so interesting to understand the basic mechanisms. So then how do you actually get it to call a sub-HM?"
+    },
+    {
+      "start": "20:36.47",
+      "speaker": "Pierce",
+      "text": "So then it's it's kind of basic prompt prompting, right? Like you could be very explicit in your user prompt that you want sub-agents to be used for certain things. ah We could have things in our prompts that are quite explicit about using sub-agents. That's also a possibility, right? So like the system prompt could be very aggressive about saying, we want to use sub-agents for these sorts of things."
+    },
+    {
+      "start": "20:59.29",
+      "speaker": "Pierce",
+      "text": "And some features do, right? Like if you've ever used slash fleet inside of co-pilot CLI or slash research research or things like this, Again, same basic mechanism. It's just aggressively prompted to really rely on sub the subagent strategy, right? Which ah really allows you to keep that main agent at loop super fresh because remember, we're just appending the result of all the conversations to the main loop."
+    },
+    {
+      "start": "21:20.06",
+      "speaker": "Pierce",
+      "text": "Well, if you're doing all that in the main process, right, your main process gets very convoluted. The agent will get confused. You'll have to compact the conversation, which you generally do want to try and avoid because you're going to lose some fidelity. So subagents are really a strategy."
+    },
+    {
+      "start": "21:33.08",
+      "speaker": "Pierce",
+      "text": "So then, okay, now getting back to your original question, explore SubAgent. So I mentioned we do a lot of kind of investigation into these trajectories, right? What is the path the agent takes?"
+    },
+    {
+      "start": "21:44.34",
+      "speaker": "Pierce",
+      "text": "um So you inspect this a lot and you think about like, how can we make this better? And better has different characteristics, right? It could be higher output quality, right? We could bump up all the, you know, thinking effort on all the models to max things. We could ah have it run a hundred sub-agents, self-validate all its work, right?"
+    },
+    {
+      "start": "22:03.91",
+      "speaker": "Pierce",
+      "text": "There's a trade-off you make as a product team because that that would be kind of a terrible customer experience for a synchronous partnership, right?"
+    },
+    {
+      "start": "22:08.43",
+      "speaker": "James",
+      "text": "Yeah. Yeah."
+    },
+    {
+      "start": "22:10.35",
+      "speaker": "Pierce",
+      "text": "And so the idea is like, how can we get to the highest possible resolution rate while still making like the experience feel somewhat interactive, right? You know what's going on with this agent. Like you're going to want to provide feedback at the right points, right?"
+    },
+    {
+      "start": "22:22.09",
+      "speaker": "Pierce",
+      "text": "You don't want it to be overly chatty. You ah also don't want it to be too terse because you have no idea what's going on. And so those are a whole bunch of knobs that are actually product decisions you make in the prompts and tools right to go and do that. um so for but So you mentioned like at the beginning of every turn, yes, we go search things."
+    },
+    {
+      "start": "22:37.32",
+      "speaker": "Pierce",
+      "text": "You need context. So thinking more about that problem, what actually is happening there? right Well, as you say, it's it's mostly choosing to either do run in terminal and grip or use one of our search tools and gather context in that way."
+    },
+    {
+      "start": "22:52.73",
+      "speaker": "Pierce",
+      "text": "or it's hitting our semantic search endpoint and doing agentic code retrieval, right? But it's a very simplistic thing, right? It's just, okay, I need to run graph, I need to gather context."
+    },
+    {
+      "start": "23:03.32",
+      "speaker": "Pierce",
+      "text": "And something like Opus is ah is a very heavy reasoning model. it it is very powerful, but it is also quite slow, right? And so basically what we found is like, well, considering actually when you think about the agent turn,"
+    },
+    {
+      "start": "23:17.59",
+      "speaker": "Pierce",
+      "text": "The quality of results, yes, it does depend on the context within reason, but like it's much more determined by what happens after that. like How does the model operate over the context it's gathered? So in the case of the Explorer subagent, we decided to use Haiku because the performance characteristics were much better in terms of time to first token and how quickly it was able to execute."
+    },
+    {
+      "start": "23:35.93",
+      "speaker": "Pierce",
+      "text": "things like grep searches, right? And so it can run super, super fast. And ah basically, we found that it didn't actually degrade the quality when we did this pattern ah of the overall resolution rate, going back to those offline emails. So you can basically speed up the agent turn by creating a subagent, keeping all the nasty context of gathering stuff in that subagent, right? Doing it with Haiku, which is extremely fast. It's just running a ton greps. We're turning that back. And then Opus is actually able to use this big brain and kind of reason over all the context we've gathered. So Basically, it's one of those like magic things where like we were essentially able to speed up the entire turn by not sacrificing quality at all."
+    },
+    {
+      "start": "24:13.48",
+      "speaker": "Pierce",
+      "text": "That's that's actually like the goldmine, right? And so, this is why we really are looking deeply at all these trajectories for opportunities like that for optimization."
+    },
+    {
+      "start": "24:16.02",
+      "speaker": "James",
+      "text": "Yeah. Yeah."
+    },
+    {
+      "start": "24:20.28",
+      "speaker": "Pierce",
+      "text": "So, that's actually what's happening there. is like Yes, we could have used Opus, but like it was maybe going to make your turn 30% slower, 40% slower. And we can give you the exact same resolution rate with a model that's much faster and give you faster turns. So those are the sorts of kind of things we are exploring behind the scenes. I definitely think we can do a better job kind of explaining our rationale for these sorts of things."
+    },
+    {
+      "start": "24:41.55",
+      "speaker": "Pierce",
+      "text": "That's totally fair feedback. We need to make sure in the UX it's quite clear when these things are happening. That's totally fair feedback. But that's kind of like how we got there and and kind of the justification for for these sorts of things, like ah these special purpose sub-agents that we've started building into our agent loop."
+    },
+    {
+      "start": "24:56.31",
+      "speaker": "James",
+      "text": "It makes a lot of sense because even me, when I'm writing prompts to do specific things at work, I will specifically in my prompt um front matters specify like a haiku or GPT mini model because they're super quick and I'm not doing super complex things inside of it, right?"
+    },
+    {
+      "start": "25:04.96",
+      "speaker": "Pierce",
+      "text": "Right."
+    },
+    {
+      "start": "25:09.00",
+      "speaker": "Pierce",
+      "text": "Does it?"
+    },
+    {
+      "start": "25:13.70",
+      "speaker": "Pierce",
+      "text": "No."
+    },
+    {
+      "start": "25:13.73",
+      "speaker": "James",
+      "text": "I don't need that big rationale. I think of it as... you know, i need to eat some cereal, right? And I have the bowl, I have the cereal, I have the milk in there."
+    },
+    {
+      "start": "25:24.45",
+      "speaker": "James",
+      "text": "Things are good. I'm in a good place. All the all the all the the the loop is ready. Like the harness is ready."
+    },
+    {
+      "start": "25:29.52",
+      "speaker": "Pierce",
+      "text": "Yeah."
+    },
+    {
+      "start": "25:29.81",
+      "speaker": "James",
+      "text": "It's it's it's got my my bowl, but I need a utensil to eat said cereal."
+    },
+    {
+      "start": "25:30.44",
+      "speaker": "Pierce",
+      "text": "Yeah."
+    },
+    {
+      "start": "25:35.48",
+      "speaker": "James",
+      "text": "This is a terrible analogy, but I'm going to tell you you can tell me if it works."
+    },
+    {
+      "start": "25:37.16",
+      "speaker": "Pierce",
+      "text": "Yeah."
+    },
+    {
+      "start": "25:39.54",
+      "speaker": "James",
+      "text": "So I can go one or two routes to get to the same conclusion. I could bring a Swiss army knife that can do a thousand things and has like all the capabilities and all the really advanced things."
+    },
+    {
+      "start": "25:50.58",
+      "speaker": "James",
+      "text": "And there is a spoon in there that I could open. I'd have to find it. Like I'd have to go deeper into it. and Now, when I use this tool, it might also get in my way because it other things that are coming up and poking me. Or I could just go grab a spoon."
+    },
+    {
+      "start": "26:02.39",
+      "speaker": "James",
+      "text": "which is going to give me the same exact result as that Swiss Army knife, which has a spoon, but it does one thing and it does the one thing really good."
+    },
+    {
+      "start": "26:05.29",
+      "speaker": "Pierce",
+      "text": "Yeah."
+    },
+    {
+      "start": "26:08.52",
+      "speaker": "James",
+      "text": "And like the subagent with this specific model can do that one thing really, really well. Obviously that model does a lot of things really well, but in this case it's super focused in on it, right?"
+    },
+    {
+      "start": "26:17.71",
+      "speaker": "Pierce",
+      "text": "Well, and like, I think in this particular case, like that is a product choice we're making for our plan mode is we think it gives you really good results. But if you decide, hey, I actually don't want that to happen for plan mode, you know, for whatever reason, I think that i should we should choose a different strategy."
+    },
+    {
+      "start": "26:32.47",
+      "speaker": "Pierce",
+      "text": "The really cool thing about VS Code is like you can take our built-in you know modes like plan mode you literally go in and copy the exact you know it's just a custom agent right you can go copy the exact prompt and tools it uses and you can just modify it to how you and your team work so if you're like i don't like that that's a really cool thing about vs code you can go change and basically build your own plan mode now i have full confidence that our plan mode is going to give you really really good results because we have a whole group of people who work on optimizing it right and making sure it does give good results But I also at the same time believe, like I mean, we see this in and resolution rate. like Certainly Opus is the is the strongest model in terms of you know if you were to take the average of all of your resolution rates, it's going to do the best."
+    },
+    {
+      "start": "27:13.34",
+      "speaker": "Pierce",
+      "text": "But we see tons of problems in our and our harness where Opus isn't the best, where GPT-5.4 is the best, where Opus might be one of the worst models actually."
+    },
+    {
+      "start": "27:19.96",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "27:22.46",
+      "speaker": "Pierce",
+      "text": "And so there is an extreme amount of variance. And so I do also at the same time appreciate, like you may have some specialized things you want in your plan mode and for your specific like team and company and project, those might be the right things."
+    },
+    {
+      "start": "27:34.42",
+      "speaker": "Pierce",
+      "text": "But generally, i feel like the choices we make for things like our plan mode and agent loop, are optimizing for the overall experience, like the P50 median experience. It's certainly possible you may need to go in and tweak it yourself."
+    },
+    {
+      "start": "27:45.08",
+      "speaker": "Pierce",
+      "text": "And that's the cool thing is you can, right? So um yeah, I like that we have like an opinion and we try to give you the best results, but you can always go to your own thing if you feel like you need to."
+    },
+    {
+      "start": "27:54.33",
+      "speaker": "James",
+      "text": "Yeah. It's like, I go back to my spoons analogy. There's a general spoon design, but you might, you might want a different, you know, width or like different style, a different color of spoon for said cereal consumption."
+    },
+    {
+      "start": "27:58.13",
+      "speaker": "Pierce",
+      "text": "Yeah."
+    },
+    {
+      "start": "28:08.73",
+      "speaker": "James",
+      "text": "And like, it's out there for, you can go do it, right."
+    },
+    {
+      "start": "28:08.98",
+      "speaker": "Pierce",
+      "text": "yeah"
+    },
+    {
+      "start": "28:10.45",
+      "speaker": "James",
+      "text": "You can go, you can go pick off the shelf, another spoon that someone built, or you could, you could build your own spoon. You could put it together. You could get into your, uh, your welding shop."
+    },
+    {
+      "start": "28:19.53",
+      "speaker": "Pierce",
+      "text": "Yes. Yes. Correct. Yes."
+    },
+    {
+      "start": "28:20.72",
+      "speaker": "James",
+      "text": "Yeah. as' if i get it i'm going where It's like spoons, basically. That's I'm saying. How many spoons do you got? And you need one good spoon. And we got many, many spoons, and they all have different capabilities. I think that's really important."
+    },
+    {
+      "start": "28:30.81",
+      "speaker": "Pierce",
+      "text": "yes"
+    },
+    {
+      "start": "28:31.48",
+      "speaker": "James",
+      "text": "So now, in general, though, um when these... ah the The thing that you said for these sub-agents were the... it' Basically, like, work trees are isolated..."
+    },
+    {
+      "start": "28:43.32",
+      "speaker": "James",
+      "text": "code branches basically, right? It's an isolated thing. And you can think of a sub agent as an isolated context window, right?"
+    },
+    {
+      "start": "28:46.39",
+      "speaker": "Pierce",
+      "text": "yes"
+    },
+    {
+      "start": "28:49.80",
+      "speaker": "James",
+      "text": "Is that is that the same analogy?"
+    },
+    {
+      "start": "28:51.91",
+      "speaker": "Pierce",
+      "text": "Yeah, I mean, it's it's kind of imagine if you were to just create a new chat and run like, I want you to gather context in this new chat. And then you were to ask in that chat, please summarize the context that you just gathered for this is my goal."
+    },
+    {
+      "start": "29:04.31",
+      "speaker": "Pierce",
+      "text": "Please, please pick only the most relevant details."
+    },
+    {
+      "start": "29:05.14",
+      "speaker": "James",
+      "text": "Hmm."
+    },
+    {
+      "start": "29:06.87",
+      "speaker": "Pierce",
+      "text": "Then imagine you were to copy paste all that from that other chat you created back into the main chat. That's essentially what's happening at like a... high level with the sub-agent pattern, right? Is it's just basically going and creating a new chat, doing this thing with a prompt based off where the agent is at and its main loop, and then returning back some result based off my goal."
+    },
+    {
+      "start": "29:27.83",
+      "speaker": "James",
+      "text": "Yep. That makes sense. Yeah, exactly. Yeah. I like it. um And I think that's the biggest question that that people get. Now in VS Code, you can override that as well, that functionality, right?"
+    },
+    {
+      "start": "29:37.05",
+      "speaker": "Pierce",
+      "text": "Yes. Yes."
+    },
+    {
+      "start": "29:38.56",
+      "speaker": "James",
+      "text": "Everything's super customizable, correct?"
+    },
+    {
+      "start": "29:38.86",
+      "speaker": "Pierce",
+      "text": "Yes. That's right. Yeah. If there's any, if you want to disable the run subagent tool, you can literally do that. Right. So all these, you know, this is why it's, a it it is a lot to to keep up with. i totally agree. But if you can understand the basics of the agent loop, then you can really start to reason much more about like, okay, well, I don't like subagent or why does subagent work or like these sorts of things. You can go turn it off. You can turn it on. You can aggressively prompt it to do that."
+    },
+    {
+      "start": "30:06.46",
+      "speaker": "Pierce",
+      "text": "And none of these strategies is like foolproof, right? There's there's different trade-offs you make, right? And so like you may decide you want to make a different set of trade-offs, right? So like a big one is like, do I put a lot of things in my rule file?"
+    },
+    {
+      "start": "30:19.64",
+      "speaker": "Pierce",
+      "text": "Like I was working with a customer and they had like a lot of custom things that were in like their confluence. instance, right? And they're like do we represent that as ah as an as a rule or do we use the tool?"
+    },
+    {
+      "start": "30:26.48",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "30:29.96",
+      "speaker": "Pierce",
+      "text": "It's like, well, there's a trade off there, right? Like you could put it in every single prompt, but then it's in every single prompt. And of course, then you are responsible for keeping that that ah information up to date in the prompt, right?"
+    },
+    {
+      "start": "30:40.69",
+      "speaker": "Pierce",
+      "text": "So that's its own set of problems, right? Could be could be advantageous. Or you could add the confluent tool, right? It can go search. But now the agent has to decide when to invoke your tool. So you'll need some strong prompting on when it needs to go to your tool. That tool description needs to be good, right?"
+    },
+    {
+      "start": "30:56.92",
+      "speaker": "Pierce",
+      "text": "um And also you're adding more latency to your entire agent loop, right? Because you're having to go run more tools as part of the thing. So the total turn time is going to get longer. But if that gets you to a faster result in the end, because you pay the tax of going in, getting the right context, and the agent doesn't have to iterate as much later in the loop, maybe that's a that's a price worth paying, right? And so these are the sort of engineering decisions. Like when you understand the basics of the agent loop, you can start to reason about, well, like, you know, we could put it in the prompt or we should we do a tool, or maybe you find some hybrid strategy that really works for you over time. But like understanding those basics helps you to better reason about the trade-offs that you're making."
+    },
+    {
+      "start": "31:33.58",
+      "speaker": "James",
+      "text": "No, it makes a lot of sense. Yeah. I think it's, it's good to kind of talk through like how things are working and why they're working this way. And of course this may evolve over time too, but at least in the day of April, 2026, this is like how things are evolving in general."
+    },
+    {
+      "start": "31:48.53",
+      "speaker": "James",
+      "text": "So that's really neat."
+    },
+    {
+      "start": "31:48.60",
+      "speaker": "Pierce",
+      "text": "I"
+    },
+    {
+      "start": "31:49.88",
+      "speaker": "James",
+      "text": "I think that talking about the loop diving here, there's a lot more happening. We go for hours, but we're not gonna."
+    },
+    {
+      "start": "31:55.70",
+      "speaker": "Pierce",
+      "text": "did that for six hours earlier this week."
+    },
+    {
+      "start": "31:55.89",
+      "speaker": "James",
+      "text": "So what we want to do is kind of So we're going to cut the pod here, but what we want you to do is like, let us know, reach out to me and Pierce on, on Twitter or right into the show, or just leave feedback on any of the VS code, um, subreddits or things like that. And let us know if you have more questions on this agent loop, we'll dive deeper through it and bring on some people from the team that are working on these evals and going as well. So Pierce, thanks for coming on and talking about the, the deepness of the agent loop. And I know we just scratched the surface."
+    },
+    {
+      "start": "32:24.09",
+      "speaker": "Pierce",
+      "text": "Yeah, definitely. And you know the other cool thing about VS Code is if you always want to go inspect this for yourself, there's commands. you know Developer show.debuglog, developer show agent debug log. Confusingly, there's two different ones, but um you can see like basically a flow chart of like how your agent is going, all the different tool calls. um So you can look at this trajectory, as I called it, yourself, and go dig in and see exactly what's happening."
+    },
+    {
+      "start": "32:46.84",
+      "speaker": "James",
+      "text": "Totally. Yep. I love it. All right, Pierce. Thanks for coming on."
+    },
+    {
+      "start": "32:49.35",
+      "speaker": "Pierce",
+      "text": "All right. Happy"
+    },
+    {
+      "start": "32:50.32",
+      "speaker": "James",
+      "text": "We'll dive deeper in the future on more of this stuff, but don't forget you so subscribe on your favorite podcast application. Tell your friends, tell your coworkers. And of course you can check out the YouTube at code, which has over a million subscribers as well."
+    },
+    {
+      "start": "33:03.08",
+      "speaker": "James",
+      "text": "And we also put us there as well. So you can see our faces and here's a new office. all right. That's to it for this VS code insiders podcast. Until next time, happy coding."
+    }
+  ]
+}

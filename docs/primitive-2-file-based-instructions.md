@@ -16,6 +16,8 @@ File-based instructions activate through glob pattern matching via the `applyTo`
 
 **Official docs:** [Custom instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
 
+**Code to study:** [Awesome Copilot instructions](https://github.com/github/awesome-copilot/tree/main/instructions) for production-style `applyTo` examples, and [GitHub Copilot CLI repository](https://github.com/github/copilot-cli) for a surface that also consumes path-scoped instruction files.
+
 **See it in action:** [How to use agents, skills, and instructions in Copilot CLI | Tutorial for beginners](https://www.youtube.com/watch?v=-yKALFS5ewY&t=139s). The GitHub Copilot CLI for Beginners series shows `.instructions.md` files targeting specific paths with `applyTo`, then contrasts them with the repo-wide instructions file.
 
 **Use Cases:**
@@ -78,7 +80,7 @@ return NextResponse.json({ error: 'Not found' }, { status: 404 });
 
 ## Creating File-Based Instructions
 
-Sound off before you steer — let Copilot draft the file. File-based instructions fail silently more often than any other primitive: a wrong `applyTo` glob, a file saved as `.instruction.md` instead of `.instructions.md`, or a path outside `.github/instructions/` produces no error and no warning, just a rule that never loads. The built-in creation commands get the scaffolding right. See [Don't Hand-Type Primitives — Let the Helmsman Repeat the Order](part-2-primitives.md#dont-hand-type-primitives--let-the-helmsman-repeat-the-order) for the rationale.
+Use GitHub Copilot to draft the file first, then inspect the result. File-based instructions fail silently more often than any other primitive: a wrong `applyTo` glob, a file saved as `.instruction.md` instead of `.instructions.md`, or a path outside `.github/instructions/` produces no error and no warning, just a rule that never loads. The built-in creation commands get the scaffolding right. See [Don't Hand-Type Primitives — Let the Helmsman Repeat the Order](part-2-primitives.md#dont-hand-type-primitives--let-the-helmsman-repeat-the-order) for the rationale.
 
 > **💬 Try this prompt:**
 >

@@ -2,11 +2,13 @@
 
 [← Copilot Memory](primitive-8-memory.md) | [Part II Overview](part-2-primitives.md) | [Copilot SDK →](copilot-sdk.md)
 
-*Updated: April 17, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
+*Updated: April 22, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
 
 ---
 
 ## Overview
+
+Read this page as "the same primitive layer, but running in GitHub Actions." The instructions, skills, agents, and review guidance covered earlier do not stop at the editor. Agentic Workflows are what it looks like when that repository knowledge runs on a schedule, on repository events, or from a manual dispatch.
 
 **Location:** `.github/workflows/*.md`
 **Best For:** Scheduled, event-driven, and on-demand AI automation in GitHub Actions

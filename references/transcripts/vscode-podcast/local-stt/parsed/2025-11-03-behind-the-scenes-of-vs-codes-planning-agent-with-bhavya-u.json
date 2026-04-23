@@ -1,0 +1,1803 @@
+{
+  "source_file": "2025-11-03-behind-the-scenes-of-vs-codes-planning-agent-with-bhavya-u.md",
+  "transcript_format": "local_stt_segments",
+  "segment_count": 254,
+  "metadata": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 12,
+    "title": "Behind the Scenes of VS Code’s Planning Agent with Bhavya U",
+    "url": "https://www.vscodepodcast.com/12",
+    "transcript_url": "",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/ee196367-82ce-48aa-a94d-98bd0902ced5.mp3",
+    "published": "2025-11-03",
+    "duration": "22:41",
+    "transcript_available": false,
+    "source_file": "2025-11-03-behind-the-scenes-of-vs-codes-planning-agent-with-bhavya-u.md",
+    "source_path": "references\\transcripts\\vscode-podcast\\2025-11-03-behind-the-scenes-of-vs-codes-planning-agent-with-bhavya-u.md",
+    "local_stt": true,
+    "local_stt_model": "tiny.en",
+    "local_stt_language": "en",
+    "local_stt_device": "cpu",
+    "local_stt_compute_type": "int8"
+  },
+  "segments": [
+    {
+      "speaker": null,
+      "text": "Welcome back everyone to the VS Code insiders podcast.",
+      "start": "00:00:00.000",
+      "end": "00:00:03.360",
+      "id": 1
+    },
+    {
+      "speaker": null,
+      "text": "You're behind the scenes look at all the amazing things in your favorite code editor VS code.",
+      "start": "00:00:03.360",
+      "end": "00:00:08.400",
+      "id": 2
+    },
+    {
+      "speaker": null,
+      "text": "This is where we take a look behind the scenes with some of the team members building",
+      "start": "00:00:08.400",
+      "end": "00:00:12.400",
+      "id": 3
+    },
+    {
+      "speaker": null,
+      "text": "the code editor and developers using the code editors that you love today with me.",
+      "start": "00:00:12.400",
+      "end": "00:00:16.160",
+      "id": 4
+    },
+    {
+      "speaker": null,
+      "text": "Bob, you from the VS code team software engineer.",
+      "start": "00:00:16.160",
+      "end": "00:00:19.440",
+      "id": 5
+    },
+    {
+      "speaker": null,
+      "text": "We're kind of all sorts of goodies. How's it going, Bob?",
+      "start": "00:00:19.440",
+      "end": "00:00:21.680",
+      "id": 6
+    },
+    {
+      "speaker": null,
+      "text": "I'm doing it. How are you? How is it?",
+      "start": "00:00:22.480",
+      "end": "00:00:24.640",
+      "id": 7
+    },
+    {
+      "speaker": null,
+      "text": "I'm doing delightful. Just got back from GitHub universe.",
+      "start": "00:00:24.640",
+      "end": "00:00:28.160",
+      "id": 8
+    },
+    {
+      "speaker": null,
+      "text": "We're going to talk about a brand new feature that just launched that got highlighted at the keynote.",
+      "start": "00:00:28.160",
+      "end": "00:00:32.400",
+      "id": 9
+    },
+    {
+      "speaker": null,
+      "text": "Before we get into it, maybe you could tell I want a little bit about yourself.",
+      "start": "00:00:33.360",
+      "end": "00:00:36.800",
+      "id": 10
+    },
+    {
+      "speaker": null,
+      "text": "Yeah. Hi everyone. I'm a software engineer on the VS Code team.",
+      "start": "00:00:37.440",
+      "end": "00:00:41.840",
+      "id": 11
+    },
+    {
+      "speaker": null,
+      "text": "I've been on the team for about three years now. Previously on the team, I worked on the",
+      "start": "00:00:41.840",
+      "end": "00:00:47.600",
+      "id": 12
+    },
+    {
+      "speaker": null,
+      "text": "at least called chat participant. You may have played around with in the chat panel.",
+      "start": "00:00:47.600",
+      "end": "00:00:51.360",
+      "id": 13
+    },
+    {
+      "speaker": null,
+      "text": "So that helps you with Q&A finding commands and settings in VS Code,",
+      "start": "00:00:51.360",
+      "end": "00:00:55.440",
+      "id": 14
+    },
+    {
+      "speaker": null,
+      "text": "answering general VS code related questions about like APIs and release notes.",
+      "start": "00:00:55.440",
+      "end": "00:01:00.080",
+      "id": 15
+    },
+    {
+      "speaker": null,
+      "text": "I've also worked on the hash new tool that we have in the agent that helps you",
+      "start": "00:01:00.080",
+      "end": "00:01:04.720",
+      "id": 16
+    },
+    {
+      "speaker": null,
+      "text": "scaffold new projects leveraging MCP tools like context seven.",
+      "start": "00:01:04.720",
+      "end": "00:01:08.880",
+      "id": 17
+    },
+    {
+      "speaker": null,
+      "text": "And I also worked on the to do tool, which is getting a bit of a facelift in the next release.",
+      "start": "00:01:09.600",
+      "end": "00:01:13.520",
+      "id": 18
+    },
+    {
+      "speaker": null,
+      "text": "And then more recently, I've been helping build out our agent prompts for some of the latest",
+      "start": "00:01:14.400",
+      "end": "00:01:18.720",
+      "id": 19
+    },
+    {
+      "speaker": null,
+      "text": "model releases. And I also contributed to the hand of feature that you'll see in the planning mode.",
+      "start": "00:01:18.720",
+      "end": "00:01:23.360",
+      "id": 20
+    },
+    {
+      "speaker": null,
+      "text": "And generally when you use agent modes, yeah, in VS Code, but that was recently announced",
+      "start": "00:01:23.360",
+      "end": "00:01:28.160",
+      "id": 21
+    },
+    {
+      "speaker": null,
+      "text": "on GitHub, you know, it's so cool. I've used like every single one of your features probably in",
+      "start": "00:01:28.160",
+      "end": "00:01:32.320",
+      "id": 22
+    },
+    {
+      "speaker": null,
+      "text": "the last like day two, I think as well, everything you worked on. I recently did use the,",
+      "start": "00:01:32.320",
+      "end": "00:01:37.680",
+      "id": 23
+    },
+    {
+      "speaker": null,
+      "text": "I think the most under looked at feature is the hash new. I used it recently and like blue my mind",
+      "start": "00:01:37.680",
+      "end": "00:01:45.920",
+      "id": 24
+    },
+    {
+      "speaker": null,
+      "text": "because I was just like starting a new, I was like, well, there's like crazy and like it",
+      "start": "00:01:45.920",
+      "end": "00:01:50.000",
+      "id": 25
+    },
+    {
+      "speaker": null,
+      "text": "does his hand off and then it like opens a new workspace and it's like mind boggling. It's like",
+      "start": "00:01:50.000",
+      "end": "00:01:54.880",
+      "id": 26
+    },
+    {
+      "speaker": null,
+      "text": "so cool. Nice. Glad to hear that. I'm glad you're enjoying that. If you have any feedback or want",
+      "start": "00:01:54.880",
+      "end": "00:02:00.000",
+      "id": 27
+    },
+    {
+      "speaker": null,
+      "text": "to see any improvements, you know, what to find? Yes. And of course, everyone can always go to the",
+      "start": "00:02:00.000",
+      "end": "00:02:05.200",
+      "id": 28
+    },
+    {
+      "speaker": null,
+      "text": "VS Code, get up age as the best place to put it as well. The team reads all those. I opened tons",
+      "start": "00:02:05.200",
+      "end": "00:02:09.760",
+      "id": 29
+    },
+    {
+      "speaker": null,
+      "text": "of issues myself. I was just talking to Rob. I've like, has this great idea. And he's like, I'll just",
+      "start": "00:02:09.760",
+      "end": "00:02:12.800",
+      "id": 30
+    },
+    {
+      "speaker": null,
+      "text": "open an issue do this thing for setting. So a big gooey person. So I love making settings look better.",
+      "start": "00:02:12.800",
+      "end": "00:02:18.560",
+      "id": 31
+    },
+    {
+      "speaker": null,
+      "text": "My new plan for my end of year goal for VS Code is really work with the settings. And I know",
+      "start": "00:02:18.720",
+      "end": "00:02:24.400",
+      "id": 32
+    },
+    {
+      "speaker": null,
+      "text": "there's people and engineers working on it now. Well, you talked about some really cool things.",
+      "start": "00:02:24.400",
+      "end": "00:02:28.080",
+      "id": 33
+    },
+    {
+      "speaker": null,
+      "text": "You talked about to do's and then you also talked about this planning agent, the kind of planning",
+      "start": "00:02:28.080",
+      "end": "00:02:32.240",
+      "id": 34
+    },
+    {
+      "speaker": null,
+      "text": "mode. Maybe can you talk a little bit about like to do's first and then because like they've been",
+      "start": "00:02:32.240",
+      "end": "00:02:37.360",
+      "id": 35
+    },
+    {
+      "speaker": null,
+      "text": "around for a few releases now. And then like what this new plan thing is and like how developers use",
+      "start": "00:02:37.360",
+      "end": "00:02:43.120",
+      "id": 36
+    },
+    {
+      "speaker": null,
+      "text": "each of those and how they're the same? Are they different? Yeah. So we initially started with",
+      "start": "00:02:43.120",
+      "end": "00:02:48.560",
+      "id": 37
+    },
+    {
+      "speaker": null,
+      "text": "the to do tool. So it's a tool that you can invoke in the chat panel. I think it's behind. You can",
+      "start": "00:02:48.560",
+      "end": "00:02:54.160",
+      "id": 38
+    },
+    {
+      "speaker": null,
+      "text": "invoke it with hash to do's. So this is sort of like our way of trying to ensure that the agent",
+      "start": "00:02:54.160",
+      "end": "00:02:59.840",
+      "id": 39
+    },
+    {
+      "speaker": null,
+      "text": "would stay focused when you're engaging with the agent for a complex task. So something that has",
+      "start": "00:02:59.840",
+      "end": "00:03:06.160",
+      "id": 40
+    },
+    {
+      "speaker": null,
+      "text": "multi-step that the agent laid out. And then as you see the context growing, you can see sometimes",
+      "start": "00:03:06.160",
+      "end": "00:03:11.520",
+      "id": 41
+    },
+    {
+      "speaker": null,
+      "text": "that the agent would completely forget what it started off with. So kind of giving some sort of",
+      "start": "00:03:11.520",
+      "end": "00:03:16.560",
+      "id": 42
+    },
+    {
+      "speaker": null,
+      "text": "context, grounding context on the higher level context that the agent can maintain as it works through",
+      "start": "00:03:17.520",
+      "end": "00:03:22.320",
+      "id": 43
+    },
+    {
+      "speaker": null,
+      "text": "complex tasks. And then kind of also be realized as we shipped this. And as we started having",
+      "start": "00:03:22.320",
+      "end": "00:03:28.160",
+      "id": 44
+    },
+    {
+      "speaker": null,
+      "text": "more users tried out that it was a neat way for the users to also get context on what the chat",
+      "start": "00:03:28.160",
+      "end": "00:03:33.440",
+      "id": 45
+    },
+    {
+      "speaker": null,
+      "text": "does actually try to do right at that point in time. Sometimes the chat panel can be pretty",
+      "start": "00:03:33.440",
+      "end": "00:03:38.080",
+      "id": 46
+    },
+    {
+      "speaker": null,
+      "text": "verbose. So it's kind of hard to get context on what's happening. So you can take a look at the",
+      "start": "00:03:38.080",
+      "end": "00:03:43.920",
+      "id": 47
+    },
+    {
+      "speaker": null,
+      "text": "to do's, which are now in closer to the chat input area in the new insiders. So when you can",
+      "start": "00:03:43.920",
+      "end": "00:03:50.000",
+      "id": 48
+    },
+    {
+      "speaker": null,
+      "text": "quickly get context on what the current step the agent does at. And then you can choose to go and",
+      "start": "00:03:50.000",
+      "end": "00:03:55.280",
+      "id": 49
+    },
+    {
+      "speaker": null,
+      "text": "look at the rest of the tasks that are upcoming that the agent will engage with. Or you can just",
+      "start": "00:03:55.280",
+      "end": "00:04:00.160",
+      "id": 50
+    },
+    {
+      "speaker": null,
+      "text": "let the agent cook and then see what happens. And then once it's done, the agent should have marked",
+      "start": "00:04:00.160",
+      "end": "00:04:04.240",
+      "id": 51
+    },
+    {
+      "speaker": null,
+      "text": "everything is done. And then yeah, though you can also be confident more often than not that most",
+      "start": "00:04:04.240",
+      "end": "00:04:10.640",
+      "id": 52
+    },
+    {
+      "speaker": null,
+      "text": "of your tasks are done. Yeah. So I love that because I use the to do's a lot because like when I give",
+      "start": "00:04:10.640",
+      "end": "00:04:20.770",
+      "id": 53
+    },
+    {
+      "speaker": null,
+      "text": "it the prompt and it creates a to do list for me or if I asked it to create the to do list,",
+      "start": "00:04:20.770",
+      "end": "00:04:25.730",
+      "id": 54
+    },
+    {
+      "speaker": null,
+      "text": "the nice thing about it is I get to like real time review. Now it's already starting to cook,",
+      "start": "00:04:25.730",
+      "end": "00:04:30.610",
+      "id": 55
+    },
+    {
+      "speaker": null,
+      "text": "but I get to review the steps. So I could actually stop it if I'm like, oh, you actually missed a",
+      "start": "00:04:30.610",
+      "end": "00:04:35.250",
+      "id": 56
+    },
+    {
+      "speaker": null,
+      "text": "thing or like, you might not like, okay, let it finish and I'll like follow up with additional to",
+      "start": "00:04:35.250",
+      "end": "00:04:39.090",
+      "id": 57
+    },
+    {
+      "speaker": null,
+      "text": "do's or things like that. And then I'm a PM. So I'm on calls every single day pretty much all the time.",
+      "start": "00:04:39.090",
+      "end": "00:04:44.530",
+      "id": 58
+    },
+    {
+      "speaker": null,
+      "text": "So I just kind of like put like my teams overlaps over. So I can just see like the to do's being",
+      "start": "00:04:44.530",
+      "end": "00:04:51.490",
+      "id": 59
+    },
+    {
+      "speaker": null,
+      "text": "checked off in real time. So I know like if I need like, you know, turn off my webcam for a second",
+      "start": "00:04:51.490",
+      "end": "00:04:56.930",
+      "id": 60
+    },
+    {
+      "speaker": null,
+      "text": "then follow up after it's all done. So it's like nice to see it while it's cooking in the background.",
+      "start": "00:04:56.930",
+      "end": "00:05:01.010",
+      "id": 61
+    },
+    {
+      "speaker": null,
+      "text": "I like to I like to cook while I'm on calls, you know, you know, so that that way,",
+      "start": "00:05:01.490",
+      "end": "00:05:05.570",
+      "id": 62
+    },
+    {
+      "speaker": null,
+      "text": "that way I get a lot of code down like send a prompt to join a team's call and then boom good to go.",
+      "start": "00:05:06.130",
+      "end": "00:05:10.210",
+      "id": 63
+    },
+    {
+      "speaker": null,
+      "text": "So",
+      "start": "00:05:10.210",
+      "end": "00:05:10.530",
+      "id": 64
+    },
+    {
+      "speaker": null,
+      "text": "another neat thing that about the to do's is if for whatever is in your agent task was interrupted,",
+      "start": "00:05:11.410",
+      "end": "00:05:16.770",
+      "id": 65
+    },
+    {
+      "speaker": null,
+      "text": "um, we can pick right back up and the to do context gets injected back to the agent.",
+      "start": "00:05:16.770",
+      "end": "00:05:21.250",
+      "id": 66
+    },
+    {
+      "speaker": null,
+      "text": "So it knows where to pick it up from and usually I've seen a, seen a do a good job with continuity,",
+      "start": "00:05:21.250",
+      "end": "00:05:26.290",
+      "id": 67
+    },
+    {
+      "speaker": null,
+      "text": "especially long tasks. That's awesome. That's very cool. So it's kind of like the to do's are sort of",
+      "start": "00:05:26.850",
+      "end": "00:05:32.370",
+      "id": 68
+    },
+    {
+      "speaker": null,
+      "text": "planning. They're like plans that are being executed, but then this new plan agent is kind of like",
+      "start": "00:05:33.570",
+      "end": "00:05:40.130",
+      "id": 69
+    },
+    {
+      "speaker": null,
+      "text": "flipping that a little bit, right? Yeah, to do some more on this, the scope is much smaller. I would",
+      "start": "00:05:40.130",
+      "end": "00:05:46.610",
+      "id": 70
+    },
+    {
+      "speaker": null,
+      "text": "say for to do so, they're more for the immediate steps at hand. Planning is more for a more complex",
+      "start": "00:05:46.610",
+      "end": "00:05:53.010",
+      "id": 71
+    },
+    {
+      "speaker": null,
+      "text": "tasks that involves like a lot of deep research and then a lot of context gathering, going around",
+      "start": "00:05:53.010",
+      "end": "00:05:59.410",
+      "id": 72
+    },
+    {
+      "speaker": null,
+      "text": "and figuring out what's in your code base trying to understand how you could race this setup,",
+      "start": "00:05:59.410",
+      "end": "00:06:03.570",
+      "id": 73
+    },
+    {
+      "speaker": null,
+      "text": "what instructions do you what instructions you want the agent to be following and then compiling",
+      "start": "00:06:03.570",
+      "end": "00:06:08.530",
+      "id": 74
+    },
+    {
+      "speaker": null,
+      "text": "all of that into some sort of an executable and follow along, um, markdown or a draft of a plan",
+      "start": "00:06:08.530",
+      "end": "00:06:17.090",
+      "id": 75
+    },
+    {
+      "speaker": null,
+      "text": "that you can then have agents work on either synchronously with local agents or you can just kick",
+      "start": "00:06:17.650",
+      "end": "00:06:24.050",
+      "id": 76
+    },
+    {
+      "speaker": null,
+      "text": "them off on background agents or remote coding agents and take it off from there. So I would say",
+      "start": "00:06:24.050",
+      "end": "00:06:28.450",
+      "id": 77
+    },
+    {
+      "speaker": null,
+      "text": "planning is a much higher level focused task where it's to do some more in session and just scope",
+      "start": "00:06:28.450",
+      "end": "00:06:34.930",
+      "id": 78
+    },
+    {
+      "speaker": null,
+      "text": "to the task at hand. Yeah. Okay, gotcha. So when I'm inside of VS code, I mean inside the chat and then",
+      "start": "00:06:34.930",
+      "end": "00:06:40.850",
+      "id": 79
+    },
+    {
+      "speaker": null,
+      "text": "you know, we've primarily always had asked at it agent and agents of the default, right? Just going to",
+      "start": "00:06:40.850",
+      "end": "00:06:45.490",
+      "id": 80
+    },
+    {
+      "speaker": null,
+      "text": "go do stuff unless I tell it don't write any code, but I there's now plan there. So this is that",
+      "start": "00:06:45.490",
+      "end": "00:06:50.050",
+      "id": 81
+    },
+    {
+      "speaker": null,
+      "text": "plan agent. So how do I think about it as a developer like when I should switch into that",
+      "start": "00:06:50.050",
+      "end": "00:06:55.650",
+      "id": 82
+    },
+    {
+      "speaker": null,
+      "text": "context? Because like I know if I just ask the agent to do something with the agent mode,",
+      "start": "00:06:55.650",
+      "end": "00:07:01.650",
+      "id": 83
+    },
+    {
+      "speaker": null,
+      "text": "like it's going to do a little bit of pre planning and task collaboration. So when should I think",
+      "start": "00:07:01.650",
+      "end": "00:07:05.490",
+      "id": 84
+    },
+    {
+      "speaker": null,
+      "text": "about like, oh, like I should actually do some planning first? More often than not, this is the way",
+      "start": "00:07:05.490",
+      "end": "00:07:12.690",
+      "id": 85
+    },
+    {
+      "speaker": null,
+      "text": "we've seen, we use it within the team. And I'm sure this as you start using planning mode,",
+      "start": "00:07:12.690",
+      "end": "00:07:17.490",
+      "id": 86
+    },
+    {
+      "speaker": null,
+      "text": "you'll find more ways to use it. But we like to start off with trying to define like a really",
+      "start": "00:07:17.490",
+      "end": "00:07:23.410",
+      "id": 87
+    },
+    {
+      "speaker": null,
+      "text": "broad level task and then have the agent explore exactly what needs to be done. So think about it",
+      "start": "00:07:23.410",
+      "end": "00:07:29.650",
+      "id": 88
+    },
+    {
+      "speaker": null,
+      "text": "for like high level tasks, such as hey, I want to start something from you, like start a new feature",
+      "start": "00:07:29.650",
+      "end": "00:07:34.930",
+      "id": 89
+    },
+    {
+      "speaker": null,
+      "text": "like a really large coping feature. So for example, when I wrote the to do tool and move that out on",
+      "start": "00:07:34.930",
+      "end": "00:07:40.690",
+      "id": 90
+    },
+    {
+      "speaker": null,
+      "text": "in VS code, I started off in planning mode trying to explore where the chat widget goes and then",
+      "start": "00:07:40.690",
+      "end": "00:07:46.130",
+      "id": 91
+    },
+    {
+      "speaker": null,
+      "text": "how it's rendered and then what are the different moving parts there. So helping kind of first going",
+      "start": "00:07:46.130",
+      "end": "00:07:51.490",
+      "id": 92
+    },
+    {
+      "speaker": null,
+      "text": "and finding context, understanding what all the moving parts are and then building out this other",
+      "start": "00:07:51.490",
+      "end": "00:07:56.050",
+      "id": 93
+    },
+    {
+      "speaker": null,
+      "text": "widget that would then integrate with this widget, making sure I don't break tests, making sure that",
+      "start": "00:07:56.050",
+      "end": "00:08:01.490",
+      "id": 94
+    },
+    {
+      "speaker": null,
+      "text": "the UX is aligned with all of the different UX surfaces we have in VS code. So a complex multi-step",
+      "start": "00:08:01.490",
+      "end": "00:08:09.810",
+      "id": 95
+    },
+    {
+      "speaker": null,
+      "text": "task that involves a lot of research and a lot of planning is why you would use the planning",
+      "start": "00:08:09.810",
+      "end": "00:08:16.210",
+      "id": 96
+    },
+    {
+      "speaker": null,
+      "text": "mode is what I would say. Yeah. I think one thing that's been fascinating and I'm interested in how",
+      "start": "00:08:16.210",
+      "end": "00:08:21.970",
+      "id": 97
+    },
+    {
+      "speaker": null,
+      "text": "it actually works like under the hood. But when I've used plan agent, the planning agent is that",
+      "start": "00:08:21.970",
+      "end": "00:08:28.610",
+      "id": 98
+    },
+    {
+      "speaker": null,
+      "text": "it seems to ask me questions too. So it doesn't give me a plan. It seems to ask me questions.",
+      "start": "00:08:28.610",
+      "end": "00:08:32.610",
+      "id": 99
+    },
+    {
+      "speaker": null,
+      "text": "Like how is this thing working? And I guess how is it different than how it would traditionally",
+      "start": "00:08:32.610",
+      "end": "00:08:37.010",
+      "id": 100
+    },
+    {
+      "speaker": null,
+      "text": "plan and then why is it asking me questions? Yeah. So we've scoped on planning with the goal that",
+      "start": "00:08:37.010",
+      "end": "00:08:43.170",
+      "id": 101
+    },
+    {
+      "speaker": null,
+      "text": "it helps you achieve come up with the detailed plan. We've scoped the tools that it has access",
+      "start": "00:08:43.170",
+      "end": "00:08:49.090",
+      "id": 102
+    },
+    {
+      "speaker": null,
+      "text": "to to only read only tools and then code based search tools. So it can read through your code",
+      "start": "00:08:49.090",
+      "end": "00:08:55.330",
+      "id": 103
+    },
+    {
+      "speaker": null,
+      "text": "based to understand how it works. It only has re-access. So it can read through all of the code changes",
+      "start": "00:08:55.330",
+      "end": "00:09:01.170",
+      "id": 104
+    },
+    {
+      "speaker": null,
+      "text": "and then all of the different other instructions that you might have in your repository.",
+      "start": "00:09:01.170",
+      "end": "00:09:06.370",
+      "id": 105
+    },
+    {
+      "speaker": null,
+      "text": "And then comes up with the detailed level plan. And then you can take it from there. It usually",
+      "start": "00:09:06.450",
+      "end": "00:09:12.850",
+      "id": 106
+    },
+    {
+      "speaker": null,
+      "text": "tries to help you. We've prompted it in such a way that it also helps identify potential gaps in",
+      "start": "00:09:12.850",
+      "end": "00:09:20.450",
+      "id": 107
+    },
+    {
+      "speaker": null,
+      "text": "what you're missing with the task that you're asking for. So it always asks you an open-ended",
+      "start": "00:09:20.450",
+      "end": "00:09:24.610",
+      "id": 108
+    },
+    {
+      "speaker": null,
+      "text": "questions. It figures out that needs resolution. And then you can take it from there. You can choose",
+      "start": "00:09:24.610",
+      "end": "00:09:30.770",
+      "id": 109
+    },
+    {
+      "speaker": null,
+      "text": "to try to resolve all of the open-ended questions and then go ahead and implement it. Or you can be",
+      "start": "00:09:30.770",
+      "end": "00:09:35.890",
+      "id": 110
+    },
+    {
+      "speaker": null,
+      "text": "like, you know what? I'm just trying to explore this. So why don't you pick defaults and go from there",
+      "start": "00:09:35.890",
+      "end": "00:09:41.090",
+      "id": 111
+    },
+    {
+      "speaker": null,
+      "text": "and start implementing and then see what happens. Yeah. That makes sense. So sort of inherently the team,",
+      "start": "00:09:41.090",
+      "end": "00:09:46.210",
+      "id": 112
+    },
+    {
+      "speaker": null,
+      "text": "you said, as I'm kind of summarised it here. So I understand it as well as",
+      "start": "00:09:46.210",
+      "end": "00:09:49.730",
+      "id": 113
+    },
+    {
+      "speaker": null,
+      "text": "the team basically has this agent prompt set up in a way that is scope tooling. But then also",
+      "start": "00:09:50.770",
+      "end": "00:09:57.730",
+      "id": 114
+    },
+    {
+      "speaker": null,
+      "text": "is using those tools in a planning way and specifying that it should inherently ask those follow-up",
+      "start": "00:09:58.690",
+      "end": "00:10:07.730",
+      "id": 115
+    },
+    {
+      "speaker": null,
+      "text": "questions if there are open-ended questions. Have you found like there's different",
+      "start": "00:10:07.730",
+      "end": "00:10:12.370",
+      "id": 116
+    },
+    {
+      "speaker": null,
+      "text": "threshold? Is it always going to ask me questions? Is it one of the requirements? Or will there be",
+      "start": "00:10:13.890",
+      "end": "00:10:22.610",
+      "id": 117
+    },
+    {
+      "speaker": null,
+      "text": "instances where there's none? And how many times could it possibly ask me questions? Is it an",
+      "start": "00:10:22.610",
+      "end": "00:10:27.330",
+      "id": 118
+    },
+    {
+      "speaker": null,
+      "text": "infinimal or how it's how it's? So this is a prompt that we are fine-tuning and then working on",
+      "start": "00:10:27.330",
+      "end": "00:10:34.210",
+      "id": 119
+    },
+    {
+      "speaker": null,
+      "text": "constantly. Currently, the way it works is we ask it to go and explore. We also use this tool called",
+      "start": "00:10:34.210",
+      "end": "00:10:40.850",
+      "id": 120
+    },
+    {
+      "speaker": null,
+      "text": "the run subagent tasks, the web agent's tool that goes ahead and does like DP search in its own little",
+      "start": "00:10:40.850",
+      "end": "00:10:47.570",
+      "id": 121
+    },
+    {
+      "speaker": null,
+      "text": "subagent context and comes back with you. It comes back to you, which is the right amount of",
+      "start": "00:10:47.570",
+      "end": "00:10:54.210",
+      "id": 122
+    },
+    {
+      "speaker": null,
+      "text": "context that you need for your actual tasks. So there is not much context mixing between the two.",
+      "start": "00:10:54.210",
+      "end": "00:11:00.290",
+      "id": 123
+    },
+    {
+      "speaker": null,
+      "text": "And then also keeps your context for the main tasks scope. So we're trying to build this out so that",
+      "start": "00:11:01.010",
+      "end": "00:11:06.050",
+      "id": 124
+    },
+    {
+      "speaker": null,
+      "text": "it tries to go and do this research and comes back with all of the information that it found and",
+      "start": "00:11:06.050",
+      "end": "00:11:10.530",
+      "id": 125
+    },
+    {
+      "speaker": null,
+      "text": "then tries to put it back to the question that you'd try to form. And then it identifies open",
+      "start": "00:11:10.530",
+      "end": "00:11:15.890",
+      "id": 126
+    },
+    {
+      "speaker": null,
+      "text": "questions. More often than not, I've seen it ask you questions having you kind of engage with it",
+      "start": "00:11:15.890",
+      "end": "00:11:20.850",
+      "id": 127
+    },
+    {
+      "speaker": null,
+      "text": "in the Q&A to try to resolve the open-ended questions. Sometimes it can get a little",
+      "start": "00:11:20.850",
+      "end": "00:11:26.530",
+      "id": 128
+    },
+    {
+      "speaker": null,
+      "text": "duty and then we're working on fixing that up. But I've found it really useful in the questions",
+      "start": "00:11:26.530",
+      "end": "00:11:32.290",
+      "id": 129
+    },
+    {
+      "speaker": null,
+      "text": "that it asks because I wouldn't have thought of it. I do as well. I'm not going to lie. I'm like,",
+      "start": "00:11:32.290",
+      "end": "00:11:37.170",
+      "id": 130
+    },
+    {
+      "speaker": null,
+      "text": "oh, I should have asked that. Can you customize it in any way? You said that there's a predefined",
+      "start": "00:11:37.170",
+      "end": "00:11:42.690",
+      "id": 131
+    },
+    {
+      "speaker": null,
+      "text": "set of tools. But what if I have like MCP servers and I'm really interested in doing research on a bug and",
+      "start": "00:11:42.690",
+      "end": "00:11:47.250",
+      "id": 132
+    },
+    {
+      "speaker": null,
+      "text": "I need it to go search GitHub or sentries like that? Is it customizable? Kind of like the other",
+      "start": "00:11:47.250",
+      "end": "00:11:52.130",
+      "id": 133
+    },
+    {
+      "speaker": null,
+      "text": "sort of agents in there? Yeah, you can create custom agents as we're calling them now. So you can",
+      "start": "00:11:52.130",
+      "end": "00:11:58.850",
+      "id": 134
+    },
+    {
+      "speaker": null,
+      "text": "open up the chat panel and in the gear icon you can create a new custom agent. And we have",
+      "start": "00:11:58.850",
+      "end": "00:12:05.570",
+      "id": 135
+    },
+    {
+      "speaker": null,
+      "text": "commands to help you do this. And each agent you can define kind of the role that you want the",
+      "start": "00:12:05.570",
+      "end": "00:12:11.010",
+      "id": 136
+    },
+    {
+      "speaker": null,
+      "text": "agents to play. So what we built in is the planning agent. But imagine you'd want an agent that",
+      "start": "00:12:11.010",
+      "end": "00:12:16.690",
+      "id": 137
+    },
+    {
+      "speaker": null,
+      "text": "helps you to test driven development. So you can go and build up an agent and scope down the tooling",
+      "start": "00:12:16.690",
+      "end": "00:12:21.890",
+      "id": 138
+    },
+    {
+      "speaker": null,
+      "text": "so that you have access to the testing tools and then being able to compile and run your code.",
+      "start": "00:12:21.890",
+      "end": "00:12:26.930",
+      "id": 139
+    },
+    {
+      "speaker": null,
+      "text": "And then there's you can also define the handoffs between one agent to the other. So going",
+      "start": "00:12:27.730",
+      "end": "00:12:33.330",
+      "id": 140
+    },
+    {
+      "speaker": null,
+      "text": "seamlessly from planning and then going to a test development agent. So yeah, like you can customize it.",
+      "start": "00:12:33.330",
+      "end": "00:12:41.250",
+      "id": 141
+    },
+    {
+      "speaker": null,
+      "text": "We we've added support for creating custom chat modes where you can define the model that you",
+      "start": "00:12:41.250",
+      "end": "00:12:45.890",
+      "id": 142
+    },
+    {
+      "speaker": null,
+      "text": "want. You can define handoffs which agent to handoff tasks to the tools that you want to customize.",
+      "start": "00:12:45.890",
+      "end": "00:12:53.970",
+      "id": 143
+    },
+    {
+      "speaker": null,
+      "text": "And then finally the instructions that you want which define the role that the agent will play.",
+      "start": "00:12:53.970",
+      "end": "00:12:58.210",
+      "id": 144
+    },
+    {
+      "speaker": null,
+      "text": "Oh, that's very cool. So you kind of see exactly if you were like, oh, I think like this planning",
+      "start": "00:12:58.930",
+      "end": "00:13:03.010",
+      "id": 145
+    },
+    {
+      "speaker": null,
+      "text": "mode, like is working good, but like I need to customize it and kind of copy it and create my own",
+      "start": "00:13:03.010",
+      "end": "00:13:07.250",
+      "id": 146
+    },
+    {
+      "speaker": null,
+      "text": "custom planning mode, like James is planning mode, basically. Yeah, you can also look at a",
+      "start": "00:13:07.250",
+      "end": "00:13:12.930",
+      "id": 147
+    },
+    {
+      "speaker": null,
+      "text": "a peek at our custom art planning mode that we've added. So if you open the agent to drop down,",
+      "start": "00:13:12.930",
+      "end": "00:13:19.570",
+      "id": 148
+    },
+    {
+      "speaker": null,
+      "text": "there's a little icon there that asks you to configure agents. And if you click on that and you'll",
+      "start": "00:13:19.570",
+      "end": "00:13:24.690",
+      "id": 149
+    },
+    {
+      "speaker": null,
+      "text": "be presented a quick pick with the different agents, you can go and click on the planning agent",
+      "start": "00:13:24.690",
+      "end": "00:13:29.410",
+      "id": 150
+    },
+    {
+      "speaker": null,
+      "text": "that shows them there. And then you can it's a markdown file. You can go and take a look at it to see",
+      "start": "00:13:29.410",
+      "end": "00:13:34.690",
+      "id": 151
+    },
+    {
+      "speaker": null,
+      "text": "exactly what we've defined. And you can see our custom prompt in there too. And you can copy over it",
+      "start": "00:13:34.690",
+      "end": "00:13:38.690",
+      "id": 152
+    },
+    {
+      "speaker": null,
+      "text": "to a kid. Oh, that's awesome. That's super cool. Yeah. Like that it's like, it's just open. It's just",
+      "start": "00:13:39.410",
+      "end": "00:13:44.130",
+      "id": 153
+    },
+    {
+      "speaker": null,
+      "text": "there. So you can see exactly what the team's doing. Well, what about like actually the prompt for it?",
+      "start": "00:13:44.130",
+      "end": "00:13:48.210",
+      "id": 154
+    },
+    {
+      "speaker": null,
+      "text": "Like because I think one thing, like I've really worked on, but I've been like over the last,",
+      "start": "00:13:48.210",
+      "end": "00:13:53.330",
+      "id": 155
+    },
+    {
+      "speaker": null,
+      "text": "you know, eight, nine months since like each of mode came out. It's kind of crazy. I think it's like",
+      "start": "00:13:53.330",
+      "end": "00:13:57.250",
+      "id": 156
+    },
+    {
+      "speaker": null,
+      "text": "only been like less than a year. But I really try to work on like my prompting of like what I'm doing,",
+      "start": "00:13:57.250",
+      "end": "00:14:02.770",
+      "id": 157
+    },
+    {
+      "speaker": null,
+      "text": "like asking questions. Like when it comes to like model prompting, are there any best projects that you",
+      "start": "00:14:02.770",
+      "end": "00:14:06.930",
+      "id": 158
+    },
+    {
+      "speaker": null,
+      "text": "found like in this plan? Like how much context should I give it? Like other specific models that like",
+      "start": "00:14:06.930",
+      "end": "00:14:12.130",
+      "id": 159
+    },
+    {
+      "speaker": null,
+      "text": "should be picking a thinking model and this like what are your thoughts from like the engineering",
+      "start": "00:14:12.130",
+      "end": "00:14:17.250",
+      "id": 160
+    },
+    {
+      "speaker": null,
+      "text": "side of like how much context to give ahead of time for the plan and also like models or they're",
+      "start": "00:14:17.250",
+      "end": "00:14:22.690",
+      "id": 161
+    },
+    {
+      "speaker": null,
+      "text": "like models that maybe would work better in this context? Working with agents as all about context",
+      "start": "00:14:22.690",
+      "end": "00:14:29.730",
+      "id": 162
+    },
+    {
+      "speaker": null,
+      "text": "engineering. Right? So trying to figure out the right level of context engineering is kind of it,",
+      "start": "00:14:29.730",
+      "end": "00:14:35.410",
+      "id": 163
+    },
+    {
+      "speaker": null,
+      "text": "you could call it science, but sometimes I've also seen it go kind of a right. So it's, there's a",
+      "start": "00:14:35.410",
+      "end": "00:14:41.090",
+      "id": 164
+    },
+    {
+      "speaker": null,
+      "text": "bunch of levers that you can pull that we provide to help with context engineering, especially with",
+      "start": "00:14:41.090",
+      "end": "00:14:45.570",
+      "id": 165
+    },
+    {
+      "speaker": null,
+      "text": "prompting. So for starters, at just the code base level, you can have actual GitHub instructions,",
+      "start": "00:14:45.570",
+      "end": "00:14:53.970",
+      "id": 166
+    },
+    {
+      "speaker": null,
+      "text": "start MD files that kind of layout like all of the best practices that you follow in code, kind of",
+      "start": "00:14:53.970",
+      "end": "00:14:59.090",
+      "id": 167
+    },
+    {
+      "speaker": null,
+      "text": "the code structure that you have, where to go looking. If you want to look at all of the UX,",
+      "start": "00:14:59.090",
+      "end": "00:15:04.450",
+      "id": 168
+    },
+    {
+      "speaker": null,
+      "text": "widgets that exist or all of the testing infrastructure that exists. So adding that to context",
+      "start": "00:15:04.450",
+      "end": "00:15:10.210",
+      "id": 169
+    },
+    {
+      "speaker": null,
+      "text": "when you're trying to figure out what sort of code you want to implement. So it's all about",
+      "start": "00:15:10.210",
+      "end": "00:15:15.730",
+      "id": 170
+    },
+    {
+      "speaker": null,
+      "text": "context engineering and then you will allow you to customize it at different levels. One is the",
+      "start": "00:15:15.730",
+      "end": "00:15:20.770",
+      "id": 171
+    },
+    {
+      "speaker": null,
+      "text": "instructions files that you provide. The other one is the agents with their specific rules that you",
+      "start": "00:15:20.770",
+      "end": "00:15:25.490",
+      "id": 172
+    },
+    {
+      "speaker": null,
+      "text": "can assign them. And in a in a specific prompt that you would write, I would say it all comes",
+      "start": "00:15:25.490",
+      "end": "00:15:32.370",
+      "id": 173
+    },
+    {
+      "speaker": null,
+      "text": "down to giving it the right set of tools and giving it the one the right set of tools to go and",
+      "start": "00:15:32.370",
+      "end": "00:15:37.890",
+      "id": 174
+    },
+    {
+      "speaker": null,
+      "text": "look for what it wants to find and also kind of giving it direction. So open ended questions are great",
+      "start": "00:15:37.890",
+      "end": "00:15:43.410",
+      "id": 175
+    },
+    {
+      "speaker": null,
+      "text": "when you're exploring. But if you have some sort of context in terms of it could even be a previous",
+      "start": "00:15:43.410",
+      "end": "00:15:49.570",
+      "id": 176
+    },
+    {
+      "speaker": null,
+      "text": "commit or a previous pull request that you worked on. So you can give that to the agent and the agent",
+      "start": "00:15:49.570",
+      "end": "00:15:54.530",
+      "id": 177
+    },
+    {
+      "speaker": null,
+      "text": "knows to go and use the GitHub MCP tools to go and fetch the differences and then figure out what",
+      "start": "00:15:54.530",
+      "end": "00:16:00.290",
+      "id": 178
+    },
+    {
+      "speaker": null,
+      "text": "was implemented and then take it from there. So within a given con given task that you're trying to",
+      "start": "00:16:00.290",
+      "end": "00:16:06.450",
+      "id": 179
+    },
+    {
+      "speaker": null,
+      "text": "achieve trying to find the right bits of context to give it without overwhelming the model is the way",
+      "start": "00:16:06.450",
+      "end": "00:16:13.010",
+      "id": 180
+    },
+    {
+      "speaker": null,
+      "text": "to go. It does really task driven. So even when I'm in planning agent, like I should still be like",
+      "start": "00:16:13.010",
+      "end": "00:16:19.810",
+      "id": 181
+    },
+    {
+      "speaker": null,
+      "text": "referencing files or friends and commits and things like that. If that's valuable I guess right.",
+      "start": "00:16:19.810",
+      "end": "00:16:24.050",
+      "id": 182
+    },
+    {
+      "speaker": null,
+      "text": "Yes, definitely. Yeah, referencing files, giving it best practices on what to do, what not to do",
+      "start": "00:16:24.050",
+      "end": "00:16:31.410",
+      "id": 183
+    },
+    {
+      "speaker": null,
+      "text": "potentially. As you start planning it out, tell the model that here I want you to follow a test",
+      "start": "00:16:31.410",
+      "end": "00:16:36.530",
+      "id": 184
+    },
+    {
+      "speaker": null,
+      "text": "driven development. So start with failing tests. So make sure you also account for writing tests",
+      "start": "00:16:36.530",
+      "end": "00:16:40.850",
+      "id": 185
+    },
+    {
+      "speaker": null,
+      "text": "in this plan that you've built out so that I can go and delegate it later on.",
+      "start": "00:16:41.810",
+      "end": "00:16:45.250",
+      "id": 186
+    },
+    {
+      "speaker": null,
+      "text": "Oh, very cool. I've seen the planning agent. There's something different than the other agents,",
+      "start": "00:16:45.890",
+      "end": "00:16:51.090",
+      "id": 187
+    },
+    {
+      "speaker": null,
+      "text": "like Ask Edit and Agent Agent Agent, if we will. Is that like when it finishes the plan? It has",
+      "start": "00:16:51.090",
+      "end": "00:16:57.170",
+      "id": 188
+    },
+    {
+      "speaker": null,
+      "text": "like little buttons. Like that are there that pop up like what are those buttons? Like I've never seen",
+      "start": "00:16:57.170",
+      "end": "00:17:01.730",
+      "id": 189
+    },
+    {
+      "speaker": null,
+      "text": "them before and like what should I use? Like there's a few options there. Those buttons are what",
+      "start": "00:17:01.730",
+      "end": "00:17:08.210",
+      "id": 190
+    },
+    {
+      "speaker": null,
+      "text": "we call as handoffs and those are something that's available in Insiders right now for folks to use.",
+      "start": "00:17:08.210",
+      "end": "00:17:14.930",
+      "id": 191
+    },
+    {
+      "speaker": null,
+      "text": "And handoffs are way of helping users kind of go from one agent performing a task to",
+      "start": "00:17:15.010",
+      "end": "00:17:23.330",
+      "id": 192
+    },
+    {
+      "speaker": null,
+      "text": "seamlessly handing off to another role. So start off with planning in once you're happy with where",
+      "start": "00:17:23.330",
+      "end": "00:17:29.410",
+      "id": 193
+    },
+    {
+      "speaker": null,
+      "text": "the plan is. Take that plan all of the context that you've gathered in that session and then hand it off",
+      "start": "00:17:29.410",
+      "end": "00:17:35.170",
+      "id": 194
+    },
+    {
+      "speaker": null,
+      "text": "to an agent to go and build it or go and test something out. So you can, that's the mechanism for it.",
+      "start": "00:17:35.170",
+      "end": "00:17:41.890",
+      "id": 195
+    },
+    {
+      "speaker": null,
+      "text": "And then you can define these handoffs in your agent modes that you define in the custom agent modes.",
+      "start": "00:17:41.890",
+      "end": "00:17:48.210",
+      "id": 196
+    },
+    {
+      "speaker": null,
+      "text": "So you can define the agent, the tools that the agent needs, the description and then you can",
+      "start": "00:17:48.210",
+      "end": "00:17:54.610",
+      "id": 197
+    },
+    {
+      "speaker": null,
+      "text": "define something called as handoffs. We have good documentation for this where you can call out",
+      "start": "00:17:54.610",
+      "end": "00:17:59.410",
+      "id": 198
+    },
+    {
+      "speaker": null,
+      "text": "which agent you want as handoffs. So planning agent you will see has handoffs to our default agent",
+      "start": "00:17:59.410",
+      "end": "00:18:06.370",
+      "id": 199
+    },
+    {
+      "speaker": null,
+      "text": "so that it can go and start implementing things or you can also save all of the conversation",
+      "start": "00:18:06.370",
+      "end": "00:18:11.410",
+      "id": 200
+    },
+    {
+      "speaker": null,
+      "text": "as a markdown file so that it's a draft of a plan that you can share and review and then reuse",
+      "start": "00:18:11.410",
+      "end": "00:18:16.610",
+      "id": 201
+    },
+    {
+      "speaker": null,
+      "text": "across the team. So you can go and define custom agents so that they can talk to each other.",
+      "start": "00:18:16.610",
+      "end": "00:18:22.050",
+      "id": 202
+    },
+    {
+      "speaker": null,
+      "text": "Previously you'd have to like get into this specific mode chat mode we would call it, go through",
+      "start": "00:18:22.050",
+      "end": "00:18:27.410",
+      "id": 203
+    },
+    {
+      "speaker": null,
+      "text": "all of this planning and then the owners was on you to switch out agents and then go and implement",
+      "start": "00:18:27.410",
+      "end": "00:18:32.130",
+      "id": 204
+    },
+    {
+      "speaker": null,
+      "text": "it. But with handoffs we kind of make this as a reusable component that you can use and share",
+      "start": "00:18:32.130",
+      "end": "00:18:37.570",
+      "id": 205
+    },
+    {
+      "speaker": null,
+      "text": "within the team so that you can also automate these tasks. Well that's very cool. Like that kind",
+      "start": "00:18:37.570",
+      "end": "00:18:43.010",
+      "id": 206
+    },
+    {
+      "speaker": null,
+      "text": "of now understand exactly what's happening. I thought it was just like doing something completely",
+      "start": "00:18:43.010",
+      "end": "00:18:47.410",
+      "id": 207
+    },
+    {
+      "speaker": null,
+      "text": "different but that makes a lot of sense. It's really cool that you can define these agents and handoffs",
+      "start": "00:18:47.410",
+      "end": "00:18:50.690",
+      "id": 208
+    },
+    {
+      "speaker": null,
+      "text": "as well. I'll put links to the documentation in the show notes as well which is awesome.",
+      "start": "00:18:50.690",
+      "end": "00:18:54.850",
+      "id": 209
+    },
+    {
+      "speaker": null,
+      "text": "And we're saying insiders so if you're on 106 that's what it'll be in and of course you might be",
+      "start": "00:18:54.850",
+      "end": "00:18:59.730",
+      "id": 210
+    },
+    {
+      "speaker": null,
+      "text": "listening to this later so check your version that's out there I might be in there. Or just open up",
+      "start": "00:18:59.730",
+      "end": "00:19:04.450",
+      "id": 211
+    },
+    {
+      "speaker": null,
+      "text": "the panel if you see plan then you have the you haven't and if you don't there you're there.",
+      "start": "00:19:04.530",
+      "end": "00:19:09.170",
+      "id": 212
+    },
+    {
+      "speaker": null,
+      "text": "So I did want to ask one final question here is like I'm going to the plan and I see these handoffs.",
+      "start": "00:19:09.170",
+      "end": "00:19:15.650",
+      "id": 213
+    },
+    {
+      "speaker": null,
+      "text": "Do you have like opinions or like what I should do? I know you probably don't but like",
+      "start": "00:19:16.610",
+      "end": "00:19:21.250",
+      "id": 214
+    },
+    {
+      "speaker": null,
+      "text": "like there's the ability to like have the mark down there. Like is there an advantage to that? Like",
+      "start": "00:19:22.210",
+      "end": "00:19:26.850",
+      "id": 215
+    },
+    {
+      "speaker": null,
+      "text": "what's the purpose of that that I should think about when I'm deciding to just implement or like",
+      "start": "00:19:26.850",
+      "end": "00:19:31.330",
+      "id": 216
+    },
+    {
+      "speaker": null,
+      "text": "have it save the document? What's your thoughts on that? I guess it comes down to what you want",
+      "start": "00:19:31.330",
+      "end": "00:19:36.210",
+      "id": 217
+    },
+    {
+      "speaker": null,
+      "text": "to do with the mark down. If it's a really long detailed plan it would be good to save it because",
+      "start": "00:19:36.210",
+      "end": "00:19:41.970",
+      "id": 218
+    },
+    {
+      "speaker": null,
+      "text": "there's all of this deep research that's happened through subagents and trying to figure out all of",
+      "start": "00:19:41.970",
+      "end": "00:19:47.090",
+      "id": 219
+    },
+    {
+      "speaker": null,
+      "text": "the different code structures and patterns and implementation details that you'd want to save and kind",
+      "start": "00:19:47.090",
+      "end": "00:19:53.010",
+      "id": 220
+    },
+    {
+      "speaker": null,
+      "text": "of also have as a reference when the model goes and actually implements it. So you could save",
+      "start": "00:19:53.010",
+      "end": "00:19:58.530",
+      "id": 221
+    },
+    {
+      "speaker": null,
+      "text": "your file and then provide that as context to another agent or you could pick pieces from that file",
+      "start": "00:19:58.530",
+      "end": "00:20:04.770",
+      "id": 222
+    },
+    {
+      "speaker": null,
+      "text": "while still providing the file as context and have different agents working on different pieces of that",
+      "start": "00:20:04.770",
+      "end": "00:20:09.570",
+      "id": 223
+    },
+    {
+      "speaker": null,
+      "text": "plan. So that's how I see it. So it's for not two complex fits still a complex task. I would say",
+      "start": "00:20:10.210",
+      "end": "00:20:17.650",
+      "id": 224
+    },
+    {
+      "speaker": null,
+      "text": "you don't really need to make a plan. Just go figure out what happens and then hand that off to an agent",
+      "start": "00:20:17.650",
+      "end": "00:20:22.450",
+      "id": 225
+    },
+    {
+      "speaker": null,
+      "text": "to go take care of. But if you're building something from scratch it's good to capture all of the",
+      "start": "00:20:22.450",
+      "end": "00:20:27.730",
+      "id": 226
+    },
+    {
+      "speaker": null,
+      "text": "requirements in terms of the platform. You chose why you chose a specific way to do something",
+      "start": "00:20:27.890",
+      "end": "00:20:32.210",
+      "id": 227
+    },
+    {
+      "speaker": null,
+      "text": "where all the tests are, what testing infrastructure you use and then have different agents",
+      "start": "00:20:32.930",
+      "end": "00:20:37.090",
+      "id": 228
+    },
+    {
+      "speaker": null,
+      "text": "implement different things. Go have something implement like failing tests, have another agent",
+      "start": "00:20:37.090",
+      "end": "00:20:43.090",
+      "id": 229
+    },
+    {
+      "speaker": null,
+      "text": "explore the different UX options to implement and then build that out. So that's where I think",
+      "start": "00:20:43.090",
+      "end": "00:20:49.490",
+      "id": 230
+    },
+    {
+      "speaker": null,
+      "text": "the plan is handy. And you can also save this plan in the end as a part of your eekney file so that",
+      "start": "00:20:49.490",
+      "end": "00:20:54.930",
+      "id": 231
+    },
+    {
+      "speaker": null,
+      "text": "other folks have a repository using your repository can reference it. That's super cool. That's",
+      "start": "00:20:55.490",
+      "end": "00:21:00.850",
+      "id": 232
+    },
+    {
+      "speaker": null,
+      "text": "really great breakdown because I've just thought about it as well of course we'll just save it.",
+      "start": "00:21:00.850",
+      "end": "00:21:05.490",
+      "id": 233
+    },
+    {
+      "speaker": null,
+      "text": "I don't even know if I'll use it but I like the idea as like yeah I'm probably going to be planning",
+      "start": "00:21:05.490",
+      "end": "00:21:08.610",
+      "id": 234
+    },
+    {
+      "speaker": null,
+      "text": "really really big things and maybe I want to break it down into multiple chunks or open issues",
+      "start": "00:21:08.610",
+      "end": "00:21:12.770",
+      "id": 235
+    },
+    {
+      "speaker": null,
+      "text": "off of it or refine it with a team member and you just have that mark down as super nifty. Anything",
+      "start": "00:21:12.770",
+      "end": "00:21:16.930",
+      "id": 236
+    },
+    {
+      "speaker": null,
+      "text": "else you want to talk about the planning agent at all? Probably before you wrap up. We covered the",
+      "start": "00:21:16.930",
+      "end": "00:21:21.250",
+      "id": 237
+    },
+    {
+      "speaker": null,
+      "text": "planning agent. The fact that you can hand it off. No, I think you got it on.",
+      "start": "00:21:21.250",
+      "end": "00:21:26.210",
+      "id": 238
+    },
+    {
+      "speaker": null,
+      "text": "I'm super excited. I've been using this every single day since I got it. I love it. I",
+      "start": "00:21:27.330",
+      "end": "00:21:31.570",
+      "id": 239
+    },
+    {
+      "speaker": null,
+      "text": "almost plan. I think every single thing that I do now because I'm like why not? Why not?",
+      "start": "00:21:32.290",
+      "end": "00:21:36.450",
+      "id": 240
+    },
+    {
+      "speaker": null,
+      "text": "Just plan and give it a little bit more context. I think what I've seen at least and I don't know if",
+      "start": "00:21:36.450",
+      "end": "00:21:40.450",
+      "id": 241
+    },
+    {
+      "speaker": null,
+      "text": "you've seen it but I've seen definitely better faster results. Like I know it takes like a little",
+      "start": "00:21:40.450",
+      "end": "00:21:44.290",
+      "id": 242
+    },
+    {
+      "speaker": null,
+      "text": "bit more time planning ahead of time but for me I think those follow-up questions are important like",
+      "start": "00:21:44.290",
+      "end": "00:21:48.450",
+      "id": 243
+    },
+    {
+      "speaker": null,
+      "text": "okay like is it coming up with the to to to do is in the plan that I actually had in my mind that",
+      "start": "00:21:48.450",
+      "end": "00:21:55.010",
+      "id": 244
+    },
+    {
+      "speaker": null,
+      "text": "was like one sentence you know that I give it enough context. So I've been using every day and I love it.",
+      "start": "00:21:55.010",
+      "end": "00:21:59.250",
+      "id": 245
+    },
+    {
+      "speaker": null,
+      "text": "So I hope everyone that's listening gives it a try. So well I will put links to everything",
+      "start": "00:21:59.250",
+      "end": "00:22:06.830",
+      "id": 246
+    },
+    {
+      "speaker": null,
+      "text": "at GitHub universe that definitely if you've even seen it go check out the the Latino there. I'll put",
+      "start": "00:22:06.830",
+      "end": "00:22:11.390",
+      "id": 247
+    },
+    {
+      "speaker": null,
+      "text": "links to that and then if you're watching on YouTube I'll put like a little demo video as well.",
+      "start": "00:22:11.390",
+      "end": "00:22:15.310",
+      "id": 248
+    },
+    {
+      "speaker": null,
+      "text": "I'll do my own plan. I'll put on there's a lot. Bobby thank you so much for coming on and talking",
+      "start": "00:22:15.310",
+      "end": "00:22:18.910",
+      "id": 249
+    },
+    {
+      "speaker": null,
+      "text": "about planning agent. Yeah thank you so much for having me. This is so much fun.",
+      "start": "00:22:19.150",
+      "end": "00:22:22.590",
+      "id": 250
+    },
+    {
+      "speaker": null,
+      "text": "Awesome and thanks for everyone listening and don't forget you can of course watch on the",
+      "start": "00:22:23.230",
+      "end": "00:22:26.270",
+      "id": 251
+    },
+    {
+      "speaker": null,
+      "text": "VS Code YouTube and you can also listen in your favorite podcast. Players don't forget just",
+      "start": "00:22:26.270",
+      "end": "00:22:30.750",
+      "id": 252
+    },
+    {
+      "speaker": null,
+      "text": "search VS Code Insiders podcast. Subscribe like do all the things send it to all your colleagues",
+      "start": "00:22:30.750",
+      "end": "00:22:36.110",
+      "id": 253
+    },
+    {
+      "speaker": null,
+      "text": "and with that. Thank you so much for listening and are watching and happy coding.",
+      "start": "00:22:36.110",
+      "end": "00:22:42.190",
+      "id": 254
+    }
+  ]
+}

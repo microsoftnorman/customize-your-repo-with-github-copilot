@@ -2,13 +2,17 @@
 
 [← Back to Guide](../ReadMe.md) | [← Part I: Foundations](part-1-foundations.md)
 
-*Updated: April 17, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
+*Updated: April 22, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
 
 ---
 
 GitHub Copilot provides eight customization primitives that shape what Copilot knows and how it thinks. The first six (always-on instructions, file-based instructions, prompts, skills, custom agents, and MCP) handle context and capabilities. The remaining two extend into enforcement and learning: [Hooks](primitive-7-hooks.md) provide runtime enforcement, and [Copilot Memory](primitive-8-memory.md) provides automatic repository-level learning.
 
+This chapter is the bridge between the human problem in [Why Customize](part-1b-why-customize.md) and the file-by-file implementation details in the primitive chapters. The same qualities that make a codebase understandable for humans make it easier for GitHub Copilot to work inside it. The primitives are how teams encode those differences deliberately instead of re-explaining them every session.
+
 **Official docs:** [Customize AI in Visual Studio Code](https://code.visualstudio.com/docs/copilot/customization/overview) · [Add repository custom instructions](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions) · [Copilot Feature Matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix)
+
+**See it in action:** [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=29s) — Courtney Webster opens with a fast tour of instructions, prompts, skills, custom agents, hooks, and MCP as pieces of the same customization layer.
 
 Beyond the primitives, two **platform extensions** take Copilot into new environments: [Agentic Workflows](agentic-workflows.md) run coding agents in GitHub Actions, and the [Copilot SDK](copilot-sdk.md) lets teams embed the agent runtime in their own tools. These aren't configuration primitives. They don't shape what Copilot knows about your codebase, but they consume the primitives you've defined. [Copilot code review](code-review.md) is a third cross-cutting feature: it reads your instruction files and surfaces convention violations as PR comments.
 
@@ -31,6 +35,23 @@ These mechanisms work across multiple Copilot surfaces: VS Code, Visual Studio, 
 |-----------|----------|-------------|-------|-------------|
 | [**Agentic Workflows**](agentic-workflows.md) | `.github/workflows/*.md` | Schedule, event, or dispatch | Repository-wide | GitHub Actions |
 | [**Copilot SDK**](copilot-sdk.md) | External dependency (npm, pip, etc.) | Application code | Custom surfaces | N/A — your app |
+
+### Choosing the Right Primitive
+
+Use this chapter before jumping into the individual primitive docs. The main question is not "what files exist?" It is "where should this rule or workflow live so GitHub Copilot can apply it at the right time?"
+
+| Scenario | Best fit | Why |
+|----------|----------|-----|
+| A rule should apply to nearly every chat interaction in the repo | [Always-on Instructions](primitive-1-always-on-instructions.md) | This is the foundation layer for stack choices, conventions, and team-wide defaults. |
+| A rule only matters for certain files or folders | [File-based Instructions](primitive-2-file-based-instructions.md) | `applyTo` lets the rule activate only when matching files are in play. |
+| A repeatable task needs an explicit slash command | [Prompts](primitive-3-prompts.md) | Prompts are user-invoked templates for one-off task execution. |
+| A repeatable procedure should be discoverable and sometimes load automatically | [Skills](primitive-4-skills.md) | Skills package procedural knowledge and can activate by intent, not just explicit invocation. |
+| The team wants GitHub Copilot to operate in a persistent role or mode | [Custom Agents](primitive-5-custom-agents.md) | Agents change persona, tools, model preferences, and behavior for the conversation. |
+| GitHub Copilot needs access to external systems, APIs, or internal data | [MCP](primitive-6-mcp.md) | MCP changes what the runtime can reach beyond the local workspace. |
+| A policy must be enforced even if the model makes the wrong choice | [Hooks](primitive-7-hooks.md) | Hooks sit outside model reasoning and can inspect, deny, or log actions. |
+| The repo should benefit from patterns GitHub Copilot learns over time | [Copilot Memory](primitive-8-memory.md) | Memory captures repository-specific knowledge without requiring a hand-authored file. |
+
+If you only remember one distinction, remember this: instructions shape defaults, prompts and skills shape tasks, agents shape roles, MCP shapes reach, hooks shape enforcement, and Memory shapes learned context.
 
 ### Authoring the Primitives
 
@@ -133,6 +154,8 @@ Each layer adds specificity. The foundation (always-on instructions) applies eve
 **Monorepo support:** VS Code 1.116 added the `chat.useCustomizationsInParentRepositories` setting. When enabled, customization files (instructions, agents, skills, hooks) are discovered from parent repositories in a monorepo layout. Shared configurations at the repo root apply automatically to nested packages without duplication. This setting pairs with the existing monorepo hook discovery (VS Code 1.111+) to provide full customization inheritance across package boundaries.
 
 **Not sure which primitive to use?** See the [Quick Decision Guide](part-3-reference.md#quick-decision-guide) in Part III for a lookup table that maps common scenarios to the right primitive.
+
+For the execution model that these layers feed into, see [The Agent Loop](agent-loop.md).
 
 ### Where Primitives Overlap
 

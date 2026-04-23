@@ -1,0 +1,2199 @@
+{
+  "episode": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 9,
+    "title": "Building agent memory for VS Code with Harald Kirschner",
+    "url": "https://www.vscodepodcast.com/9",
+    "transcript_url": "",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/63aaae99-78c0-40e4-b0b7-5a84b211fb9e.mp3",
+    "published": "2025-10-13",
+    "duration": "25:41",
+    "transcript_available": false,
+    "source_file": "2025-10-13-building-agent-memory-for-vs-code-with-harald-kirschner.md",
+    "source_path": "references\\transcripts\\vscode-podcast\\2025-10-13-building-agent-memory-for-vs-code-with-harald-kirschner.md"
+  },
+  "transcription": {
+    "language": "en",
+    "language_probability": 1,
+    "duration": 1541.41025,
+    "duration_after_vad": 1541.33025,
+    "model": "tiny.en",
+    "device": "cpu",
+    "compute_type": "int8"
+  },
+  "segment_count": 362,
+  "segments": [
+    {
+      "id": 1,
+      "start": "00:00:00.080",
+      "end": "00:00:08.140",
+      "text": "Welcome back everyone to the VS Code Insiders podcast your one stop shop for all things behind the scenes of VS code your favorite code editor"
+    },
+    {
+      "id": 2,
+      "start": "00:00:08.180",
+      "end": "00:00:11.760",
+      "text": "I'm your host James Montemagno and with me the one and only"
+    },
+    {
+      "id": 3,
+      "start": "00:00:12.400",
+      "end": "00:00:16.880",
+      "text": "Harold Kirchner pm on the VS code team you know him from all the mcp"
+    },
+    {
+      "id": 4,
+      "start": "00:00:17.280",
+      "end": "00:00:20.320",
+      "text": "Goodies that have come out and so much more Harold. How is it going?"
+    },
+    {
+      "id": 5,
+      "start": "00:00:20.840",
+      "end": "00:00:23.840",
+      "text": "Hey James happy to be yours, but first time on the pod"
+    },
+    {
+      "id": 6,
+      "start": "00:00:24.720",
+      "end": "00:00:29.780",
+      "text": "Yes, we've talked about it many many times about you coming on the pod and then you're finally"
+    },
+    {
+      "id": 7,
+      "start": "00:00:30.240",
+      "end": "00:00:35.000",
+      "text": "Landing on something that I don't even think we would have talked about it before because there's a lot of brand new stuff"
+    },
+    {
+      "id": 8,
+      "start": "00:00:35.000",
+      "end": "00:00:41.200",
+      "text": "Maybe people don't know you a little bit. Maybe talk about you know background what you do on the team and which you've been working on recently"
+    },
+    {
+      "id": 9,
+      "start": "00:00:42.040",
+      "end": "00:00:44.040",
+      "text": "Yeah, I've been on team for"
+    },
+    {
+      "id": 10,
+      "start": "00:00:44.040",
+      "end": "00:00:47.300",
+      "text": "You know these six years now. It's coming up during the coming days. I think"
+    },
+    {
+      "id": 11,
+      "start": "00:00:48.040",
+      "end": "00:00:56.280",
+      "text": "previously working on fire folks deaf tools so always working on developer stuff building tools for developers to debilled better experience"
+    },
+    {
+      "id": 12,
+      "start": "00:00:56.320",
+      "end": "00:00:58.280",
+      "text": "So it was more accessible experiences"
+    },
+    {
+      "id": 13,
+      "start": "00:00:58.680",
+      "end": "00:01:01.640",
+      "text": "Can I make it easier for everybody to build so?"
+    },
+    {
+      "id": 14,
+      "start": "00:01:02.000",
+      "end": "00:01:07.080",
+      "text": "Yeah, I just kind of joined with that passion on the VS code team and for like two and a half"
+    },
+    {
+      "id": 15,
+      "start": "00:01:07.160",
+      "end": "00:01:13.440",
+      "text": "The years now nearly kind of working on the AI parts and getting into how do you make this easy to use"
+    },
+    {
+      "id": 16,
+      "start": "00:01:13.440",
+      "end": "00:01:18.600",
+      "text": "How to make this more powerful basically really stretch the limits and every every month is something new"
+    },
+    {
+      "id": 17,
+      "start": "00:01:19.080",
+      "end": "00:01:24.360",
+      "text": "But there is always like new paradigms new in the city center. So it's really exciting to just stay on top of it"
+    },
+    {
+      "id": 18,
+      "start": "00:01:24.400",
+      "end": "00:01:28.360",
+      "text": "So it's VS code its customization. So what I'm talking about today is really"
+    },
+    {
+      "id": 19,
+      "start": "00:01:28.760",
+      "end": "00:01:35.140",
+      "text": "Close my heart talking to a lot the obvious about this talking to like larger teams about this so we're excited to bring this here"
+    },
+    {
+      "id": 20,
+      "start": "00:01:35.680",
+      "end": "00:01:41.040",
+      "text": "Yeah, and I think what's been really exciting as we kind of like unravel and go behind the scenes a little bit of"
+    },
+    {
+      "id": 21,
+      "start": "00:01:41.240",
+      "end": "00:01:44.680",
+      "text": "VS code and how things are evolving how things are changing you know"
+    },
+    {
+      "id": 22,
+      "start": "00:01:45.000",
+      "end": "00:01:50.880",
+      "text": "Being the open source AI code editor. There's many parts to that not just like the code being open source"
+    },
+    {
+      "id": 23,
+      "start": "00:01:50.920",
+      "end": "00:01:56.920",
+      "text": "But also the integrations. We've recently talked quite a bit about like the different extensions that can now kind of tap in"
+    },
+    {
+      "id": 24,
+      "start": "00:01:57.000",
+      "end": "00:02:03.960",
+      "text": "To providing models for examples. So now we see many many models available to the chat for example and agent mode"
+    },
+    {
+      "id": 25,
+      "start": "00:02:03.960",
+      "end": "00:02:08.280",
+      "text": "I think one thing that many people maybe haven't used too much"
+    },
+    {
+      "id": 26,
+      "start": "00:02:08.600",
+      "end": "00:02:16.080",
+      "text": "Maybe don't have too much insight into are all of the other components to chat and when I mean that I'm really talking about of course"
+    },
+    {
+      "id": 27,
+      "start": "00:02:16.080",
+      "end": "00:02:21.800",
+      "text": "MCP but also I'm talking about things like modes and prompts and instructions and"
+    },
+    {
+      "id": 28,
+      "start": "00:02:22.720",
+      "end": "00:02:29.120",
+      "text": "People may know the basics of these but can you kind of give like a TLDR of like what each of those three are and like"
+    },
+    {
+      "id": 29,
+      "start": "00:02:29.400",
+      "end": "00:02:32.240",
+      "text": "How you're using them today and like why they're important?"
+    },
+    {
+      "id": 30,
+      "start": "00:02:33.200",
+      "end": "00:02:37.020",
+      "text": "Yeah, definitely so the the OG one is"
+    },
+    {
+      "id": 31,
+      "start": "00:02:37.360",
+      "end": "00:02:43.920",
+      "text": "instructions and the that comes from the earliest of chat to be T where you could set custom instructions"
+    },
+    {
+      "id": 32,
+      "start": "00:02:44.240",
+      "end": "00:02:47.320",
+      "text": "To give chat to receive some more of a background of yourself"
+    },
+    {
+      "id": 33,
+      "start": "00:02:47.320",
+      "end": "00:02:52.160",
+      "text": "How do you like to be talked to how you like to have it to kind of reason explain things?"
+    },
+    {
+      "id": 34,
+      "start": "00:02:52.560",
+      "end": "00:02:54.560",
+      "text": "So you had like this very"
+    },
+    {
+      "id": 35,
+      "start": "00:02:54.560",
+      "end": "00:02:59.020",
+      "text": "Thin layer of customization on top of the model basically give it something"
+    },
+    {
+      "id": 36,
+      "start": "00:02:59.600",
+      "end": "00:03:01.600",
+      "text": "some of the some sense of"
+    },
+    {
+      "id": 37,
+      "start": "00:03:01.600",
+      "end": "00:03:06.560",
+      "text": "You see it's a good system problem basically of how how you want it to work and"
+    },
+    {
+      "id": 38,
+      "start": "00:03:07.600",
+      "end": "00:03:13.840",
+      "text": "That's where instructions come from and that's kind of any developer world that most often sits in your work"
+    },
+    {
+      "id": 39,
+      "start": "00:03:14.080",
+      "end": "00:03:18.880",
+      "text": "Space and with these markdown files do it's like copad dash instructions and D"
+    },
+    {
+      "id": 40,
+      "start": "00:03:19.680",
+      "end": "00:03:21.680",
+      "text": "Sitting in a dot GitHub folder"
+    },
+    {
+      "id": 41,
+      "start": "00:03:21.680",
+      "end": "00:03:24.480",
+      "text": "That's kind of the the OG version of that and that's just a"
+    },
+    {
+      "id": 42,
+      "start": "00:03:25.120",
+      "end": "00:03:31.600",
+      "text": "Plain markdown file in most cases. It just describes your code base. So as the LM works"
+    },
+    {
+      "id": 43,
+      "start": "00:03:32.320",
+      "end": "00:03:34.320",
+      "text": "It doesn't need to again and again"
+    },
+    {
+      "id": 44,
+      "start": "00:03:34.560",
+      "end": "00:03:37.840",
+      "text": "Look at you read me and figure out what what the heck you're working on"
+    },
+    {
+      "id": 45,
+      "start": "00:03:38.560",
+      "end": "00:03:42.560",
+      "text": "Look at ten different files to figure out what your ease lens rules are and what your packages are"
+    },
+    {
+      "id": 46,
+      "start": "00:03:43.280",
+      "end": "00:03:48.400",
+      "text": "But all of that is in a context engineered in a very dense one-to-two-pager"
+    },
+    {
+      "id": 47,
+      "start": "00:03:49.040",
+      "end": "00:03:52.240",
+      "text": "Of like this is what you're working on. This is where code sits"
+    },
+    {
+      "id": 48,
+      "start": "00:03:52.960",
+      "end": "00:03:59.040",
+      "text": "If you need anything else like we'll look it up there, right? So that's that's kind of what the custom instructions are"
+    },
+    {
+      "id": 49,
+      "start": "00:04:00.320",
+      "end": "00:04:02.320",
+      "text": "then"
+    },
+    {
+      "id": 50,
+      "start": "00:04:02.320",
+      "end": "00:04:04.320",
+      "text": "prompts are"
+    },
+    {
+      "id": 51,
+      "start": "00:04:04.880",
+      "end": "00:04:06.880",
+      "text": "one-shot reusable"
+    },
+    {
+      "id": 52,
+      "start": "00:04:07.120",
+      "end": "00:04:10.960",
+      "text": "Workflows and one shot here means you basically it's"
+    },
+    {
+      "id": 53,
+      "start": "00:04:11.360",
+      "end": "00:04:16.000",
+      "text": "Most of your places what you would send the LM and user message like write test for this"
+    },
+    {
+      "id": 54,
+      "start": "00:04:16.720",
+      "end": "00:04:18.880",
+      "text": "That could be a slash as a test prompt"
+    },
+    {
+      "id": 55,
+      "start": "00:04:20.000",
+      "end": "00:04:24.080",
+      "text": "And what you notice when you do prom crafting then you oftentimes. Oh it wrote tests"
+    },
+    {
+      "id": 56,
+      "start": "00:04:24.480",
+      "end": "00:04:28.800",
+      "text": "But it didn't do acts or it wrote tests, but it only wrote three and it didn't"
+    },
+    {
+      "id": 57,
+      "start": "00:04:29.840",
+      "end": "00:04:32.880",
+      "text": "Look for hundreds and coverage. So you start writing like all right tests, but"
+    },
+    {
+      "id": 58,
+      "start": "00:04:33.440",
+      "end": "00:04:37.040",
+      "text": "Get to at least a percent coverage. So you keep expanding the prompt and really"
+    },
+    {
+      "id": 59,
+      "start": "00:04:38.000",
+      "end": "00:04:41.520",
+      "text": "Honing in the best practices of what you're looking for and making that"
+    },
+    {
+      "id": 60,
+      "start": "00:04:42.240",
+      "end": "00:04:44.240",
+      "text": "Reusable because everybody across your team"
+    },
+    {
+      "id": 61,
+      "start": "00:04:45.200",
+      "end": "00:04:49.520",
+      "text": "At some point probably has the right tests. They're like you know, I test follow best practices"
+    },
+    {
+      "id": 62,
+      "start": "00:04:49.680",
+      "end": "00:04:53.440",
+      "text": "And most of the times there's probably a document somewhere with best practices how to write tests"
+    },
+    {
+      "id": 63,
+      "start": "00:04:54.320",
+      "end": "00:04:57.600",
+      "text": "So on one side you could put those into custom instructions"
+    },
+    {
+      "id": 64,
+      "start": "00:04:58.160",
+      "end": "00:05:01.360",
+      "text": "Like this is how you write tests and then you your prompt is just write tests"
+    },
+    {
+      "id": 65,
+      "start": "00:05:01.920",
+      "end": "00:05:05.760",
+      "text": "You can also write this info problems. I give it more of a workflow like rest write tests"
+    },
+    {
+      "id": 66,
+      "start": "00:05:06.720",
+      "end": "00:05:11.360",
+      "text": "Run the coverage make sure the test pass and give it all the things it would usually do wrong"
+    },
+    {
+      "id": 67,
+      "start": "00:05:12.320",
+      "end": "00:05:19.120",
+      "text": "And then then you keep this workflow very lean and mostly one shot of measurements you run it and the outcome works really well"
+    },
+    {
+      "id": 68,
+      "start": "00:05:20.240",
+      "end": "00:05:22.240",
+      "text": "So that's our first two"
+    },
+    {
+      "id": 69,
+      "start": "00:05:22.640",
+      "end": "00:05:26.720",
+      "text": "Yeah, that makes sense to me and then modes. I think seem to be something"
+    },
+    {
+      "id": 70,
+      "start": "00:05:27.200",
+      "end": "00:05:32.000",
+      "text": "Then maybe I kind of going in this order where I think most people like you said like OG instructions prompts"
+    },
+    {
+      "id": 71,
+      "start": "00:05:32.080",
+      "end": "00:05:36.160",
+      "text": "Maybe you're very using but there are built in modes and there's also custom modes"
+    },
+    {
+      "id": 72,
+      "start": "00:05:37.600",
+      "end": "00:05:41.760",
+      "text": "Yes, so the building modes are agent ask and edits and"
+    },
+    {
+      "id": 73,
+      "start": "00:05:42.640",
+      "end": "00:05:47.120",
+      "text": "We're probably going to clean this up because like most of the time right now. We set ourselves spending time in agent"
+    },
+    {
+      "id": 74,
+      "start": "00:05:47.680",
+      "end": "00:05:50.560",
+      "text": "Yeah, so ask we already have settings so make"
+    },
+    {
+      "id": 75,
+      "start": "00:05:51.440",
+      "end": "00:05:52.960",
+      "text": "Ask more agenda as well"
+    },
+    {
+      "id": 76,
+      "start": "00:05:53.120",
+      "end": "00:05:57.520",
+      "text": "But it's more of a kind of read only and answer questions based on my code based kind of mode"
+    },
+    {
+      "id": 77,
+      "start": "00:05:58.160",
+      "end": "00:06:04.160",
+      "text": "So that's what most people use it for just general asking me all I'm question asked me my own questions about the code base"
+    },
+    {
+      "id": 78,
+      "start": "00:06:05.200",
+      "end": "00:06:10.160",
+      "text": "And then I can most of the time you should probably be in the agent mode and you can do the same thing if you just prompted right"
+    },
+    {
+      "id": 79,
+      "start": "00:06:11.280",
+      "end": "00:06:13.920",
+      "text": "So those are the build in ones, but the custom chat modes"
+    },
+    {
+      "id": 80,
+      "start": "00:06:14.960",
+      "end": "00:06:16.960",
+      "text": "out probably frame as"
+    },
+    {
+      "id": 81,
+      "start": "00:06:16.960",
+      "end": "00:06:21.520",
+      "text": "most or often often when I ask users that you see those as kind of personas or"
+    },
+    {
+      "id": 82,
+      "start": "00:06:22.320",
+      "end": "00:06:23.760",
+      "text": "roles or"
+    },
+    {
+      "id": 83,
+      "start": "00:06:23.920",
+      "end": "00:06:28.640",
+      "text": "Workflows so workflows. I have for example, I can demo this later"
+    },
+    {
+      "id": 84,
+      "start": "00:06:29.840",
+      "end": "00:06:35.440",
+      "text": "I for example prom to do data analysis because mostly works in one shot, but then I have a workflow to do"
+    },
+    {
+      "id": 85,
+      "start": "00:06:36.240",
+      "end": "00:06:43.280",
+      "text": "Planning which takes usually get some plan back now. I go. No, let's like tweak this one or it has questions first and answer questions"
+    },
+    {
+      "id": 86,
+      "start": "00:06:43.280",
+      "end": "00:06:47.760",
+      "text": "So it kind of carries over and continues over multiple steps"
+    },
+    {
+      "id": 87,
+      "start": "00:06:48.400",
+      "end": "00:06:50.400",
+      "text": "depending on what I'm doing and"
+    },
+    {
+      "id": 88,
+      "start": "00:06:50.640",
+      "end": "00:06:55.120",
+      "text": "The other thing is the chat modes also go into the system prompt for you know"
+    },
+    {
+      "id": 89,
+      "start": "00:06:55.120",
+      "end": "00:06:57.360",
+      "text": "Copa so they're not just a user message like a prompt"
+    },
+    {
+      "id": 90,
+      "start": "00:06:58.000",
+      "end": "00:07:02.000",
+      "text": "But the really like this is how you're supposed to work as an agent kind of instructions"
+    },
+    {
+      "id": 91,
+      "start": "00:07:02.880",
+      "end": "00:07:05.120",
+      "text": "So they're much more adhering and you can set the model"
+    },
+    {
+      "id": 92,
+      "start": "00:07:05.760",
+      "end": "00:07:12.720",
+      "text": "You can constrain the tools that you're using in the chat mode as well. They consistently get carried over and not not being lost"
+    },
+    {
+      "id": 93,
+      "start": "00:07:12.960",
+      "end": "00:07:14.960",
+      "text": "so there's way more"
+    },
+    {
+      "id": 94,
+      "start": "00:07:15.040",
+      "end": "00:07:17.040",
+      "text": "a specific thing you work in"
+    },
+    {
+      "id": 95,
+      "start": "00:07:17.440",
+      "end": "00:07:19.920",
+      "text": "versus a task you hand off to do"
+    },
+    {
+      "id": 96,
+      "start": "00:07:20.880",
+      "end": "00:07:24.480",
+      "text": "Oh, and it's really fascinating because you kind of set it there at the end"
+    },
+    {
+      "id": 97,
+      "start": "00:07:24.640",
+      "end": "00:07:29.360",
+      "text": "But you can start to sort of chain these things together where you know in your mode"
+    },
+    {
+      "id": 98,
+      "start": "00:07:29.440",
+      "end": "00:07:34.320",
+      "text": "You can specify a model but also a prompt can specify a mode"
+    },
+    {
+      "id": 99,
+      "start": "00:07:34.560",
+      "end": "00:07:39.440",
+      "text": "Right, you could have a prompt that says here's a prompt of something. I want to do and then use this mode"
+    },
+    {
+      "id": 100,
+      "start": "00:07:39.600",
+      "end": "00:07:44.480",
+      "text": "Right, so if you had a planning mode you might have a plan fast or plan deep or something like that and it uses that mode"
+    },
+    {
+      "id": 101,
+      "start": "00:07:44.720",
+      "end": "00:07:48.000",
+      "text": "But then additionally or like write tests right you have a testing mode"
+    },
+    {
+      "id": 102,
+      "start": "00:07:48.560",
+      "end": "00:07:52.320",
+      "text": "Additionally, you might have instructions which can be generic for every file"
+    },
+    {
+      "id": 103,
+      "start": "00:07:52.320",
+      "end": "00:07:54.960",
+      "text": "But also for specific types of file or glob structures"
+    },
+    {
+      "id": 104,
+      "start": "00:07:55.520",
+      "end": "00:07:58.320",
+      "text": "Are folder structures and you could say you know what when you're writing tests"
+    },
+    {
+      "id": 105,
+      "start": "00:07:58.640",
+      "end": "00:08:00.080",
+      "text": "It's gonna write it into this folder"
+    },
+    {
+      "id": 106,
+      "start": "00:08:00.160",
+      "end": "00:08:03.520",
+      "text": "So then also adhere to these instructions which are like very test me"
+    },
+    {
+      "id": 107,
+      "start": "00:08:03.520",
+      "end": "00:08:06.320",
+      "text": "So they kind of all chained together now up until this point"
+    },
+    {
+      "id": 108,
+      "start": "00:08:07.040",
+      "end": "00:08:10.960",
+      "text": "Like you know everyone's been for all intents and purposes"
+    },
+    {
+      "id": 109,
+      "start": "00:08:11.760",
+      "end": "00:08:14.400",
+      "text": "Doing one of two things primarily"
+    },
+    {
+      "id": 110,
+      "start": "00:08:15.600",
+      "end": "00:08:17.120",
+      "text": "putting"
+    },
+    {
+      "id": 111,
+      "start": "00:08:17.120",
+      "end": "00:08:22.400",
+      "text": "Markdown files into your codebase right that's like primarily you have a dot get up folder like you said"
+    },
+    {
+      "id": 112,
+      "start": "00:08:22.640",
+      "end": "00:08:27.440",
+      "text": "You have the sub folders you have a copilot instructions you might have an agent's dot MD as well which works"
+    },
+    {
+      "id": 113,
+      "start": "00:08:29.040",
+      "end": "00:08:32.800",
+      "text": "For instructions prompts and the prompts folder modes and the most photos there's a bunch of other folders too"
+    },
+    {
+      "id": 114,
+      "start": "00:08:34.080",
+      "end": "00:08:39.840",
+      "text": "Or there's recently been like mcp servers that can actually expose prompts for example"
+    },
+    {
+      "id": 115,
+      "start": "00:08:39.920",
+      "end": "00:08:40.960",
+      "text": "Which is kind of cool"
+    },
+    {
+      "id": 116,
+      "start": "00:08:41.680",
+      "end": "00:08:43.200",
+      "text": "However like up into that point"
+    },
+    {
+      "id": 117,
+      "start": "00:08:43.200",
+      "end": "00:08:46.160",
+      "text": "It's really been the developer of the team that's been defining these"
+    },
+    {
+      "id": 118,
+      "start": "00:08:46.800",
+      "end": "00:08:52.560",
+      "text": "Interactions but it's kind of changing in the latest version of VS code one dot 105"
+    },
+    {
+      "id": 119,
+      "start": "00:08:53.200",
+      "end": "00:08:55.600",
+      "text": "Because there's some new API's available is that correct?"
+    },
+    {
+      "id": 120,
+      "start": "00:08:56.400",
+      "end": "00:09:00.000",
+      "text": "Yes, we have a proposed API which means it's not yet"
+    },
+    {
+      "id": 121,
+      "start": "00:09:01.200",
+      "end": "00:09:05.360",
+      "text": "Officially available but people can try it out and use it into extensions locally"
+    },
+    {
+      "id": 122,
+      "start": "00:09:05.360",
+      "end": "00:09:07.840",
+      "text": "You cannot chip an extension against a post API"
+    },
+    {
+      "id": 123,
+      "start": "00:09:08.560",
+      "end": "00:09:10.080",
+      "text": "But you can start"
+    },
+    {
+      "id": 124,
+      "start": "00:09:10.080",
+      "end": "00:09:12.480",
+      "text": "Trying out and giving us feedback. That's the main purpose"
+    },
+    {
+      "id": 125,
+      "start": "00:09:13.440",
+      "end": "00:09:17.680",
+      "text": "And what we so we noticed in the wild is that we had these"
+    },
+    {
+      "id": 126,
+      "start": "00:09:18.240",
+      "end": "00:09:20.240",
+      "text": "Accention helpers we've been working with and a"
+    },
+    {
+      "id": 127,
+      "start": "00:09:20.880",
+      "end": "00:09:25.520",
+      "text": "They were putting mcp's and extensions or building these really nice bundles of like"
+    },
+    {
+      "id": 128,
+      "start": "00:09:26.160",
+      "end": "00:09:31.040",
+      "text": "Here's how user product here is the extension surface and extension APIs which give the human"
+    },
+    {
+      "id": 129,
+      "start": "00:09:31.840",
+      "end": "00:09:36.080",
+      "text": "The right information to work with the product and then they provide mcp"
+    },
+    {
+      "id": 130,
+      "start": "00:09:36.720",
+      "end": "00:09:41.920",
+      "text": "Tools using a basically as the protocol to extend the agent to give the agent more information"
+    },
+    {
+      "id": 131,
+      "start": "00:09:43.040",
+      "end": "00:09:45.040",
+      "text": "The"
+    },
+    {
+      "id": 132,
+      "start": "00:09:45.040",
+      "end": "00:09:50.080",
+      "text": "Missing piece was then like okay now we want to provide custom chat modes like how that there's no extension surface for that yet"
+    },
+    {
+      "id": 133,
+      "start": "00:09:50.080",
+      "end": "00:09:54.000",
+      "text": "So we're like okay. We we have a concept for that chat modes already"
+    },
+    {
+      "id": 134,
+      "start": "00:09:54.880",
+      "end": "00:09:58.320",
+      "text": "So let's expose it as like tension API so you can provide that"
+    },
+    {
+      "id": 135,
+      "start": "00:09:58.800",
+      "end": "00:10:03.120",
+      "text": "Customization there as well and you saw just Monday this week"
+    },
+    {
+      "id": 136,
+      "start": "00:10:03.840",
+      "end": "00:10:06.480",
+      "text": "Playwright agents came out which is if you look at it"
+    },
+    {
+      "id": 137,
+      "start": "00:10:06.480",
+      "end": "00:10:07.840",
+      "text": "It's just"
+    },
+    {
+      "id": 138,
+      "start": "00:10:07.840",
+      "end": "00:10:10.880",
+      "text": "a few chat modes put into a folder and you can now"
+    },
+    {
+      "id": 139,
+      "start": "00:10:11.600",
+      "end": "00:10:15.840",
+      "text": "Analyze a codebase which tests the right it makes a mark on document and say write these tests"
+    },
+    {
+      "id": 140,
+      "start": "00:10:15.840",
+      "end": "00:10:19.840",
+      "text": "And then it can actually heal the test well like three different chat modes or agents"
+    },
+    {
+      "id": 141,
+      "start": "00:10:20.640",
+      "end": "00:10:26.800",
+      "text": "That kind of very spooky take parts of the workflow you would do and that you can move in between too"
+    },
+    {
+      "id": 142,
+      "start": "00:10:26.800",
+      "end": "00:10:32.000",
+      "text": "So that's been the impetus and that's we have to support problems instructions and modes"
+    },
+    {
+      "id": 143,
+      "start": "00:10:33.760",
+      "end": "00:10:35.760",
+      "text": "also because i think it's"
+    },
+    {
+      "id": 144,
+      "start": "00:10:36.000",
+      "end": "00:10:38.000",
+      "text": "VS code in the past was very"
+    },
+    {
+      "id": 145,
+      "start": "00:10:38.720",
+      "end": "00:10:43.520",
+      "text": "Workspace centric but customizations so you could have a dot b's code folder"
+    },
+    {
+      "id": 146,
+      "start": "00:10:44.320",
+      "end": "00:10:50.080",
+      "text": "And you had settings.json and then if you look at the VS code repo and unmakes-off"
+    },
+    {
+      "id": 147,
+      "start": "00:10:50.720",
+      "end": "00:10:52.720",
+      "text": "Get up to a concept Microsoft"
+    },
+    {
+      "id": 148,
+      "start": "00:10:52.720",
+      "end": "00:10:56.080",
+      "text": "You actually see that we have a settings folder and many customizations for VS code"
+    },
+    {
+      "id": 149,
+      "start": "00:10:56.080",
+      "end": "00:10:57.760",
+      "text": "So if you open the VS code"
+    },
+    {
+      "id": 150,
+      "start": "00:10:57.760",
+      "end": "00:11:00.880",
+      "text": "Workspace the first time like the VS code rich og source"
+    },
+    {
+      "id": 151,
+      "start": "00:11:01.600",
+      "end": "00:11:03.840",
+      "text": "You actually get a bunch of customizations out of box"
+    },
+    {
+      "id": 152,
+      "start": "00:11:04.240",
+      "end": "00:11:08.160",
+      "text": "It's how we think you should work on the VS code codebase"
+    },
+    {
+      "id": 153,
+      "start": "00:11:08.160",
+      "end": "00:11:11.920",
+      "text": "And that's how it customizes and that's chat modes and problems and all that works the same"
+    },
+    {
+      "id": 154,
+      "start": "00:11:12.800",
+      "end": "00:11:14.800",
+      "text": "But then if you have like a"
+    },
+    {
+      "id": 155,
+      "start": "00:11:14.960",
+      "end": "00:11:21.440",
+      "text": "Multi repo setup microservices like 10,000 because that's the kind of customers I talked to it's like how do we customize this"
+    },
+    {
+      "id": 156,
+      "start": "00:11:21.440",
+      "end": "00:11:22.960",
+      "text": "And many of these customers actually have"
+    },
+    {
+      "id": 157,
+      "start": "00:11:23.760",
+      "end": "00:11:25.760",
+      "text": "obvious code customizations already"
+    },
+    {
+      "id": 158,
+      "start": "00:11:26.080",
+      "end": "00:11:28.800",
+      "text": "That they shipped to developers next session this one way"
+    },
+    {
+      "id": 159,
+      "start": "00:11:28.800",
+      "end": "00:11:30.880",
+      "text": "So that's also not a reason like the internal"
+    },
+    {
+      "id": 160,
+      "start": "00:11:31.520",
+      "end": "00:11:37.600",
+      "text": "Customization plus if you have a developer product you want to have that agent plus UI experience"
+    },
+    {
+      "id": 161,
+      "start": "00:11:38.480",
+      "end": "00:11:39.520",
+      "text": "Yeah, it's really fascinating"
+    },
+    {
+      "id": 162,
+      "start": "00:11:39.520",
+      "end": "00:11:41.440",
+      "text": "I mean I think there was in some sense"
+    },
+    {
+      "id": 163,
+      "start": "00:11:41.440",
+      "end": "00:11:44.880",
+      "text": "You know you think of dev containers or code spaces right the whole idea is"
+    },
+    {
+      "id": 164,
+      "start": "00:11:44.880",
+      "end": "00:11:49.440",
+      "text": "The team is a configuration and then it all builds up and everyone gets the same exact thing compared"
+    },
+    {
+      "id": 165,
+      "start": "00:11:49.520",
+      "end": "00:11:51.520",
+      "text": "I'm going to clone and then here's this"
+    },
+    {
+      "id": 166,
+      "start": "00:11:51.520",
+      "end": "00:11:54.320",
+      "text": "I will say I'd recently did clone the VS code repo and yeah"
+    },
+    {
+      "id": 167,
+      "start": "00:11:54.320",
+      "end": "00:11:57.520",
+      "text": "Things looks a little bit different actually if you watch the 105 release video"
+    },
+    {
+      "id": 168,
+      "start": "00:11:57.520",
+      "end": "00:12:00.800",
+      "text": "There's a bunch of customizations including like having suggested action"
+    },
+    {
+      "id": 169,
+      "start": "00:12:00.800",
+      "end": "00:12:03.600",
+      "text": "There's suggested prompts like when you open an empty state for example"
+    },
+    {
+      "id": 170,
+      "start": "00:12:03.600",
+      "end": "00:12:04.800",
+      "text": "Which is really cool"
+    },
+    {
+      "id": 171,
+      "start": "00:12:04.800",
+      "end": "00:12:09.440",
+      "text": "Actually stole the plan mode and the prompts from the VS code"
+    },
+    {
+      "id": 172,
+      "start": "00:12:10.160",
+      "end": "00:12:11.600",
+      "text": "The repo is like this is pretty good"
+    },
+    {
+      "id": 173,
+      "start": "00:12:12.400",
+      "end": "00:12:16.480",
+      "text": "And I expose more tools that I wanted to use so I use it and customize it"
+    },
+    {
+      "id": 174,
+      "start": "00:12:16.640",
+      "end": "00:12:20.960",
+      "text": "So it's interesting. It's a proposed API and you can read it and we'll put it in the release notes"
+    },
+    {
+      "id": 175,
+      "start": "00:12:21.360",
+      "end": "00:12:25.200",
+      "text": "But what does that actually mean like like what is the scenario"
+    },
+    {
+      "id": 176,
+      "start": "00:12:25.920",
+      "end": "00:12:26.560",
+      "text": "for"
+    },
+    {
+      "id": 177,
+      "start": "00:12:26.560",
+      "end": "00:12:28.720",
+      "text": "Extension creator that"
+    },
+    {
+      "id": 178,
+      "start": "00:12:29.440",
+      "end": "00:12:34.960",
+      "text": "This would enable them to do and I'm prompting you because you created an extension that uses these things"
+    },
+    {
+      "id": 179,
+      "start": "00:12:35.040",
+      "end": "00:12:40.080",
+      "text": "So what was the problem that you were looking to solve and how did you use these new APIs?"
+    },
+    {
+      "id": 180,
+      "start": "00:12:41.680",
+      "end": "00:12:42.720",
+      "text": "Yeah, um"
+    },
+    {
+      "id": 181,
+      "start": "00:12:42.720",
+      "end": "00:12:45.680",
+      "text": "And a place where I tried out first I"
+    },
+    {
+      "id": 182,
+      "start": "00:12:47.520",
+      "end": "00:12:49.120",
+      "text": "Claude"
+    },
+    {
+      "id": 183,
+      "start": "00:12:49.120",
+      "end": "00:12:53.840",
+      "text": "Announcements or anthropic announcements came out at the beginning of last week and"
+    },
+    {
+      "id": 184,
+      "start": "00:12:54.960",
+      "end": "00:13:00.880",
+      "text": "One thing that I know is very curious because I'm also investigating the same problems is an error of memory"
+    },
+    {
+      "id": 185,
+      "start": "00:13:00.880",
+      "end": "00:13:02.880",
+      "text": "So there's some really cool videos where"
+    },
+    {
+      "id": 186,
+      "start": "00:13:04.320",
+      "end": "00:13:06.320",
+      "text": "The AI plays"
+    },
+    {
+      "id": 187,
+      "start": "00:13:06.960",
+      "end": "00:13:08.000",
+      "text": "Uh"
+    },
+    {
+      "id": 188,
+      "start": "00:13:08.000",
+      "end": "00:13:12.880",
+      "text": "Kazan and then I had to make choices about how to play the game and how to win"
+    },
+    {
+      "id": 189,
+      "start": "00:13:12.960",
+      "end": "00:13:19.120",
+      "text": "So you see kind of using memory as a concept and yeah going back and forth and that's I think the mainly quest"
+    },
+    {
+      "id": 190,
+      "start": "00:13:19.120",
+      "end": "00:13:20.480",
+      "text": "I also get from"
+    },
+    {
+      "id": 191,
+      "start": "00:13:20.480",
+      "end": "00:13:24.560",
+      "text": "Developers like can I can AI start self improving"
+    },
+    {
+      "id": 192,
+      "start": "00:13:25.040",
+      "end": "00:13:29.600",
+      "text": "And that that very broad under defined surface of memory always comes up"
+    },
+    {
+      "id": 193,
+      "start": "00:13:30.320",
+      "end": "00:13:32.240",
+      "text": "So I'm saying like what what did they ship?"
+    },
+    {
+      "id": 194,
+      "start": "00:13:32.320",
+      "end": "00:13:36.640",
+      "text": "Like can I try this out? So there's a there's some tool definitions that they documented"
+    },
+    {
+      "id": 195,
+      "start": "00:13:36.640",
+      "end": "00:13:41.520",
+      "text": "I was like we don't have this in VS code yet in our agent. So but we have"
+    },
+    {
+      "id": 196,
+      "start": "00:13:42.240",
+      "end": "00:13:44.880",
+      "text": "A language model tools API for extensions"
+    },
+    {
+      "id": 197,
+      "start": "00:13:45.280",
+      "end": "00:13:47.920",
+      "text": "So I can just expose memory tool that does look like"
+    },
+    {
+      "id": 198,
+      "start": "00:13:48.240",
+      "end": "00:13:50.640",
+      "text": "What they describe then I just basically gave it to dogs"
+    },
+    {
+      "id": 199,
+      "start": "00:13:51.600",
+      "end": "00:13:53.600",
+      "text": "I gave it the language model tool docs"
+    },
+    {
+      "id": 200,
+      "start": "00:13:54.080",
+      "end": "00:13:55.920",
+      "text": "Bootstrap in your extension and within"
+    },
+    {
+      "id": 201,
+      "start": "00:13:56.560",
+      "end": "00:13:58.320",
+      "text": "Five minutes"
+    },
+    {
+      "id": 202,
+      "start": "00:13:58.320",
+      "end": "00:14:01.360",
+      "text": "It's sorry. You're putting things in memory and like oh, it's just working. So cool"
+    },
+    {
+      "id": 203,
+      "start": "00:14:01.760",
+      "end": "00:14:02.800",
+      "text": "Um"
+    },
+    {
+      "id": 204,
+      "start": "00:14:02.800",
+      "end": "00:14:08.960",
+      "text": "But then there's all these like interesting things they also propose for memory like what if the LMs can compress it like if what if the"
+    },
+    {
+      "id": 205,
+      "start": "00:14:09.280",
+      "end": "00:14:11.280",
+      "text": "Clean it up like anything that"
+    },
+    {
+      "id": 206,
+      "start": "00:14:12.480",
+      "end": "00:14:18.320",
+      "text": "It's not like relevant. Maybe it gets too wordy because you see that with all a kind of documentation like the Lm keeps adding like"
+    },
+    {
+      "id": 207,
+      "start": "00:14:18.320",
+      "end": "00:14:21.200",
+      "text": "Oh, I learned this like I'm going to just keep setting up"
+    },
+    {
+      "id": 208,
+      "start": "00:14:22.240",
+      "end": "00:14:29.040",
+      "text": "And unless you prompted sometimes it doesn't clean it up. That's what they they promised some two degree like the cloud is somehow"
+    },
+    {
+      "id": 209,
+      "start": "00:14:29.200",
+      "end": "00:14:31.760",
+      "text": "Hot sounded 4.5 is aware of the memory and will"
+    },
+    {
+      "id": 210,
+      "start": "00:14:32.320",
+      "end": "00:14:35.600",
+      "text": "They help which which I was party experiment. They haven't gotten to it yet, but"
+    },
+    {
+      "id": 211,
+      "start": "00:14:36.320",
+      "end": "00:14:40.160",
+      "text": "Someone expected to go in and say like I got a now shrink my memory"
+    },
+    {
+      "id": 212,
+      "start": "00:14:40.880",
+      "end": "00:14:44.880",
+      "text": "And I see I saw a science of that. It's more token aware, but not not that yet"
+    },
+    {
+      "id": 213,
+      "start": "00:14:45.440",
+      "end": "00:14:48.240",
+      "text": "So I was like this could be prompt. This could be just"
+    },
+    {
+      "id": 214,
+      "start": "00:14:49.440",
+      "end": "00:14:53.840",
+      "text": "Compressed memory like it's now. It's getting too big. It's getting too slow. It's reading different files"
+    },
+    {
+      "id": 215,
+      "start": "00:14:53.840",
+      "end": "00:14:57.200",
+      "text": "It keeps looking for memory and that's a kind of idea. You you create"
+    },
+    {
+      "id": 216,
+      "start": "00:14:57.760",
+      "end": "00:15:04.000",
+      "text": "Different chat sessions and the arm retains the task that you're working in and usually that's like a"
+    },
+    {
+      "id": 217,
+      "start": "00:15:05.120",
+      "end": "00:15:13.200",
+      "text": "Spec.md or like a task folder with markdown files in your repo, but I like I don't want to clutter my repo of markdown files"
+    },
+    {
+      "id": 218,
+      "start": "00:15:13.520",
+      "end": "00:15:15.520",
+      "text": "Yeah, I just want to have this maybe"
+    },
+    {
+      "id": 219,
+      "start": "00:15:16.560",
+      "end": "00:15:19.680",
+      "text": "And that's a feature request. It just came came to my take right before this podcast"
+    },
+    {
+      "id": 220,
+      "start": "00:15:19.680",
+      "end": "00:15:25.600",
+      "text": "I should implement this like a per branch memory given that the that how it stores it is in memory, but even per branch"
+    },
+    {
+      "id": 221,
+      "start": "00:15:25.760",
+      "end": "00:15:30.880",
+      "text": "So I can go back to it, but I don't want marked on files sitting around the memory is kind of"
+    },
+    {
+      "id": 222,
+      "start": "00:15:32.000",
+      "end": "00:15:37.840",
+      "text": "If you look at how it works, it actually is very file based. It's like looking at the list like opening a file and"
+    },
+    {
+      "id": 223,
+      "start": "00:15:38.400",
+      "end": "00:15:40.400",
+      "text": "Replacing parts of it. So"
+    },
+    {
+      "id": 224,
+      "start": "00:15:40.960",
+      "end": "00:15:44.480",
+      "text": "Yeah, but then it prompts. I was like, okay, let's make some memory prompts and then"
+    },
+    {
+      "id": 225,
+      "start": "00:15:45.200",
+      "end": "00:15:47.200",
+      "text": "So it's compression. It's"
+    },
+    {
+      "id": 226,
+      "start": "00:15:47.680",
+      "end": "00:15:50.480",
+      "text": "Giving a high level overview. So you don't have to click every file"
+    },
+    {
+      "id": 227,
+      "start": "00:15:51.280",
+      "end": "00:15:55.360",
+      "text": "It's all these things. I could I could what could people do like once you have an alarm that has memory?"
+    },
+    {
+      "id": 228,
+      "start": "00:15:56.160",
+      "end": "00:15:59.600",
+      "text": "What would you want to do and people do it with touch pt as well? It's like"
+    },
+    {
+      "id": 229,
+      "start": "00:16:00.160",
+      "end": "00:16:04.240",
+      "text": "Basically explained back to me who I am based on a conversation I had with you kind of"
+    },
+    {
+      "id": 230,
+      "start": "00:16:05.120",
+      "end": "00:16:07.120",
+      "text": "thing"
+    },
+    {
+      "id": 231,
+      "start": "00:16:07.280",
+      "end": "00:16:11.120",
+      "text": "So I'm hearing in this instance right. I think about"
+    },
+    {
+      "id": 232,
+      "start": "00:16:12.240",
+      "end": "00:16:15.360",
+      "text": "you have these prompts and"
+    },
+    {
+      "id": 233,
+      "start": "00:16:15.920",
+      "end": "00:16:19.840",
+      "text": "Again, if you were to say hey, I created this extension to this thing inherently"
+    },
+    {
+      "id": 234,
+      "start": "00:16:20.320",
+      "end": "00:16:22.320",
+      "text": "Previously would just be like here's a bunch of prompts"
+    },
+    {
+      "id": 235,
+      "start": "00:16:22.560",
+      "end": "00:16:25.680",
+      "text": "You'd have to copy into your repo if you want to use these new features"
+    },
+    {
+      "id": 236,
+      "start": "00:16:26.400",
+      "end": "00:16:32.960",
+      "text": "So I notice that you're using like if I install your extension and I enable it like magically there's ways of doing it"
+    },
+    {
+      "id": 237,
+      "start": "00:16:33.520",
+      "end": "00:16:35.520",
+      "text": "Because out there right"
+    },
+    {
+      "id": 238,
+      "start": "00:16:36.720",
+      "end": "00:16:40.720",
+      "text": "The prompts just automatically show up a slash but I also noticed that"
+    },
+    {
+      "id": 239,
+      "start": "00:16:41.680",
+      "end": "00:16:46.160",
+      "text": "Not only are there prompts but when I make a prompt and send any prompt off"
+    },
+    {
+      "id": 240,
+      "start": "00:16:46.480",
+      "end": "00:16:49.200",
+      "text": "I see that now not only my co-pilot instructions are being used"
+    },
+    {
+      "id": 241,
+      "start": "00:16:49.280",
+      "end": "00:16:54.000",
+      "text": "But also some memory instructions are being used and I also noticed that there's a new chat mode being used right?"
+    },
+    {
+      "id": 242,
+      "start": "00:16:54.000",
+      "end": "00:16:59.120",
+      "text": "So it's like you're not just using here's a cool prompt. It's and there's other things that are happening too"
+    },
+    {
+      "id": 243,
+      "start": "00:16:59.200",
+      "end": "00:17:00.880",
+      "text": "How did you decide?"
+    },
+    {
+      "id": 244,
+      "start": "00:17:01.040",
+      "end": "00:17:06.640",
+      "text": "And what are these new API sort of enable for those flows that kind of not possible before because again all this"
+    },
+    {
+      "id": 245,
+      "start": "00:17:06.640",
+      "end": "00:17:09.680",
+      "text": "I've seen is possible, but then you got to like put it all together yourself"
+    },
+    {
+      "id": 246,
+      "start": "00:17:10.960",
+      "end": "00:17:12.960",
+      "text": "Yeah, that's a big I mean what just mentioned"
+    },
+    {
+      "id": 247,
+      "start": "00:17:13.280",
+      "end": "00:17:16.640",
+      "text": "What I didn't mention what the extension also does it it contributes a"
+    },
+    {
+      "id": 248,
+      "start": "00:17:17.280",
+      "end": "00:17:19.280",
+      "text": "an instruction as well and"
+    },
+    {
+      "id": 249,
+      "start": "00:17:20.800",
+      "end": "00:17:22.800",
+      "text": "It's basically copied right from the"
+    },
+    {
+      "id": 250,
+      "start": "00:17:23.440",
+      "end": "00:17:26.560",
+      "text": "And for big documentation about how to use memory is just"
+    },
+    {
+      "id": 251,
+      "start": "00:17:27.840",
+      "end": "00:17:29.840",
+      "text": "It's very odd. It's like"
+    },
+    {
+      "id": 252,
+      "start": "00:17:29.840",
+      "end": "00:17:31.040",
+      "text": "Like the typical"
+    },
+    {
+      "id": 253,
+      "start": "00:17:31.040",
+      "end": "00:17:33.040",
+      "text": "Hopper case mandatory"
+    },
+    {
+      "id": 254,
+      "start": "00:17:33.520",
+      "end": "00:17:35.680",
+      "text": "Before everything should check your memory"
+    },
+    {
+      "id": 255,
+      "start": "00:17:36.480",
+      "end": "00:17:38.480",
+      "text": "Read memory if there's something related"
+    },
+    {
+      "id": 256,
+      "start": "00:17:39.200",
+      "end": "00:17:41.200",
+      "text": "And that's what the instructions adding"
+    },
+    {
+      "id": 257,
+      "start": "00:17:42.240",
+      "end": "00:17:44.400",
+      "text": "And it's a apply to"
+    },
+    {
+      "id": 258,
+      "start": "00:17:45.280",
+      "end": "00:17:48.800",
+      "text": "Exaction which means it's included for every conversation by default"
+    },
+    {
+      "id": 259,
+      "start": "00:17:49.520",
+      "end": "00:17:53.200",
+      "text": "And that's actually a use case. I have gotten a ton of requests for"
+    },
+    {
+      "id": 260,
+      "start": "00:17:54.480",
+      "end": "00:17:57.760",
+      "text": "That if you install for example the Azure extension"
+    },
+    {
+      "id": 261,
+      "start": "00:17:58.560",
+      "end": "00:18:02.480",
+      "text": "The Azure Center wants to tell the agent like we have all these tools"
+    },
+    {
+      "id": 262,
+      "start": "00:18:03.680",
+      "end": "00:18:07.200",
+      "text": "And these tools like some of them need to be used in a specific order"
+    },
+    {
+      "id": 263,
+      "start": "00:18:07.440",
+      "end": "00:18:11.280",
+      "text": "Some of them are more kind of explanatory like there's a best practices tool at some point"
+    },
+    {
+      "id": 264,
+      "start": "00:18:11.440",
+      "end": "00:18:14.880",
+      "text": "And you want to guide the agent to the gray"
+    },
+    {
+      "id": 265,
+      "start": "00:18:15.520",
+      "end": "00:18:18.160",
+      "text": "Maybe giving it some contact maybe it's more"
+    },
+    {
+      "id": 266,
+      "start": "00:18:19.680",
+      "end": "00:18:25.040",
+      "text": "More actually look at the workspace up front and then expanding a bit like how would you use the Azure tools in this case"
+    },
+    {
+      "id": 267,
+      "start": "00:18:25.200",
+      "end": "00:18:27.200",
+      "text": "So some basically baseline"
+    },
+    {
+      "id": 268,
+      "start": "00:18:27.200",
+      "end": "00:18:29.200",
+      "text": "instructions about how to use"
+    },
+    {
+      "id": 269,
+      "start": "00:18:29.680",
+      "end": "00:18:32.800",
+      "text": "The group of tools that you have underneath the same for memory. It's like"
+    },
+    {
+      "id": 270,
+      "start": "00:18:33.440",
+      "end": "00:18:36.160",
+      "text": "There's a whole new concept of memory and there's a tool description"
+    },
+    {
+      "id": 271,
+      "start": "00:18:36.800",
+      "end": "00:18:39.600",
+      "text": "Trying to explain the agent when and how to use it"
+    },
+    {
+      "id": 272,
+      "start": "00:18:39.600",
+      "end": "00:18:41.600",
+      "text": "But an instruction is going to bring it all together"
+    },
+    {
+      "id": 273,
+      "start": "00:18:42.320",
+      "end": "00:18:44.800",
+      "text": "Into the context of a workflow. So there's some a little more"
+    },
+    {
+      "id": 274,
+      "start": "00:18:44.800",
+      "end": "00:18:49.760",
+      "text": "Reinforcement going on there of just like really use memory and this is how you do it"
+    },
+    {
+      "id": 275,
+      "start": "00:18:49.760",
+      "end": "00:18:52.160",
+      "text": "Like update is we can learn something"
+    },
+    {
+      "id": 276,
+      "start": "00:18:52.800",
+      "end": "00:18:56.640",
+      "text": "So just like in one area just one group of all about memory"
+    },
+    {
+      "id": 277,
+      "start": "00:18:58.000",
+      "end": "00:19:02.320",
+      "text": "I really need to think about as a extension creator the possibility to"
+    },
+    {
+      "id": 278,
+      "start": "00:19:03.120",
+      "end": "00:19:09.920",
+      "text": "Create these extensions that just don't extend like the core of VS code or themes or things like that or"
+    },
+    {
+      "id": 279,
+      "start": "00:19:10.240",
+      "end": "00:19:13.360",
+      "text": "You know, they're contributing models that you can use"
+    },
+    {
+      "id": 280,
+      "start": "00:19:13.440",
+      "end": "00:19:16.000",
+      "text": "You know as well from different providers"
+    },
+    {
+      "id": 281,
+      "start": "00:19:16.240",
+      "end": "00:19:21.600",
+      "text": "Then also to think about like a lot of us are inherently either for our team or for ourselves"
+    },
+    {
+      "id": 282,
+      "start": "00:19:22.000",
+      "end": "00:19:26.880",
+      "text": "Coming up in shipping these custom modes instructions prompts. You go to awesome copilot, right?"
+    },
+    {
+      "id": 283,
+      "start": "00:19:27.360",
+      "end": "00:19:34.160",
+      "text": "And get up.com slash get up slash awesome copilot like there is a whole suite of community and Microsoft and get up"
+    },
+    {
+      "id": 284,
+      "start": "00:19:34.320",
+      "end": "00:19:35.600",
+      "text": "contributed"
+    },
+    {
+      "id": 285,
+      "start": "00:19:35.600",
+      "end": "00:19:41.040",
+      "text": "These instructions prompts and modes and like you said the playwright agents have a bunch of chat modes and there's like"
+    },
+    {
+      "id": 286,
+      "start": "00:19:41.040",
+      "end": "00:19:43.040",
+      "text": "MCP stuff happening there and then there's also"
+    },
+    {
+      "id": 287,
+      "start": "00:19:43.360",
+      "end": "00:19:46.480",
+      "text": "You know spec kit which is a bunch of prompts and a bunch of other you know"
+    },
+    {
+      "id": 288,
+      "start": "00:19:46.640",
+      "end": "00:19:49.840",
+      "text": "magical files that do stuff but inherently at the end of the day"
+    },
+    {
+      "id": 289,
+      "start": "00:19:51.040",
+      "end": "00:19:55.920",
+      "text": "Those files have to be committed to your code base. So in as an extension creator"
+    },
+    {
+      "id": 290,
+      "start": "00:19:55.920",
+      "end": "00:20:02.560",
+      "text": "I think the magical part that is that you now have the ability to update those for the user"
+    },
+    {
+      "id": 291,
+      "start": "00:20:02.720",
+      "end": "00:20:06.560",
+      "text": "Right. I was talking to Dan and we're like hey what happens when you update these prompts?"
+    },
+    {
+      "id": 292,
+      "start": "00:20:06.560",
+      "end": "00:20:09.440",
+      "text": "And he's like we haven't figured that out yet and I was like that's even you know"
+    },
+    {
+      "id": 293,
+      "start": "00:20:09.600",
+      "end": "00:20:11.120",
+      "text": "Like that seems like maybe something to do"
+    },
+    {
+      "id": 294,
+      "start": "00:20:11.120",
+      "end": "00:20:14.400",
+      "text": "But it seems as though, you know like this kind of extension is like hey"
+    },
+    {
+      "id": 295,
+      "start": "00:20:14.400",
+      "end": "00:20:16.560",
+      "text": "You're in this ecosystem obviously. It's you know, it's a"
+    },
+    {
+      "id": 296,
+      "start": "00:20:16.880",
+      "end": "00:20:19.600",
+      "text": "VSCode extension, but if you're in that world"
+    },
+    {
+      "id": 297,
+      "start": "00:20:20.080",
+      "end": "00:20:24.560",
+      "text": "Then now you can start to implement these modes these features these new pieces of functionality"
+    },
+    {
+      "id": 298,
+      "start": "00:20:24.960",
+      "end": "00:20:30.640",
+      "text": "It required the user to do a lot of manual lifting like it seems like before these proposed APIs"
+    },
+    {
+      "id": 299,
+      "start": "00:20:31.440",
+      "end": "00:20:36.240",
+      "text": "This was possible for you, but not really kind of"
+    },
+    {
+      "id": 300,
+      "start": "00:20:36.960",
+      "end": "00:20:38.160",
+      "text": "Ish"
+    },
+    {
+      "id": 301,
+      "start": "00:20:38.160",
+      "end": "00:20:40.720",
+      "text": "Yeah, yeah, it's a massive problem thing. I see"
+    },
+    {
+      "id": 302,
+      "start": "00:20:41.680",
+      "end": "00:20:47.600",
+      "text": "Like one is most of us shouldn't think about creating these prompts like it's just"
+    },
+    {
+      "id": 303,
+      "start": "00:20:48.080",
+      "end": "00:20:50.720",
+      "text": "Just how you don't think about how you set up CI CD for"
+    },
+    {
+      "id": 304,
+      "start": "00:20:51.360",
+      "end": "00:20:57.040",
+      "text": "The enterprise project working like that somebody somebody's problem that thinks about the architecture and maybe like has"
+    },
+    {
+      "id": 305,
+      "start": "00:20:57.280",
+      "end": "00:21:01.520",
+      "text": "More of the DevOps had on like that everybody's fiddling around with the ammo files to"
+    },
+    {
+      "id": 306,
+      "start": "00:21:02.160",
+      "end": "00:21:04.160",
+      "text": "change deployments. So there's a"
+    },
+    {
+      "id": 307,
+      "start": "00:21:04.160",
+      "end": "00:21:09.680",
+      "text": "If you have a bunch of AI champions in your team like they they will thrive in that kind of"
+    },
+    {
+      "id": 308,
+      "start": "00:21:10.000",
+      "end": "00:21:13.680",
+      "text": "ambiguity of prompt crafting. It's like I don't know if it's a good prompt, but it"
+    },
+    {
+      "id": 309,
+      "start": "00:21:14.480",
+      "end": "00:21:22.080",
+      "text": "I have enough hands-on testing kind of viketesting different scenarios that I know my team relies on and it provides better results"
+    },
+    {
+      "id": 310,
+      "start": "00:21:22.160",
+      "end": "00:21:27.360",
+      "text": "If I change it like this, I add a like mandatory over here or a simplified else instructions"
+    },
+    {
+      "id": 311,
+      "start": "00:21:28.480",
+      "end": "00:21:35.440",
+      "text": "So I think that's they are always living documents to degree and there there is a high bar like always when I go to"
+    },
+    {
+      "id": 312,
+      "start": "00:21:35.600",
+      "end": "00:21:37.600",
+      "text": "Conferences or meetups and I"
+    },
+    {
+      "id": 313,
+      "start": "00:21:37.840",
+      "end": "00:21:40.160",
+      "text": "Want to say she has kank who is good at prompt crafting?"
+    },
+    {
+      "id": 314,
+      "start": "00:21:41.680",
+      "end": "00:21:46.960",
+      "text": "Live in a Bay area. There's even few hands going up here. It's like room of 50 people on one hand goes up"
+    },
+    {
+      "id": 315,
+      "start": "00:21:47.280",
+      "end": "00:21:52.560",
+      "text": "It's like because people don't trust themselves to really understand graphic. Like once you learned it and you feel comfortable"
+    },
+    {
+      "id": 316,
+      "start": "00:21:52.560",
+      "end": "00:21:56.160",
+      "text": "And new model comes out and ignores everything you said before right so"
+    },
+    {
+      "id": 317,
+      "start": "00:21:56.880",
+      "end": "00:22:01.680",
+      "text": "So it is a doesn't art to it. So that thing makes puts up a high bar and how people do it"
+    },
+    {
+      "id": 318,
+      "start": "00:22:01.760",
+      "end": "00:22:05.760",
+      "text": "So if you're just wanting it into it, there's a generate Asian instructions button"
+    },
+    {
+      "id": 319,
+      "start": "00:22:06.720",
+      "end": "00:22:10.080",
+      "text": "Right in the chat if you click on the on the cog menu there"
+    },
+    {
+      "id": 320,
+      "start": "00:22:10.800",
+      "end": "00:22:13.520",
+      "text": "Generation extraction which is look at your code base and"
+    },
+    {
+      "id": 321,
+      "start": "00:22:14.160",
+      "end": "00:22:18.560",
+      "text": "Right down the obvious of what it sees if it looks at different files and folders and"
+    },
+    {
+      "id": 322,
+      "start": "00:22:19.200",
+      "end": "00:22:21.200",
+      "text": "Then you can correct it like no, that's"
+    },
+    {
+      "id": 323,
+      "start": "00:22:21.520",
+      "end": "00:22:27.760",
+      "text": "Like that at more detail remove things. So it's a great way to start and most of my modes and problems I write"
+    },
+    {
+      "id": 324,
+      "start": "00:22:28.720",
+      "end": "00:22:32.160",
+      "text": "I also don't bootstrap from scratch. I just ask the lm like"
+    },
+    {
+      "id": 325,
+      "start": "00:22:33.120",
+      "end": "00:22:38.300",
+      "text": "I want to try test and development like write me a product write me a mode that describes as an element like as a"
+    },
+    {
+      "id": 326,
+      "start": "00:22:38.400",
+      "end": "00:22:44.640",
+      "text": "One-patcher keep it short and I will break down the steps and I have a lot to work from so"
+    },
+    {
+      "id": 327,
+      "start": "00:22:45.280",
+      "end": "00:22:49.040",
+      "text": "But then the sharing part is hard for like if if it just you and"
+    },
+    {
+      "id": 328,
+      "start": "00:22:50.320",
+      "end": "00:22:56.320",
+      "text": "You're playing around with you can do personal ones and your user folder. So you get a sense and that's that's a lot"
+    },
+    {
+      "id": 329,
+      "start": "00:22:56.320",
+      "end": "00:22:58.320",
+      "text": "Why I have my if one to?"
+    },
+    {
+      "id": 330,
+      "start": "00:22:58.880",
+      "end": "00:23:05.520",
+      "text": "Commit my changes and create a PR. That's just my own workflow. I asked the team would that be something we wouldn't have the code base now probably"
+    },
+    {
+      "id": 331,
+      "start": "00:23:06.320",
+      "end": "00:23:12.560",
+      "text": "Not to code base related more your own person workflow. I can live it that so it's and then I've one for"
+    },
+    {
+      "id": 332,
+      "start": "00:23:13.200",
+      "end": "00:23:15.520",
+      "text": "Resolving merge conflicts which might be more useful"
+    },
+    {
+      "id": 333,
+      "start": "00:23:16.160",
+      "end": "00:23:18.400",
+      "text": "I shall something we're bringing into the product"
+    },
+    {
+      "id": 334,
+      "start": "00:23:18.960",
+      "end": "00:23:26.880",
+      "text": "So yeah, so you can automate all these little things for yourself to make yourself objective and when you see like this is really the 10x prompt"
+    },
+    {
+      "id": 335,
+      "start": "00:23:27.520",
+      "end": "00:23:30.480",
+      "text": "Makes my life easier and I want this for everybody then"
+    },
+    {
+      "id": 336,
+      "start": "00:23:31.520",
+      "end": "00:23:38.480",
+      "text": "Put it in the like shared extension everybody uses so you distribute it or you bring it into repo or share elsewhere"
+    },
+    {
+      "id": 337,
+      "start": "00:23:38.560",
+      "end": "00:23:41.280",
+      "text": "And then the as you mentioned the awesome co-pig repos a great place to"
+    },
+    {
+      "id": 338,
+      "start": "00:23:42.160",
+      "end": "00:23:48.560",
+      "text": "Get inspiration from like what's possible like expand your mind on what you want to do with these prompts and modes"
+    },
+    {
+      "id": 339,
+      "start": "00:23:49.440",
+      "end": "00:23:54.080",
+      "text": "That's super cool. Yeah, I think it's like a really great place to start as like see what other people are doing"
+    },
+    {
+      "id": 340,
+      "start": "00:23:54.560",
+      "end": "00:23:59.920",
+      "text": "Then if you are creating these reusable steps one thing I did is like imagine you scaffold it out a new API"
+    },
+    {
+      "id": 341,
+      "start": "00:24:00.400",
+      "end": "00:24:03.200",
+      "text": "You're testing the API and it is data integration doing testing"
+    },
+    {
+      "id": 342,
+      "start": "00:24:03.600",
+      "end": "00:24:06.000",
+      "text": "One thing that I've learned a lot is you can just ask"
+    },
+    {
+      "id": 343,
+      "start": "00:24:06.720",
+      "end": "00:24:12.560",
+      "text": "The model the LLM to create a prompt that's reusable for the things that we just did right"
+    },
+    {
+      "id": 344,
+      "start": "00:24:13.040",
+      "end": "00:24:17.280",
+      "text": "Like obviously cut out the parts or fix up the parts for like if you had to like iterate on it or whatnot"
+    },
+    {
+      "id": 345,
+      "start": "00:24:17.600",
+      "end": "00:24:21.280",
+      "text": "But I've done that so it's like here's this step so then you can rerun that prompt over and over again"
+    },
+    {
+      "id": 346,
+      "start": "00:24:21.600",
+      "end": "00:24:24.960",
+      "text": "Well, it's a really neat Herald. I mean, I think it's really cool to talk about these different modes"
+    },
+    {
+      "id": 347,
+      "start": "00:24:25.280",
+      "end": "00:24:31.280",
+      "text": "And I'm going to have Burke on and go super deep on modes themselves and beast mode and the things that he created and how he created that stuff"
+    },
+    {
+      "id": 348,
+      "start": "00:24:31.520",
+      "end": "00:24:38.960",
+      "text": "Which is kind of like walk through these different steps and then these new proposed APIs that folks can start to poke around with and they can also give the"
+    },
+    {
+      "id": 349,
+      "start": "00:24:39.040",
+      "end": "00:24:41.040",
+      "text": "Age of memory extension a try today, right?"
+    },
+    {
+      "id": 350,
+      "start": "00:24:41.680",
+      "end": "00:24:45.840",
+      "text": "Yes, if you're just going to this code look for agent memory you can try out my extension"
+    },
+    {
+      "id": 351,
+      "start": "00:24:46.160",
+      "end": "00:24:51.600",
+      "text": "Give it five stars and give me feedback, but otherwise it's it's very bootstrappy. It's very experimental"
+    },
+    {
+      "id": 352,
+      "start": "00:24:52.560",
+      "end": "00:24:57.440",
+      "text": "And would love to see like what people expect from memory and and how this whole thing works"
+    },
+    {
+      "id": 353,
+      "start": "00:24:57.600",
+      "end": "00:25:02.880",
+      "text": "I think does it's this area where people just have so many ideas and so many expectations and"
+    },
+    {
+      "id": 354,
+      "start": "00:25:03.600",
+      "end": "00:25:06.640",
+      "text": "It's not yet delivered in the ecosystem really so yeah"
+    },
+    {
+      "id": 355,
+      "start": "00:25:07.200",
+      "end": "00:25:11.520",
+      "text": "Very cool. I'll put a link in the show notes below to this to the 105 release and so much more Herald"
+    },
+    {
+      "id": 356,
+      "start": "00:25:11.600",
+      "end": "00:25:16.400",
+      "text": "Thanks so much for coming on diving through all this stuff and talking a little bit about how you created agent mode and"
+    },
+    {
+      "id": 357,
+      "start": "00:25:16.720",
+      "end": "00:25:19.040",
+      "text": "Or major memory and put all these things together. It's so cool"
+    },
+    {
+      "id": 358,
+      "start": "00:25:19.600",
+      "end": "00:25:21.760",
+      "text": "Hey, thanks for having me and saying thanks for listening"
+    },
+    {
+      "id": 359,
+      "start": "00:25:22.400",
+      "end": "00:25:25.840",
+      "text": "Yes, and don't forget you can subscribe on your favorite podcast application"
+    },
+    {
+      "id": 360,
+      "start": "00:25:25.920",
+      "end": "00:25:32.320",
+      "text": "Also leave it five stars sent to a friend sent into a colleague show the podcast as we continue to come out every single week"
+    },
+    {
+      "id": 361,
+      "start": "00:25:32.400",
+      "end": "00:25:37.760",
+      "text": "And of course you can always watch us live on youtube at youtube.com for a slash at code"
+    },
+    {
+      "id": 362,
+      "start": "00:25:38.000",
+      "end": "00:25:40.880",
+      "text": "It's gonna do for this one. So until next time happy coding"
+    }
+  ]
+}

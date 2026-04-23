@@ -1,0 +1,2312 @@
+[
+  {
+    "id": 1,
+    "start": "00:00:00.110",
+    "end": "00:00:06.750",
+    "text": "Welcome back everyone to the VS Code Insiders podcast or behind the scenes scoop on everything VS Code"
+  },
+  {
+    "id": 2,
+    "start": "00:00:06.750",
+    "end": "00:00:10.990",
+    "text": "I'm one of your host James Montemagno and with me again, Mr. Pierce Logan has a gone peers"
+  },
+  {
+    "id": 3,
+    "start": "00:00:11.630",
+    "end": "00:00:18.350",
+    "text": "Hello doing amazing games what I love about this is like Pierce all of a sudden goes into like the serious mode like if you watch in this"
+  },
+  {
+    "id": 4,
+    "start": "00:00:18.350",
+    "end": "00:00:21.990",
+    "text": "YouTube you're like all of a sudden like what's going on? It's like a a deer"
+  },
+  {
+    "id": 5,
+    "start": "00:00:22.430",
+    "end": "00:00:28.350",
+    "text": "We also have Daniel and he's from the engineering team is going to give us a sneak peek behind the scenes on all the brand new"
+  },
+  {
+    "id": 6,
+    "start": "00:00:28.670",
+    "end": "00:00:31.870",
+    "text": "Terminal updates, you know I'm a huge terminal fan if you follow me"
+  },
+  {
+    "id": 7,
+    "start": "00:00:32.190",
+    "end": "00:00:37.910",
+    "text": "But we want to give you the behind the scenes kind of one of the point of this entire podcast because you can watch the YouTube"
+  },
+  {
+    "id": 8,
+    "start": "00:00:37.910",
+    "end": "00:00:43.150",
+    "text": "You can watch and read the release notes and all the awesome things that are going in to the product itself"
+  },
+  {
+    "id": 9,
+    "start": "00:00:43.150",
+    "end": "00:00:49.430",
+    "text": "But as everything is developing you see things in the open you get insider builds every single day"
+  },
+  {
+    "id": 10,
+    "start": "00:00:49.430",
+    "end": "00:00:53.430",
+    "text": "You don't need to subscribe to anything everyone can be an insider and if you're listening to this"
+  },
+  {
+    "id": 11,
+    "start": "00:00:53.430",
+    "end": "00:00:57.950",
+    "text": "You can also just use mainline to we talk about new features there, but the cool part that I've"
+  },
+  {
+    "id": 12,
+    "start": "00:00:58.350",
+    "end": "00:01:03.550",
+    "text": "You've been following for a long time, but actually I had no idea how any of it worked is how the planning works"
+  },
+  {
+    "id": 13,
+    "start": "00:01:03.550",
+    "end": "00:01:06.430",
+    "text": "Like you know I work in Microsoft we do a lot of planning and we do a lot of stuff"
+  },
+  {
+    "id": 14,
+    "start": "00:01:06.750",
+    "end": "00:01:09.670",
+    "text": "But actually everything just open as well"
+  },
+  {
+    "id": 15,
+    "start": "00:01:09.670",
+    "end": "00:01:15.190",
+    "text": "But I don't really know how it all works. So I want to appear as I kind of break down the August plan iteration plan"
+  },
+  {
+    "id": 16,
+    "start": "00:01:15.470",
+    "end": "00:01:20.990",
+    "text": "What's in it? How do people like get involved like what's the actual actions that are going on because"
+  },
+  {
+    "id": 17,
+    "start": "00:01:21.390",
+    "end": "00:01:27.510",
+    "text": "To me the cool part is like not only just when the new features are coming out in release, but following along giving feedback as well"
+  },
+  {
+    "id": 18,
+    "start": "00:01:28.470",
+    "end": "00:01:35.070",
+    "text": "That's right. Yeah, so like any good team we have a giant Azure DevOps backlog with tons of ethics"
+  },
+  {
+    "id": 19,
+    "start": "00:01:35.070",
+    "end": "00:01:37.070",
+    "text": "Now I'm just kidding. We're going to do any of that"
+  },
+  {
+    "id": 20,
+    "start": "00:01:37.230",
+    "end": "00:01:39.230",
+    "text": "That's how we work at all"
+  },
+  {
+    "id": 21,
+    "start": "00:01:39.230",
+    "end": "00:01:45.670",
+    "text": "So like you were saying James like the cool thing about this team that's very unique is like it's not only that we work in the open"
+  },
+  {
+    "id": 22,
+    "start": "00:01:45.670",
+    "end": "00:01:51.350",
+    "text": "I think that's pretty common actually is like you know our code and issues and PRs are in the open"
+  },
+  {
+    "id": 23,
+    "start": "00:01:51.350",
+    "end": "00:01:55.190",
+    "text": "That's pretty common for open source, but like our planning is also in the open, right?"
+  },
+  {
+    "id": 24,
+    "start": "00:01:56.150",
+    "end": "00:02:01.350",
+    "text": "So every single month, basically, we do right as kind of forgetting ready to ship you"
+  },
+  {
+    "id": 25,
+    "start": "00:02:01.550",
+    "end": "00:02:05.790",
+    "text": "Then you stable release. We kind of go through this process of planning and it's kind of"
+  },
+  {
+    "id": 26,
+    "start": "00:02:06.470",
+    "end": "00:02:10.750",
+    "text": "Bottom up, so the individual engineers working in their areas. They know the features best"
+  },
+  {
+    "id": 27,
+    "start": "00:02:10.750",
+    "end": "00:02:15.310",
+    "text": "They know the feedback for their areas best and they can really represent what needs to happen the next iteration"
+  },
+  {
+    "id": 28,
+    "start": "00:02:15.430",
+    "end": "00:02:20.430",
+    "text": "Which is basically what we call a sprint on the team and so like everyone kind of sources some items"
+  },
+  {
+    "id": 29,
+    "start": "00:02:20.990",
+    "end": "00:02:24.910",
+    "text": "At the same time, of course, there's like some goals that like from a leadership perspective"
+  },
+  {
+    "id": 30,
+    "start": "00:02:24.910",
+    "end": "00:02:27.230",
+    "text": "We're like, well, we kind of want to take the product in this direction"
+  },
+  {
+    "id": 31,
+    "start": "00:02:27.470",
+    "end": "00:02:32.910",
+    "text": "This is something we really need to take care of because of X-Wiresy reason and so there's kind of like this reasoning process"
+  },
+  {
+    "id": 32,
+    "start": "00:02:32.910",
+    "end": "00:02:38.990",
+    "text": "We're you know people bring their bottoms up ask and there's some top-down ask and we kind of have a little bit of a process for working as things out"
+  },
+  {
+    "id": 33,
+    "start": "00:02:40.350",
+    "end": "00:02:45.270",
+    "text": "Look for any conflicts things like that and then the first Monday of our next iteration"
+  },
+  {
+    "id": 34,
+    "start": "00:02:45.270",
+    "end": "00:02:47.270",
+    "text": "We actually publish this plan on get up"
+  },
+  {
+    "id": 35,
+    "start": "00:02:47.510",
+    "end": "00:02:54.070",
+    "text": "So the entire plan and what every single person on this team is working on you can actually go if you go to the"
+  },
+  {
+    "id": 36,
+    "start": "00:02:54.230",
+    "end": "00:02:57.350",
+    "text": "GitHub issue if you go to the issues tab of the VS Code repo"
+  },
+  {
+    "id": 37,
+    "start": "00:02:57.350",
+    "end": "00:03:02.910",
+    "text": "There's a pinned issue called iteration plan and you can actually look through that and you can see"
+  },
+  {
+    "id": 38,
+    "start": "00:03:03.430",
+    "end": "00:03:08.270",
+    "text": "Exactly all the different things that every single person on the team is going to be working on with linked issues"
+  },
+  {
+    "id": 39,
+    "start": "00:03:08.510",
+    "end": "00:03:10.510",
+    "text": "Right so you can see exactly"
+  },
+  {
+    "id": 40,
+    "start": "00:03:10.510",
+    "end": "00:03:14.790",
+    "text": "You know that fall along with the process you go to the issue you can see any PRs or anything like that"
+  },
+  {
+    "id": 41,
+    "start": "00:03:14.790",
+    "end": "00:03:17.990",
+    "text": "You can see the discussion about how we're going to implement it the design"
+  },
+  {
+    "id": 42,
+    "start": "00:03:18.190",
+    "end": "00:03:22.510",
+    "text": "So all of that is actually happening in the open and like you said James like if you're using insiders"
+  },
+  {
+    "id": 43,
+    "start": "00:03:22.510",
+    "end": "00:03:25.990",
+    "text": "You'll actually see like okay Daniel will deliver some feature"
+  },
+  {
+    "id": 44,
+    "start": "00:03:25.990",
+    "end": "00:03:30.430",
+    "text": "He'll check it off on that how close the issue and then you'll actually see that show up and insiders"
+  },
+  {
+    "id": 45,
+    "start": "00:03:30.430",
+    "end": "00:03:34.510",
+    "text": "Right and so that's like a really cool loop of not only are could being out in the open"
+  },
+  {
+    "id": 46,
+    "start": "00:03:34.510",
+    "end": "00:03:40.950",
+    "text": "But also are plating being out in the open and so there's also some cool things like as you look through the plan that you'll notice like we have"
+  },
+  {
+    "id": 47,
+    "start": "00:03:40.950",
+    "end": "00:03:45.310",
+    "text": "Amodis for everything so if something has like a running person next to it"
+  },
+  {
+    "id": 48,
+    "start": "00:03:45.310",
+    "end": "00:03:47.790",
+    "text": "It means that's what the person on the team is actually working on"
+  },
+  {
+    "id": 49,
+    "start": "00:03:48.430",
+    "end": "00:03:50.430",
+    "text": "Obviously if it's checked it's done"
+  },
+  {
+    "id": 50,
+    "start": "00:03:50.430",
+    "end": "00:03:55.310",
+    "text": "So there's like cool little things like that in the issues that you can kind of go through and see and so"
+  },
+  {
+    "id": 51,
+    "start": "00:03:56.110",
+    "end": "00:04:00.510",
+    "text": "One thing we really want to do in this podcast because this is the insiders podcast is be talking about"
+  },
+  {
+    "id": 52,
+    "start": "00:04:00.750",
+    "end": "00:04:06.110",
+    "text": "What's on our plan for this month before you actually see it in the product and of course as week by week"
+  },
+  {
+    "id": 53,
+    "start": "00:04:06.110",
+    "end": "00:04:09.470",
+    "text": "As we're adding these things have people like Daniel come on and talk about the improvements"
+  },
+  {
+    "id": 54,
+    "start": "00:04:09.470",
+    "end": "00:04:15.390",
+    "text": "We're making inside the product. Yeah, like when you go on you look at this like the first thing you see from Kai here is"
+  },
+  {
+    "id": 55,
+    "start": "00:04:15.830",
+    "end": "00:04:18.230",
+    "text": "Kind of like the date like this is the August work"
+  },
+  {
+    "id": 56,
+    "start": "00:04:18.230",
+    "end": "00:04:23.890",
+    "text": "So it's working done in August deliver in the beginning of September and it means endgame like to someone coming in"
+  },
+  {
+    "id": 57,
+    "start": "00:04:23.890",
+    "end": "00:04:26.330",
+    "text": "What does that actually mean like I know there's like an emoji"
+  },
+  {
+    "id": 58,
+    "start": "00:04:26.330",
+    "end": "00:04:29.910",
+    "text": "I don't even know what endgame mean like the soon that I mean that's like done"
+  },
+  {
+    "id": 59,
+    "start": "00:04:29.910",
+    "end": "00:04:32.910",
+    "text": "But what does there's begins and done but they're in September, but not in August"
+  },
+  {
+    "id": 60,
+    "start": "00:04:32.910",
+    "end": "00:04:35.310",
+    "text": "What does that mean like from someone looking at this thing?"
+  },
+  {
+    "id": 61,
+    "start": "00:04:36.030",
+    "end": "00:04:39.030",
+    "text": "Dean, you'll do you want to talk a little bit about like what in game entails"
+  },
+  {
+    "id": 62,
+    "start": "00:04:40.230",
+    "end": "00:04:44.030",
+    "text": "Sure, so so our iterations are broken up into"
+  },
+  {
+    "id": 63,
+    "start": "00:04:45.030",
+    "end": "00:04:46.830",
+    "text": "development weeks which are typically"
+  },
+  {
+    "id": 64,
+    "start": "00:04:47.270",
+    "end": "00:04:52.910",
+    "text": "two to three weeks and then after that comes endgame, which is a week that we focus on"
+  },
+  {
+    "id": 65,
+    "start": "00:04:53.830",
+    "end": "00:05:00.590",
+    "text": "Testing and stabilizing and then the week after that is called debt week where we try to focus on technical debt"
+  },
+  {
+    "id": 66,
+    "start": "00:05:00.590",
+    "end": "00:05:05.270",
+    "text": "And it will also continue to stabilize the the release before it releases later"
+  },
+  {
+    "id": 67,
+    "start": "00:05:06.270",
+    "end": "00:05:12.110",
+    "text": "So everything that kind of is there a point basically that's like if the features not done it just goes to the next iteration"
+  },
+  {
+    "id": 68,
+    "start": "00:05:12.110",
+    "end": "00:05:18.390",
+    "text": "Like is it like I mean, obviously this this list has to be evolving through out like the month right"
+  },
+  {
+    "id": 69,
+    "start": "00:05:19.950",
+    "end": "00:05:21.550",
+    "text": "Yeah, so"
+  },
+  {
+    "id": 70,
+    "start": "00:05:21.550",
+    "end": "00:05:27.510",
+    "text": "So they'll sometimes go over to the next month maybe they'll land in stable in like a partially implemented state"
+  },
+  {
+    "id": 71,
+    "start": "00:05:27.510",
+    "end": "00:05:32.390",
+    "text": "Maybe defending on the future it could be experimental disabled by default you can turn it on"
+  },
+  {
+    "id": 72,
+    "start": "00:05:33.230",
+    "end": "00:05:35.230",
+    "text": "It's very very fluid"
+  },
+  {
+    "id": 73,
+    "start": "00:05:35.710",
+    "end": "00:05:41.110",
+    "text": "So and we actually have like our test plan items we later like our you can see our test plan"
+  },
+  {
+    "id": 74,
+    "start": "00:05:41.830",
+    "end": "00:05:46.510",
+    "text": "For the release so each engineer also writes their own tests right in terms of like the flow"
+  },
+  {
+    "id": 75,
+    "start": "00:05:46.830",
+    "end": "00:05:51.710",
+    "text": "We have some tooling internally that will automatically assign every single person no matter your role on the team"
+  },
+  {
+    "id": 76,
+    "start": "00:05:51.710",
+    "end": "00:05:56.390",
+    "text": "VMs designers whoever might be to actually go and run through these issues"
+  },
+  {
+    "id": 77,
+    "start": "00:05:56.390",
+    "end": "00:06:01.950",
+    "text": "You know depending on your OS you may get different issues and that sort of thing and then there's like this reconciliation process"
+  },
+  {
+    "id": 78,
+    "start": "00:06:01.950",
+    "end": "00:06:06.710",
+    "text": "That kind of happens is part of that of like oh, I feel like pretty good about this like you know"
+  },
+  {
+    "id": 79,
+    "start": "00:06:06.710",
+    "end": "00:06:10.190",
+    "text": "We didn't really have anything come up during you know the test plan"
+  },
+  {
+    "id": 80,
+    "start": "00:06:10.590",
+    "end": "00:06:14.790",
+    "text": "We can promote this stable and then of course there's like the conversation of like okay"
+  },
+  {
+    "id": 81,
+    "start": "00:06:14.790",
+    "end": "00:06:18.670",
+    "text": "Well, maybe this is in stable, but we have this as a setting and it's off by default"
+  },
+  {
+    "id": 82,
+    "start": "00:06:18.670",
+    "end": "00:06:22.350",
+    "text": "Or maybe it's on by default or maybe we're gonna start with it off by default"
+  },
+  {
+    "id": 83,
+    "start": "00:06:22.350",
+    "end": "00:06:26.070",
+    "text": "But there's some risk so we actually want to do a controlled rollout throughout the month"
+  },
+  {
+    "id": 84,
+    "start": "00:06:26.070",
+    "end": "00:06:30.590",
+    "text": "So there's a the types of kind of conversations that happen in addition to the testing going on that week"
+  },
+  {
+    "id": 85,
+    "start": "00:06:30.830",
+    "end": "00:06:35.510",
+    "text": "You know when you're in here like you also scroll the bottom so everything's broken down at different categories as well"
+  },
+  {
+    "id": 86,
+    "start": "00:06:35.510",
+    "end": "00:06:41.310",
+    "text": "The very bottom it's interesting like how just all works. There's like deferred. It's like gain of you're like working on like a"
+  },
+  {
+    "id": 87,
+    "start": "00:06:42.310",
+    "end": "00:06:44.310",
+    "text": "feature like"
+  },
+  {
+    "id": 88,
+    "start": "00:06:44.310",
+    "end": "00:06:46.310",
+    "text": "what determines"
+  },
+  {
+    "id": 89,
+    "start": "00:06:46.310",
+    "end": "00:06:51.950",
+    "text": "Like where it goes how it goes or if it does get deferred like and where in the process does that happen?"
+  },
+  {
+    "id": 90,
+    "start": "00:06:53.150",
+    "end": "00:07:00.310",
+    "text": "Well the third specifically is about things that we were planning to do but we're no longer planning to do so it's like accountability"
+  },
+  {
+    "id": 91,
+    "start": "00:07:00.310",
+    "end": "00:07:04.030",
+    "text": "Where we had it in the plan, but it's it's being removed"
+  },
+  {
+    "id": 92,
+    "start": "00:07:04.270",
+    "end": "00:07:07.430",
+    "text": "We're not doing that anymore for what you might have thought at me"
+  },
+  {
+    "id": 93,
+    "start": "00:07:07.430",
+    "end": "00:07:13.390",
+    "text": "And actually is that it carries over, but that's that's just the case for anything that's not complete typically"
+  },
+  {
+    "id": 94,
+    "start": "00:07:14.630",
+    "end": "00:07:16.630",
+    "text": "God it that makes sense"
+  },
+  {
+    "id": 95,
+    "start": "00:07:17.350",
+    "end": "00:07:25.390",
+    "text": "Is there anything Pierce and this sort of release? I see there's like all the emojis. There's there's red things. There's blocked work"
+  },
+  {
+    "id": 96,
+    "start": "00:07:25.390",
+    "end": "00:07:30.550",
+    "text": "All the emojis is running. I go into the planning meetings on there's like it feels like the team"
+  },
+  {
+    "id": 97,
+    "start": "00:07:30.870",
+    "end": "00:07:37.390",
+    "text": "I don't know Daniel like people they seem to want to report like different emojis statuses or like I really want to be a red dot today"
+  },
+  {
+    "id": 98,
+    "start": "00:07:37.390",
+    "end": "00:07:39.390",
+    "text": "I really wanted to be a running person like"
+  },
+  {
+    "id": 99,
+    "start": "00:07:40.310",
+    "end": "00:07:46.110",
+    "text": "Did to these emojis kind of excite the team like in in that stand-up on Monday the red dot specifically"
+  },
+  {
+    "id": 100,
+    "start": "00:07:46.110",
+    "end": "00:07:48.390",
+    "text": "We call the clown nose and it's it's a"
+  },
+  {
+    "id": 101,
+    "start": "00:07:49.510",
+    "end": "00:07:52.990",
+    "text": "This cold out every week that hey, yes, I don't got an issue tracking this"
+  },
+  {
+    "id": 102,
+    "start": "00:07:55.390",
+    "end": "00:08:01.550",
+    "text": "But yeah, that most issues would have nothing or run a if it has a runner and it's checked"
+  },
+  {
+    "id": 103,
+    "start": "00:08:01.550",
+    "end": "00:08:04.910",
+    "text": "It means we're gonna be talking about it in our planning sink"
+  },
+  {
+    "id": 104,
+    "start": "00:08:05.550",
+    "end": "00:08:08.510",
+    "text": "If it's just checked, it means it's already been talked about the previous week"
+  },
+  {
+    "id": 105,
+    "start": "00:08:09.470",
+    "end": "00:08:12.110",
+    "text": "But then there's other ones like the hands that means it's blocked"
+  },
+  {
+    "id": 106,
+    "start": "00:08:13.390",
+    "end": "00:08:17.150",
+    "text": "There's the black box which means it'll take a bunch of iterations"
+  },
+  {
+    "id": 107,
+    "start": "00:08:19.150",
+    "end": "00:08:24.430",
+    "text": "Yeah, there's more, but I can't take it from now. Did these also include like community contributions?"
+  },
+  {
+    "id": 108,
+    "start": "00:08:24.430",
+    "end": "00:08:27.470",
+    "text": "How are those part of like the planning iteration?"
+  },
+  {
+    "id": 109,
+    "start": "00:08:29.310",
+    "end": "00:08:32.910",
+    "text": "Very rarely to community contributions show up here if if"
+  },
+  {
+    "id": 110,
+    "start": "00:08:33.790",
+    "end": "00:08:39.550",
+    "text": "Say there's a big PR that comes in from the community it may show up as as in it's gonna take someone of the team"
+  },
+  {
+    "id": 111,
+    "start": "00:08:39.550",
+    "end": "00:08:41.790",
+    "text": "Is significant around a ref it to look into it"
+  },
+  {
+    "id": 112,
+    "start": "00:08:43.150",
+    "end": "00:08:50.590",
+    "text": "But typically community contributions are a smaller they come in through pull requests and then they go to the feature owners who review them"
+  },
+  {
+    "id": 113,
+    "start": "00:08:51.630",
+    "end": "00:08:53.630",
+    "text": "As part of their regular work"
+  },
+  {
+    "id": 114,
+    "start": "00:08:53.710",
+    "end": "00:08:55.470",
+    "text": "Gotcha, that makes that makes sense"
+  },
+  {
+    "id": 115,
+    "start": "00:08:55.470",
+    "end": "00:09:00.910",
+    "text": "So that if it was something like really big and really juicy then you're like okay, like let's let's pull this in basically"
+  },
+  {
+    "id": 116,
+    "start": "00:09:00.910",
+    "end": "00:09:02.910",
+    "text": "But it's less less looking"
+  },
+  {
+    "id": 117,
+    "start": "00:09:03.710",
+    "end": "00:09:07.470",
+    "text": "So the the community contributions also get cold out in our release notes at the bottom"
+  },
+  {
+    "id": 118,
+    "start": "00:09:08.510",
+    "end": "00:09:13.150",
+    "text": "And if if it is a big juicy one as you say they would get a call out in a"
+  },
+  {
+    "id": 119,
+    "start": "00:09:13.710",
+    "end": "00:09:18.430",
+    "text": "Section above that as well, which is like you want to tell people about the new features"
+  },
+  {
+    "id": 120,
+    "start": "00:09:19.230",
+    "end": "00:09:21.230",
+    "text": "Yeah, if you haven't just I think"
+  },
+  {
+    "id": 121,
+    "start": "00:09:21.950",
+    "end": "00:09:26.030",
+    "text": "We were doing this podcast. We kicked it off and a lot of people like oh, like I love you know"
+  },
+  {
+    "id": 122,
+    "start": "00:09:26.030",
+    "end": "00:09:29.390",
+    "text": "Just like seeing like visual like just talking about the features like people like driving to work"
+  },
+  {
+    "id": 123,
+    "start": "00:09:30.030",
+    "end": "00:09:34.990",
+    "text": "And not really in the release notes, but my favorite part of the release notes is that everyone that works on the features"
+  },
+  {
+    "id": 124,
+    "start": "00:09:34.990",
+    "end": "00:09:37.870",
+    "text": "It appears to all me like does their part of the release notes and"
+  },
+  {
+    "id": 125,
+    "start": "00:09:38.750",
+    "end": "00:09:43.470",
+    "text": "We put now this is like in the release notes from last one is it is it Josh?"
+  },
+  {
+    "id": 126,
+    "start": "00:09:44.670",
+    "end": "00:09:49.870",
+    "text": "Is that what that has like crazy Josh Spicer's theme yeah, which everyone has their own screenshots, too"
+  },
+  {
+    "id": 127,
+    "start": "00:09:50.430",
+    "end": "00:09:54.430",
+    "text": "Yeah, and everyone on YouTube there's a reddit thread that I"
+  },
+  {
+    "id": 128,
+    "start": "00:09:55.310",
+    "end": "00:09:59.950",
+    "text": "That will kick off on the videos code reddit that was like what is this theme because it's in the release notes"
+  },
+  {
+    "id": 129,
+    "start": "00:09:59.950",
+    "end": "00:10:04.990",
+    "text": "And we had in the video I this is my new default theme is the Josh. I can't stand that theme"
+  },
+  {
+    "id": 130,
+    "start": "00:10:04.990",
+    "end": "00:10:09.790",
+    "text": "I'm sorry to Josh. It's it thought it was me to death. I'm a little insulted no one's asked me about my queen"
+  },
+  {
+    "id": 131,
+    "start": "00:10:10.190",
+    "end": "00:10:13.630",
+    "text": "Oh, I never like everyone someone asked me what my theme is I said default"
+  },
+  {
+    "id": 132,
+    "start": "00:10:14.590",
+    "end": "00:10:18.590",
+    "text": "I don't know what are big defaults kind of big defaults guy that is for sure"
+  },
+  {
+    "id": 133,
+    "start": "00:10:18.590",
+    "end": "00:10:24.110",
+    "text": "I call Josh is in the tattoo in theme. I think that is reminds me of a beautiful desert plan"
+  },
+  {
+    "id": 134,
+    "start": "00:10:24.110",
+    "end": "00:10:28.430",
+    "text": "So what is in this what do people need to know about this august or kind of coming up the end of August?"
+  },
+  {
+    "id": 135,
+    "start": "00:10:28.750",
+    "end": "00:10:31.230",
+    "text": "But obviously things roll out there what are the big"
+  },
+  {
+    "id": 136,
+    "start": "00:10:31.710",
+    "end": "00:10:34.190",
+    "text": "Bolders pierce you want to kind of call out for people to kind of follow on"
+  },
+  {
+    "id": 137,
+    "start": "00:10:35.230",
+    "end": "00:10:37.230",
+    "text": "Yeah, so I mean I think"
+  },
+  {
+    "id": 138,
+    "start": "00:10:37.230",
+    "end": "00:10:43.550",
+    "text": "Last month we started some work on kind of some source control features around supporting kit work trees and a lot of our source control"
+  },
+  {
+    "id": 139,
+    "start": "00:10:43.710",
+    "end": "00:10:49.870",
+    "text": "features as you realize like how much we're gonna be doing with agents and multi agent and all that stuff"
+  },
+  {
+    "id": 140,
+    "start": "00:10:49.870",
+    "end": "00:10:55.550",
+    "text": "You start to realize the importance of get in this workflow and where it is great and where it falls out"
+  },
+  {
+    "id": 141,
+    "start": "00:10:56.190",
+    "end": "00:11:01.550",
+    "text": "So we started work on work trees which basically loves you to have multiple branches checked out at the same time last iteration"
+  },
+  {
+    "id": 142,
+    "start": "00:11:01.550",
+    "end": "00:11:04.270",
+    "text": "And so there's some more kind of work on going from that this iteration"
+  },
+  {
+    "id": 143,
+    "start": "00:11:04.910",
+    "end": "00:11:09.950",
+    "text": "But another big one that I've hit a lot with the coding agent is just you have a lot more merge complex, right?"
+  },
+  {
+    "id": 144,
+    "start": "00:11:10.110",
+    "end": "00:11:12.670",
+    "text": "If you're just kicking off work all over the place, it's great"
+  },
+  {
+    "id": 145,
+    "start": "00:11:12.670",
+    "end": "00:11:17.630",
+    "text": "But like then suddenly something changes in the branch that you base it off of and now you have a merge conflict"
+  },
+  {
+    "id": 146,
+    "start": "00:11:17.630",
+    "end": "00:11:22.670",
+    "text": "And so we're kind of exploring this idea of how can we have co-private help you to resolve this merge complex?"
+  },
+  {
+    "id": 147,
+    "start": "00:11:23.070",
+    "end": "00:11:26.750",
+    "text": "Because like we want multi agent to be making more productive, right?"
+  },
+  {
+    "id": 148,
+    "start": "00:11:26.750",
+    "end": "00:11:31.390",
+    "text": "We don't want it to be oh you're having to do with merge complex all the time and so this is a cool scenario"
+  },
+  {
+    "id": 149,
+    "start": "00:11:31.390",
+    "end": "00:11:35.150",
+    "text": "Where we're saying okay, how can AI help us? So that's super neat"
+  },
+  {
+    "id": 150,
+    "start": "00:11:35.790",
+    "end": "00:11:41.870",
+    "text": "Bring your own key. I'm a big bring your own key guy and so we have a lot of improvements coming there"
+  },
+  {
+    "id": 151,
+    "start": "00:11:41.870",
+    "end": "00:11:45.390",
+    "text": "So we just added support actually in incitors for open AI compatible"
+  },
+  {
+    "id": 152,
+    "start": "00:11:46.030",
+    "end": "00:11:50.910",
+    "text": "In points so pretty much all the major LLM providers and friends providers at this point"
+  },
+  {
+    "id": 153,
+    "start": "00:11:51.710",
+    "end": "00:11:57.950",
+    "text": "Follow that syntax to varying degrees and so if you have I have ever wanted to use like a model inside of co-pilot"
+  },
+  {
+    "id": 154,
+    "start": "00:11:58.350",
+    "end": "00:12:02.910",
+    "text": "But we don't support it and it's not an Azure and throw off a group an AI or Jim and I"
+  },
+  {
+    "id": 155,
+    "start": "00:12:03.870",
+    "end": "00:12:06.750",
+    "text": "Then this is a cool way that you can actually explore using that inside of"
+  },
+  {
+    "id": 156,
+    "start": "00:12:07.310",
+    "end": "00:12:12.190",
+    "text": "GitHub co-pilot now the problem is you're not going to get any you know prompt specific tweaks or anything like that"
+  },
+  {
+    "id": 157,
+    "start": "00:12:12.190",
+    "end": "00:12:14.910",
+    "text": "But if you just want to go give it a try it works pretty well"
+  },
+  {
+    "id": 158,
+    "start": "00:12:15.710",
+    "end": "00:12:19.950",
+    "text": "But in the case that you want something a bit more integrated we also actually just"
+  },
+  {
+    "id": 159,
+    "start": "00:12:21.870",
+    "end": "00:12:26.030",
+    "text": "Released a new proposed API that we're hoping to finalize this iteration that's basically"
+  },
+  {
+    "id": 160,
+    "start": "00:12:26.990",
+    "end": "00:12:33.950",
+    "text": "Allows extensions to contribute models to GitHub pilot well, like if I have yeah like the fireworks.ai"
+  },
+  {
+    "id": 161,
+    "start": "00:12:34.910",
+    "end": "00:12:38.990",
+    "text": "Extension that could actually contribute models that would show up in the model picker"
+  },
+  {
+    "id": 162,
+    "start": "00:12:39.230",
+    "end": "00:12:43.630",
+    "text": "Which is really cool. So this is like another example of like how we build BS code and the"
+  },
+  {
+    "id": 163,
+    "start": "00:12:43.630",
+    "end": "00:12:47.790",
+    "text": "Exincibility and how we want extensions to be able to hook into all this stuff we're doing with GitHub"
+  },
+  {
+    "id": 164,
+    "start": "00:12:47.790",
+    "end": "00:12:52.430",
+    "text": "pilot so that's super exciting because now like every single inference for writer on earth"
+  },
+  {
+    "id": 165,
+    "start": "00:12:52.750",
+    "end": "00:12:57.310",
+    "text": "Not just the ones that our team has time to go write a provider for can actually show up and that experience"
+  },
+  {
+    "id": 166,
+    "start": "00:12:59.390",
+    "end": "00:13:01.630",
+    "text": "Couple other things just to hit quickly like mcp"
+  },
+  {
+    "id": 167,
+    "start": "00:13:02.430",
+    "end": "00:13:05.150",
+    "text": "We've been really exploring this idea of registries like how can we"
+  },
+  {
+    "id": 168,
+    "start": "00:13:05.950",
+    "end": "00:13:12.750",
+    "text": "Inside the kind of extensions view similar to what we do for the visual studio marketplace show mcp servers and there's a lot of kind of improvements there"
+  },
+  {
+    "id": 169,
+    "start": "00:13:13.150",
+    "end": "00:13:17.630",
+    "text": "Coating agent continuing to like kind of iterate on the chat sessions view that we added last"
+  },
+  {
+    "id": 170,
+    "start": "00:13:17.870",
+    "end": "00:13:22.910",
+    "text": "Interaction where you can basically see what's happening with your remote GitHub copilot coding agent session locally"
+  },
+  {
+    "id": 171,
+    "start": "00:13:23.870",
+    "end": "00:13:28.270",
+    "text": "Also trying to do better with like packaging and defaults because it does require you to go and saw to get"
+  },
+  {
+    "id": 172,
+    "start": "00:13:28.270",
+    "end": "00:13:30.750",
+    "text": "Whole requests extension and turn on some features and"
+  },
+  {
+    "id": 173,
+    "start": "00:13:31.390",
+    "end": "00:13:36.910",
+    "text": "That's definitely not the happy path that was just kind of where we started to get some early feedback and so I think you're going to start seeing that more"
+  },
+  {
+    "id": 174,
+    "start": "00:13:36.910",
+    "end": "00:13:42.190",
+    "text": "Kind of in the default experience and then I think last month if I remember correctly"
+  },
+  {
+    "id": 175,
+    "start": "00:13:42.190",
+    "end": "00:13:49.310",
+    "text": "Mercad this awesome thread like what do you want to see as fix inside of chat and there's a ton of UX paper cuts and things like that and"
+  },
+  {
+    "id": 176,
+    "start": "00:13:50.110",
+    "end": "00:13:53.070",
+    "text": "So we basically have a whole bunch of those that we want to tackle this iteration"
+  },
+  {
+    "id": 177,
+    "start": "00:13:53.070",
+    "end": "00:13:58.110",
+    "text": "We tackled some last iteration like a checkpoints for example, but there's some we want to tackle this iteration"
+  },
+  {
+    "id": 178,
+    "start": "00:13:58.110",
+    "end": "00:14:05.150",
+    "text": "Some of which are already inside of insideers like basically the the changed files thing you get inside of chat is now collapsed by default"
+  },
+  {
+    "id": 179,
+    "start": "00:14:05.230",
+    "end": "00:14:07.230",
+    "text": "So it takes up a little less space"
+  },
+  {
+    "id": 180,
+    "start": "00:14:07.230",
+    "end": "00:14:10.430",
+    "text": "We want to show how close you are to like filling the context window"
+  },
+  {
+    "id": 181,
+    "start": "00:14:10.990",
+    "end": "00:14:16.030",
+    "text": "Because that's important for some people because they want to avoid summarization because it can reduce the quality of the outputs"
+  },
+  {
+    "id": 182,
+    "start": "00:14:16.030",
+    "end": "00:14:19.950",
+    "text": "You get from the model because you can only fit so much context into the context window"
+  },
+  {
+    "id": 183,
+    "start": "00:14:20.350",
+    "end": "00:14:24.750",
+    "text": "Show like thinking tokens so like for some of the models we support inside of"
+  },
+  {
+    "id": 184,
+    "start": "00:14:25.310",
+    "end": "00:14:29.710",
+    "text": "Get help cope out. We actually have reasoning turned on but you can actually see that reasoning trace and so"
+  },
+  {
+    "id": 185,
+    "start": "00:14:30.670",
+    "end": "00:14:33.390",
+    "text": "We're going to add like kind of thinking tokens to the UX"
+  },
+  {
+    "id": 186,
+    "start": "00:14:33.390",
+    "end": "00:14:39.550",
+    "text": "You can actually see okay, here's how the model is reasoning about your problem before it actually starts streaming in the actual response tokens"
+  },
+  {
+    "id": 187,
+    "start": "00:14:40.110",
+    "end": "00:14:46.910",
+    "text": "So we have a lot of kind of cool enhancements based off things we did last month that should be coming throughout this iteration and some of which have already landed"
+  },
+  {
+    "id": 188,
+    "start": "00:14:47.230",
+    "end": "00:14:51.870",
+    "text": "That's awesome. Yeah, I'm super excited because I know at at build we talked a lot about the MCP"
+  },
+  {
+    "id": 189,
+    "start": "00:14:51.870",
+    "end": "00:14:56.830",
+    "text": "Regres and the MCP dev days as well. I have an anthropic there and the worth is being done in the open and then yeah"
+  },
+  {
+    "id": 190,
+    "start": "00:14:56.830",
+    "end": "00:15:00.510",
+    "text": "I am pretty sure handsome and was like the best feature ever was collapse a bull keep on"
+  },
+  {
+    "id": 191,
+    "start": "00:15:00.510",
+    "end": "00:15:03.710",
+    "text": "Who's so I don't just blew his mind, but you know"
+  },
+  {
+    "id": 192,
+    "start": "00:15:04.350",
+    "end": "00:15:07.150",
+    "text": "Handsomen is a terminal guy. I am not a terminal guy"
+  },
+  {
+    "id": 193,
+    "start": "00:15:08.110",
+    "end": "00:15:13.870",
+    "text": "Unlike everybody else my terminals your big buttons guy as has been established in many of our life streams"
+  },
+  {
+    "id": 194,
+    "start": "00:15:13.870",
+    "end": "00:15:19.150",
+    "text": "I love big I love buttons. I love buttons. You press on. I love a UI. I'm a big UI person"
+  },
+  {
+    "id": 195,
+    "start": "00:15:19.550",
+    "end": "00:15:23.710",
+    "text": "I know I get over here. You know what my terminal is whatever the show whatever the default is now"
+  },
+  {
+    "id": 196,
+    "start": "00:15:23.710",
+    "end": "00:15:27.870",
+    "text": "I do insult power show, but that's about it. There's no customizations no colors what's in the box"
+  },
+  {
+    "id": 197,
+    "start": "00:15:28.350",
+    "end": "00:15:33.070",
+    "text": "It's in the box. I don't even know how to figure it out on a Mac and just whatever the position"
+  },
+  {
+    "id": 198,
+    "start": "00:15:33.070",
+    "end": "00:15:35.710",
+    "text": "That's what it is. I don't I don't know and then you know what I do"
+  },
+  {
+    "id": 199,
+    "start": "00:15:35.950",
+    "end": "00:15:42.270",
+    "text": "I just ask copilot run the commands build it fix it do it run it. I don't know I'm working on the VS code website right now"
+  },
+  {
+    "id": 200,
+    "start": "00:15:42.270",
+    "end": "00:15:46.910",
+    "text": "We have dev day to work on some new community stuff and I'm like I don't know just do and then run it and all this stuff"
+  },
+  {
+    "id": 201,
+    "start": "00:15:46.910",
+    "end": "00:15:52.430",
+    "text": "However, there's been I I've noticed because I've been using the terminal a lot because of all the amazing"
+  },
+  {
+    "id": 202,
+    "start": "00:15:52.430",
+    "end": "00:15:54.510",
+    "text": "Integrations with the chat in the agent mode"
+  },
+  {
+    "id": 203,
+    "start": "00:15:54.510",
+    "end": "00:15:58.190",
+    "text": "There's been tons of improvement improvement and that's why I brought Daniel on to not just talk about the process"
+  },
+  {
+    "id": 204,
+    "start": "00:15:58.190",
+    "end": "00:16:02.830",
+    "text": "But to go deep on like what is happening in the terminal because if you actually go to the August iteration plan"
+  },
+  {
+    "id": 205,
+    "start": "00:16:02.910",
+    "end": "00:16:07.870",
+    "text": "I just talked about there's a pretty beefy block Daniel of terminal stuff that's being worked on"
+  },
+  {
+    "id": 206,
+    "start": "00:16:08.270",
+    "end": "00:16:16.030",
+    "text": "But also there's been a lot of stuff that's already shipping as well. It's like what is happening in the terminal in VS code?"
+  },
+  {
+    "id": 207,
+    "start": "00:16:17.230",
+    "end": "00:16:19.230",
+    "text": "Yeah, so I thought I'd cover"
+  },
+  {
+    "id": 208,
+    "start": "00:16:19.710",
+    "end": "00:16:25.310",
+    "text": "Initially what what just landed in stable with the the rewrite of the terminal tool so"
+  },
+  {
+    "id": 209,
+    "start": "00:16:26.270",
+    "end": "00:16:29.630",
+    "text": "Historically before code cop out chat was open source"
+  },
+  {
+    "id": 210,
+    "start": "00:16:30.510",
+    "end": "00:16:38.430",
+    "text": "The tool was implemented in that extension and that means that we're bound to what the extension API can do"
+  },
+  {
+    "id": 211,
+    "start": "00:16:41.230",
+    "end": "00:16:47.630",
+    "text": "But basically dealing with that has a lot of overhead especially when when it comes to anything to do with UI"
+  },
+  {
+    "id": 212,
+    "start": "00:16:48.830",
+    "end": "00:16:54.830",
+    "text": "So much overhead that we didn't even pursue some things such as like trying to show the terminal in line inside the chat"
+  },
+  {
+    "id": 213,
+    "start": "00:16:55.150",
+    "end": "00:16:59.070",
+    "text": "Instead of opening a terminal which is much easier to with the extension API"
+  },
+  {
+    "id": 214,
+    "start": "00:17:01.070",
+    "end": "00:17:07.870",
+    "text": "But yeah, it comes with other things like it now has much richer access to like APIs and internally"
+  },
+  {
+    "id": 215,
+    "start": "00:17:08.990",
+    "end": "00:17:15.790",
+    "text": "So instead of the very the very high level and easy to use API and extension host"
+  },
+  {
+    "id": 216,
+    "start": "00:17:16.510",
+    "end": "00:17:20.510",
+    "text": "We have much lower level things that essentially allows us to"
+  },
+  {
+    "id": 217,
+    "start": "00:17:21.470",
+    "end": "00:17:26.590",
+    "text": "Track down all of these cases with the terminal tool hanging and and fix them"
+  },
+  {
+    "id": 218,
+    "start": "00:17:28.350",
+    "end": "00:17:33.710",
+    "text": "So when you say tool you mean like kind of like the tool drop down like inside the the cutting edge like these are things"
+  },
+  {
+    "id": 219,
+    "start": "00:17:33.710",
+    "end": "00:17:39.470",
+    "text": "There was like a terminal tool and like you're saying the extension like the the copilot extension"
+  },
+  {
+    "id": 220,
+    "start": "00:17:40.670",
+    "end": "00:17:47.310",
+    "text": "Kind of went down this route instead of just having direct access like like somewhat assumed because of is the integrated"
+  },
+  {
+    "id": 221,
+    "start": "00:17:48.110",
+    "end": "00:17:52.510",
+    "text": "Yeah, so there's been terminal extension APIs for many many years now"
+  },
+  {
+    "id": 222,
+    "start": "00:17:53.630",
+    "end": "00:17:59.070",
+    "text": "And the the tool for that allowed copilot to run anything in the terminal was all built on these APIs"
+  },
+  {
+    "id": 223,
+    "start": "00:18:01.950",
+    "end": "00:18:08.430",
+    "text": "Yeah, does that in see question yeah, I think so so does that mean that like those APIs and approval for other extension creators at the same time during this read right"
+  },
+  {
+    "id": 224,
+    "start": "00:18:10.670",
+    "end": "00:18:13.150",
+    "text": "So as I was trying to stabilize the"
+  },
+  {
+    "id": 225,
+    "start": "00:18:14.110",
+    "end": "00:18:18.990",
+    "text": "The terminal tool on the extension host. I fixed a bunch of bugs actually in the extension host and I"
+  },
+  {
+    "id": 226,
+    "start": "00:18:18.990",
+    "end": "00:18:23.390",
+    "text": "I improved some of the API there, but ultimately we needed lower level"
+  },
+  {
+    "id": 227,
+    "start": "00:18:24.350",
+    "end": "00:18:27.550",
+    "text": "stuff in order to give the sort of experience that we want so"
+  },
+  {
+    "id": 228,
+    "start": "00:18:29.070",
+    "end": "00:18:31.470",
+    "text": "Yeah, and not on that experience that we want so"
+  },
+  {
+    "id": 229,
+    "start": "00:18:32.110",
+    "end": "00:18:37.630",
+    "text": "It definitely wasn't where I wanted it we wanted it to be before and there were a whole bunch of"
+  },
+  {
+    "id": 230,
+    "start": "00:18:38.350",
+    "end": "00:18:42.270",
+    "text": "cases where the terminal could hang when a command ran and"
+  },
+  {
+    "id": 231,
+    "start": "00:18:42.910",
+    "end": "00:18:45.710",
+    "text": "The reason for that is it's quite complicated"
+  },
+  {
+    "id": 232,
+    "start": "00:18:48.430",
+    "end": "00:18:52.830",
+    "text": "One of the major contributors is this is all built on shell integration which"
+  },
+  {
+    "id": 233,
+    "start": "00:18:53.710",
+    "end": "00:19:00.670",
+    "text": "We have a script that we inject into the shell when it launches and that inserts little little markers basically that allows us to see okay"
+  },
+  {
+    "id": 234,
+    "start": "00:19:00.670",
+    "end": "00:19:04.110",
+    "text": "This is where the prompt start this is where the command started this is where the output started"
+  },
+  {
+    "id": 235,
+    "start": "00:19:04.110",
+    "end": "00:19:07.070",
+    "text": "Here's the exit code here's what the command line was exactly"
+  },
+  {
+    "id": 236,
+    "start": "00:19:07.630",
+    "end": "00:19:15.310",
+    "text": "But when you launch your default terminal we might either get what we call rich shell integration which is exactly what we want"
+  },
+  {
+    "id": 237,
+    "start": "00:19:16.030",
+    "end": "00:19:24.350",
+    "text": "We might get no shell integration and then we might get what we call basic shell integration which is that huge spectrum in between nothing and rich and"
+  },
+  {
+    "id": 238,
+    "start": "00:19:26.670",
+    "end": "00:19:32.510",
+    "text": "Yeah, there's just so many different configurations so many different ways to do things that it's hard to to capture everything"
+  },
+  {
+    "id": 239,
+    "start": "00:19:32.990",
+    "end": "00:19:38.670",
+    "text": "Is there a like I mean, I do want to pick favorites, but like is there like a hey"
+  },
+  {
+    "id": 240,
+    "start": "00:19:39.310",
+    "end": "00:19:40.990",
+    "text": "Like this shell"
+  },
+  {
+    "id": 241,
+    "start": "00:19:40.990",
+    "end": "00:19:43.630",
+    "text": "Provides one of those better experiences are the box"
+  },
+  {
+    "id": 242,
+    "start": "00:19:44.990",
+    "end": "00:19:48.910",
+    "text": "If you if you open your terminal and hover it"
+  },
+  {
+    "id": 243,
+    "start": "00:19:49.390",
+    "end": "00:19:51.950",
+    "text": "We'll actually show what type of shell integration there is now"
+  },
+  {
+    "id": 244,
+    "start": "00:19:52.750",
+    "end": "00:19:54.510",
+    "text": "If it says shell integration rich"
+  },
+  {
+    "id": 245,
+    "start": "00:19:55.470",
+    "end": "00:19:58.270",
+    "text": "You're probably gonna have a good experience if it doesn't"
+  },
+  {
+    "id": 246,
+    "start": "00:19:59.470",
+    "end": "00:20:01.470",
+    "text": "We hope you have a good experience"
+  },
+  {
+    "id": 247,
+    "start": "00:20:03.310",
+    "end": "00:20:09.310",
+    "text": "So if you don't have any shell integration for example, it'll say that you don't have shell integration and what that means is"
+  },
+  {
+    "id": 248,
+    "start": "00:20:10.590",
+    "end": "00:20:13.390",
+    "text": "The terminal is just a black box of text and"
+  },
+  {
+    "id": 249,
+    "start": "00:20:14.590",
+    "end": "00:20:19.950",
+    "text": "We have to rely on things like waiting for the terminal to idle briefly in order to"
+  },
+  {
+    "id": 250,
+    "start": "00:20:21.150",
+    "end": "00:20:23.870",
+    "text": "Before we send a command to make sure that the terminal's not doing anything"
+  },
+  {
+    "id": 251,
+    "start": "00:20:24.830",
+    "end": "00:20:26.830",
+    "text": "That falls over in in many different places"
+  },
+  {
+    "id": 252,
+    "start": "00:20:27.390",
+    "end": "00:20:32.190",
+    "text": "Um, another thing is when the command finishes we we don't know so"
+  },
+  {
+    "id": 253,
+    "start": "00:20:33.230",
+    "end": "00:20:36.750",
+    "text": "One of the mechanisms we use is to wait on idle. It's not the only one"
+  },
+  {
+    "id": 254,
+    "start": "00:20:38.030",
+    "end": "00:20:44.750",
+    "text": "But yeah, that can fall over say you you're command echoes something every two seconds it'll it'll prematurely exit so"
+  },
+  {
+    "id": 255,
+    "start": "00:20:47.150",
+    "end": "00:20:53.310",
+    "text": "Yeah, and inside as we'll show a warning saying you have no shell integration you should look into it to"
+  },
+  {
+    "id": 256,
+    "start": "00:20:53.950",
+    "end": "00:20:55.710",
+    "text": "Improved command detection"
+  },
+  {
+    "id": 257,
+    "start": "00:20:55.710",
+    "end": "00:20:59.070",
+    "text": "That's really bad. I feel like that needs a whole blog deep dive just like"
+  },
+  {
+    "id": 258,
+    "start": "00:20:59.790",
+    "end": "00:21:04.590",
+    "text": "What that means for folks because as it so it was interesting is as a non"
+  },
+  {
+    "id": 259,
+    "start": "00:21:05.230",
+    "end": "00:21:06.590",
+    "text": "Terminal"
+  },
+  {
+    "id": 260,
+    "start": "00:21:06.590",
+    "end": "00:21:10.670",
+    "text": "User myself if I can stay away from the command line that's my goal in life like"
+  },
+  {
+    "id": 261,
+    "start": "00:21:11.230",
+    "end": "00:21:15.790",
+    "text": "So just that's just my goal right, but but what's interesting is the more I use"
+  },
+  {
+    "id": 262,
+    "start": "00:21:16.750",
+    "end": "00:21:18.750",
+    "text": "Like agents"
+  },
+  {
+    "id": 263,
+    "start": "00:21:18.750",
+    "end": "00:21:23.150",
+    "text": "Is that the power not only of MCPs are like it calling CLIs for it to"
+  },
+  {
+    "id": 264,
+    "start": "00:21:24.270",
+    "end": "00:21:29.470",
+    "text": "Different commands that are out there like I was just building an app this weekend and I needed icons"
+  },
+  {
+    "id": 265,
+    "start": "00:21:29.470",
+    "end": "00:21:33.230",
+    "text": "So what did it do it generated SVGs and then it like converted them to PNGs"
+  },
+  {
+    "id": 266,
+    "start": "00:21:33.230",
+    "end": "00:21:36.030",
+    "text": "I don't know what it did. It was just running stuff and I was like this is great"
+  },
+  {
+    "id": 267,
+    "start": "00:21:37.390",
+    "end": "00:21:42.350",
+    "text": "So like those commands and those rebats are like really important at the end of the day for it to execute sort of different logic"
+  },
+  {
+    "id": 268,
+    "start": "00:21:42.910",
+    "end": "00:21:49.230",
+    "text": "So you're actually kind of the perfect user in my eyes because you don't touch the defaults and the"
+  },
+  {
+    "id": 269,
+    "start": "00:21:50.190",
+    "end": "00:21:56.030",
+    "text": "The most most of that uses we're things start to get wrong is when you use an obscure shell"
+  },
+  {
+    "id": 270,
+    "start": "00:21:56.990",
+    "end": "00:21:58.990",
+    "text": "or if you use something like"
+  },
+  {
+    "id": 271,
+    "start": "00:21:59.870",
+    "end": "00:22:04.270",
+    "text": "Aziz is show with with a bunch of plug-ins they can bet the show integration"
+  },
+  {
+    "id": 272,
+    "start": "00:22:06.110",
+    "end": "00:22:10.510",
+    "text": "But yeah if you just use the defaults or if you just installed the the light up house show that's even better"
+  },
+  {
+    "id": 273,
+    "start": "00:22:12.350",
+    "end": "00:22:14.590",
+    "text": "Then yeah, it should just work"
+  },
+  {
+    "id": 274,
+    "start": "00:22:14.830",
+    "end": "00:22:18.430",
+    "text": "Like that yeah, I'm a big power shell person. That's that and I come from the down at background"
+  },
+  {
+    "id": 275,
+    "start": "00:22:18.430",
+    "end": "00:22:22.350",
+    "text": "So I feel like the first thing I do in every new machine is like power shall done. I just feel like I know"
+  },
+  {
+    "id": 276,
+    "start": "00:22:22.430",
+    "end": "00:22:24.430",
+    "text": "It'll figure it out in general"
+  },
+  {
+    "id": 277,
+    "start": "00:22:26.000",
+    "end": "00:22:34.960",
+    "text": "Yeah, and so this rewrite Daniel. This is all in stable right and what kind of improvements are we seeing like on our side in terms of the experience for folks"
+  },
+  {
+    "id": 278,
+    "start": "00:22:36.480",
+    "end": "00:22:41.120",
+    "text": "So we went we went doing the best job tracking this behind the scenes before"
+  },
+  {
+    "id": 279,
+    "start": "00:22:41.920",
+    "end": "00:22:44.640",
+    "text": "But what we were seeing was when an exception was thrown"
+  },
+  {
+    "id": 280,
+    "start": "00:22:45.600",
+    "end": "00:22:51.360",
+    "text": "At 2.4% of all terminal calls an exception was thrown and what that meant was"
+  },
+  {
+    "id": 281,
+    "start": "00:22:52.000",
+    "end": "00:22:55.040",
+    "text": "Either an unexpected exception or the tool was canceled"
+  },
+  {
+    "id": 282,
+    "start": "00:22:56.800",
+    "end": "00:22:58.800",
+    "text": "After the new tool shipped"
+  },
+  {
+    "id": 283,
+    "start": "00:22:58.800",
+    "end": "00:23:05.840",
+    "text": "We do do for differentiate those now and the unexpected exception case is like 0.007% or something"
+  },
+  {
+    "id": 284,
+    "start": "00:23:06.400",
+    "end": "00:23:09.760",
+    "text": "Ridiculous this wall and then the cancel rate is 1% so"
+  },
+  {
+    "id": 285,
+    "start": "00:23:10.560",
+    "end": "00:23:12.880",
+    "text": "It's great. It's very clearly improved"
+  },
+  {
+    "id": 286,
+    "start": "00:23:13.200",
+    "end": "00:23:14.880",
+    "text": "Some canceles are expected"
+  },
+  {
+    "id": 287,
+    "start": "00:23:16.000",
+    "end": "00:23:22.000",
+    "text": "It's hard to gauge whether we we call everything in that but it's certainly a significant improvement from what we see"
+  },
+  {
+    "id": 288,
+    "start": "00:23:22.320",
+    "end": "00:23:27.600",
+    "text": "Together that baseline basically on there and the one thing I've noticed as well is that there seems to be this goal of"
+  },
+  {
+    "id": 289,
+    "start": "00:23:29.920",
+    "end": "00:23:33.600",
+    "text": "Not having the user click continue as much or"
+  },
+  {
+    "id": 290,
+    "start": "00:23:34.320",
+    "end": "00:23:41.200",
+    "text": "Approve or run as much like I actually kind of see this in some of the newer build where things just that are safe just kind of happen"
+  },
+  {
+    "id": 291,
+    "start": "00:23:42.160",
+    "end": "00:23:44.160",
+    "text": "You know, there's this"
+  },
+  {
+    "id": 292,
+    "start": "00:23:44.560",
+    "end": "00:23:50.880",
+    "text": "Thought of you're just just let me just call you know tell the agent want to do and just have it do it"
+  },
+  {
+    "id": 293,
+    "start": "00:23:51.840",
+    "end": "00:23:53.840",
+    "text": "But in that case"
+  },
+  {
+    "id": 294,
+    "start": "00:23:53.840",
+    "end": "00:23:58.720",
+    "text": "You know, you kind of want to be safe about it. So like every MCP call right ask for your permission"
+  },
+  {
+    "id": 295,
+    "start": "00:23:58.720",
+    "end": "00:24:04.640",
+    "text": "Almost every single terminal call previously at least always ask for your permission even like get status like"
+  },
+  {
+    "id": 296,
+    "start": "00:24:04.640",
+    "end": "00:24:07.120",
+    "text": "I just get the status like it's not gonna do anything, right?"
+  },
+  {
+    "id": 297,
+    "start": "00:24:07.280",
+    "end": "00:24:15.680",
+    "text": "But that's also been vastly improved and I continue to see iterations there. I know that that's been in in this current iteration as well as further improvements"
+  },
+  {
+    "id": 298,
+    "start": "00:24:16.560",
+    "end": "00:24:19.920",
+    "text": "I did notice that there was a beautiful UI"
+  },
+  {
+    "id": 299,
+    "start": "00:24:20.320",
+    "end": "00:24:21.920",
+    "text": "Now, it's not a beautiful UI"
+  },
+  {
+    "id": 300,
+    "start": "00:24:22.080",
+    "end": "00:24:29.040",
+    "text": "But I understand there's some beautiful UI so like in this approving world like what is going on there because the terminal is not working better"
+  },
+  {
+    "id": 301,
+    "start": "00:24:29.040",
+    "end": "00:24:32.560",
+    "text": "That means that we should just be using the terminal more and then should just do more stuff, right?"
+  },
+  {
+    "id": 302,
+    "start": "00:24:33.520",
+    "end": "00:24:40.880",
+    "text": "Yeah, yeah, so if you're if your confirmations there are the more autonomous agent motors the more useful it is the less annoying it is"
+  },
+  {
+    "id": 303,
+    "start": "00:24:42.400",
+    "end": "00:24:47.200",
+    "text": "So in the past in this this most recent release in the previous one we've been iterating on"
+  },
+  {
+    "id": 304,
+    "start": "00:24:47.920",
+    "end": "00:24:49.920",
+    "text": "the terminal auto approve system"
+  },
+  {
+    "id": 305,
+    "start": "00:24:52.160",
+    "end": "00:24:57.840",
+    "text": "It's it's kind of hidden you have to find the setting you have to configure your own rules right now"
+  },
+  {
+    "id": 306,
+    "start": "00:24:58.880",
+    "end": "00:25:02.160",
+    "text": "But it's become pretty pretty capable and reliable"
+  },
+  {
+    "id": 307,
+    "start": "00:25:03.520",
+    "end": "00:25:06.800",
+    "text": "And it didn't most recent one in particular so"
+  },
+  {
+    "id": 308,
+    "start": "00:25:08.080",
+    "end": "00:25:11.520",
+    "text": "So yeah coming into inside is a whole bunch of stuff it's been happening"
+  },
+  {
+    "id": 309,
+    "start": "00:25:12.880",
+    "end": "00:25:14.080",
+    "text": "So rules can now"
+  },
+  {
+    "id": 310,
+    "start": "00:25:14.960",
+    "end": "00:25:22.400",
+    "text": "Target half a little a little nicer so if you have say scripts slash test that you want to always allow"
+  },
+  {
+    "id": 311,
+    "start": "00:25:23.520",
+    "end": "00:25:27.840",
+    "text": "If you add that rule it'll it'll handle like dot slash prefixes"
+  },
+  {
+    "id": 312,
+    "start": "00:25:28.240",
+    "end": "00:25:32.320",
+    "text": "It'll handle the different the different separators for windows and non windows"
+  },
+  {
+    "id": 313,
+    "start": "00:25:33.520",
+    "end": "00:25:36.000",
+    "text": "Um, there's also a UI entry point so"
+  },
+  {
+    "id": 314,
+    "start": "00:25:36.800",
+    "end": "00:25:40.640",
+    "text": "When you're at a command there'll be a continue button the regular continue button"
+  },
+  {
+    "id": 315,
+    "start": "00:25:41.200",
+    "end": "00:25:43.600",
+    "text": "But also a drop down that allows you to"
+  },
+  {
+    "id": 316,
+    "start": "00:25:44.880",
+    "end": "00:25:52.400",
+    "text": "I'd go to the setting or or add some some new rules based on you know what we suggest based on what was what was run"
+  },
+  {
+    "id": 317,
+    "start": "00:25:54.080",
+    "end": "00:25:55.360",
+    "text": "Um"
+  },
+  {
+    "id": 318,
+    "start": "00:25:55.360",
+    "end": "00:26:01.040",
+    "text": "Another thing that's that's nice is that so there is a new UI for the confirm and there's supplies to all tools"
+  },
+  {
+    "id": 319,
+    "start": "00:26:01.920",
+    "end": "00:26:04.560",
+    "text": "But once once you confirm or once you add a rule"
+  },
+  {
+    "id": 320,
+    "start": "00:26:05.040",
+    "end": "00:26:08.960",
+    "text": "We'll actually tell you exactly what the rule was that order will appear to this thing"
+  },
+  {
+    "id": 321,
+    "start": "00:26:10.400",
+    "end": "00:26:14.960",
+    "text": "And you can click into it to go to the setting so it's like really transparent"
+  },
+  {
+    "id": 322,
+    "start": "00:26:14.960",
+    "end": "00:26:16.960",
+    "text": "It's really clear"
+  },
+  {
+    "id": 323,
+    "start": "00:26:16.960",
+    "end": "00:26:21.040",
+    "text": "How to change the rules if you want to back out you can you can click it and just undo it"
+  },
+  {
+    "id": 324,
+    "start": "00:26:24.320",
+    "end": "00:26:28.080",
+    "text": "Yeah, and then and then the other big thing is is we're adding a bunch of defaults"
+  },
+  {
+    "id": 325,
+    "start": "00:26:28.160",
+    "end": "00:26:30.160",
+    "text": "Uh"
+  },
+  {
+    "id": 326,
+    "start": "00:26:30.640",
+    "end": "00:26:33.120",
+    "text": "I like to call them safety faults. Okay, so"
+  },
+  {
+    "id": 327,
+    "start": "00:26:35.040",
+    "end": "00:26:39.120",
+    "text": "So uh, yeah, there's a lot of a lot of things the terminal commands can do so"
+  },
+  {
+    "id": 328,
+    "start": "00:26:40.800",
+    "end": "00:26:42.800",
+    "text": "As an example of of something we do"
+  },
+  {
+    "id": 329,
+    "start": "00:26:44.720",
+    "end": "00:26:47.600",
+    "text": "There's the fine command that lets you find text as ad files"
+  },
+  {
+    "id": 330,
+    "start": "00:26:49.360",
+    "end": "00:26:54.720",
+    "text": "You might think that that's safe to run generally. It's not actually because there's a whole bunch of arguments"
+  },
+  {
+    "id": 331,
+    "start": "00:26:55.360",
+    "end": "00:27:02.320",
+    "text": "Such as the hyphen exact argument that lets you just execute a sub commit inside"
+  },
+  {
+    "id": 332,
+    "start": "00:27:03.200",
+    "end": "00:27:05.840",
+    "text": "So for find we will allow that command"
+  },
+  {
+    "id": 333,
+    "start": "00:27:06.400",
+    "end": "00:27:13.760",
+    "text": "But we'll block it when there is certain arguments used no are and this applies to a whole bunch of uh"
+  },
+  {
+    "id": 334,
+    "start": "00:27:15.120",
+    "end": "00:27:18.240",
+    "text": "I think like sort has an issue like that and"
+  },
+  {
+    "id": 335,
+    "start": "00:27:18.800",
+    "end": "00:27:26.560",
+    "text": "J2 I can we consider adding that but I ended up removing it because it's like trivial to execute anything from the JQ trend"
+  },
+  {
+    "id": 336,
+    "start": "00:27:27.440",
+    "end": "00:27:31.440",
+    "text": "Oh, wow, you know you and I were talking about it quite a bit and the list you know"
+  },
+  {
+    "id": 337,
+    "start": "00:27:31.440",
+    "end": "00:27:34.480",
+    "text": "I was like I do they here's my defaults like you're batting like you know"
+  },
+  {
+    "id": 338,
+    "start": "00:27:34.480",
+    "end": "00:27:39.280",
+    "text": "Don't have build on a test like you then PM things all the stuff and then actually like talking through with you"
+  },
+  {
+    "id": 339,
+    "start": "00:27:39.280",
+    "end": "00:27:44.960",
+    "text": "I was like oh things are actually like a lot more complex than I thought think about because I never think about the additional arguments"
+  },
+  {
+    "id": 340,
+    "start": "00:27:45.520",
+    "end": "00:27:51.440",
+    "text": "And the complexity of it because like I'm memorizing like every argument that could be passed into a pretty single command on there like"
+  },
+  {
+    "id": 341,
+    "start": "00:27:51.840",
+    "end": "00:27:55.200",
+    "text": "Was this a collaboration with like a bunch of people on the team like with the community?"
+  },
+  {
+    "id": 342,
+    "start": "00:27:55.200",
+    "end": "00:28:01.360",
+    "text": "Obviously, I think it's just rolling to the get-up issue and on it as well, but like how did you actually make that decision?"
+  },
+  {
+    "id": 343,
+    "start": "00:28:02.080",
+    "end": "00:28:05.360",
+    "text": "Yeah, I've asked a whole lot of people for feedback on this"
+  },
+  {
+    "id": 344,
+    "start": "00:28:06.080",
+    "end": "00:28:08.560",
+    "text": "Oh, so internally inside the team"
+  },
+  {
+    "id": 345,
+    "start": "00:28:09.520",
+    "end": "00:28:13.520",
+    "text": "internally side Microsoft we have dog-feeding channels where a whole bunch of people get together"
+  },
+  {
+    "id": 346,
+    "start": "00:28:14.160",
+    "end": "00:28:17.760",
+    "text": "I think I asked on Twitter. I'm certainly tweeted at people saying can you review this?"
+  },
+  {
+    "id": 347,
+    "start": "00:28:20.000",
+    "end": "00:28:25.760",
+    "text": "Security of people and say get her live reviewed it and then I also just last week"
+  },
+  {
+    "id": 348,
+    "start": "00:28:26.480",
+    "end": "00:28:29.200",
+    "text": "Like sat down with with opus and"
+  },
+  {
+    "id": 349,
+    "start": "00:28:30.000",
+    "end": "00:28:35.760",
+    "text": "Did like several security reviews iterating on it and it found a whole bunch of cases. Oh, wow"
+  },
+  {
+    "id": 350,
+    "start": "00:28:36.160",
+    "end": "00:28:38.960",
+    "text": "So it's in a pretty good state now and it's uh"
+  },
+  {
+    "id": 351,
+    "start": "00:28:39.920",
+    "end": "00:28:43.680",
+    "text": "It's interesting because you might think that at having these defaults"
+  },
+  {
+    "id": 352,
+    "start": "00:28:44.960",
+    "end": "00:28:50.080",
+    "text": "Could be more risky, but when you consider things like we've done the research about these arguments"
+  },
+  {
+    "id": 353,
+    "start": "00:28:50.080",
+    "end": "00:28:56.160",
+    "text": "It's actually much more safe if you'll allow us to approve find but not these special arguments rather than"
+  },
+  {
+    "id": 354,
+    "start": "00:28:56.800",
+    "end": "00:29:04.560",
+    "text": "The user seeing this and saying I'll find a safe, you know check I think the other thing about that is like when"
+  },
+  {
+    "id": 355,
+    "start": "00:29:05.520",
+    "end": "00:29:10.560",
+    "text": "There is no good defaults then the user is way more because it is frustrating, right?"
+  },
+  {
+    "id": 356,
+    "start": "00:29:10.560",
+    "end": "00:29:14.560",
+    "text": "Like when you're working with the agent and there's like definitely some friction there of like as a user"
+  },
+  {
+    "id": 357,
+    "start": "00:29:14.560",
+    "end": "00:29:16.480",
+    "text": "I just want things to happen, right? And so"
+  },
+  {
+    "id": 358,
+    "start": "00:29:17.200",
+    "end": "00:29:19.760",
+    "text": "Sometimes there's like a user preference to just be like"
+  },
+  {
+    "id": 359,
+    "start": "00:29:20.800",
+    "end": "00:29:26.480",
+    "text": "I just want everything to happen, right? And so if you have no defaults you actually end up pushing the user to a more extreme position"
+  },
+  {
+    "id": 360,
+    "start": "00:29:26.480",
+    "end": "00:29:28.880",
+    "text": "Then just taking a reasonable one to begin with"
+  },
+  {
+    "id": 361,
+    "start": "00:29:29.760",
+    "end": "00:29:33.600",
+    "text": "Yep, something else please something else we might add"
+  },
+  {
+    "id": 362,
+    "start": "00:29:34.560",
+    "end": "00:29:39.840",
+    "text": "Along this is deferring some of this to to an element so if it's something's like"
+  },
+  {
+    "id": 363,
+    "start": "00:29:40.560",
+    "end": "00:29:47.040",
+    "text": "Script files it's really hard to for us to say oh, that's that's safe because the script file could do anything"
+  },
+  {
+    "id": 364,
+    "start": "00:29:47.600",
+    "end": "00:29:49.280",
+    "text": "But if we"
+  },
+  {
+    "id": 365,
+    "start": "00:29:49.280",
+    "end": "00:29:53.760",
+    "text": "Ask a LMM is this fine to run then it could add it to the approved list"
+  },
+  {
+    "id": 366,
+    "start": "00:29:54.480",
+    "end": "00:29:58.720",
+    "text": "the terminal auto approved mechanism also has a denialist so if"
+  },
+  {
+    "id": 367,
+    "start": "00:29:59.680",
+    "end": "00:30:05.200",
+    "text": "If that's that was allowed by LMM but it was denied by say it used the RM command"
+  },
+  {
+    "id": 368,
+    "start": "00:30:06.480",
+    "end": "00:30:10.480",
+    "text": "It still wouldn't run despite the LMM saying we say so it's just an extra thing"
+  },
+  {
+    "id": 369,
+    "start": "00:30:11.120",
+    "end": "00:30:14.560",
+    "text": "That's not in the inside as yet, but it maybe it will be in the future"
+  },
+  {
+    "id": 370,
+    "start": "00:30:14.560",
+    "end": "00:30:18.720",
+    "text": "I like that because I think I kind of just like Pearson you kind of been mentioning is like right now"
+  },
+  {
+    "id": 371,
+    "start": "00:30:18.720",
+    "end": "00:30:22.640",
+    "text": "If every single terminal command I have to you know, yes, yes, yes, yes, yes"
+  },
+  {
+    "id": 372,
+    "start": "00:30:22.960",
+    "end": "00:30:25.200",
+    "text": "Your default turns into yes, but now"
+  },
+  {
+    "id": 373,
+    "start": "00:30:25.920",
+    "end": "00:30:32.000",
+    "text": "With this and since I've been using it, I'm like, okay, I know the VS codes only gonna really prompt me"
+  },
+  {
+    "id": 374,
+    "start": "00:30:32.800",
+    "end": "00:30:38.080",
+    "text": "When it really needs to prompt me more right and then I can start to say, okay, yeah, I want Donette builder"
+  },
+  {
+    "id": 375,
+    "start": "00:30:38.080",
+    "end": "00:30:42.240",
+    "text": "I want Donette test, but I don't want Donette run really because I don't want you running things in general, right?"
+  },
+  {
+    "id": 376,
+    "start": "00:30:42.240",
+    "end": "00:30:45.280",
+    "text": "So kind of having this step through this is awesome"
+  },
+  {
+    "id": 377,
+    "start": "00:30:45.920",
+    "end": "00:30:49.200",
+    "text": "I will put links to everything then you link so much for coming on and talking through"
+  },
+  {
+    "id": 378,
+    "start": "00:30:49.200",
+    "end": "00:30:53.360",
+    "text": "I'll be back as the terminal continues to evolve and of course, you know"
+  },
+  {
+    "id": 379,
+    "start": "00:30:53.680",
+    "end": "00:30:58.160",
+    "text": "Check out the iteration plans. I'm sure some time will be here in no time and personal will be back"
+  },
+  {
+    "id": 380,
+    "start": "00:30:58.720",
+    "end": "00:31:00.640",
+    "text": "With more VS code inside as podcast"
+  },
+  {
+    "id": 381,
+    "start": "00:31:00.640",
+    "end": "00:31:04.320",
+    "text": "I don't forget that you can subscribe of course on our YouTube if you want to see our beautiful faces"
+  },
+  {
+    "id": 382,
+    "start": "00:31:04.880",
+    "end": "00:31:10.880",
+    "text": "There, but you can also now subscribe in your favorite podcast app run everything. I woke up really early"
+  },
+  {
+    "id": 383,
+    "start": "00:31:11.440",
+    "end": "00:31:16.240",
+    "text": "After launching the first video and got everything up on the apple podcast on the Spotify's on the podcast and all the things"
+  },
+  {
+    "id": 384,
+    "start": "00:31:16.400",
+    "end": "00:31:20.240",
+    "text": "You can go to VS code podcast.com to find links to everything"
+  },
+  {
+    "id": 385,
+    "start": "00:31:20.240",
+    "end": "00:31:26.240",
+    "text": "Let's go do for this VS code inside as podcast Daniel. Thank you. Pierce. Thank you. Okay, gen the next one"
+  }
+]

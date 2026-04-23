@@ -2,24 +2,32 @@
 
 [← Back to Guide](../ReadMe.md) | [← Part II: The Primitives](part-2-primitives.md)
 
-*Updated: April 17, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
+*Updated: April 22, 2026 · Validated against VS Code 1.117 and GitHub Copilot docs as of April 22, 2026.*
+
+---
+
+This chapter is the lookup layer for the rest of the guide. Use it when the main question is no longer "why does this matter?" or "which chapter should I read next?" and has become "which file, field, scope, or support boundary applies here?"
+
+If this still feels new, stop here and read [Part I: Foundations](part-1-foundations.md) and [Part II: The Primitives](part-2-primitives.md) first. This chapter is a cheat sheet, not a first tutorial.
+
+Start with the [Quick Decision Guide](#quick-decision-guide) when the problem is still fuzzy. Use the tables below when you already know the primitive and need the exact location, load timing, frontmatter, or surface support detail.
 
 ---
 
 ## Quick Reference: File Locations
 
-| Primitive | Location | File Extension |
-|-----------|----------|----------------|
-| Always-On Instructions | `.github/copilot-instructions.md`, `AGENTS.md`, or `CLAUDE.md` | `.md` (specific name) |
-| File-Based Instructions | `.github/instructions/` | `.instructions.md` |
-| Prompts | `.github/prompts/` | `.prompt.md` |
-| Skills | `.github/skills/*/` | `SKILL.md` |
-| Custom Agents | `.github/agents/` OR anywhere | `.agent.md` or any `.md` in agents/ |
-| MCP Servers | `.vscode/mcp.json` | `.json` |
-| Hooks | `.github/hooks/` | `.json` |
-| Copilot Memory | Managed by GitHub | N/A: no repo file |
-| Agentic Workflows | `.github/workflows/` | `.md` (workflow instructions) |
-| Copilot SDK | External dependency (npm, pip, etc.) | N/A: installed via package managers |
+| Primitive | Plain-English use | Location | File Extension |
+|-----------|-------------------|----------|----------------|
+| Always-On Instructions | Rules that should apply everywhere in the repo | `.github/copilot-instructions.md`, `AGENTS.md`, or `CLAUDE.md` | `.md` (specific name) |
+| File-Based Instructions | Extra rules for only some files or folders | `.github/instructions/` | `.instructions.md` |
+| Prompts | Reusable slash commands for repeat tasks | `.github/prompts/` | `.prompt.md` |
+| Skills | Multi-step know-how the agent can discover and reuse | `.github/skills/*/` | `SKILL.md` |
+| Custom Agents | Named personas with different tools and behavior | `.github/agents/` OR anywhere | `.agent.md` or any `.md` in agents/ |
+| MCP Servers | External tools and data sources | `.vscode/mcp.json` | `.json` |
+| Hooks | Runtime checks and enforcement around agent actions | `.github/hooks/` | `.json` |
+| Copilot Memory | Repository knowledge GitHub learns over time | Managed by GitHub | N/A: no repo file |
+| Agentic Workflows | Continuous AI tasks in GitHub Actions | `.github/workflows/` | `.md` (workflow instructions) |
+| Copilot SDK | Embed the runtime in another application | External dependency (npm, pip, etc.) | N/A: installed via package managers |
 
 ---
 
@@ -163,6 +171,10 @@ metadata:
 
 **Official docs:** [Custom agents configuration reference](https://docs.github.com/en/copilot/reference/custom-agents-configuration)
 
+For the runtime mental model behind delegated work, pair this reference with [The Agent Loop](agent-loop.md). For the clearest subagent explanation from the VS Code team, use [VS Code Insiders Podcast Episode 19: Subagents: Parallel Execution and Context Isolation](https://www.vscodepodcast.com/19). The repo also keeps the local transcript at [../references/transcripts/vscode-podcast/2026-02-09-subagents-parallel-execution-and-context-isolation-updated.md](../references/transcripts/vscode-podcast/2026-02-09-subagents-parallel-execution-and-context-isolation-updated.md).
+
+**Also watch:** [Subagents: Parallel Execution and Context Isolation](https://www.youtube.com/watch?v=GMAoTeD9siU&t=0s) — Harald Kirschner explains context isolation and parallel delegation on the official VS Code channel.
+
 | Field | Required | Type | Description |
 |-------|----------|------|-------------|
 | `name` | No | string | Display name in agent picker |
@@ -177,6 +189,17 @@ metadata:
 | `target` | No | string | Target environment: `vscode` or `github-copilot` |
 | `mcp-servers` | No | object[] | MCP servers for `github-copilot` target |
 | `hooks` | No | object | Agent-scoped hooks (Preview) |
+
+### Subagents Quick Notes
+
+Subagents are delegated agent loops with isolated context, not just extra prompts inside the same conversation. The main agent passes a focused task to the subagent, the subagent gathers its own evidence, and only the summarized result comes back. That is why the `agents`, `user-invocable`, and `disable-model-invocation` fields matter: they control which agents can be delegated, whether they appear in the picker, and whether they can be invoked automatically as subagents.
+
+When documenting or debugging subagent behavior, start with these resources in order:
+
+- [Subagents in Visual Studio Code](https://code.visualstudio.com/docs/copilot/agents/subagents)
+- [The Agent Loop](agent-loop.md)
+- [VS Code Insiders Podcast Episode 19](https://www.vscodepodcast.com/19)
+- [Subagents: Parallel Execution and Context Isolation](https://www.youtube.com/watch?v=GMAoTeD9siU&t=0s)
 
 ```yaml
 ---
@@ -723,7 +746,11 @@ You are [persona description].
 |----------|-----|
 | GitHub Copilot Docs | https://docs.github.com/en/copilot |
 | VS Code Copilot Docs | https://code.visualstudio.com/docs/copilot |
+| VS Code Source Code | https://github.com/microsoft/vscode |
+| VS Code Copilot Chat Source | https://github.com/microsoft/vscode-copilot-chat |
 | GitHub Copilot CLI | https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli |
+| GitHub Copilot CLI Repository | https://github.com/github/copilot-cli |
+| GitHub Copilot SDK Repository | https://github.com/github/copilot-sdk |
 | MCP Specification | https://modelcontextprotocol.io |
 | Agent Skills Spec | https://agentskills.io |
 | Copilot Memory (concepts) | https://docs.github.com/en/copilot/concepts/agents/copilot-memory |

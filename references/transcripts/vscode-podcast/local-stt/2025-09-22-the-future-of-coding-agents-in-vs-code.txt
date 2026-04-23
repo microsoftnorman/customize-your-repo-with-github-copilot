@@ -1,0 +1,545 @@
+[00:00:00.300] Welcome back everyone to the VS Code Insiders podcast you're behind the scenes look at your favorite code editor
+
+[00:00:06.260] VS code today. I have two amazing spectacular guests some of my best friends in the entire world
+
+[00:00:11.420] Brigitte Mertal and Josh Spicer from the VS Code team. How's it going?
+
+[00:00:15.420] Go under there. Yeah, I'm so excited to be talking to you today because we're gonna be talking all about coding agents
+
+[00:00:21.780] and all the amazing stuff that's been happening in it but before we do there, Brigitte,
+
+[00:00:25.620] I'll have you on a little bit about yourself. Yeah, so I'm Brigitte. I'm a product manager on the VS Code team here at Microsoft
+
+[00:00:31.300] I get to work on a ton of really cool features
+
+[00:00:33.860] Specifically in co-pilot. I work on our co-pilot coding agent integration and I work on our next edit suggestions experience
+
+[00:00:40.740] And I'll let you Josh
+
+[00:00:42.260] Sweet. Yeah, and I am Josh. I have been on the team for about a year as an engineer
+
+[00:00:48.100] I've worked on a wide range of things in the past year
+
+[00:00:51.060] I'm worked on some like a psych remote SSH bits worked on some enterprise policy and now working on a lot of the coding
+
+[00:00:57.540] Engine work that we're doing now awesome now. You're also world famous for your what I like to call the
+
+[00:01:04.220] Tatt the Tattoine theme inside of VS Code. That's sort of officially named it. What it's called like solar or something
+
+[00:01:10.220] What's it called?
+
+[00:01:11.220] Yes, it's called
+
+[00:01:13.220] Solarized I believe is what I named it. I have heard it. He called like the theme that looks like a Kindle
+
+[00:01:18.380] I've never heard like the Tattoine theme
+
+[00:01:21.020] So there's a whole bunch of names for it. Yeah, I had actually forked this theme from another great theme that was
+
+[00:01:28.380] Also like a solarized kind of name to it and I I loved it. So I wanted to extend it
+
+[00:01:36.060] And now every like release note. I get at least a message for you. You know, not about the work I'm doing but about my theme specifically, so
+
+[00:01:43.420] Yeah, sure if you're watching on YouTube or Spotify right now, you will see that. I will be putting it up
+
+[00:01:48.460] It's my default theme. Did you know that? It's my new default theme. I do not know that. That's very exciting nice
+
+[00:01:52.940] It's yeah, does anything want me to add let me know
+
+[00:01:55.740] Oh, yeah, well, yeah, there's some there's something I haven't done. I love it and I love it
+
+[00:02:00.060] Also that it really upsets peers whenever I share my screen and we do something like
+
+[00:02:04.060] He hates they're very divisive. Yeah
+
+[00:02:06.940] So I love that he ate it, but I love that I love it
+
+[00:02:10.140] And yes, I love knowing that peer states that that is good info that I wasn't
+
+[00:02:14.460] Exactly, yeah, I just get some well, let's get into it because for me
+
+[00:02:20.620] You know when I was introduced to agent mode inside of the VS code many moons ago a revolutionized how I worked and then
+
+[00:02:28.540] When coding agents came about like that were not agent mode, which I want to clarify here
+
+[00:02:34.060] That also revolutionized how I work again, but I think many people who are brand new not even just a
+
+[00:02:39.340] Using VS code and using chat and using agent mode, they may not actually know even what coding agents are like what ours are like with the
+
+[00:02:47.260] Interition, so what is a coding agent and how exactly is that different
+
+[00:02:52.860] Than agent modes inside of VS code? Yeah, great. Yeah, so I think when you know
+
+[00:02:58.780] Proding agents kind of came on the scene, you know, we had like the CLI based like the few I based coding agents
+
+[00:03:04.940] Came on the scene and I know the VS code team was incredibly excited about it
+
+[00:03:09.740] It's really cool concept. We have coding agent now from GitHub
+
+[00:03:13.180] Or essentially and how we kind of do this in VS code is that you have some unit of work that you want to kind of
+
+[00:03:19.820] Ship off and delegate to be done on your behalf, so it isn't going to be the work won't be performed on your machine
+
+[00:03:26.380] Like with agent mode for instance, it's kind of
+
+[00:03:29.900] That's work will be done in isolated environments. You can kind of you know go and check in on it every now and again
+
+[00:03:35.260] CS progress
+
+[00:03:37.260] You're happy with it. You can kind of pull that down or you can make a pull request
+
+[00:03:41.260] Again such change if you're not happy with it
+
+[00:03:43.820] You can either from the coding agent again to continue working asynchronously on it or you can even you know
+
+[00:03:49.980] Take some of those changes down to your local machine and edit them yourself, so it's a very flexible way to work
+
+[00:03:56.060] Especially if you have a number of tasks that are all independent if you kind of you know
+
+[00:04:00.540] Did be them up between your coding agents and get a lot more work done. It's a pretty cool
+
+[00:04:06.060] Now I feel like they also have a lot of names. I think Bridget used that there was like 28 different ways
+
+[00:04:10.700] Like so what are some other things that people may
+
+[00:04:12.860] Actually like here when we talk about it because I call it about 20 different things
+
+[00:04:17.020] Yeah, and I think it's interesting to see how the name and yet kind of evolves
+
+[00:04:21.420] It kind of I think it speaks to as well how people already work because one of the things that I've worked on a lot in VS code is our
+
+[00:04:27.420] Development experience is then it felt natural for me to call when you're delegating something you're a coding agent
+
+[00:04:32.060] Like, oh, that's the remote agent because it's not something that I'm actively thinking on it's not like in my local machine
+
+[00:04:37.660] And that can just go delegated tasks to like Josh is mentioning
+
+[00:04:40.860] But you might have heard terms like remote agent background agent asynchronous agent
+
+[00:04:45.980] Cloud agents and I think to an extent it depends too because the next coding agent could refer to something that is on your local machine or on a remote
+
+[00:04:53.420] Machines that can also vary based on actual implementation but for co pilot coding agent for instance like that is happening in the cloud
+
+[00:05:00.220] So I could step away from my machine. I could turn off my machine and the agent is still gonna be working on that task that I delegated
+
+[00:05:07.740] Miracle and so
+
+[00:05:09.740] So I guess when we think about even with agent mode like in chat
+
+[00:05:13.020] I mean, it is an agent like it's just kind of different when we're talking about coding agents
+
+[00:05:16.540] We often are talking about that asynchronous work things that are firing off. So for example, I just literally did this
+
+[00:05:22.700] In my feedback flow app that I did I went into
+
+[00:05:25.900] Into VS code and I created a new
+
+[00:05:29.980] Coding I went into while I went into the agent mode and said I'm gonna do some work
+
+[00:05:32.940] But I'm gonna delegate it so normally in the flow. I would type in. I want to do this thing and
+
+[00:05:37.820] Agent mode would get to work on my branch on my local machine
+
+[00:05:40.860] But instead of doing that I said hey, I want to add a checkbox here to have individual reports versus combined reports for this like
+
+[00:05:48.380] Analyzer that I have and instead of saying send I said delegate to coding agent and when I did that
+
+[00:05:55.740] Things happened
+
+[00:05:58.220] Yeah, not about there
+
+[00:06:00.220] Yeah, was that we sent all of the context from your chat up to the cloud right up up to your code
+
+[00:06:08.220] And that work was performed not on your machine and what you saw was some information coming back from the coding agent of exactly what it was performing
+
+[00:06:17.900] But it allows you to continue working on maybe some other more complex task on your local machine
+
+[00:06:22.700] Well, you kind of delegate at new checkboxes or whatever you are doing in your application to
+
+[00:06:29.900] Secondary coding agent
+
+[00:06:31.900] Back can do the work on your behalf and that's what we're really excited about I think in VS code
+
+[00:06:37.740] Flexibility
+
+[00:06:38.940] You know, what are the use cases like inside of VS code or even outside of VS code because like yeah
+
+[00:06:42.940] I could go to get up.com and also start one of these as well
+
+[00:06:45.020] Like what are the use cases that you're seeing for yourself on the team?
+
+[00:06:47.580] But also like our engineers and developers using VS code using these for yeah, right?
+
+[00:06:53.420] Yeah, so I think it's still like
+
+[00:06:55.100] Super open ended exactly how folks are going to use these tools which I think is the exciting part
+
+[00:06:58.780] You know, working on this this right now, right?
+
+[00:07:01.740] Is that we're actually experimenting every month and I'll release notes. You'll see a lot of changes
+
+[00:07:06.780] In this entire experience which is very exciting. We're getting a lot of feedback the entire team is self-hosting on it every day
+
+[00:07:13.420] So everyone's kind of using it a little differently the way I like to use it is really if I have a small isolated issue
+
+[00:07:22.700] That's open
+
+[00:07:24.380] That I think can be handled nicely by coding agent. That's the main use case that I'm seeing these days for it
+
+[00:07:31.260] Yeah, and I was going to say that that resonates with me
+
+[00:07:33.500] I said think something that's cool is that in VS code because we are being really flexible of trying to meet developers where they are
+
+[00:07:39.180] However, they want to use these tools. We want to provide those different entry points
+
+[00:07:43.100] We have this extension called the hip-hole quest extension that we also have coding agent integration within
+
+[00:07:48.780] So when copilot creates a PR on your behalf, it'll show up in a special section in the PR view there
+
+[00:07:54.860] And so the thing I think that's cool is if you open up issues in a repo, you just want to look at all the issues in a repo
+
+[00:07:59.260] You can see that from within VS code as well
+
+[00:08:01.820] And we have an icon where you can just assign that to copilot and then from there, you'll be able to just have copilot work on it and the background will you do some other work?
+
+[00:08:09.180] And I found that to be nice because sometimes it's like, I'm tracking something that I'm doing either for like a personal repo that I have
+
+[00:08:15.660] Or for something that I file maybe for the team in general and I'm like, I wonder if the coding agent can try tackling that
+
+[00:08:21.420] It's really convenient just being able to pop over and assign that to copilot too. So kind of these chat driven flows and we also have these PR driven flows
+
+[00:08:29.740] Yeah, and I think my favorite integration these days is if there's a to-do comment in your code
+
+[00:08:35.100] You know show a little code action right next to that line that allows you to delegate that specific comment to coding agent
+
+[00:08:42.540] And it'll use the context of the file that you've chosen as well as the actual comment, of course, and
+
+[00:08:48.380] You can just as you're working on some other issue you kind of see this
+
+[00:08:52.780] Comment now that was maybe there for three or four years or something and now you can just delegate that and
+
+[00:08:58.860] Go check all of like the results the PR that it creates at any point after that. But I think it's really cool
+
+[00:09:06.140] That we have a lot of new ways to experiment with this tool that we have never seen before
+
+[00:09:13.260] Yeah, I think a lot of people may have seen this for the very first time it build this year when Satyo is on stage and he
+
+[00:09:19.260] Had the get up issue there and then he assigned it to copilot which for all intents and purposes is that kind of was the original flow
+
+[00:09:26.860] But what you both just described are many different flows. So so can we step actually
+
+[00:09:32.700] Through each of those different flows of where a developer today would fire off these coding agents inside of
+
+[00:09:40.700] The VS code and the implications of how is that different from
+
+[00:09:44.700] Creating an issue and a sign here because I think bridge you just said yeah, you can pull up your issues and assign them from there
+
+[00:09:50.220] And then it will create a branch off a meaning go
+
+[00:09:52.540] But there's many places and many new places especially in 103 and 104 that just drop recently
+
+[00:09:58.460] But they kind of do work a little bit different than that. So can we walk through each of those to kind of get that under the hood of what's happening?
+
+[00:10:06.220] Yeah, I think one of my other kind of flows that I use and I know a lot of folks on our team actually do is
+
+[00:10:13.420] You know
+
+[00:10:14.380] to have a successful coding agents
+
+[00:10:17.260] You know kind of session to actually get the result that you're looking for at the end
+
+[00:10:21.260] Especially for a code based like the escode you need a lot of context right there's a lot of
+
+[00:10:25.820] Information that needs to go into the
+
+[00:10:28.620] Task so that the coding agent actually will do this successfully and one way that I found that it's really
+
+[00:10:35.180] That has been really helpful is to ask mode inside of the escode
+
+[00:10:39.500] You can have a conversation essentially with
+
+[00:10:43.020] Copilot you can explain exactly what you're looking for
+
+[00:10:45.340] So maybe you have a very vague issue, maybe it's you know one or two lines from a teammate and you know what to do
+
+[00:10:50.940] But if you just assign that issue to Copilot, it's not going to
+
+[00:10:54.540] Really understand it the way that you understand it. So by having a conversation and ask mode
+
+[00:10:59.820] You're really able to kind of nail down you know, like these are the files that would be interesting
+
+[00:11:04.700] That would be relevant to this task, you know, this needs to
+
+[00:11:08.620] Work on Windows and Mac so make sure that you know kind of have those considerations in mind maybe there's this, you know
+
+[00:11:13.500] Also it's very able to depending on the kind of issue you're solving and then from there after your confident that you know
+
+[00:11:19.420] You and Copilot are on the same page you guys kind of get it like where everyone is
+
+[00:11:25.340] Understanding the issue from map what you hit a delegate to Copilot or the coding agent button so the one
+
+[00:11:31.100] Write in chat right to the left of the send button the normal send button
+
+[00:11:36.060] And then from there it'll send up all the contacts the entire conversation, you know, verbatim
+
+[00:11:40.940] You can see it on the power quest
+
+[00:11:43.500] exactly what we're sending is context
+
+[00:11:46.620] You can see that and I find that to be a lot more successful just in a day-to-day
+
+[00:11:52.460] Kind of
+
+[00:11:53.660] Not too quick trivial issue say
+
+[00:11:56.940] Now, that makes a lot of sense because I think how I was doing it in the early days was
+
+[00:12:01.580] Working defining an issue creating an issue assigning an issue and going
+
+[00:12:06.380] But the one thing that I've noticed is often I might be working on a project and when
+
+[00:12:11.580] I'm working on a feature or I'm working on something. I'm already on a branch and
+
+[00:12:16.300] What I've noticed is that when I hit that delegate to coding agent
+
+[00:12:20.700] There's a lot of different pop-ups and different questions because it does like you said Josh it sends the context of everything in in there
+
+[00:12:26.620] But it also gives you a lot of flexibility as a developer and options of how that thing is performed
+
+[00:12:34.540] Yeah, and I think like you mentioned to you can kind of do as much or as little planning as you want
+
+[00:12:39.340] It's like when Josh said hey, there's times our we really want to make sure I'm on the same page
+
+[00:12:43.340] Just go by like generally that's where you want to be but if it's something I found too
+
+[00:12:47.100] Sometimes it's a little bit more exploratory of I'm like hey, I have this repo that I use for different demos and examples
+
+[00:12:53.020] Help identify some language of the scenario is that aren't included in this code yet
+
+[00:12:57.100] I didn't go by that kind of identify that we could come up with a plan
+
+[00:13:00.060] We can use the to-dos that we have in chat now and then I can say okay go work on the first to-do or go work on all of these to-dos
+
+[00:13:06.380] Yeah, and that also kind of reminded me we also have a feature that I added a couple months ago that
+
+[00:13:14.620] If you have you know pending changes in your workspace, it'll actually ask you do you want to push
+
+[00:13:19.180] those changes before you start the coding agent sessions
+
+[00:13:22.220] You can even write some of the implementation yourself to really get it on the right track
+
+[00:13:26.620] You can say kind of you know kind of stuff out the the work saying you know
+
+[00:13:31.580] In this file, this is where you should do X and in this file you should do Y
+
+[00:13:37.180] You can push up your changes and your chat context and then and then the coding agent has a ton to work on right?
+
+[00:13:42.620] It's not like it's gonna go in there blind. It has a lot of information of how to solve the problem in the way that you want it to be solved
+
+[00:13:50.460] I use both of these in a lot of different mechanisms like
+
+[00:13:54.380] So I'll kind of tell from row where I'll say he's a lot of everything that we have but a lot of some
+
+[00:13:59.820] So the
+
+[00:14:01.820] When I have that a spark of idea, but I've no time to work on it. That's when I'm like fire and forget go
+
+[00:14:06.780] Like that check box thing. I was literally coming up with a presentation that I'm doing in a week
+
+[00:14:12.140] For for how I use all this stuff internally and how I built this out and I was like
+
+[00:14:15.820] Oh, I need to add this feature because I want to show it so I just went in and I went in and I just fire it off
+
+[00:14:20.700] Here's an idea ago, right and just pull requests open no issue just top of mine go, right?
+
+[00:14:25.900] But so that thing that you were just talking about
+
+[00:14:29.900] A bridge it was like the planning which I've done that a lot of that like planning going back and then send it all off
+
+[00:14:34.460] Because I had this big idea and I have time to work it out, but I don't have time to work on it
+
+[00:14:38.060] And the other thing Josh so this is how it like trickles down which I think the flexibility part of it as it's evolved is hey
+
+[00:14:45.660] I have been working on this
+
+[00:14:47.900] But it's five o'clock and I got to go like I like I don't you know
+
+[00:14:52.940] We've all been in that state where we're working on a bug. We're fixing a feature
+
+[00:14:57.100] We're just prototyping something cool and you're like, well, I
+
+[00:15:01.260] Kind of want to keep work on this, but I really want to go eat dinners but go spend time with my family
+
+[00:15:05.820] And that's when I'm like send it off to the coding agent and let it cook overnight or what I mean doesn't take that long
+
+[00:15:11.580] But like let it cook while I'm gone, right and as a PM
+
+[00:15:15.260] AKA all I'm doing is I have like five minutes in between meeting so I'm just like okay fire and then review and fire off another one
+
+[00:15:20.940] It's like I can code in quotes throughout the day there, but I have noticed that all these enhancements are there
+
+[00:15:26.220] But one of the biggest enhancements that love for y'all to dive deeper into is that sort of integration of how we interact with the coding agent while it's going
+
+[00:15:35.100] Because as I mentioned early on it was just a sign it to an issue and now I could view the session and see what it was doing in the cloud
+
+[00:15:43.580] But I feel like now it's a lot more interactive and evolved than ever
+
+[00:15:48.860] Yeah, so yeah, so kind of how this evolved right is maybe
+
+[00:15:52.780] Three or four months ago now. We really did the basic integration of like you can start a session right you
+
+[00:15:58.860] You can kind of push up some context. It wasn't as complete as what we have now
+
+[00:16:01.900] that you could push up some context from VS code and it would start the session and then that was kind of
+
+[00:16:08.300] Kind of where the experience ended in VS code. There were some integration points, but it wasn't you know
+
+[00:16:12.940] complete, you know, like it wasn't the spot that we
+
+[00:16:15.820] envisioned it being in and over the past
+
+[00:16:17.820] Month or two we've invested a lot in new extension APIs that we've been playing with so that
+
+[00:16:24.220] As well as other folks in the future I can integrate
+
+[00:16:28.460] With like our native chat widgets that we use so the same chat widgets that we have
+
+[00:16:33.980] For you know locally jamoted things of that sort and making it feel like it's very integrated and tightly connected to VS code while still
+
+[00:16:41.500] Allowing that power of you know actually delegating to two in agent. So that's all what we've been working on this
+
+[00:16:48.460] a couple months and we'll be continuing to work on for I think
+
+[00:16:52.220] a decent amount of time in the future and if people want to like find out like where is that inside of VS code like
+
+[00:16:58.700] Obviously that there's a delegate buying but where's all the other stuff and you said there's like yes
+
+[00:17:03.260] And there's stuff like how would people people go yeah, so you'll definitely need to get a
+
+[00:17:08.220] poor request extension so that's where where that's kind of like the first consumer of this API
+
+[00:17:13.820] That isn't out for all folks to use that because we're still iterating on it
+
+[00:17:17.500] But if you have the poor request extension in the chat extension
+
+[00:17:21.180] You're you know most of the way there the only thing that you need is now in the latest stable release there is a VS code setting
+
+[00:17:28.780] Chets session view if you search that in your VS code settings
+
+[00:17:32.780] Are you could turn this on and then you'll get a new view on the left hand side that is kind of your control center
+
+[00:17:38.060] You can kind of see everything that's happening
+
+[00:17:41.340] Involving your local chats and coding agents and things that that's sort so that's a great
+
+[00:17:46.300] Kind of I live a overview of what's going on and then from there
+
+[00:17:50.780] It'll enable these chat integrations where you can kind of expand out into one of these chat sessions
+
+[00:17:58.300] And we have docs as well where we keep all this updated so if you fall along with the latest release notes
+
+[00:18:02.780] You'll see all the great features of the teams working on and then we also keep a doc in the
+
+[00:18:06.620] Copilot section of the VS code docs updated all dedicated to our Copilot coding agent integration and we'll make sure we have
+
+[00:18:12.700] All the latest settings and screenshots in there so folks can follow along
+
+[00:18:16.860] Very cool now where is this sweet you got?
+
+[00:18:19.980] Yeah, and then as this could be also in our latest release notes. We always also mentioned this stuff
+
+[00:18:26.380] So where is this going what is next to kind of like kind of bring this to a heck?
+
+[00:18:30.220] Because a lot of work has been done here, you know, what are maybe some
+
+[00:18:34.460] You know, in other words, so if you've area at 18 minutes now you're invested in understanding like what's next
+
+[00:18:38.940] Like if you've listened to this podcast for this long and this is the inside of podcast
+
+[00:18:43.100] Even then we talk a lot of us haven't stable like what are some things that maybe the team is working on you know
+
+[00:18:47.580] Everything is tracked in the open things like that like you talked to some APIs and things like where are things headed next or as much as you could
+
+[00:18:55.180] You know
+
+[00:18:56.380] You know give us a guess behind the scene. Yeah, so yeah
+
+[00:19:00.140] kind of exactly what I was saying is that we're working on an extension API, right? We are using this extension API in the core
+
+[00:19:06.620] Quest extension for the GitHub coding agent, right?
+
+[00:19:10.540] And kind of like my vision for it is that
+
+[00:19:13.820] Any extension that has a coding agent that they can contribute to VS code would be able to through our APIs
+
+[00:19:20.140] To really have that nice tightly integrated experience of VS code and that gives you so much when you say I want to reference a file or
+
+[00:19:28.620] You know just do work locally and with an agent. It's nice to use one tool instead of having to use two or three different tools
+
+[00:19:37.260] I may be like a web browser
+
+[00:19:40.060] Or some of it. So that's that's really the goal to keep the developer
+
+[00:19:44.300] loop tight to be able to work on a task and then you can delegate some tasks and everything's unified in one spot
+
+[00:19:51.820] Very cool. All right anything else from the two of you that you want to
+
+[00:19:55.340] Give insight into tell developers have them go try out anything like that before you wrap up
+
+[00:20:01.420] Yeah, well power to say we have a lot
+
+[00:20:04.860] That we've been working on over the past months, so please read the release notes and try all the settings that aren't
+
+[00:20:09.340] Enable for everyone will slowly roll these out as time continues, but we keep things behind settings
+
+[00:20:15.740] At the beginning just stay other feedback. So if you are interested please turn on our settings and try it out. It will let's know you think
+
+[00:20:21.900] Yeah, just jumping off of that. Getting feedback is super helpful to us because it's
+
+[00:20:28.140] Like Josh mentioned it's evolving just how within our own team we use this stuff and how we're seeing users adopted and think about these things
+
+[00:20:34.380] So hearing the kind of workflows people are trying and
+
+[00:20:37.420] Seeing the limits to which people push it and how can we expand it further? I think getting all that feedback and seeing more about people scenarios is super helpful
+
+[00:20:44.460] So we're super excited to hear everyone's feedback
+
+[00:20:46.860] That's awesome. I've been loving just like the amazing work that the team has been doing because
+
+[00:20:51.660] I'm not only just firing off, you know these tasks to delegate, but I'm having conversations, right?
+
+[00:20:56.620] Just like I have a conversation with the agent mode and chat. I'm having conversation with these background agents as they're finishing up work or stopping their work
+
+[00:21:02.700] A reviewing work and allows me as a developer to have a lot of work streams happening at the same time. I might be actually working on code
+
+[00:21:10.700] Things might be firing off. I might be reviewing code. I might be seeing sessions and happen and and you know
+
+[00:21:16.060] I think it's so amazing to see
+
+[00:21:18.860] If you have five ideas in your head, you can be working on all five of them at the same time
+
+[00:21:23.260] Like you know you are working side by side
+
+[00:21:25.740] These agents and so I want to say like you know we're working on this right as like we're going to add together, right?
+
+[00:21:29.580] I think it's true. That's how I see it like the code that it's right is because I've guided it down that path of the code that I want
+
+[00:21:35.580] Through things like agents on MD and copilot instructions and all these amazing things like kind of give it insight
+
+[00:21:40.940] So it's great to hear the the where it started where it's at and where it's going and when you of course new things come out
+
+[00:21:48.060] And they trickle out. We'll be sure to have y'all back on the podcast as well
+
+[00:21:51.740] So Bridget, Josh, thank you so much for coming on to the podcast. I really appreciate it
+
+[00:21:55.500] Thank you. This is great. Yes, it's fun. I'm
+
+[00:21:58.700] And it lived my dream as a podcast with the first time. It's exciting
+
+[00:22:02.940] First time but not the last time and of course we'll put links to everything that we talked about
+
+[00:22:07.020] Down in the show notes if you're in your favorite podcast application or watching on Spotify or YouTube
+
+[00:22:11.900] So make sure you subscribe on on your favorite podcast application. Give us a five-star review
+
+[00:22:15.660] Tell all of your co-workers about it. Let's go do it for this VS code insiders podcast until next time happy coding

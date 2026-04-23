@@ -1,0 +1,503 @@
+{
+  "source_file": "2026-02-09-subagents-parallel-execution-and-context-isolation-updated.md",
+  "transcript_format": "speaker_turns",
+  "segment_count": 97,
+  "metadata": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 19,
+    "title": "Subagents: Parallel Execution and Context Isolation [Updated]",
+    "url": "https://www.vscodepodcast.com/19",
+    "transcript_url": "https://media24.fireside.fm/file/fireside-images-2024/podcasts/transcripts/f/fc261209-0765-4b49-be13-c610671ae141/episodes/2/28045885-eb83-4943-b740-bf9fc20d86be/transcript.txt",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/28045885-eb83-4943-b740-bf9fc20d86be.mp3",
+    "published": "2026-02-09",
+    "duration": "29:40",
+    "transcript_available": true
+  },
+  "segments": [
+    {
+      "start": "00:00.70",
+      "speaker": "James",
+      "text": "Welcome back everyone to the VS Code Insiders podcast, the behind the scenes look at your favorite code editor, VS Code. I have with me yet again, Harold from the VS Code team."
+    },
+    {
+      "start": "00:12.64",
+      "speaker": "James",
+      "text": "How's it going, Harold? It's"
+    },
+    {
+      "start": "00:13.83",
+      "speaker": "Harald Kirschner",
+      "text": "Hi, James. Thanks for having me back."
+    },
+    {
+      "start": "00:18.23",
+      "speaker": "James",
+      "text": "good to have you back. And I think there's been so much new change and so many new things that probably since the last time you were on, the team has added about 5,000 new features."
+    },
+    {
+      "start": "00:28.86",
+      "speaker": "Harald Kirschner",
+      "text": "Yes, this release, I was just showing it in a live stream, just scroll through. It's like endless, endless goodies and a lot of really powerful new features. And the UX on top of it is amazing too. So it's been amazing how it's it's all coming together and how we can move so much faster now on the VS Code side too. So it's a lot."
+    },
+    {
+      "start": "00:50.25",
+      "speaker": "James",
+      "text": "It's a lot, but I feel like one thing that I've really appreciated is that things feel a little bit more or do feel pretty natural in their evolution. So some of the things that are new features just end up lighting up, right?"
+    },
+    {
+      "start": "01:03.42",
+      "speaker": "James",
+      "text": "So for example, if have MCP servers that now all of a sudden have MCP apps built into them for UI, they just show up right? If I have different agents or different things like the UI it's pretty much still all there, but a little bit more cleaner, a little bit more based on the feedback coming in, the tasks are coming in a little bit more."
+    },
+    {
+      "start": "01:19.29",
+      "speaker": "James",
+      "text": "And like one of the topics today that we're going to talk about sub-agents, like kind of just happened automatically. Like, I think that's kind of cool about this point in time with AI development is that there are a lot of things you can go crazy deep on and really customize."
+    },
+    {
+      "start": "01:29.98",
+      "speaker": "Harald Kirschner",
+      "text": "Joe."
+    },
+    {
+      "start": "01:34.65",
+      "speaker": "James",
+      "text": "But now more than ever, like a lot of things just happen out of the box."
+    },
+    {
+      "start": "01:39.00",
+      "speaker": "Harald Kirschner",
+      "text": "Yeah, totally. I think i we have this plan agent now for a few. I think we announced it at Universe last year. was like the big, big thing. And it's one of these key elements that you don't have to customize much. Just use plan mode and you get better results. Like you can iterate, you spend more time upfront to gather context and align and like discuss and maybe let your assumptions be challenged."
+    },
+    {
+      "start": "02:04.12",
+      "speaker": "Harald Kirschner",
+      "text": "um And then you don't have to create your own. like Eventually, if you really wanted to, you can make your own plan mode. Maybe you want to read like more more context from some MCP servers. Maybe your plan has to be super short. Maybe your plan has to be extremely long. So everybody wants to customize it. But like the out-of-the-box experience Like, it's just a really nice experience, plan mode. And now with the latest experience, it's even better. But also where sub-agents really help with that context to to bring it and into the right places without overloading, where it just works. You don't have to think about sub-agents. It's just doing a really nice job context engineering for you."
+    },
+    {
+      "start": "02:44.33",
+      "speaker": "James",
+      "text": "Well, let's talk about that a little bit first and let's first start with just agents, right?"
+    },
+    {
+      "start": "02:46.20",
+      "speaker": "Harald Kirschner",
+      "text": "Yes."
+    },
+    {
+      "start": "02:48.27",
+      "speaker": "James",
+      "text": "I'm inside of agent, you know, agent mode, but the agent agent or the plan agent, and and this is the mode of the thinking that the agent is there."
+    },
+    {
+      "start": "02:48.68",
+      "speaker": "Harald Kirschner",
+      "text": "Yeah."
+    },
+    {
+      "start": "02:56.70",
+      "speaker": "James",
+      "text": "And a lot of people hear a few words, which is like, what is an agent and what is context that it has?"
+    },
+    {
+      "start": "03:01.18",
+      "speaker": "Harald Kirschner",
+      "text": "Yeah."
+    },
+    {
+      "start": "03:02.94",
+      "speaker": "James",
+      "text": "So removing anything about sub agents or anything like that, just kind of break down what an agent is how it works, and what sort of that context engineering and context window things are basically."
+    },
+    {
+      "start": "03:15.96",
+      "speaker": "Harald Kirschner",
+      "text": "Yeah, think it's really important to understand. and And if you understand it, you can use it more effectively as part of this kind of unraveling the black box. So the the agentic loop that runs inside VS Code or Copilot CLI basically all starts with you giving a question And then the the agent loop takes that question, takes its system prompt, which basically gives it some idea of how it's how it's supposed to act, how it's supposed to talk, how it's supposed to reason about what it's solving, which also depends on different models. So there's a lot of tweaking in that area usually that we do. And then it has access to tools."
+    },
+    {
+      "start": "03:56.15",
+      "speaker": "Harald Kirschner",
+      "text": "And way it calls tools, and you see that if you open up this code, it will start to to do thinking about what it's supposed to do. Now those do like thinking blocks move into like reasoning blocks that you see kind of open and close as it does that."
+    },
+    {
+      "start": "04:11.19",
+      "speaker": "Harald Kirschner",
+      "text": "And that's one loop. And then it starts calling tools. And all of that kind of is accumulating in a conversation. So you see the agent thinking, oh, the user asked me to find to explain something in the code base."
+    },
+    {
+      "start": "04:25.46",
+      "speaker": "Harald Kirschner",
+      "text": "then it will start like, oh, I should probably look at the code base. And then then it leads to the first tool call where it starts to do a grab search maybe to find that term. and that's And that's where the agent, that's like the first term where it stops. That's a tool call. So that that gets handed to the editor And what's cool is VS Code has a bunch of really powerful search tools that are exposed to the agent."
+    },
+    {
+      "start": "04:48.22",
+      "speaker": "Harald Kirschner",
+      "text": "So VS Code will basically do that search. If it's a graph or semantic search, it will return that result to the agent and then continue the loop. So the loop pauses for a moment to search, and then continue on."
+    },
+    {
+      "start": "05:01.40",
+      "speaker": "Harald Kirschner",
+      "text": "Then the agent continues with that new information, like ah it ran the tool, it got the result, and that's added to the conversation. So now the agent has the system prompt, the user question,"
+    },
+    {
+      "start": "05:12.38",
+      "speaker": "Harald Kirschner",
+      "text": "the thinking it did, the tool call it where it wanted to grab, and then the response, and it can continue from there. What's cool well, though, that the agent can actually run parallel tool calls. It could say, like, grab for this, grab for that, grab for this, and then the all these tool calls come in at once,"
+    },
+    {
+      "start": "05:32.73",
+      "speaker": "Harald Kirschner",
+      "text": "and all the responses will be done by, will put into VS Code and then continues on. So pool calling is really powerful in a way that can scale. But as you basic as you continue doing that, the agent gathers like which files and then can read the files, that's another tool call, and all of that builds up in a large conversation basically. And that's that's your context window."
+    },
+    {
+      "start": "05:53.66",
+      "speaker": "Harald Kirschner",
+      "text": "So once the agent has done a few of the tool calls, it will have it will has a few file paths of where to look. It will have looked at the files, maybe grab like the first few lines to understand the file."
+    },
+    {
+      "start": "06:03.86",
+      "speaker": "Harald Kirschner",
+      "text": "For any files it found really useful, it started to read the full file. And all of that is building up context to eventually answer a question like, okay, now I understand how this feature works. Here's my explainer. Maybe it gives you a murmur diagram because that just shipped. And it can can do interesting things with that context and maybe implement a feature, right? but debt that um context buildup, especially as it explores and learns about a topic um is a really interesting part to understand. And now we also in VS Code, we have a kind of little context indicator. So you see in a conversation, how much context the agent has built up. So it's less you reasoning about how long it takes. So it's much easier to understand how that agent loop works now, aside from all the tool calls, but also the the context that's being added."
+    },
+    {
+      "start": "06:54.74",
+      "speaker": "James",
+      "text": "Yeah. And the interesting part of that, that I'm thinking is, you know, as this sort of context flows in and out and it builds up and these tools are being called. i think you made an interesting point, which is certain select parts of that information are important, but other ones aren't."
+    },
+    {
+      "start": "07:13.11",
+      "speaker": "James",
+      "text": "And I think this is where that sort of idea of sub agents comes from, which is, Hey, if I'm having a long planning running session, how much of what actually was research and added to the context window is important, right? Is it all that deep research? Is it gripping all this other stuff? What's the actual return? So I think this is the case where how much context is it needed in the main agent, like in the main agent to actually get the job done. And I think this is sort of where sub agents come in and people are gonna start seeing this and why we wanted to talk about it. They probably already seeing it inside of VS code and they see it literally will say sub agent running these things, right? Before you would just see all the tool calls, which is cool to see, but but but but up now you're seeing sub agent doing this thing. but but bla but bla blah up So how is that different than the main agent running? And like, when does that sub agent kick in?"
+    },
+    {
+      "start": "08:04.28",
+      "speaker": "Harald Kirschner",
+      "text": "Yeah, so the subagent basically is its own agent loop with its own context. And most often, i think the best way to describe it is is you want to delegate something."
+    },
+    {
+      "start": "08:16.98",
+      "speaker": "Harald Kirschner",
+      "text": "like e i I get a lot by engineers, like, hey yeah what how, like, I'm on this issue, like, find out, like, why people actually want this want this feature. Like, do we need to do this feature?"
+    },
+    {
+      "start": "08:29.02",
+      "speaker": "Harald Kirschner",
+      "text": "And that's them offloading it. Here's a feature we might want to do. like Here's ah he's a Reddit thread. Some people commented. Maybe just some customers to talk to. And an I come back."
+    },
+    {
+      "start": "08:40.76",
+      "speaker": "Harald Kirschner",
+      "text": "And like here's the reason why people like this. um there it is ah It's a problem they are aware of. It's a problem that that blocks them to do these other jobs. um These are the kind of customers I talk to. these are the kind of users."
+    },
+    {
+      "start": "08:56.09",
+      "speaker": "Harald Kirschner",
+      "text": "So basically, like you don't need all the context of all the things I read. like You just want to know the summary. And that's what sub-agents are really good at. So sub-agent planning, for example, is just being handed, like look at how authentication is implemented and how we would add a new provider to it."
+    },
+    {
+      "start": "09:15.80",
+      "speaker": "Harald Kirschner",
+      "text": "And then the sub-agent gets the task and it has all, um in case of planning, it has only read-only access to tools. So it can look at the code base, find files. It doesn't do any edits because it's plan mode."
+    },
+    {
+      "start": "09:28.38",
+      "speaker": "Harald Kirschner",
+      "text": "But it can do these things we efficiently, can look at a lot of files, run this agent loop, isolate from the main loop. So it's its own little agent loop that just runs on this one task. And once it's done with the task, it just returns all the things it found to in a nicely brief summarized way to that planning agent main loop."
+    },
+    {
+      "start": "09:50.04",
+      "speaker": "Harald Kirschner",
+      "text": "So this means that that the all the planning agent does, it gives the task, so that's one piece of context, like the the tool call to this to the sub-agent tool, like do this research. And then all it gets back is like, this is what I found. So all that file reading and directory listing and ah like testing hypotheses, like ah auth might be here. No, it's not over here. like That's a different auth."
+    },
+    {
+      "start": "10:14.46",
+      "speaker": "Harald Kirschner",
+      "text": "Or is that the right author? I have two authors now. Which one should I pick? like Need more research. So there's a lot of divergent and converging exploration these agents do. But all you get back is, like this is what I found. And then maybe some confidence with it as well."
+    },
+    {
+      "start": "10:27.95",
+      "speaker": "Harald Kirschner",
+      "text": "So that's that's the sub-agent solution, that context isolation to do a like specific task. And the example here is the easiest. It's read-only. You can really easily parallelize Paralyze? Hard word. To different sub-agents because you can give them different areas to research. Great for code pre review, for example. That's another topic. like you You don't want to read all the files. like If you do one code review on the main loop, you would just run out of..."
+    },
+    {
+      "start": "10:58.30",
+      "speaker": "Harald Kirschner",
+      "text": "everything you might want to look at. But if you say, OK, one subagent for security, one subagent for architecture, one subagent checking code reviews, like checking the slop that AI potentially generates where it doesn't use existing um functionality, maybe that's a whole new utility for something you already had. And you can they can all do their thing."
+    },
+    {
+      "start": "11:18.81",
+      "speaker": "Harald Kirschner",
+      "text": "And it's different. focus areas so it's different ways how you would look for it and then return like security looks good you might want to check this out and then slop there's a new function here you don't need to create like they all just return their review findings and which means a you can run those isolated and b you can run them in parallel"
+    },
+    {
+      "start": "11:42.74",
+      "speaker": "James",
+      "text": "And I think the important aspect here too, and why sub agents are so important besides the isolation, running them in parallel, specialized task execution is that they ah each have their own context window, right? Like you were saying is your, me as developer, I want to care about like that main circle that's being filled up the main context as it's going. But these sub agents, like you said, just return back the results, right? Here's the important thing back to the main agent. So those sub agents, and you can correct me if I'm wrong, have isolated context windows as well that are sort of, are they just like thrown away at the end of the day or how do those work?"
+    },
+    {
+      "start": "12:16.82",
+      "speaker": "Harald Kirschner",
+      "text": "Yes, that's having a key aspect which somewhat makes them challenging to use potentially, that they start with zero context. All the context that they have is coming from either the custom agent definition if you use one, or from the parent basically telling them the UD or the agent orchestrator, kind of the main agent, to this is your task."
+    },
+    {
+      "start": "12:38.17",
+      "speaker": "Harald Kirschner",
+      "text": "And then they start from scratch, and then try to do that task, and then they answer, and then they go away. So that's the kind of isolated one-shot way that did these agents work. There's no user interaction. They won't ask you."
+    },
+    {
+      "start": "12:54.07",
+      "speaker": "Harald Kirschner",
+      "text": "they want There's some tool permissions that that could pop up if they don't have all the permissions yet. But that's something something to keep in mind as well, the the very ephemeral memory. It's like a new conversation that you open in in your agent window."
+    },
+    {
+      "start": "13:11.07",
+      "speaker": "Harald Kirschner",
+      "text": "There is no context from what the other window was that you just did. It's ah it's a new day for the ai Hopefully, your instructions are good and it has access to GitHub memory to understand what it should shouldn't do. But other than that, it's it's it's fresh."
+    },
+    {
+      "start": "13:28.21",
+      "speaker": "James",
+      "text": "That makes a lot of sense. And I think like, that's a good context for people to have, especially if you start to like go further with sub agents, start to create agents that you kind of outline in delegating tasks out to sub agents. I think before we even move on to that, like I think from a day to day, I'm inside of VS code, I'm using plan agent, the main agent, ask agent."
+    },
+    {
+      "start": "13:51.10",
+      "speaker": "James",
+      "text": "Are there any things that I should just be aware of from like a prompting standpoint or a what's being shown? like Should i think about things differently now with the subagents getting spun up? Should I change my terminology like in some how I write? like If I tell it to you, subagents, are there things just in my normal day-to-day development that I should be thinking about you know just in like the main loop?"
+    },
+    {
+      "start": "14:17.18",
+      "speaker": "Harald Kirschner",
+      "text": "Yeah, so I think the goal is that everything you do will already be isolated and run in parallel as much as possible."
+    },
+    {
+      "start": "14:29.18",
+      "speaker": "Harald Kirschner",
+      "text": "ah Right now, it you can fall into the pit of success by using plan mode, where the exploration that the agent's already doing will be..."
+    },
+    {
+      "start": "14:39.96",
+      "speaker": "Harald Kirschner",
+      "text": "already run in a sub-agent, so you get the benefit of context isolation. So that's already an existing area. So plan mode is, like if you already not and if you're not not doing it yet, start doing it, and you already get the sub-agent benefit."
+    },
+    {
+      "start": "14:53.45",
+      "speaker": "Harald Kirschner",
+      "text": "The other way is, once you ask the agent to do things in parallel and give it guidance, Unlike then, you don't need to you need to mention sub-agents or do any context engineering around it. Just mention, oh like look at these things. Maybe you but runs parallel searches, and we'll already start doing that as well."
+    },
+    {
+      "start": "15:16.13",
+      "speaker": "Harald Kirschner",
+      "text": "Eventually, I think we want to get and what we're having in our What I'm working right now is that like out of the box, if you have a larger, more complex plan, which multiple multiple phases that can run parallel, then right now, if you do it, you probably already get parallel sub-agents, but it still requires you to like write out the plan in a way, like annotating what can be run in parallel. So that's something you can do in your planning as well as you maybe write specs or something else that is longer lift and execute it through multiple iterations, calling out what can be run parallel, then the agent will will do that as well, very likely. It's always indeterministic, so there's never like like the shortifier way. And that's that's on us too. It's one of my goals. like I want to see everybody benefiting from subagents heavily in their in the day-to-day that they run as parallel as possible. So you'll see a lot of improvements over the coming weeks and months in that area that it will just do it out of the box, like magically,"
+    },
+    {
+      "start": "16:13.82",
+      "speaker": "Harald Kirschner",
+      "text": "like, oh, yeah there's a back end and a front end and I can and implement it independently. Like here's like here's my front end sub agent implementer. Here's my back end implementer. And in the end, they they make sure like it all aligns because they have a good plan to start with."
+    },
+    {
+      "start": "16:28.34",
+      "speaker": "Harald Kirschner",
+      "text": "And that's really where it all starts. that's how work can run in parallel once you have a solid plan that has all the nitty-gritty details because otherwise parallel implementation is a really hard problem right because like like just how you ask one team member like implement the front end and the other team member implant the back end and when they don't talk to each other you probably don't end up with a product that works so they and sub-agents cannot really orchestrate that much, they still end up writing something and then they probably just send it back to the main agent like, I did it. And then the main agent can say like, yeah, but I have two sub-agents who did something very differently. So that orchestration bit needs a lot of upfront context building and planning."
+    },
+    {
+      "start": "17:09.98",
+      "speaker": "James",
+      "text": "That makes a lot of sense. Well, let's get a little bit deeper here too, that then we have sort of like the the base layer down of agents and sub agents and context windows, because I get a lot of questions, you know, next around, Hey, like inherently there's built in, you know, the main agent, your ask agent, your plan agents, but I'm thinking about creating my own custom agents. I think what's interesting as I've been talking to a lot of developers is like, there's a lot of new tools in our toolbox, right? We have instructions, we got prompts, we got MCP servers, we got skills, we got custom agents, we have all these things and they all were built to solve a problem and they're a solution. And sometimes those things and the solutions start to overlap a little bit too."
+    },
+    {
+      "start": "17:52.54",
+      "speaker": "James",
+      "text": "But I wanna talk about, specifically custom agents, because now that we have the ability to start to like think about orchestrating these agents, like the main agent is doing one way and plan agent is doing another way, but me as a team, I may want to inherently think about sort of almost replacing that system prompt, right? And that's where those custom agents come in. So you talk a little bit about in our our year February of 2026, how should developers be looking at custom agents and how does that change actually with sub-agents?"
+    },
+    {
+      "start": "18:28.89",
+      "speaker": "Harald Kirschner",
+      "text": "Yeah, so there's an evolution here. so one is the beginning we had chat modes, which allowed you to customize, like change the persona and the workflow of how the agent works. So plan mode, easiest example, code review, a another one. like It's like distinctive workflows that you want to spend more time in that you maybe have multiple turns. Like code review is not a one shot. You want to like, oh, like also look at this or take a dig deeper look into this. So"
+    },
+    {
+      "start": "19:00.50",
+      "speaker": "Harald Kirschner",
+      "text": "they They have been there to like reduce this amount of tools the agent has access to and give it a more specific workflow and goal. They have evolved into custom agents."
+    },
+    {
+      "start": "19:13.26",
+      "speaker": "Harald Kirschner",
+      "text": "same Same thing, new name, but has kind of come out of the ecosystem of what we call things. um"
+    },
+    {
+      "start": "19:22.31",
+      "speaker": "James",
+      "text": "Thank"
+    },
+    {
+      "start": "19:23.13",
+      "speaker": "Harald Kirschner",
+      "text": "And now with this release, custom agents can be used for sub-agents. And what this means is that if you create a custom agent like DeepCode Research,"
+    },
+    {
+      "start": "19:36.25",
+      "speaker": "Harald Kirschner",
+      "text": "which has like the way you wanna look at the repo. Like I wanna like start broad and, but also look at other repos. Maybe it has like a cross repo awareness as well that you you're enforcing to resolve more of the dependencies, right? Maybe that's like a specific thing, like how you want, how you would look at your repo to better understand it. Like look at this dependency folder first and then like maybe it's a mono repo. So you could you could bring this into ah custom agent and then with sub agents now,"
+    },
+    {
+      "start": "20:06.74",
+      "speaker": "Harald Kirschner",
+      "text": "you have a description in that custom agent used when trying to understand cross-repo dependencies. Like that's that's your cross-repo agent that you can then reuse. So cross-repo agent with that description will then be invoked by your main agent, did just the agent in VS Code, once a problem needs cross-repo understanding."
+    },
+    {
+      "start": "20:31.29",
+      "speaker": "Harald Kirschner",
+      "text": "So you can see basically what happens, like, oh, like explain how auth works across these repos. Then the agent has a list of all the custom sub-agents that are available."
+    },
+    {
+      "start": "20:42.78",
+      "speaker": "Harald Kirschner",
+      "text": "And then it can call them and you call them in a sub-agent way. You could do the same thing in a skill, in the agent skill, which we shipped. But then you would need to handle that orchestration yourself. Maybe the agent skill says, oh, like use a sub-agent and then query these things and then Maybe in that workflow, the agent also has other tools available because the skill cannot constrain tools. So suddenly gets maybe it might get confused or distracted by what you're trying to do. So a custom agent is a very single purpose thing. All it will return is like based on its workflow, based on its input, and based on what you tell it, how its output is. So it's a very that's that's what makes it so um composable."
+    },
+    {
+      "start": "21:27.45",
+      "speaker": "Harald Kirschner",
+      "text": "And skills are composable too, but skills will end up in your main context And when it is described a very strict workflow, then there might be less adherence because they're in in your context with all the other stuff that might be there. So it might be multiple skills. There might be like other custom instructions in the repo. it might just more more noise and less likely. There's some, you know, bug posts that could share a lot from Vercel and skills versus agents.md."
+    },
+    {
+      "start": "21:55.83",
+      "speaker": "Harald Kirschner",
+      "text": "So skills still has to be discovered by dear by the main agent, like, oh, i'm I'm working on the user is asking me about like this this kind of file type. Maybe it's like a Jupyter notebook, and there's a skill for Jupyter notebooks."
+    },
+    {
+      "start": "22:11.19",
+      "speaker": "Harald Kirschner",
+      "text": "So has to realize like that mapping, like, oh, I need to look at the skill. And then it needs be the skill. And then hopefully, there's some strict adherence to whatever is in the skill, how to work with Jupyter notebooks."
+    },
+    {
+      "start": "22:22.26",
+      "speaker": "Harald Kirschner",
+      "text": "And then the counterpart, what to compare it is like, what if you put it into agents.md, which is always in context? If it's in the root of your workspace, agents.md is always top of mind for ah for the agent when it does any task. So they found a lot more adherence, of course, because there's like and a context bit that's always injected in the agent versus another file it finds along the way as it works on the task."
+    },
+    {
+      "start": "22:47.38",
+      "speaker": "Harald Kirschner",
+      "text": "um and then the same is with custom agents custom agents once you write them that's their persona that's all they think about so that's when if you have something that has to be rock solid and really determin deterministic and a workflow you really want to get down to like the videos the the right steps then that would be a custom agent if it's something more composable where it's more guidance for the agent then that's that's more skill And maybe over time skills will become stronger, right?"
+    },
+    {
+      "start": "23:15.66",
+      "speaker": "James",
+      "text": "That was pretty cool."
+    },
+    {
+      "start": "23:17.76",
+      "speaker": "Harald Kirschner",
+      "text": "We'll always work on making sure the agent follows it. oh Hopefully people write good skills because otherwise that that can, like the stronger adherence there is, the more likelihood it is to be a foot gun."
+    },
+    {
+      "start": "23:30.92",
+      "speaker": "James",
+      "text": "That's pretty cool. Now, one thing also that I want to point out too, is like that custom agents can also have specific models assigned to them. So in that file, I think that's also really unique as you might say, okay, these models, whether it's Gemini or a GPT or a Claude model is, is how like the speed, the performance, like the context that it needs might be a little bit different. And I've actually found this a little bit. I was, I did a, uh, uh, some, a video on the new, the plan agent updates where you can actually assign like a default model for the plan agent. And then when you go to implement back to agent, you can have a different model. So for example, you might be doing research and say, I want to use something like like maybe GBT five, two, but maybe I want to switch over to an implement model. That's like an Opus or a codex model, for example, or a Gemini model."
+    },
+    {
+      "start": "24:22.78",
+      "speaker": "James",
+      "text": "So I can use those small ones. So for example, in these small custom agents, maybe use like a flash model, for example, because they can run super fast on a specific task that you have. Is that like ah a real world use case there for specific models for specific use cases? Or how do you see that?"
+    },
+    {
+      "start": "24:38.84",
+      "speaker": "Harald Kirschner",
+      "text": "Oh, totally. I think that's that's one of the key things, like why you want to have a custom agent too, is like that, how much you control you have over that agentic loop and which model it runs in. and Yeah, there's multiple, of it it's like the three categories of models I think about is like one, really fast mini models that are just good at automating tasks where you don't have to reason, like here's a workflow, like just write a commit, like i have like a git gett commit, push, like just all the git stuff I do is all in in my problems and it's all switching to really fast models. I they don't want"
+    },
+    {
+      "start": "25:12.47",
+      "speaker": "Harald Kirschner",
+      "text": "and then they're waiting for CICD to finish and then they report back. right It's just like simple things, like just like something I would probably put in the script in the past, but now they're way more adaptive just by just running an agent that that runs a terminal for me."
+    },
+    {
+      "start": "25:26.55",
+      "speaker": "Harald Kirschner",
+      "text": "So that'll be like a really fast one. Then the other ones, um We do have more specialized like in in the middle ground where they're faster, and but still doing a little bit more reasoning behind it. And that's like for code research is a great one. like If you want to look at many files and figure out which ones are important for a task, like what we talked about before, that's a good model. It's also where you could maybe even have some fine-tuned models running eventually for on our site."
+    },
+    {
+      "start": "25:55.86",
+      "speaker": "Harald Kirschner",
+      "text": "um And then it's like the really heavy planning task. And I, for example, have I'm experimenting with a workflow that's been really nice where I have a custom agent as an orchestrator."
+    },
+    {
+      "start": "26:11.38",
+      "speaker": "Harald Kirschner",
+      "text": "So you can switch to this custom agent, which is called Loop because I ran out of names. um Didn't give it a cool name. ah then But then Loop as an orchestrator will have one really fast sub-agent to gather context. So again, like offloading that context of the main context loop for better name um to another agent who just writes it to a file."
+    },
+    {
+      "start": "26:37.18",
+      "speaker": "Harald Kirschner",
+      "text": "And that file becomes then the the memory for all the other follow-up stuff. Then there's a planning one, which uses a larger model. Because for planning, I want to look at kind of the the scratch pad that the first agent created, which might have a lot of interesting information that was gathered really fast. And then planning will look at that and do some more reasoning about it, because that's the larger model with Opus or 5.2 codecs."
+    },
+    {
+      "start": "27:00.12",
+      "speaker": "Harald Kirschner",
+      "text": "and And the next up is the implementation, which runs, because the plan is so detailed at this point, I can take a really fast model that's really good at writing code um and just churns through it, writes everything."
+    },
+    {
+      "start": "27:14.30",
+      "speaker": "Harald Kirschner",
+      "text": "But once, and they're actually running parallel because the plan already is outlined. You can run these in parallel then because then the orchestra orchestrator then says, okay, I can run things in parallel. Here are five implement agents doing the work. And then I'm gonna run the code review agent, which again runs a more expensive model two to look at all the code changes in context. So that's something the thing that what I see right now where it's like, and I see it happening. I think the review takes a bit ah more time."
+    },
+    {
+      "start": "27:42.07",
+      "speaker": "Harald Kirschner",
+      "text": "But then it's it's better at finding the edge cases and sending things back, like where things diverge from the plan. Because as soon as you run things in parallel, things might diverge. um So that's that's been really interesting. So that's something to play around with. Also, you can optimize speed and cost and really balance like that quality because like right now if it's like every hour and everything in opus because it's the best model like it's not the right strategy you can with custom sub agents you can be more efficient and spend less time waiting especially in moments where you want to iterate fast and that's what i see i do in vs code i just want to"
+    },
+    {
+      "start": "28:18.31",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "28:20.65",
+      "speaker": "Harald Kirschner",
+      "text": "I'm in this messy headspace. Like, I don't know what I'm really solving for that. I just want to see it happening. I don't want Opus building a beautiful, like coded UI. I just want to figure out like, what is that critical thing I'm missing and iterate fast."
+    },
+    {
+      "start": "28:39.29",
+      "speaker": "James",
+      "text": "Yeah, that's awesome. I love that sort of use case. I think talking about it, it's about real world, about how you're developing. And I'm the same way, like really changing and thinking about the best model, the best tool, the best ability that, you know, VS Code has for that job."
+    },
+    {
+      "start": "28:53.66",
+      "speaker": "James",
+      "text": "Harold, this has been awesome. I love going from the beginner, all the way to this advanced scenario. We'll put links to everything in the show notes. I really appreciate you coming coming on, talking about sub-agents because people are going to start seeing them every single day."
+    },
+    {
+      "start": "29:04.46",
+      "speaker": "James",
+      "text": "So let us know, give the team feedback on the VS Code, GitHub."
+    },
+    {
+      "start": "29:07.35",
+      "speaker": "Harald Kirschner",
+      "text": "Yeah."
+    },
+    {
+      "start": "29:08.22",
+      "speaker": "James",
+      "text": "um"
+    },
+    {
+      "start": "29:08.47",
+      "speaker": "Harald Kirschner",
+      "text": "Yeah."
+    },
+    {
+      "start": "29:09.24",
+      "speaker": "James",
+      "text": "Yeah. And really appreciate it, Harold."
+    },
+    {
+      "start": "29:12.02",
+      "speaker": "Harald Kirschner",
+      "text": "Thanks so much, James. Thanks guys everybody."
+    },
+    {
+      "start": "29:15.58",
+      "speaker": "James",
+      "text": "Awesome. Well, don't forget, you can subscribe to the VS Code Insiders podcast on your favorite podcast application. And of course you can go to VS Code podcast.com. Check out all the things. Make sure you follow us on YouTube, on Twitter, on your favorite socials for all the updates on VS Code every single day because insider ships every single day with all goodies for your favorite code editor. That's going to do it for this VS Code Insiders podcast. So until next time, I'm James and happy coding."
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 [← MCP](primitive-6-mcp.md) | [Part II Overview](part-2-primitives.md)
 
-*Updated: April 17, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
+*Updated: April 22, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 21, 2026.*
 
 ---
 
@@ -23,11 +23,15 @@ Hooks fill that gap. They execute custom shell commands at key points during Cop
 **Loading:** During agent sessions on supported surfaces (VS Code, GitHub Copilot CLI, and the cloud coding agent)*
 **Best For:** Security enforcement, audit logging, compliance, and runtime guardrails
 
+**See it in action:** [Let it cook: Agent Steering, Queueing, Hooks, CLI Integration, & more!](https://www.youtube.com/watch?v=FjvtWeG6EEo&t=1975s) — James Montemagno and Pierce Boggan open a `.github/hooks/` configuration and show session and tool hooks firing around live agent actions.
+
 **Location:** `.github/hooks/*.json`
 
 **Official docs:** [Copilot hooks](https://code.visualstudio.com/docs/copilot/customization/hooks)
 
-**See it in action:** [Let it Cook: Agent Steering, Queueing, Hooks, CLI Integration, & more!](https://www.youtube.com/watch?v=FjvtWeG6EEo&t=1758s). Pierce Boggan introduces hooks as an enforcement layer that sits outside the model and explains where they attach to the agent loop.
+**Code to study:** [Awesome Copilot hooks](https://github.com/github/awesome-copilot/tree/main/hooks) for concrete policy examples, [GitHub Copilot CLI repository](https://github.com/github/copilot-cli) for a public hooks-capable surface, and [VS Code Copilot Chat source](https://github.com/microsoft/vscode-copilot-chat) for the VS Code host.
+
+For the end-to-end execution model, see [The Agent Loop](agent-loop.md). Hooks matter because they operate at the action boundaries of that loop rather than inside the model's reasoning.
 
 Primitives and hooks operate at different layers:
 
@@ -79,7 +83,7 @@ Hooks fit scenarios the other primitives can't address:
 
 ### Creating This Primitive
 
-Sound off before you steer — let Copilot draft the hook. Hook JSON has a tight schema (`version`, valid event names, correct shell keys for `bash` and `powershell`, timeout formats) and a hand-typed file with a typo'd event name or missing `version` field is ignored silently. In VS Code, run `/create-hook` in Chat to scaffold `.github/hooks/*.json` with the correct structure, or describe the hook in plain English and let Copilot write it. There is no dedicated GUI editor for hooks today. See [Don't Hand-Type Primitives — Let the Helmsman Repeat the Order](part-2-primitives.md#dont-hand-type-primitives--let-the-helmsman-repeat-the-order) for the rationale.
+Start with a generated hook and inspect the JSON before committing it. Hook JSON has a tight schema (`version`, valid event names, correct shell keys for `bash` and `powershell`, timeout formats) and a hand-typed file with a typo'd event name or missing `version` field is ignored silently. In VS Code, run `/create-hook` in Chat to scaffold `.github/hooks/*.json` with the correct structure, or describe the hook in plain English and let Copilot write it. There is no dedicated GUI editor for hooks today. See [Don't Hand-Type Primitives — Let the Helmsman Repeat the Order](part-2-primitives.md#dont-hand-type-primitives--let-the-helmsman-repeat-the-order) for the rationale.
 
 > **💬 Try this prompt:**
 >

@@ -1,0 +1,2251 @@
+{
+  "source_file": "2025-09-29-the-origins-evolution-of-the-github-mcp-registry.md",
+  "transcript_format": "local_stt_segments",
+  "segment_count": 318,
+  "metadata": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 7,
+    "title": "The Origins & Evolution of the GitHub MCP Registry",
+    "url": "https://www.vscodepodcast.com/7",
+    "transcript_url": "",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/93f1e19b-4fee-4c92-be4b-c061438ea834.mp3",
+    "published": "2025-09-29",
+    "duration": "22:58",
+    "transcript_available": false,
+    "source_file": "2025-09-29-the-origins-evolution-of-the-github-mcp-registry.md",
+    "source_path": "references\\transcripts\\vscode-podcast\\2025-09-29-the-origins-evolution-of-the-github-mcp-registry.md",
+    "local_stt": true,
+    "local_stt_model": "tiny.en",
+    "local_stt_language": "en",
+    "local_stt_device": "cpu",
+    "local_stt_compute_type": "int8"
+  },
+  "segments": [
+    {
+      "speaker": null,
+      "text": "Welcome back everyone to the VS code insiders podcast you're behind the scenes of everything VS code",
+      "start": "00:00:00.080",
+      "end": "00:00:05.720",
+      "id": 1
+    },
+    {
+      "speaker": null,
+      "text": "I'm your host James Monson magnet PM on a developer community and today I have one of my best friends in the entire world",
+      "start": "00:00:05.720",
+      "end": "00:00:11.240",
+      "id": 2
+    },
+    {
+      "speaker": null,
+      "text": "The one and only Toby Padilla has a go and Toby hi James. Thank you for the warm intro. It's super great to be here",
+      "start": "00:00:11.320",
+      "end": "00:00:18.400",
+      "id": 3
+    },
+    {
+      "speaker": null,
+      "text": "I am super said now funnily enough like you and I only met it's kind of like I swear",
+      "start": "00:00:18.400",
+      "end": "00:00:24.300",
+      "id": 4
+    },
+    {
+      "speaker": null,
+      "text": "It's kind of like talking about like what model you're using. I don't know what it was a Tuesday",
+      "start": "00:00:24.300",
+      "end": "00:00:27.460",
+      "id": 5
+    },
+    {
+      "speaker": null,
+      "text": "I'm probably using a new model you and I only actually I think met in person at build on our MCP panel",
+      "start": "00:00:27.460",
+      "end": "00:00:33.300",
+      "id": 6
+    },
+    {
+      "speaker": null,
+      "text": "And then I was like wow Toby's like amazing so cool. I know anything about you and maybe some of our listeners",
+      "start": "00:00:33.300",
+      "end": "00:00:38.220",
+      "id": 7
+    },
+    {
+      "speaker": null,
+      "text": "Don't do you want to give a little TLDR about what you're doing to get him sure",
+      "start": "00:00:38.220",
+      "end": "00:00:42.180",
+      "id": 8
+    },
+    {
+      "speaker": null,
+      "text": "So I'm Toby Padilla. I'm a principal product manager at GitHub",
+      "start": "00:00:42.180",
+      "end": "00:00:45.660",
+      "id": 9
+    },
+    {
+      "speaker": null,
+      "text": "I am in charge of our MCP initiatives and so this is the GitHub MCP server",
+      "start": "00:00:45.660",
+      "end": "00:00:50.660",
+      "id": 10
+    },
+    {
+      "speaker": null,
+      "text": "The new registry that we launched",
+      "start": "00:00:50.780",
+      "end": "00:00:52.560",
+      "id": 11
+    },
+    {
+      "speaker": null,
+      "text": "I'm also on the MCP steering committee for the as a maintainer for the open source",
+      "start": "00:00:52.560",
+      "end": "00:00:57.740",
+      "id": 12
+    },
+    {
+      "speaker": null,
+      "text": "MCP registry and we can talk today about how all of these things wire up",
+      "start": "00:00:58.140",
+      "end": "00:01:01.600",
+      "id": 13
+    },
+    {
+      "speaker": null,
+      "text": "I'm relatively new. I started in December last year. So I'm coming up on my my first year",
+      "start": "00:01:01.600",
+      "end": "00:01:06.520",
+      "id": 14
+    },
+    {
+      "speaker": null,
+      "text": "It's been an amazing journey and and James and I we're just setting about how much it's changed in this year, right?",
+      "start": "00:01:06.520",
+      "end": "00:01:11.960",
+      "id": 15
+    },
+    {
+      "speaker": null,
+      "text": "Like we're moving",
+      "start": "00:01:11.960",
+      "end": "00:01:13.460",
+      "id": 16
+    },
+    {
+      "speaker": null,
+      "text": "super fast now we have one of the most popular MCP servers in the world",
+      "start": "00:01:13.460",
+      "end": "00:01:17.400",
+      "id": 17
+    },
+    {
+      "speaker": null,
+      "text": "We have a super popular registry the agent stuff is coming out. We've got copilot coding agent",
+      "start": "00:01:17.440",
+      "end": "00:01:22.240",
+      "id": 18
+    },
+    {
+      "speaker": null,
+      "text": "There's there's a lot of really interesting stuff going on",
+      "start": "00:01:22.240",
+      "end": "00:01:24.840",
+      "id": 19
+    },
+    {
+      "speaker": null,
+      "text": "And so it's been it's been a good journey prior to that",
+      "start": "00:01:24.840",
+      "end": "00:01:27.120",
+      "id": 20
+    },
+    {
+      "speaker": null,
+      "text": "I was the founder of charm which is a very popular open source command line startup",
+      "start": "00:01:27.120",
+      "end": "00:01:31.680",
+      "id": 21
+    },
+    {
+      "speaker": null,
+      "text": "And before that I was the VP of mobile for tweet deck and last of them and way back in today as an engineer at Apple",
+      "start": "00:01:31.680",
+      "end": "00:01:38.560",
+      "id": 22
+    },
+    {
+      "speaker": null,
+      "text": "So it's been a been a long time in the industry",
+      "start": "00:01:38.560",
+      "end": "00:01:41.600",
+      "id": 23
+    },
+    {
+      "speaker": null,
+      "text": "But to see these changes in the last 12 to 24 months",
+      "start": "00:01:41.640",
+      "end": "00:01:46.000",
+      "id": 24
+    },
+    {
+      "speaker": null,
+      "text": "That's probably been the most exciting time in tech since I was like eight years old using a VIC 20 back in the day",
+      "start": "00:01:46.000",
+      "end": "00:01:51.920",
+      "id": 25
+    },
+    {
+      "speaker": null,
+      "text": "It's so cool too because pretty much every product that you've worked on I've used so",
+      "start": "00:01:52.520",
+      "end": "00:01:56.300",
+      "id": 26
+    },
+    {
+      "speaker": null,
+      "text": "Well, let's talk about MCP model context protocol now if people you know every blog with to say what it is",
+      "start": "00:01:58.120",
+      "end": "00:02:03.920",
+      "id": 27
+    },
+    {
+      "speaker": null,
+      "text": "So Toby what is model context protocol and how are you using MCP servers today in your actual workflow?",
+      "start": "00:02:03.920",
+      "end": "00:02:10.880",
+      "id": 28
+    },
+    {
+      "speaker": null,
+      "text": "So MCP model context protocol is a way for LLMs to interact",
+      "start": "00:02:11.600",
+      "end": "00:02:15.600",
+      "id": 29
+    },
+    {
+      "speaker": null,
+      "text": "With the outside world and this means sort of primarily two things one is they can fetch",
+      "start": "00:02:15.920",
+      "end": "00:02:20.160",
+      "id": 30
+    },
+    {
+      "speaker": null,
+      "text": "Context they can fetch data right and so if you think about how an LLM works",
+      "start": "00:02:20.400",
+      "end": "00:02:24.320",
+      "id": 31
+    },
+    {
+      "speaker": null,
+      "text": "I had a cutoff date when it was trained and anything past that cutoff date or anything that was private won't be",
+      "start": "00:02:24.320",
+      "end": "00:02:29.800",
+      "id": 32
+    },
+    {
+      "speaker": null,
+      "text": "accessible to the LLM so think of MCP as a way for it to go out and fetch either private information or more",
+      "start": "00:02:30.080",
+      "end": "00:02:36.240",
+      "id": 33
+    },
+    {
+      "speaker": null,
+      "text": "Recent information you can say what are the top five things on Hacker News for instance and it could go go get that from like right now",
+      "start": "00:02:36.320",
+      "end": "00:02:42.160",
+      "id": 34
+    },
+    {
+      "speaker": null,
+      "text": "The other thing it can do is it can create side effects it can interact with the outside world",
+      "start": "00:02:42.320",
+      "end": "00:02:46.040",
+      "id": 35
+    },
+    {
+      "speaker": null,
+      "text": "So it can create a repo on GitHub",
+      "start": "00:02:46.040",
+      "end": "00:02:48.840",
+      "id": 36
+    },
+    {
+      "speaker": null,
+      "text": "They can create a pull request that can create a figma file",
+      "start": "00:02:48.840",
+      "end": "00:02:51.880",
+      "id": 37
+    },
+    {
+      "speaker": null,
+      "text": "so it's really the LLM's way to to interact and the history there's kind of interesting because",
+      "start": "00:02:52.000",
+      "end": "00:02:57.960",
+      "id": 38
+    },
+    {
+      "speaker": null,
+      "text": "There was a function calling API for a lot of these models like opening",
+      "start": "00:02:58.520",
+      "end": "00:03:03.400",
+      "id": 39
+    },
+    {
+      "speaker": null,
+      "text": "I had this function calling API and it was it was essentially the same thing",
+      "start": "00:03:03.440",
+      "end": "00:03:06.080",
+      "id": 40
+    },
+    {
+      "speaker": null,
+      "text": "But it wasn't standardized it was sort of proprietary to each model and and thropic about a year ago now",
+      "start": "00:03:06.240",
+      "end": "00:03:11.520",
+      "id": 41
+    },
+    {
+      "speaker": null,
+      "text": "Did the hard work of creating the standard and one of the ways they sort of bootstrapped the standard was they created like 20 or 30",
+      "start": "00:03:12.120",
+      "end": "00:03:18.880",
+      "id": 42
+    },
+    {
+      "speaker": null,
+      "text": "Reference servers themselves",
+      "start": "00:03:19.040",
+      "end": "00:03:20.560",
+      "id": 43
+    },
+    {
+      "speaker": null,
+      "text": "And one of those reference servers was the GitHub MCP server and they told us it was the most popular of all the reference servers",
+      "start": "00:03:20.560",
+      "end": "00:03:26.280",
+      "id": 44
+    },
+    {
+      "speaker": null,
+      "text": "And so we took ownership of that from them and put it out there and just like we said",
+      "start": "00:03:26.280",
+      "end": "00:03:30.720",
+      "id": 45
+    },
+    {
+      "speaker": null,
+      "text": "It's a way for LLM's not to interact with GitHub and and the GitHub platform",
+      "start": "00:03:30.720",
+      "end": "00:03:34.520",
+      "id": 46
+    },
+    {
+      "speaker": null,
+      "text": "And you see a lot of these for a lot of services, right?",
+      "start": "00:03:35.040",
+      "end": "00:03:37.760",
+      "id": 47
+    },
+    {
+      "speaker": null,
+      "text": "Like you're they're kind of wrapping rest API's or they're doing even better and they're putting agentic workflows together as as tools",
+      "start": "00:03:37.760",
+      "end": "00:03:43.960",
+      "id": 48
+    },
+    {
+      "speaker": null,
+      "text": "The ones I use a lot are are the GitHub MCP server",
+      "start": "00:03:44.000",
+      "end": "00:03:46.960",
+      "id": 49
+    },
+    {
+      "speaker": null,
+      "text": "I use play light right a lot as well and for people who aren't familiar with that",
+      "start": "00:03:46.960",
+      "end": "00:03:50.480",
+      "id": 50
+    },
+    {
+      "speaker": null,
+      "text": "This is a Microsoft MCP server that gives LLM's of the ability to browse the web",
+      "start": "00:03:50.480",
+      "end": "00:03:54.960",
+      "id": 51
+    },
+    {
+      "speaker": null,
+      "text": "And that's a super amazing thing right as like the LLM like driving through through websites and the way I use these is primarily through",
+      "start": "00:03:55.440",
+      "end": "00:04:03.160",
+      "id": 52
+    },
+    {
+      "speaker": null,
+      "text": "The copilot coding agent and so James you and I were talking about this earlier today",
+      "start": "00:04:03.360",
+      "end": "00:04:08.080",
+      "id": 53
+    },
+    {
+      "speaker": null,
+      "text": "There's a bunch of ways you can do agentic development, right? Like you can have an agent to do yes code or cursor",
+      "start": "00:04:08.640",
+      "end": "00:04:14.640",
+      "id": 54
+    },
+    {
+      "speaker": null,
+      "text": "Caught code you can be on the command line. There's a bunch of different things you can do my preferred way is to use GitHub itself",
+      "start": "00:04:15.440",
+      "end": "00:04:21.600",
+      "id": 55
+    },
+    {
+      "speaker": null,
+      "text": "And so for those are all who aren't familiar the copilot coding agent is a feature where you can assign an issue to copilot",
+      "start": "00:04:21.680",
+      "end": "00:04:27.320",
+      "id": 56
+    },
+    {
+      "speaker": null,
+      "text": "And it turns away for like 20 minutes and it will come back and open up a pull request with what you wanted in there",
+      "start": "00:04:27.520",
+      "end": "00:04:32.800",
+      "id": 57
+    },
+    {
+      "speaker": null,
+      "text": "And if you want to change that or it got something wrong you just leave comments to it",
+      "start": "00:04:33.360",
+      "end": "00:04:37.360",
+      "id": 58
+    },
+    {
+      "speaker": null,
+      "text": "You're like hey at copilot, you know, I actually won 13 color themes instead of like the six that you added or you got this wrong",
+      "start": "00:04:37.360",
+      "end": "00:04:43.440",
+      "id": 59
+    },
+    {
+      "speaker": null,
+      "text": "I want to use SQLite instead of MongoDB and then it'll go back and it will do another commit on the PR",
+      "start": "00:04:43.440",
+      "end": "00:04:49.040",
+      "id": 60
+    },
+    {
+      "speaker": null,
+      "text": "Well, the copilot coding agent is mcp enabled and by default it has two mcp servers installed",
+      "start": "00:04:49.440",
+      "end": "00:04:54.640",
+      "id": 61
+    },
+    {
+      "speaker": null,
+      "text": "One is the GitHub mcp server and the other is playwright",
+      "start": "00:04:54.640",
+      "end": "00:04:57.760",
+      "id": 62
+    },
+    {
+      "speaker": null,
+      "text": "And it uses the GitHub mcp server for all of its interaction with GitHub",
+      "start": "00:04:57.760",
+      "end": "00:05:01.440",
+      "id": 63
+    },
+    {
+      "speaker": null,
+      "text": "So as it's doing commits as it's looking through the history of files as it's looking at other reposts using",
+      "start": "00:05:01.440",
+      "end": "00:05:06.240",
+      "id": 64
+    },
+    {
+      "speaker": null,
+      "text": "The GitHub mcp server there and then if you're building a web app",
+      "start": "00:05:06.560",
+      "end": "00:05:09.760",
+      "id": 65
+    },
+    {
+      "speaker": null,
+      "text": "It uses playwright to like take screenshots of it to test the functionality that it implemented",
+      "start": "00:05:09.920",
+      "end": "00:05:14.080",
+      "id": 66
+    },
+    {
+      "speaker": null,
+      "text": "And it's kind of incredible because a lot of the times you'll get back a pull request from the coding agent",
+      "start": "00:05:14.160",
+      "end": "00:05:18.000",
+      "id": 67
+    },
+    {
+      "speaker": null,
+      "text": "And it'll have a screenshot of what it just built and it used playwright for that",
+      "start": "00:05:18.000",
+      "end": "00:05:21.360",
+      "id": 68
+    },
+    {
+      "speaker": null,
+      "text": "And it validated at least a lot of the user flows through this web application by using playwrights",
+      "start": "00:05:21.360",
+      "end": "00:05:26.960",
+      "id": 69
+    },
+    {
+      "speaker": null,
+      "text": "So for me the combination of those three things the coding agent the GitHub mcp server and the playwright mcp servers",
+      "start": "00:05:26.960",
+      "end": "00:05:34.320",
+      "id": 70
+    },
+    {
+      "speaker": null,
+      "text": "Really unlocked some pretty amazing stuff",
+      "start": "00:05:34.320",
+      "end": "00:05:36.960",
+      "id": 71
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, that's super cool and the cool type part of mcp is like you were talking about is it's",
+      "start": "00:05:37.440",
+      "end": "00:05:40.720",
+      "id": 72
+    },
+    {
+      "speaker": null,
+      "text": "It's not just for coding. It's in a bunch of different things right? So a bunch of different editors like i use vsvs code",
+      "start": "00:05:41.280",
+      "end": "00:05:46.800",
+      "id": 73
+    },
+    {
+      "speaker": null,
+      "text": "But also there's different desktop apps that can connect to and that's the idea as it's a universal standard",
+      "start": "00:05:46.800",
+      "end": "00:05:50.880",
+      "id": 74
+    },
+    {
+      "speaker": null,
+      "text": "That's out there. So when you go to the model context protocol website",
+      "start": "00:05:51.280",
+      "end": "00:05:53.760",
+      "id": 75
+    },
+    {
+      "speaker": null,
+      "text": "Which we'll put in the links below you'll see all that stuff",
+      "start": "00:05:53.760",
+      "end": "00:05:55.840",
+      "id": 76
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, like for me inside of us code just yesterday",
+      "start": "00:05:55.840",
+      "end": "00:05:58.160",
+      "id": 77
+    },
+    {
+      "speaker": null,
+      "text": "I was I have my blazer website and I was like hey, I really want to optimize my",
+      "start": "00:05:58.160",
+      "end": "00:06:02.240",
+      "id": 78
+    },
+    {
+      "speaker": null,
+      "text": "static assets",
+      "start": "00:06:03.040",
+      "end": "00:06:04.160",
+      "id": 79
+    },
+    {
+      "speaker": null,
+      "text": "So I just said you know I had the Microsoft learn mcp server",
+      "start": "00:06:04.240",
+      "end": "00:06:08.160",
+      "id": 80
+    },
+    {
+      "speaker": null,
+      "text": "I said go search the docs",
+      "start": "00:06:08.160",
+      "end": "00:06:09.760",
+      "id": 81
+    },
+    {
+      "speaker": null,
+      "text": "It pulled down the docs and then I said hey go create a plan",
+      "start": "00:06:09.760",
+      "end": "00:06:12.640",
+      "id": 82
+    },
+    {
+      "speaker": null,
+      "text": "So I'm inside of just my ask mode inside of us code",
+      "start": "00:06:12.640",
+      "end": "00:06:15.120",
+      "id": 83
+    },
+    {
+      "speaker": null,
+      "text": "Like cool now go break this down into like five digestible get-up issues",
+      "start": "00:06:15.200",
+      "end": "00:06:19.120",
+      "id": 84
+    },
+    {
+      "speaker": null,
+      "text": "And then go open those for me and they get up mcp kicks in and it does it right",
+      "start": "00:06:19.680",
+      "end": "00:06:23.760",
+      "id": 85
+    },
+    {
+      "speaker": null,
+      "text": "I could manually do that in vscode, but I don't want to waste my keystrokes",
+      "start": "00:06:23.760",
+      "end": "00:06:27.040",
+      "id": 86
+    },
+    {
+      "speaker": null,
+      "text": "I just go and do it right and then the last thing I said okay, let's go ahead and figure out which one has like the most",
+      "start": "00:06:27.280",
+      "end": "00:06:32.240",
+      "id": 87
+    },
+    {
+      "speaker": null,
+      "text": "Kind of viable like you know",
+      "start": "00:06:32.560",
+      "end": "00:06:34.560",
+      "id": 88
+    },
+    {
+      "speaker": null,
+      "text": "First order of operation go ahead and assign that to the coding agent and then go and do it right",
+      "start": "00:06:35.440",
+      "end": "00:06:39.440",
+      "id": 89
+    },
+    {
+      "speaker": null,
+      "text": "All from without leaving my IDE, which is super cool",
+      "start": "00:06:39.440",
+      "end": "00:06:42.400",
+      "id": 90
+    },
+    {
+      "speaker": null,
+      "text": "And like you said I do that a lot which is like I'm implementing a new web",
+      "start": "00:06:42.480",
+      "end": "00:06:45.920",
+      "id": 91
+    },
+    {
+      "speaker": null,
+      "text": "You know component and then I'm like all right",
+      "start": "00:06:46.320",
+      "end": "00:06:47.920",
+      "id": 92
+    },
+    {
+      "speaker": null,
+      "text": "You've implemented it you know co-pilot now go do end-to-end testing on that with playwright",
+      "start": "00:06:47.920",
+      "end": "00:06:52.560",
+      "id": 93
+    },
+    {
+      "speaker": null,
+      "text": "And then just like test it so you can validate itself so cool and there's a bunch of them out there",
+      "start": "00:06:52.560",
+      "end": "00:06:57.120",
+      "id": 94
+    },
+    {
+      "speaker": null,
+      "text": "Um",
+      "start": "00:06:57.600",
+      "end": "00:06:58.960",
+      "id": 95
+    },
+    {
+      "speaker": null,
+      "text": "You know and if you're not using these things give it a trial even with those simple ones like the get-up mcp one",
+      "start": "00:06:59.200",
+      "end": "00:07:03.520",
+      "id": 96
+    },
+    {
+      "speaker": null,
+      "text": "It's like blows my mind and there's a bajillion tools in there",
+      "start": "00:07:03.520",
+      "end": "00:07:05.840",
+      "id": 97
+    },
+    {
+      "speaker": null,
+      "text": "You might say tools are kind of like function calls right? Yep, but I think that ends up becoming like the problem",
+      "start": "00:07:05.840",
+      "end": "00:07:10.720",
+      "id": 98
+    },
+    {
+      "speaker": null,
+      "text": "What we actually want to talk about today which is like finding managing and",
+      "start": "00:07:10.800",
+      "end": "00:07:15.520",
+      "id": 99
+    },
+    {
+      "speaker": null,
+      "text": "Going off so we just like talked about this but then like where do people go like how do you find it right?",
+      "start": "00:07:16.080",
+      "end": "00:07:20.960",
+      "id": 100
+    },
+    {
+      "speaker": null,
+      "text": "And you talked about earlier about this mcp registry and then we have our own mcp rutches a there's a bunch of registries like",
+      "start": "00:07:21.680",
+      "end": "00:07:27.840",
+      "id": 101
+    },
+    {
+      "speaker": null,
+      "text": "We know about mcp now, but like",
+      "start": "00:07:28.640",
+      "end": "00:07:30.640",
+      "id": 102
+    },
+    {
+      "speaker": null,
+      "text": "What is this registry? How did it come about right because it's not inherently from us that you were talking about with the the team and?",
+      "start": "00:07:31.280",
+      "end": "00:07:37.760",
+      "id": 103
+    },
+    {
+      "speaker": null,
+      "text": "And",
+      "start": "00:07:38.560",
+      "end": "00:07:39.760",
+      "id": 104
+    },
+    {
+      "speaker": null,
+      "text": "How is it evolved since like the need for a registry evolved?",
+      "start": "00:07:39.760",
+      "end": "00:07:43.040",
+      "id": 105
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, that's a",
+      "start": "00:07:44.000",
+      "end": "00:07:46.000",
+      "id": 106
+    },
+    {
+      "speaker": null,
+      "text": "Really good overview of the sort of messy situation we found ourselves in right?",
+      "start": "00:07:46.000",
+      "end": "00:07:49.680",
+      "id": 107
+    },
+    {
+      "speaker": null,
+      "text": "So again a year ago and tropic creates mcp and it just starts taking off like wildfire",
+      "start": "00:07:49.680",
+      "end": "00:07:55.120",
+      "id": 108
+    },
+    {
+      "speaker": null,
+      "text": "After their initial set of mcp servers people just start like cranking things out because it's actually pretty easy to make a local",
+      "start": "00:07:55.360",
+      "end": "00:08:01.840",
+      "id": 109
+    },
+    {
+      "speaker": null,
+      "text": "Mcp server just to command line to it just wraps some stuff and all it does is it presents a function like when you set a tools",
+      "start": "00:08:01.920",
+      "end": "00:08:08.880",
+      "id": 110
+    },
+    {
+      "speaker": null,
+      "text": "A function a function to the LLM a text description of what that function does",
+      "start": "00:08:08.880",
+      "end": "00:08:13.520",
+      "id": 111
+    },
+    {
+      "speaker": null,
+      "text": "So if we say get pull requests is the function and then the description is goes to GitHub and gets the pull requests",
+      "start": "00:08:13.520",
+      "end": "00:08:18.640",
+      "id": 112
+    },
+    {
+      "speaker": null,
+      "text": "And then it has a JSON schema for arguments and so the LLMs have been sort of fine tuned on this",
+      "start": "00:08:18.960",
+      "end": "00:08:23.840",
+      "id": 113
+    },
+    {
+      "speaker": null,
+      "text": "So it's really easy to make these things and so it's all just an explosion of them and what you also saw as an explosion of of",
+      "start": "00:08:23.840",
+      "end": "00:08:29.760",
+      "id": 114
+    },
+    {
+      "speaker": null,
+      "text": "registries to collect these things right because the problem is exactly what you said",
+      "start": "00:08:30.000",
+      "end": "00:08:33.840",
+      "id": 115
+    },
+    {
+      "speaker": null,
+      "text": "Okay, now everyone's making mcp servers. Everyone's really excited about it",
+      "start": "00:08:33.840",
+      "end": "00:08:36.880",
+      "id": 116
+    },
+    {
+      "speaker": null,
+      "text": "How do you find them and so a lot of just like third parties and independent developers and open source people started making",
+      "start": "00:08:37.360",
+      "end": "00:08:43.600",
+      "id": 117
+    },
+    {
+      "speaker": null,
+      "text": "Registry like pulse mcp was one of them. I'm glam my AI was another one",
+      "start": "00:08:43.600",
+      "end": "00:08:47.840",
+      "id": 118
+    },
+    {
+      "speaker": null,
+      "text": "But it became a problem for publishers right like we have the GitHub mcp server",
+      "start": "00:08:48.240",
+      "end": "00:08:52.480",
+      "id": 119
+    },
+    {
+      "speaker": null,
+      "text": "We do a new release",
+      "start": "00:08:52.720",
+      "end": "00:08:53.920",
+      "id": 120
+    },
+    {
+      "speaker": null,
+      "text": "How do we update these 12 or 13 registries that are out there? And there's this sort of more registries coming out every day",
+      "start": "00:08:54.160",
+      "end": "00:08:59.920",
+      "id": 121
+    },
+    {
+      "speaker": null,
+      "text": "So the mcp steering committee got together and said, you know",
+      "start": "00:09:00.240",
+      "end": "00:09:03.360",
+      "id": 122
+    },
+    {
+      "speaker": null,
+      "text": "Let's solve this and let's create a single point of truth",
+      "start": "00:09:03.360",
+      "end": "00:09:05.840",
+      "id": 123
+    },
+    {
+      "speaker": null,
+      "text": "Where publishers can push their mcp servers into any updates for their mcp servers",
+      "start": "00:09:06.080",
+      "end": "00:09:11.040",
+      "id": 124
+    },
+    {
+      "speaker": null,
+      "text": "We have all the information required to install these mcp servers in this API",
+      "start": "00:09:11.280",
+      "end": "00:09:15.440",
+      "id": 125
+    },
+    {
+      "speaker": null,
+      "text": "And then a bunch of downstream registries can pull from this because our goal with this open source canonical",
+      "start": "00:09:16.000",
+      "end": "00:09:22.240",
+      "id": 126
+    },
+    {
+      "speaker": null,
+      "text": "registry that we're building with mcp steering committee is not to be an end destination for users",
+      "start": "00:09:22.320",
+      "end": "00:09:27.440",
+      "id": 127
+    },
+    {
+      "speaker": null,
+      "text": "It's a meant to be an end destination for publishers",
+      "start": "00:09:27.680",
+      "end": "00:09:30.080",
+      "id": 128
+    },
+    {
+      "speaker": null,
+      "text": "So we published into this and then a bunch of downstream registries pull from this API and one of those registries is the GitHub",
+      "start": "00:09:30.240",
+      "end": "00:09:36.720",
+      "id": 129
+    },
+    {
+      "speaker": null,
+      "text": "MCP registry doesn't pull from this yet because we're still in preview mode of the open source registry",
+      "start": "00:09:36.720",
+      "end": "00:09:41.600",
+      "id": 130
+    },
+    {
+      "speaker": null,
+      "text": "But we're working with them and and I should say us because I'm on both sides of this equation",
+      "start": "00:09:41.680",
+      "end": "00:09:46.160",
+      "id": 131
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, you get",
+      "start": "00:09:46.400",
+      "end": "00:09:47.120",
+      "id": 132
+    },
+    {
+      "speaker": null,
+      "text": "When you publish shows up in the GitHub mcp registry",
+      "start": "00:09:47.440",
+      "end": "00:09:50.480",
+      "id": 133
+    },
+    {
+      "speaker": null,
+      "text": "So the GitHub mcp registry which we just launched two weeks ago now",
+      "start": "00:09:50.480",
+      "end": "00:09:54.000",
+      "id": 134
+    },
+    {
+      "speaker": null,
+      "text": "Is a curated set of high quality servers just to bootstrap and get the thing out there",
+      "start": "00:09:54.800",
+      "end": "00:09:59.840",
+      "id": 135
+    },
+    {
+      "speaker": null,
+      "text": "And then when we're confident that the open source registry is is done changing the API shape",
+      "start": "00:10:00.320",
+      "end": "00:10:05.680",
+      "id": 136
+    },
+    {
+      "speaker": null,
+      "text": "We work through all the issues because we're really building it in public",
+      "start": "00:10:05.680",
+      "end": "00:10:07.920",
+      "id": 137
+    },
+    {
+      "speaker": null,
+      "text": "Then we're going to sit they can have the mcp registry on top of it",
+      "start": "00:10:07.920",
+      "end": "00:10:10.960",
+      "id": 138
+    },
+    {
+      "speaker": null,
+      "text": "And part of this flow is that you publish as a publisher in the open source registry",
+      "start": "00:10:10.960",
+      "end": "00:10:15.840",
+      "id": 139
+    },
+    {
+      "speaker": null,
+      "text": "downstream registries github goose extensions marketplace cursor all these things pull from it",
+      "start": "00:10:15.840",
+      "end": "00:10:20.400",
+      "id": 140
+    },
+    {
+      "speaker": null,
+      "text": "And then they enhance that data with platform specific information",
+      "start": "00:10:20.480",
+      "end": "00:10:24.480",
+      "id": 141
+    },
+    {
+      "speaker": null,
+      "text": "So for us on the GitHub side that means adding star counts",
+      "start": "00:10:24.480",
+      "end": "00:10:27.920",
+      "id": 142
+    },
+    {
+      "speaker": null,
+      "text": "It means displaying the readmees",
+      "start": "00:10:27.920",
+      "end": "00:10:29.680",
+      "id": 143
+    },
+    {
+      "speaker": null,
+      "text": "It means one click installs in the VS code and VS code insiders and visual studio and an intelligent and all of our first-party platforms",
+      "start": "00:10:29.680",
+      "end": "00:10:36.240",
+      "id": 144
+    },
+    {
+      "speaker": null,
+      "text": "And it means linking back to the repos so we can sort of get this flow going of people discovering and contributing to these mcp servers",
+      "start": "00:10:36.240",
+      "end": "00:10:43.360",
+      "id": 145
+    },
+    {
+      "speaker": null,
+      "text": "And so that's the overall vision and all of this and we're kind of marching it forward",
+      "start": "00:10:44.080",
+      "end": "00:10:47.760",
+      "id": 146
+    },
+    {
+      "speaker": null,
+      "text": "The great thing about mcp the ecosystem in general is that it's it's very organic right like",
+      "start": "00:10:47.760",
+      "end": "00:10:52.880",
+      "id": 147
+    },
+    {
+      "speaker": null,
+      "text": "A lot of this is open source all this is being built in public",
+      "start": "00:10:53.920",
+      "end": "00:10:57.200",
+      "id": 148
+    },
+    {
+      "speaker": null,
+      "text": "We put something out people find problems they open issues",
+      "start": "00:10:57.200",
+      "end": "00:11:00.000",
+      "id": 149
+    },
+    {
+      "speaker": null,
+      "text": "We fix them",
+      "start": "00:11:00.000",
+      "end": "00:11:00.880",
+      "id": 150
+    },
+    {
+      "speaker": null,
+      "text": "So it's really a work in progress",
+      "start": "00:11:00.880",
+      "end": "00:11:02.720",
+      "id": 151
+    },
+    {
+      "speaker": null,
+      "text": "And if you want to be involved you can go to the link that will add to this and you can just start chiming",
+      "start": "00:11:02.720",
+      "end": "00:11:07.440",
+      "id": 152
+    },
+    {
+      "speaker": null,
+      "text": "And you can even do a pull request on it",
+      "start": "00:11:07.440",
+      "end": "00:11:09.440",
+      "id": 153
+    },
+    {
+      "speaker": null,
+      "text": "And start publishing to the server and this is banging on it",
+      "start": "00:11:09.440",
+      "end": "00:11:11.600",
+      "id": 154
+    },
+    {
+      "speaker": null,
+      "text": "And we actually have a discord as well for the mcp steering committee that you can join and chime in there",
+      "start": "00:11:11.600",
+      "end": "00:11:16.080",
+      "id": 155
+    },
+    {
+      "speaker": null,
+      "text": "But it's kind of a very fun very organic very early stage ecosystem thing with a bunch of different",
+      "start": "00:11:16.400",
+      "end": "00:11:22.400",
+      "id": 156
+    },
+    {
+      "speaker": null,
+      "text": "open source people working together large companies like github and microsoft and open AI and",
+      "start": "00:11:22.400",
+      "end": "00:11:27.920",
+      "id": 157
+    },
+    {
+      "speaker": null,
+      "text": "And thropic and it's it's a very cool mix of a bunch of different sized entities. It's kind of fun",
+      "start": "00:11:27.920",
+      "end": "00:11:33.600",
+      "id": 158
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, I think that's one of the cool parts about so we're with den quite a lot on things and he's been on",
+      "start": "00:11:34.240",
+      "end": "00:11:38.720",
+      "id": 159
+    },
+    {
+      "speaker": null,
+      "text": "You know many of our live streams and talking about spec kit and a bunch of other stuff",
+      "start": "00:11:39.520",
+      "end": "00:11:42.800",
+      "id": 160
+    },
+    {
+      "speaker": null,
+      "text": "N mcp of course we presented a build together",
+      "start": "00:11:43.360",
+      "end": "00:11:45.360",
+      "id": 161
+    },
+    {
+      "speaker": null,
+      "text": "With kd on my team and it was super fun and we were on the panel together",
+      "start": "00:11:46.160",
+      "end": "00:11:49.600",
+      "id": 162
+    },
+    {
+      "speaker": null,
+      "text": "I'm very fascinated about this register because I think when at least for me as a developer",
+      "start": "00:11:50.400",
+      "end": "00:11:53.760",
+      "id": 163
+    },
+    {
+      "speaker": null,
+      "text": "I think of a register",
+      "start": "00:11:53.760",
+      "end": "00:11:54.320",
+      "id": 164
+    },
+    {
+      "speaker": null,
+      "text": "I think of like nugget and npm right and these different like you know",
+      "start": "00:11:54.320",
+      "end": "00:11:57.680",
+      "id": 165
+    },
+    {
+      "speaker": null,
+      "text": "Cocoa pods on all these different things",
+      "start": "00:11:57.680",
+      "end": "00:11:59.120",
+      "id": 166
+    },
+    {
+      "speaker": null,
+      "text": "Is inherently like should we think about it the same way like if I'm going in",
+      "start": "00:11:59.200",
+      "end": "00:12:02.480",
+      "id": 167
+    },
+    {
+      "speaker": null,
+      "text": "And I built a library in this case in mcp like is right now today for example",
+      "start": "00:12:03.040",
+      "end": "00:12:08.160",
+      "id": 168
+    },
+    {
+      "speaker": null,
+      "text": "Like I have my monkey mcp server, which is great",
+      "start": "00:12:08.160",
+      "end": "00:12:10.560",
+      "id": 169
+    },
+    {
+      "speaker": null,
+      "text": "And also one for my feedback flow application, but inherently today what I'm doing is I am",
+      "start": "00:12:10.560",
+      "end": "00:12:15.200",
+      "id": 170
+    },
+    {
+      "speaker": null,
+      "text": "Doing two things one I have",
+      "start": "00:12:16.400",
+      "end": "00:12:18.400",
+      "id": 171
+    },
+    {
+      "speaker": null,
+      "text": "I'm publishing it to Docker Hub so people can pull it down if they want to locally on their machine",
+      "start": "00:12:19.200",
+      "end": "00:12:24.240",
+      "id": 172
+    },
+    {
+      "speaker": null,
+      "text": "But I'm also publishing it up to azure functions",
+      "start": "00:12:24.480",
+      "end": "00:12:27.360",
+      "id": 173
+    },
+    {
+      "speaker": null,
+      "text": "As a public endpoint for remote mcp servers",
+      "start": "00:12:28.000",
+      "end": "00:12:30.880",
+      "id": 174
+    },
+    {
+      "speaker": null,
+      "text": "I have both of those things available based on what people want to use there",
+      "start": "00:12:30.880",
+      "end": "00:12:35.120",
+      "id": 175
+    },
+    {
+      "speaker": null,
+      "text": "And mostly as a sample just to like show that you can do both of them",
+      "start": "00:12:35.920",
+      "end": "00:12:38.880",
+      "id": 176
+    },
+    {
+      "speaker": null,
+      "text": "But that's where I stopped like do I think about this registry as like another place to publish or have to do something",
+      "start": "00:12:39.120",
+      "end": "00:12:46.000",
+      "id": 177
+    },
+    {
+      "speaker": null,
+      "text": "Am I a repo like it's on github? It's in the read me like you know",
+      "start": "00:12:46.000",
+      "end": "00:12:49.200",
+      "id": 178
+    },
+    {
+      "speaker": null,
+      "text": "Just pick it up and like put it somewhere like what do I got to do as a developer to actually like",
+      "start": "00:12:49.520",
+      "end": "00:12:53.600",
+      "id": 179
+    },
+    {
+      "speaker": null,
+      "text": "in interact with this registry",
+      "start": "00:12:54.240",
+      "end": "00:12:56.480",
+      "id": 180
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, that's a great question",
+      "start": "00:12:57.280",
+      "end": "00:12:58.720",
+      "id": 181
+    },
+    {
+      "speaker": null,
+      "text": "And so one thing about this registry is is there they're kind of meta registries",
+      "start": "00:12:58.720",
+      "end": "00:13:03.680",
+      "id": 182
+    },
+    {
+      "speaker": null,
+      "text": "And so this has the information about your server",
+      "start": "00:13:03.680",
+      "end": "00:13:06.160",
+      "id": 183
+    },
+    {
+      "speaker": null,
+      "text": "But like you said, you're publishing the Docker Hub and you have a remote version of this right?",
+      "start": "00:13:06.240",
+      "end": "00:13:10.080",
+      "id": 184
+    },
+    {
+      "speaker": null,
+      "text": "And so what you'll do is you'll use a command line tool from this open source project",
+      "start": "00:13:10.080",
+      "end": "00:13:14.880",
+      "id": 185
+    },
+    {
+      "speaker": null,
+      "text": "and create a you can do",
+      "start": "00:13:15.520",
+      "end": "00:13:17.520",
+      "id": 186
+    },
+    {
+      "speaker": null,
+      "text": "Publisher init and it'll create a server JSON which is a manifest for your mcp server name",
+      "start": "00:13:17.520",
+      "end": "00:13:22.640",
+      "id": 187
+    },
+    {
+      "speaker": null,
+      "text": "Identifier and",
+      "start": "00:13:23.200",
+      "end": "00:13:25.040",
+      "id": 188
+    },
+    {
+      "speaker": null,
+      "text": "Remote and local server information",
+      "start": "00:13:25.040",
+      "end": "00:13:27.040",
+      "id": 189
+    },
+    {
+      "speaker": null,
+      "text": "So you'll actually put the Docker",
+      "start": "00:13:27.120",
+      "end": "00:13:29.120",
+      "id": 190
+    },
+    {
+      "speaker": null,
+      "text": "Command in there that you'll need the clients to run to run locally and the URL for your remote mcp",
+      "start": "00:13:29.120",
+      "end": "00:13:36.000",
+      "id": 191
+    },
+    {
+      "speaker": null,
+      "text": "Server endpoint so we're not actually hosting any of the binaries or anything like that in this registry",
+      "start": "00:13:36.160",
+      "end": "00:13:40.400",
+      "id": 192
+    },
+    {
+      "speaker": null,
+      "text": "We're just pointing to other registries mpm docker hub new yet",
+      "start": "00:13:40.400",
+      "end": "00:13:44.720",
+      "id": 193
+    },
+    {
+      "speaker": null,
+      "text": "Right like all of this kind of stuff",
+      "start": "00:13:44.720",
+      "end": "00:13:46.320",
+      "id": 194
+    },
+    {
+      "speaker": null,
+      "text": "So what you as a server author would do get the command line tool from the open source registry",
+      "start": "00:13:46.480",
+      "end": "00:13:50.720",
+      "id": 195
+    },
+    {
+      "speaker": null,
+      "text": "In it a server JSON",
+      "start": "00:13:51.120",
+      "end": "00:13:52.640",
+      "id": 196
+    },
+    {
+      "speaker": null,
+      "text": "Edit it so it has all of your information all of the flags that you need in Docker",
+      "start": "00:13:52.640",
+      "end": "00:13:56.480",
+      "id": 197
+    },
+    {
+      "speaker": null,
+      "text": "The endpoint for your remote URL the description for your server",
+      "start": "00:13:56.640",
+      "end": "00:13:59.680",
+      "id": 198
+    },
+    {
+      "speaker": null,
+      "text": "And then you publish it to the open source registry",
+      "start": "00:13:59.840",
+      "end": "00:14:02.240",
+      "id": 199
+    },
+    {
+      "speaker": null,
+      "text": "And then all of the downstream registries will sync from that and it will show up in all these different platforms",
+      "start": "00:14:02.240",
+      "end": "00:14:06.400",
+      "id": 200
+    },
+    {
+      "speaker": null,
+      "text": "Okay, I think that that really at least for me like unlocked",
+      "start": "00:14:06.880",
+      "end": "00:14:10.320",
+      "id": 201
+    },
+    {
+      "speaker": null,
+      "text": "A whole lot and we definitely need a blog post on that that is for sure",
+      "start": "00:14:11.040",
+      "end": "00:14:14.240",
+      "id": 202
+    },
+    {
+      "speaker": null,
+      "text": "But I think that mind my job because I was just thinking about that when you were saying in real time is for people out of listening",
+      "start": "00:14:14.240",
+      "end": "00:14:19.600",
+      "id": 203
+    },
+    {
+      "speaker": null,
+      "text": "Is yet you can build mcp servers and tons of programming languages right?",
+      "start": "00:14:19.680",
+      "end": "00:14:23.120",
+      "id": 204
+    },
+    {
+      "speaker": null,
+      "text": "mpm is specific for like the web you know JavaScript right and then",
+      "start": "00:14:23.120",
+      "end": "00:14:26.800",
+      "id": 205
+    },
+    {
+      "speaker": null,
+      "text": "You know new get is specific for dot net right?",
+      "start": "00:14:27.360",
+      "end": "00:14:29.600",
+      "id": 206
+    },
+    {
+      "speaker": null,
+      "text": "But inherently you're right mcp servers might be on a plethora of remote servers or they could be a new get package",
+      "start": "00:14:29.680",
+      "end": "00:14:35.040",
+      "id": 207
+    },
+    {
+      "speaker": null,
+      "text": "It could be a Docker thing they could be on some any registry right?",
+      "start": "00:14:35.040",
+      "end": "00:14:37.200",
+      "id": 208
+    },
+    {
+      "speaker": null,
+      "text": "It's like any Docker thing or it could be an mpm package or you know",
+      "start": "00:14:37.200",
+      "end": "00:14:40.160",
+      "id": 209
+    },
+    {
+      "speaker": null,
+      "text": "In saw with piff or whatever right for python",
+      "start": "00:14:40.480",
+      "end": "00:14:42.480",
+      "id": 210
+    },
+    {
+      "speaker": null,
+      "text": "So that's really fascinating that it's really just this this file that's connecting up",
+      "start": "00:14:42.720",
+      "end": "00:14:47.040",
+      "id": 211
+    },
+    {
+      "speaker": null,
+      "text": "To it and then what decides because there is this",
+      "start": "00:14:47.680",
+      "end": "00:14:50.080",
+      "id": 212
+    },
+    {
+      "speaker": null,
+      "text": "I really want to dive deeper onto this because",
+      "start": "00:14:50.400",
+      "end": "00:14:52.080",
+      "id": 213
+    },
+    {
+      "speaker": null,
+      "text": "Inherently like you said, there's meta there's there's registries built on top of registries like how should we think about",
+      "start": "00:14:52.880",
+      "end": "00:14:59.280",
+      "id": 214
+    },
+    {
+      "speaker": null,
+      "text": "Like the open source registry versus like the github registry versus other registries out there",
+      "start": "00:15:00.000",
+      "end": "00:15:04.800",
+      "id": 215
+    },
+    {
+      "speaker": null,
+      "text": "And like why do so many of them exist for example?",
+      "start": "00:15:04.800",
+      "end": "00:15:08.080",
+      "id": 216
+    },
+    {
+      "speaker": null,
+      "text": "That yeah, that's that's like a question too and and so a lot of this has to do with the multiple platforms right?",
+      "start": "00:15:08.720",
+      "end": "00:15:14.560",
+      "id": 217
+    },
+    {
+      "speaker": null,
+      "text": "And so with the github mcp registry",
+      "start": "00:15:14.560",
+      "end": "00:15:17.440",
+      "id": 218
+    },
+    {
+      "speaker": null,
+      "text": "Not only can you browse it on github.com",
+      "start": "00:15:18.320",
+      "end": "00:15:20.960",
+      "id": 219
+    },
+    {
+      "speaker": null,
+      "text": "But the api behind it powers the in app browsing inside of VS code",
+      "start": "00:15:21.280",
+      "end": "00:15:26.240",
+      "id": 220
+    },
+    {
+      "speaker": null,
+      "text": "So if your in VS code and you want to install an mcp server",
+      "start": "00:15:26.240",
+      "end": "00:15:29.520",
+      "id": 221
+    },
+    {
+      "speaker": null,
+      "text": "It's going to hit the github registry",
+      "start": "00:15:29.520",
+      "end": "00:15:31.120",
+      "id": 222
+    },
+    {
+      "speaker": null,
+      "text": "Which in turn is hitting the open source registry to get all of the mcp servers eventually when we get there",
+      "start": "00:15:31.120",
+      "end": "00:15:36.000",
+      "id": 223
+    },
+    {
+      "speaker": null,
+      "text": "And so you're seeing this inside of VS code and you can imagine",
+      "start": "00:15:36.640",
+      "end": "00:15:39.920",
+      "id": 224
+    },
+    {
+      "speaker": null,
+      "text": "Winsor wants this goose wants this right like you instance so that users don't have to exit",
+      "start": "00:15:40.480",
+      "end": "00:15:45.440",
+      "id": 225
+    },
+    {
+      "speaker": null,
+      "text": "Their experience when they want to install an mcp server. They're inside their IDE",
+      "start": "00:15:45.440",
+      "end": "00:15:49.600",
+      "id": 226
+    },
+    {
+      "speaker": null,
+      "text": "They're inside their clients. They're browsing for tools to install",
+      "start": "00:15:49.600",
+      "end": "00:15:53.440",
+      "id": 227
+    },
+    {
+      "speaker": null,
+      "text": "And so you'll see all of these different platforms want to slightly different view or different information about it",
+      "start": "00:15:53.440",
+      "end": "00:15:59.920",
+      "id": 228
+    },
+    {
+      "speaker": null,
+      "text": "That's relevant and pertinent to their users",
+      "start": "00:15:59.920",
+      "end": "00:16:02.160",
+      "id": 229
+    },
+    {
+      "speaker": null,
+      "text": "I'm that they're going to have to enhance this sort of baseline",
+      "start": "00:16:02.160",
+      "end": "00:16:05.200",
+      "id": 230
+    },
+    {
+      "speaker": null,
+      "text": "Oh, you know, here's how you install from Docker and use the remote endpoint great past steps to the github mcp registry",
+      "start": "00:16:05.200",
+      "end": "00:16:09.920",
+      "id": 231
+    },
+    {
+      "speaker": null,
+      "text": "Well, it's got 10,000 stars and here's the read me pass it to the goose extensions marketplace",
+      "start": "00:16:10.080",
+      "end": "00:16:14.240",
+      "id": 232
+    },
+    {
+      "speaker": null,
+      "text": "Well, here's the buttons to install it and goose right and so you see these integrations for end users",
+      "start": "00:16:14.240",
+      "end": "00:16:18.560",
+      "id": 233
+    },
+    {
+      "speaker": null,
+      "text": "As close to the developer or in some cases non developer as they can possibly get",
+      "start": "00:16:19.120",
+      "end": "00:16:23.120",
+      "id": 234
+    },
+    {
+      "speaker": null,
+      "text": "And so it's this chaining and federation of mcp registries to get there",
+      "start": "00:16:23.280",
+      "end": "00:16:27.360",
+      "id": 235
+    },
+    {
+      "speaker": null,
+      "text": "And we may even see more interesting composition there where it's like someone goes from the open source registry",
+      "start": "00:16:27.360",
+      "end": "00:16:32.960",
+      "id": 236
+    },
+    {
+      "speaker": null,
+      "text": "We at github enhance it with star count and then maybe a security company",
+      "start": "00:16:32.960",
+      "end": "00:16:36.720",
+      "id": 237
+    },
+    {
+      "speaker": null,
+      "text": "Has a security scan that they do on all the mcp servers or maybe we end up doing that as well",
+      "start": "00:16:37.440",
+      "end": "00:16:41.440",
+      "id": 238
+    },
+    {
+      "speaker": null,
+      "text": "And then they take our registry data and they enhance it right and so you can start to",
+      "start": "00:16:41.440",
+      "end": "00:16:44.560",
+      "id": 239
+    },
+    {
+      "speaker": null,
+      "text": "Make a more rich data set when you start passing these things through specialized services or or products and platforms",
+      "start": "00:16:45.280",
+      "end": "00:16:52.560",
+      "id": 240
+    },
+    {
+      "speaker": null,
+      "text": "That have domain specific expertise",
+      "start": "00:16:52.880",
+      "end": "00:16:54.880",
+      "id": 241
+    },
+    {
+      "speaker": null,
+      "text": "And then if you would like a enterprise for example",
+      "start": "00:16:55.440",
+      "end": "00:16:57.920",
+      "id": 242
+    },
+    {
+      "speaker": null,
+      "text": "Right does it mean that you maybe would have",
+      "start": "00:16:58.640",
+      "end": "00:17:01.200",
+      "id": 243
+    },
+    {
+      "speaker": null,
+      "text": "Like our own internal like Microsoft registry or like",
+      "start": "00:17:01.840",
+      "end": "00:17:05.200",
+      "id": 244
+    },
+    {
+      "speaker": null,
+      "text": "You know company whatever registry like if I'm a company and I want to kind of",
+      "start": "00:17:05.920",
+      "end": "00:17:09.600",
+      "id": 245
+    },
+    {
+      "speaker": null,
+      "text": "Maintain a list just for my developers like is that is that",
+      "start": "00:17:10.320",
+      "end": "00:17:13.440",
+      "id": 246
+    },
+    {
+      "speaker": null,
+      "text": "Kind of like the vision that we kind of see here in a way",
+      "start": "00:17:13.920",
+      "end": "00:17:15.920",
+      "id": 247
+    },
+    {
+      "speaker": null,
+      "text": "Yes, and that's actually one of the biggest blocking points and asks that we've heard from from customers and partners",
+      "start": "00:17:16.320",
+      "end": "00:17:22.480",
+      "id": 248
+    },
+    {
+      "speaker": null,
+      "text": "In the enterprise space right they may have regulatory",
+      "start": "00:17:22.560",
+      "end": "00:17:25.920",
+      "id": 249
+    },
+    {
+      "speaker": null,
+      "text": "Standards that they have to meet they may have private information that they're very concerned about getting expo traded someplace",
+      "start": "00:17:26.960",
+      "end": "00:17:32.320",
+      "id": 250
+    },
+    {
+      "speaker": null,
+      "text": "So they don't want to just allow",
+      "start": "00:17:32.320",
+      "end": "00:17:34.320",
+      "id": 251
+    },
+    {
+      "speaker": null,
+      "text": "All of the people on their intranet and all of their developers or employees to just install random mcp servers right if some",
+      "start": "00:17:34.320",
+      "end": "00:17:41.280",
+      "id": 252
+    },
+    {
+      "speaker": null,
+      "text": "Teenager and Kansas cranks out",
+      "start": "00:17:41.920",
+      "end": "00:17:43.920",
+      "id": 253
+    },
+    {
+      "speaker": null,
+      "text": "Death xx mcp. You don't necessarily want that going into your banks workflow right and so what they want is a validated set",
+      "start": "00:17:44.640",
+      "end": "00:17:52.080",
+      "id": 254
+    },
+    {
+      "speaker": null,
+      "text": "of mcp servers that they've maybe done security audits on that they have a business relationship with the publishers",
+      "start": "00:17:52.560",
+      "end": "00:17:58.160",
+      "id": 255
+    },
+    {
+      "speaker": null,
+      "text": "Maybe they're only comfortable with like the GitHub mcp server and the figma mcp server right and so",
+      "start": "00:17:58.240",
+      "end": "00:18:04.320",
+      "id": 256
+    },
+    {
+      "speaker": null,
+      "text": "What they want is governance around mcp and they also will probably in a lot of cases have developed internal",
+      "start": "00:18:04.800",
+      "end": "00:18:10.560",
+      "id": 257
+    },
+    {
+      "speaker": null,
+      "text": "mcp servers that won't be available",
+      "start": "00:18:10.960",
+      "end": "00:18:12.960",
+      "id": 258
+    },
+    {
+      "speaker": null,
+      "text": "Outside of the company and so they won't be in any of these public registries right",
+      "start": "00:18:13.680",
+      "end": "00:18:17.440",
+      "id": 259
+    },
+    {
+      "speaker": null,
+      "text": "one of the goals of this open source registry product is to define a standardized API",
+      "start": "00:18:17.520",
+      "end": "00:18:23.680",
+      "id": 260
+    },
+    {
+      "speaker": null,
+      "text": "For registries and so what we're telling people to do and what we're adding support for inside of GitHub",
+      "start": "00:18:24.000",
+      "end": "00:18:28.640",
+      "id": 261
+    },
+    {
+      "speaker": null,
+      "text": "Is the ability to expose any of these registries that adhere to the standardized API and to use it as a governance",
+      "start": "00:18:29.120",
+      "end": "00:18:35.520",
+      "id": 262
+    },
+    {
+      "speaker": null,
+      "text": "Allow list for mcp usage inside your enterprise",
+      "start": "00:18:35.600",
+      "end": "00:18:38.880",
+      "id": 263
+    },
+    {
+      "speaker": null,
+      "text": "So something that we launched a week ago",
+      "start": "00:18:38.880",
+      "end": "00:18:40.880",
+      "id": 264
+    },
+    {
+      "speaker": null,
+      "text": "Was the public preview in github where any enterprise or org admin can go in and set the URL for any",
+      "start": "00:18:40.960",
+      "end": "00:18:47.360",
+      "id": 265
+    },
+    {
+      "speaker": null,
+      "text": "Registry that adheres to the standard and it will act as an allow list and this is again super early",
+      "start": "00:18:47.600",
+      "end": "00:18:52.800",
+      "id": 266
+    },
+    {
+      "speaker": null,
+      "text": "So it's enforced in VS code and VS code and I think only VS code insiders currently and it's working its way into VS code mainline",
+      "start": "00:18:53.120",
+      "end": "00:18:58.720",
+      "id": 267
+    },
+    {
+      "speaker": null,
+      "text": "And that will be the mcp servers that are installed by people who are members of this org or this enterprise and starts",
+      "start": "00:18:59.440",
+      "end": "00:19:05.600",
+      "id": 268
+    },
+    {
+      "speaker": null,
+      "text": "Starts to add this governance layer of not only mcp servers that you're comfortable with your employees using but internal mcp servers",
+      "start": "00:19:05.760",
+      "end": "00:19:12.800",
+      "id": 269
+    },
+    {
+      "speaker": null,
+      "text": "That wouldn't be in these things",
+      "start": "00:19:12.800",
+      "end": "00:19:13.920",
+      "id": 270
+    },
+    {
+      "speaker": null,
+      "text": "But again, it's coming through the same format right like the same open api that's being defined in this open source project",
+      "start": "00:19:13.920",
+      "end": "00:19:19.600",
+      "id": 271
+    },
+    {
+      "speaker": null,
+      "text": "That's super cool because even internally how we work there are tons of mcp servers internally that teams have built",
+      "start": "00:19:20.160",
+      "end": "00:19:26.560",
+      "id": 272
+    },
+    {
+      "speaker": null,
+      "text": "That are in you know helping different teams do different things inherently for one p right internally first first party like at",
+      "start": "00:19:27.120",
+      "end": "00:19:34.000",
+      "id": 273
+    },
+    {
+      "speaker": null,
+      "text": "Microsoft the net get up",
+      "start": "00:19:34.080",
+      "end": "00:19:35.280",
+      "id": 274
+    },
+    {
+      "speaker": null,
+      "text": "So yet we would never publish those out onto the internet",
+      "start": "00:19:35.520",
+      "end": "00:19:37.840",
+      "id": 275
+    },
+    {
+      "speaker": null,
+      "text": "But we have our internal feed kind of like we have our own internal feeds of like",
+      "start": "00:19:37.840",
+      "end": "00:19:40.720",
+      "id": 276
+    },
+    {
+      "speaker": null,
+      "text": "Early builds of net or different things that we're doing or private things that are out into the world",
+      "start": "00:19:41.040",
+      "end": "00:19:45.040",
+      "id": 277
+    },
+    {
+      "speaker": null,
+      "text": "As well, so it's our own private. That's really cool to think about and you talked a little bit about the integration so you have like you have",
+      "start": "00:19:46.000",
+      "end": "00:19:51.520",
+      "id": 278
+    },
+    {
+      "speaker": null,
+      "text": "The registry URLs you have this governance you have a",
+      "start": "00:19:52.320",
+      "end": "00:19:54.960",
+      "id": 279
+    },
+    {
+      "speaker": null,
+      "text": "The extension thing is a at mcp and then browse mcp's and then there's also a",
+      "start": "00:19:56.000",
+      "end": "00:20:00.160",
+      "id": 280
+    },
+    {
+      "speaker": null,
+      "text": "GitHub website right like where do people go to actually browse this?",
+      "start": "00:20:00.960",
+      "end": "00:20:04.160",
+      "id": 281
+    },
+    {
+      "speaker": null,
+      "text": "I mean obviously inside of VS code, but also outside of you as go to right and yeah",
+      "start": "00:20:04.160",
+      "end": "00:20:07.920",
+      "id": 282
+    },
+    {
+      "speaker": null,
+      "text": "If you go to github.com slash mcp you'll see our",
+      "start": "00:20:07.920",
+      "end": "00:20:10.880",
+      "id": 283
+    },
+    {
+      "speaker": null,
+      "text": "Right now again, it's a curated list, but ultimately this is going to be where we show all the open source mcp servers or the public mcp",
+      "start": "00:20:11.200",
+      "end": "00:20:18.320",
+      "id": 284
+    },
+    {
+      "speaker": null,
+      "text": "Server's like because they don't necessarily have to be open source that I have been published to the open source registry",
+      "start": "00:20:18.320",
+      "end": "00:20:23.400",
+      "id": 285
+    },
+    {
+      "speaker": null,
+      "text": "Very cool now. I was just saying evolving",
+      "start": "00:20:24.000",
+      "end": "00:20:25.360",
+      "id": 286
+    },
+    {
+      "speaker": null,
+      "text": "What's the future of mcp registries in your mind to kind of like capstone this in a way?",
+      "start": "00:20:25.360",
+      "end": "00:20:29.680",
+      "id": 287
+    },
+    {
+      "speaker": null,
+      "text": "You know what I mean like where is this going because it really I mean this thing just happened you know I think we",
+      "start": "00:20:29.680",
+      "end": "00:20:34.800",
+      "id": 288
+    },
+    {
+      "speaker": null,
+      "text": "We announced it. I think at the mcp dev days a few months ago. Now. It's like a reality. It's thing is happening",
+      "start": "00:20:35.760",
+      "end": "00:20:40.960",
+      "id": 289
+    },
+    {
+      "speaker": null,
+      "text": "It's early days, but like what's next like what are you already hearing and what's the team the entire steering committee working on next?",
+      "start": "00:20:41.040",
+      "end": "00:20:46.880",
+      "id": 290
+    },
+    {
+      "speaker": null,
+      "text": "I think I think two big areas for innovation and and sort of adoption one is is the governance in the enterprise right because a lot of big companies are",
+      "start": "00:20:46.880",
+      "end": "00:20:55.680",
+      "id": 291
+    },
+    {
+      "speaker": null,
+      "text": "Very excited by mcp, but they're just not able to use it until there's a governance layer",
+      "start": "00:20:55.680",
+      "end": "00:20:59.120",
+      "id": 292
+    },
+    {
+      "speaker": null,
+      "text": "And so I think you'll see registries play a huge role in getting the sort of corporate",
+      "start": "00:20:59.120",
+      "end": "00:21:04.480",
+      "id": 293
+    },
+    {
+      "speaker": null,
+      "text": "Adoption of mcp servers on sort of the more fun side of things",
+      "start": "00:21:04.560",
+      "end": "00:21:08.800",
+      "id": 294
+    },
+    {
+      "speaker": null,
+      "text": "I really do think that we'll see an mcp server in front of these registries to allow agents to discover and find tools",
+      "start": "00:21:08.800",
+      "end": "00:21:16.080",
+      "id": 295
+    },
+    {
+      "speaker": null,
+      "text": "I run time install them to complete a task and then maybe do away with them and and maybe it's not even just a full",
+      "start": "00:21:16.080",
+      "end": "00:21:22.720",
+      "id": 296
+    },
+    {
+      "speaker": null,
+      "text": "mcp server it could be a subset of tools you can imagine like hey, you know",
+      "start": "00:21:23.600",
+      "end": "00:21:27.120",
+      "id": 297
+    },
+    {
+      "speaker": null,
+      "text": "I want to get a design done and do some coding",
+      "start": "00:21:27.120",
+      "end": "00:21:31.200",
+      "id": 298
+    },
+    {
+      "speaker": null,
+      "text": "You know this sort of abstract and then it's like okay, Figma does design and they get help mcp server",
+      "start": "00:21:31.280",
+      "end": "00:21:35.280",
+      "id": 299
+    },
+    {
+      "speaker": null,
+      "text": "I'll let me do going",
+      "start": "00:21:35.280",
+      "end": "00:21:36.320",
+      "id": 300
+    },
+    {
+      "speaker": null,
+      "text": "I'm gonna take these six tools from Figma these five tools from the get help mcp server constitute a virtual mcp server on the fly",
+      "start": "00:21:36.320",
+      "end": "00:21:42.880",
+      "id": 301
+    },
+    {
+      "speaker": null,
+      "text": "And then present it for just this one circle and round through the LLM's and then when the user says that they want to add",
+      "start": "00:21:43.440",
+      "end": "00:21:50.080",
+      "id": 302
+    },
+    {
+      "speaker": null,
+      "text": "A log in flow that I'm gonna go find something else and do the same thing right so the registries are gonna be the raw input to making that kind of use case become a reality",
+      "start": "00:21:50.080",
+      "end": "00:21:58.480",
+      "id": 303
+    },
+    {
+      "speaker": null,
+      "text": "I love that I love that is a great way to end it because that I think to me",
+      "start": "00:21:59.440",
+      "end": "00:22:03.840",
+      "id": 304
+    },
+    {
+      "speaker": null,
+      "text": "I see it and it might work flow like I don't want to have to go",
+      "start": "00:22:04.960",
+      "end": "00:22:08.080",
+      "id": 305
+    },
+    {
+      "speaker": null,
+      "text": "Sometimes you even find the thing it can recommend the things for me",
+      "start": "00:22:08.320",
+      "end": "00:22:10.720",
+      "id": 306
+    },
+    {
+      "speaker": null,
+      "text": "It's like it's like when you know agent is just like running commands like I can build",
+      "start": "00:22:10.720",
+      "end": "00:22:14.240",
+      "id": 307
+    },
+    {
+      "speaker": null,
+      "text": "I can test I can run these things like I have to run these commands for you",
+      "start": "00:22:14.240",
+      "end": "00:22:16.640",
+      "id": 308
+    },
+    {
+      "speaker": null,
+      "text": "It's like cool like your one step ahead of where I was gonna do that next naturally",
+      "start": "00:22:16.640",
+      "end": "00:22:21.040",
+      "id": 309
+    },
+    {
+      "speaker": null,
+      "text": "We were one step ahead. Yeah, yeah, go find the mcp server like if I'm asking you to go search documentation",
+      "start": "00:22:21.200",
+      "end": "00:22:26.400",
+      "id": 310
+    },
+    {
+      "speaker": null,
+      "text": "Go find the the mcp server for the documentation. So it will tell me this is amazing",
+      "start": "00:22:26.560",
+      "end": "00:22:30.560",
+      "id": 311
+    },
+    {
+      "speaker": null,
+      "text": "I'll put all the links in the show notes. Thank you so much for coming on to the pod and talking about this",
+      "start": "00:22:30.560",
+      "end": "00:22:34.400",
+      "id": 312
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, thank you for having me. It's super fun",
+      "start": "00:22:34.880",
+      "end": "00:22:36.480",
+      "id": 313
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, and don't forget everyone that this is both podcast audio form and you can also watch on the VS code",
+      "start": "00:22:37.120",
+      "end": "00:22:42.320",
+      "id": 314
+    },
+    {
+      "speaker": null,
+      "text": "YouTube if you enjoyed this make sure you subscribe like do all the things and spread the word",
+      "start": "00:22:42.320",
+      "end": "00:22:47.840",
+      "id": 315
+    },
+    {
+      "speaker": null,
+      "text": "It's a new podcast out in the world tell your friends tire colleagues Wow",
+      "start": "00:22:47.840",
+      "end": "00:22:51.200",
+      "id": 316
+    },
+    {
+      "speaker": null,
+      "text": "I'm more VS code goodies into our eardrums every single week",
+      "start": "00:22:51.440",
+      "end": "00:22:54.400",
+      "id": 317
+    },
+    {
+      "speaker": null,
+      "text": "All right, this is gonna do it for this one. So until next time. I'm James and happy coding",
+      "start": "00:22:54.400",
+      "end": "00:22:57.760",
+      "id": 318
+    }
+  ]
+}

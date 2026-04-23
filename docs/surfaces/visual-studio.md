@@ -8,6 +8,8 @@
 
 **Official docs:** [Install in Visual Studio](https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-extension?tool=visualstudio) · [Customize chat responses and set context](https://learn.microsoft.com/en-us/visualstudio/ide/copilot-chat-context) · [Agent mode](https://learn.microsoft.com/en-us/visualstudio/ide/copilot-agent-mode) · [MCP servers](https://learn.microsoft.com/en-us/visualstudio/ide/mcp-servers)
 
+**Code to study:** [Awesome Copilot](https://github.com/github/awesome-copilot) for reusable customization files that also work in Visual Studio, and [VS Code Copilot Chat source](https://github.com/microsoft/vscode-copilot-chat) for the closest public host implementation.
+
 ## Positioning
 
 Copilot in Visual Studio is a different product from Copilot in VS Code or JetBrains Rider. It is built by the Visual Studio team in partnership with GitHub, and it integrates with tooling that only Visual Studio exposes: the .NET debugger, the profiler, the Windows Forms designer, the C++ toolchain, MSBuild, the Test Explorer, and the Git tooling. Core capabilities (chat, agent mode, MCP, custom instructions, prompt files) are the same customization primitives you find in VS Code, but the surface area, feature cadence, and keyboard map are distinct.

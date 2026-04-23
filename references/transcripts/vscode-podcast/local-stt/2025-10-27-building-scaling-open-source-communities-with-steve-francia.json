@@ -1,0 +1,2397 @@
+{
+  "episode": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 11,
+    "title": "Building & Scaling Open Source Communities with Steve Francia",
+    "url": "https://www.vscodepodcast.com/11",
+    "transcript_url": "",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/88430776-665c-4c97-aadf-a36d266a90a2.mp3",
+    "published": "2025-10-27",
+    "duration": "25:42",
+    "transcript_available": false,
+    "source_file": "2025-10-27-building-scaling-open-source-communities-with-steve-francia.md",
+    "source_path": "references\\transcripts\\vscode-podcast\\2025-10-27-building-scaling-open-source-communities-with-steve-francia.md"
+  },
+  "transcription": {
+    "language": "en",
+    "language_probability": 1,
+    "duration": 1542.912,
+    "duration_after_vad": 1541.344,
+    "model": "tiny.en",
+    "device": "cpu",
+    "compute_type": "int8"
+  },
+  "segment_count": 395,
+  "segments": [
+    {
+      "id": 1,
+      "start": "00:00:00.000",
+      "end": "00:00:05.200",
+      "text": "I'm super excited today to have Steve Francia on the podcast."
+    },
+    {
+      "id": 2,
+      "start": "00:00:05.200",
+      "end": "00:00:08.840",
+      "text": "You know, we'd like to give behind the scenes of sort of the world of development,"
+    },
+    {
+      "id": 3,
+      "start": "00:00:08.840",
+      "end": "00:00:15.440",
+      "text": "use it with the team and VSCO team, but also a major, awesome individual and developer"
+    },
+    {
+      "id": 4,
+      "start": "00:00:15.440",
+      "end": "00:00:16.880",
+      "text": "community kind of get behind the scenes."
+    },
+    {
+      "id": 5,
+      "start": "00:00:16.880",
+      "end": "00:00:20.240",
+      "text": "I understand how people build software, like how they're evolving as well."
+    },
+    {
+      "id": 6,
+      "start": "00:00:20.240",
+      "end": "00:00:24.520",
+      "text": "But Steve, one thing I like to do in the podcast that I just started today is read"
+    },
+    {
+      "id": 7,
+      "start": "00:00:24.520",
+      "end": "00:00:30.040",
+      "text": "people's bios from their website because I personally have done this for conferences"
+    },
+    {
+      "id": 8,
+      "start": "00:00:30.040",
+      "end": "00:00:31.440",
+      "text": "and it's always not correct."
+    },
+    {
+      "id": 9,
+      "start": "00:00:31.440",
+      "end": "00:00:33.560",
+      "text": "So we're going to see how accurate it is today."
+    },
+    {
+      "id": 10,
+      "start": "00:00:33.560",
+      "end": "00:00:35.640",
+      "text": "Okay, depends which website you're reading it from."
+    },
+    {
+      "id": 11,
+      "start": "00:00:35.640",
+      "end": "00:00:37.680",
+      "text": "And that's a good question because our bios are all over."
+    },
+    {
+      "id": 12,
+      "start": "00:00:37.680",
+      "end": "00:00:42.080",
+      "text": "Okay, Steve builds tools that makes developers lives better."
+    },
+    {
+      "id": 13,
+      "start": "00:00:42.080",
+      "end": "00:00:43.080",
+      "text": "Accurate?"
+    },
+    {
+      "id": 14,
+      "start": "00:00:43.080",
+      "end": "00:00:44.080",
+      "text": "Yeah."
+    },
+    {
+      "id": 15,
+      "start": "00:00:44.080",
+      "end": "00:00:45.080",
+      "text": "Cool."
+    },
+    {
+      "id": 16,
+      "start": "00:00:45.080",
+      "end": "00:00:49.040",
+      "text": "He creates open source projects including Hugo and Cobra that have earned over 185,000"
+    },
+    {
+      "id": 17,
+      "start": "00:00:49.040",
+      "end": "00:00:50.040",
+      "text": "GitHub stars."
+    },
+    {
+      "id": 18,
+      "start": "00:00:50.040",
+      "end": "00:00:51.920",
+      "text": "Maybe a little bit more now."
+    },
+    {
+      "id": 19,
+      "start": "00:00:51.920",
+      "end": "00:00:55.800",
+      "text": "We shape the modern developer stack from architecting MongoDB's user experience and scaling"
+    },
+    {
+      "id": 20,
+      "start": "00:00:55.800",
+      "end": "00:01:01.640",
+      "text": "go at Google to pioneer container standards at Docker and driving AI at two Sigma."
+    },
+    {
+      "id": 21,
+      "start": "00:01:01.640",
+      "end": "00:01:03.680",
+      "text": "Is that correct?"
+    },
+    {
+      "id": 22,
+      "start": "00:01:03.680",
+      "end": "00:01:04.680",
+      "text": "That's accurate."
+    },
+    {
+      "id": 23,
+      "start": "00:01:04.680",
+      "end": "00:01:05.680",
+      "text": "Yeah."
+    },
+    {
+      "id": 24,
+      "start": "00:01:05.680",
+      "end": "00:01:06.680",
+      "text": "Okay, good."
+    },
+    {
+      "id": 25,
+      "start": "00:01:06.680",
+      "end": "00:01:07.680",
+      "text": "Yeah."
+    },
+    {
+      "id": 26,
+      "start": "00:01:07.680",
+      "end": "00:01:08.680",
+      "text": "That's cool."
+    },
+    {
+      "id": 27,
+      "start": "00:01:08.680",
+      "end": "00:01:12.400",
+      "text": "I mostly have realized that I never update any of my websites."
+    },
+    {
+      "id": 28,
+      "start": "00:01:12.400",
+      "end": "00:01:13.400",
+      "text": "Yeah."
+    },
+    {
+      "id": 29,
+      "start": "00:01:13.400",
+      "end": "00:01:20.280",
+      "text": "So you've had a long history of huge projects that you worked on across many different"
+    },
+    {
+      "id": 30,
+      "start": "00:01:20.280",
+      "end": "00:01:21.280",
+      "text": "areas."
+    },
+    {
+      "id": 31,
+      "start": "00:01:21.640",
+      "end": "00:01:22.640",
+      "text": "Go as a language."
+    },
+    {
+      "id": 32,
+      "start": "00:01:22.640",
+      "end": "00:01:24.240",
+      "text": "No, I'm not going to be a stack."
+    },
+    {
+      "id": 33,
+      "start": "00:01:24.240",
+      "end": "00:01:26.240",
+      "text": "I think of these Hugo."
+    },
+    {
+      "id": 34,
+      "start": "00:01:26.240",
+      "end": "00:01:30.440",
+      "text": "Like how did you actually get involved in these projects?"
+    },
+    {
+      "id": 35,
+      "start": "00:01:30.440",
+      "end": "00:01:36.080",
+      "text": "What led you to working on these projects and building these open source projects?"
+    },
+    {
+      "id": 36,
+      "start": "00:01:36.080",
+      "end": "00:01:38.960",
+      "text": "Yeah, interesting."
+    },
+    {
+      "id": 37,
+      "start": "00:01:38.960",
+      "end": "00:01:44.680",
+      "text": "It's been a wild ride to be really honest."
+    },
+    {
+      "id": 38,
+      "start": "00:01:44.680",
+      "end": "00:01:50.480",
+      "text": "There's not a consistent theme, but I started my career mostly in web, consumer facing"
+    },
+    {
+      "id": 39,
+      "start": "00:01:50.560",
+      "end": "00:02:00.320",
+      "text": "things and had the good fortune of being able to be really early adopter of MongoDB,"
+    },
+    {
+      "id": 40,
+      "start": "00:02:00.320",
+      "end": "00:02:05.640",
+      "text": "like really early, like first three adopters of MongoDB."
+    },
+    {
+      "id": 41,
+      "start": "00:02:05.640",
+      "end": "00:02:12.040",
+      "text": "And that led to getting to know the team and the founders and which led to an experience"
+    },
+    {
+      "id": 42,
+      "start": "00:02:12.040",
+      "end": "00:02:17.240",
+      "text": "of joining very early and having a very formative role in that company and building out"
+    },
+    {
+      "id": 43,
+      "start": "00:02:17.280",
+      "end": "00:02:24.240",
+      "text": "the product and making sure that it had a really stellar user experience as well as a"
+    },
+    {
+      "id": 44,
+      "start": "00:02:24.240",
+      "end": "00:02:25.760",
+      "text": "vibrant community around it."
+    },
+    {
+      "id": 45,
+      "start": "00:02:25.760",
+      "end": "00:02:32.760",
+      "text": "So we pioneered also a lot of the dev rel things that have become part of the playbook"
+    },
+    {
+      "id": 46,
+      "start": "00:02:32.760",
+      "end": "00:02:35.440",
+      "text": "when we're at MongoDB."
+    },
+    {
+      "id": 47,
+      "start": "00:02:35.440",
+      "end": "00:02:44.120",
+      "text": "And there I was leading a team about 150 people and some of the other VPs."
+    },
+    {
+      "id": 48,
+      "start": "00:02:44.200",
+      "end": "00:02:47.320",
+      "text": "I noticed weren't really coding anymore and hadn't coded in a long time."
+    },
+    {
+      "id": 49,
+      "start": "00:02:47.320",
+      "end": "00:02:50.440",
+      "text": "And I didn't like that for me."
+    },
+    {
+      "id": 50,
+      "start": "00:02:50.440",
+      "end": "00:02:56.040",
+      "text": "I really wanted to keep my fingers on the pulse of what was changing."
+    },
+    {
+      "id": 51,
+      "start": "00:02:56.040",
+      "end": "00:03:02.320",
+      "text": "So I was always doing open source stuff to just keep my skill sharp and this led to many"
+    },
+    {
+      "id": 52,
+      "start": "00:03:02.320",
+      "end": "00:03:03.760",
+      "text": "of the other projects that you mentioned."
+    },
+    {
+      "id": 53,
+      "start": "00:03:03.760",
+      "end": "00:03:11.160",
+      "text": "So I was managing ultimately 12 different languages at MongoDB."
+    },
+    {
+      "id": 54,
+      "start": "00:03:12.160",
+      "end": "00:03:16.840",
+      "text": "And the last one we added was go of the 12 and I was like, I need a project to learn"
+    },
+    {
+      "id": 55,
+      "start": "00:03:16.840",
+      "end": "00:03:23.240",
+      "text": "this language and I was frustrated with some of the experiences that I was having with"
+    },
+    {
+      "id": 56,
+      "start": "00:03:23.240",
+      "end": "00:03:27.280",
+      "text": "WordPress security and how expensive it was not that it's expensive."
+    },
+    {
+      "id": 57,
+      "start": "00:03:27.280",
+      "end": "00:03:33.240",
+      "text": "But for me who had to start a content, I was paying a lot to host this dynamic website."
+    },
+    {
+      "id": 58,
+      "start": "00:03:33.240",
+      "end": "00:03:39.840",
+      "text": "And so my first scope project was Hugo and now it's grown to become the most popular"
+    },
+    {
+      "id": 59,
+      "start": "00:03:39.840",
+      "end": "00:03:42.000",
+      "text": "wish that I generated."
+    },
+    {
+      "id": 60,
+      "start": "00:03:42.000",
+      "end": "00:03:44.920",
+      "text": "And out of that I knew the experience I wanted."
+    },
+    {
+      "id": 61,
+      "start": "00:03:44.920",
+      "end": "00:03:47.800",
+      "text": "So I built Cobra to create that experience."
+    },
+    {
+      "id": 62,
+      "start": "00:03:47.800",
+      "end": "00:03:54.200",
+      "text": "Turns out GO is was really good for the use case of Hugo but it's really good for both"
+    },
+    {
+      "id": 63,
+      "start": "00:03:54.200",
+      "end": "00:03:58.800",
+      "text": "the use case of creating web content as well as CLIs."
+    },
+    {
+      "id": 64,
+      "start": "00:03:58.800",
+      "end": "00:04:04.280",
+      "text": "And now GO, it's one of the staples of GO companies all over the world use it."
+    },
+    {
+      "id": 65,
+      "start": "00:04:04.280",
+      "end": "00:04:09.320",
+      "text": "Cooper Netties, GitHub, are all built with Cobra."
+    },
+    {
+      "id": 66,
+      "start": "00:04:09.320",
+      "end": "00:04:13.520",
+      "text": "How are you balancing life work and open source?"
+    },
+    {
+      "id": 67,
+      "start": "00:04:13.520",
+      "end": "00:04:17.200",
+      "text": "Because I took a lot of open source creators and I am myself as well."
+    },
+    {
+      "id": 68,
+      "start": "00:04:17.200",
+      "end": "00:04:19.320",
+      "text": "And as these projects grow, it starts off with an idea."
+    },
+    {
+      "id": 69,
+      "start": "00:04:19.320",
+      "end": "00:04:22.280",
+      "text": "I want to be the thing and then you just put it out there."
+    },
+    {
+      "id": 70,
+      "start": "00:04:22.280",
+      "end": "00:04:23.280",
+      "text": "And sometimes nothing happens."
+    },
+    {
+      "id": 71,
+      "start": "00:04:23.280",
+      "end": "00:04:25.800",
+      "text": "You don't use it for yourself, which is some of my favorite software."
+    },
+    {
+      "id": 72,
+      "start": "00:04:25.800",
+      "end": "00:04:27.440",
+      "text": "It doesn't go to software for myself."
+    },
+    {
+      "id": 73,
+      "start": "00:04:27.440",
+      "end": "00:04:30.240",
+      "text": "But then all of a sudden, hockey puck, right?"
+    },
+    {
+      "id": 74,
+      "start": "00:04:30.240",
+      "end": "00:04:32.280",
+      "text": "Like what is that balance?"
+    },
+    {
+      "id": 75,
+      "start": "00:04:32.280",
+      "end": "00:04:34.080",
+      "text": "How do you balance that out?"
+    },
+    {
+      "id": 76,
+      "start": "00:04:34.080",
+      "end": "00:04:38.520",
+      "text": "Because not only do you have one big project, you have several of the China Arts projects."
+    },
+    {
+      "id": 77,
+      "start": "00:04:38.520",
+      "end": "00:04:41.440",
+      "text": "Yeah."
+    },
+    {
+      "id": 78,
+      "start": "00:04:41.440",
+      "end": "00:04:48.480",
+      "text": "I think a big thing to do is, and I kind of had this epiphany early on was get out of"
+    },
+    {
+      "id": 79,
+      "start": "00:04:48.480",
+      "end": "00:04:49.480",
+      "text": "the way of your project."
+    },
+    {
+      "id": 80,
+      "start": "00:04:49.480",
+      "end": "00:04:50.480",
+      "text": "What do you mean by that?"
+    },
+    {
+      "id": 81,
+      "start": "00:04:50.480",
+      "end": "00:04:52.840",
+      "text": "Because you want to code it, right?"
+    },
+    {
+      "id": 82,
+      "start": "00:04:52.840",
+      "end": "00:04:55.160",
+      "text": "You want to be honored or don't you?"
+    },
+    {
+      "id": 83,
+      "start": "00:04:55.160",
+      "end": "00:05:03.330",
+      "text": "I do but I realize that some of the projects I have, I'm the only maintainer on and nobody"
+    },
+    {
+      "id": 84,
+      "start": "00:05:03.330",
+      "end": "00:05:04.650",
+      "text": "else uses."
+    },
+    {
+      "id": 85,
+      "start": "00:05:04.650",
+      "end": "00:05:11.250",
+      "text": "Other projects really become the foundation for a lot of the industry software."
+    },
+    {
+      "id": 86,
+      "start": "00:05:11.250",
+      "end": "00:05:13.650",
+      "text": "And once that happens, it's not yours anymore."
+    },
+    {
+      "id": 87,
+      "start": "00:05:13.650",
+      "end": "00:05:14.650",
+      "text": "Got it."
+    },
+    {
+      "id": 88,
+      "start": "00:05:14.650",
+      "end": "00:05:16.290",
+      "text": "You just got your name on it."
+    },
+    {
+      "id": 89,
+      "start": "00:05:16.290",
+      "end": "00:05:25.650",
+      "text": "But once Microsoft and Google and GitHub and Amazon, everyone else starts adopting your"
+    },
+    {
+      "id": 90,
+      "start": "00:05:25.650",
+      "end": "00:05:30.930",
+      "text": "project, you can't break the world by making changes to it just because you have"
+    },
+    {
+      "id": 91,
+      "start": "00:05:30.930",
+      "end": "00:05:31.930",
+      "text": "a whim."
+    },
+    {
+      "id": 92,
+      "start": "00:05:31.930",
+      "end": "00:05:37.890",
+      "text": "So you really have a social contract that we sign as part of participating in open source"
+    },
+    {
+      "id": 93,
+      "start": "00:05:37.890",
+      "end": "00:05:40.290",
+      "text": "that you're going to be responsible for these things."
+    },
+    {
+      "id": 94,
+      "start": "00:05:40.290",
+      "end": "00:05:44.930",
+      "text": "And I realize that that's a big burden, but there's lots and lots of interested parties"
+    },
+    {
+      "id": 95,
+      "start": "00:05:44.930",
+      "end": "00:05:47.450",
+      "text": "that want to see this succeed."
+    },
+    {
+      "id": 96,
+      "start": "00:05:47.450",
+      "end": "00:05:52.250",
+      "text": "And so as soon as I saw people were interested sending pull requests, you want to be a"
+    },
+    {
+      "id": 97,
+      "start": "00:05:52.250",
+      "end": "00:05:56.250",
+      "text": "maintainer, you want to help review other people's and really got out of the way."
+    },
+    {
+      "id": 98,
+      "start": "00:05:56.250",
+      "end": "00:06:01.410",
+      "text": "to let other people do it, give some guidelines, set some goals."
+    },
+    {
+      "id": 99,
+      "start": "00:06:01.410",
+      "end": "00:06:07.850",
+      "text": "But it's amazing to see what the community does with open source."
+    },
+    {
+      "id": 100,
+      "start": "00:06:07.850",
+      "end": "00:06:11.050",
+      "text": "So right now I'm not the lead maintainer on any of these projects."
+    },
+    {
+      "id": 101,
+      "start": "00:06:11.050",
+      "end": "00:06:16.650",
+      "text": "I'm still maintainer on all the projects, but I've asked the torch over to wonderful"
+    },
+    {
+      "id": 102,
+      "start": "00:06:16.650",
+      "end": "00:06:25.010",
+      "text": "maintainers who really have found a lot of pride of maintaining these popular pieces of software"
+    },
+    {
+      "id": 103,
+      "start": "00:06:25.010",
+      "end": "00:06:28.090",
+      "text": "and they're doing a great job and have for years."
+    },
+    {
+      "id": 104,
+      "start": "00:06:28.090",
+      "end": "00:06:30.450",
+      "text": "You kind of consider yourself sort of like a mentor in that space."
+    },
+    {
+      "id": 105,
+      "start": "00:06:30.450",
+      "end": "00:06:35.250",
+      "text": "At this point kind of like that or was it sort of a natural like, hey, this is just like"
+    },
+    {
+      "id": 106,
+      "start": "00:06:35.250",
+      "end": "00:06:36.770",
+      "text": "me passing the baton?"
+    },
+    {
+      "id": 107,
+      "start": "00:06:36.770",
+      "end": "00:06:38.650",
+      "text": "I think it's a bit of bulk."
+    },
+    {
+      "id": 108,
+      "start": "00:06:38.650",
+      "end": "00:06:40.810",
+      "text": "There's things that they're better."
+    },
+    {
+      "id": 109,
+      "start": "00:06:40.810",
+      "end": "00:06:45.290",
+      "text": "They now know the code base is far better than I do."
+    },
+    {
+      "id": 110,
+      "start": "00:06:45.290",
+      "end": "00:06:49.930",
+      "text": "They're much closer to working with the latest changes."
+    },
+    {
+      "id": 111,
+      "start": "00:06:49.930",
+      "end": "00:06:52.050",
+      "text": "They're reviewing all the pull requests that come."
+    },
+    {
+      "id": 112,
+      "start": "00:06:53.050",
+      "end": "00:06:57.050",
+      "text": "They're really up to speed and fantastic on the coding side."
+    },
+    {
+      "id": 113,
+      "start": "00:06:57.050",
+      "end": "00:07:01.890",
+      "text": "There's a lot more that go into an open source project than just the code."
+    },
+    {
+      "id": 114,
+      "start": "00:07:01.890",
+      "end": "00:07:09.090",
+      "text": "And a lot of the other aspects of building the community leadership, marketing, all of"
+    },
+    {
+      "id": 115,
+      "start": "00:07:09.090",
+      "end": "00:07:15.810",
+      "text": "that is an area where I still feel like I can add value and continue to do so."
+    },
+    {
+      "id": 116,
+      "start": "00:07:15.810",
+      "end": "00:07:20.690",
+      "text": "Some of those things mentoring, but a lot of the things they honestly mentor me."
+    },
+    {
+      "id": 117,
+      "start": "00:07:20.690",
+      "end": "00:07:26.610",
+      "text": "And so, lean on them for their expertise."
+    },
+    {
+      "id": 118,
+      "start": "00:07:26.610",
+      "end": "00:07:31.010",
+      "text": "That's probably here about just this evolution of these projects because I think when"
+    },
+    {
+      "id": 119,
+      "start": "00:07:31.010",
+      "end": "00:07:37.810",
+      "text": "I talk to myself included giving up that control, giving up that, hey, I built this thing,"
+    },
+    {
+      "id": 120,
+      "start": "00:07:37.810",
+      "end": "00:07:42.530",
+      "text": "I built it for myself and I wanted this way and now it's not really mine anymore."
+    },
+    {
+      "id": 121,
+      "start": "00:07:42.530",
+      "end": "00:07:45.570",
+      "text": "I'm actually saying, it's not about me."
+    },
+    {
+      "id": 122,
+      "start": "00:07:45.570",
+      "end": "00:07:47.810",
+      "text": "It's about the community around it and evolving it."
+    },
+    {
+      "id": 123,
+      "start": "00:07:47.810",
+      "end": "00:07:53.810",
+      "text": "How did you make that mind shift and maybe the first project for you to say, okay,"
+    },
+    {
+      "id": 124,
+      "start": "00:07:53.810",
+      "end": "00:07:54.810",
+      "text": "this was my thing."
+    },
+    {
+      "id": 125,
+      "start": "00:07:54.810",
+      "end": "00:07:59.570",
+      "text": "Now, it's kind of my thing because when I talk to a lot of creators, that's the struggle"
+    },
+    {
+      "id": 126,
+      "start": "00:07:59.570",
+      "end": "00:08:01.370",
+      "text": "is I think two-factor."
+    },
+    {
+      "id": 127,
+      "start": "00:08:01.370",
+      "end": "00:08:02.930",
+      "text": "I don't have the time and the energy and effort."
+    },
+    {
+      "id": 128,
+      "start": "00:08:02.930",
+      "end": "00:08:05.490",
+      "text": "But I also don't want to give up control of the thing that I wanted because I built this"
+    },
+    {
+      "id": 129,
+      "start": "00:08:05.490",
+      "end": "00:08:07.490",
+      "text": "thing for myself."
+    },
+    {
+      "id": 130,
+      "start": "00:08:07.490",
+      "end": "00:08:14.170",
+      "text": "Yeah, I think control, this sounds like a pass out of a control is an illusion."
+    },
+    {
+      "id": 131,
+      "start": "00:08:14.170",
+      "end": "00:08:18.610",
+      "text": "We tell ourselves that we have control of things but as soon as people start adopting"
+    },
+    {
+      "id": 132,
+      "start": "00:08:18.610",
+      "end": "00:08:22.530",
+      "text": "it, you don't have control anymore."
+    },
+    {
+      "id": 133,
+      "start": "00:08:22.530",
+      "end": "00:08:26.090",
+      "text": "Maybe you do have control but only in ways that can hurt it."
+    },
+    {
+      "id": 134,
+      "start": "00:08:26.090",
+      "end": "00:08:30.050",
+      "text": "You could do something that would make your project less successful."
+    },
+    {
+      "id": 135,
+      "start": "00:08:30.050",
+      "end": "00:08:31.850",
+      "text": "But it's like music."
+    },
+    {
+      "id": 136,
+      "start": "00:08:31.850",
+      "end": "00:08:35.890",
+      "text": "Once a song's written, it doesn't matter what the author's intent was because it matters"
+    },
+    {
+      "id": 137,
+      "start": "00:08:35.890",
+      "end": "00:08:40.410",
+      "text": "the experience of the listener and how they connect to it."
+    },
+    {
+      "id": 138,
+      "start": "00:08:40.450",
+      "end": "00:08:46.650",
+      "text": "So to think that you own someone else's experiences is weird."
+    },
+    {
+      "id": 139,
+      "start": "00:08:46.650",
+      "end": "00:08:51.330",
+      "text": "I feel responsibility for these things but I don't feel control."
+    },
+    {
+      "id": 140,
+      "start": "00:08:51.330",
+      "end": "00:08:52.330",
+      "text": "I never have."
+    },
+    {
+      "id": 141,
+      "start": "00:08:52.330",
+      "end": "00:08:59.170",
+      "text": "I've always thought, let's collectively do this together and give it the best potential."
+    },
+    {
+      "id": 142,
+      "start": "00:08:59.170",
+      "end": "00:09:07.250",
+      "text": "Once Kubernetes was a big early user of Cobra and once that happened, it was clear that"
+    },
+    {
+      "id": 143,
+      "start": "00:09:07.250",
+      "end": "00:09:12.650",
+      "text": "the use cases that they had and what they were building with it was far beyond what"
+    },
+    {
+      "id": 144,
+      "start": "00:09:12.650",
+      "end": "00:09:14.450",
+      "text": "I built it for Hugo."
+    },
+    {
+      "id": 145,
+      "start": "00:09:14.450",
+      "end": "00:09:19.890",
+      "text": "You could also see that this would benefit lots of other companies and projects as it went"
+    },
+    {
+      "id": 146,
+      "start": "00:09:19.890",
+      "end": "00:09:20.890",
+      "text": "on."
+    },
+    {
+      "id": 147,
+      "start": "00:09:20.890",
+      "end": "00:09:27.650",
+      "text": "It was clear that let's collectively take this in a new direction to push the boundaries"
+    },
+    {
+      "id": 148,
+      "start": "00:09:27.650",
+      "end": "00:09:31.130",
+      "text": "further."
+    },
+    {
+      "id": 149,
+      "start": "00:09:31.130",
+      "end": "00:09:33.410",
+      "text": "It wasn't about my vision anymore."
+    },
+    {
+      "id": 150,
+      "start": "00:09:33.410",
+      "end": "00:09:40.130",
+      "text": "It was about my vision would have limited its potential."
+    },
+    {
+      "id": 151,
+      "start": "00:09:40.130",
+      "end": "00:09:44.130",
+      "text": "Why would I want to limit the potential of this thing that I was fortunate enough to create"
+    },
+    {
+      "id": 152,
+      "start": "00:09:44.130",
+      "end": "00:09:47.770",
+      "text": "and resonated with people?"
+    },
+    {
+      "id": 153,
+      "start": "00:09:47.770",
+      "end": "00:09:57.130",
+      "text": "I think my realization was, why am I getting the way of my own project?"
+    },
+    {
+      "id": 154,
+      "start": "00:09:57.130",
+      "end": "00:10:04.530",
+      "text": "Let me step out of the way, take the ego out and let this project succeed collectively"
+    },
+    {
+      "id": 155,
+      "start": "00:10:04.530",
+      "end": "00:10:07.930",
+      "text": "now as the community itself is building."
+    },
+    {
+      "id": 156,
+      "start": "00:10:07.930",
+      "end": "00:10:11.690",
+      "text": "Let's talk about that community because I think that's one of the things I love about being"
+    },
+    {
+      "id": 157,
+      "start": "00:10:11.690",
+      "end": "00:10:15.730",
+      "text": "in the developer community space is like amazing developers and it's rich ecosystem."
+    },
+    {
+      "id": 158,
+      "start": "00:10:15.730",
+      "end": "00:10:21.730",
+      "text": "How did you help or what did you do to have this thriving ecosystem like and especially"
+    },
+    {
+      "id": 159,
+      "start": "00:10:21.730",
+      "end": "00:10:23.690",
+      "text": "for maintainers of open source projects?"
+    },
+    {
+      "id": 160,
+      "start": "00:10:24.690",
+      "end": "00:10:29.290",
+      "text": "I'm ready to start this and I have a few people."
+    },
+    {
+      "id": 161,
+      "start": "00:10:29.290",
+      "end": "00:10:30.290",
+      "text": "What are the best projects?"
+    },
+    {
+      "id": 162,
+      "start": "00:10:30.290",
+      "end": "00:10:35.370",
+      "text": "What was the first step in helping to build this community around these huge general"
+    },
+    {
+      "id": 163,
+      "start": "00:10:35.370",
+      "end": "00:10:39.290",
+      "text": "and open source projects that it made them continue to be successful?"
+    },
+    {
+      "id": 164,
+      "start": "00:10:39.290",
+      "end": "00:10:42.690",
+      "text": "It's been different for different projects."
+    },
+    {
+      "id": 165,
+      "start": "00:10:42.690",
+      "end": "00:10:46.650",
+      "text": "There's not a playbook that you can just use."
+    },
+    {
+      "id": 166,
+      "start": "00:10:46.650",
+      "end": "00:10:52.250",
+      "text": "Our approach for go was very different than MongoDB, very different than Docker and different"
+    },
+    {
+      "id": 167,
+      "start": "00:10:52.250",
+      "end": "00:10:59.490",
+      "text": "from Hugo and Cobra and Viper and all of these are taking different approaches."
+    },
+    {
+      "id": 168,
+      "start": "00:10:59.490",
+      "end": "00:11:02.330",
+      "text": "Partly because they've peeled the different communities."
+    },
+    {
+      "id": 169,
+      "start": "00:11:02.330",
+      "end": "00:11:05.930",
+      "text": "The web community is very different than the database community."
+    },
+    {
+      "id": 170,
+      "start": "00:11:05.930",
+      "end": "00:11:08.810",
+      "text": "Language community is very different."
+    },
+    {
+      "id": 171,
+      "start": "00:11:08.810",
+      "end": "00:11:12.970",
+      "text": "And so I think there's some common threads to that."
+    },
+    {
+      "id": 172,
+      "start": "00:11:12.970",
+      "end": "00:11:21.130",
+      "text": "One is at many of the places I've done some similar things."
+    },
+    {
+      "id": 173,
+      "start": "00:11:21.130",
+      "end": "00:11:30.010",
+      "text": "So at Docker we created the idea of the first ever, I've never heard of anyone else"
+    },
+    {
+      "id": 174,
+      "start": "00:11:30.010",
+      "end": "00:11:31.010",
+      "text": "doing it."
+    },
+    {
+      "id": 175,
+      "start": "00:11:31.010",
+      "end": "00:11:32.850",
+      "text": "It was a contributorathon."
+    },
+    {
+      "id": 176,
+      "start": "00:11:32.850",
+      "end": "00:11:40.210",
+      "text": "So we had, I think it was 12 events and 12 cities at the same weekend for the same couple"
+    },
+    {
+      "id": 177,
+      "start": "00:11:40.210",
+      "end": "00:11:41.210",
+      "text": "days."
+    },
+    {
+      "id": 178,
+      "start": "00:11:41.210",
+      "end": "00:11:43.610",
+      "text": "And we flew out to these places."
+    },
+    {
+      "id": 179,
+      "start": "00:11:43.610",
+      "end": "00:11:44.610",
+      "text": "We divided up the team."
+    },
+    {
+      "id": 180,
+      "start": "00:11:44.610",
+      "end": "00:11:46.410",
+      "text": "We flew out to all these places."
+    },
+    {
+      "id": 181,
+      "start": "00:11:46.410",
+      "end": "00:11:53.090",
+      "text": "We hosted maybe 100 to 300 people in each city."
+    },
+    {
+      "id": 182,
+      "start": "00:11:53.090",
+      "end": "00:11:57.330",
+      "text": "And we tried to have everybody make their first commit to Docker."
+    },
+    {
+      "id": 183,
+      "start": "00:11:57.330",
+      "end": "00:12:03.330",
+      "text": "And so we really wanted to show that we're open to contributions."
+    },
+    {
+      "id": 184,
+      "start": "00:12:03.330",
+      "end": "00:12:08.130",
+      "text": "Later I joined the Go team leading the Go project at Google."
+    },
+    {
+      "id": 185,
+      "start": "00:12:08.130",
+      "end": "00:12:10.850",
+      "text": "And at Go for Com we decided to do a very similar thing."
+    },
+    {
+      "id": 186,
+      "start": "00:12:10.850",
+      "end": "00:12:11.970",
+      "text": "We didn't do it in many cities."
+    },
+    {
+      "id": 187,
+      "start": "00:12:11.970",
+      "end": "00:12:17.370",
+      "text": "We had one of those big rooms at the convention center."
+    },
+    {
+      "id": 188,
+      "start": "00:12:17.370",
+      "end": "00:12:22.650",
+      "text": "We built a dashboard that put on the wall with a projector."
+    },
+    {
+      "id": 189,
+      "start": "00:12:22.650",
+      "end": "00:12:23.730",
+      "text": "And everyone's in the same room."
+    },
+    {
+      "id": 190,
+      "start": "00:12:23.730",
+      "end": "00:12:29.050",
+      "text": "We've got Go members sitting at every table and mentors from the community."
+    },
+    {
+      "id": 191,
+      "start": "00:12:29.050",
+      "end": "00:12:33.130",
+      "text": "People that were Go members at Google, Go team members at Google and people that were"
+    },
+    {
+      "id": 192,
+      "start": "00:12:33.130",
+      "end": "00:12:36.610",
+      "text": "contributors from the community, mentoring people."
+    },
+    {
+      "id": 193,
+      "start": "00:12:36.610",
+      "end": "00:12:40.290",
+      "text": "And anyone who went to Go for Com could come and participate."
+    },
+    {
+      "id": 194,
+      "start": "00:12:40.290",
+      "end": "00:12:43.850",
+      "text": "And the goal is to make your first contribution to the Go project."
+    },
+    {
+      "id": 195,
+      "start": "00:12:43.850",
+      "end": "00:12:50.610",
+      "text": "We got hundreds of contributions that night to a project that many people"
+    },
+    {
+      "id": 196,
+      "start": "00:12:50.610",
+      "end": "00:12:57.450",
+      "text": "didn't feel like they were either welcomed to contribute or maybe that they,"
+    },
+    {
+      "id": 197,
+      "start": "00:12:57.450",
+      "end": "00:12:59.090",
+      "text": "well, what I can contribute."
+    },
+    {
+      "id": 198,
+      "start": "00:12:59.090",
+      "end": "00:13:04.010",
+      "text": "I'm not the level of Ken Thompson and Rob Pike to be able to,"
+    },
+    {
+      "id": 199,
+      "start": "00:13:04.010",
+      "end": "00:13:05.330",
+      "text": "I can't contribute to this."
+    },
+    {
+      "id": 200,
+      "start": "00:13:05.330",
+      "end": "00:13:10.130",
+      "text": "There's a ton of things that entry, people that are young and"
+    },
+    {
+      "id": 201,
+      "start": "00:13:10.130",
+      "end": "00:13:12.130",
+      "text": "their careers, young and their development can do."
+    },
+    {
+      "id": 202,
+      "start": "00:13:12.130",
+      "end": "00:13:15.530",
+      "text": "There's some things that you need to be far more experienced, but"
+    },
+    {
+      "id": 203,
+      "start": "00:13:15.530",
+      "end": "00:13:17.410",
+      "text": "everyone can contribute."
+    },
+    {
+      "id": 204,
+      "start": "00:13:17.410",
+      "end": "00:13:22.970",
+      "text": "And that ethos of just like you're welcome here, we want you to be a part of,"
+    },
+    {
+      "id": 205,
+      "start": "00:13:22.970",
+      "end": "00:13:25.290",
+      "text": "there's also two communities."
+    },
+    {
+      "id": 206,
+      "start": "00:13:25.290",
+      "end": "00:13:28.450",
+      "text": "There's a contributor community and then there's the user community."
+    },
+    {
+      "id": 207,
+      "start": "00:13:28.450",
+      "end": "00:13:30.050",
+      "text": "Yeah. And those are different approaches."
+    },
+    {
+      "id": 208,
+      "start": "00:13:30.050",
+      "end": "00:13:33.210",
+      "text": "But for both of them, that spirit of you're welcome here,"
+    },
+    {
+      "id": 209,
+      "start": "00:13:33.210",
+      "end": "00:13:38.010",
+      "text": "we want you to be a part of this and making sure that we have good code of conduct."
+    },
+    {
+      "id": 210,
+      "start": "00:13:38.010",
+      "end": "00:13:42.690",
+      "text": "And we adhere to that and we have that culture has been a critical part of"
+    },
+    {
+      "id": 211,
+      "start": "00:13:42.690",
+      "end": "00:13:44.130",
+      "text": "growing all these communities."
+    },
+    {
+      "id": 212,
+      "start": "00:13:44.130",
+      "end": "00:13:44.610",
+      "text": "That's lovely."
+    },
+    {
+      "id": 213,
+      "start": "00:13:44.610",
+      "end": "00:13:46.850",
+      "text": "Yeah, I think when I talk to a lot of developers,"
+    },
+    {
+      "id": 214,
+      "start": "00:13:46.850",
+      "end": "00:13:49.490",
+      "text": "like that being feeling like they're welcome, right?"
+    },
+    {
+      "id": 215,
+      "start": "00:13:49.490",
+      "end": "00:13:50.730",
+      "text": "I feel like you're allowed to do this."
+    },
+    {
+      "id": 216,
+      "start": "00:13:50.730",
+      "end": "00:13:54.770",
+      "text": "And I often talk to community members and developers and say,"
+    },
+    {
+      "id": 217,
+      "start": "00:13:54.770",
+      "end": "00:13:57.770",
+      "text": "listen, it doesn't matter if it's adding to documentation,"
+    },
+    {
+      "id": 218,
+      "start": "00:13:57.770",
+      "end": "00:14:01.370",
+      "text": "fixing the typo, fixing up the read, me, making,"
+    },
+    {
+      "id": 219,
+      "start": "00:14:01.370",
+      "end": "00:14:03.170",
+      "text": "you know, doing an issue, right?"
+    },
+    {
+      "id": 220,
+      "start": "00:14:03.170",
+      "end": "00:14:05.450",
+      "text": "Just even posting that, that's a contribution to itself."
+    },
+    {
+      "id": 221,
+      "start": "00:14:05.450",
+      "end": "00:14:08.370",
+      "text": "Like I don't great bug report or following up or doing something."
+    },
+    {
+      "id": 222,
+      "start": "00:14:08.370",
+      "end": "00:14:10.210",
+      "text": "And then even just saying, hey, I'll take this on."
+    },
+    {
+      "id": 223,
+      "start": "00:14:10.210",
+      "end": "00:14:10.770",
+      "text": "It could be small."
+    },
+    {
+      "id": 224,
+      "start": "00:14:10.770",
+      "end": "00:14:12.530",
+      "text": "It could be little every single contributions."
+    },
+    {
+      "id": 225,
+      "start": "00:14:12.530",
+      "end": "00:14:13.130",
+      "text": "Welcome."
+    },
+    {
+      "id": 226,
+      "start": "00:14:13.130",
+      "end": "00:14:16.410",
+      "text": "Is there things that you did maybe in the repo level that like,"
+    },
+    {
+      "id": 227,
+      "start": "00:14:16.410",
+      "end": "00:14:19.970",
+      "text": "you said, you know, the standards and things like, yeah, maybe not just in"
+    },
+    {
+      "id": 228,
+      "start": "00:14:19.970",
+      "end": "00:14:22.730",
+      "text": "the repo level, like from the issues or the poor requests,"
+    },
+    {
+      "id": 229,
+      "start": "00:14:22.730",
+      "end": "00:14:27.090",
+      "text": "like that maybe folks could that would be worked or then didn't work."
+    },
+    {
+      "id": 230,
+      "start": "00:14:27.090",
+      "end": "00:14:27.730",
+      "text": "Yeah."
+    },
+    {
+      "id": 231,
+      "start": "00:14:27.730",
+      "end": "00:14:30.610",
+      "text": "That maybe folks could maybe adopt that would like encourage that type of"
+    },
+    {
+      "id": 232,
+      "start": "00:14:30.610",
+      "end": "00:14:32.250",
+      "text": "contributions."
+    },
+    {
+      "id": 233,
+      "start": "00:14:32.250",
+      "end": "00:14:34.570",
+      "text": "So it depends on the scale of the project."
+    },
+    {
+      "id": 234,
+      "start": "00:14:34.570",
+      "end": "00:14:39.810",
+      "text": "So for the GOAP project, we did some very specific things to encourage this."
+    },
+    {
+      "id": 235,
+      "start": "00:14:39.810",
+      "end": "00:14:43.290",
+      "text": "For some of the smaller relatively smaller projects like Cobra,"
+    },
+    {
+      "id": 236,
+      "start": "00:14:43.290",
+      "end": "00:14:45.370",
+      "text": "we haven't done these."
+    },
+    {
+      "id": 237,
+      "start": "00:14:45.370",
+      "end": "00:14:49.570",
+      "text": "And I think the level of contribution there is a little more targeted."
+    },
+    {
+      "id": 238,
+      "start": "00:14:49.570",
+      "end": "00:14:52.890",
+      "text": "It's just, you know, the scope, not the user base is different,"
+    },
+    {
+      "id": 239,
+      "start": "00:14:52.890",
+      "end": "00:14:58.090",
+      "text": "but just the scope GOA is an editor, compiler."
+    },
+    {
+      "id": 240,
+      "start": "00:14:58.090",
+      "end": "00:15:03.010",
+      "text": "I mean, it's got the full scope of everything about the powers,"
+    },
+    {
+      "id": 241,
+      "start": "00:15:03.010",
+      "end": "00:15:05.570",
+      "text": "and the entire GOECA system is within that one project."
+    },
+    {
+      "id": 242,
+      "start": "00:15:05.570",
+      "end": "00:15:09.610",
+      "text": "So for this, we have a special tag,"
+    },
+    {
+      "id": 243,
+      "start": "00:15:09.610",
+      "end": "00:15:13.290",
+      "text": "a label that we put on issues that are beginner issues."
+    },
+    {
+      "id": 244,
+      "start": "00:15:13.290",
+      "end": "00:15:18.850",
+      "text": "Part of our dashboard that we made and is still there is that you can go and"
+    },
+    {
+      "id": 245,
+      "start": "00:15:18.850",
+      "end": "00:15:21.490",
+      "text": "find beginner issues."
+    },
+    {
+      "id": 246,
+      "start": "00:15:22.690",
+      "end": "00:15:26.450",
+      "text": "And so we really wanted to say like new contributions."
+    },
+    {
+      "id": 247,
+      "start": "00:15:26.450",
+      "end": "00:15:27.370",
+      "text": "Welcome."
+    },
+    {
+      "id": 248,
+      "start": "00:15:27.370",
+      "end": "00:15:30.250",
+      "text": "Really tried to make it good for them."
+    },
+    {
+      "id": 249,
+      "start": "00:15:30.250",
+      "end": "00:15:37.250",
+      "text": "We also built, we wrote guides and a tool that helps people make their first"
+    },
+    {
+      "id": 250,
+      "start": "00:15:37.250",
+      "end": "00:15:42.050",
+      "text": "contributions because we had a bit of a specific workflow of how we do things."
+    },
+    {
+      "id": 251,
+      "start": "00:15:42.050",
+      "end": "00:15:48.970",
+      "text": "And so I think brilliant idea was to create, was not my idea."
+    },
+    {
+      "id": 252,
+      "start": "00:15:48.970",
+      "end": "00:15:55.850",
+      "text": "So my idea was to polish up our guides and we did and they're really good."
+    },
+    {
+      "id": 253,
+      "start": "00:15:56.810",
+      "end": "00:16:01.730",
+      "text": "But an even better idea was to write a tool that guided it, you through it,"
+    },
+    {
+      "id": 254,
+      "start": "00:16:01.730",
+      "end": "00:16:02.410",
+      "text": "step by step."
+    },
+    {
+      "id": 255,
+      "start": "00:16:02.410",
+      "end": "00:16:07.530",
+      "text": "So it's interactive CLI tool that just, okay, step one and then it took you on"
+    },
+    {
+      "id": 256,
+      "start": "00:16:07.530",
+      "end": "00:16:11.970",
+      "text": "that step and it had you log in and do things and then step two."
+    },
+    {
+      "id": 257,
+      "start": "00:16:11.970",
+      "end": "00:16:15.930",
+      "text": "So it was very sequential and rather than reading something and then coming"
+    },
+    {
+      "id": 258,
+      "start": "00:16:15.930",
+      "end": "00:16:19.930",
+      "text": "over here and doing something, you stayed in your terminal and it stepped you"
+    },
+    {
+      "id": 259,
+      "start": "00:16:19.930",
+      "end": "00:16:22.730",
+      "text": "through all the things that you needed to do interactively."
+    },
+    {
+      "id": 260,
+      "start": "00:16:22.770",
+      "end": "00:16:26.810",
+      "text": "As you had more people contribute to these projects, one thing that I often"
+    },
+    {
+      "id": 261,
+      "start": "00:16:26.810",
+      "end": "00:16:31.050",
+      "text": "hear from maintainers, but also myself, I'm saying maintainers, but I'm actually"
+    },
+    {
+      "id": 262,
+      "start": "00:16:31.050",
+      "end": "00:16:34.810",
+      "text": "just most referring to myself as a maintainer, but you know, it worked at huge"
+    },
+    {
+      "id": 263,
+      "start": "00:16:34.810",
+      "end": "00:16:39.370",
+      "text": "projects here at Microsoft is as you get more contributions, you get more"
+    },
+    {
+      "id": 264,
+      "start": "00:16:39.370",
+      "end": "00:16:43.210",
+      "text": "users, you get more issues, you get more pull requests."
+    },
+    {
+      "id": 265,
+      "start": "00:16:43.210",
+      "end": "00:16:48.170",
+      "text": "How did you balance that to grow this community out as more things were coming"
+    },
+    {
+      "id": 266,
+      "start": "00:16:48.170",
+      "end": "00:16:51.690",
+      "text": "in because the overhead of saying, I just actually like an issue"
+    },
+    {
+      "id": 267,
+      "start": "00:16:51.770",
+      "end": "00:16:55.290",
+      "text": "with triage and a pull request reviewer at the end of the day compared to"
+    },
+    {
+      "id": 268,
+      "start": "00:16:55.290",
+      "end": "00:16:56.570",
+      "text": "like I get to write code, right?"
+    },
+    {
+      "id": 269,
+      "start": "00:16:56.570",
+      "end": "00:17:02.170",
+      "text": "Or wow, someone did a PR, but we're so swamped that actually is going to take"
+    },
+    {
+      "id": 270,
+      "start": "00:17:02.170",
+      "end": "00:17:04.490",
+      "text": "a week or two weeks and that can demotivate people as well."
+    },
+    {
+      "id": 271,
+      "start": "00:17:04.490",
+      "end": "00:17:08.250",
+      "text": "How do you balance that in these projects as they continue to grow?"
+    },
+    {
+      "id": 272,
+      "start": "00:17:08.250",
+      "end": "00:17:10.410",
+      "text": "First, I think it's one of the biggest challenges."
+    },
+    {
+      "id": 273,
+      "start": "00:17:10.410",
+      "end": "00:17:18.490",
+      "text": "I think people dramatically underestimate the maintenance cost"
+    },
+    {
+      "id": 274,
+      "start": "00:17:18.490",
+      "end": "00:17:19.610",
+      "text": "of creating software."
+    },
+    {
+      "id": 275,
+      "start": "00:17:20.490",
+      "end": "00:17:23.130",
+      "text": "And maintainer burdens big."
+    },
+    {
+      "id": 276,
+      "start": "00:17:23.130",
+      "end": "00:17:28.650",
+      "text": "We had Docker, we had a dramatically oversized pool of contributions."
+    },
+    {
+      "id": 277,
+      "start": "00:17:28.650",
+      "end": "00:17:33.450",
+      "text": "We had developed very specific strategies that were somewhat unique to"
+    },
+    {
+      "id": 278,
+      "start": "00:17:33.450",
+      "end": "00:17:35.370",
+      "text": "Docker and the challenges that we had there."
+    },
+    {
+      "id": 279,
+      "start": "00:17:36.330",
+      "end": "00:17:42.890",
+      "text": "Go similar thing, we actually had LGTM bot that came and did things."
+    },
+    {
+      "id": 280,
+      "start": "00:17:42.890",
+      "end": "00:17:48.010",
+      "text": "So we built some different really agents that would connect to things,"
+    },
+    {
+      "id": 281,
+      "start": "00:17:48.010",
+      "end": "00:17:52.410",
+      "text": "look for different triggers and analyze the content and just help facilitate"
+    },
+    {
+      "id": 282,
+      "start": "00:17:53.690",
+      "end": "00:17:55.610",
+      "text": "the human aspect of it."
+    },
+    {
+      "id": 283,
+      "start": "00:17:56.650",
+      "end": "00:18:00.810",
+      "text": "The project that I've been involved with that I think did this the best and still is the"
+    },
+    {
+      "id": 284,
+      "start": "00:18:00.810",
+      "end": "00:18:06.730",
+      "text": "gold standard for a contributor, a contributor of community is Drupal."
+    },
+    {
+      "id": 285,
+      "start": "00:18:08.330",
+      "end": "00:18:12.330",
+      "text": "Most people I don't think are aware that Drupal is the second most active"
+    },
+    {
+      "id": 286,
+      "start": "00:18:12.330",
+      "end": "00:18:14.170",
+      "text": "open source project in history."
+    },
+    {
+      "id": 287,
+      "start": "00:18:14.170",
+      "end": "00:18:14.970",
+      "text": "Oh wow, I didn't know."
+    },
+    {
+      "id": 288,
+      "start": "00:18:14.970",
+      "end": "00:18:19.130",
+      "text": "So Linux kernel has the most active contributors and Drupal is number two."
+    },
+    {
+      "id": 289,
+      "start": "00:18:20.650",
+      "end": "00:18:23.690",
+      "text": "And they just do a fabulous job of different roles."
+    },
+    {
+      "id": 290,
+      "start": "00:18:25.450",
+      "end": "00:18:30.570",
+      "text": "There's a lot of interest in contributing and being part of Drupal,"
+    },
+    {
+      "id": 291,
+      "start": "00:18:30.570",
+      "end": "00:18:32.330",
+      "text": "but they have different roles that you can take."
+    },
+    {
+      "id": 292,
+      "start": "00:18:32.330",
+      "end": "00:18:34.010",
+      "text": "So one of the roles is just a triager."
+    },
+    {
+      "id": 293,
+      "start": "00:18:34.010",
+      "end": "00:18:38.890",
+      "text": "And that's how you kind of get your feet wet with the project and start really understanding it"
+    },
+    {
+      "id": 294,
+      "start": "00:18:38.890",
+      "end": "00:18:39.210",
+      "text": "better."
+    },
+    {
+      "id": 295,
+      "start": "00:18:39.210",
+      "end": "00:18:46.250",
+      "text": "And so as each as you kind of grow in contributions, you get more things that you can do,"
+    },
+    {
+      "id": 296,
+      "start": "00:18:46.250",
+      "end": "00:18:53.050",
+      "text": "but they really distribute the burden and load of this across a broad group of people."
+    },
+    {
+      "id": 297,
+      "start": "00:18:53.050",
+      "end": "00:19:00.170",
+      "text": "And what they've created is this pipeline that as new people are always open source and everything"
+    },
+    {
+      "id": 298,
+      "start": "00:19:00.170",
+      "end": "00:19:04.330",
+      "text": "in life, like comes out to different events happen."
+    },
+    {
+      "id": 299,
+      "start": "00:19:04.330",
+      "end": "00:19:09.850",
+      "text": "You might have a kid or an illness or whatever it is or a new job that has taken you out of the"
+    },
+    {
+      "id": 300,
+      "start": "00:19:09.850",
+      "end": "00:19:10.330",
+      "text": "pipeline."
+    },
+    {
+      "id": 301,
+      "start": "00:19:11.290",
+      "end": "00:19:13.370",
+      "text": "But new people are coming into the pipeline."
+    },
+    {
+      "id": 302,
+      "start": "00:19:14.010",
+      "end": "00:19:19.210",
+      "text": "And so you want to make sure that they get the right training and continue that to go through it."
+    },
+    {
+      "id": 303,
+      "start": "00:19:19.210",
+      "end": "00:19:22.090",
+      "text": "And so I've learned a lot from Drupal."
+    },
+    {
+      "id": 304,
+      "start": "00:19:22.090",
+      "end": "00:19:26.570",
+      "text": "I had a benefit of being a part of the Drupal Association board for many years."
+    },
+    {
+      "id": 305,
+      "start": "00:19:27.290",
+      "end": "00:19:31.050",
+      "text": "There's a way to contribute back from all the things I learned from how well they did with this."
+    },
+    {
+      "id": 306,
+      "start": "00:19:31.050",
+      "end": "00:19:36.970",
+      "text": "And I hands off to Dries and Angie and the rest of the folks that really built this amazing"
+    },
+    {
+      "id": 307,
+      "start": "00:19:38.170",
+      "end": "00:19:39.610",
+      "text": "contributor community there."
+    },
+    {
+      "id": 308,
+      "start": "00:19:39.610",
+      "end": "00:19:40.010",
+      "text": "Yeah."
+    },
+    {
+      "id": 309,
+      "start": "00:19:40.010",
+      "end": "00:19:42.410",
+      "text": "I love that journey because just like how we were talking about high,"
+    },
+    {
+      "id": 310,
+      "start": "00:19:42.410",
+      "end": "00:19:43.610",
+      "text": "any contribution matters."
+    },
+    {
+      "id": 311,
+      "start": "00:19:43.610",
+      "end": "00:19:48.410",
+      "text": "Also, any of those contributions, any of those levels, actually just reviewing the PRs and going through"
+    },
+    {
+      "id": 312,
+      "start": "00:19:48.410",
+      "end": "00:19:49.770",
+      "text": "and reviewing the issues."
+    },
+    {
+      "id": 313,
+      "start": "00:19:49.770",
+      "end": "00:19:57.690",
+      "text": "I think what's fascinating, a lot of friends that I work with is many of them are like,"
+    },
+    {
+      "id": 314,
+      "start": "00:19:58.170",
+      "end": "00:20:02.010",
+      "text": "I love developing, but what I really like doing is writing amazing documentation."
+    },
+    {
+      "id": 315,
+      "start": "00:20:02.010",
+      "end": "00:20:03.290",
+      "text": "That's what I love doing."
+    },
+    {
+      "id": 316,
+      "start": "00:20:03.290",
+      "end": "00:20:04.570",
+      "text": "Like let me just do that."
+    },
+    {
+      "id": 317,
+      "start": "00:20:04.570",
+      "end": "00:20:05.530",
+      "text": "And that's it."
+    },
+    {
+      "id": 318,
+      "start": "00:20:05.530",
+      "end": "00:20:07.530",
+      "text": "And you focus on the code, all right, the docs writer."
+    },
+    {
+      "id": 319,
+      "start": "00:20:07.530",
+      "end": "00:20:09.450",
+      "text": "People are like, I'm really good at marketing, right?"
+    },
+    {
+      "id": 320,
+      "start": "00:20:09.450",
+      "end": "00:20:12.890",
+      "text": "And like for developer marketing, even though they're an engineer, this is actually what I want"
+    },
+    {
+      "id": 321,
+      "start": "00:20:12.890",
+      "end": "00:20:13.850",
+      "text": "to do in the social project."
+    },
+    {
+      "id": 322,
+      "start": "00:20:13.850",
+      "end": "00:20:16.410",
+      "text": "And all of those are super valuable contributions."
+    },
+    {
+      "id": 323,
+      "start": "00:20:16.410",
+      "end": "00:20:16.890",
+      "text": "Yeah."
+    },
+    {
+      "id": 324,
+      "start": "00:20:16.890",
+      "end": "00:20:20.010",
+      "text": "I think one thing that I'm fascinating because it wouldn't be the year 2025,"
+    },
+    {
+      "id": 325,
+      "start": "00:20:20.010",
+      "end": "00:20:21.530",
+      "text": "I would talk about a little bit of AI."
+    },
+    {
+      "id": 326,
+      "start": "00:20:21.530",
+      "end": "00:20:26.730",
+      "text": "But actually like in these open source projects, as we have more agents,"
+    },
+    {
+      "id": 327,
+      "start": "00:20:26.730",
+      "end": "00:20:29.610",
+      "text": "we have more automated pull requests."
+    },
+    {
+      "id": 328,
+      "start": "00:20:29.610",
+      "end": "00:20:30.810",
+      "text": "Like how is that evolving?"
+    },
+    {
+      "id": 329,
+      "start": "00:20:30.810",
+      "end": "00:20:36.570",
+      "text": "How you think about building the communities and continuing to grow these projects"
+    },
+    {
+      "id": 330,
+      "start": "00:20:37.530",
+      "end": "00:20:44.250",
+      "text": "as just the entire sort of software engineering cycle is going through like this transformation,"
+    },
+    {
+      "id": 331,
+      "start": "00:20:44.250",
+      "end": "00:20:45.610",
+      "text": "especially for open source projects."
+    },
+    {
+      "id": 332,
+      "start": "00:20:45.610",
+      "end": "00:20:45.690",
+      "text": "Yeah."
+    },
+    {
+      "id": 333,
+      "start": "00:20:47.370",
+      "end": "00:20:49.130",
+      "text": "It's a really interesting question."
+    },
+    {
+      "id": 334,
+      "start": "00:20:49.130",
+      "end": "00:20:54.650",
+      "text": "And I think my personal opinion about this is, and it's confusing."
+    },
+    {
+      "id": 335,
+      "start": "00:20:54.650",
+      "end": "00:20:57.370",
+      "text": "Like I don't think we have a good sense of how it's going to evolve."
+    },
+    {
+      "id": 336,
+      "start": "00:20:59.530",
+      "end": "00:21:06.970",
+      "text": "There's definitely a sense of the more things that we give to robots, the less involved humans are,"
+    },
+    {
+      "id": 337,
+      "start": "00:21:07.930",
+      "end": "00:21:12.650",
+      "text": "which is a challenging thing because I think the human experience is to create."
+    },
+    {
+      "id": 338,
+      "start": "00:21:12.650",
+      "end": "00:21:15.050",
+      "text": "I think that's a fundamental part of the human experience."
+    },
+    {
+      "id": 339,
+      "start": "00:21:15.690",
+      "end": "00:21:17.770",
+      "text": "And now we've got robots creating things."
+    },
+    {
+      "id": 340,
+      "start": "00:21:18.650",
+      "end": "00:21:21.690",
+      "text": "And it's really changing it."
+    },
+    {
+      "id": 341,
+      "start": "00:21:21.690",
+      "end": "00:21:23.210",
+      "text": "It's changing the shape of the community."
+    },
+    {
+      "id": 342,
+      "start": "00:21:23.850",
+      "end": "00:21:30.250",
+      "text": "I think a key part of it is to find the right balance between doing creative things"
+    },
+    {
+      "id": 343,
+      "start": "00:21:30.250",
+      "end": "00:21:35.450",
+      "text": "that you love and are passionate about and having robots help facilitate and assist that."
+    },
+    {
+      "id": 344,
+      "start": "00:21:37.050",
+      "end": "00:21:40.490",
+      "text": "And I don't think we have the right answer to what that looks like yet."
+    },
+    {
+      "id": 345,
+      "start": "00:21:44.810",
+      "end": "00:21:51.370",
+      "text": "I think the more automated these things are, kind of the less human experience is part of it."
+    },
+    {
+      "id": 346,
+      "start": "00:21:51.370",
+      "end": "00:21:57.530",
+      "text": "But at the same time, we've been using machines the whole time to automate different aspects of it"
+    },
+    {
+      "id": 347,
+      "start": "00:21:57.530",
+      "end": "00:21:59.290",
+      "text": "and to make it better for us."
+    },
+    {
+      "id": 348,
+      "start": "00:21:59.290",
+      "end": "00:22:03.530",
+      "text": "So I think we've really got to figure out what the right balance is across those."
+    },
+    {
+      "id": 349,
+      "start": "00:22:03.530",
+      "end": "00:22:08.010",
+      "text": "And I think it's changing not only the software development life cycle,"
+    },
+    {
+      "id": 350,
+      "start": "00:22:08.570",
+      "end": "00:22:10.970",
+      "text": "it's also changing how we find new packages."
+    },
+    {
+      "id": 351,
+      "start": "00:22:11.690",
+      "end": "00:22:14.810",
+      "text": "Right? Because nowadays most of the time, the alarms are making the suggestion."
+    },
+    {
+      "id": 352,
+      "start": "00:22:14.810",
+      "end": "00:22:20.410",
+      "text": "You're not going to GitHub or Google or, you know, like the Go.dev webpage."
+    },
+    {
+      "id": 353,
+      "start": "00:22:20.410",
+      "end": "00:22:24.810",
+      "text": "You're going to your terminal or to your editor."
+    },
+    {
+      "id": 354,
+      "start": "00:22:25.130",
+      "end": "00:22:30.250",
+      "text": "And it's suggesting when it builds this function, it's putting the import statement in there for you."
+    },
+    {
+      "id": 355,
+      "start": "00:22:30.250",
+      "end": "00:22:35.210",
+      "text": "Yeah. So it's really fundamentally changing how we approach things."
+    },
+    {
+      "id": 356,
+      "start": "00:22:35.210",
+      "end": "00:22:39.850",
+      "text": "It's also like a lot of times now you're not reading the documentation,"
+    },
+    {
+      "id": 357,
+      "start": "00:22:39.850",
+      "end": "00:22:41.930",
+      "text": "but an agent's reading the documentation."
+    },
+    {
+      "id": 358,
+      "start": "00:22:41.930",
+      "end": "00:22:47.210",
+      "text": "And so how are we adapting our projects to be able to fit into this new structure where"
+    },
+    {
+      "id": 359,
+      "start": "00:22:47.850",
+      "end": "00:22:50.570",
+      "text": "agents might be the primary audience."
+    },
+    {
+      "id": 360,
+      "start": "00:22:51.610",
+      "end": "00:22:56.570",
+      "text": "I think it's going to really, we'll see how it plays out over the next few months,"
+    },
+    {
+      "id": 361,
+      "start": "00:22:56.570",
+      "end": "00:22:58.810",
+      "text": "but it's certainly something that we need to think about."
+    },
+    {
+      "id": 362,
+      "start": "00:22:58.810",
+      "end": "00:23:00.730",
+      "text": "Yeah. And sometimes they're writing the documentation."
+    },
+    {
+      "id": 363,
+      "start": "00:23:00.730",
+      "end": "00:23:01.770",
+      "text": "A lot of times they're writing."
+    },
+    {
+      "id": 364,
+      "start": "00:23:01.770",
+      "end": "00:23:06.330",
+      "text": "Yeah. Well, let me wrap up with this because this has been really awesome."
+    },
+    {
+      "id": 365,
+      "start": "00:23:06.330",
+      "end": "00:23:11.370",
+      "text": "I really appreciate it because every day I'm working in huge projects here,"
+    },
+    {
+      "id": 366,
+      "start": "00:23:11.370",
+      "end": "00:23:15.930",
+      "text": "like yourself and outside of work as well and being about how do I balance everything"
+    },
+    {
+      "id": 367,
+      "start": "00:23:16.010",
+      "end": "00:23:18.250",
+      "text": "and how you've done it and these projects and work with the communities."
+    },
+    {
+      "id": 368,
+      "start": "00:23:18.250",
+      "end": "00:23:19.930",
+      "text": "And there's so many different unique ways."
+    },
+    {
+      "id": 369,
+      "start": "00:23:19.930",
+      "end": "00:23:21.930",
+      "text": "I think what I'm learning at least is they're not one approach."
+    },
+    {
+      "id": 370,
+      "start": "00:23:21.930",
+      "end": "00:23:24.330",
+      "text": "There's many approaches like pool or spouse for you in this."
+    },
+    {
+      "id": 371,
+      "start": "00:23:24.330",
+      "end": "00:23:26.570",
+      "text": "Well, as you just excited about the future of open source,"
+    },
+    {
+      "id": 372,
+      "start": "00:23:26.570",
+      "end": "00:23:30.810",
+      "text": "I mean, it's been a while journey, I have to imagine since the beginning of kind of working"
+    },
+    {
+      "id": 373,
+      "start": "00:23:30.810",
+      "end": "00:23:34.330",
+      "text": "in these projects. Well, how's your excited for the future of open source going forward?"
+    },
+    {
+      "id": 374,
+      "start": "00:23:35.450",
+      "end": "00:23:39.610",
+      "text": "So I think we're at a really interesting time. A really exciting time."
+    },
+    {
+      "id": 375,
+      "start": "00:23:40.330",
+      "end": "00:23:46.890",
+      "text": "We've got this new technology that the LMs that can do things that we've struggled with"
+    },
+    {
+      "id": 376,
+      "start": "00:23:47.450",
+      "end": "00:23:54.250",
+      "text": "since the beginning of computing. And figuring out how to balance this new incorporate,"
+    },
+    {
+      "id": 377,
+      "start": "00:23:54.250",
+      "end": "00:24:00.970",
+      "text": "this new capability that we didn't have before into things, into how we've done things before."
+    },
+    {
+      "id": 378,
+      "start": "00:24:00.970",
+      "end": "00:24:06.970",
+      "text": "And it really unlocks a lot of potential. And I'm really excited to see how that evolves"
+    },
+    {
+      "id": 379,
+      "start": "00:24:06.970",
+      "end": "00:24:10.250",
+      "text": "to the developer experience, how it involves the open source experience."
+    },
+    {
+      "id": 380,
+      "start": "00:24:11.450",
+      "end": "00:24:16.250",
+      "text": "I think there's just a ton of potential that we're barely scratched the surface of how really this"
+    },
+    {
+      "id": 381,
+      "start": "00:24:16.250",
+      "end": "00:24:22.250",
+      "text": "integration looks. And I'm also excited that we can do things that we've never done before."
+    },
+    {
+      "id": 382,
+      "start": "00:24:22.250",
+      "end": "00:24:28.650",
+      "text": "Yeah. Things that we've even have the time to code before. Now, we have more time to code"
+    },
+    {
+      "id": 383,
+      "start": "00:24:28.650",
+      "end": "00:24:37.370",
+      "text": "because the assistants accelerate what we're doing, as well as it's really giving us opportunities"
+    },
+    {
+      "id": 384,
+      "start": "00:24:37.370",
+      "end": "00:24:46.810",
+      "text": "to write software that before there wasn't this capability of a lot of the old methods of understanding,"
+    },
+    {
+      "id": 385,
+      "start": "00:24:49.290",
+      "end": "00:24:55.850",
+      "text": "these like flexible content, whether images or other things, just wasn't available. And now"
+    },
+    {
+      "id": 386,
+      "start": "00:24:55.850",
+      "end": "00:25:01.530",
+      "text": "we've got, it's been unlocked by these multimodal models that can really understand things in a"
+    },
+    {
+      "id": 387,
+      "start": "00:25:01.530",
+      "end": "00:25:06.970",
+      "text": "way that would have been very challenging before. So I think it's a very exciting time where we're"
+    },
+    {
+      "id": 388,
+      "start": "00:25:06.970",
+      "end": "00:25:12.330",
+      "text": "able to build things faster than we've ever built before and unlock new capabilities. And I'm excited"
+    },
+    {
+      "id": 389,
+      "start": "00:25:12.330",
+      "end": "00:25:16.730",
+      "text": "to see what the world does with it. That's awesome. Yeah. For me for sure, I've definitely written"
+    },
+    {
+      "id": 390,
+      "start": "00:25:16.730",
+      "end": "00:25:22.250",
+      "text": "more software faster than I ever have in my life. And stuff that I wouldn't have built. I think"
+    },
+    {
+      "id": 391,
+      "start": "00:25:22.250",
+      "end": "00:25:26.570",
+      "text": "that's what's interesting too is I may not have had the time to build that feature, build that"
+    },
+    {
+      "id": 392,
+      "start": "00:25:26.570",
+      "end": "00:25:32.250",
+      "text": "little project. And somebody's capability just enable me to do it, right? Whether it's short-lived"
+    },
+    {
+      "id": 393,
+      "start": "00:25:32.250",
+      "end": "00:25:34.890",
+      "text": "or long-lived. Yeah. We'll see things so much for coming on the path. Perfect. Thank you."
+    },
+    {
+      "id": 394,
+      "start": "00:25:34.890",
+      "end": "00:25:38.410",
+      "text": "I'm not always, I really enjoyed it. We'll put links to everything. Find all your projects and"
+    },
+    {
+      "id": 395,
+      "start": "00:25:38.410",
+      "end": "00:25:42.730",
+      "text": "everything in the show. That'll be great. So thanks again for coming on. Appreciate it. Thank you. I appreciate it."
+    }
+  ]
+}

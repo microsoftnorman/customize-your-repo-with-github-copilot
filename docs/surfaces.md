@@ -4,11 +4,23 @@
 
 ---
 
-The customization primitives in this guide are **file-based and IDE-agnostic**. A `.github/copilot-instructions.md` file applies whether the developer is in VS Code, JetBrains, the CLI, or the cloud agent.
+The customization primitives in this guide are mostly **repository-based**, which is why the same `.github/` assets can travel across surfaces. That does not mean the surfaces behave the same. Authoring UX, policy controls, hooks, Memory, model options, and inspection tools vary enough that platform choice is a governance decision, not a cosmetic preference.
+
+Read this page after [Part II: The Primitives](part-2-primitives.md) and the extension guides. The question here is not what a primitive is for. It is where the same primitive layer is supported well, where authoring differs, and which surfaces still have meaningful gaps.
 
 This page is the narrative reference for surface-specific details: authoring UX, setup gotchas, and the limitations that matter when picking a host environment.
 
-**See it in action:** In [A Unified Agent Experience](https://www.youtube.com/watch?v=YmpjvZ3xkx8&t=0s), Josh Spicer demos how agent sessions work consistently across VS Code, the cloud agent, and the Copilot CLI from a single unified view.
+## A Practical Support-Tier Model
+
+Large organizations usually need a support stance, not just a feature matrix.
+
+- **Tier 1 authoring surface:** VS Code. Best place to create, inspect, and debug repository customizations.
+- **Tier 1 controlled autonomy surfaces:** GitHub Copilot CLI and the cloud coding agent. High-value for advanced teams, but they deserve stronger trust-boundary controls.
+- **Tier 2 consumer surfaces:** Visual Studio, JetBrains, Xcode, and Eclipse. Important for host fit, but parity varies and some controls degrade.
+
+That framing keeps the portability story honest. Repository files can be shared broadly. The operating model still needs to be chosen deliberately.
+
+**See it in action:** [A Unified Agent Experience](https://www.youtube.com/watch?v=YmpjvZ3xkx8&t=0s) — VS Code Team demos how local and cloud agent workflows sit side by side, which is the clearest illustration of why surface behavior matters.
 
 ## Primitive Support by Surface
 
@@ -24,6 +36,8 @@ For [GitHub Copilot code review](code-review.md), which runs on GitHub.com, GitH
 
 **Official docs:** [Copilot in VS Code](https://code.visualstudio.com/docs/copilot) · [Customization overview](https://code.visualstudio.com/docs/copilot/customization/overview)
 
+**Code to study:** [VS Code source](https://github.com/microsoft/vscode) and [VS Code Copilot Chat source](https://github.com/microsoft/vscode-copilot-chat)
+
 **See it in action:** Courtney Webster's [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=578s) walkthrough moves from the customization overview into the VS Code authoring flow for custom agents and related repo-level customizations.
 
 - **Built-in since VS Code 1.116.** No extension to install. Disable AI features with `chat.disableAIFeatures`.
@@ -32,9 +46,13 @@ For [GitHub Copilot code review](code-review.md), which runs on GitHub.com, GitH
 - **Parent repository discovery** (`chat.useCustomizationsInParentRepositories`) lets monorepos share customizations across subfolder workspaces.
 - **Edit mode is on a deprecation path.** As of VS Code 1.116 (April 2026) it is still present but de-emphasized. Agent mode is the recommended path for all file modifications. Verify the status in the [VS Code release notes](https://code.visualstudio.com/updates/) before building workflows around it.
 
+If a team wants one default host for onboarding, teaching, and inner-source authoring, this is it.
+
 ### Visual Studio
 
 **Official docs:** [Copilot in Visual Studio](https://learn.microsoft.com/en-us/visualstudio/ide/visual-studio-github-copilot-extension) · [Feature matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=visualstudio)
+
+**Code to study:** [Awesome Copilot](https://github.com/github/awesome-copilot) for reusable customization files that also work in Visual Studio
 
 - **Two product lines:** Visual Studio 2022 (17.x) and Visual Studio 2026 (18.x). Feature cadence is slower than VS Code because Copilot ships with Visual Studio servicing updates, not a separate extension.
 - **Agent mode requires VS 2022 17.14 or any VS 2026 release.** MCP is GA on both.
@@ -76,11 +94,15 @@ For install paths, permission setup, the primitive support table, and known limi
 
 ### GitHub Copilot CLI
 
-**Official docs:** [GitHub Copilot CLI](https://github.com/features/copilot/cli/) · [copilot-cli repo](https://github.com/github/copilot-cli)
+**Official docs:** [About Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) · [Copilot feature matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix) · [copilot-cli repo](https://github.com/github/copilot-cli)
 
-The [CLI reference](surfaces/copilot-cli.md) covers its own slash-command vocabulary (`/fleet`, `/delegate`, `/plan`, `/yolo`, `/remote`), YOLO mode, CLI-specific extensions (`.github/extensions/`), and the fact that it is the only surface besides VS Code with full hooks support.
+The [CLI reference](surfaces/copilot-cli.md) covers its own slash-command vocabulary (`/fleet`, `/delegate`, `/plan`, `/yolo`, `/remote`), trust-boundary differences, remote-session controls, and the fact that it is the only surface besides VS Code with full hooks support.
 
 ### GitHub Copilot Cloud Agent
+
+**Official docs:** [About Copilot cloud agent](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent) · [Cloud agent how-tos](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent) · [Copilot feature matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix)
+
+**Code to study:** [GitHub Copilot CLI repository](https://github.com/github/copilot-cli) and [GitHub Copilot SDK repository](https://github.com/github/copilot-sdk) for the closest public agent-runtime code and examples
 
 The [cloud agent reference](surfaces/cloud-coding-agent.md) covers the agent that runs in GitHub Actions, reads the same customization primitives, and is governed through organization-level policy. It's a fundamentally different operational model from the IDE surfaces above.
 

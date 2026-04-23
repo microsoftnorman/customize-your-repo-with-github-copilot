@@ -6,6 +6,8 @@
 
 GitHub Copilot for Xcode is a standalone macOS application published by GitHub and distributed from the [`github/CopilotForXcode`](https://github.com/github/CopilotForXcode) repository. The VS Code, JetBrains, and Eclipse integrations ship as in-process plugins. The Xcode integration does not. It is a separate `.app` bundle that communicates with Xcode through the Source Editor Extension API and macOS Accessibility APIs. That out-of-process design sets the feature ceiling, complicates installation, narrows which customization primitives work, and produces the operational quirks documented below.
 
+**Official docs:** [Install for Xcode](https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-extension?tool=xcode) · [Copilot feature matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=xcode) · [CopilotForXcode repository](https://github.com/github/CopilotForXcode)
+
 This page covers what ships today, how to install and authorize it on current macOS and Xcode versions, which customization primitives are supported, and the limitations iOS/macOS teams need to plan around.
 
 ## Distribution and Identity

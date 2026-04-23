@@ -1,0 +1,746 @@
+{
+  "source_file": "2025-08-18-hello-gpt-5-gpt-5-mini.md",
+  "transcript_format": "local_stt_segments",
+  "segment_count": 103,
+  "metadata": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 1,
+    "title": "Hello GPT-5 & GPT-5 mini",
+    "url": "https://www.vscodepodcast.com/1",
+    "transcript_url": "",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/5edee86b-b94d-42c5-af13-9131c8dca356.mp3",
+    "published": "2025-08-18",
+    "duration": "18:33",
+    "transcript_available": false,
+    "source_file": "2025-08-18-hello-gpt-5-gpt-5-mini.md",
+    "source_path": "references\\transcripts\\vscode-podcast\\2025-08-18-hello-gpt-5-gpt-5-mini.md",
+    "local_stt": true,
+    "local_stt_model": "tiny",
+    "local_stt_language": "en",
+    "local_stt_device": "cpu",
+    "local_stt_compute_type": "auto"
+  },
+  "segments": [
+    {
+      "speaker": null,
+      "text": "Hey, everyone. Welcome to the VS Code Insiders podcast. A brand new podcast. We're going to talk about all the latest and greatest for developers inside of VS code in sort of like small little snack size snack pack size podcast audio and video that you can grab. I am one of your hosts that you'll see here James Montemagno, I later developer community team here at Microsoft and with me today is the one and only.",
+      "start": "00:00:00.020",
+      "end": "00:00:24.020",
+      "id": 1
+    },
+    {
+      "speaker": null,
+      "text": "First bug and how's it going Pierce? It's going amazing. How are you? I'm doing fantastic now. If people don't know who you are Pierce, you know, we've been on lots of live streams, but we have some new listeners. What's your role here at Microsoft on the VS Code team?",
+      "start": "00:00:24.020",
+      "end": "00:00:36.020",
+      "id": 2
+    },
+    {
+      "speaker": null,
+      "text": "I am the product lead for the VS Code team. So I ever see all of our teams working on VS Code.",
+      "start": "00:00:36.020",
+      "end": "00:00:42.020",
+      "id": 3
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, and Pierce and I've worked together for like 14 years. We've done lots of podcasts, talked a lot about a lot about things, lots of live streams.",
+      "start": "00:00:42.020",
+      "end": "00:00:49.020",
+      "id": 4
+    },
+    {
+      "speaker": null,
+      "text": "And it's awesome. I work super close with Pierce every single day. And they've been just tons and tons inside of VS Code every single week all the time. Now we call this the VS Code Insiders podcast, but Pierce, you don't have to be like inside of an exclusive club to actually use insiders like is that true.",
+      "start": "00:00:49.020",
+      "end": "00:01:06.020",
+      "id": 5
+    },
+    {
+      "speaker": null,
+      "text": "No, it's not a special club contrary to popular belief online. You can just Google VS Code Insiders. It's our daily build a VS code. So the work that our engineers literally merged into main yesterday.",
+      "start": "00:01:06.020",
+      "end": "00:01:18.020",
+      "id": 6
+    },
+    {
+      "speaker": null,
+      "text": "You can use today. So you download it. It's a different icon. That's the only scary part instead of blue. It's green. And you can use it side by side with stable. And so yeah, like we're going to be covering all the latest stuff that's going into insiders every single day.",
+      "start": "00:01:18.020",
+      "end": "00:01:32.020",
+      "id": 7
+    },
+    {
+      "speaker": null,
+      "text": "And that's the best way to really get the latest and greatest from the VS Code team.",
+      "start": "00:01:32.020",
+      "end": "00:01:37.020",
+      "id": 8
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, I space is moving so fast. Insiders is going to give you the way to get the best experience. So definitely give it insiders a try. Just Google VS Code Insiders download it and saw it. It works just like VS Code because it is VS Code just a daily version.",
+      "start": "00:01:37.020",
+      "end": "00:01:50.020",
+      "id": 9
+    },
+    {
+      "speaker": null,
+      "text": "And I have it side by side, the main line. So blue icon, green icon, I ride unless you tell me otherwise inside or basically every single day.",
+      "start": "00:01:50.020",
+      "end": "00:01:58.020",
+      "id": 10
+    },
+    {
+      "speaker": null,
+      "text": "And I get the update, every single day, you know, VS Code updates so quickly. And also, yeah, all of the extensions are also on pre release there as well. Then you can change that if you want to.",
+      "start": "00:01:58.020",
+      "end": "00:02:06.020",
+      "id": 11
+    },
+    {
+      "speaker": null,
+      "text": "But you're not only getting the latest VS Code, but you're getting the latest extensions enhancements as well. So that's another thing to point off. So if you want to see like often Burke and you and I are like tweeting and posting about the latest features.",
+      "start": "00:02:06.020",
+      "end": "00:02:18.020",
+      "id": 12
+    },
+    {
+      "speaker": null,
+      "text": "Or you see something might be an insider. So give it a look. I love it. Is it every day.",
+      "start": "00:02:18.020",
+      "end": "00:02:23.020",
+      "id": 13
+    },
+    {
+      "speaker": null,
+      "text": "And then the cool part is if something isn't working for you, the main line is right there. Just open it up and you're totally good to go. But I actually want to talk about the main line today.",
+      "start": "00:02:23.020",
+      "end": "00:02:31.020",
+      "id": 14
+    },
+    {
+      "speaker": null,
+      "text": "And specifically, GPT-5 and the roll at what's available for developers because in 103 which just came out. So 1.103 is released. There was tons of huge enhancements.",
+      "start": "00:02:31.020",
+      "end": "00:02:42.020",
+      "id": 15
+    },
+    {
+      "speaker": null,
+      "text": "I want to focus on a genetic development today. And I want to talk about GPT-5 and GPT-5 mini what did developers need to know peers.",
+      "start": "00:02:42.020",
+      "end": "00:02:51.020",
+      "id": 16
+    },
+    {
+      "speaker": null,
+      "text": "GPT-5 is the latest model from OpenAI. We've done a ton of e-values and testing here internally and I'm seeing huge improvements over my experience with GPT-41.",
+      "start": "00:02:52.020",
+      "end": "00:03:04.020",
+      "id": 17
+    },
+    {
+      "speaker": null,
+      "text": "We did a ton of work with the OpenAI team and some of our data science team internally on e-values and work like that. We've also kind of worked on optimizing the prompts for GPT-5.",
+      "start": "00:03:04.020",
+      "end": "00:03:16.020",
+      "id": 18
+    },
+    {
+      "speaker": null,
+      "text": "So if you use something like GPT-41 in the past, you know it can kind of get off track. It can go in different directions from time to time. It isn't incredibly fast model. So that's something that's quite nice about it.",
+      "start": "00:03:16.020",
+      "end": "00:03:27.020",
+      "id": 19
+    },
+    {
+      "speaker": null,
+      "text": "But with GPT-5, you kind of get a lot of the same benefits in terms of speed, time to first token, etc. But you're also going to get better task compliance. So it's going to stay on track. Kind of as it works through your task.",
+      "start": "00:03:27.020",
+      "end": "00:03:39.020",
+      "id": 20
+    },
+    {
+      "speaker": null,
+      "text": "And it's not as heavy on overly doing tool calls. So like if you're an age of mode, you'll notice sometimes you get the like read read file read file.",
+      "start": "00:03:39.020",
+      "end": "00:03:50.020",
+      "id": 21
+    },
+    {
+      "speaker": null,
+      "text": "It's much better about doing like full file reads and kind of minimizing tool calls while still kind of doing exactly what you want.",
+      "start": "00:03:50.020",
+      "end": "00:03:57.020",
+      "id": 22
+    },
+    {
+      "speaker": null,
+      "text": "It's also not overly chatty but does explain what it's doing. So I think like every model has a personality James and I kind of like the personality of GPT-5 a lot.",
+      "start": "00:03:57.020",
+      "end": "00:04:06.020",
+      "id": 23
+    },
+    {
+      "speaker": null,
+      "text": "So I've been using that pretty much 50 50 US on it for these days for most most of my personal development.",
+      "start": "00:04:06.020",
+      "end": "00:04:13.020",
+      "id": 24
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, I've been doing the big switch in my code spaces and VS code every single day. Just really trying to work whenever a new model came out.",
+      "start": "00:04:13.020",
+      "end": "00:04:20.020",
+      "id": 25
+    },
+    {
+      "speaker": null,
+      "text": "Even when we're going from sonnet 3537 and 4 each of them kind of work a little bit differently and the same is true here with 5 and it's interesting.",
+      "start": "00:04:20.020",
+      "end": "00:04:29.020",
+      "id": 26
+    },
+    {
+      "speaker": null,
+      "text": "You say that it's not as aggressive at tool calling. I will say this. It's also better at tool calling. So I think that's one thing when you're working with MCP servers like it does do a better job of just doing it and just calling the tools but not being like overly aggressive.",
+      "start": "00:04:29.020",
+      "end": "00:04:44.020",
+      "id": 27
+    },
+    {
+      "speaker": null,
+      "text": "I feel like it is a balance between the work that I was doing in 4 1 and sonnet 4 specifically which sonnet 4 loves to explore. I like to call it's sort of like a branded venture.",
+      "start": "00:04:44.020",
+      "end": "00:04:56.020",
+      "id": 28
+    },
+    {
+      "speaker": null,
+      "text": "It's like, you're going on a hike and it's like, I'm going to go over here and 4 1 was like, okay, I'm only going to be on the trail. I'm like that's it.",
+      "start": "00:04:56.020",
+      "end": "00:05:05.020",
+      "id": 29
+    },
+    {
+      "speaker": null,
+      "text": "Like I'm not even going to. And then 5 is like, okay, I'm going to venture a little bit off the trail. So it's got these guard rails on it which I really appreciate on there too.",
+      "start": "00:05:05.020",
+      "end": "00:05:12.020",
+      "id": 30
+    },
+    {
+      "speaker": null,
+      "text": "And now so I've been trying to go all in, learn the model. And one thing that you said was very fascinating about this model specifically is it's sort of task base approach. Now, people follow Burke as a beast mode, which we'll talk about a little bit later as well and some cool integrations coming.",
+      "start": "00:05:12.020",
+      "end": "00:05:28.020",
+      "id": 31
+    },
+    {
+      "speaker": null,
+      "text": "But one thing about beast mode was this chat mode that you could do is it actually told it to create a task list to execute through.",
+      "start": "00:05:28.020",
+      "end": "00:05:35.020",
+      "id": 32
+    },
+    {
+      "speaker": null,
+      "text": "And there's a new feature in VS code when using any model about to do or task lists. You talk about that a little bit.",
+      "start": "00:05:35.020",
+      "end": "00:05:42.020",
+      "id": 33
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, so I think planning workflows are really popular right now for ancient tech dev. And I think we haven't gone and done like a full like here is a giant spec and like break it down into task and all that. But one thing that's been very clear kind of experimenting more with these models, not just the opening I models, but also the cloud models over the last couple months is that.",
+      "start": "00:05:42.020",
+      "end": "00:06:04.020",
+      "id": 34
+    },
+    {
+      "speaker": null,
+      "text": "As you accumulate more context, right, as we kind of work through the problem more and more, that's more context that can cause the model to get lost. And so a mechanism that can really help a lot is this to do list mechanism.",
+      "start": "00:06:04.020",
+      "end": "00:06:17.020",
+      "id": 35
+    },
+    {
+      "speaker": null,
+      "text": "And so like you said, Burke had put together a custom chat mode and VS code that kind of used this to use concept.",
+      "start": "00:06:17.020",
+      "end": "00:06:23.020",
+      "id": 36
+    },
+    {
+      "speaker": null,
+      "text": "And in that case, it basically used Markdown within the chat message to generate a to do list for basically my prompt how to solve my prompt.",
+      "start": "00:06:23.020",
+      "end": "00:06:30.020",
+      "id": 37
+    },
+    {
+      "speaker": null,
+      "text": "And the new kind of work task by task and that to do list to actually accomplish what I wanted as my goal from the prompt. So similar in GBD five.",
+      "start": "00:06:30.020",
+      "end": "00:06:39.020",
+      "id": 38
+    },
+    {
+      "speaker": null,
+      "text": "This is a part of our system prompt for GBD five inside of VS code. So it's going to use to do's.",
+      "start": "00:06:39.020",
+      "end": "00:06:44.020",
+      "id": 39
+    },
+    {
+      "speaker": null,
+      "text": "We will render them inside of the chat kind of markdown style unless you use our new experimental feature inside of VS code where you can basically get a nice little UI view.",
+      "start": "00:06:44.020",
+      "end": "00:06:55.020",
+      "id": 40
+    },
+    {
+      "speaker": null,
+      "text": "In the cool thing about this is it's pin kind of to the top of chat. So as like, you know, chat can be quite noisy as you say, as you're problems being explored, we're doing tool calls.",
+      "start": "00:06:56.020",
+      "end": "00:07:05.020",
+      "id": 41
+    },
+    {
+      "speaker": null,
+      "text": "You kind of want the high level zoom out view of where the agent is and kind of tried to accomplish your goal. And so if the task was being pinned to the top and saying, like, I got task to done now working on task three, there's five total tasks.",
+      "start": "00:07:05.020",
+      "end": "00:07:16.020",
+      "id": 42
+    },
+    {
+      "speaker": null,
+      "text": "This is I think something that will really help the model performance in general, so you see much better results with the open AI series, but we're trying to basically take this same to do approach and see how it works with other models.",
+      "start": "00:07:16.020",
+      "end": "00:07:29.020",
+      "id": 43
+    },
+    {
+      "speaker": null,
+      "text": "Like if we take the same mechanism of improvement and apply it to saw net or Jim and I do we see also like relative games compared to what we saw for the open AI series by using this technique. I suspect we will definitely see some games.",
+      "start": "00:07:29.020",
+      "end": "00:07:41.020",
+      "id": 44
+    },
+    {
+      "speaker": null,
+      "text": "So it's cool because you kind of learn these things like as explorations and then you're like, oh, well, now we need to try it with all the other models. So yeah, definitely give it a go because you're going to get way better kind of agent to responses from this, I mean internally and our own self hosting, we already see this like I'm literally shipping PR's to VS code with TPD five using this approach. So when I try things out, I try to do like real real projects, I know you're the same, not like contry things.",
+      "start": "00:07:41.020",
+      "end": "00:08:08.020",
+      "id": 45
+    },
+    {
+      "speaker": null,
+      "text": "And so yeah, the to-do list mechanism, I think makes a big difference in the quality of of the outputs you'll get from Asia mode.",
+      "start": "00:08:08.020",
+      "end": "00:08:15.020",
+      "id": 46
+    },
+    {
+      "speaker": null,
+      "text": "You know, I've been using it quite a lot because I like to see where it's at in its thought process and it also will engage how much time do I have left on this process.",
+      "start": "00:08:15.020",
+      "end": "00:08:22.020",
+      "id": 47
+    },
+    {
+      "speaker": null,
+      "text": "I often run multiple chats at the same time. You can just spin up the multiple chats and edit her big and do multiple things when I'm working on different code bases.",
+      "start": "00:08:22.020",
+      "end": "00:08:30.020",
+      "id": 48
+    },
+    {
+      "speaker": null,
+      "text": "Maybe we're going to documentation a different repo. We're going to back in our front end.",
+      "start": "00:08:30.020",
+      "end": "00:08:33.020",
+      "id": 49
+    },
+    {
+      "speaker": null,
+      "text": "I might have different agents actually like working on back in our front end different problems at the same time. Why not, right? It's all there for you.",
+      "start": "00:08:33.020",
+      "end": "00:08:39.020",
+      "id": 50
+    },
+    {
+      "speaker": null,
+      "text": "And I can track their progress. And also if it goes off track or maybe my prompt wasn't detailed enough, I can stop it and actually just edit that original prompt too. You can just go back there.",
+      "start": "00:08:39.020",
+      "end": "00:08:50.020",
+      "id": 51
+    },
+    {
+      "speaker": null,
+      "text": "And actually brings me to another great feature which is the chat checkpoints sort of like time traveling in your workspace. This is super cool.",
+      "start": "00:08:50.020",
+      "end": "00:08:57.020",
+      "id": 52
+    },
+    {
+      "speaker": null,
+      "text": "So there have been sort of like checkpoints you've seen along the way. Now you can easily roll back.",
+      "start": "00:08:57.020",
+      "end": "00:09:02.020",
+      "id": 53
+    },
+    {
+      "speaker": null,
+      "text": "And this mechanism, I don't know who worked on on the team, but absolutely brilliant. The lightful, whoever did this, I would recently do that.",
+      "start": "00:09:02.020",
+      "end": "00:09:08.020",
+      "id": 54
+    },
+    {
+      "speaker": null,
+      "text": "Shout out to Justin, redoing and undoing. So you can easily go back and forth inside of a chat.",
+      "start": "00:09:08.020",
+      "end": "00:09:13.020",
+      "id": 55
+    },
+    {
+      "speaker": null,
+      "text": "Let's talk about GPT-5 mini. This is brand brand new.",
+      "start": "00:09:13.020",
+      "end": "00:09:17.020",
+      "id": 56
+    },
+    {
+      "speaker": null,
+      "text": "Judy 5 came out. It's a one X premium request model. A lot of feedback from all of you listening. Hopefully.",
+      "start": "00:09:18.020",
+      "end": "00:09:25.020",
+      "id": 57
+    },
+    {
+      "speaker": null,
+      "text": "And I'm social and inside of GitHub as well. As 404 one are still unlimited requests when using GitHub compile it. What is this GPT-5 mini model that's now available at a zero X multiplier?",
+      "start": "00:09:25.020",
+      "end": "00:09:40.020",
+      "id": 58
+    },
+    {
+      "speaker": null,
+      "text": "Yeah. So similar to other model variants. Like there's the main model that comes out of and usually there's a nano or mini version of the same model that has a lot of the characteristics of the of the big model.",
+      "start": "00:09:40.020",
+      "end": "00:09:53.020",
+      "id": 59
+    },
+    {
+      "speaker": null,
+      "text": "So you try to retain a lot of the performance characteristics of it like how it works and the positive outputs you get and things like that.",
+      "start": "00:09:53.020",
+      "end": "00:10:00.020",
+      "id": 60
+    },
+    {
+      "speaker": null,
+      "text": "And it's much cheaper to serve. And so.",
+      "start": "00:10:00.020",
+      "end": "00:10:03.020",
+      "id": 61
+    },
+    {
+      "speaker": null,
+      "text": "Open AI announced this new mini model. And so like you said James, like the exciting thing about this is like a lot of the things we just talked about with GPT-5 you get with GPT-5 mini and you get unlimited requests.",
+      "start": "00:10:03.020",
+      "end": "00:10:15.020",
+      "id": 62
+    },
+    {
+      "speaker": null,
+      "text": "So depending on what plan you're on, you have a different amount of premium requests right.",
+      "start": "00:10:15.020",
+      "end": "00:10:20.020",
+      "id": 63
+    },
+    {
+      "speaker": null,
+      "text": "But the really cool thing about the mini variant is that it's super fast. So I actually think I was talking to the team earlier today we have some unique UX challenges with these models now.",
+      "start": "00:10:20.020",
+      "end": "00:10:31.020",
+      "id": 64
+    },
+    {
+      "speaker": null,
+      "text": "I'm glad we're in this place because the GPT-5 mini variant, at least as of right now it's streaming so fast into chat like that I'll put from the model that it's like jarring all those right. So we get kind of very fast beats.",
+      "start": "00:10:31.020",
+      "end": "00:10:43.020",
+      "id": 65
+    },
+    {
+      "speaker": null,
+      "text": "A pro tip I would say is like use something like GPT-5, son at four, even one of the reasoning models like an ask or edit mode like opus or o3 and basically build a plan.",
+      "start": "00:10:43.020",
+      "end": "00:10:54.020",
+      "id": 66
+    },
+    {
+      "speaker": null,
+      "text": "And then you can get a lot of this in quality outputs by using that switching to the mini zero x variant for GPT-5 to actually execute your plan.",
+      "start": "00:10:54.020",
+      "end": "00:11:02.020",
+      "id": 67
+    },
+    {
+      "speaker": null,
+      "text": "And that's a good way to kind of save on your premium requests while still getting a lot of this quality that you would expect from using one of the premium models.",
+      "start": "00:11:02.020",
+      "end": "00:11:10.020",
+      "id": 68
+    },
+    {
+      "speaker": null,
+      "text": "Very nice. Yeah, I love that planning models. Well, and I do that all the time not only for working with the different models, but also when I'm working with the coding agent and drafting up issues as well.",
+      "start": "00:11:10.020",
+      "end": "00:11:20.020",
+      "id": 69
+    },
+    {
+      "speaker": null,
+      "text": "We're going to keep this short and tight. I do want to talk a few other features and then maybe some sneak peak features and insiders as well that you can grab one thing I will point out is that is now easier than ever to actually delegate tasks to the coding agent.",
+      "start": "00:11:20.020",
+      "end": "00:11:35.020",
+      "id": 70
+    },
+    {
+      "speaker": null,
+      "text": "If you go into your settings and type in agent sessions, there's a UI toggle and also a way to see all of the chats and interact with the chats in real time that are happening on your repos with the coding agent and get up.com.",
+      "start": "00:11:35.020",
+      "end": "00:11:48.020",
+      "id": 71
+    },
+    {
+      "speaker": null,
+      "text": "So what's really neat about this is it's transformed how I work and maybe I start a process and I start working on something and then I have a bigger idea and I don't have time to finish it because I want to do something else.",
+      "start": "00:11:48.020",
+      "end": "00:12:00.020",
+      "id": 72
+    },
+    {
+      "speaker": null,
+      "text": "Or maybe I just wanted to finish it later on and I want to go and work on something else or I'm just have a brand new idea. I want to go in the background. I'll often work with one of those models, which is coming with the plan. Maybe I'll have it open and issue with the get up MCP server or now I just hit delegate and what's really neat about that is it will automatically basically delegate that off to the coding agent on GitHub.",
+      "start": "00:12:00.020",
+      "end": "00:12:20.020",
+      "id": 73
+    },
+    {
+      "speaker": null,
+      "text": "It will then create that branch automatically and then it will open the chat for me. So it will reference the pull request that's been created and then additionally a chat is open. I can see the entire session coming in and I can interact with the model in real time. This is kind of a game changer.",
+      "start": "00:12:20.020",
+      "end": "00:12:34.020",
+      "id": 74
+    },
+    {
+      "speaker": null,
+      "text": "I've been working with the coding agent in general and you can see all of them there. The biggest thing for me is I'm often working on a branch and often I have a crazy idea and I'm in the middle of something in the branch.",
+      "start": "00:12:34.020",
+      "end": "00:12:45.020",
+      "id": 75
+    },
+    {
+      "speaker": null,
+      "text": "And I wanted to work off of this branch and this is really nice because if you're working off a branch and you delegate to the coding agent, it will create a branch off of your branch and it's like the nicest thing ever in the entire world.",
+      "start": "00:12:45.020",
+      "end": "00:12:57.020",
+      "id": 76
+    },
+    {
+      "speaker": null,
+      "text": "So huge shout out to the agent sessions and that PR integration super duper nice.",
+      "start": "00:12:57.020",
+      "end": "00:13:02.020",
+      "id": 77
+    },
+    {
+      "speaker": null,
+      "text": "All right, peers in set was the inside is podcast. So I'll shout out to Bees mode being integrated the VS code Twitter account did it. How did that even come about what is happening. How do people turn this on. I will put in the show notes of course.",
+      "start": "00:13:02.020",
+      "end": "00:13:19.020",
+      "id": 78
+    },
+    {
+      "speaker": null,
+      "text": "So yeah, like we have custom chat modes right and they append the system prompt with your own instructions. And so Burke had been experimenting for a while on how do we get GPD for one to really behave in its best form.",
+      "start": "00:13:20.020",
+      "end": "00:13:35.020",
+      "id": 79
+    },
+    {
+      "speaker": null,
+      "text": "And so he had created a chat mode beast mode. I mean, the dude is a marketing genius branding genius right beast mode. I wish we were actually like had I think we call it we call it like alternative GPD five prompt or something. And that's boring. We should have called it the beast mode setting. Let's be real.",
+      "start": "00:13:35.020",
+      "end": "00:13:50.020",
+      "id": 80
+    },
+    {
+      "speaker": null,
+      "text": "And so, you know, people were trying it sharing the chat mode giving really good feedback and so one of the really cool things about about co put chat and the integration side to be a code all of the source.",
+      "start": "00:13:51.020",
+      "end": "00:14:03.020",
+      "id": 81
+    },
+    {
+      "speaker": null,
+      "text": "Right, so Burke and I put together a pull request or like, well, that works so good. Why don't we just use that is like the system prompt right for TPD for one and so we put together PR.",
+      "start": "00:14:03.020",
+      "end": "00:14:14.020",
+      "id": 82
+    },
+    {
+      "speaker": null,
+      "text": "We ran some emails internally. My own personal opinion about emails is that they're they're actually useful, but I don't like take them as gospel.",
+      "start": "00:14:14.020",
+      "end": "00:14:22.020",
+      "id": 83
+    },
+    {
+      "speaker": null,
+      "text": "But we were seeing some pretty impressive improvements with the basement prompts for GPD for one specifically in our emails. And so then it was like, okay, this is good enough single for us to get it in setting get your feedback.",
+      "start": "00:14:22.020",
+      "end": "00:14:35.020",
+      "id": 84
+    },
+    {
+      "speaker": null,
+      "text": "So yeah, it's now shipped inside of VS code insider is go give it a try. I said it like emails, but really like real world feedback is the most important for making sure that like these models are great. And so please go try the setting.",
+      "start": "00:14:35.020",
+      "end": "00:14:46.020",
+      "id": 85
+    },
+    {
+      "speaker": null,
+      "text": "And if there's any behaviors you notice that are strange or if it's working great for you, please let us know because this is the sort of feedback bill be helpful for us so that we can decide like do we actually want to flip this beast mode on as the default GPD for one prompt right.",
+      "start": "00:14:46.020",
+      "end": "00:14:58.020",
+      "id": 86
+    },
+    {
+      "speaker": null,
+      "text": "And then there's other things, right? Like, okay, beast mode works really good for four one. Well, should we try beast mode for us on it? Should we try beast mode for Tim and I, right? Like so there's a whole bunch of different variations we want to go try now, but I still believe like we have a lot of gains to come from improving our prompts.",
+      "start": "00:14:58.020",
+      "end": "00:15:14.020",
+      "id": 87
+    },
+    {
+      "speaker": null,
+      "text": "So if you look at our prompts, they're all open source. You can ask like, cloner repo, go ask, how did these work, how are the models specific differences of, you know, showing in the different prompts.",
+      "start": "00:15:14.020",
+      "end": "00:15:24.020",
+      "id": 88
+    },
+    {
+      "speaker": null,
+      "text": "If you have ideas like submit us PRs, we'd love to see more prompt PRs. And I still believe that there's a lot of gains we can get from it as evidence by Burke's beast mode work. So super excited that's an insider.",
+      "start": "00:15:24.020",
+      "end": "00:15:35.020",
+      "id": 89
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, totally one thing. I'll point out in stable today that you can do is actually manage your copilot models. This is my new favorite thing. We talked about a lot of models.",
+      "start": "00:15:35.020",
+      "end": "00:15:43.020",
+      "id": 90
+    },
+    {
+      "speaker": null,
+      "text": "There's a lot of older models that they don't use anymore. Click manage models. Click copilot. You can pick and choose what you want. If you never want to use for a or son of three five ever again, turn them off. You're good to go. One last one here in insider's automotive. What is happening.",
+      "start": "00:15:43.020",
+      "end": "00:15:58.020",
+      "id": 91
+    },
+    {
+      "speaker": null,
+      "text": "So we've had a lot of. And this is when we've we've discussed a lot on the team internally because I personally get very annoyed clicking continue and like approving the tool call tool calls and things like that.",
+      "start": "00:15:58.020",
+      "end": "00:16:10.020",
+      "id": 92
+    },
+    {
+      "speaker": null,
+      "text": "But there is like very good security reasons and things like that that you want to kind of review tool calls and stuff. And so in general, I would say like the riskiest surface for these things is the terminal right and what it can do.",
+      "start": "00:16:10.020",
+      "end": "00:16:24.020",
+      "id": 93
+    },
+    {
+      "speaker": null,
+      "text": "And so we do have like an auto through all tool calls setting that yellow mode, even though it's not called that corporate America, we call it auto approve. And so we have that.",
+      "start": "00:16:24.020",
+      "end": "00:16:35.020",
+      "id": 94
+    },
+    {
+      "speaker": null,
+      "text": "But then it's like, okay, well, what about for terminal? I don't really want to go all in on like approving everything and I also don't want it to be so annoying that like, you know, when we're just like listing files and a directory, that's a pretty safe command. So I just want that to just work.",
+      "start": "00:16:35.020",
+      "end": "00:16:49.020",
+      "id": 95
+    },
+    {
+      "speaker": null,
+      "text": "So essentially, I totally love my train of thought James, what we're just talking about.",
+      "start": "00:16:49.020",
+      "end": "00:16:57.020",
+      "id": 96
+    },
+    {
+      "speaker": null,
+      "text": "Well, the cool part about this automos is it's going to be a new UI and insider is right now that's a JSON setting. So for example, for me, the agent is always doing like Donette Bill, Donette has Donette run, like you can just have it automatically do those things, which is super do pretty nice. So that was a great setting.",
+      "start": "00:16:57.020",
+      "end": "00:17:14.020",
+      "id": 97
+    },
+    {
+      "speaker": null,
+      "text": "So let me go in type in max type in auto into your setting. You're going to see a bunch of things. And I'll point this out to some things are available in insiders and also in stable and they're marked as preview or experimental, even though they're inside of it.",
+      "start": "00:17:14.020",
+      "end": "00:17:30.020",
+      "id": 98
+    },
+    {
+      "speaker": null,
+      "text": "So sometimes we talk about oh, this preview or this experiment is only inside of insiders, but a lot of these are also available on stable. So give those a look. All right, that's going to do it. We're going to keep it under 20. We're going to keep it light. We're going to keep it tight.",
+      "start": "00:17:30.020",
+      "end": "00:17:41.020",
+      "id": 99
+    },
+    {
+      "speaker": null,
+      "text": "For this one, now it's really cool about this podcast that you have the video form. I'm going to put little, you know, things of you can see things in action. I'm going to edit it. So I'm going to take some time on the VS code YouTube YouTube.",
+      "start": "00:17:42.020",
+      "end": "00:17:53.020",
+      "id": 100
+    },
+    {
+      "speaker": null,
+      "text": "YouTube.com for slash code. Of course, you'll be able to find this podcast on any of your podcast feeds. So to search for the VS code insiders podcast that is this one like subscribe.",
+      "start": "00:17:53.020",
+      "end": "00:18:04.020",
+      "id": 101
+    },
+    {
+      "speaker": null,
+      "text": "So leave reviews, send it to all of your developers at your company. When a boost it as much as possible. Let's put this thing into beast mode.",
+      "start": "00:18:05.020",
+      "end": "00:18:12.020",
+      "id": 102
+    },
+    {
+      "speaker": null,
+      "text": "But I think that's going to do it. Pierce, thank you so much for joining us on this one. You'll see peers. You'll see me. You'll see other people. We're going to have exclusive interviews as well with community members, creators out there and the engineering and PM team right here at Microsoft. So stick with it. Subscribe and we'll see you on the next one.",
+      "start": "00:18:13.020",
+      "end": "00:18:31.020",
+      "id": 103
+    }
+  ]
+}

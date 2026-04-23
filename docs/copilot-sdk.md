@@ -2,7 +2,7 @@
 
 [← Agentic Workflows](agentic-workflows.md) | [Part II Overview](part-2-primitives.md)
 
-*Updated: April 17, 2026 · Validated against the [Copilot SDK public preview](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/) as of this date.*
+*Updated: April 22, 2026 · Validated against the [Copilot SDK public preview](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/) as of this date.*
 
 ---
 
@@ -19,6 +19,8 @@ For anything beyond "should I use this, and where does it sit in the stack," go 
 ---
 
 ## Overview
+
+Read this page as "the same agent runtime, but embedded in your own application." If Agentic Workflows are the GitHub-hosted execution model, the Copilot SDK is the version teams own directly. The customization story stays recognizable: the repo still needs clear instructions, task boundaries, and tool definitions. The difference is that your application becomes the surface.
 
 The eight customization primitives shape Copilot where it already runs: in the editor, in the terminal, and on GitHub. The Copilot SDK lets developers bring that same agent runtime into their own applications and workflows.
 

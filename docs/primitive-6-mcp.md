@@ -2,7 +2,7 @@
 
 [← Custom Agents](primitive-5-custom-agents.md) | [Part II Overview](part-2-primitives.md)
 
-*Updated: April 17, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
+*Updated: April 22, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
 
 ---
 
@@ -16,7 +16,9 @@ MCP (Model Context Protocol) connects Copilot to external tools and live data so
 
 **Official docs:** [MCP servers](https://code.visualstudio.com/docs/copilot/customization/mcp-servers)
 
-**See it in action:** For a live demo, watch Connor Peet in [Extend Agents with MCP](https://www.youtube.com/watch?v=_g29UQjIAeI&t=0s). For a real-world MCP integration, watch Reynald Adolphe and Viktor Gamov in [AI-Powered Kafka Development with Confluent + MCP](https://www.youtube.com/watch?v=KRBqLjRjX70&t=0s).
+**Code to study:** [VS Code Copilot Chat source](https://github.com/microsoft/vscode-copilot-chat) for a public MCP client host, and [GitHub Copilot CLI repository](https://github.com/github/copilot-cli) for another MCP-capable surface with its own configuration and runtime behavior.
+
+**See it in action:** [Extend Agents with MCP](https://www.youtube.com/watch?v=_g29UQjIAeI&t=180s) — Connor Peet demos an MCP server returning resources and interactive UI back into chat during a live workflow.
 
 **Scope:** This section covers how GitHub Copilot *consumes* MCP servers — configuration, tool discovery, and invocation. It does not cover MCP server security, authentication implementation, or building custom MCP servers. For those topics, see the [MCP specification](https://modelcontextprotocol.io).
 
@@ -60,7 +62,7 @@ MCP servers expose capabilities as **tools** that Copilot can discover and invok
 
 ### Configuring MCP Servers
 
-Sound off before you steer — let Copilot draft the configuration. `mcp.json` has strict syntax for transport types, environment variable substitution, and secret references; a single misquoted value or the wrong `type` and the server fails to start. VS Code ships built-in commands that scaffold servers correctly:
+Start with the built-in MCP commands instead of hand-authoring `mcp.json`. The file has strict syntax for transport types, environment variable substitution, and secret references; a single misquoted value or the wrong `type` and the server fails to start. VS Code ships built-in commands that scaffold servers correctly:
 
 - **MCP: Add Server** (Command Palette) walks through adding a server interactively — pick the transport type, paste the command or URL, and VS Code writes the JSON.
 - **MCP: Open User Configuration** opens `~/.vscode/mcp.json` for user-level servers.

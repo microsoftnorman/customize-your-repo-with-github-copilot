@@ -2,7 +2,7 @@
 
 [← Part I: Foundations](part-1-foundations.md) | [Part II Overview](part-2-primitives.md)
 
-*Updated: April 17, 2026. This guide serves as a primer for GitHub Copilot customization. File paths, configuration options, and feature availability may change as Copilot evolves—always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
+*Updated: April 22, 2026. This guide serves as a primer for GitHub Copilot customization. File paths, configuration options, and feature availability may change as Copilot evolves—always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
 
 ---
 
@@ -15,6 +15,8 @@ Always-on instructions (also known as the **Copilot Instructions File**) are a m
 **Location:** `.github/copilot-instructions.md`, `AGENTS.md`, or `CLAUDE.md` [*](https://code.visualstudio.com/docs/copilot)
 
 **Official docs:** [Custom instructions](https://code.visualstudio.com/docs/copilot/customization/custom-instructions)
+
+**Code to study:** [VS Code Copilot Chat source](https://github.com/microsoft/vscode-copilot-chat) for the workspace-instruction host behavior, and [Awesome Copilot instructions](https://github.com/github/awesome-copilot/tree/main/instructions) for real instruction files teams actually ship.
 
 Both `copilot-instructions.md` and `AGENTS.md` are recognized as workspace instruction files. The `/init` command can discover and update either format.
 
@@ -44,7 +46,7 @@ If Copilot's inline suggestions ignore your conventions, that's expected behavio
 
 ## Creating This Primitive
 
-Sound off before you steer — let Copilot draft the file. A hand-typed `copilot-instructions.md` at the wrong path, or an `AGENTS.md` the author forgot to enable, is the most common reason the file silently never loads. Use the built-in authoring commands and read the draft before committing.
+Create the file through GitHub Copilot's built-in scaffolding, then review the draft before committing. The common failure here is not weak wording. It is a hand-typed `copilot-instructions.md` at the wrong path, or an `AGENTS.md` that never gets enabled.
 
 **In VS Code**, run `/init` in Chat to scaffold `copilot-instructions.md` from the existing codebase, or `/create-instruction` to generate a new instructions file from a prompt. **In the Copilot CLI**, `/init` does the same at the terminal. **In Visual Studio**, `/generateInstructions` is the equivalent. See [Don't Hand-Type Primitives — Let the Helmsman Repeat the Order](part-2-primitives.md#dont-hand-type-primitives--let-the-helmsman-repeat-the-order) for the rationale.
 
@@ -56,7 +58,7 @@ Sound off before you steer — let Copilot draft the file. A hand-typed `copilot
 >
 > *Update `.github/copilot-instructions.md` to add a section on how we handle errors in Express route handlers. Use the patterns already in `src/api/` as the source of truth and keep the existing structure.*
 
-Small tweaks to an existing file (fixing a typo, adjusting a bullet) are fine to make by hand. The repeat-back matters most the first time the file is created.
+Small tweaks to an existing file (fixing a typo, adjusting a bullet) are fine to make by hand. The generator matters most the first time the file is created.
 
 ## Anatomy of Effective Instructions
 

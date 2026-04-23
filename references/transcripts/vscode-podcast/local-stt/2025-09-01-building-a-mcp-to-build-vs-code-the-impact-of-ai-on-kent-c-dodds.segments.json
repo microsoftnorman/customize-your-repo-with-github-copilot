@@ -1,0 +1,4202 @@
+[
+  {
+    "id": 1,
+    "start": "00:00:00.180",
+    "end": "00:00:07.940",
+    "text": "Welcome back everyone to the VS Code Insiders podcast you're behind the scenes and everything happening in the world of VS Code for developers"
+  },
+  {
+    "id": 2,
+    "start": "00:00:07.940",
+    "end": "00:00:14.060",
+    "text": "I'm your host today just by myself. No peers. I'm James Montemagno. I'm a lead under developer community team"
+  },
+  {
+    "id": 3,
+    "start": "00:00:14.060",
+    "end": "00:00:18.820",
+    "text": "And with me one of my best friends in the entire world Tyler Lee and Hart. How's it going Tyler?"
+  },
+  {
+    "id": 4,
+    "start": "00:00:19.540",
+    "end": "00:00:21.540",
+    "text": "Good James. How you doing?"
+  },
+  {
+    "id": 5,
+    "start": "00:00:21.540",
+    "end": "00:00:27.700",
+    "text": "It's great. It's so good to have you on the podcast. We've been friends forever. I'm pretty sure and"
+  },
+  {
+    "id": 6,
+    "start": "00:00:28.020",
+    "end": "00:00:30.020",
+    "text": "And it was great"
+  },
+  {
+    "id": 7,
+    "start": "00:00:30.020",
+    "end": "00:00:34.020",
+    "text": "Recently hanging out with the VS Code team around MCP Dev days"
+  },
+  {
+    "id": 8,
+    "start": "00:00:34.580",
+    "end": "00:00:39.940",
+    "text": "We're just chatting catching up you and I go way back to your PowerShell days a whole bunch of other cool things"
+  },
+  {
+    "id": 9,
+    "start": "00:00:40.420",
+    "end": "00:00:44.740",
+    "text": "But if people don't know Tyler you're obviously an engineer on the VS Code team, but maybe tell you"
+  },
+  {
+    "id": 10,
+    "start": "00:00:44.740",
+    "end": "00:00:47.620",
+    "text": "Want a little bit about yourself because I'm excited to talk about what you're been up to"
+  },
+  {
+    "id": 11,
+    "start": "00:00:48.420",
+    "end": "00:00:49.780",
+    "text": "Yeah, that's right"
+  },
+  {
+    "id": 12,
+    "start": "00:00:49.940",
+    "end": "00:00:56.260",
+    "text": "Yeah, so my name is Tyler. I am a dev on the VS Code team. I've been with the team since"
+  },
+  {
+    "id": 13,
+    "start": "00:00:57.220",
+    "end": "00:00:59.220",
+    "text": "Gosh December 2020"
+  },
+  {
+    "id": 14,
+    "start": "00:01:00.260",
+    "end": "00:01:02.820",
+    "text": "So five years now and time flies"
+  },
+  {
+    "id": 15,
+    "start": "00:01:04.100",
+    "end": "00:01:08.820",
+    "text": "Yeah, I own a whole bunch of like random things across the product"
+  },
+  {
+    "id": 16,
+    "start": "00:01:09.380",
+    "end": "00:01:12.420",
+    "text": "Anything from like like I own a command palette to like"
+  },
+  {
+    "id": 17,
+    "start": "00:01:12.980",
+    "end": "00:01:14.980",
+    "text": "Leposition to"
+  },
+  {
+    "id": 18,
+    "start": "00:01:15.620",
+    "end": "00:01:16.980",
+    "text": "authentication"
+  },
+  {
+    "id": 19,
+    "start": "00:01:16.980",
+    "end": "00:01:18.980",
+    "text": "which now has"
+  },
+  {
+    "id": 20,
+    "start": "00:01:18.980",
+    "end": "00:01:22.260",
+    "text": "grown into like MCP awe as well"
+  },
+  {
+    "id": 21,
+    "start": "00:01:22.580",
+    "end": "00:01:28.020",
+    "text": "So yeah, and a bunch of other random random oddities and ends"
+  },
+  {
+    "id": 22,
+    "start": "00:01:28.580",
+    "end": "00:01:31.540",
+    "text": "But yeah, but yeah, I'm I'm all over the place"
+  },
+  {
+    "id": 23,
+    "start": "00:01:32.420",
+    "end": "00:01:36.580",
+    "text": "Yeah, and you've been at Microsoft and around this world we were just talking"
+  },
+  {
+    "id": 24,
+    "start": "00:01:37.540",
+    "end": "00:01:41.620",
+    "text": "On the last podcast all about like the with the annual about the terminal rewrite and I've see I know you're"
+  },
+  {
+    "id": 25,
+    "start": "00:01:42.260",
+    "end": "00:01:44.900",
+    "text": "Into the world of shells and have been in the world of shells for a long time"
+  },
+  {
+    "id": 26,
+    "start": "00:01:44.900",
+    "end": "00:01:46.180",
+    "text": "So I think we go way back"
+  },
+  {
+    "id": 27,
+    "start": "00:01:46.180",
+    "end": "00:01:51.300",
+    "text": "I knew it was just so cool just to kind of catch up on everything and I was like I got to get Tyler onto the podcast"
+  },
+  {
+    "id": 28,
+    "start": "00:01:51.380",
+    "end": "00:01:53.860",
+    "text": "I got to be one of the first ones because they're doing so many cool things"
+  },
+  {
+    "id": 29,
+    "start": "00:01:53.860",
+    "end": "00:01:54.980",
+    "text": "I don't know about you"
+  },
+  {
+    "id": 30,
+    "start": "00:01:54.980",
+    "end": "00:01:59.220",
+    "text": "But I love working on a little bit of everything. I don't want to just own like a save button"
+  },
+  {
+    "id": 31,
+    "start": "00:01:59.540",
+    "end": "00:02:06.020",
+    "text": "I don't know how how did it feel like joining the team and then sort of like where you're at now and it is sort of as you respond to the release of grown"
+  },
+  {
+    "id": 32,
+    "start": "00:02:06.660",
+    "end": "00:02:08.660",
+    "text": "It's uh, it's really cool. I mean, I"
+  },
+  {
+    "id": 33,
+    "start": "00:02:09.940",
+    "end": "00:02:11.940",
+    "text": "Came into the team as like"
+  },
+  {
+    "id": 34,
+    "start": "00:02:12.980",
+    "end": "00:02:18.420",
+    "text": "An extension author right because I was on the PowerShell team and I was working on the PowerShell extension for VS Code"
+  },
+  {
+    "id": 35,
+    "start": "00:02:18.420",
+    "end": "00:02:22.500",
+    "text": "Like that was one of my like main things that I was working on and then"
+  },
+  {
+    "id": 36,
+    "start": "00:02:23.700",
+    "end": "00:02:24.900",
+    "text": "That"
+  },
+  {
+    "id": 37,
+    "start": "00:02:24.900",
+    "end": "00:02:26.900",
+    "text": "Basically turned into all right"
+  },
+  {
+    "id": 38,
+    "start": "00:02:28.500",
+    "end": "00:02:36.660",
+    "text": "I want to make a move over to the the core team right and of course a lot of folks there had known me because I had open issues"
+  },
+  {
+    "id": 39,
+    "start": "00:02:36.900",
+    "end": "00:02:41.700",
+    "text": "Related to the you know to be extension API and stuff like that so"
+  },
+  {
+    "id": 40,
+    "start": "00:02:42.740",
+    "end": "00:02:47.620",
+    "text": "So yeah, that was cool to like come into the core team and then once I got into the core team"
+  },
+  {
+    "id": 41,
+    "start": "00:02:48.500",
+    "end": "00:02:56.980",
+    "text": "I was able to not only focus on like just you know one extension but like focus on a bunch of different pieces which I I think I much prefer are like having"
+  },
+  {
+    "id": 42,
+    "start": "00:02:58.180",
+    "end": "00:03:00.980",
+    "text": "My my fingers across a bunch of two pieces"
+  },
+  {
+    "id": 43,
+    "start": "00:03:02.180",
+    "end": "00:03:05.540",
+    "text": "So when I'm frustrated with one thing I can switch to something else I've worked on that"
+  },
+  {
+    "id": 44,
+    "start": "00:03:06.500",
+    "end": "00:03:12.180",
+    "text": "And I love the the iteration like update planning that I got to be part of now and"
+  },
+  {
+    "id": 45,
+    "start": "00:03:12.740",
+    "end": "00:03:17.220",
+    "text": "On days with the team we talk about this we went really in death with Daniel and like how people can see the insight"
+  },
+  {
+    "id": 46,
+    "start": "00:03:17.460",
+    "end": "00:03:23.060",
+    "text": "What I love is like all the different pieces that people are working on right and like people are like updates on everything"
+  },
+  {
+    "id": 47,
+    "start": "00:03:23.060",
+    "end": "00:03:29.380",
+    "text": "It's I get to real insight into what everyone's working on and people want to actually deeper on your story your journey"
+  },
+  {
+    "id": 48,
+    "start": "00:03:29.380",
+    "end": "00:03:31.380",
+    "text": "If you will your developer journey"
+  },
+  {
+    "id": 49,
+    "start": "00:03:31.380",
+    "end": "00:03:37.860",
+    "text": "Actually a few months ago you did an entire developer journey a podcast here on the VS Code channel as well"
+  },
+  {
+    "id": 50,
+    "start": "00:03:38.740",
+    "end": "00:03:45.620",
+    "text": "Yeah, if you want to go deeper. Yeah, that was what I was fun. Yeah. Oh, and actually I just I just wanted to say"
+  },
+  {
+    "id": 51,
+    "start": "00:03:46.580",
+    "end": "00:03:52.100",
+    "text": "You've been in in our call where we talk about what we've been working on but like like all of that information is"
+  },
+  {
+    "id": 52,
+    "start": "00:03:52.420",
+    "end": "00:03:56.980",
+    "text": "Public like it's just in a GitHub issue in the VS Code repo. So like I"
+  },
+  {
+    "id": 53,
+    "start": "00:03:57.700",
+    "end": "00:04:00.020",
+    "text": "Had to break a few jams. You're not that special"
+  },
+  {
+    "id": 54,
+    "start": "00:04:00.980",
+    "end": "00:04:08.340",
+    "text": "That was an insider. Oh wait everybody's an insider. Yeah. That's right. That's right. Oh, yeah, yeah, but anyway. Yeah, the"
+  },
+  {
+    "id": 55,
+    "start": "00:04:09.140",
+    "end": "00:04:15.780",
+    "text": "The video that I was on with with Olivia and and rental that was a lot of fun"
+  },
+  {
+    "id": 56,
+    "start": "00:04:16.500",
+    "end": "00:04:23.300",
+    "text": "They you were asked things about like you know my journey and I kind of gave you an approached version from from moving from partial team over here"
+  },
+  {
+    "id": 57,
+    "start": "00:04:24.660",
+    "end": "00:04:26.660",
+    "text": "But but yeah, it was a lot of fun"
+  },
+  {
+    "id": 58,
+    "start": "00:04:26.660",
+    "end": "00:04:31.300",
+    "text": "That's awesome. What you've been doing tons of stuff like I said around MCP and authentication"
+  },
+  {
+    "id": 59,
+    "start": "00:04:31.300",
+    "end": "00:04:38.020",
+    "text": "What have you been working like what's new for developers like in the world of stuff that you've been working on and like what's got you excited about that"
+  },
+  {
+    "id": 60,
+    "start": "00:04:38.660",
+    "end": "00:04:44.740",
+    "text": "Yeah, yeah, so yeah, as I mentioned before, I owned off in VS Code which is"
+  },
+  {
+    "id": 61,
+    "start": "00:04:45.620",
+    "end": "00:04:53.300",
+    "text": "quite a beast of a component as I'm sure any wood would know if if they've done any sort of off-related things it's kind of a"
+  },
+  {
+    "id": 62,
+    "start": "00:04:55.540",
+    "end": "00:04:57.540",
+    "text": "Kind of a crazy place"
+  },
+  {
+    "id": 63,
+    "start": "00:04:57.540",
+    "end": "00:05:01.380",
+    "text": "Yeah, not for the faint of heart perhaps but anyway"
+  },
+  {
+    "id": 64,
+    "start": "00:05:02.820",
+    "end": "00:05:04.260",
+    "text": "so"
+  },
+  {
+    "id": 65,
+    "start": "00:05:04.260",
+    "end": "00:05:08.100",
+    "text": "MCP came around and you know the concept of"
+  },
+  {
+    "id": 66,
+    "start": "00:05:08.340",
+    "end": "00:05:15.860",
+    "text": "an MCP server running not only like locally on your machine, but then graduating that too like okay"
+  },
+  {
+    "id": 67,
+    "start": "00:05:15.860",
+    "end": "00:05:21.060",
+    "text": "What does a remote MCP server look like where you are being exposed to"
+  },
+  {
+    "id": 68,
+    "start": "00:05:21.940",
+    "end": "00:05:29.620",
+    "text": "tools that the model can use to invoke certain like APIs for that provider, right? So"
+  },
+  {
+    "id": 69,
+    "start": "00:05:30.180",
+    "end": "00:05:33.380",
+    "text": "So like get hub being a great example"
+  },
+  {
+    "id": 70,
+    "start": "00:05:34.420",
+    "end": "00:05:41.460",
+    "text": "Like there are a bunch of tools that you would want the model to be able to do a bunch of tasks that you want the model to be able to do"
+  },
+  {
+    "id": 71,
+    "start": "00:05:42.260",
+    "end": "00:05:44.260",
+    "text": "on get hub and"
+  },
+  {
+    "id": 72,
+    "start": "00:05:45.460",
+    "end": "00:05:49.300",
+    "text": "While they did start originally with like a local MCP server"
+  },
+  {
+    "id": 73,
+    "start": "00:05:50.100",
+    "end": "00:05:52.100",
+    "text": "that like"
+  },
+  {
+    "id": 74,
+    "start": "00:05:52.100",
+    "end": "00:05:57.780",
+    "text": "Accepted like a personal access token that you go and min them on getup.com and then and then you like"
+  },
+  {
+    "id": 75,
+    "start": "00:05:58.420",
+    "end": "00:06:02.180",
+    "text": "suspiciously place it in your on your local machine"
+  },
+  {
+    "id": 76,
+    "start": "00:06:03.220",
+    "end": "00:06:05.220",
+    "text": "suspiciously place it's very true"
+  },
+  {
+    "id": 77,
+    "start": "00:06:05.620",
+    "end": "00:06:10.180",
+    "text": "You're always happy to open up notes app and I'm like, I guess I'll put this here from"
+  },
+  {
+    "id": 78,
+    "start": "00:06:11.220",
+    "end": "00:06:14.820",
+    "text": "That seems safe. Don't do that. That's not a security that's like it's then would be very upset"
+  },
+  {
+    "id": 79,
+    "start": "00:06:15.220",
+    "end": "00:06:20.580",
+    "text": "You know we we did the right thing in that regard of like yes if you're putting a secret in here"
+  },
+  {
+    "id": 80,
+    "start": "00:06:20.580",
+    "end": "00:06:23.060",
+    "text": "Well, like store it within the secret storage of VS code"
+  },
+  {
+    "id": 81,
+    "start": "00:06:24.020",
+    "end": "00:06:28.580",
+    "text": "But like really you should leverage things that are"
+  },
+  {
+    "id": 82,
+    "start": "00:06:29.780",
+    "end": "00:06:31.780",
+    "text": "Pretty well known like OAuth"
+  },
+  {
+    "id": 83,
+    "start": "00:06:31.780",
+    "end": "00:06:37.700",
+    "text": "For interacting with with the remote service especially because there's no there's no like real benefit of having that server"
+  },
+  {
+    "id": 84,
+    "start": "00:06:38.100",
+    "end": "00:06:40.420",
+    "text": "Locally if it's just gonna turn around and call API"
+  },
+  {
+    "id": 85,
+    "start": "00:06:40.980",
+    "end": "00:06:42.500",
+    "text": "Yeah, so"
+  },
+  {
+    "id": 86,
+    "start": "00:06:42.500",
+    "end": "00:06:47.380",
+    "text": "So the idea there is like GitHub can just host their own MCP server and then models can interact"
+  },
+  {
+    "id": 87,
+    "start": "00:06:47.940",
+    "end": "00:06:49.940",
+    "text": "Directly with that but"
+  },
+  {
+    "id": 88,
+    "start": "00:06:50.260",
+    "end": "00:06:53.940",
+    "text": "We don't want to just still have this like token just sitting on your machine"
+  },
+  {
+    "id": 89,
+    "start": "00:06:55.060",
+    "end": "00:07:02.980",
+    "text": "Being used to make use these tool calls, so that's when like the adoption of like typical OA"
+  },
+  {
+    "id": 90,
+    "start": "00:07:03.540",
+    "end": "00:07:05.540",
+    "text": "to kind of"
+  },
+  {
+    "id": 91,
+    "start": "00:07:05.700",
+    "end": "00:07:08.740",
+    "text": "flows in remote MCP servers"
+  },
+  {
+    "id": 92,
+    "start": "00:07:09.140",
+    "end": "00:07:11.140",
+    "text": "came about and"
+  },
+  {
+    "id": 93,
+    "start": "00:07:11.860",
+    "end": "00:07:14.980",
+    "text": "On the team that's like my red and butter, so"
+  },
+  {
+    "id": 94,
+    "start": "00:07:16.100",
+    "end": "00:07:19.780",
+    "text": "So so I picked that up and and yeah"
+  },
+  {
+    "id": 95,
+    "start": "00:07:19.940",
+    "end": "00:07:24.820",
+    "text": "So we have we have that in in VS code today. It's been there since gosh few months now"
+  },
+  {
+    "id": 96,
+    "start": "00:07:26.580",
+    "end": "00:07:30.500",
+    "text": "And it's been such a wild right because like"
+  },
+  {
+    "id": 97,
+    "start": "00:07:31.780",
+    "end": "00:07:39.620",
+    "text": "When when we talk about off in VS code we've mostly just been focused on like GitHub off and like Microsoft"
+  },
+  {
+    "id": 98,
+    "start": "00:07:39.620",
+    "end": "00:07:44.660",
+    "text": "Off yeah and both of those two are complicated to their own to their own regard"
+  },
+  {
+    "id": 99,
+    "start": "00:07:45.700",
+    "end": "00:07:49.620",
+    "text": "But when you talk about MCP off you're now talking about like a bunch of services"
+  },
+  {
+    "id": 100,
+    "start": "00:07:50.900",
+    "end": "00:07:55.300",
+    "text": "Not just these two that I've mentioned and so now you have to think about like"
+  },
+  {
+    "id": 101,
+    "start": "00:07:56.420",
+    "end": "00:08:03.140",
+    "text": "Now you have to really go deep into the OAuth spec and make sure that you support as many things that are"
+  },
+  {
+    "id": 102,
+    "start": "00:08:03.700",
+    "end": "00:08:05.540",
+    "text": "adhering to that spec is possible because"
+  },
+  {
+    "id": 103,
+    "start": "00:08:06.420",
+    "end": "00:08:11.300",
+    "text": "The reality is that all of these providers have their own interpretation of that spec"
+  },
+  {
+    "id": 104,
+    "start": "00:08:12.420",
+    "end": "00:08:14.980",
+    "text": "And sports or features where others don't and so"
+  },
+  {
+    "id": 105,
+    "start": "00:08:15.700",
+    "end": "00:08:24.020",
+    "text": "Yeah, it's been a really interesting exercise and me having to dig deep deep deep into all of these OAuth specs"
+  },
+  {
+    "id": 106,
+    "start": "00:08:25.220",
+    "end": "00:08:28.020",
+    "text": "And and figure out okay, what are the things that"
+  },
+  {
+    "id": 107,
+    "start": "00:08:28.820",
+    "end": "00:08:33.140",
+    "text": "Need to be prioritized now and then and then the things that we can add on later. So"
+  },
+  {
+    "id": 108,
+    "start": "00:08:33.540",
+    "end": "00:08:39.060",
+    "text": "It makes sense and I love the ability where like for the GitHub MCP where you're already off and if you're already logged in with GitHub"
+  },
+  {
+    "id": 109,
+    "start": "00:08:39.220",
+    "end": "00:08:44.420",
+    "text": "Then it just kind of pops up naturally to log in on the flow you pick your account and there's a lot of like newer features"
+  },
+  {
+    "id": 110,
+    "start": "00:08:44.420",
+    "end": "00:08:50.420",
+    "text": "Like being able to like obviously like easy a sign out like control the authorization like per MCP server and"
+  },
+  {
+    "id": 111,
+    "start": "00:08:50.420",
+    "end": "00:08:55.780",
+    "text": "Recit things and untrust things and go through and things like that and obviously that of spec is evolving as well"
+  },
+  {
+    "id": 112,
+    "start": "00:08:55.780",
+    "end": "00:09:02.180",
+    "text": "So like I think if you're interested in that stuff go to the iteration of planning to search for Tyler and then you'll see all the things"
+  },
+  {
+    "id": 113,
+    "start": "00:09:02.180",
+    "end": "00:09:04.180",
+    "text": "Very happening"
+  },
+  {
+    "id": 114,
+    "start": "00:09:04.420",
+    "end": "00:09:10.580",
+    "text": "Yeah, that's right, but talking about MCP servers like I feel like something that many people won't"
+  },
+  {
+    "id": 115,
+    "start": "00:09:11.300",
+    "end": "00:09:15.940",
+    "text": "Ever see I'm not sure if they will you have to tell me but you sent me this"
+  },
+  {
+    "id": 116,
+    "start": "00:09:16.980",
+    "end": "00:09:18.980",
+    "text": "message on teams about"
+  },
+  {
+    "id": 117,
+    "start": "00:09:20.340",
+    "end": "00:09:24.660",
+    "text": "How your sort of deeply integrating creating your own MCP"
+  },
+  {
+    "id": 118,
+    "start": "00:09:25.460",
+    "end": "00:09:30.580",
+    "text": "For the VS code team when doing development and you show me this video on your ultra wide"
+  },
+  {
+    "id": 119,
+    "start": "00:09:30.580",
+    "end": "00:09:35.380",
+    "text": "Which is beautiful because half the screen because I'm also right half your screen was one VS code and the other one was another"
+  },
+  {
+    "id": 120,
+    "start": "00:09:35.380",
+    "end": "00:09:41.460",
+    "text": "VS code. They should have been different themes. I think Josh. Yeah, Josh is tattooing theme is my personal preference"
+  },
+  {
+    "id": 121,
+    "start": "00:09:41.700",
+    "end": "00:09:42.980",
+    "text": "But that's just me"
+  },
+  {
+    "id": 122,
+    "start": "00:09:42.980",
+    "end": "00:09:47.220",
+    "text": "It's now officially the tattooing theme forever by the way, and I'll put a big thing right here so you can see it"
+  },
+  {
+    "id": 123,
+    "start": "00:09:47.220",
+    "end": "00:09:50.740",
+    "text": "And I'll link to to Josh everyone loves it like the reddit what crazy about it"
+  },
+  {
+    "id": 124,
+    "start": "00:09:51.220",
+    "end": "00:09:54.020",
+    "text": "So how are you evolving"
+  },
+  {
+    "id": 125,
+    "start": "00:09:54.260",
+    "end": "00:09:58.420",
+    "text": "MCP for like the VS code engineering team and like how does that apply?"
+  },
+  {
+    "id": 126,
+    "start": "00:09:58.420",
+    "end": "00:10:00.660",
+    "text": "Maybe even to like developers just like listening this"
+  },
+  {
+    "id": 127,
+    "start": "00:10:01.460",
+    "end": "00:10:05.300",
+    "text": "for sure. Yeah, so it's something that I'm doing this this iteration"
+  },
+  {
+    "id": 128,
+    "start": "00:10:06.020",
+    "end": "00:10:08.020",
+    "text": "is"
+  },
+  {
+    "id": 129,
+    "start": "00:10:09.220",
+    "end": "00:10:15.700",
+    "text": "Like taking is so I'm good mentioning MCP off. We'll set that aside and just talk about like MCP servers in general"
+  },
+  {
+    "id": 130,
+    "start": "00:10:17.060",
+    "end": "00:10:22.420",
+    "text": "And one one MCP server that's like very popular is playwrights MCP server"
+  },
+  {
+    "id": 131,
+    "start": "00:10:23.300",
+    "end": "00:10:26.500",
+    "text": "Which is which is so cool if you don't if you haven't tried it out before"
+  },
+  {
+    "id": 132,
+    "start": "00:10:27.860",
+    "end": "00:10:30.900",
+    "text": "It has the ability to like spin up a browser"
+  },
+  {
+    "id": 133,
+    "start": "00:10:31.860",
+    "end": "00:10:37.540",
+    "text": "And then and then interact with that browser almost as if as if you were doing it yourself"
+  },
+  {
+    "id": 134,
+    "start": "00:10:38.340",
+    "end": "00:10:43.460",
+    "text": "And it makes sense because playwright is also a testing framework for for these kinds of scenarios right?"
+  },
+  {
+    "id": 135,
+    "start": "00:10:43.460",
+    "end": "00:10:48.900",
+    "text": "So you would for to narrowly write some tests playwright tests and then that would go and like control of browser"
+  },
+  {
+    "id": 136,
+    "start": "00:10:48.900",
+    "end": "00:10:50.900",
+    "text": "Let you take screenshots"
+  },
+  {
+    "id": 137,
+    "start": "00:10:50.900",
+    "end": "00:10:56.340",
+    "text": "Let's you look at the DOM that's where it's thing to like truly end to end test your web app"
+  },
+  {
+    "id": 138,
+    "start": "00:10:57.060",
+    "end": "00:10:58.740",
+    "text": "well"
+  },
+  {
+    "id": 139,
+    "start": "00:10:58.980",
+    "end": "00:11:04.660",
+    "text": "We've been working pretty close with that team for a while now and we actually have a big suite of tests"
+  },
+  {
+    "id": 140,
+    "start": "00:11:05.460",
+    "end": "00:11:07.700",
+    "text": "Playwright smoke tests as we call them"
+  },
+  {
+    "id": 141,
+    "start": "00:11:09.060",
+    "end": "00:11:11.700",
+    "text": "That use playwright to test BS code itself both"
+  },
+  {
+    "id": 142,
+    "start": "00:11:13.300",
+    "end": "00:11:17.140",
+    "text": "The browser based BS code and also the desktop because"
+  },
+  {
+    "id": 143,
+    "start": "00:11:18.100",
+    "end": "00:11:22.580",
+    "text": "Since the desktop version is just an electron app which is really just the web app"
+  },
+  {
+    "id": 144,
+    "start": "00:11:23.540",
+    "end": "00:11:26.580",
+    "text": "Playwright was able to like hook into that as well and work with that"
+  },
+  {
+    "id": 145,
+    "start": "00:11:27.140",
+    "end": "00:11:32.420",
+    "text": "So we've got that foundational piece of like all right playwright can interact with with a"
+  },
+  {
+    "id": 146,
+    "start": "00:11:32.980",
+    "end": "00:11:38.500",
+    "text": "local build of the s code and then there's also an existing playwright mcp server"
+  },
+  {
+    "id": 147,
+    "start": "00:11:39.300",
+    "end": "00:11:41.300",
+    "text": "How do we like bring those together?"
+  },
+  {
+    "id": 148,
+    "start": "00:11:41.700",
+    "end": "00:11:46.100",
+    "text": "So that we could have like an mcp server that is specifically for"
+  },
+  {
+    "id": 149,
+    "start": "00:11:46.740",
+    "end": "00:11:52.660",
+    "text": "Interacting with a local build of the s code and so then you might be asking well, why do you need that?"
+  },
+  {
+    "id": 150,
+    "start": "00:11:52.740",
+    "end": "00:11:54.660",
+    "text": "Yeah, why do you need that tag of that sounds crazy?"
+  },
+  {
+    "id": 151,
+    "start": "00:11:54.660",
+    "end": "00:11:57.700",
+    "text": "He sounds cool. Why do you need that? That's a great question."
+  },
+  {
+    "id": 152,
+    "start": "00:11:59.220",
+    "end": "00:12:04.660",
+    "text": "So I don't know if you've had this experience before, but especially around"
+  },
+  {
+    "id": 153,
+    "start": "00:12:06.340",
+    "end": "00:12:14.180",
+    "text": "UI bugs when you give like agent mode a UI bug it's going to it's going to make some changes"
+  },
+  {
+    "id": 154,
+    "start": "00:12:14.180",
+    "end": "00:12:15.380",
+    "text": "That's almost certain"
+  },
+  {
+    "id": 155,
+    "start": "00:12:16.340",
+    "end": "00:12:21.860",
+    "text": "But the real question is are they the right changes and and like you know"
+  },
+  {
+    "id": 156,
+    "start": "00:12:22.500",
+    "end": "00:12:28.180",
+    "text": "Compilation can only go so far like you can check to make sure that like"
+  },
+  {
+    "id": 157,
+    "start": "00:12:28.820",
+    "end": "00:12:30.820",
+    "text": "TypeScript compilation spine and"
+  },
+  {
+    "id": 158,
+    "start": "00:12:32.100",
+    "end": "00:12:34.580",
+    "text": "You can check all of these like static things"
+  },
+  {
+    "id": 159,
+    "start": "00:12:35.300",
+    "end": "00:12:41.060",
+    "text": "But when it comes down look at all the CSS look at all the HTML like looking out everything is coming together"
+  },
+  {
+    "id": 160,
+    "start": "00:12:41.220",
+    "end": "00:12:46.580",
+    "text": "But yeah, it's just a it's that's just a description of what it should be honestly what it is"
+  },
+  {
+    "id": 161,
+    "start": "00:12:47.140",
+    "end": "00:12:50.500",
+    "text": "Right exactly so so then the question is all right"
+  },
+  {
+    "id": 162,
+    "start": "00:12:52.180",
+    "end": "00:12:57.940",
+    "text": "We know everything with like it's made the change at compile time, but does does this change actually work and"
+  },
+  {
+    "id": 163,
+    "start": "00:12:58.740",
+    "end": "00:13:05.380",
+    "text": "Until this work that I've been working on we the model they agent mode couldn't really do that sort of thing"
+  },
+  {
+    "id": 164,
+    "start": "00:13:06.660",
+    "end": "00:13:12.740",
+    "text": "So we've added in VS code so this is like an mtv mcp server that's like checked into the VS code repo"
+  },
+  {
+    "id": 165,
+    "start": "00:13:14.260",
+    "end": "00:13:18.020",
+    "text": "Is that the the model can then go and"
+  },
+  {
+    "id": 166,
+    "start": "00:13:18.900",
+    "end": "00:13:21.620",
+    "text": "Run some tools that it has access to"
+  },
+  {
+    "id": 167,
+    "start": "00:13:22.660",
+    "end": "00:13:31.860",
+    "text": "Because the the way that it set up is that the mcp server's checked into the code and then in the work space settings for the VS code repo"
+  },
+  {
+    "id": 168,
+    "start": "00:13:32.340",
+    "end": "00:13:42.420",
+    "text": "You can put an mcp.json file in there and list out and like name an mcp server that you want to be available with that workspace, right so"
+  },
+  {
+    "id": 169,
+    "start": "00:13:43.540",
+    "end": "00:13:47.140",
+    "text": "For me like a VS code developer"
+  },
+  {
+    "id": 170,
+    "start": "00:13:48.980",
+    "end": "00:13:55.860",
+    "text": "I don't even have to like think about setup. It's just there when I get the workspace so long as I trust that workspace, which is the VS code repo. So I do"
+  },
+  {
+    "id": 171,
+    "start": "00:13:57.220",
+    "end": "00:14:02.100",
+    "text": "So the model just immediately has access to these tools and"
+  },
+  {
+    "id": 172,
+    "start": "00:14:03.140",
+    "end": "00:14:07.300",
+    "text": "And we also added like a like a prompt file so that you can say all right"
+  },
+  {
+    "id": 173,
+    "start": "00:14:08.740",
+    "end": "00:14:10.740",
+    "text": "You know, I'm making these kinds of UI changes"
+  },
+  {
+    "id": 174,
+    "start": "00:14:12.340",
+    "end": "00:14:15.220",
+    "text": "I need you to take a screenshot before"
+  },
+  {
+    "id": 175,
+    "start": "00:14:16.020",
+    "end": "00:14:23.860",
+    "text": "And after the changes that you make and then truly verify that you you've actually solved the problem and so what that's going to do is"
+  },
+  {
+    "id": 176,
+    "start": "00:14:24.740",
+    "end": "00:14:33.140",
+    "text": "And yeah, so the video that I that I showed you before was I actually used the get-home mcp server to like fetch an issue"
+  },
+  {
+    "id": 177,
+    "start": "00:14:33.860",
+    "end": "00:14:39.300",
+    "text": "That I had and the issue was that like there were these buttons that were too close together and I needed to add"
+  },
+  {
+    "id": 178,
+    "start": "00:14:40.100",
+    "end": "00:14:42.100",
+    "text": "some padding to them and so"
+  },
+  {
+    "id": 179,
+    "start": "00:14:43.060",
+    "end": "00:14:50.660",
+    "text": "So yeah, it fetched the content from from the issue using get-of mcp server. So I didn't have to like copy paste that in there"
+  },
+  {
+    "id": 180,
+    "start": "00:14:50.900",
+    "end": "00:14:59.140",
+    "text": "All I did was say like slash playwright fixed this issue and I gave it a little bit of context of like where that component is because"
+  },
+  {
+    "id": 181,
+    "start": "00:14:59.700",
+    "end": "00:15:01.700",
+    "text": "The model doesn't necessarily know where every"
+  },
+  {
+    "id": 182,
+    "start": "00:15:02.660",
+    "end": "00:15:07.620",
+    "text": "Bell and whistle of of VS code is and so then what that did is it like"
+  },
+  {
+    "id": 183,
+    "start": "00:15:08.180",
+    "end": "00:15:13.540",
+    "text": "Spun up then second this like local dev build of VS code and then"
+  },
+  {
+    "id": 184,
+    "start": "00:15:15.060",
+    "end": "00:15:21.380",
+    "text": "Took this preliminary screenshot of the of the state before made some changes"
+  },
+  {
+    "id": 185,
+    "start": "00:15:22.260",
+    "end": "00:15:25.540",
+    "text": "Reloaded the window of that local dev build"
+  },
+  {
+    "id": 186,
+    "start": "00:15:26.820",
+    "end": "00:15:34.820",
+    "text": "relaunched the component this was in the tools picker in chat for context and then took a new screenshot of"
+  },
+  {
+    "id": 187,
+    "start": "00:15:35.780",
+    "end": "00:15:41.540",
+    "text": "Of the experience post it's changed and verified that that is what it was expecting to do"
+  },
+  {
+    "id": 188,
+    "start": "00:15:42.420",
+    "end": "00:15:48.180",
+    "text": "So so not only do we have like this this feedback that the compilation looks good"
+  },
+  {
+    "id": 189,
+    "start": "00:15:49.620",
+    "end": "00:15:51.620",
+    "text": "But also"
+  },
+  {
+    "id": 190,
+    "start": "00:15:51.860",
+    "end": "00:15:59.060",
+    "text": "We have confirmation we can have confirmation at runtime that those changes are actually actually applied so we could delegate"
+  },
+  {
+    "id": 191,
+    "start": "00:15:59.780",
+    "end": "00:16:01.780",
+    "text": "theoretically even more to"
+  },
+  {
+    "id": 192,
+    "start": "00:16:02.340",
+    "end": "00:16:04.340",
+    "text": "to agent modes to"
+  },
+  {
+    "id": 193,
+    "start": "00:16:04.820",
+    "end": "00:16:06.820",
+    "text": "Make more changes in the scope which is great"
+  },
+  {
+    "id": 194,
+    "start": "00:16:06.900",
+    "end": "00:16:13.140",
+    "text": "It's super cool because I often hear developers thinking about like well, how do I integrate these mcp servers like into my work flow, right?"
+  },
+  {
+    "id": 195,
+    "start": "00:16:13.140",
+    "end": "00:16:18.180",
+    "text": "Like oh isn't there like a playwright like ms you know like actual like see a line"
+  },
+  {
+    "id": 196,
+    "start": "00:16:18.180",
+    "end": "00:16:20.980",
+    "text": "I could just like call and I could write these things I could do these things, right?"
+  },
+  {
+    "id": 197,
+    "start": "00:16:21.220",
+    "end": "00:16:25.460",
+    "text": "Like well in this case like this could be run anywhere right like that's kind of like the beautiful part of it"
+  },
+  {
+    "id": 198,
+    "start": "00:16:25.460",
+    "end": "00:16:27.220",
+    "text": "And actually when you use the coding agent"
+  },
+  {
+    "id": 199,
+    "start": "00:16:27.220",
+    "end": "00:16:32.020",
+    "text": "They get up coding agent when you delegate task to it you actually see like playwright deeply integrated in that it's doing screenshots"
+  },
+  {
+    "id": 200,
+    "start": "00:16:32.020",
+    "end": "00:16:38.020",
+    "text": "Doing something like this what I like about what this workflow is it's like for that local dev experience like funnily enough"
+  },
+  {
+    "id": 201,
+    "start": "00:16:38.500",
+    "end": "00:16:42.820",
+    "text": "I kind of want this for myself literally last night Tyler. I was struggling"
+  },
+  {
+    "id": 202,
+    "start": "00:16:44.420",
+    "end": "00:16:49.620",
+    "text": "On this this mobile app that I'm building it's like a scorekeeper application and I was struggling with CSS"
+  },
+  {
+    "id": 203,
+    "start": "00:16:49.940",
+    "end": "00:16:56.180",
+    "text": "And I was struggling with like different overrides of CSS and I was going back and forth a different different models and to investigate"
+  },
+  {
+    "id": 204,
+    "start": "00:16:56.180",
+    "end": "00:16:57.780",
+    "text": "I'm like look at everything look at this in this"
+  },
+  {
+    "id": 205,
+    "start": "00:16:57.780",
+    "end": "00:17:04.420",
+    "text": "What the problem was is like every single time I'd be trying like send it in image and send it this and then I have to run the app and then stop the app and then run the app"
+  },
+  {
+    "id": 206,
+    "start": "00:17:04.420",
+    "end": "00:17:07.620",
+    "text": "Like ideally in my work flow and I see go fix this but then validate it, right?"
+  },
+  {
+    "id": 207,
+    "start": "00:17:07.620",
+    "end": "00:17:13.300",
+    "text": "Like I think it's okay if I want to go through this workflow which is like yes, spend a little bit more time"
+  },
+  {
+    "id": 208,
+    "start": "00:17:13.780",
+    "end": "00:17:16.580",
+    "text": "Analyzing and revving on it because for your instance, right?"
+  },
+  {
+    "id": 209,
+    "start": "00:17:16.980",
+    "end": "00:17:19.220",
+    "text": "Then it can validate and if it doesn't look correct"
+  },
+  {
+    "id": 210,
+    "start": "00:17:19.700",
+    "end": "00:17:24.820",
+    "text": "Then it can go back and iterate again. Now it has like a ongoing record of the changes and then you do too"
+  },
+  {
+    "id": 211,
+    "start": "00:17:24.820",
+    "end": "00:17:28.580",
+    "text": "Which is super cool. So I'll be playing the video here like if people are watching the audio version"
+  },
+  {
+    "id": 212,
+    "start": "00:17:28.580",
+    "end": "00:17:32.180",
+    "text": "You can go to the YouTube you can see the video version of this, but what you described is like"
+  },
+  {
+    "id": 213,
+    "start": "00:17:32.980",
+    "end": "00:17:37.380",
+    "text": "Exactly what I saw and I like mine was kind of blown and I was like well this makes sense and I could see how beneficial it would be"
+  },
+  {
+    "id": 214,
+    "start": "00:17:37.620",
+    "end": "00:17:44.420",
+    "text": "And combining MCP servers together. It was so cool. Like was this out of a like out of a"
+  },
+  {
+    "id": 215,
+    "start": "00:17:45.300",
+    "end": "00:17:47.300",
+    "text": "frustration"
+  },
+  {
+    "id": 216,
+    "start": "00:17:47.300",
+    "end": "00:17:50.660",
+    "text": "There was a yeah, yeah, yeah, yeah, yeah, yeah, we're worried it come about was it was the right"
+  },
+  {
+    "id": 217,
+    "start": "00:17:51.940",
+    "end": "00:17:53.380",
+    "text": "Yeah, yeah, yeah, because you know"
+  },
+  {
+    "id": 218,
+    "start": "00:17:53.460",
+    "end": "00:18:00.100",
+    "text": "I was I was having like agent that makes some makes some UI changes right and then I'm realizing like okay"
+  },
+  {
+    "id": 219,
+    "start": "00:18:00.260",
+    "end": "00:18:04.020",
+    "text": "So I have to like I have to sit here right and like"
+  },
+  {
+    "id": 220,
+    "start": "00:18:05.460",
+    "end": "00:18:12.980",
+    "text": "Manually verify the changes that it's making right and like go through the UI and like find where it is and and say okay"
+  },
+  {
+    "id": 221,
+    "start": "00:18:12.980",
+    "end": "00:18:15.700",
+    "text": "Now take a screenshot give it back to chat and be like"
+  },
+  {
+    "id": 222,
+    "start": "00:18:16.740",
+    "end": "00:18:22.900",
+    "text": "Clearly it's not working like yeah, keep trying right yeah, and it's like what am I doing here"
+  },
+  {
+    "id": 223,
+    "start": "00:18:23.140",
+    "end": "00:18:29.940",
+    "text": "Like I shouldn't need to be in the loop for this for this particular task it can if it has the right tools available to it"
+  },
+  {
+    "id": 224,
+    "start": "00:18:29.940",
+    "end": "00:18:31.940",
+    "text": "And it can just go into it by itself so"
+  },
+  {
+    "id": 225,
+    "start": "00:18:33.780",
+    "end": "00:18:39.780",
+    "text": "So yeah that was kind of the the that was the motivation to to investigate this sort of thing"
+  },
+  {
+    "id": 226,
+    "start": "00:18:40.660",
+    "end": "00:18:42.660",
+    "text": "And it's been it's been really interesting to use I mean"
+  },
+  {
+    "id": 227,
+    "start": "00:18:43.460",
+    "end": "00:18:45.460",
+    "text": "I haven't been like the biggest"
+  },
+  {
+    "id": 228,
+    "start": "00:18:46.020",
+    "end": "00:18:47.460",
+    "text": "I haven't"
+  },
+  {
+    "id": 229,
+    "start": "00:18:47.460",
+    "end": "00:18:49.460",
+    "text": "Crafted too many"
+  },
+  {
+    "id": 230,
+    "start": "00:18:49.620",
+    "end": "00:18:53.060",
+    "text": "prompts in in my in my tenure thus far and"
+  },
+  {
+    "id": 231,
+    "start": "00:18:54.660",
+    "end": "00:18:57.060",
+    "text": "It's it's challenging for sure"
+  },
+  {
+    "id": 232,
+    "start": "00:18:58.180",
+    "end": "00:19:00.180",
+    "text": "But but yeah"
+  },
+  {
+    "id": 233,
+    "start": "00:19:00.820",
+    "end": "00:19:03.060",
+    "text": "It's it's clear that like this"
+  },
+  {
+    "id": 234,
+    "start": "00:19:04.020",
+    "end": "00:19:07.220",
+    "text": "This developer loop of like giving the model"
+  },
+  {
+    "id": 235,
+    "start": "00:19:08.420",
+    "end": "00:19:13.460",
+    "text": "Not only build time stuff but run time stuff is is what can really kind of unlock"
+  },
+  {
+    "id": 236,
+    "start": "00:19:14.420",
+    "end": "00:19:21.700",
+    "text": "Unlockful potential of this and like maybe we get to a point where you know the the model can go and make these changes and like"
+  },
+  {
+    "id": 237,
+    "start": "00:19:21.700",
+    "end": "00:19:26.420",
+    "text": "I don't need to run them myself because I have the confidence that it went in like actually tried those out"
+  },
+  {
+    "id": 238,
+    "start": "00:19:26.420",
+    "end": "00:19:30.100",
+    "text": "Which is what I do for somebody on the team right it's like yeah when I review their PR"
+  },
+  {
+    "id": 239,
+    "start": "00:19:30.100",
+    "end": "00:19:37.140",
+    "text": "I assume that they they've run it at least that's the culture on our on our team that like we make the assumption that they've run it and and"
+  },
+  {
+    "id": 240,
+    "start": "00:19:37.700",
+    "end": "00:19:41.300",
+    "text": "Tested it well right so I'd love to get to that point for"
+  },
+  {
+    "id": 241,
+    "start": "00:19:42.260",
+    "end": "00:19:47.540",
+    "text": "For each in the and I could see exactly the the loop sort of finalizing too"
+  },
+  {
+    "id": 242,
+    "start": "00:19:47.540",
+    "end": "00:19:49.540",
+    "text": "Which is the next step is in this process"
+  },
+  {
+    "id": 243,
+    "start": "00:19:49.940",
+    "end": "00:19:54.660",
+    "text": "Which is hey, okay now you verify it now you have all these screenshots go create a PR and then"
+  },
+  {
+    "id": 244,
+    "start": "00:19:55.300",
+    "end": "00:20:02.500",
+    "text": "Draft that PR with all of this information before the after the changes you made and like given in depth detail and the model has that context because it just did it right"
+  },
+  {
+    "id": 245,
+    "start": "00:20:02.500",
+    "end": "00:20:08.820",
+    "text": "And that's yeah the cool part is my favorite part of combining MCP servers developing this workflow is time saving right"
+  },
+  {
+    "id": 246,
+    "start": "00:20:08.900",
+    "end": "00:20:15.220",
+    "text": "In the model do a lot of that has the context for me that context and I'll have to waste my precious keystrokes right"
+  },
+  {
+    "id": 247,
+    "start": "00:20:15.220",
+    "end": "00:20:19.780",
+    "text": "I don't have so many keystrokes left. I need to preserve all I think was really nice"
+  },
+  {
+    "id": 248,
+    "start": "00:20:19.780",
+    "end": "00:20:24.820",
+    "text": "And I appreciate you coming on and talking about this is is hearing how the VS code engineering team"
+  },
+  {
+    "id": 249,
+    "start": "00:20:25.460",
+    "end": "00:20:32.020",
+    "text": "Is using these sort of advanced scenarios using the tools to build the tools right it's real world a lot of people ask us"
+  },
+  {
+    "id": 250,
+    "start": "00:20:32.020",
+    "end": "00:20:35.620",
+    "text": "How are you using this damn are you really using this thing like when I saw the demos like well"
+  },
+  {
+    "id": 251,
+    "start": "00:20:36.580",
+    "end": "00:20:42.980",
+    "text": "I think so much for come on and talking about this and that's that's like how our team operates we've always operated this way"
+  },
+  {
+    "id": 252,
+    "start": "00:20:42.980",
+    "end": "00:20:48.580",
+    "text": "So I mean that's that's what you get when you're when you're working on developer tooling as a developer right"
+  },
+  {
+    "id": 253,
+    "start": "00:20:49.620",
+    "end": "00:20:53.220",
+    "text": "I'm the customer here, right just as much as you are and everybody else so"
+  },
+  {
+    "id": 254,
+    "start": "00:20:54.020",
+    "end": "00:20:58.420",
+    "text": "Oh, boy, well, I will put a link to all the the issues and all the things"
+  },
+  {
+    "id": 255,
+    "start": "00:20:58.820",
+    "end": "00:21:03.860",
+    "text": "Everything like that and to your video as well Tyler now was really cool is that you and I also have another best friend"
+  },
+  {
+    "id": 256,
+    "start": "00:21:03.860",
+    "end": "00:21:12.100",
+    "text": "Which is can't see dots and I actually sent down with can see dots when we're all meeting up for MCP Devdays about his journey in how he is using MCB servers"
+  },
+  {
+    "id": 257,
+    "start": "00:21:12.420",
+    "end": "00:21:16.500",
+    "text": "With VS code and his background how it's evolved his sort of entire changing so"
+  },
+  {
+    "id": 258,
+    "start": "00:21:16.980",
+    "end": "00:21:22.340",
+    "text": "Funnily enough now if you want to hang around not you Tyler, but everyone else that's listening to a bonus"
+  },
+  {
+    "id": 259,
+    "start": "00:21:23.060",
+    "end": "00:21:27.620",
+    "text": "A VS code insider's bonus first time episode where we're dropping in episode three whoa"
+  },
+  {
+    "id": 260,
+    "start": "00:21:27.620",
+    "end": "00:21:32.340",
+    "text": "With my sit down interview with can't see dots his entire journey is developer journey"
+  },
+  {
+    "id": 261,
+    "start": "00:21:32.340",
+    "end": "00:21:37.860",
+    "text": "I guess I should put on the developer journey podcast, but really in depth about how he sees the future of MCP and evolving"
+  },
+  {
+    "id": 262,
+    "start": "00:21:38.180",
+    "end": "00:21:43.460",
+    "text": "These different workflows as well. So Tyler, thanks for coming on. We'll find everywhere all the links below and don't forget"
+  },
+  {
+    "id": 263,
+    "start": "00:21:43.460",
+    "end": "00:21:47.300",
+    "text": "You can subscribe the VS code podcast everywhere of VS code podcast.com"
+  },
+  {
+    "id": 264,
+    "start": "00:21:47.300",
+    "end": "00:21:52.740",
+    "text": "You can listen you can watch you do stuff so stick around for a little bit of interview with can see dots let's head over to that interview now"
+  },
+  {
+    "id": 265,
+    "start": "00:21:53.140",
+    "end": "00:21:58.180",
+    "text": "Everyone I'm here with can't see dots how's it going can super hi everybody"
+  },
+  {
+    "id": 266,
+    "start": "00:21:58.900",
+    "end": "00:22:03.460",
+    "text": "I'm super excited it's your first time on the Microsoft campus. We just had you here for MCP Devdays"
+  },
+  {
+    "id": 267,
+    "start": "00:22:03.700",
+    "end": "00:22:07.460",
+    "text": "I just want to sit down and kind of talk about the state of engineering a little bit"
+  },
+  {
+    "id": 268,
+    "start": "00:22:07.460",
+    "end": "00:22:11.380",
+    "text": "And how you see it. I think people may know you as a prolific and"
+  },
+  {
+    "id": 269,
+    "start": "00:22:11.780",
+    "end": "00:22:15.940",
+    "text": "Junior in the react world in the testing world especially around play right and"
+  },
+  {
+    "id": 270,
+    "start": "00:22:16.900",
+    "end": "00:22:20.500",
+    "text": "Also more recently in and around AI and around MCP"
+  },
+  {
+    "id": 271,
+    "start": "00:22:20.660",
+    "end": "00:22:23.860",
+    "text": "But if you don't know you you want to kind of give a TLDR a little bit about yourself"
+  },
+  {
+    "id": 272,
+    "start": "00:22:24.180",
+    "end": "00:22:28.820",
+    "text": "Yeah, yeah, so I live in Utah with my wife and almost six kids"
+  },
+  {
+    "id": 273,
+    "start": "00:22:29.780",
+    "end": "00:22:35.140",
+    "text": "So that's very busy my wife's full-time mom, so I'm able to to work and still get things done"
+  },
+  {
+    "id": 274,
+    "start": "00:22:36.500",
+    "end": "00:22:41.780",
+    "text": "But yeah, I am a full-time educator. I worked at various companies and decided I enjoyed"
+  },
+  {
+    "id": 275,
+    "start": "00:22:42.180",
+    "end": "00:22:45.780",
+    "text": "Educating the most and so yes since 2019 I've been just teaching people"
+  },
+  {
+    "id": 276,
+    "start": "00:22:46.100",
+    "end": "00:22:53.460",
+    "text": "Yeah testing and react and full stack and now AI and MCP stuff that's very cool and you know"
+  },
+  {
+    "id": 277,
+    "start": "00:22:53.460",
+    "end": "00:22:58.500",
+    "text": "I think as myself I love teaching people stuff. I think that's why I do what I do here at Microsoft"
+  },
+  {
+    "id": 278,
+    "start": "00:22:58.500",
+    "end": "00:23:02.660",
+    "text": "I love teaching something to someone that I think is just amazing and really awesome"
+  },
+  {
+    "id": 279,
+    "start": "00:23:02.660",
+    "end": "00:23:09.060",
+    "text": "I watch one of your videos because I quietly softer YouTube a little bit about your background a lot of"
+  },
+  {
+    "id": 280,
+    "start": "00:23:09.060",
+    "end": "00:23:10.900",
+    "text": "yourself these are something really unique"
+  },
+  {
+    "id": 281,
+    "start": "00:23:11.460",
+    "end": "00:23:17.140",
+    "text": "Which was like if I was to teach you the cure for cancer, but you didn't remember it then I didn't really"
+  },
+  {
+    "id": 282,
+    "start": "00:23:17.540",
+    "end": "00:23:21.860",
+    "text": "You probably remember that better than I did didn't matter. Yeah, it doesn't matter at all, right?"
+  },
+  {
+    "id": 283,
+    "start": "00:23:21.860",
+    "end": "00:23:27.700",
+    "text": "So what was this shift from a full-time engineer to like becoming an educator on what like"
+  },
+  {
+    "id": 284,
+    "start": "00:23:28.900",
+    "end": "00:23:32.260",
+    "text": "Why I guess why was that spark that sort of lit up for you?"
+  },
+  {
+    "id": 285,
+    "start": "00:23:32.820",
+    "end": "00:23:38.260",
+    "text": "I've been teaching since I was young in church we would speak in front of our peers from the age of three"
+  },
+  {
+    "id": 286,
+    "start": "00:23:38.740",
+    "end": "00:23:45.460",
+    "text": "So like with mom was bringing in your ear to say right, but yeah, so being up in front of people is something"
+  },
+  {
+    "id": 287,
+    "start": "00:23:45.460",
+    "end": "00:23:50.740",
+    "text": "I've just always done not everybody who goes through my church also feels the same way but for me"
+  },
+  {
+    "id": 288,
+    "start": "00:23:50.740",
+    "end": "00:23:58.820",
+    "text": "It just it mattered or just felt really fun and interesting and and so when I was even in school"
+  },
+  {
+    "id": 289,
+    "start": "00:23:59.620",
+    "end": "00:24:06.900",
+    "text": "I decided to run a workshop for my classmates and I got a sponsor to sponsor pizza so people would show up and"
+  },
+  {
+    "id": 290,
+    "start": "00:24:07.220",
+    "end": "00:24:13.540",
+    "text": "Yeah, so like it's just been kind of a thing that I've wanted to I've enjoyed doing and when I was working as an independent or"
+  },
+  {
+    "id": 291,
+    "start": "00:24:13.860",
+    "end": "00:24:15.860",
+    "text": "It's an individual contributor"
+  },
+  {
+    "id": 292,
+    "start": "00:24:16.500",
+    "end": "00:24:18.500",
+    "text": "also just felt driven to"
+  },
+  {
+    "id": 293,
+    "start": "00:24:19.220",
+    "end": "00:24:20.180",
+    "text": "Share the"
+  },
+  {
+    "id": 294,
+    "start": "00:24:20.180",
+    "end": "00:24:24.340",
+    "text": "Experiences and things that I'd learned and found ways to do that in such a way that it could be"
+  },
+  {
+    "id": 295,
+    "start": "00:24:25.220",
+    "end": "00:24:30.900",
+    "text": "Maximized the impact of that so it's posted on the public blog. It's not private proprietary information there anything and"
+  },
+  {
+    "id": 296,
+    "start": "00:24:31.460",
+    "end": "00:24:37.620",
+    "text": "And and just found myself like more and more even actually before I"
+  },
+  {
+    "id": 297,
+    "start": "00:24:38.660",
+    "end": "00:24:41.140",
+    "text": "Was doing a lot of the teaching of the technical stuff. I"
+  },
+  {
+    "id": 298,
+    "start": "00:24:41.700",
+    "end": "00:24:48.500",
+    "text": "Really enjoyed the process of documenting and figuring out how to communicate what what I had built so people can use it most effectively"
+  },
+  {
+    "id": 299,
+    "start": "00:24:48.500",
+    "end": "00:24:54.180",
+    "text": "So it's always just been about communication and helping people understand things that I just get a kick out of"
+  },
+  {
+    "id": 300,
+    "start": "00:24:54.580",
+    "end": "00:25:00.100",
+    "text": "Is there a moment or some sort of connection that you have with someone there like oh I like made the right choice"
+  },
+  {
+    "id": 301,
+    "start": "00:25:00.100",
+    "end": "00:25:02.820",
+    "text": "Like this is a moment. They maybe you'll never forget. I know I have mine"
+  },
+  {
+    "id": 302,
+    "start": "00:25:03.460",
+    "end": "00:25:08.740",
+    "text": "Like in deciding to be an educator and after you got started and like kind of like, you know"
+  },
+  {
+    "id": 303,
+    "start": "00:25:09.380",
+    "end": "00:25:12.340",
+    "text": "The folks that you interact with your students if you will right"
+  },
+  {
+    "id": 304,
+    "start": "00:25:12.340",
+    "end": "00:25:19.220",
+    "text": "Or maybe you gave a presentation at a conference and like there's a moment that made a connection like oh wow like this kind of not like"
+  },
+  {
+    "id": 305,
+    "start": "00:25:19.700",
+    "end": "00:25:23.700",
+    "text": "Validated it but kind of you know, oh, yeah, this is why I do what I do. Yeah, I"
+  },
+  {
+    "id": 306,
+    "start": "00:25:24.260",
+    "end": "00:25:29.460",
+    "text": "So now because I've been teaching for so long and and taught so many people and"
+  },
+  {
+    "id": 307,
+    "start": "00:25:30.180",
+    "end": "00:25:37.380",
+    "text": "I'll go to conferences and people will come so they can meet me and just tell me how much of an impact I've had so I have those kinds of experiences a lot now"
+  },
+  {
+    "id": 308,
+    "start": "00:25:37.380",
+    "end": "00:25:42.100",
+    "text": "And it's it really don't stop please if you do if I have impacted your life, it actually helps"
+  },
+  {
+    "id": 309,
+    "start": "00:25:43.140",
+    "end": "00:25:45.140",
+    "text": "Motivate me and validate a lot"
+  },
+  {
+    "id": 310,
+    "start": "00:25:46.180",
+    "end": "00:25:49.300",
+    "text": "It keeps me going for sure. So yeah, I don't know"
+  },
+  {
+    "id": 311,
+    "start": "00:25:50.260",
+    "end": "00:25:52.260",
+    "text": "that I can I think of"
+  },
+  {
+    "id": 312,
+    "start": "00:25:52.740",
+    "end": "00:25:54.900",
+    "text": "necessarily the first experience that I had that"
+  },
+  {
+    "id": 313,
+    "start": "00:25:55.540",
+    "end": "00:25:57.540",
+    "text": "sort of thing but"
+  },
+  {
+    "id": 314,
+    "start": "00:25:57.540",
+    "end": "00:25:59.540",
+    "text": "just"
+  },
+  {
+    "id": 315,
+    "start": "00:25:59.540",
+    "end": "00:26:06.180",
+    "text": "Hearing that somebody really I think we can all relate to this you did this is what you do and you did a good job doing it right"
+  },
+  {
+    "id": 316,
+    "start": "00:26:06.180",
+    "end": "00:26:08.180",
+    "text": "like that just feels really really good"
+  },
+  {
+    "id": 317,
+    "start": "00:26:09.140",
+    "end": "00:26:16.020",
+    "text": "And so yeah, I do here that and of course I also hear the other like you this is what you do and you fell short in this way"
+  },
+  {
+    "id": 318,
+    "start": "00:26:16.500",
+    "end": "00:26:20.900",
+    "text": "And so I am in my workshops every single exercise. There's a feedback"
+  },
+  {
+    "id": 319,
+    "start": "00:26:21.460",
+    "end": "00:26:25.460",
+    "text": "Form that I asked people to fill out I have tens of thousands of responses to that form now and"
+  },
+  {
+    "id": 320,
+    "start": "00:26:26.340",
+    "end": "00:26:31.060",
+    "text": "constantly looking for ways to improve the way that I communicate because that's yeah, that's what I do"
+  },
+  {
+    "id": 321,
+    "start": "00:26:32.340",
+    "end": "00:26:37.780",
+    "text": "How did you land on epic everything seems to be epic epic epic with can I mean maybe I maybe even asked us a thousand times"
+  },
+  {
+    "id": 322,
+    "start": "00:26:37.780",
+    "end": "00:26:40.820",
+    "text": "But I didn't sit down and do my research at listening to every interview"
+  },
+  {
+    "id": 323,
+    "start": "00:26:41.860",
+    "end": "00:26:43.860",
+    "text": "has done but"
+  },
+  {
+    "id": 324,
+    "start": "00:26:43.860",
+    "end": "00:26:49.220",
+    "text": "No, I tend to use the word like awesome all the time everything's awesome and obviously awesome like you know on get up is like a thing"
+  },
+  {
+    "id": 325,
+    "start": "00:26:49.220",
+    "end": "00:26:54.740",
+    "text": "But how do you land on epic and everyone's everything so epic? Yeah, yeah, so 2020 we're I've decided to"
+  },
+  {
+    "id": 326,
+    "start": "00:26:55.460",
+    "end": "00:27:02.100",
+    "text": "Turn all of my React workshop material into a series before that I had done testing JavaScript.com"
+  },
+  {
+    "id": 327,
+    "start": "00:27:02.420",
+    "end": "00:27:08.020",
+    "text": "Had a bunch of testing material turned it into workshops and then posted up for that and so"
+  },
+  {
+    "id": 328,
+    "start": "00:27:08.500",
+    "end": "00:27:14.580",
+    "text": "I had like six workshops at the time and eventually I think it grew to like 11 workshop workshops, but"
+  },
+  {
+    "id": 329,
+    "start": "00:27:15.300",
+    "end": "00:27:18.740",
+    "text": "Yeah, I was thinking okay, we're gonna package this app it's gonna be a something"
+  },
+  {
+    "id": 330,
+    "start": "00:27:19.780",
+    "end": "00:27:22.580",
+    "text": "That's a lot of workshops. That's a lot of material. They're"
+  },
+  {
+    "id": 331,
+    "start": "00:27:23.540",
+    "end": "00:27:30.900",
+    "text": "Not I don't know of a single platform educator who's produced so much content in a single place about"
+  },
+  {
+    "id": 332,
+    "start": "00:27:31.540",
+    "end": "00:27:33.540",
+    "text": "React and so"
+  },
+  {
+    "id": 333,
+    "start": "00:27:33.540",
+    "end": "00:27:38.660",
+    "text": "Just talking with Joel Hooks my partner and crime and in all of this stuff that we've done"
+  },
+  {
+    "id": 334,
+    "start": "00:27:40.260",
+    "end": "00:27:46.260",
+    "text": "We were going back forth. I think the word epic was his he said it first if I remember right and"
+  },
+  {
+    "id": 335,
+    "start": "00:27:46.900",
+    "end": "00:27:52.340",
+    "text": "And it just like you know, this is an epic amount of material or something like that and so that's where that came from and then"
+  },
+  {
+    "id": 336,
+    "start": "00:27:52.580",
+    "end": "00:27:59.620",
+    "text": "Epic like it also to me speaks like universe space like that that's always been an interesting thing for me as well"
+  },
+  {
+    "id": 337,
+    "start": "00:27:59.620",
+    "end": "00:28:01.620",
+    "text": "And just like thinking about"
+  },
+  {
+    "id": 338,
+    "start": "00:28:01.620",
+    "end": "00:28:05.220",
+    "text": "You know the grand cosmos and and so yeah epic kind of"
+  },
+  {
+    "id": 339,
+    "start": "00:28:05.860",
+    "end": "00:28:11.140",
+    "text": "Became a thing for epic React and then when I wanted to go beyond just react and do more full stack stuff"
+  },
+  {
+    "id": 340,
+    "start": "00:28:11.140",
+    "end": "00:28:14.420",
+    "text": "Let's get into authentication and database stuff like full application stuff"
+  },
+  {
+    "id": 341,
+    "start": "00:28:15.380",
+    "end": "00:28:20.580",
+    "text": "Epic just seemed to communicate that too. So with epic web it was even bigger than epic react was"
+  },
+  {
+    "id": 342,
+    "start": "00:28:21.540",
+    "end": "00:28:26.820",
+    "text": "And then of course epic AI it's like well of course. It's going to be epic and everything's epic now"
+  },
+  {
+    "id": 343,
+    "start": "00:28:27.460",
+    "end": "00:28:28.980",
+    "text": "Unfortunately"
+  },
+  {
+    "id": 344,
+    "start": "00:28:28.980",
+    "end": "00:28:31.300",
+    "text": "Somebody has bought the domain epic AI"
+  },
+  {
+    "id": 345,
+    "start": "00:28:31.300",
+    "end": "00:28:35.540",
+    "text": "I don't know and they so we had epic reactive epic web dev and"
+  },
+  {
+    "id": 346,
+    "start": "00:28:36.820",
+    "end": "00:28:41.700",
+    "text": "They wanted like 30 grand for it or something. I'm not gonna pay 30 grand for that"
+  },
+  {
+    "id": 347,
+    "start": "00:28:42.260",
+    "end": "00:28:46.580",
+    "text": "And so we went with epic AI pro and I feel pretty"
+  },
+  {
+    "id": 348,
+    "start": "00:28:47.380",
+    "end": "00:28:50.020",
+    "text": "Yeah, we're pros like it's okay"
+  },
+  {
+    "id": 349,
+    "start": "00:28:50.020",
+    "end": "00:28:53.940",
+    "text": "I could tell you fine. Okay, I'm not as happy. I would be much happier if we were epic"
+  },
+  {
+    "id": 350,
+    "start": "00:28:54.500",
+    "end": "00:28:56.500",
+    "text": "But epic AI pro is good"
+  },
+  {
+    "id": 351,
+    "start": "00:28:56.500",
+    "end": "00:29:02.100",
+    "text": "Yeah, like you decide to run a developer conference. Yes. How do that go? Yeah. Yeah, so I"
+  },
+  {
+    "id": 352,
+    "start": "00:29:02.820",
+    "end": "00:29:07.780",
+    "text": "After epic react I took a little bit of a break from from creating"
+  },
+  {
+    "id": 353,
+    "start": "00:29:09.140",
+    "end": "00:29:14.020",
+    "text": "Material because a year after epic react Ryan Florence and Michael Jackson were working on"
+  },
+  {
+    "id": 354,
+    "start": "00:29:14.500",
+    "end": "00:29:18.900",
+    "text": "Remix and actually just like two months after I launched epic react"
+  },
+  {
+    "id": 355,
+    "start": "00:29:19.300",
+    "end": "00:29:23.780",
+    "text": "Remix developer preview came out and you have to pay to have access to this framework"
+  },
+  {
+    "id": 356,
+    "start": "00:29:23.780",
+    "end": "00:29:26.820",
+    "text": "They're going to try and make money charging for licenses"
+  },
+  {
+    "id": 357,
+    "start": "00:29:26.820",
+    "end": "00:29:28.500",
+    "text": "Which I guess Microsoft did that so"
+  },
+  {
+    "id": 358,
+    "start": "00:29:29.140",
+    "end": "00:29:30.660",
+    "text": "Or trust it kind of work"
+  },
+  {
+    "id": 359,
+    "start": "00:29:30.660",
+    "end": "00:29:38.020",
+    "text": "But yeah, so I had been working with it. I was like, yeah, this is absolutely the way I want to build react apps and if it's the way I want to build it so way"
+  },
+  {
+    "id": 360,
+    "start": "00:29:38.020",
+    "end": "00:29:41.380",
+    "text": "What I want to teach and so I'm talking with them"
+  },
+  {
+    "id": 361,
+    "start": "00:29:42.100",
+    "end": "00:29:44.100",
+    "text": "It's"
+  },
+  {
+    "id": 362,
+    "start": "00:29:44.100",
+    "end": "00:29:49.700",
+    "text": "Eventually became clear that like it's not really ready for something like epic react for remix and so"
+  },
+  {
+    "id": 363,
+    "start": "00:29:50.740",
+    "end": "00:29:56.260",
+    "text": "They asked me to just join up and be a co-founder with them and so I joined up and I was with them for"
+  },
+  {
+    "id": 364,
+    "start": "00:29:57.460",
+    "end": "00:30:04.260",
+    "text": "For a while, but as soon as I joined up we launched the open source version of remix and then I was like we need to have a conference"
+  },
+  {
+    "id": 365,
+    "start": "00:30:05.140",
+    "end": "00:30:07.140",
+    "text": "I'm"
+  },
+  {
+    "id": 366,
+    "start": "00:30:07.140",
+    "end": "00:30:13.380",
+    "text": "Been speaking at conferences for a long time. I think bringing people together is what motivates people to build really cool things"
+  },
+  {
+    "id": 367,
+    "start": "00:30:14.340",
+    "end": "00:30:18.980",
+    "text": "You have a lot of examples of things that have conference driven development and stuff like that"
+  },
+  {
+    "id": 368,
+    "start": "00:30:18.980",
+    "end": "00:30:21.620",
+    "text": "So you just want to get people together and so I"
+  },
+  {
+    "id": 369,
+    "start": "00:30:21.940",
+    "end": "00:30:26.420",
+    "text": "There's a company in Utah that has been running ng-conf for Angular for a long time"
+  },
+  {
+    "id": 370,
+    "start": "00:30:26.420",
+    "end": "00:30:28.660",
+    "text": "They run a whole bunch of it. They've run react-conf"
+  },
+  {
+    "id": 371,
+    "start": "00:30:29.220",
+    "end": "00:30:33.780",
+    "text": "Number of times as well, and so I reached out to them and we organized remix-conf"
+  },
+  {
+    "id": 372,
+    "start": "00:30:34.580",
+    "end": "00:30:38.580",
+    "text": "Over 300 people there six months after open sourcing like this pretty"
+  },
+  {
+    "id": 373,
+    "start": "00:30:39.700",
+    "end": "00:30:42.100",
+    "text": "Yeah, pretty significant pretty cool and then"
+  },
+  {
+    "id": 374,
+    "start": "00:30:43.140",
+    "end": "00:30:49.620",
+    "text": "I schedule remix-conf your two. I decide to leave and then I go start building epic web"
+  },
+  {
+    "id": 375,
+    "start": "00:30:50.500",
+    "end": "00:30:51.620",
+    "text": "And"
+  },
+  {
+    "id": 376,
+    "start": "00:30:51.620",
+    "end": "00:30:57.780",
+    "text": "Shopify asked me can you run your two for us and so I ran your two and then the following year. I'd launched epic web"
+  },
+  {
+    "id": 377,
+    "start": "00:30:58.740",
+    "end": "00:31:05.460",
+    "text": "And I was like, I kind of like running this conference. So I shifted it now. I wasn't at remix anymore. I shifted it over to epic web"
+  },
+  {
+    "id": 378,
+    "start": "00:31:05.860",
+    "end": "00:31:08.820",
+    "text": "Conf. And so ran that two years in a row and"
+  },
+  {
+    "id": 379,
+    "start": "00:31:09.540",
+    "end": "00:31:13.940",
+    "text": "It's just I really get a kick out of getting people together. It's fun. It's something you know"
+  },
+  {
+    "id": 380,
+    "start": "00:31:13.940",
+    "end": "00:31:17.060",
+    "text": "We even just hear whenever I'm on campus, right? Because I live"
+  },
+  {
+    "id": 381,
+    "start": "00:31:17.620",
+    "end": "00:31:23.140",
+    "text": "Down in Oregon and in Berksdown and in Tennessee and like we're all over but the conversations that you have when you put two people"
+  },
+  {
+    "id": 382,
+    "start": "00:31:23.140",
+    "end": "00:31:28.020",
+    "text": "Three people for people in a room. It's completely different and Katie on my team. We're just talking about that and just"
+  },
+  {
+    "id": 383,
+    "start": "00:31:28.100",
+    "end": "00:31:34.180",
+    "text": "Even getting to know somebody and sort of not just you can ask questions when you're talking to someone"
+  },
+  {
+    "id": 384,
+    "start": "00:31:34.180",
+    "end": "00:31:39.780",
+    "text": "I'm like a team scholar zoom call when you're actually making different connections like sort of like sticks a little bit more like you and I had a great"
+  },
+  {
+    "id": 385,
+    "start": "00:31:39.780",
+    "end": "00:31:42.980",
+    "text": "Conversation my family and my family. Yeah, I think hopefully you'll remember a little bit"
+  },
+  {
+    "id": 386,
+    "start": "00:31:42.980",
+    "end": "00:31:48.900",
+    "text": "I remember a little bit of that but when you're switching that context as you know that next call is coming it's a little bit different"
+  },
+  {
+    "id": 387,
+    "start": "00:31:48.900",
+    "end": "00:31:53.140",
+    "text": "And I love the conference lead moment because this year's build I feel like it was awesome"
+  },
+  {
+    "id": 388,
+    "start": "00:31:53.140",
+    "end": "00:31:56.660",
+    "text": "The people were up build. It was fantastic and we'll get you there. I can't do it"
+  },
+  {
+    "id": 389,
+    "start": "00:31:56.660",
+    "end": "00:32:00.980",
+    "text": "But I really feel that way when people are at the booth and they're talking to you even at"
+  },
+  {
+    "id": 390,
+    "start": "00:32:00.980",
+    "end": "00:32:03.620",
+    "text": "Combs I've been at Combs is the same any of them they're all the same like"
+  },
+  {
+    "id": 391,
+    "start": "00:32:03.620",
+    "end": "00:32:08.180",
+    "text": "Because there's come in there's want to talk to engineers talking to engineers and he's like you just like thrive off of that"
+  },
+  {
+    "id": 392,
+    "start": "00:32:08.180",
+    "end": "00:32:10.180",
+    "text": "Right just so it's a great moment"
+  },
+  {
+    "id": 393,
+    "start": "00:32:11.940",
+    "end": "00:32:15.840",
+    "text": "But running conferences is complicated any like I know we're gonna talk about a big guy"
+  },
+  {
+    "id": 394,
+    "start": "00:32:15.840",
+    "end": "00:32:20.500",
+    "text": "I said boy, but any lessons learned from running these conferences because a lot of people are always interested in running"
+  },
+  {
+    "id": 395,
+    "start": "00:32:20.500",
+    "end": "00:32:27.140",
+    "text": "Combs is we used to have a done at fringe conference down in Portland and it was just like one track people in a room"
+  },
+  {
+    "id": 396,
+    "start": "00:32:27.140",
+    "end": "00:32:29.940",
+    "text": "Like it just kind of happened. I've no idea what happened. The hard as it were great"
+  },
+  {
+    "id": 397,
+    "start": "00:32:30.340",
+    "end": "00:32:36.020",
+    "text": "But any lessons learned like things that you would tell people they're interested in starting sort of conferences like this"
+  },
+  {
+    "id": 398,
+    "start": "00:32:36.020",
+    "end": "00:32:42.740",
+    "text": "Yeah, I would say for anybody who is wanting to get people well first you got to decide what is your motivation like what's your primary"
+  },
+  {
+    "id": 399,
+    "start": "00:32:43.380",
+    "end": "00:32:44.740",
+    "text": "goal"
+  },
+  {
+    "id": 400,
+    "start": "00:32:44.740",
+    "end": "00:32:47.940",
+    "text": "For most people it's just I don't know if you just kind of want to get people together"
+  },
+  {
+    "id": 401,
+    "start": "00:32:48.420",
+    "end": "00:32:55.060",
+    "text": "And if that's the case then it doesn't have to be big and impressive and have like a ton of people if you're the kind of person"
+  },
+  {
+    "id": 402,
+    "start": "00:32:55.060",
+    "end": "00:33:00.980",
+    "text": "He's like oh, I want to make a bunch of money. There are other ways to do that, but it like you can it is possible"
+  },
+  {
+    "id": 403,
+    "start": "00:33:00.980",
+    "end": "00:33:07.140",
+    "text": "I know people who throw really big events and and in that case you just want to chase whatever's hot, and you know"
+  },
+  {
+    "id": 404,
+    "start": "00:33:07.540",
+    "end": "00:33:11.620",
+    "text": "Whatever's got the money and stuff, but that's not what I do bringing people together"
+  },
+  {
+    "id": 405,
+    "start": "00:33:13.220",
+    "end": "00:33:17.460",
+    "text": "You can do that with a meetup and then you evolve the meetup. That's what I would suggest"
+  },
+  {
+    "id": 406,
+    "start": "00:33:18.660",
+    "end": "00:33:27.060",
+    "text": "I ran a couple of other events before and then like the other benefit as I did have that company that has run many events before"
+  },
+  {
+    "id": 407,
+    "start": "00:33:27.060",
+    "end": "00:33:33.780",
+    "text": "So I just I was in charge of the website finding sponsors and finding speakers and that was my job and I can totally do that"
+  },
+  {
+    "id": 408,
+    "start": "00:33:33.780",
+    "end": "00:33:38.660",
+    "text": "I have good relationships with people and everything. So yeah, if you're just getting into this my biggest advice would be"
+  },
+  {
+    "id": 409,
+    "start": "00:33:39.300",
+    "end": "00:33:41.780",
+    "text": "Start accruing those relationships"
+  },
+  {
+    "id": 410,
+    "start": "00:33:42.180",
+    "end": "00:33:43.780",
+    "text": "Not just with"
+  },
+  {
+    "id": 411,
+    "start": "00:33:43.780",
+    "end": "00:33:45.780",
+    "text": "potential speakers, but also with sponsors"
+  },
+  {
+    "id": 412,
+    "start": "00:33:46.900",
+    "end": "00:33:48.500",
+    "text": "Because these events"
+  },
+  {
+    "id": 413,
+    "start": "00:33:48.740",
+    "end": "00:33:50.740",
+    "text": "Even if you do something small and simple"
+  },
+  {
+    "id": 414,
+    "start": "00:33:51.620",
+    "end": "00:33:55.940",
+    "text": "Food just costs a lot if you cost a lot, but that's the thing too is"
+  },
+  {
+    "id": 415,
+    "start": "00:33:57.140",
+    "end": "00:33:59.540",
+    "text": "It doesn't have to be huge you don't have to record it"
+  },
+  {
+    "id": 416,
+    "start": "00:33:59.940",
+    "end": "00:34:01.300",
+    "text": "You can"
+  },
+  {
+    "id": 417,
+    "start": "00:34:01.300",
+    "end": "00:34:06.500",
+    "text": "Just do it in some office or something. It doesn't have to be a big thing because the goal is just getting people together"
+  },
+  {
+    "id": 418,
+    "start": "00:34:07.460",
+    "end": "00:34:11.140",
+    "text": "And you can do that in a simple way and then iterate to something"
+  },
+  {
+    "id": 419,
+    "start": "00:34:11.460",
+    "end": "00:34:13.220",
+    "text": "Bigger and more"
+  },
+  {
+    "id": 420,
+    "start": "00:34:13.220",
+    "end": "00:34:17.940",
+    "text": "Full yeah, create those spaces for people to have those conversations. Yeah, I think that's the biggest part"
+  },
+  {
+    "id": 421,
+    "start": "00:34:17.940",
+    "end": "00:34:22.340",
+    "text": "Where I talked to my team or talk to go to every conference my favorite thing is the hallway track"
+  },
+  {
+    "id": 422,
+    "start": "00:34:22.900",
+    "end": "00:34:26.500",
+    "text": "Just be hanging out and talking. Yeah, that's all I kind of wanted to do and there was a time"
+  },
+  {
+    "id": 423,
+    "start": "00:34:27.060",
+    "end": "00:34:31.140",
+    "text": "You know right after COVID or I was like I kind of want to get in and I want to get out and now in the last few years"
+  },
+  {
+    "id": 424,
+    "start": "00:34:31.140",
+    "end": "00:34:35.780",
+    "text": "I've been getting back and like I'm like I just I'm not going to leave the conference hall or the center"
+  },
+  {
+    "id": 425,
+    "start": "00:34:35.780",
+    "end": "00:34:38.180",
+    "text": "I'm just going to be here. I tell everyone after my talk like you"
+  },
+  {
+    "id": 426,
+    "start": "00:34:38.660",
+    "end": "00:34:42.260",
+    "text": "You if you don't see me then tell my boss. I've done something wrong"
+  },
+  {
+    "id": 427,
+    "start": "00:34:42.260",
+    "end": "00:34:46.500",
+    "text": "Like you will find you will see me. I will be at lunch. I'll be here. I'll be lingering. If you see me"
+  },
+  {
+    "id": 428,
+    "start": "00:34:46.500",
+    "end": "00:34:52.340",
+    "text": "I'm here engage with me. I give someone the 10 day conference like I don't care if it's kind I don't care if it's hands"
+  },
+  {
+    "id": 429,
+    "start": "00:34:52.340",
+    "end": "00:34:56.660",
+    "text": "I don't care if it's satia. Let's go to say hello. So go up to them like they're there for you"
+  },
+  {
+    "id": 430,
+    "start": "00:34:56.660",
+    "end": "00:35:02.180",
+    "text": "I think there's something that I've learned in my many years of doing this is like that's kind of my favorite part"
+  },
+  {
+    "id": 431,
+    "start": "00:35:02.180",
+    "end": "00:35:06.100",
+    "text": "Some people come and talk. Yeah, you know like I think you're worried that they're gonna"
+  },
+  {
+    "id": 432,
+    "start": "00:35:06.820",
+    "end": "00:35:12.420",
+    "text": "Be bothered by you being there if they were bothered they would leave right and so they're"
+  },
+  {
+    "id": 433,
+    "start": "00:35:13.140",
+    "end": "00:35:18.260",
+    "text": "They're not gonna be bothered the other thing that you hear is like don't meet your heroes because they're gonna be mean or something"
+  },
+  {
+    "id": 434,
+    "start": "00:35:18.820",
+    "end": "00:35:23.540",
+    "text": "Honestly like most of the time they're not and if they are then it's good good for you to know"
+  },
+  {
+    "id": 435,
+    "start": "00:35:24.740",
+    "end": "00:35:30.740",
+    "text": "That's like what maybe you shouldn't to heroize them. I guess if that's a word, but yeah, I"
+  },
+  {
+    "id": 436,
+    "start": "00:35:31.700",
+    "end": "00:35:37.460",
+    "text": "Most of the time they're much more interested in talking with you than you might think. Yeah, I totally agree"
+  },
+  {
+    "id": 437,
+    "start": "00:35:37.460",
+    "end": "00:35:39.460",
+    "text": "All right, let's talk about a big AI"
+  },
+  {
+    "id": 438,
+    "start": "00:35:39.460",
+    "end": "00:35:46.020",
+    "text": "When you went from like epic react epic web and you've involved this is that just like you've been looking at like the trend in the industry"
+  },
+  {
+    "id": 439,
+    "start": "00:35:46.020",
+    "end": "00:35:50.500",
+    "text": "Or is this like feedback from your students and genre makes a both like how does this evolve?"
+  },
+  {
+    "id": 440,
+    "start": "00:35:50.500",
+    "end": "00:35:52.740",
+    "text": "I was all evolving. Yeah. Yeah. I definitely"
+  },
+  {
+    "id": 441,
+    "start": "00:35:53.380",
+    "end": "00:35:58.580",
+    "text": "Watch and listen to my students and like make sure that I'm addressing the needs that they have"
+  },
+  {
+    "id": 442,
+    "start": "00:35:58.740",
+    "end": "00:36:00.740",
+    "text": "But my primary"
+  },
+  {
+    "id": 443,
+    "start": "00:36:01.780",
+    "end": "00:36:06.500",
+    "text": "Directive or the thing that directs me is what interests me and and what I think is"
+  },
+  {
+    "id": 444,
+    "start": "00:36:07.380",
+    "end": "00:36:12.180",
+    "text": "The best way to build the best user experience. So I go out and I build something and I'm like wow"
+  },
+  {
+    "id": 445,
+    "start": "00:36:12.180",
+    "end": "00:36:16.180",
+    "text": "That was really great way to do this. Let me figure out how to make this even better"
+  },
+  {
+    "id": 446,
+    "start": "00:36:16.900",
+    "end": "00:36:19.780",
+    "text": "To solve this particular problem. Then I'll go teach people how to do it. So"
+  },
+  {
+    "id": 447,
+    "start": "00:36:20.660",
+    "end": "00:36:23.540",
+    "text": "With testing that was okay. I'm"
+  },
+  {
+    "id": 448,
+    "start": "00:36:23.860",
+    "end": "00:36:29.140",
+    "text": "Solving testing problems at work and in my open source stuff now I'll teach people how I did that and then with react"
+  },
+  {
+    "id": 449,
+    "start": "00:36:29.140",
+    "end": "00:36:33.460",
+    "text": "It's like okay. I'm building on these react applications. I mean at PayPal in particular at the time"
+  },
+  {
+    "id": 450,
+    "start": "00:36:34.260",
+    "end": "00:36:39.860",
+    "text": "Let me show people how I have done that. Okay, and now we're I'm building I built Kentc.com"
+  },
+  {
+    "id": 451,
+    "start": "00:36:40.420",
+    "end": "00:36:42.420",
+    "text": "Redit it from scratch"
+  },
+  {
+    "id": 452,
+    "start": "00:36:42.420",
+    "end": "00:36:44.420",
+    "text": "Way over scoped for any"
+  },
+  {
+    "id": 453,
+    "start": "00:36:44.820",
+    "end": "00:36:50.660",
+    "text": "Personal website. You mean you did it right? Yeah, yeah, so I make a point to say over scoped not over engineered"
+  },
+  {
+    "id": 454,
+    "start": "00:36:51.620",
+    "end": "00:36:54.980",
+    "text": "So it yeah, it's definitely a way more complicated than most personal websites"
+  },
+  {
+    "id": 455,
+    "start": "00:36:54.980",
+    "end": "00:36:59.380",
+    "text": "How then you write to be but I am very intentionally did that so that I could know"
+  },
+  {
+    "id": 456,
+    "start": "00:36:59.380",
+    "end": "00:37:04.500",
+    "text": "Okay, what does it take to build an app like this with the modern tools that we have and then epic web and teaching how to do that"
+  },
+  {
+    "id": 457,
+    "start": "00:37:04.500",
+    "end": "00:37:06.500",
+    "text": "So epic AI is the same"
+  },
+  {
+    "id": 458,
+    "start": "00:37:07.220",
+    "end": "00:37:11.300",
+    "text": "I just looked at the landscape how our user like how is this AI?"
+  },
+  {
+    "id": 459,
+    "start": "00:37:11.300",
+    "end": "00:37:13.300",
+    "text": "I think going to change the way that we are"
+  },
+  {
+    "id": 460,
+    "start": "00:37:14.660",
+    "end": "00:37:19.300",
+    "text": "And typically I'm thinking through the lens of a product engineer because that's how I grew up"
+  },
+  {
+    "id": 461,
+    "start": "00:37:19.380",
+    "end": "00:37:21.380",
+    "text": "That was a product engineer and"
+  },
+  {
+    "id": 462,
+    "start": "00:37:22.660",
+    "end": "00:37:27.860",
+    "text": "And I'm thinking okay. How is this going to change the way that a product engineer approaches their users or or even me?"
+  },
+  {
+    "id": 463,
+    "start": "00:37:27.860",
+    "end": "00:37:29.380",
+    "text": "I am a product engineer still"
+  },
+  {
+    "id": 464,
+    "start": "00:37:30.900",
+    "end": "00:37:37.460",
+    "text": "Working independently and and so how does this change away? I develop software and then I go and develop software that way"
+  },
+  {
+    "id": 465,
+    "start": "00:37:37.460",
+    "end": "00:37:42.980",
+    "text": "Kind of figure out how to do it and then I teach people how I did that and I really do believe that"
+  },
+  {
+    "id": 466,
+    "start": "00:37:43.060",
+    "end": "00:37:48.100",
+    "text": "MCP is going to have a major role in the way that we develop software for our users and"
+  },
+  {
+    "id": 467,
+    "start": "00:37:48.420",
+    "end": "00:37:53.620",
+    "text": "Deliver our services to to our users and so that's why I've pivoted so much to this now"
+  },
+  {
+    "id": 468,
+    "start": "00:37:54.180",
+    "end": "00:37:58.820",
+    "text": "React and testing like those all of that still exists over there and if you need to learn that stuff"
+  },
+  {
+    "id": 469,
+    "start": "00:37:59.060",
+    "end": "00:38:03.060",
+    "text": "Testingjowscript.com epic react epic web still really great go use that"
+  },
+  {
+    "id": 470,
+    "start": "00:38:04.500",
+    "end": "00:38:11.220",
+    "text": "But tomorrow you're gonna be like oh shoot, I need to learn how to connect my service with these AI agents"
+  },
+  {
+    "id": 471,
+    "start": "00:38:11.940",
+    "end": "00:38:16.020",
+    "text": "And I'll be there ready for you when you you're ready. I do feel like there's a"
+  },
+  {
+    "id": 472,
+    "start": "00:38:16.980",
+    "end": "00:38:19.620",
+    "text": "A lot of questions about do feel like to that point"
+  },
+  {
+    "id": 473,
+    "start": "00:38:20.340",
+    "end": "00:38:24.900",
+    "text": "Like a lot of you like it's always the best time to learn is like now, but you know, and if you're not there"
+  },
+  {
+    "id": 474,
+    "start": "00:38:24.900",
+    "end": "00:38:26.900",
+    "text": "It's okay tomorrow or the next day or whatever"
+  },
+  {
+    "id": 475,
+    "start": "00:38:26.980",
+    "end": "00:38:33.780",
+    "text": "But I do find that you know because I can be in the space at Microsoft and AI of all thing and co-pilot and VS code and just all the stuff"
+  },
+  {
+    "id": 476,
+    "start": "00:38:34.260",
+    "end": "00:38:39.860",
+    "text": "That when I start to talk to engineers talk to companies there's tons of people you can feel like you're behind"
+  },
+  {
+    "id": 477,
+    "start": "00:38:39.940",
+    "end": "00:38:44.340",
+    "text": "But you're not like you can actually you're not super behind it all and if you're looking to start now"
+  },
+  {
+    "id": 478,
+    "start": "00:38:44.340",
+    "end": "00:38:48.740",
+    "text": "You're actually way ahead than like a lot of other people. Yeah because a lot of companies a lot of enterprise are just now"
+  },
+  {
+    "id": 479,
+    "start": "00:38:48.740",
+    "end": "00:38:51.380",
+    "text": "So we're in there. They're figuring out what tools are out there. What should they use?"
+  },
+  {
+    "id": 480,
+    "start": "00:38:51.380",
+    "end": "00:38:55.060",
+    "text": "How do you work when you have a web team a back in team a mobile team?"
+  },
+  {
+    "id": 481,
+    "start": "00:38:55.060",
+    "end": "00:38:57.620",
+    "text": "You know using all different programming languages different tools"
+  },
+  {
+    "id": 482,
+    "start": "00:38:57.620",
+    "end": "00:39:03.300",
+    "text": "How does that all come together? So as you're evolving this like how did it? How is the impact of just AI?"
+  },
+  {
+    "id": 483,
+    "start": "00:39:03.300",
+    "end": "00:39:07.620",
+    "text": "Not just MCP, but AI just impacted you as a personal developer like that's what you were looking at"
+  },
+  {
+    "id": 484,
+    "start": "00:39:07.620",
+    "end": "00:39:10.420",
+    "text": "I was like how was it in every buddy right it's"
+  },
+  {
+    "id": 485,
+    "start": "00:39:11.380",
+    "end": "00:39:14.980",
+    "text": "Three or so years ago when chat GPT came out like that was"
+  },
+  {
+    "id": 486,
+    "start": "00:39:16.260",
+    "end": "00:39:21.700",
+    "text": "We've had LLMs before. It's not like this is a new thing, but what was new was the ease of access to"
+  },
+  {
+    "id": 487,
+    "start": "00:39:22.020",
+    "end": "00:39:29.220",
+    "text": "LLMs and from that moment I like you probably threw code at it and like what can you do with this code and so"
+  },
+  {
+    "id": 488,
+    "start": "00:39:30.340",
+    "end": "00:39:37.220",
+    "text": "It instantly changed things like I could paste in even syntax that I'd not not seem before or a language that I'm not familiar with and ask"
+  },
+  {
+    "id": 489,
+    "start": "00:39:37.300",
+    "end": "00:39:42.420",
+    "text": "Questions about that so it instantly impacted the way that we develop software and and learn about software"
+  },
+  {
+    "id": 490,
+    "start": "00:39:42.420",
+    "end": "00:39:47.940",
+    "text": "Especially me as an educator. I'm taking okay, so how does this change the way that I educated about software?"
+  },
+  {
+    "id": 491,
+    "start": "00:39:47.940",
+    "end": "00:39:49.940",
+    "text": "I got thoughts on that too, but"
+  },
+  {
+    "id": 492,
+    "start": "00:39:50.580",
+    "end": "00:39:52.580",
+    "text": "Yeah from from an impact standpoint"
+  },
+  {
+    "id": 493,
+    "start": "00:39:53.060",
+    "end": "00:39:57.060",
+    "text": "There are a lot of gaps that are left because"
+  },
+  {
+    "id": 494,
+    "start": "00:39:58.100",
+    "end": "00:40:04.260",
+    "text": "Just the way that LLMs work and and these applications are filling in those gaps is best they can by adding the necessary"
+  },
+  {
+    "id": 495,
+    "start": "00:40:04.340",
+    "end": "00:40:09.060",
+    "text": "Contacts to make sure they're not adding irrelevant context like that context engineering mindset"
+  },
+  {
+    "id": 496,
+    "start": "00:40:10.180",
+    "end": "00:40:13.700",
+    "text": "Is a constant challenge that we're just getting better at all the time"
+  },
+  {
+    "id": 497,
+    "start": "00:40:14.900",
+    "end": "00:40:19.700",
+    "text": "But I was sticking around with react and and full stack"
+  },
+  {
+    "id": 498,
+    "start": "00:40:20.180",
+    "end": "00:40:22.180",
+    "text": "Remakes react router all of that"
+  },
+  {
+    "id": 499,
+    "start": "00:40:22.740",
+    "end": "00:40:26.180",
+    "text": "Even with all of this and what made me make this pivot"
+  },
+  {
+    "id": 500,
+    "start": "00:40:27.060",
+    "end": "00:40:33.380",
+    "text": "Was MCP because I would see people building chat bots in their applications and like okay"
+  },
+  {
+    "id": 501,
+    "start": "00:40:33.380",
+    "end": "00:40:36.100",
+    "text": "I can teach people how to do that like I could do that sure"
+  },
+  {
+    "id": 502,
+    "start": "00:40:37.140",
+    "end": "00:40:38.420",
+    "text": "But I"
+  },
+  {
+    "id": 503,
+    "start": "00:40:38.820",
+    "end": "00:40:45.300",
+    "text": "Users don't want a chat bot in your application like yes, they do want to be able to communicate with your service using natural language"
+  },
+  {
+    "id": 504,
+    "start": "00:40:45.540",
+    "end": "00:40:52.020",
+    "text": "Absolutely but they don't want to have to say okay. I'm gonna copy paste context from this chat bot into this one and then from you know"
+  },
+  {
+    "id": 505,
+    "start": "00:40:52.020",
+    "end": "00:40:56.260",
+    "text": "What comes out of that goes into this one and then it comes back here and like all of that context"
+  },
+  {
+    "id": 506,
+    "start": "00:40:56.980",
+    "end": "00:41:03.060",
+    "text": "Movement and oh, yeah, this chat bot doesn't know my personal preferences and I got to like they want a single"
+  },
+  {
+    "id": 507,
+    "start": "00:41:03.540",
+    "end": "00:41:05.540",
+    "text": "general"
+  },
+  {
+    "id": 508,
+    "start": "00:41:05.540",
+    "end": "00:41:09.780",
+    "text": "Chat bot that knows everything they want to know about them"
+  },
+  {
+    "id": 509,
+    "start": "00:41:10.580",
+    "end": "00:41:16.500",
+    "text": "That can communicate with all these services and so that just never captured me as a thing that product engineers are gonna do"
+  },
+  {
+    "id": 510,
+    "start": "00:41:16.500",
+    "end": "00:41:22.020",
+    "text": "There will be some people who work in those spaces for sure and there are lower levels as well"
+  },
+  {
+    "id": 511,
+    "start": "00:41:22.900",
+    "end": "00:41:28.180",
+    "text": "But again, I'm just thinking about the product engineers and in my mind most of the product engineers were still doing"
+  },
+  {
+    "id": 512,
+    "start": "00:41:28.420",
+    "end": "00:41:31.620",
+    "text": "React up and in fact, that's probably still certainly is still the case"
+  },
+  {
+    "id": 513,
+    "start": "00:41:32.820",
+    "end": "00:41:38.580",
+    "text": "But I think in the coming year or so we're going to see a lot more people transitioning"
+  },
+  {
+    "id": 514,
+    "start": "00:41:39.380",
+    "end": "00:41:43.860",
+    "text": "Over into the MCP space where you why will still be relevant? I think react"
+  },
+  {
+    "id": 515,
+    "start": "00:41:44.340",
+    "end": "00:41:46.340",
+    "text": "still has relevance"
+  },
+  {
+    "id": 516,
+    "start": "00:41:46.340",
+    "end": "00:41:54.020",
+    "text": "Possibility there too, but yeah, the real point is I'm thinking about the product engineer and it wasn't until MCP that I thought okay"
+  },
+  {
+    "id": 517,
+    "start": "00:41:54.020",
+    "end": "00:41:57.620",
+    "text": "This is product engineers gonna be interacting with AI in this way"
+  },
+  {
+    "id": 518,
+    "start": "00:41:58.020",
+    "end": "00:42:05.940",
+    "text": "Yeah, when you what was it about what when you saw MCP like what was it that kind of clicked for you like what was it that you're like like"
+  },
+  {
+    "id": 519,
+    "start": "00:42:05.940",
+    "end": "00:42:10.100",
+    "text": "Oh, this is the thing. Well, so I had been talking with my friend Ryan Florence"
+  },
+  {
+    "id": 520,
+    "start": "00:42:11.620",
+    "end": "00:42:15.940",
+    "text": "For about a year we were driving home together from a react to comp"
+  },
+  {
+    "id": 521,
+    "start": "00:42:16.980",
+    "end": "00:42:25.060",
+    "text": "at 24 last year and talking about how AI is changing over the course like that's half of our conversation"
+  },
+  {
+    "id": 522,
+    "start": "00:42:25.540",
+    "end": "00:42:31.540",
+    "text": "That's all it is all years has been just about AI and how it's changing things is very exciting. We use that we're a lot and"
+  },
+  {
+    "id": 523,
+    "start": "00:42:32.100",
+    "end": "00:42:35.460",
+    "text": "I'll probably use the word exciting a couple times in this conversation, but"
+  },
+  {
+    "id": 524,
+    "start": "00:42:36.740",
+    "end": "00:42:38.740",
+    "text": "He was talking about Jarvis"
+  },
+  {
+    "id": 525,
+    "start": "00:42:38.740",
+    "end": "00:42:40.740",
+    "text": "and he was like like"
+  },
+  {
+    "id": 526,
+    "start": "00:42:40.740",
+    "end": "00:42:46.180",
+    "text": "Tony Stark just has this thing and it just does he he says I need this thing and Jarvis just builds the app"
+  },
+  {
+    "id": 527,
+    "start": "00:42:46.900",
+    "end": "00:42:49.860",
+    "text": "You know in real time it you know exactly what he needs and"
+  },
+  {
+    "id": 528,
+    "start": "00:42:50.100",
+    "end": "00:42:56.820",
+    "text": "And this was like really early v0 days too, so and and bolts new and all that like before bolt"
+  },
+  {
+    "id": 529,
+    "start": "00:42:58.260",
+    "end": "00:43:04.420",
+    "text": "And so I just been thinking about this a lot and then I had epic webconfter on this year and once that was done"
+  },
+  {
+    "id": 530,
+    "start": "00:43:04.420",
+    "end": "00:43:09.460",
+    "text": "I actually Ryan was gonna come speak at the conference he was sick and so I brought all this swag over to his house"
+  },
+  {
+    "id": 531,
+    "start": "00:43:09.460",
+    "end": "00:43:15.220",
+    "text": "And I was like hey, sorry, he was sick. Here's that and then we got to talking and it was now"
+  },
+  {
+    "id": 532,
+    "start": "00:43:15.220",
+    "end": "00:43:18.260",
+    "text": "Okay, I'm done with the conference. What am I gonna do next and he was like"
+  },
+  {
+    "id": 533,
+    "start": "00:43:18.900",
+    "end": "00:43:25.220",
+    "text": "You need to look at the MCP thing and I hadn't actually heard about it because I was so focused on that react conference and"
+  },
+  {
+    "id": 534,
+    "start": "00:43:25.700",
+    "end": "00:43:27.700",
+    "text": "The epic web conference and"
+  },
+  {
+    "id": 535,
+    "start": "00:43:27.700",
+    "end": "00:43:31.540",
+    "text": "So I looked into it and like oh, okay now so before it was Jarvis"
+  },
+  {
+    "id": 536,
+    "start": "00:43:32.260",
+    "end": "00:43:34.260",
+    "text": "Is like can you answer your questions?"
+  },
+  {
+    "id": 537,
+    "start": "00:43:34.660",
+    "end": "00:43:42.980",
+    "text": "There are some specific tool integrations you can build and so like you still have the integration problem at that point where you have to build a tool for every single little thing"
+  },
+  {
+    "id": 538,
+    "start": "00:43:42.980",
+    "end": "00:43:47.540",
+    "text": "You with a developer if you want to make Jarvis you have to make all those integrations and then"
+  },
+  {
+    "id": 539,
+    "start": "00:43:48.020",
+    "end": "00:43:58.100",
+    "text": "MCP it's like oh no you don't you just have to build a Jarvis that has the standard input and then other people can build the part that goes into that input"
+  },
+  {
+    "id": 540,
+    "start": "00:43:59.300",
+    "end": "00:44:02.100",
+    "text": "I don't like this analogy, but it's the USB of"
+  },
+  {
+    "id": 541,
+    "start": "00:44:02.900",
+    "end": "00:44:07.860",
+    "text": "Services I said it during the key. It's on the website. It's what they say"
+  },
+  {
+    "id": 542,
+    "start": "00:44:08.900",
+    "end": "00:44:10.900",
+    "text": "I'm not saying USB-C is the best port"
+  },
+  {
+    "id": 543,
+    "start": "00:44:12.100",
+    "end": "00:44:14.580",
+    "text": "To be but it's just what we have yeah, so"
+  },
+  {
+    "id": 544,
+    "start": "00:44:14.820",
+    "end": "00:44:20.420",
+    "text": "Exactly that really is the point though is some people complain about MCP having gaps"
+  },
+  {
+    "id": 545,
+    "start": "00:44:21.060",
+    "end": "00:44:28.020",
+    "text": "What I don't care about gaps. I care about foundations and the foundation is solid like it's could it be better?"
+  },
+  {
+    "id": 546,
+    "start": "00:44:28.020",
+    "end": "00:44:30.740",
+    "text": "Yeah, sure ever you build a house you finish building the house"
+  },
+  {
+    "id": 547,
+    "start": "00:44:31.140",
+    "end": "00:44:34.420",
+    "text": "Foundation is an exactly what I wanted it to be but it's solid and that's what matters"
+  },
+  {
+    "id": 548,
+    "start": "00:44:34.900",
+    "end": "00:44:41.540",
+    "text": "You can build something on top of that and so and then also the fact that everybody has bought it to MCP and so"
+  },
+  {
+    "id": 549,
+    "start": "00:44:42.020",
+    "end": "00:44:49.780",
+    "text": "At the time this is March the new author or actually the first part of the spec that added support for"
+  },
+  {
+    "id": 550,
+    "start": "00:44:49.780",
+    "end": "00:44:55.060",
+    "text": "Auth showed up in March and I was like okay, no you can build something real with this like actual"
+  },
+  {
+    "id": 551,
+    "start": "00:44:55.060",
+    "end": "00:45:00.900",
+    "text": "Services product engineers can expose their services to AI we can make Jarvis and that's what got me into it"
+  },
+  {
+    "id": 552,
+    "start": "00:45:00.900",
+    "end": "00:45:05.140",
+    "text": "That makes sense. I do love the Jarvis analogy. I know it's part of your talk and eras"
+  },
+  {
+    "id": 553,
+    "start": "00:45:05.140",
+    "end": "00:45:10.820",
+    "text": "Watching the champion like oh, I finally get it, right? There's sometimes like it really is just that something that kind of clicks for people"
+  },
+  {
+    "id": 554,
+    "start": "00:45:10.820",
+    "end": "00:45:14.900",
+    "text": "And and for me in an architecture when I moved into like MDVM"
+  },
+  {
+    "id": 555,
+    "start": "00:45:14.900",
+    "end": "00:45:18.900",
+    "text": "We're all the I'm a Xamil.net person. It kind of clicked for me. I was like, oh, I get it"
+  },
+  {
+    "id": 556,
+    "start": "00:45:18.900",
+    "end": "00:45:27.140",
+    "text": "I get the Xamil. I can understand this HTML JavaScript. I don't know like I get this and I remember the first time I sat down"
+  },
+  {
+    "id": 557,
+    "start": "00:45:27.780",
+    "end": "00:45:32.020",
+    "text": "And I was working with you know the copilot and chat GPT in these tools. I might"
+  },
+  {
+    "id": 558,
+    "start": "00:45:32.740",
+    "end": "00:45:37.620",
+    "text": "Do stuff and like I can regenerate code. I was like what about this? What about this? And I was in vision"
+  },
+  {
+    "id": 559,
+    "start": "00:45:37.620",
+    "end": "00:45:42.500",
+    "text": "Now I saw this like the thing that I really wanted to saw is I want it to go build the house go go do it"
+  },
+  {
+    "id": 560,
+    "start": "00:45:42.500",
+    "end": "00:45:46.740",
+    "text": "Just go do the thing I want you to do do I if you're talking to Siri or talking to Gemini or talking to copilot"
+  },
+  {
+    "id": 561,
+    "start": "00:45:46.740",
+    "end": "00:45:49.380",
+    "text": "I want you to do the thing and ever time is like oh, I can't do that yet"
+  },
+  {
+    "id": 562,
+    "start": "00:45:49.380",
+    "end": "00:45:53.940",
+    "text": "I'm like oh, but I want but do I want you to do the thing I see but in my mind I was like this is gonna happen"
+  },
+  {
+    "id": 563,
+    "start": "00:45:54.260",
+    "end": "00:45:58.420",
+    "text": "And I don't know how it's gonna happen, but at some point it's gonna happen. I remember the first time dead came to me"
+  },
+  {
+    "id": 564,
+    "start": "00:45:58.420",
+    "end": "00:46:01.540",
+    "text": "Like try this out. You're like show me an MCP server. I was like"
+  },
+  {
+    "id": 565,
+    "start": "00:46:03.060",
+    "end": "00:46:06.500",
+    "text": "Like there's an amazing and he's like I was like well, how's this different than an API"
+  },
+  {
+    "id": 566,
+    "start": "00:46:07.060",
+    "end": "00:46:12.020",
+    "text": "He's like well, no, let me explain to you guys everything. Maybe I how do you explain to people about MCP is not an API"
+  },
+  {
+    "id": 567,
+    "start": "00:46:12.020",
+    "end": "00:46:14.660",
+    "text": "When you're going and you're talking to your students like oh, you know"
+  },
+  {
+    "id": 568,
+    "start": "00:46:14.660",
+    "end": "00:46:21.220",
+    "text": "I have I've invested 10 years in restful APIs and I moved on to GraphQL like how is this different?"
+  },
+  {
+    "id": 569,
+    "start": "00:46:21.220",
+    "end": "00:46:23.940",
+    "text": "Why can't does all these elements just call every single swagger API?"
+  },
+  {
+    "id": 570,
+    "start": "00:46:23.940",
+    "end": "00:46:29.620",
+    "text": "Yeah, yeah, yeah, there we have a bit API why not exactly that honestly that is such a common question"
+  },
+  {
+    "id": 571,
+    "start": "00:46:30.100",
+    "end": "00:46:34.180",
+    "text": "As soon as I introduce tools that's one of the first questions from people is okay"
+  },
+  {
+    "id": 572,
+    "start": "00:46:34.500",
+    "end": "00:46:39.780",
+    "text": "Is there like some sort of tool that can just take my open API and expose those things as tools?"
+  },
+  {
+    "id": 573,
+    "start": "00:46:40.660",
+    "end": "00:46:42.660",
+    "text": "The answer is yes, there is"
+  },
+  {
+    "id": 574,
+    "start": "00:46:42.980",
+    "end": "00:46:49.300",
+    "text": "But yeah, and I recommend you try it so that you can at first hand experience why it's a bad idea"
+  },
+  {
+    "id": 575,
+    "start": "00:46:50.340",
+    "end": "00:46:52.340",
+    "text": "so like"
+  },
+  {
+    "id": 576,
+    "start": "00:46:52.660",
+    "end": "00:46:56.420",
+    "text": "The the real unlock for me when thinking about assistance and"
+  },
+  {
+    "id": 577,
+    "start": "00:46:56.980",
+    "end": "00:46:58.980",
+    "text": "MCP is to"
+  },
+  {
+    "id": 578,
+    "start": "00:46:59.940",
+    "end": "00:47:03.140",
+    "text": "Okay, AI is not a human that's just to be clear"
+  },
+  {
+    "id": 579,
+    "start": "00:47:03.380",
+    "end": "00:47:09.140",
+    "text": "But if you think of it as a human then it a lot of things make a lot more sense now it's a really capable"
+  },
+  {
+    "id": 580,
+    "start": "00:47:09.460",
+    "end": "00:47:14.740",
+    "text": "Confident human it's not an intelligent human it just has a lot of experience but it"
+  },
+  {
+    "id": 581,
+    "start": "00:47:16.420",
+    "end": "00:47:23.060",
+    "text": "For humans even if you hired a human assistant to accomplish the task that assistance can I go to Google or being"
+  },
+  {
+    "id": 582,
+    "start": "00:47:23.620",
+    "end": "00:47:25.620",
+    "text": "And it's going to do a search"
+  },
+  {
+    "id": 583,
+    "start": "00:47:25.780",
+    "end": "00:47:29.940",
+    "text": "Find the tools that are necessary to accomplish the task and then execute on those"
+  },
+  {
+    "id": 584,
+    "start": "00:47:30.020",
+    "end": "00:47:34.500",
+    "text": "But the the search results are going to give it websites that have links and buttons and things that are very clear"
+  },
+  {
+    "id": 585,
+    "start": "00:47:34.900",
+    "end": "00:47:36.900",
+    "text": "Very clear workflows and stuff"
+  },
+  {
+    "id": 586,
+    "start": "00:47:36.900",
+    "end": "00:47:40.820",
+    "text": "Each one of those websites could also just return a page that has"
+  },
+  {
+    "id": 587,
+    "start": "00:47:41.540",
+    "end": "00:47:48.660",
+    "text": "Like you can generate a website from an open API now spec right like you here's all the mutations and all the everything"
+  },
+  {
+    "id": 588,
+    "start": "00:47:49.460",
+    "end": "00:47:55.380",
+    "text": "And you can generate forms out of that there's a reason we don't do that and it's because it's too confusing for a human to"
+  },
+  {
+    "id": 589,
+    "start": "00:47:55.380",
+    "end": "00:48:02.100",
+    "text": "Understand, okay, so I need to call this or I need to submit this form and then take the output from that form and submit this form and then take the output from that"
+  },
+  {
+    "id": 590,
+    "start": "00:48:02.500",
+    "end": "00:48:08.020",
+    "text": "And like oh, I missed a step like if you think about the the mutations that your users are doing in a website"
+  },
+  {
+    "id": 591,
+    "start": "00:48:08.020",
+    "end": "00:48:15.900",
+    "text": "You often are calling this API then this API then that IPI and putting it together to do a thing and so if you just expose your entire rest"
+  },
+  {
+    "id": 592,
+    "start": "00:48:15.900",
+    "end": "00:48:19.460",
+    "text": "API or open API or swagger or whatever documentation to"
+  },
+  {
+    "id": 593,
+    "start": "00:48:20.260",
+    "end": "00:48:24.100",
+    "text": "an LLM it's going to get confused and and and I would say"
+  },
+  {
+    "id": 594,
+    "start": "00:48:24.900",
+    "end": "00:48:29.940",
+    "text": "Maybe this is a limitation in the model some people will say well the foundation of model just get better and I'll just be able to figure it out"
+  },
+  {
+    "id": 595,
+    "start": "00:48:29.940",
+    "end": "00:48:36.980",
+    "text": "But I mean, I just don't like let's assume that we have complete trust and and that's 100% trust worthy"
+  },
+  {
+    "id": 596,
+    "start": "00:48:37.060",
+    "end": "00:48:42.740",
+    "text": "Would you really just open up your database to like execute any SQL statement you want?"
+  },
+  {
+    "id": 597,
+    "start": "00:48:42.740",
+    "end": "00:48:45.140",
+    "text": "Yeah, right assuming that we could trust it right"
+  },
+  {
+    "id": 598,
+    "start": "00:48:45.540",
+    "end": "00:48:51.380",
+    "text": "Probably not because it would just mess up the like some of our assumptions about the way the data is supposed to be there like"
+  },
+  {
+    "id": 599,
+    "start": "00:48:52.820",
+    "end": "00:49:00.660",
+    "text": "So for that reason having tools and prompts and resources give a much more curated experience the same way that we do with the website"
+  },
+  {
+    "id": 600,
+    "start": "00:49:00.660",
+    "end": "00:49:05.220",
+    "text": "Yeah, and and like thinking about okay the LLM as a human"
+  },
+  {
+    "id": 601,
+    "start": "00:49:05.860",
+    "end": "00:49:10.820",
+    "text": "The the host application is the chat app that we use to talk to our human or maybe"
+  },
+  {
+    "id": 602,
+    "start": "00:49:11.460",
+    "end": "00:49:16.420",
+    "text": "Even you know voice conversation, however, and then that assistant then"
+  },
+  {
+    "id": 603,
+    "start": "00:49:17.460",
+    "end": "00:49:23.940",
+    "text": "Goes to some sort of mechanism to identify the proper tools and then it interacts with those tools and thinking about"
+  },
+  {
+    "id": 604,
+    "start": "00:49:24.260",
+    "end": "00:49:30.180",
+    "text": "Those tools as a website for a human helps me organize the way that I think about the right way to build those"
+  },
+  {
+    "id": 605,
+    "start": "00:49:30.740",
+    "end": "00:49:36.180",
+    "text": "Service that integration layer and makes a lot of sense. Yeah, I think and as I'm building software"
+  },
+  {
+    "id": 606,
+    "start": "00:49:36.660",
+    "end": "00:49:41.780",
+    "text": "Yeah, you could build everything and deliver everything as a final product"
+  },
+  {
+    "id": 607,
+    "start": "00:49:42.100",
+    "end": "00:49:46.820",
+    "text": "How do you even know if those users need 80% of that functionality, right? Like focus on making"
+  },
+  {
+    "id": 608,
+    "start": "00:49:47.380",
+    "end": "00:49:52.820",
+    "text": "What users actually are going to use fantastic for those inputs and those outputs so that LLM can interact over it"
+  },
+  {
+    "id": 609,
+    "start": "00:49:53.060",
+    "end": "00:49:58.100",
+    "text": "I think when the first time that den show me this example of like the off flow and then using like"
+  },
+  {
+    "id": 610,
+    "start": "00:49:58.100",
+    "end": "00:50:05.140",
+    "text": "Proplexity AI and then using like these documentation searches and then opening issues and assigning issues and doing this like just from natural"
+  },
+  {
+    "id": 611,
+    "start": "00:50:05.220",
+    "end": "00:50:12.420",
+    "text": "I'm like I'm going to describe what I want it to do and then it can use all of its knowledge based all of this and like all the summarization and do this stuff"
+  },
+  {
+    "id": 612,
+    "start": "00:50:12.420",
+    "end": "00:50:14.420",
+    "text": "I'm like I'm never going to create"
+  },
+  {
+    "id": 613,
+    "start": "00:50:14.420",
+    "end": "00:50:18.100",
+    "text": "up an issue ever again manually in my entire life"
+  },
+  {
+    "id": 614,
+    "start": "00:50:18.660",
+    "end": "00:50:23.220",
+    "text": "I'm never going to plan a new feature the same way that I ever did. I'm going to plan together"
+  },
+  {
+    "id": 615,
+    "start": "00:50:23.620",
+    "end": "00:50:28.180",
+    "text": "Because it can have so much more context that I would be manually search like I could go do it"
+  },
+  {
+    "id": 616,
+    "start": "00:50:28.740",
+    "end": "00:50:31.780",
+    "text": "But I can pull all these things together and then when I saw like context seven"
+  },
+  {
+    "id": 617,
+    "start": "00:50:32.100",
+    "end": "00:50:38.420",
+    "text": "Which was giving this infinite knowledge graph of every single library out there because that's always the promise everything's evolving at the same time"
+  },
+  {
+    "id": 618,
+    "start": "00:50:38.420",
+    "end": "00:50:42.500",
+    "text": "I'll keep up I thought context seven I was like oh yeah, this is a no brand that this is how it works and I have all these people"
+  },
+  {
+    "id": 619,
+    "start": "00:50:42.820",
+    "end": "00:50:48.580",
+    "text": "How do I get this and that's like no just context seven it knows it does it once it starts to get into this pattern of it"
+  },
+  {
+    "id": 620,
+    "start": "00:50:49.300",
+    "end": "00:50:54.420",
+    "text": "Doing the things that you would just do naturally, right, which is I have like I have like you know my Proplexity server"
+  },
+  {
+    "id": 621,
+    "start": "00:50:54.420",
+    "end": "00:50:59.540",
+    "text": "I have context seven I have Microsoft Docs I get up server all these different tools and I have on these different phases"
+  },
+  {
+    "id": 622,
+    "start": "00:51:00.020",
+    "end": "00:51:03.940",
+    "text": "And when I'm in it, I'm just like doing things that would normally do okay, let's plan out this feature do this stuff"
+  },
+  {
+    "id": 623,
+    "start": "00:51:03.940",
+    "end": "00:51:07.060",
+    "text": "And it just starts to call the tools and the things that I would naturally be doing anyways"
+  },
+  {
+    "id": 624,
+    "start": "00:51:07.060",
+    "end": "00:51:10.100",
+    "text": "Yeah, but it does it about thousand times faster. I don't know about you"
+  },
+  {
+    "id": 625,
+    "start": "00:51:10.660",
+    "end": "00:51:15.060",
+    "text": "I'm on calls like all day so like usually sending a query off to to co-pilot and then"
+  },
+  {
+    "id": 626,
+    "start": "00:51:16.100",
+    "end": "00:51:19.140",
+    "text": "Entering a call and then like come back 30 minutes later and then it has like a whole bunch of stuff"
+  },
+  {
+    "id": 627,
+    "start": "00:51:19.140",
+    "end": "00:51:21.140",
+    "text": "Yeah, but in automotive and just go"
+  },
+  {
+    "id": 628,
+    "start": "00:51:21.780",
+    "end": "00:51:24.020",
+    "text": "Something you'll know just go let's do this, right?"
+  },
+  {
+    "id": 629,
+    "start": "00:51:24.820",
+    "end": "00:51:28.420",
+    "text": "Yeah, that's like how many so how many rounds you want to do 10,000 just go"
+  },
+  {
+    "id": 630,
+    "start": "00:51:28.500",
+    "end": "00:51:33.460",
+    "text": "Anyone I don't care burn them all, but I think that was that unlock for me because I was starting to see this"
+  },
+  {
+    "id": 631,
+    "start": "00:51:34.580",
+    "end": "00:51:37.060",
+    "text": "Future in my engineering life that"
+  },
+  {
+    "id": 632,
+    "start": "00:51:38.500",
+    "end": "00:51:41.780",
+    "text": "I had thought about like a year ago kind of like you're talking about this job as an example"
+  },
+  {
+    "id": 633,
+    "start": "00:51:41.780",
+    "end": "00:51:44.420",
+    "text": "Yeah, like when I watch Iron Man for the first time I told it I was like yeah"
+  },
+  {
+    "id": 634,
+    "start": "00:51:44.820",
+    "end": "00:51:48.580",
+    "text": "I think everyone looks at that like I want that that'd be cool like if you're great, right?"
+  },
+  {
+    "id": 635,
+    "start": "00:51:48.580",
+    "end": "00:51:52.500",
+    "text": "Just plan it out. Talk to me have this conversation and I was like that's gonna happen at some point"
+  },
+  {
+    "id": 636,
+    "start": "00:51:52.500",
+    "end": "00:51:56.020",
+    "text": "I think we're getting closer and the MCP. I think has been unlocking these capabilities"
+  },
+  {
+    "id": 637,
+    "start": "00:51:56.500",
+    "end": "00:51:58.260",
+    "text": "When you've been doing all of these"
+  },
+  {
+    "id": 638,
+    "start": "00:51:58.980",
+    "end": "00:52:03.700",
+    "text": "Trainings and workshops like how are people reacting to it like I was"
+  },
+  {
+    "id": 639,
+    "start": "00:52:03.700",
+    "end": "00:52:08.180",
+    "text": "They were exciting they're signing up. I'm pretty sure I don't see and I've been able to sign up myself because I've been sold out so much"
+  },
+  {
+    "id": 640,
+    "start": "00:52:09.700",
+    "end": "00:52:15.620",
+    "text": "That's true, but like what's the reaction been like from your students as far as like going through the course?"
+  },
+  {
+    "id": 641,
+    "start": "00:52:15.620",
+    "end": "00:52:18.500",
+    "text": "Yeah, I've actually been I've never experienced anything like this"
+  },
+  {
+    "id": 642,
+    "start": "00:52:19.060",
+    "end": "00:52:23.700",
+    "text": "Where I will list the workshop and it sells out really quickly every time"
+  },
+  {
+    "id": 643,
+    "start": "00:52:24.660",
+    "end": "00:52:29.300",
+    "text": "And I think there's like there's a piece of hype and like fear of missing out in there"
+  },
+  {
+    "id": 644,
+    "start": "00:52:29.300",
+    "end": "00:52:38.100",
+    "text": "But there's also like the practical I'm using this and it's really helpful. I want to figure out how to like integrate this in the service that I offer"
+  },
+  {
+    "id": 645,
+    "start": "00:52:39.060",
+    "end": "00:52:41.060",
+    "text": "The as far as the reaction goes I"
+  },
+  {
+    "id": 646,
+    "start": "00:52:43.860",
+    "end": "00:52:50.580",
+    "text": "Especially with something new I kind of expected that people would come to me to the workshop and they're like I'm just attending because you say I should care"
+  },
+  {
+    "id": 647,
+    "start": "00:52:51.220",
+    "end": "00:52:55.460",
+    "text": "Because people trust me. I'm I'm not a teacher and so I can understand it but like"
+  },
+  {
+    "id": 648,
+    "start": "00:52:56.100",
+    "end": "00:53:00.500",
+    "text": "Where they're saying I need you to explain to me why I should care"
+  },
+  {
+    "id": 649,
+    "start": "00:53:01.220",
+    "end": "00:53:05.460",
+    "text": "But they're not like they they already know why they should care and they're really"
+  },
+  {
+    "id": 650,
+    "start": "00:53:06.980",
+    "end": "00:53:12.980",
+    "text": "Just wanting to understand the fundamentals of how these pieces fit together and how they can actually integrate it themselves"
+  },
+  {
+    "id": 651,
+    "start": "00:53:14.180",
+    "end": "00:53:17.380",
+    "text": "There are definitely gaps in the mcp spec and"
+  },
+  {
+    "id": 652,
+    "start": "00:53:18.340",
+    "end": "00:53:20.340",
+    "text": "servers that I'm building"
+  },
+  {
+    "id": 653,
+    "start": "00:53:20.740",
+    "end": "00:53:25.380",
+    "text": "That are like actual servers that people actually use and as well as demos and things"
+  },
+  {
+    "id": 654,
+    "start": "00:53:26.500",
+    "end": "00:53:31.380",
+    "text": "Are revealing a number of those gaps that I'm still trying to help"
+  },
+  {
+    "id": 655,
+    "start": "00:53:32.100",
+    "end": "00:53:38.100",
+    "text": "Make solutions for but the more and more people you get into the ecosystem the more these problems are revealed and installed"
+  },
+  {
+    "id": 656,
+    "start": "00:53:39.220",
+    "end": "00:53:46.420",
+    "text": "But yeah, I've just been really surprised at how yes, there's an element of hype but people actually seem to know"
+  },
+  {
+    "id": 657,
+    "start": "00:53:48.100",
+    "end": "00:53:54.980",
+    "text": "Where this fits in and our motivated to to play a part in this future of human interaction"
+  },
+  {
+    "id": 658,
+    "start": "00:53:55.300",
+    "end": "00:53:58.340",
+    "text": "And I think if you are someone who's been building apis"
+  },
+  {
+    "id": 659,
+    "start": "00:53:58.900",
+    "end": "00:54:04.100",
+    "text": "Hopefully this kind of clicks with you a little bit that it is sort of this natural evolution of apis for"
+  },
+  {
+    "id": 660,
+    "start": "00:54:04.820",
+    "end": "00:54:08.820",
+    "text": "LLams in a way, but just yeah, yeah, I actually had somebody yesterday"
+  },
+  {
+    "id": 661,
+    "start": "00:54:10.100",
+    "end": "00:54:12.820",
+    "text": "In a workshop who kept on relating it to"
+  },
+  {
+    "id": 662,
+    "start": "00:54:13.620",
+    "end": "00:54:18.420",
+    "text": "REST APIs and stuff like oh, this is the list collection thing and yeah, yeah, that is kind of what it is and"
+  },
+  {
+    "id": 663,
+    "start": "00:54:19.300",
+    "end": "00:54:25.540",
+    "text": "The thing is like mcp was designed to make it so that the servers are easier to implement as easy as possible"
+  },
+  {
+    "id": 664,
+    "start": "00:54:26.500",
+    "end": "00:54:29.780",
+    "text": "At the expense of the client so clients are a lot more complicated to implement"
+  },
+  {
+    "id": 665,
+    "start": "00:54:30.340",
+    "end": "00:54:32.500",
+    "text": "Not that I've done it. I've never tried myself"
+  },
+  {
+    "id": 666,
+    "start": "00:54:33.300",
+    "end": "00:54:36.020",
+    "text": "Because I think in my vision of the future"
+  },
+  {
+    "id": 667,
+    "start": "00:54:36.820",
+    "end": "00:54:42.260",
+    "text": "The client is basically like the web browser and the server is your website and so we have like"
+  },
+  {
+    "id": 668,
+    "start": "00:54:42.580",
+    "end": "00:54:44.900",
+    "text": "Maybe five web browsers and five trillions"
+  },
+  {
+    "id": 669,
+    "start": "00:54:45.460",
+    "end": "00:54:50.580",
+    "text": "Websites, right, so I think most of us are working on the servers and that was intentional from the design"
+  },
+  {
+    "id": 670,
+    "start": "00:54:50.580",
+    "end": "00:54:52.580",
+    "text": "And I think that was just such a good idea"
+  },
+  {
+    "id": 671,
+    "start": "00:54:53.460",
+    "end": "00:54:58.100",
+    "text": "To make it so that the thing that we're going to be doing more of is is a little bit easier"
+  },
+  {
+    "id": 672,
+    "start": "00:54:58.820",
+    "end": "00:55:06.020",
+    "text": "I think there are some and the other part of that too is that this was designed by developers who"
+  },
+  {
+    "id": 673,
+    "start": "00:55:06.820",
+    "end": "00:55:10.340",
+    "text": "Do have experience with REST APIs and stuff and so they kind of knew"
+  },
+  {
+    "id": 674,
+    "start": "00:55:11.300",
+    "end": "00:55:15.140",
+    "text": "The ways to map these concepts to things that would be familiar to people"
+  },
+  {
+    "id": 675,
+    "start": "00:55:16.100",
+    "end": "00:55:20.500",
+    "text": "I think it actually does a pretty good job of that yeah, okay for a little chat here"
+  },
+  {
+    "id": 676,
+    "start": "00:55:20.500",
+    "end": "00:55:26.020",
+    "text": "What has you kind of excited about the future here? I'm not just MCP, but the AI space the dev space your"
+  },
+  {
+    "id": 677,
+    "start": "00:55:26.420",
+    "end": "00:55:32.900",
+    "text": "Career going forward and the educator space yeah for for me most the most exciting thing for me is getting to"
+  },
+  {
+    "id": 678,
+    "start": "00:55:33.700",
+    "end": "00:55:37.220",
+    "text": "A place where we can have a Jarvis like experience like a general agent"
+  },
+  {
+    "id": 679,
+    "start": "00:55:37.540",
+    "end": "00:55:43.620",
+    "text": "I'm excited about viscode like very focused agents that are like focus on specific task"
+  },
+  {
+    "id": 680,
+    "start": "00:55:43.940",
+    "end": "00:55:49.700",
+    "text": "You can get a lot further with viscode than you can with chat GPT of course like it just has those integrated tools"
+  },
+  {
+    "id": 681,
+    "start": "00:55:50.180",
+    "end": "00:55:57.940",
+    "text": "But the the general use agent that is useful for everybody regardless of whether their technical or not is the most exciting thing to me"
+  },
+  {
+    "id": 682,
+    "start": "00:55:57.940",
+    "end": "00:56:02.980",
+    "text": "And so just finding the I'm not really interested in building that myself. That's like"
+  },
+  {
+    "id": 683,
+    "start": "00:56:03.940",
+    "end": "00:56:08.980",
+    "text": "Really not only is it a tough problem, but I have almost six kids. I want to spend time with them"
+  },
+  {
+    "id": 684,
+    "start": "00:56:10.020",
+    "end": "00:56:14.260",
+    "text": "And so I'm just looking for what are the things that are stopping somebody from building that"
+  },
+  {
+    "id": 685,
+    "start": "00:56:15.460",
+    "end": "00:56:20.580",
+    "text": "And let me see how I can help and so one of the areas that I can help is teaching people to make quality servers"
+  },
+  {
+    "id": 686,
+    "start": "00:56:20.580",
+    "end": "00:56:27.220",
+    "text": "Which is what epic AI pro is doing also educating people on what the potential is and so I've been talking a lot about"
+  },
+  {
+    "id": 687,
+    "start": "00:56:27.780",
+    "end": "00:56:34.420",
+    "text": "A rag for MCP tools. So before you hand like 7,000 tools to the LM"
+  },
+  {
+    "id": 688,
+    "start": "00:56:34.740",
+    "end": "00:56:36.740",
+    "text": "You filter those down"
+  },
+  {
+    "id": 689,
+    "start": "00:56:37.540",
+    "end": "00:56:41.300",
+    "text": "Using rag with the the user's queries basically a search engine. It's like"
+  },
+  {
+    "id": 690,
+    "start": "00:56:42.100",
+    "end": "00:56:47.700",
+    "text": "Google for MCPs and so like talking about that and and their research papers about that"
+  },
+  {
+    "id": 691,
+    "start": "00:56:47.700",
+    "end": "00:56:49.300",
+    "text": "I didn't do the research so I'm grateful that"
+  },
+  {
+    "id": 692,
+    "start": "00:56:49.860",
+    "end": "00:56:55.140",
+    "text": "Actual research people do that, but like just promoting this idea and helping people see that"
+  },
+  {
+    "id": 693,
+    "start": "00:56:55.460",
+    "end": "00:56:58.180",
+    "text": "I'm not the kind of person who jumps on a hype train"
+  },
+  {
+    "id": 694,
+    "start": "00:56:58.660",
+    "end": "00:57:03.060",
+    "text": "That's that's not I'm very thoughtful about the things that I do, but once I get on the train"
+  },
+  {
+    "id": 695,
+    "start": "00:57:03.220",
+    "end": "00:57:09.620",
+    "text": "I turn it into a hype train and not in the negative way, but like in a hey everybody like this is the train"
+  },
+  {
+    "id": 696,
+    "start": "00:57:09.620",
+    "end": "00:57:14.580",
+    "text": "This is where we're going this is huge and you need to understand it so doing everything that I can to help"
+  },
+  {
+    "id": 697,
+    "start": "00:57:15.220",
+    "end": "00:57:18.740",
+    "text": "Bring more and more people into this ecosystem because I think that's that's a good thing"
+  },
+  {
+    "id": 698,
+    "start": "00:57:18.740",
+    "end": "00:57:23.700",
+    "text": "That's awesome. Well kind of thank you so much for sitting down. We're gonna be the fun you and Cody on the internet"
+  },
+  {
+    "id": 699,
+    "start": "00:57:24.340",
+    "end": "00:57:31.060",
+    "text": "Yeah, KentCdots.com and Epic AI. Pro. I'm also on X and GitHub at KentCdots everywhere"
+  },
+  {
+    "id": 700,
+    "start": "00:57:31.380",
+    "end": "00:57:33.700",
+    "text": "Perfect awesome. Thanks again. I really appreciate it. Thank you"
+  }
+]

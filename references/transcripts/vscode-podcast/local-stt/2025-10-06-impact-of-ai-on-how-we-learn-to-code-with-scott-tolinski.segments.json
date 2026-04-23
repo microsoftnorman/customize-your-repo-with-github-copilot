@@ -1,0 +1,2858 @@
+[
+  {
+    "id": 1,
+    "start": "00:00:00.000",
+    "end": "00:00:04.800",
+    "text": "I recently had the opportunity to interview one of my heroes, the one and only Scott"
+  },
+  {
+    "id": 2,
+    "start": "00:00:04.800",
+    "end": "00:00:05.800",
+    "text": "Talinsky."
+  },
+  {
+    "id": 3,
+    "start": "00:00:05.800",
+    "end": "00:00:10.960",
+    "text": "You may know Scott is one of the co-hosts of the syntax podcast, Level Up tutorials, or"
+  },
+  {
+    "id": 4,
+    "start": "00:00:10.960",
+    "end": "00:00:13.640",
+    "text": "his amazing work over his century."
+  },
+  {
+    "id": 5,
+    "start": "00:00:13.640",
+    "end": "00:00:18.200",
+    "text": "Now this was an awesome conversation that I got to have about how Scott sees AI evolving"
+  },
+  {
+    "id": 6,
+    "start": "00:00:18.200",
+    "end": "00:00:22.240",
+    "text": "education, learning to code, and so much more, so let's get into it."
+  },
+  {
+    "id": 7,
+    "start": "00:00:22.240",
+    "end": "00:00:24.640",
+    "text": "Alright, I'm sending down with Scott Talinsky Scott."
+  },
+  {
+    "id": 8,
+    "start": "00:00:24.640",
+    "end": "00:00:28.400",
+    "text": "Thank you for being here, but before you even say a word, I do this thing that I just"
+  },
+  {
+    "id": 9,
+    "start": "00:00:28.400",
+    "end": "00:00:32.960",
+    "text": "started with you for the podcast, which is Read Your Bio from a random website that"
+  },
+  {
+    "id": 10,
+    "start": "00:00:32.960",
+    "end": "00:00:33.960",
+    "text": "I found on the internet."
+  },
+  {
+    "id": 11,
+    "start": "00:00:33.960",
+    "end": "00:00:37.640",
+    "text": "Oh yeah, this one happens to be from the syntax website."
+  },
+  {
+    "id": 12,
+    "start": "00:00:37.640",
+    "end": "00:00:41.840",
+    "text": "So I think it's probably accurate, but I know because whenever I speak at a conference,"
+  },
+  {
+    "id": 13,
+    "start": "00:00:41.840",
+    "end": "00:00:45.400",
+    "text": "I do a podcast, they read my bio and it's completely inaccurate."
+  },
+  {
+    "id": 14,
+    "start": "00:00:45.400",
+    "end": "00:00:48.000",
+    "text": "So I'm super excited that Scott's here."
+  },
+  {
+    "id": 15,
+    "start": "00:00:48.000",
+    "end": "00:00:51.440",
+    "text": "Scott's Lindsay is the co-host of syntax, so you can give me a pin, so we're repping it"
+  },
+  {
+    "id": 16,
+    "start": "00:00:51.440",
+    "end": "00:00:52.440",
+    "text": "today."
+  },
+  {
+    "id": 17,
+    "start": "00:00:52.440",
+    "end": "00:00:58.160",
+    "text": "He's the creator of Level Up tutorials, and his free time, Scott enjoys dedicated"
+  },
+  {
+    "id": 18,
+    "start": "00:00:58.160",
+    "end": "00:01:04.120",
+    "text": "b-boy breakdancing, enjoys pushing yourself athletically through dance, and working out"
+  },
+  {
+    "id": 19,
+    "start": "00:01:04.120",
+    "end": "00:01:05.120",
+    "text": "and snowboarding."
+  },
+  {
+    "id": 20,
+    "start": "00:01:05.120",
+    "end": "00:01:07.080",
+    "text": "Are those all accurate?"
+  },
+  {
+    "id": 21,
+    "start": "00:01:07.080",
+    "end": "00:01:08.080",
+    "text": "Sure."
+  },
+  {
+    "id": 22,
+    "start": "00:01:08.080",
+    "end": "00:01:09.080",
+    "text": "Is that from the syntax website?"
+  },
+  {
+    "id": 23,
+    "start": "00:01:09.080",
+    "end": "00:01:10.080",
+    "text": "That's what it says."
+  },
+  {
+    "id": 24,
+    "start": "00:01:10.080",
+    "end": "00:01:12.080",
+    "text": "Okay, then it's accurate."
+  },
+  {
+    "id": 25,
+    "start": "00:01:12.080",
+    "end": "00:01:13.080",
+    "text": "Yes, it's accurate."
+  },
+  {
+    "id": 26,
+    "start": "00:01:13.080",
+    "end": "00:01:14.080",
+    "text": "Yes."
+  },
+  {
+    "id": 27,
+    "start": "00:01:14.080",
+    "end": "00:01:19.080",
+    "text": "Although I might need to take a pause on all of my snowboarding activities after some"
+  },
+  {
+    "id": 28,
+    "start": "00:01:19.080",
+    "end": "00:01:20.080",
+    "text": "recent injuries."
+  },
+  {
+    "id": 29,
+    "start": "00:01:20.080",
+    "end": "00:01:21.600",
+    "text": "So I'm going to need to update that."
+  },
+  {
+    "id": 30,
+    "start": "00:01:21.600",
+    "end": "00:01:22.600",
+    "text": "Yeah."
+  },
+  {
+    "id": 31,
+    "start": "00:01:22.600",
+    "end": "00:01:24.160",
+    "text": "But the breakdancing, the b-blowing is still..."
+  },
+  {
+    "id": 32,
+    "start": "00:01:24.160",
+    "end": "00:01:28.080",
+    "text": "Oh yeah, I've been dancing for about 20 million years or so."
+  },
+  {
+    "id": 33,
+    "start": "00:01:28.080",
+    "end": "00:01:33.400",
+    "text": "I used to perform for the Pistons and the Lions halftime shows, and I've competed all"
+  },
+  {
+    "id": 34,
+    "start": "00:01:33.400",
+    "end": "00:01:34.720",
+    "text": "over the US."
+  },
+  {
+    "id": 35,
+    "start": "00:01:34.720",
+    "end": "00:01:35.720",
+    "text": "Yeah."
+  },
+  {
+    "id": 36,
+    "start": "00:01:35.720",
+    "end": "00:01:36.880",
+    "text": "How did you get into that?"
+  },
+  {
+    "id": 37,
+    "start": "00:01:36.880",
+    "end": "00:01:42.160",
+    "text": "I thought it was really cool when I was in high school and music videos."
+  },
+  {
+    "id": 38,
+    "start": "00:01:42.160",
+    "end": "00:01:47.600",
+    "text": "There's a specific music video that the crystal method name of the game, and I was like,"
+  },
+  {
+    "id": 39,
+    "start": "00:01:47.600",
+    "end": "00:01:50.080",
+    "text": "I have to learn this."
+  },
+  {
+    "id": 40,
+    "start": "00:01:50.080",
+    "end": "00:01:54.520",
+    "text": "And then I just found over at the University of Michigan, which was kind of by where I"
+  },
+  {
+    "id": 41,
+    "start": "00:01:54.520",
+    "end": "00:01:56.640",
+    "text": "grew up, that there was a group there."
+  },
+  {
+    "id": 42,
+    "start": "00:01:56.640",
+    "end": "00:01:57.960",
+    "text": "And I just started showing up."
+  },
+  {
+    "id": 43,
+    "start": "00:01:57.960",
+    "end": "00:02:01.720",
+    "text": "They would sneak me into a campus building to teach me."
+  },
+  {
+    "id": 44,
+    "start": "00:02:01.720",
+    "end": "00:02:08.240",
+    "text": "And then when I went to school there, I became the president of the club and just kept"
+  },
+  {
+    "id": 45,
+    "start": "00:02:08.240",
+    "end": "00:02:09.400",
+    "text": "with it for so long."
+  },
+  {
+    "id": 46,
+    "start": "00:02:09.400",
+    "end": "00:02:10.400",
+    "text": "Yeah."
+  },
+  {
+    "id": 47,
+    "start": "00:02:10.400",
+    "end": "00:02:11.400",
+    "text": "That was amazing."
+  },
+  {
+    "id": 48,
+    "start": "00:02:11.400",
+    "end": "00:02:15.360",
+    "text": "I think that growing up, I did band for like..."
+  },
+  {
+    "id": 49,
+    "start": "00:02:15.360",
+    "end": "00:02:16.360",
+    "text": "Oh yeah."
+  },
+  {
+    "id": 50,
+    "start": "00:02:16.360",
+    "end": "00:02:17.360",
+    "text": "... several years."
+  },
+  {
+    "id": 51,
+    "start": "00:02:17.360",
+    "end": "00:02:18.360",
+    "text": "I played the tuba."
+  },
+  {
+    "id": 52,
+    "start": "00:02:18.360",
+    "end": "00:02:19.360",
+    "text": "Oh nice."
+  },
+  {
+    "id": 53,
+    "start": "00:02:19.360",
+    "end": "00:02:20.360",
+    "text": "Yeah."
+  },
+  {
+    "id": 54,
+    "start": "00:02:20.360",
+    "end": "00:02:21.680",
+    "text": "Yeah, it was my jam."
+  },
+  {
+    "id": 55,
+    "start": "00:02:21.680",
+    "end": "00:02:22.680",
+    "text": "Yeah."
+  },
+  {
+    "id": 56,
+    "start": "00:02:22.680",
+    "end": "00:02:23.680",
+    "text": "And then I started working."
+  },
+  {
+    "id": 57,
+    "start": "00:02:23.680",
+    "end": "00:02:24.680",
+    "text": "I didn't keep up with anything."
+  },
+  {
+    "id": 58,
+    "start": "00:02:24.680",
+    "end": "00:02:27.800",
+    "text": "And I feel like I could be like a star tuba player."
+  },
+  {
+    "id": 59,
+    "start": "00:02:27.800",
+    "end": "00:02:28.800",
+    "text": "I don't know."
+  },
+  {
+    "id": 60,
+    "start": "00:02:28.800",
+    "end": "00:02:31.280",
+    "text": "It's out there, but then look at us now."
+  },
+  {
+    "id": 61,
+    "start": "00:02:31.280",
+    "end": "00:02:33.400",
+    "text": "It's a circle to that art tuba player."
+  },
+  {
+    "id": 62,
+    "start": "00:02:33.400",
+    "end": "00:02:34.720",
+    "text": "I mean, someone needs that I think."
+  },
+  {
+    "id": 63,
+    "start": "00:02:34.720",
+    "end": "00:02:35.720",
+    "text": "Oh yeah."
+  },
+  {
+    "id": 64,
+    "start": "00:02:35.720",
+    "end": "00:02:38.000",
+    "text": "Well, I'm super sad about your injuries."
+  },
+  {
+    "id": 65,
+    "start": "00:02:38.000",
+    "end": "00:02:39.640",
+    "text": "Downhill, cross country."
+  },
+  {
+    "id": 66,
+    "start": "00:02:39.640",
+    "end": "00:02:40.640",
+    "text": "What's your..."
+  },
+  {
+    "id": 67,
+    "start": "00:02:40.640",
+    "end": "00:02:41.640",
+    "text": "I guess it's snowboarding."
+  },
+  {
+    "id": 68,
+    "start": "00:02:41.640",
+    "end": "00:02:42.640",
+    "text": "Yeah."
+  },
+  {
+    "id": 69,
+    "start": "00:02:42.640",
+    "end": "00:02:43.640",
+    "text": "So you're not boarding."
+  },
+  {
+    "id": 70,
+    "start": "00:02:43.640",
+    "end": "00:02:46.000",
+    "text": "I ride very like a kind of freestyle."
+  },
+  {
+    "id": 71,
+    "start": "00:02:46.000",
+    "end": "00:02:52.320",
+    "text": "I was doing a lot of terrain park stuff in general, but I am too old for doing this."
+  },
+  {
+    "id": 72,
+    "start": "00:02:52.320",
+    "end": "00:02:54.280",
+    "text": "That is a fair share."
+  },
+  {
+    "id": 73,
+    "start": "00:02:54.280",
+    "end": "00:02:57.920",
+    "text": "Yeah, I have friends that are all like downhill or snowboarding."
+  },
+  {
+    "id": 74,
+    "start": "00:02:57.920",
+    "end": "00:02:58.920",
+    "text": "I'm like, I just cannot do it."
+  },
+  {
+    "id": 75,
+    "start": "00:02:58.920",
+    "end": "00:03:01.480",
+    "text": "I have some people that they do the split boarding."
+  },
+  {
+    "id": 76,
+    "start": "00:03:01.480",
+    "end": "00:03:02.480",
+    "text": "Okay."
+  },
+  {
+    "id": 77,
+    "start": "00:03:02.480",
+    "end": "00:03:03.480",
+    "text": "Yeah, yeah."
+  },
+  {
+    "id": 78,
+    "start": "00:03:03.480",
+    "end": "00:03:04.480",
+    "text": "That is..."
+  },
+  {
+    "id": 79,
+    "start": "00:03:04.480",
+    "end": "00:03:05.480",
+    "text": "Yeah."
+  },
+  {
+    "id": 80,
+    "start": "00:03:05.480",
+    "end": "00:03:06.480",
+    "text": "Yeah."
+  },
+  {
+    "id": 81,
+    "start": "00:03:06.480",
+    "end": "00:03:07.480",
+    "text": "It seems super intense, but awesome that they could do it."
+  },
+  {
+    "id": 82,
+    "start": "00:03:07.480",
+    "end": "00:03:08.480",
+    "text": "Yeah."
+  },
+  {
+    "id": 83,
+    "start": "00:03:08.480",
+    "end": "00:03:09.480",
+    "text": "Yeah."
+  },
+  {
+    "id": 84,
+    "start": "00:03:09.480",
+    "end": "00:03:10.480",
+    "text": "And I mean, yeah."
+  },
+  {
+    "id": 85,
+    "start": "00:03:10.480",
+    "end": "00:03:11.480",
+    "text": "Okay."
+  },
+  {
+    "id": 86,
+    "start": "00:03:11.480",
+    "end": "00:03:14.480",
+    "text": "Well, brushing your nuts, just talk about break dancing and snowboarding."
+  },
+  {
+    "id": 87,
+    "start": "00:03:14.480",
+    "end": "00:03:15.480",
+    "text": "Although we could."
+  },
+  {
+    "id": 88,
+    "start": "00:03:15.480",
+    "end": "00:03:20.480",
+    "text": "Well, do you have like a favorite like snowboard area that are mountain that you've done?"
+  },
+  {
+    "id": 89,
+    "start": "00:03:20.480",
+    "end": "00:03:21.480",
+    "text": "Yeah."
+  },
+  {
+    "id": 90,
+    "start": "00:03:21.480",
+    "end": "00:03:24.080",
+    "text": "You know, in color, I don't like to go to copper mountain a lot."
+  },
+  {
+    "id": 91,
+    "start": "00:03:24.080",
+    "end": "00:03:29.480",
+    "text": "I like it because it's a big mountain, but it doesn't feel like breaking away a"
+  },
+  {
+    "id": 92,
+    "start": "00:03:29.480",
+    "end": "00:03:33.640",
+    "text": "jerk one of these like, you know, very traffic mountains in that sort of way."
+  },
+  {
+    "id": 93,
+    "start": "00:03:33.640",
+    "end": "00:03:38.080",
+    "text": "So yeah, I really like copper because there's a lot of variety there and go to that one"
+  },
+  {
+    "id": 94,
+    "start": "00:03:38.080",
+    "end": "00:03:39.080",
+    "text": "the most."
+  },
+  {
+    "id": 95,
+    "start": "00:03:39.080",
+    "end": "00:03:40.080",
+    "text": "Well, very cool."
+  },
+  {
+    "id": 96,
+    "start": "00:03:40.080",
+    "end": "00:03:42.480",
+    "text": "A favorite out in Ben come to Mount Bachelore with me."
+  },
+  {
+    "id": 97,
+    "start": "00:03:42.480",
+    "end": "00:03:43.480",
+    "text": "Okay."
+  },
+  {
+    "id": 98,
+    "start": "00:03:43.480",
+    "end": "00:03:44.480",
+    "text": "Yeah."
+  },
+  {
+    "id": 99,
+    "start": "00:03:44.480",
+    "end": "00:03:49.520",
+    "text": "Well, what's interesting about you is a lot of people know you from the syntax podcast."
+  },
+  {
+    "id": 100,
+    "start": "00:03:49.520",
+    "end": "00:03:51.120",
+    "text": "That's how I definitely know about you."
+  },
+  {
+    "id": 101,
+    "start": "00:03:51.120",
+    "end": "00:03:54.240",
+    "text": "Some people may know you from level up tutorials or other places on the internet."
+  },
+  {
+    "id": 102,
+    "start": "00:03:54.240",
+    "end": "00:03:58.440",
+    "text": "And they've seen you talk and they've seen this you on the internet somewhere."
+  },
+  {
+    "id": 103,
+    "start": "00:03:58.440",
+    "end": "00:04:04.840",
+    "text": "But I think what's fascinating about you is that reading your bio diving deep into Scott"
+  },
+  {
+    "id": 104,
+    "start": "00:04:04.840",
+    "end": "00:04:08.720",
+    "text": "as I prepare for this podcast, which was about funny minutes."
+  },
+  {
+    "id": 105,
+    "start": "00:04:08.720",
+    "end": "00:04:12.200",
+    "text": "Last night was just kind of your background in developer education."
+  },
+  {
+    "id": 106,
+    "start": "00:04:12.200",
+    "end": "00:04:17.280",
+    "text": "And I think one thing that I love and I've been doing for 14 years as a developer advocate,"
+  },
+  {
+    "id": 107,
+    "start": "00:04:17.280",
+    "end": "00:04:18.800",
+    "text": "is really just teaching people stuff."
+  },
+  {
+    "id": 108,
+    "start": "00:04:18.800",
+    "end": "00:04:19.800",
+    "text": "Yeah."
+  },
+  {
+    "id": 109,
+    "start": "00:04:19.800",
+    "end": "00:04:23.200",
+    "text": "That's my favorite part of my job."
+  },
+  {
+    "id": 110,
+    "start": "00:04:23.200",
+    "end": "00:04:25.680",
+    "text": "Like just in general, I love it."
+  },
+  {
+    "id": 111,
+    "start": "00:04:25.680",
+    "end": "00:04:26.720",
+    "text": "But a lot has changed."
+  },
+  {
+    "id": 112,
+    "start": "00:04:26.720",
+    "end": "00:04:28.960",
+    "text": "I think a lot has come this way."
+  },
+  {
+    "id": 113,
+    "start": "00:04:28.960",
+    "end": "00:04:31.880",
+    "text": "Like a lot of people now have these big courses and tutorials online."
+  },
+  {
+    "id": 114,
+    "start": "00:04:31.880",
+    "end": "00:04:35.640",
+    "text": "You're not going to necessarily every single boot camp or there are bootyams now."
+  },
+  {
+    "id": 115,
+    "start": "00:04:35.640",
+    "end": "00:04:40.080",
+    "text": "Like there's people still learning in university, but also things are evolving quickly."
+  },
+  {
+    "id": 116,
+    "start": "00:04:40.080",
+    "end": "00:04:47.160",
+    "text": "It's like I want to break down with you just develop your education how you saw it in"
+  },
+  {
+    "id": 117,
+    "start": "00:04:47.160",
+    "end": "00:04:50.680",
+    "text": "the past, how you see it currently and how you see it in the future."
+  },
+  {
+    "id": 118,
+    "start": "00:04:50.680",
+    "end": "00:04:55.000",
+    "text": "So maybe if it's okay, maybe you could kind of go a little bit deep into like your history"
+  },
+  {
+    "id": 119,
+    "start": "00:04:55.000",
+    "end": "00:04:58.200",
+    "text": "with developer education and even the level of tutorials like how that came about where"
+  },
+  {
+    "id": 120,
+    "start": "00:04:58.200",
+    "end": "00:05:00.360",
+    "text": "that's out today and how that's changing."
+  },
+  {
+    "id": 121,
+    "start": "00:05:00.360",
+    "end": "00:05:01.360",
+    "text": "Yeah."
+  },
+  {
+    "id": 122,
+    "start": "00:05:01.360",
+    "end": "00:05:02.360",
+    "text": "Yeah."
+  },
+  {
+    "id": 123,
+    "start": "00:05:02.360",
+    "end": "00:05:09.160",
+    "text": "When I first started, YouTube didn't, I mean, it existed, but there was nothing on YouTube."
+  },
+  {
+    "id": 124,
+    "start": "00:05:09.160",
+    "end": "00:05:13.520",
+    "text": "So for me, I was self taught as a developer."
+  },
+  {
+    "id": 125,
+    "start": "00:05:13.520",
+    "end": "00:05:20.160",
+    "text": "And it was mostly through either at the time there were paid courses, but the platforms"
+  },
+  {
+    "id": 126,
+    "start": "00:05:20.160",
+    "end": "00:05:23.000",
+    "text": "were still like just a couple of them really."
+  },
+  {
+    "id": 127,
+    "start": "00:05:23.000",
+    "end": "00:05:28.160",
+    "text": "So occasionally paid courses, but like when I was first learning, my options were to check"
+  },
+  {
+    "id": 128,
+    "start": "00:05:28.160",
+    "end": "00:05:29.960",
+    "text": "out books from the library."
+  },
+  {
+    "id": 129,
+    "start": "00:05:29.960",
+    "end": "00:05:34.800",
+    "text": "I'm getting, you know, HTML for dummies or whatever from the library."
+  },
+  {
+    "id": 130,
+    "start": "00:05:34.800",
+    "end": "00:05:42.440",
+    "text": "And I, for some reason, like those types of reading a book and typing into computer or whatever"
+  },
+  {
+    "id": 131,
+    "start": "00:05:42.440",
+    "end": "00:05:45.480",
+    "text": "never really was like great for me."
+  },
+  {
+    "id": 132,
+    "start": "00:05:45.480",
+    "end": "00:05:49.600",
+    "text": "And it really wasn't until when I started working professionally, the video course things"
+  },
+  {
+    "id": 133,
+    "start": "00:05:49.600",
+    "end": "00:05:52.120",
+    "text": "started to become a little bit more prominent."
+  },
+  {
+    "id": 134,
+    "start": "00:05:52.120",
+    "end": "00:05:59.840",
+    "text": "Still nothing on YouTube, but I could purchase a course on a specific topic and it unlocked"
+  },
+  {
+    "id": 135,
+    "start": "00:05:59.840",
+    "end": "00:06:01.640",
+    "text": "a lot for me."
+  },
+  {
+    "id": 136,
+    "start": "00:06:01.640",
+    "end": "00:06:11.080",
+    "text": "And when I realized that like this medium can really like get me going in a different way"
+  },
+  {
+    "id": 137,
+    "start": "00:06:11.080",
+    "end": "00:06:15.920",
+    "text": "than reading a book or reading blogs because you know blogs are great, but I'm more of"
+  },
+  {
+    "id": 138,
+    "start": "00:06:15.920",
+    "end": "00:06:20.920",
+    "text": "like a, uh, see the demo, look at the code rather than read the paragraph of text."
+  },
+  {
+    "id": 139,
+    "start": "00:06:20.920",
+    "end": "00:06:21.920",
+    "text": "Yeah."
+  },
+  {
+    "id": 140,
+    "start": "00:06:21.920",
+    "end": "00:06:27.040",
+    "text": "Um, big pet paper mind about blogs is when they have a code snippet in the demo, but then"
+  },
+  {
+    "id": 141,
+    "start": "00:06:27.040",
+    "end": "00:06:31.200",
+    "text": "like the details are in the paragraph of the text and I'll copy and paste the code just"
+  },
+  {
+    "id": 142,
+    "start": "00:06:31.200",
+    "end": "00:06:32.560",
+    "text": "expecting it to work."
+  },
+  {
+    "id": 143,
+    "start": "00:06:32.560",
+    "end": "00:06:35.120",
+    "text": "And then you read later, oh, this actually doesn't work for these reasons."
+  },
+  {
+    "id": 144,
+    "start": "00:06:35.120",
+    "end": "00:06:36.960",
+    "text": "You're like, oh, why, why did you do that?"
+  },
+  {
+    "id": 145,
+    "start": "00:06:37.960",
+    "end": "00:06:41.520",
+    "text": "So for me, the video thing always like just gravitated towards me."
+  },
+  {
+    "id": 146,
+    "start": "00:06:41.520",
+    "end": "00:06:46.760",
+    "text": "And, um, I had a lot of people tell me like videos a bad way to learn."
+  },
+  {
+    "id": 147,
+    "start": "00:06:46.760",
+    "end": "00:06:49.040",
+    "text": "And I just never resonated with that sentiment."
+  },
+  {
+    "id": 148,
+    "start": "00:06:49.040",
+    "end": "00:06:51.520",
+    "text": "It was, to me, was always like, I can put on a video."
+  },
+  {
+    "id": 149,
+    "start": "00:06:51.520",
+    "end": "00:06:54.520",
+    "text": "I can launch somebody talk about it and do it."
+  },
+  {
+    "id": 150,
+    "start": "00:06:54.520",
+    "end": "00:06:59.560",
+    "text": "And at the time, uh, this was like 2011, we were buying a lot of courses."
+  },
+  {
+    "id": 151,
+    "start": "00:06:59.560",
+    "end": "00:07:03.400",
+    "text": "Part of like our education budget at work was courses, right?"
+  },
+  {
+    "id": 152,
+    "start": "00:07:04.400",
+    "end": "00:07:10.840",
+    "text": "YouTube, there was maybe one, one channel doing video tutorials on YouTube."
+  },
+  {
+    "id": 153,
+    "start": "00:07:10.840",
+    "end": "00:07:15.960",
+    "text": "And after listening to so many and then seeing what was available on YouTube, uh, there"
+  },
+  {
+    "id": 154,
+    "start": "00:07:15.960",
+    "end": "00:07:18.880",
+    "text": "was just this huge gap in quality."
+  },
+  {
+    "id": 155,
+    "start": "00:07:18.880",
+    "end": "00:07:21.880",
+    "text": "And I had come from a bit of a production background."
+  },
+  {
+    "id": 156,
+    "start": "00:07:21.880",
+    "end": "00:07:24.400",
+    "text": "I had worked as professional as a video editor."
+  },
+  {
+    "id": 157,
+    "start": "00:07:24.400",
+    "end": "00:07:26.720",
+    "text": "Um, I had gone to school for media art."
+  },
+  {
+    "id": 158,
+    "start": "00:07:26.720",
+    "end": "00:07:29.720",
+    "text": "So I had an audio and video background."
+  },
+  {
+    "id": 159,
+    "start": "00:07:29.720",
+    "end": "00:07:35.120",
+    "text": "I was a self-talk programmer and I was thinking like, I could just, I could just turn"
+  },
+  {
+    "id": 160,
+    "start": "00:07:35.120",
+    "end": "00:07:36.120",
+    "text": "on a screen."
+  },
+  {
+    "id": 161,
+    "start": "00:07:36.120",
+    "end": "00:07:37.120",
+    "text": "I don't even show my face."
+  },
+  {
+    "id": 162,
+    "start": "00:07:37.120",
+    "end": "00:07:38.120",
+    "text": "I don't even have to buy a camera."
+  },
+  {
+    "id": 163,
+    "start": "00:07:38.120",
+    "end": "00:07:39.120",
+    "text": "Yeah."
+  },
+  {
+    "id": 164,
+    "start": "00:07:39.120",
+    "end": "00:07:40.120",
+    "text": "Yeah."
+  },
+  {
+    "id": 165,
+    "start": "00:07:40.120",
+    "end": "00:07:41.120",
+    "text": "I got a microphone."
+  },
+  {
+    "id": 166,
+    "start": "00:07:41.120",
+    "end": "00:07:42.120",
+    "text": "I do."
+  },
+  {
+    "id": 167,
+    "start": "00:07:42.120",
+    "end": "00:07:43.120",
+    "text": "Yeah."
+  },
+  {
+    "id": 168,
+    "start": "00:07:43.120",
+    "end": "00:07:44.120",
+    "text": "I had a microphone at the time."
+  },
+  {
+    "id": 169,
+    "start": "00:07:44.120",
+    "end": "00:07:45.120",
+    "text": "I was trying to make it as a musician."
+  },
+  {
+    "id": 170,
+    "start": "00:07:45.120",
+    "end": "00:07:46.120",
+    "text": "So I had a microphone that was nice."
+  },
+  {
+    "id": 171,
+    "start": "00:07:46.120",
+    "end": "00:07:47.120",
+    "text": "Um, and it's like, okay."
+  },
+  {
+    "id": 172,
+    "start": "00:07:47.120",
+    "end": "00:07:50.840",
+    "text": "Well, let me just solve the problems that are bad with YouTube tutorials at the time,"
+  },
+  {
+    "id": 173,
+    "start": "00:07:50.840",
+    "end": "00:07:56.440",
+    "text": "which were people were using like, um, like the little windows microphones that were"
+  },
+  {
+    "id": 174,
+    "start": "00:07:56.440",
+    "end": "00:08:00.080",
+    "text": "like at the time that were just came with your Dell PC or something."
+  },
+  {
+    "id": 175,
+    "start": "00:08:00.080",
+    "end": "00:08:04.320",
+    "text": "You know, um, and we just do just terrible screencast."
+  },
+  {
+    "id": 176,
+    "start": "00:08:04.320",
+    "end": "00:08:09.160",
+    "text": "So I just started making them a little bit nicer and easier and like more of what I wanted"
+  },
+  {
+    "id": 177,
+    "start": "00:08:09.160",
+    "end": "00:08:13.680",
+    "text": "to see and maybe even more aligned with what I was paying for and then releasing them for"
+  },
+  {
+    "id": 178,
+    "start": "00:08:13.680",
+    "end": "00:08:18.160",
+    "text": "free on YouTube and like 2012."
+  },
+  {
+    "id": 179,
+    "start": "00:08:18.160",
+    "end": "00:08:21.480",
+    "text": "And I don't know what it was about it."
+  },
+  {
+    "id": 180,
+    "start": "00:08:21.480",
+    "end": "00:08:22.880",
+    "text": "I had a lot of time."
+  },
+  {
+    "id": 181,
+    "start": "00:08:22.880",
+    "end": "00:08:24.560",
+    "text": "My wife was getting her doctorate."
+  },
+  {
+    "id": 182,
+    "start": "00:08:24.560",
+    "end": "00:08:29.480",
+    "text": "I had gotten a concussion from dancing and so I couldn't do any exercise."
+  },
+  {
+    "id": 183,
+    "start": "00:08:29.480",
+    "end": "00:08:33.800",
+    "text": "Um, and I was spending three nights a week dancing typically."
+  },
+  {
+    "id": 184,
+    "start": "00:08:33.800",
+    "end": "00:08:38.400",
+    "text": "And now I have this big block of time that I had accounted for that I had nothing to do."
+  },
+  {
+    "id": 185,
+    "start": "00:08:38.400",
+    "end": "00:08:43.360",
+    "text": "So it's like, I'm going to record three tutorials, uh, three days a week."
+  },
+  {
+    "id": 186,
+    "start": "00:08:43.360",
+    "end": "00:08:50.440",
+    "text": "And I'm putting out nine tutorials a week on PHP like Drupal WordPress, CSS stuff, SaaS,"
+  },
+  {
+    "id": 187,
+    "start": "00:08:50.440",
+    "end": "00:08:51.800",
+    "text": "all these kinds of things."
+  },
+  {
+    "id": 188,
+    "start": "00:08:51.800",
+    "end": "00:08:55.040",
+    "text": "And next thing you know, I got like a thousand videos on my YouTube channel."
+  },
+  {
+    "id": 189,
+    "start": "00:08:55.040",
+    "end": "00:09:00.160",
+    "text": "I'm one of like the only channels that's like doing that kind of content and that niche."
+  },
+  {
+    "id": 190,
+    "start": "00:09:00.160",
+    "end": "00:09:04.760",
+    "text": "And, uh, the channel just, you know, took off and kept getting bigger and bigger and"
+  },
+  {
+    "id": 191,
+    "start": "00:09:04.760",
+    "end": "00:09:10.600",
+    "text": "bigger and, um, eventually led me to this career path, which again, I was doing this in"
+  },
+  {
+    "id": 192,
+    "start": "00:09:10.600",
+    "end": "00:09:11.600",
+    "text": "my nights and weekends."
+  },
+  {
+    "id": 193,
+    "start": "00:09:11.600",
+    "end": "00:09:17.560",
+    "text": "I had a day job as an agency and then, um, you know, I was just seeing the YouTube is a good"
+  },
+  {
+    "id": 194,
+    "start": "00:09:17.560",
+    "end": "00:09:21.080",
+    "text": "opportunity for me to have it something on my resume to get better jobs."
+  },
+  {
+    "id": 195,
+    "start": "00:09:21.080",
+    "end": "00:09:24.760",
+    "text": "Um, but ultimately became my entire career."
+  },
+  {
+    "id": 196,
+    "start": "00:09:24.760",
+    "end": "00:09:29.960",
+    "text": "When you started like, were there restrictions that were put in place by the platform,"
+  },
+  {
+    "id": 197,
+    "start": "00:09:29.960",
+    "end": "00:09:35.360",
+    "text": "by YouTube that actually like dictated how you crafted these videos because I think a lot"
+  },
+  {
+    "id": 198,
+    "start": "00:09:35.360",
+    "end": "00:09:39.320",
+    "text": "of folks, you think about buying a training course or going to a conference and doing a workshop"
+  },
+  {
+    "id": 199,
+    "start": "00:09:39.320",
+    "end": "00:09:40.880",
+    "text": "or thing like these eight hour videos."
+  },
+  {
+    "id": 200,
+    "start": "00:09:40.880",
+    "end": "00:09:45.000",
+    "text": "Like at that time, which is 13, 14 years ago and now at this point, where there were"
+  },
+  {
+    "id": 201,
+    "start": "00:09:45.000",
+    "end": "00:09:48.760",
+    "text": "restrictions in place that like actually like, oh, this is a great platform, but it's"
+  },
+  {
+    "id": 202,
+    "start": "00:09:48.760",
+    "end": "00:09:52.120",
+    "text": "maybe not how I wanted to teach or like this is how I want to teach."
+  },
+  {
+    "id": 203,
+    "start": "00:09:52.120",
+    "end": "00:09:58.160",
+    "text": "Yeah, there were, it kind of aligned really well for me because at the time, shorter,"
+  },
+  {
+    "id": 204,
+    "start": "00:09:58.160",
+    "end": "00:10:03.440",
+    "text": "you weren't penalized for really shorter videos, um, like six minutes or so."
+  },
+  {
+    "id": 205,
+    "start": "00:10:03.440",
+    "end": "00:10:08.360",
+    "text": "And the way I wanted to do it, especially if I was like searching for a topic, um, I would"
+  },
+  {
+    "id": 206,
+    "start": "00:10:08.360",
+    "end": "00:10:14.000",
+    "text": "end up in IRC rooms or forums and there would be like incomplete information or even just"
+  },
+  {
+    "id": 207,
+    "start": "00:10:14.000",
+    "end": "00:10:16.880",
+    "text": "like not step by step instructions on things."
+  },
+  {
+    "id": 208,
+    "start": "00:10:16.880",
+    "end": "00:10:21.240",
+    "text": "I was, I wanted so that if I had an issue, I could Google it."
+  },
+  {
+    "id": 209,
+    "start": "00:10:21.240",
+    "end": "00:10:26.600",
+    "text": "My, a video and coincidentally would become my video would pop up and just give you six"
+  },
+  {
+    "id": 210,
+    "start": "00:10:26.600",
+    "end": "00:10:27.600",
+    "text": "minutes."
+  },
+  {
+    "id": 211,
+    "start": "00:10:27.600",
+    "end": "00:10:32.480",
+    "text": "Here's just how you accomplish task and like no fluff, not any, and like at the time,"
+  },
+  {
+    "id": 212,
+    "start": "00:10:32.480",
+    "end": "00:10:34.600",
+    "text": "that would worked really well on YouTube."
+  },
+  {
+    "id": 213,
+    "start": "00:10:34.600",
+    "end": "00:10:39.800",
+    "text": "Um, like the ad revenue was good enough that like it could pay my rent, you know?"
+  },
+  {
+    "id": 214,
+    "start": "00:10:39.800",
+    "end": "00:10:42.240",
+    "text": "And it felt like, oh, maybe this could be a job."
+  },
+  {
+    "id": 215,
+    "start": "00:10:42.240",
+    "end": "00:10:47.120",
+    "text": "And then YouTube started deprioritizing shorter videos, going to more long form content."
+  },
+  {
+    "id": 216,
+    "start": "00:10:47.120",
+    "end": "00:10:51.480",
+    "text": "Um, you would see ad revenue slashed and this last again and this last again and you're"
+  },
+  {
+    "id": 217,
+    "start": "00:10:51.480",
+    "end": "00:10:58.280",
+    "text": "just like, oh, I need to either change or, you know, find some other way to, to make"
+  },
+  {
+    "id": 218,
+    "start": "00:10:58.280",
+    "end": "00:11:00.920",
+    "text": "this, you know, viable."
+  },
+  {
+    "id": 219,
+    "start": "00:11:00.920",
+    "end": "00:11:04.280",
+    "text": "Because you've been doing it for a while and I've been, you know, doing things professionally"
+  },
+  {
+    "id": 220,
+    "start": "00:11:04.280",
+    "end": "00:11:06.360",
+    "text": "for work and in my spare time as well."
+  },
+  {
+    "id": 221,
+    "start": "00:11:06.360",
+    "end": "00:11:09.520",
+    "text": "I think the thing that people talk about is algorithm."
+  },
+  {
+    "id": 222,
+    "start": "00:11:09.520",
+    "end": "00:11:14.040",
+    "text": "Yeah, because at the end of the day, you know, the vibe that I'm getting from you is like,"
+  },
+  {
+    "id": 223,
+    "start": "00:11:14.040",
+    "end": "00:11:16.280",
+    "text": "hey, I just want to teach people something cool, right?"
+  },
+  {
+    "id": 224,
+    "start": "00:11:16.280",
+    "end": "00:11:19.800",
+    "text": "And then hopefully they watch it and hopefully helps me pay my rent."
+  },
+  {
+    "id": 225,
+    "start": "00:11:19.800",
+    "end": "00:11:20.800",
+    "text": "Right."
+  },
+  {
+    "id": 226,
+    "start": "00:11:20.800",
+    "end": "00:11:22.480",
+    "text": "Oh, it would be a nice little goal, right?"
+  },
+  {
+    "id": 227,
+    "start": "00:11:22.480",
+    "end": "00:11:23.480",
+    "text": "Right."
+  },
+  {
+    "id": 228,
+    "start": "00:11:23.480",
+    "end": "00:11:27.720",
+    "text": "But has the actual algorithm like changed how you create content or think about the content"
+  },
+  {
+    "id": 229,
+    "start": "00:11:27.720",
+    "end": "00:11:31.080",
+    "text": "that you create or you're like, no, I'm just going to do it my way."
+  },
+  {
+    "id": 230,
+    "start": "00:11:31.080",
+    "end": "00:11:36.400",
+    "text": "Yeah, I think to an extent, um, if you salt immediately, then they want people to see,"
+  },
+  {
+    "id": 231,
+    "start": "00:11:36.400",
+    "end": "00:11:37.760",
+    "text": "um, the work."
+  },
+  {
+    "id": 232,
+    "start": "00:11:37.760",
+    "end": "00:11:44.000",
+    "text": "But we, you know, I, to afford to live, I had to move to a paid bottle on my own platform."
+  },
+  {
+    "id": 233,
+    "start": "00:11:44.000",
+    "end": "00:11:48.480",
+    "text": "Um, and so I moved to my own platform and then I'm still released videos for free on YouTube"
+  },
+  {
+    "id": 234,
+    "start": "00:11:48.480",
+    "end": "00:11:50.280",
+    "text": "but didn't have a paid platform."
+  },
+  {
+    "id": 235,
+    "start": "00:11:50.280",
+    "end": "00:11:54.760",
+    "text": "Um, when we started the syntax podcast, one of the things was that a lot of people were"
+  },
+  {
+    "id": 236,
+    "start": "00:11:54.760",
+    "end": "00:11:57.360",
+    "text": "doing Patreon or pay well content."
+  },
+  {
+    "id": 237,
+    "start": "00:11:57.360",
+    "end": "00:11:58.360",
+    "text": "Yeah."
+  },
+  {
+    "id": 238,
+    "start": "00:11:58.360",
+    "end": "00:12:05.080",
+    "text": "And from the start, we talked about it and we determined that like, we will just do ads."
+  },
+  {
+    "id": 239,
+    "start": "00:12:05.080",
+    "end": "00:12:10.520",
+    "text": "I know the ads are annoying, but we don't want to make people pay for anything here."
+  },
+  {
+    "id": 240,
+    "start": "00:12:10.520",
+    "end": "00:12:11.520",
+    "text": "Right."
+  },
+  {
+    "id": 241,
+    "start": "00:12:11.520",
+    "end": "00:12:12.520",
+    "text": "You can skip an ad."
+  },
+  {
+    "id": 242,
+    "start": "00:12:12.520",
+    "end": "00:12:15.120",
+    "text": "You can't like get past something that has a pay well."
+  },
+  {
+    "id": 243,
+    "start": "00:12:15.120",
+    "end": "00:12:20.800",
+    "text": "So like the focus on making it for free has always been such a like a priority for us."
+  },
+  {
+    "id": 244,
+    "start": "00:12:20.800",
+    "end": "00:12:28.120",
+    "text": "And that's why when, um, the level of tutorials and syntax were acquired by century, um,"
+  },
+  {
+    "id": 245,
+    "start": "00:12:28.120",
+    "end": "00:12:32.560",
+    "text": "they were able to make everything free, uh, at least on my platform."
+  },
+  {
+    "id": 246,
+    "start": "00:12:32.560",
+    "end": "00:12:36.720",
+    "text": "And then now what we're doing on syntax is I'm doing a lot of what I was doing on level"
+  },
+  {
+    "id": 247,
+    "start": "00:12:36.720",
+    "end": "00:12:42.800",
+    "text": "up tutorials just for free on YouTube again, um, with no expectation that anybody has to"
+  },
+  {
+    "id": 248,
+    "start": "00:12:42.800",
+    "end": "00:12:43.800",
+    "text": "pay for anything."
+  },
+  {
+    "id": 249,
+    "start": "00:12:43.800",
+    "end": "00:12:46.560",
+    "text": "So that's always been number one goal."
+  },
+  {
+    "id": 250,
+    "start": "00:12:46.560",
+    "end": "00:12:50.560",
+    "text": "Um, but as far as like, you know, really playing to the algorithm."
+  },
+  {
+    "id": 251,
+    "start": "00:12:50.560",
+    "end": "00:12:51.560",
+    "text": "Yeah."
+  },
+  {
+    "id": 252,
+    "start": "00:12:51.560",
+    "end": "00:12:52.560",
+    "text": "We do some of that."
+  },
+  {
+    "id": 253,
+    "start": "00:12:52.560",
+    "end": "00:12:56.600",
+    "text": "We started Friday videos that are a little bit more like edutainment style where we're playing"
+  },
+  {
+    "id": 254,
+    "start": "00:12:56.600",
+    "end": "00:12:57.960",
+    "text": "games against each other."
+  },
+  {
+    "id": 255,
+    "start": "00:12:57.960",
+    "end": "00:12:59.560",
+    "text": "We're, we're doing coding games."
+  },
+  {
+    "id": 256,
+    "start": "00:12:59.560",
+    "end": "00:13:02.520",
+    "text": "Um, but they're ultimately just a lot of fun."
+  },
+  {
+    "id": 257,
+    "start": "00:13:02.520",
+    "end": "00:13:07.560",
+    "text": "And in the challenge there is how do you keep it, um, still valuable like high value"
+  },
+  {
+    "id": 258,
+    "start": "00:13:07.560",
+    "end": "00:13:08.560",
+    "text": "content?"
+  },
+  {
+    "id": 259,
+    "start": "00:13:08.560",
+    "end": "00:13:11.200",
+    "text": "Like I want it to be fun and I want it to be entertaining."
+  },
+  {
+    "id": 260,
+    "start": "00:13:11.200",
+    "end": "00:13:15.160",
+    "text": "But I'm making sure that when we're doing these coding battles, it's more than just like,"
+  },
+  {
+    "id": 261,
+    "start": "00:13:15.160",
+    "end": "00:13:16.160",
+    "text": "oh, I'm coding."
+  },
+  {
+    "id": 262,
+    "start": "00:13:16.160",
+    "end": "00:13:21.040",
+    "text": "It's like, let me tell you why while I'm doing this, why you should be using this"
+  },
+  {
+    "id": 263,
+    "start": "00:13:21.040",
+    "end": "00:13:25.760",
+    "text": "transform syntax instead of this transform syntax for these following reasons."
+  },
+  {
+    "id": 264,
+    "start": "00:13:25.760",
+    "end": "00:13:31.640",
+    "text": "Like I just have such an, an, like an 8 cent that I need to be bringing value in that"
+  },
+  {
+    "id": 265,
+    "start": "00:13:31.640",
+    "end": "00:13:34.880",
+    "text": "way beyond just like, oh, just have fun, you know, yeah."
+  },
+  {
+    "id": 266,
+    "start": "00:13:34.880",
+    "end": "00:13:35.880",
+    "text": "Yeah."
+  },
+  {
+    "id": 267,
+    "start": "00:13:35.880",
+    "end": "00:13:36.880",
+    "text": "That makes a lot of sense."
+  },
+  {
+    "id": 268,
+    "start": "00:13:36.880",
+    "end": "00:13:41.640",
+    "text": "And I feel like that is kind of like kind of leads me to the next kind of topic, which"
+  },
+  {
+    "id": 269,
+    "start": "00:13:41.640",
+    "end": "00:13:47.240",
+    "text": "is as a platform to have evolved, I think as you talked about like I also had a big book."
+  },
+  {
+    "id": 270,
+    "start": "00:13:47.240",
+    "end": "00:13:49.800",
+    "text": "My first job was like C sharp in that, not shell in that."
+  },
+  {
+    "id": 271,
+    "start": "00:13:49.800",
+    "end": "00:13:51.200",
+    "text": "I think it was like that, that big."
+  },
+  {
+    "id": 272,
+    "start": "00:13:51.200",
+    "end": "00:13:52.200",
+    "text": "Yeah."
+  },
+  {
+    "id": 273,
+    "start": "00:13:52.200",
+    "end": "00:13:55.360",
+    "text": "It was about the size of my head as they say to become a monitor standard at some point."
+  },
+  {
+    "id": 274,
+    "start": "00:13:55.360",
+    "end": "00:13:56.360",
+    "text": "Yeah, it's definitely."
+  },
+  {
+    "id": 275,
+    "start": "00:13:56.360",
+    "end": "00:13:57.360",
+    "text": "Yeah."
+  },
+  {
+    "id": 276,
+    "start": "00:13:57.360",
+    "end": "00:14:01.160",
+    "text": "After I read about 20 pages, I'm like, I think I'm good here."
+  },
+  {
+    "id": 277,
+    "start": "00:14:01.160",
+    "end": "00:14:04.240",
+    "text": "Was that, you know, there's still books, there's still videos, there's still courses,"
+  },
+  {
+    "id": 278,
+    "start": "00:14:04.240",
+    "end": "00:14:07.460",
+    "text": "there's still conferences, there's still things have evolved, but I feel like there's"
+  },
+  {
+    "id": 279,
+    "start": "00:14:07.460",
+    "end": "00:14:10.840",
+    "text": "different generations of knowledge of how people are learning, but actually what people"
+  },
+  {
+    "id": 280,
+    "start": "00:14:10.840",
+    "end": "00:14:12.000",
+    "text": "are learning, right?"
+  },
+  {
+    "id": 281,
+    "start": "00:14:12.000",
+    "end": "00:14:17.360",
+    "text": "And I feel like I have teachers in my family, I have teachers that are friends that live"
+  },
+  {
+    "id": 282,
+    "start": "00:14:17.360",
+    "end": "00:14:19.080",
+    "text": "across the street from me."
+  },
+  {
+    "id": 283,
+    "start": "00:14:19.080",
+    "end": "00:14:22.560",
+    "text": "And one of the things is really this impact of AI, right?"
+  },
+  {
+    "id": 284,
+    "start": "00:14:22.560",
+    "end": "00:14:26.880",
+    "text": "Not only just for developers like learning AI and fusing AI into our development, but actually"
+  },
+  {
+    "id": 285,
+    "start": "00:14:26.880",
+    "end": "00:14:29.680",
+    "text": "I like how AI is impact is how people live."
+  },
+  {
+    "id": 286,
+    "start": "00:14:29.680",
+    "end": "00:14:30.680",
+    "text": "Yeah."
+  },
+  {
+    "id": 287,
+    "start": "00:14:30.680",
+    "end": "00:14:33.920",
+    "text": "And I think as an educator, you have like this insight, not only just how like just like"
+  },
+  {
+    "id": 288,
+    "start": "00:14:33.920",
+    "end": "00:14:39.500",
+    "text": "algorithms like of YouTube and of different platforms affect how you create content or"
+  },
+  {
+    "id": 289,
+    "start": "00:14:39.500",
+    "end": "00:14:44.360",
+    "text": "it doesn't maybe impact your content, but actually how people are learning nowadays."
+  },
+  {
+    "id": 290,
+    "start": "00:14:44.360",
+    "end": "00:14:48.280",
+    "text": "So when you get your insight on that and what you've seen through all this content,"
+  },
+  {
+    "id": 291,
+    "start": "00:14:48.280",
+    "end": "00:14:53.120",
+    "text": "like not only just in the courses, but even in the podcast media, right?"
+  },
+  {
+    "id": 292,
+    "start": "00:14:53.120",
+    "end": "00:14:56.440",
+    "text": "As well, like how people are diving into it and the mediums that are there."
+  },
+  {
+    "id": 293,
+    "start": "00:14:56.440",
+    "end": "00:14:58.400",
+    "text": "Yeah, yeah, there's a number of things there."
+  },
+  {
+    "id": 294,
+    "start": "00:14:58.400",
+    "end": "00:15:05.800",
+    "text": "I think AI has changed how a lot of us go to solve problems right away."
+  },
+  {
+    "id": 295,
+    "start": "00:15:05.800",
+    "end": "00:15:09.120",
+    "text": "And so for me personally, it's changed how I solve problems."
+  },
+  {
+    "id": 296,
+    "start": "00:15:09.120",
+    "end": "00:15:14.920",
+    "text": "I'm not always necessarily looking for blog answers personally."
+  },
+  {
+    "id": 297,
+    "start": "00:15:15.920",
+    "end": "00:15:20.480",
+    "text": "You're utilizing it for learning specific types of things."
+  },
+  {
+    "id": 298,
+    "start": "00:15:20.480",
+    "end": "00:15:28.280",
+    "text": "But in general, there's this weird issue where like if you don't know the topic deeply"
+  },
+  {
+    "id": 299,
+    "start": "00:15:28.280",
+    "end": "00:15:33.680",
+    "text": "that you're researching, sometimes AI seems like it's better than it is at that given"
+  },
+  {
+    "id": 300,
+    "start": "00:15:33.680",
+    "end": "00:15:37.400",
+    "text": "time because you're getting answers that seem like they're really good."
+  },
+  {
+    "id": 301,
+    "start": "00:15:37.400",
+    "end": "00:15:42.040",
+    "text": "But sometimes when I know a lot about the topic and I'm seeing especially like CSS, right?"
+  },
+  {
+    "id": 302,
+    "start": "00:15:42.040",
+    "end": "00:15:47.160",
+    "text": "And AI is returning CSS to me regardless of the model right now."
+  },
+  {
+    "id": 303,
+    "start": "00:15:47.160",
+    "end": "00:15:53.840",
+    "text": "I'm oftentimes critiquing it from like a really hyper like this to me is like not what"
+  },
+  {
+    "id": 304,
+    "start": "00:15:53.840",
+    "end": "00:15:55.760",
+    "text": "I would write myself."
+  },
+  {
+    "id": 305,
+    "start": "00:15:55.760",
+    "end": "00:16:00.280",
+    "text": "But other times when I don't know the topic is deeply I'm like, yeah, it looks good to"
+  },
+  {
+    "id": 306,
+    "start": "00:16:00.280",
+    "end": "00:16:02.320",
+    "text": "me, right?"
+  },
+  {
+    "id": 307,
+    "start": "00:16:02.320",
+    "end": "00:16:06.360",
+    "text": "And so I think there is like a bit of an issue where you have newer developers who might"
+  },
+  {
+    "id": 308,
+    "start": "00:16:06.360",
+    "end": "00:16:14.760",
+    "text": "be utilizing these tools, they're either getting maybe not the best code back or they"
+  },
+  {
+    "id": 309,
+    "start": "00:16:14.760",
+    "end": "00:16:16.960",
+    "text": "don't know exactly what they don't know."
+  },
+  {
+    "id": 310,
+    "start": "00:16:16.960",
+    "end": "00:16:22.880",
+    "text": "And therefore, you know, there's like a weird kind of like mismatch there."
+  },
+  {
+    "id": 311,
+    "start": "00:16:22.880",
+    "end": "00:16:27.280",
+    "text": "And that can lead some people into a position of like all these tools are bad."
+  },
+  {
+    "id": 312,
+    "start": "00:16:27.280",
+    "end": "00:16:30.880",
+    "text": "I'm not going to use these tools for learning or all these tools are bad."
+  },
+  {
+    "id": 313,
+    "start": "00:16:30.880",
+    "end": "00:16:33.400",
+    "text": "I'm not going to use them for development."
+  },
+  {
+    "id": 314,
+    "start": "00:16:33.480",
+    "end": "00:16:41.440",
+    "text": "And really ultimately what I think people need to understand is that these tools can be super"
+  },
+  {
+    "id": 315,
+    "start": "00:16:41.440",
+    "end": "00:16:47.360",
+    "text": "useful for all of the above as long as you have the willingness and the patience to dive"
+  },
+  {
+    "id": 316,
+    "start": "00:16:47.360",
+    "end": "00:16:49.720",
+    "text": "deeply into them and explore them."
+  },
+  {
+    "id": 317,
+    "start": "00:16:49.720",
+    "end": "00:16:53.000",
+    "text": "So I've noticed it going a couple ways."
+  },
+  {
+    "id": 318,
+    "start": "00:16:53.000",
+    "end": "00:16:57.360",
+    "text": "People pick up AI tools and they either work or they don't work."
+  },
+  {
+    "id": 319,
+    "start": "00:16:57.360",
+    "end": "00:16:58.360",
+    "text": "They work for them."
+  },
+  {
+    "id": 320,
+    "start": "00:16:58.360",
+    "end": "00:17:00.440",
+    "text": "They say, this is the greatest thing I'm going on in."
+  },
+  {
+    "id": 321,
+    "start": "00:17:00.440",
+    "end": "00:17:01.440",
+    "text": "They don't work for them."
+  },
+  {
+    "id": 322,
+    "start": "00:17:01.440",
+    "end": "00:17:02.440",
+    "text": "They say, this sucks."
+  },
+  {
+    "id": 323,
+    "start": "00:17:02.440",
+    "end": "00:17:05.320",
+    "text": "They're like, I don't think this is worthwhile."
+  },
+  {
+    "id": 324,
+    "start": "00:17:05.320",
+    "end": "00:17:11.280",
+    "text": "And ultimately like I think with most things, the answer right there somewhere in the"
+  },
+  {
+    "id": 325,
+    "start": "00:17:11.280",
+    "end": "00:17:18.440",
+    "text": "meshing of like, how do you get the total skeptics to realize that there is value there?"
+  },
+  {
+    "id": 326,
+    "start": "00:17:18.440",
+    "end": "00:17:22.600",
+    "text": "How do you get the people who are like very fanatical about them to be a little bit more"
+  },
+  {
+    "id": 327,
+    "start": "00:17:22.600",
+    "end": "00:17:25.240",
+    "text": "cautious about what they're putting out into the world?"
+  },
+  {
+    "id": 328,
+    "start": "00:17:25.240",
+    "end": "00:17:30.880",
+    "text": "So it's a major challenge in educating people about AI, but also getting people to be educated"
+  },
+  {
+    "id": 329,
+    "start": "00:17:30.880",
+    "end": "00:17:31.880",
+    "text": "about AI."
+  },
+  {
+    "id": 330,
+    "start": "00:17:31.880",
+    "end": "00:17:34.440",
+    "text": "What is that first trip though?"
+  },
+  {
+    "id": 331,
+    "start": "00:17:34.440",
+    "end": "00:17:36.680",
+    "text": "What is the gateway into it?"
+  },
+  {
+    "id": 332,
+    "start": "00:17:36.680",
+    "end": "00:17:37.680",
+    "text": "What would you recommend?"
+  },
+  {
+    "id": 333,
+    "start": "00:17:37.680",
+    "end": "00:17:42.400",
+    "text": "So I'm a brand new student-normor career switcher or even me, I'm just trying to learn a new"
+  },
+  {
+    "id": 334,
+    "start": "00:17:42.400",
+    "end": "00:17:46.920",
+    "text": "turn out like what is the first sort of trickle that I should look at?"
+  },
+  {
+    "id": 335,
+    "start": "00:17:46.920",
+    "end": "00:17:51.280",
+    "text": "How do I, where should I look at and what should be my exploration steps?"
+  },
+  {
+    "id": 336,
+    "start": "00:17:51.280",
+    "end": "00:17:53.960",
+    "text": "Because often for me it's easy to just go, oh I'm an open-up VS code."
+  },
+  {
+    "id": 337,
+    "start": "00:17:53.960",
+    "end": "00:17:54.960",
+    "text": "Yeah."
+  },
+  {
+    "id": 338,
+    "start": "00:17:54.960",
+    "end": "00:17:58.760",
+    "text": "I'm a favorite code editor and just say I want to do this thing."
+  },
+  {
+    "id": 339,
+    "start": "00:17:59.240",
+    "end": "00:18:04.440",
+    "text": "Yeah, it's so funny because I think a lot of times that experience can be overwhelming"
+  },
+  {
+    "id": 340,
+    "start": "00:18:04.440",
+    "end": "00:18:12.000",
+    "text": "to people where the AI is writing and updating files for you."
+  },
+  {
+    "id": 341,
+    "start": "00:18:12.000",
+    "end": "00:18:16.480",
+    "text": "Sometimes many files at once ensure that the workflows where you're proving those changes,"
+  },
+  {
+    "id": 342,
+    "start": "00:18:16.480",
+    "end": "00:18:18.160",
+    "text": "those can ease some of that."
+  },
+  {
+    "id": 343,
+    "start": "00:18:18.160",
+    "end": "00:18:24.880",
+    "text": "But I think the best gateway for people is to even just fire up your normal AI chat window"
+  },
+  {
+    "id": 344,
+    "start": "00:18:24.880",
+    "end": "00:18:28.200",
+    "text": "and just start asking questions about code."
+  },
+  {
+    "id": 345,
+    "start": "00:18:28.200",
+    "end": "00:18:36.880",
+    "text": "We recently talked about like the, just the techniques of AI encoding in which ones we"
+  },
+  {
+    "id": 346,
+    "start": "00:18:36.880",
+    "end": "00:18:39.360",
+    "text": "feel like are better than others."
+  },
+  {
+    "id": 347,
+    "start": "00:18:39.360",
+    "end": "00:18:44.720",
+    "text": "And the classic, let me just paste this question or paste this error into any sort of"
+  },
+  {
+    "id": 348,
+    "start": "00:18:44.720",
+    "end": "00:18:51.200",
+    "text": "chat window and get that answer back has been very underrated in terms of like being a low"
+  },
+  {
+    "id": 349,
+    "start": "00:18:51.200",
+    "end": "00:18:57.440",
+    "text": "friction way to see the value in something, especially things like solving errors or just"
+  },
+  {
+    "id": 350,
+    "start": "00:18:57.440",
+    "end": "00:18:59.600",
+    "text": "gaining insight or whatever."
+  },
+  {
+    "id": 351,
+    "start": "00:18:59.600",
+    "end": "00:19:02.880",
+    "text": "Because once it starts getting into your code base and editing files and it starts making"
+  },
+  {
+    "id": 352,
+    "start": "00:19:02.880",
+    "end": "00:19:07.760",
+    "text": "mistakes or doing things that you're not planning on doing or wouldn't do yourself, you"
+  },
+  {
+    "id": 353,
+    "start": "00:19:07.760",
+    "end": "00:19:11.080",
+    "text": "can feel very like attacked by that in a way."
+  },
+  {
+    "id": 354,
+    "start": "00:19:11.080",
+    "end": "00:19:15.320",
+    "text": "Oh, this is, this is my code you're ruining and I go, you know, off my lawn, you know,"
+  },
+  {
+    "id": 355,
+    "start": "00:19:15.320",
+    "end": "00:19:16.560",
+    "text": "not there, yeah, exactly."
+  },
+  {
+    "id": 356,
+    "start": "00:19:16.560",
+    "end": "00:19:21.880",
+    "text": "So just like such a gentle introduction into that to me is like a nice way for people to"
+  },
+  {
+    "id": 357,
+    "start": "00:19:22.880",
+    "end": "00:19:27.560",
+    "text": "be like, oh, this doesn't have to be destroying the things I'm working on or whatever."
+  },
+  {
+    "id": 358,
+    "start": "00:19:27.560",
+    "end": "00:19:33.880",
+    "text": "And then once you find the value in that, yeah, then you can get deeper and deeper."
+  },
+  {
+    "id": 359,
+    "start": "00:19:33.880",
+    "end": "00:19:38.760",
+    "text": "And then eventually you're working in the terminal UIs that are just updating, you know,"
+  },
+  {
+    "id": 360,
+    "start": "00:19:38.760",
+    "end": "00:19:44.920",
+    "text": "tons of code for you and you're proving PRs and you're sending PRs to an agent that's"
+  },
+  {
+    "id": 361,
+    "start": "00:19:44.920",
+    "end": "00:19:45.960",
+    "text": "solving it for you."
+  },
+  {
+    "id": 362,
+    "start": "00:19:45.960",
+    "end": "00:19:51.840",
+    "text": "Like there's like, there's definitely like a path to getting more and more advanced"
+  },
+  {
+    "id": 363,
+    "start": "00:19:52.160",
+    "end": "00:19:57.800",
+    "text": "with it that I think I think a lot of people would really like had they have like a more"
+  },
+  {
+    "id": 364,
+    "start": "00:19:57.800",
+    "end": "00:20:00.560",
+    "text": "gentle slope into it."
+  },
+  {
+    "id": 365,
+    "start": "00:20:00.560",
+    "end": "00:20:03.520",
+    "text": "So it sounds like, you know, I think like even in in the US code, we talked about"
+  },
+  {
+    "id": 366,
+    "start": "00:20:03.520",
+    "end": "00:20:05.120",
+    "text": "there's just ask at an agent, right?"
+  },
+  {
+    "id": 367,
+    "start": "00:20:05.120",
+    "end": "00:20:07.000",
+    "text": "That ask mode is that safe space?"
+  },
+  {
+    "id": 368,
+    "start": "00:20:07.000",
+    "end": "00:20:08.000",
+    "text": "Yeah, yeah."
+  },
+  {
+    "id": 369,
+    "start": "00:20:08.000",
+    "end": "00:20:09.000",
+    "text": "Form it's cozy."
+  },
+  {
+    "id": 370,
+    "start": "00:20:09.000",
+    "end": "00:20:10.000",
+    "text": "It's not going to modify."
+  },
+  {
+    "id": 371,
+    "start": "00:20:10.000",
+    "end": "00:20:13.680",
+    "text": "You can just ask and ask when I started at Canon, my first show about a college, I walked"
+  },
+  {
+    "id": 372,
+    "start": "00:20:13.680",
+    "end": "00:20:15.680",
+    "text": "in in the first week they gave me this binder."
+  },
+  {
+    "id": 373,
+    "start": "00:20:15.680",
+    "end": "00:20:17.080",
+    "text": "And I said, this is the source code."
+  },
+  {
+    "id": 374,
+    "start": "00:20:17.080",
+    "end": "00:20:18.480",
+    "text": "This is the reference is the architecture."
+  },
+  {
+    "id": 375,
+    "start": "00:20:18.480",
+    "end": "00:20:19.480",
+    "text": "Oh, here you go."
+  },
+  {
+    "id": 376,
+    "start": "00:20:19.640",
+    "end": "00:20:21.880",
+    "text": "And then they said, well, see you in two weeks."
+  },
+  {
+    "id": 377,
+    "start": "00:20:21.880",
+    "end": "00:20:22.960",
+    "text": "Oh, and that was it."
+  },
+  {
+    "id": 378,
+    "start": "00:20:22.960",
+    "end": "00:20:26.440",
+    "text": "And it wasn't it was like, it was set up processes and fireman variables."
+  },
+  {
+    "id": 379,
+    "start": "00:20:26.440",
+    "end": "00:20:27.280",
+    "text": "It was this and that."
+  },
+  {
+    "id": 380,
+    "start": "00:20:27.280",
+    "end": "00:20:29.920",
+    "text": "And they said, we'll see in two weeks and see if you can build it."
+  },
+  {
+    "id": 381,
+    "start": "00:20:29.920",
+    "end": "00:20:31.720",
+    "text": "Yeah, see if you can build it, right?"
+  },
+  {
+    "id": 382,
+    "start": "00:20:31.720",
+    "end": "00:20:32.760",
+    "text": "And that would break me."
+  },
+  {
+    "id": 383,
+    "start": "00:20:32.760",
+    "end": "00:20:39.600",
+    "text": "I had this like, but you could now like ask questions of that code base and really like"
+  },
+  {
+    "id": 384,
+    "start": "00:20:39.600",
+    "end": "00:20:41.160",
+    "text": "targeted stuff."
+  },
+  {
+    "id": 385,
+    "start": "00:20:41.160",
+    "end": "00:20:44.760",
+    "text": "And to me, that's there's so much value in that like understanding the code."
+  },
+  {
+    "id": 386,
+    "start": "00:20:44.760",
+    "end": "00:20:45.760",
+    "text": "Yeah."
+  },
+  {
+    "id": 387,
+    "start": "00:20:45.760",
+    "end": "00:20:46.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 388,
+    "start": "00:20:46.760",
+    "end": "00:20:47.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 389,
+    "start": "00:20:47.760",
+    "end": "00:20:48.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 390,
+    "start": "00:20:48.760",
+    "end": "00:20:49.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 391,
+    "start": "00:20:49.760",
+    "end": "00:20:50.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 392,
+    "start": "00:20:50.760",
+    "end": "00:20:51.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 393,
+    "start": "00:20:51.760",
+    "end": "00:20:52.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 394,
+    "start": "00:20:52.760",
+    "end": "00:20:53.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 395,
+    "start": "00:20:53.760",
+    "end": "00:20:54.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 396,
+    "start": "00:20:54.760",
+    "end": "00:20:55.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 397,
+    "start": "00:20:55.760",
+    "end": "00:20:56.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 398,
+    "start": "00:20:56.760",
+    "end": "00:20:57.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 399,
+    "start": "00:20:57.760",
+    "end": "00:20:58.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 400,
+    "start": "00:20:58.760",
+    "end": "00:20:59.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 401,
+    "start": "00:20:59.760",
+    "end": "00:21:01.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 402,
+    "start": "00:21:01.760",
+    "end": "00:21:03.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 403,
+    "start": "00:21:03.760",
+    "end": "00:21:05.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 404,
+    "start": "00:21:05.760",
+    "end": "00:21:07.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 405,
+    "start": "00:21:07.760",
+    "end": "00:21:09.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 406,
+    "start": "00:21:09.760",
+    "end": "00:21:11.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 407,
+    "start": "00:21:11.760",
+    "end": "00:21:13.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 408,
+    "start": "00:21:13.760",
+    "end": "00:21:15.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 409,
+    "start": "00:21:15.760",
+    "end": "00:21:16.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 410,
+    "start": "00:21:16.760",
+    "end": "00:21:17.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 411,
+    "start": "00:21:17.760",
+    "end": "00:21:18.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 412,
+    "start": "00:21:18.760",
+    "end": "00:21:19.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 413,
+    "start": "00:21:19.760",
+    "end": "00:21:20.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 414,
+    "start": "00:21:20.760",
+    "end": "00:21:21.760",
+    "text": "And I think that's the way that I can do it."
+  },
+  {
+    "id": 415,
+    "start": "00:21:21.760",
+    "end": "00:21:23.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 416,
+    "start": "00:21:23.760",
+    "end": "00:21:25.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 417,
+    "start": "00:21:25.760",
+    "end": "00:21:27.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 418,
+    "start": "00:21:27.760",
+    "end": "00:21:29.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 419,
+    "start": "00:21:29.760",
+    "end": "00:21:31.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 420,
+    "start": "00:21:31.760",
+    "end": "00:21:33.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 421,
+    "start": "00:21:33.760",
+    "end": "00:21:34.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 422,
+    "start": "00:21:34.760",
+    "end": "00:21:36.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 423,
+    "start": "00:21:36.760",
+    "end": "00:21:37.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 424,
+    "start": "00:21:37.760",
+    "end": "00:21:38.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 425,
+    "start": "00:21:38.760",
+    "end": "00:21:39.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 426,
+    "start": "00:21:39.760",
+    "end": "00:21:40.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 427,
+    "start": "00:21:40.760",
+    "end": "00:21:41.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 428,
+    "start": "00:21:41.760",
+    "end": "00:21:42.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 429,
+    "start": "00:21:42.760",
+    "end": "00:21:43.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 430,
+    "start": "00:21:43.760",
+    "end": "00:21:44.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 431,
+    "start": "00:21:44.760",
+    "end": "00:21:45.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 432,
+    "start": "00:21:45.760",
+    "end": "00:21:47.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 433,
+    "start": "00:21:47.760",
+    "end": "00:21:48.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 434,
+    "start": "00:21:48.760",
+    "end": "00:21:50.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 435,
+    "start": "00:21:50.760",
+    "end": "00:21:52.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 436,
+    "start": "00:21:52.760",
+    "end": "00:21:54.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 437,
+    "start": "00:21:54.760",
+    "end": "00:21:56.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 438,
+    "start": "00:21:56.760",
+    "end": "00:21:58.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 439,
+    "start": "00:21:58.760",
+    "end": "00:22:00.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 440,
+    "start": "00:22:00.760",
+    "end": "00:22:02.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 441,
+    "start": "00:22:02.760",
+    "end": "00:22:04.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 442,
+    "start": "00:22:04.760",
+    "end": "00:22:06.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 443,
+    "start": "00:22:06.760",
+    "end": "00:22:07.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 444,
+    "start": "00:22:07.760",
+    "end": "00:22:08.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 445,
+    "start": "00:22:08.760",
+    "end": "00:22:09.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 446,
+    "start": "00:22:09.760",
+    "end": "00:22:10.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 447,
+    "start": "00:22:10.760",
+    "end": "00:22:11.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 448,
+    "start": "00:22:11.760",
+    "end": "00:22:12.760",
+    "text": "And that's the way that I can do it."
+  },
+  {
+    "id": 449,
+    "start": "00:22:12.760",
+    "end": "00:22:15.320",
+    "text": "Even maybe more now that there's so many new terms"
+  },
+  {
+    "id": 450,
+    "start": "00:22:15.320",
+    "end": "00:22:16.480",
+    "text": "for so many people."
+  },
+  {
+    "id": 451,
+    "start": "00:22:16.480",
+    "end": "00:22:16.980",
+    "text": "That's cool."
+  },
+  {
+    "id": 452,
+    "start": "00:22:16.980",
+    "end": "00:22:19.520",
+    "text": "Now I appreciate you kind of coming on talking about how"
+  },
+  {
+    "id": 453,
+    "start": "00:22:19.520",
+    "end": "00:22:22.600",
+    "text": "you evolved yourself and like at the education platforms"
+  },
+  {
+    "id": 454,
+    "start": "00:22:22.600",
+    "end": "00:22:25.360",
+    "text": "that have evolved and also how AI's impacting that as well."
+  },
+  {
+    "id": 455,
+    "start": "00:22:25.360",
+    "end": "00:22:26.480",
+    "text": "All right, last question."
+  },
+  {
+    "id": 456,
+    "start": "00:22:26.480",
+    "end": "00:22:28.400",
+    "text": "Do you have a favorite episode of syntax?"
+  },
+  {
+    "id": 457,
+    "start": "00:22:28.400",
+    "end": "00:22:30.640",
+    "text": "A favorite episode of syntax."
+  },
+  {
+    "id": 458,
+    "start": "00:22:30.640",
+    "end": "00:22:32.520",
+    "text": "I have a favorite episode of syntax,"
+  },
+  {
+    "id": 459,
+    "start": "00:22:32.520",
+    "end": "00:22:35.440",
+    "text": "primarily for the name of the episode."
+  },
+  {
+    "id": 460,
+    "start": "00:22:35.440",
+    "end": "00:22:39.160",
+    "text": "I named an episode, keeping up with the Kardashians"
+  },
+  {
+    "id": 461,
+    "start": "00:22:39.160",
+    "end": "00:22:44.160",
+    "text": "about about like keeping up to date with the new code stuff"
+  },
+  {
+    "id": 462,
+    "start": "00:22:44.600",
+    "end": "00:22:46.400",
+    "text": "and postress syndrome."
+  },
+  {
+    "id": 463,
+    "start": "00:22:46.400",
+    "end": "00:22:50.000",
+    "text": "And I showed my wife this episode"
+  },
+  {
+    "id": 464,
+    "start": "00:22:50.000",
+    "end": "00:22:53.600",
+    "text": "and she goes, Wes is going to quit the podcast."
+  },
+  {
+    "id": 465,
+    "start": "00:22:53.600",
+    "end": "00:22:55.800",
+    "text": "He is going to quit the podcast when he sees this."
+  },
+  {
+    "id": 466,
+    "start": "00:22:55.800",
+    "end": "00:22:58.080",
+    "text": "And I was like, now, then he thought it was funny."
+  },
+  {
+    "id": 467,
+    "start": "00:22:58.080",
+    "end": "00:22:59.480",
+    "text": "He people ended up loving the title."
+  },
+  {
+    "id": 468,
+    "start": "00:22:59.480",
+    "end": "00:23:02.400",
+    "text": "And yeah, so that was probably one of my more favorite"
+  },
+  {
+    "id": 469,
+    "start": "00:23:02.400",
+    "end": "00:23:03.240",
+    "text": "episodes."
+  },
+  {
+    "id": 470,
+    "start": "00:23:03.240",
+    "end": "00:23:04.080",
+    "text": "That's awesome."
+  },
+  {
+    "id": 471,
+    "start": "00:23:04.080",
+    "end": "00:23:05.920",
+    "text": "All right, I'll put links everywhere in the show notes"
+  },
+  {
+    "id": 472,
+    "start": "00:23:05.920",
+    "end": "00:23:07.120",
+    "text": "for syntax or Scott."
+  },
+  {
+    "id": 473,
+    "start": "00:23:07.120",
+    "end": "00:23:09.920",
+    "text": "Thanks for coming on and just talking about education"
+  },
+  {
+    "id": 474,
+    "start": "00:23:09.920",
+    "end": "00:23:10.880",
+    "text": "and all this goodness."
+  },
+  {
+    "id": 475,
+    "start": "00:23:10.880",
+    "end": "00:23:12.000",
+    "text": "Thank you so much, awesome."
+  },
+  {
+    "id": 476,
+    "start": "00:23:12.000",
+    "end": "00:23:12.840",
+    "text": "Cheers."
+  }
+]

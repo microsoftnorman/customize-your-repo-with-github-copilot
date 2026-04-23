@@ -1,0 +1,2783 @@
+{
+  "source_file": "2025-10-20-mastering-chat-modes-in-vs-code-with-burke-holland.md",
+  "transcript_format": "local_stt_segments",
+  "segment_count": 394,
+  "metadata": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 10,
+    "title": "Mastering Chat Modes in VS Code with Burke Holland",
+    "url": "https://www.vscodepodcast.com/10",
+    "transcript_url": "",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/b9b8a6b3-770f-4a55-b7c3-5e799704d09c.mp3",
+    "published": "2025-10-20",
+    "duration": "26:55",
+    "transcript_available": false,
+    "source_file": "2025-10-20-mastering-chat-modes-in-vs-code-with-burke-holland.md",
+    "source_path": "references\\transcripts\\vscode-podcast\\2025-10-20-mastering-chat-modes-in-vs-code-with-burke-holland.md",
+    "local_stt": true,
+    "local_stt_model": "tiny.en",
+    "local_stt_language": "en",
+    "local_stt_device": "cpu",
+    "local_stt_compute_type": "int8"
+  },
+  "segments": [
+    {
+      "speaker": null,
+      "text": "Welcome back everyone to the VS code insiders podcast behind the scenes with the team that builds the tools that you love and use every single day and with me the one and only Burke Holland has a gone buddy",
+      "start": "00:00:00.050",
+      "end": "00:00:10.090",
+      "id": 1
+    },
+    {
+      "speaker": null,
+      "text": "What's up chat? Do you see chats on a podcast? I don't know if you do or if you don't I just did well",
+      "start": "00:00:10.850",
+      "end": "00:00:16.450",
+      "id": 2
+    },
+    {
+      "speaker": null,
+      "text": "Maybe probably listeners or they could be viewers because you could be watching this on the VS code YouTube like subscribe ring that notification bell",
+      "start": "00:00:16.450",
+      "end": "00:00:23.370",
+      "id": 3
+    },
+    {
+      "speaker": null,
+      "text": "Of course you can subscribe on your favorite podcast application",
+      "start": "00:00:23.370",
+      "end": "00:00:26.410",
+      "id": 4
+    },
+    {
+      "speaker": null,
+      "text": "Give us all the reviews and stars and likes and share with a friend share with a co-worker",
+      "start": "00:00:26.410",
+      "end": "00:00:30.970",
+      "id": 5
+    },
+    {
+      "speaker": null,
+      "text": "out there",
+      "start": "00:00:31.490",
+      "end": "00:00:32.210",
+      "id": 6
+    },
+    {
+      "speaker": null,
+      "text": "I'm one of your host James about to make known sometimes pierces with me as well from the VS code team and what I wanted to do today is a lot of people",
+      "start": "00:00:32.210",
+      "end": "00:00:39.410",
+      "id": 7
+    },
+    {
+      "speaker": null,
+      "text": "See you online Burke see your videos see the teams videos that are on the VS code YouTube that are like kind of like seeing behind the scenes and joining the live streams",
+      "start": "00:00:39.410",
+      "end": "00:00:48.850",
+      "id": 8
+    },
+    {
+      "speaker": null,
+      "text": "They say yes cook on Fridays live using agent mode and doing a much fun stuff",
+      "start": "00:00:48.850",
+      "end": "00:00:52.730",
+      "id": 9
+    },
+    {
+      "speaker": null,
+      "text": "But one of the things that I think really caught a lot of people's attention",
+      "start": "00:00:53.170",
+      "end": "00:00:57.570",
+      "id": 10
+    },
+    {
+      "speaker": null,
+      "text": "Was this custom chat mode that you had developed called?",
+      "start": "00:00:58.170",
+      "end": "00:01:01.950",
+      "id": 11
+    },
+    {
+      "speaker": null,
+      "text": "B-smowed and we've talked about it you've demoed it we've done live streams on it",
+      "start": "00:01:02.330",
+      "end": "00:01:06.730",
+      "id": 12
+    },
+    {
+      "speaker": null,
+      "text": "But I think what I wanted to do was unravel chat modes in general because I don't really think that a lot of people",
+      "start": "00:01:06.730",
+      "end": "00:01:13.010",
+      "id": 13
+    },
+    {
+      "speaker": null,
+      "text": "Understand what they are why you would use them or even how you would go about developing one",
+      "start": "00:01:13.570",
+      "end": "00:01:18.890",
+      "id": 14
+    },
+    {
+      "speaker": null,
+      "text": "But you developed one I'm gonna say developed because I think there's a craft in an art to this",
+      "start": "00:01:18.970",
+      "end": "00:01:23.310",
+      "id": 15
+    },
+    {
+      "speaker": null,
+      "text": "That has been adopted and sort of reinvigorated some of the GPT-41",
+      "start": "00:01:23.770",
+      "end": "00:01:29.470",
+      "id": 16
+    },
+    {
+      "speaker": null,
+      "text": "Like qualms that people were having when using that model and sort of revolutionize it so Burke",
+      "start": "00:01:30.010",
+      "end": "00:01:35.950",
+      "id": 17
+    },
+    {
+      "speaker": null,
+      "text": "What the heck actually is a custom chat mode?",
+      "start": "00:01:36.690",
+      "end": "00:01:39.770",
+      "id": 18
+    },
+    {
+      "speaker": null,
+      "text": "And why would people even think about using one when they're inside of VS code in agent mode?",
+      "start": "00:01:39.770",
+      "end": "00:01:44.530",
+      "id": 19
+    },
+    {
+      "speaker": null,
+      "text": "That's a great question. So let's start with custom chat modes",
+      "start": "00:01:44.570",
+      "end": "00:01:47.730",
+      "id": 20
+    },
+    {
+      "speaker": null,
+      "text": "There's so many different ways that you can provide the model with your own prompts in",
+      "start": "00:01:47.730",
+      "end": "00:01:51.570",
+      "id": 21
+    },
+    {
+      "speaker": null,
+      "text": "VS code when the other like the most straightforward ways to just type in the chat box",
+      "start": "00:01:52.250",
+      "end": "00:01:56.530",
+      "id": 22
+    },
+    {
+      "speaker": null,
+      "text": "That's a way to give a prompt, but then we provide other ways",
+      "start": "00:01:56.530",
+      "end": "00:01:59.210",
+      "id": 23
+    },
+    {
+      "speaker": null,
+      "text": "We have these copilot instructions",
+      "start": "00:01:59.210",
+      "end": "00:02:01.210",
+      "id": 24
+    },
+    {
+      "speaker": null,
+      "text": "That you can add to your project and those will be picked up and added with every request and then there's",
+      "start": "00:02:01.930",
+      "end": "00:02:07.210",
+      "id": 25
+    },
+    {
+      "speaker": null,
+      "text": "Instruction files and there's prompt files and then there's chat modes and it's kind of like all of these things have their place",
+      "start": "00:02:07.810",
+      "end": "00:02:13.530",
+      "id": 26
+    },
+    {
+      "speaker": null,
+      "text": "But let's just talk about what chat modes are since we only have so much time",
+      "start": "00:02:13.610",
+      "end": "00:02:16.450",
+      "id": 27
+    },
+    {
+      "speaker": null,
+      "text": "When you have in your chat box when you're typing your prompt you have three modes in the little box here",
+      "start": "00:02:16.810",
+      "end": "00:02:23.030",
+      "id": 28
+    },
+    {
+      "speaker": null,
+      "text": "Ask edit in agent and you and I've done a video on this like the difference between these these are chat modes",
+      "start": "00:02:23.030",
+      "end": "00:02:28.530",
+      "id": 29
+    },
+    {
+      "speaker": null,
+      "text": "Okay, so you can specify your own mode",
+      "start": "00:02:28.890",
+      "end": "00:02:31.610",
+      "id": 30
+    },
+    {
+      "speaker": null,
+      "text": "That will then show up in that box and you do that by clicking on the box and saying configure modes",
+      "start": "00:02:32.010",
+      "end": "00:02:36.410",
+      "id": 31
+    },
+    {
+      "speaker": null,
+      "text": "And again all this is is you this is just you adding in custom instructions to the model",
+      "start": "00:02:36.410",
+      "end": "00:02:42.450",
+      "id": 32
+    },
+    {
+      "speaker": null,
+      "text": "They get appended onto whatever instructions were already sending and what you can do with a custom chat mode is it has a little bit more",
+      "start": "00:02:42.450",
+      "end": "00:02:49.890",
+      "id": 33
+    },
+    {
+      "speaker": null,
+      "text": "Control so it allows you to specify what we call tools in the front matter and the tools are just what the model has access to do",
+      "start": "00:02:49.970",
+      "end": "00:02:58.010",
+      "id": 34
+    },
+    {
+      "speaker": null,
+      "text": "So in other words when you have an ask mode",
+      "start": "00:02:58.810",
+      "end": "00:03:00.810",
+      "id": 35
+    },
+    {
+      "speaker": null,
+      "text": "You can tell the model to do something and it will give you an answer, but it won't write any code",
+      "start": "00:03:00.930",
+      "end": "00:03:05.450",
+      "id": 36
+    },
+    {
+      "speaker": null,
+      "text": "Why doesn't it write any code James? Why doesn't it write any code doesn't it doesn't it doesn't know how because the tools?",
+      "start": "00:03:05.450",
+      "end": "00:03:11.250",
+      "id": 37
+    },
+    {
+      "speaker": null,
+      "text": "It doesn't it wasn't given the tools to do it so it just doesn't even bother to try to do it",
+      "start": "00:03:11.250",
+      "end": "00:03:15.450",
+      "id": 38
+    },
+    {
+      "speaker": null,
+      "text": "Whereas in agent mode we give it the tool to do it, which is why it does it instead of answering your question",
+      "start": "00:03:15.450",
+      "end": "00:03:20.750",
+      "id": 39
+    },
+    {
+      "speaker": null,
+      "text": "Unless the model is GPT four dot one in which case",
+      "start": "00:03:21.330",
+      "end": "00:03:25.050",
+      "id": 40
+    },
+    {
+      "speaker": null,
+      "text": "It's still just likes to answer your question and",
+      "start": "00:03:25.650",
+      "end": "00:03:28.370",
+      "id": 41
+    },
+    {
+      "speaker": null,
+      "text": "This is the fun of AI right now is that the models almost have personalities. They have quirks and",
+      "start": "00:03:29.290",
+      "end": "00:03:36.010",
+      "id": 42
+    },
+    {
+      "speaker": null,
+      "text": "One of the quirks for like Claude is that it's very very capable",
+      "start": "00:03:37.010",
+      "end": "00:03:41.490",
+      "id": 43
+    },
+    {
+      "speaker": null,
+      "text": "But it tries to do a lot and it's not the fastest model of the bunch right? So those are the quirks of Claude",
+      "start": "00:03:41.970",
+      "end": "00:03:48.850",
+      "id": 44
+    },
+    {
+      "speaker": null,
+      "text": "One of the quirks of GPT four one is that it's extremely fast",
+      "start": "00:03:49.370",
+      "end": "00:03:53.170",
+      "id": 45
+    },
+    {
+      "speaker": null,
+      "text": "But that it doesn't actually like to take any action. It likes to tell you what it's gonna do and then you're like cool",
+      "start": "00:03:53.570",
+      "end": "00:03:59.170",
+      "id": 46
+    },
+    {
+      "speaker": null,
+      "text": "Do it it's like great. I'm gonna do it. Yeah, and then it doesn't do it. Yeah, and so",
+      "start": "00:03:59.170",
+      "end": "00:04:03.570",
+      "id": 47
+    },
+    {
+      "speaker": null,
+      "text": "What when you create these custom chat modes what I did was I had this when we shipped custom chat modes",
+      "start": "00:04:04.530",
+      "end": "00:04:11.290",
+      "id": 48
+    },
+    {
+      "speaker": null,
+      "text": "I had this hypothesis that can I make GPT four dot one more",
+      "start": "00:04:11.290",
+      "end": "00:04:16.150",
+      "id": 49
+    },
+    {
+      "speaker": null,
+      "text": "Directable or more agentic we use this word agentic which just means that the model continues and actually takes care of",
+      "start": "00:04:16.410",
+      "end": "00:04:24.050",
+      "id": 50
+    },
+    {
+      "speaker": null,
+      "text": "Finishing the task that it's been asked to do",
+      "start": "00:04:25.350",
+      "end": "00:04:27.350",
+      "id": 51
+    },
+    {
+      "speaker": null,
+      "text": "Without you having to ask it to do more stuff over and over again",
+      "start": "00:04:27.910",
+      "end": "00:04:31.310",
+      "id": 52
+    },
+    {
+      "speaker": null,
+      "text": "I make something like agency",
+      "start": "00:04:31.790",
+      "end": "00:04:33.790",
+      "id": 53
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, because in these chat modes that was your idea",
+      "start": "00:04:34.190",
+      "end": "00:04:37.230",
+      "id": 54
+    },
+    {
+      "speaker": null,
+      "text": "But what I've also seen is these chat modes for like planning mode, right?",
+      "start": "00:04:37.230",
+      "end": "00:04:41.430",
+      "id": 55
+    },
+    {
+      "speaker": null,
+      "text": "Like put on the mind of a planner put in your mind of a tester",
+      "start": "00:04:41.430",
+      "end": "00:04:45.070",
+      "id": 56
+    },
+    {
+      "speaker": null,
+      "text": "I'm doing playwright scripting or testing in this instance or I am",
+      "start": "00:04:45.070",
+      "end": "00:04:49.630",
+      "id": 57
+    },
+    {
+      "speaker": null,
+      "text": "Research mode basically like these different modes",
+      "start": "00:04:50.270",
+      "end": "00:04:52.630",
+      "id": 58
+    },
+    {
+      "speaker": null,
+      "text": "So I guess like when I think about a mode like ask edit an agent kind of makes a little bit of sense",
+      "start": "00:04:52.790",
+      "end": "00:04:57.330",
+      "id": 59
+    },
+    {
+      "speaker": null,
+      "text": "Because you're asking you're editing and telling you what it can do",
+      "start": "00:04:57.330",
+      "end": "00:04:59.530",
+      "id": 60
+    },
+    {
+      "speaker": null,
+      "text": "But I guess when someone comes up with a chat mode you have the idea I have an idea right",
+      "start": "00:04:59.530",
+      "end": "00:05:04.070",
+      "id": 61
+    },
+    {
+      "speaker": null,
+      "text": "Maybe I want to create a custom chat mode that is an expert in you know, Donnie Maui development or you know",
+      "start": "00:05:04.150",
+      "end": "00:05:10.550",
+      "id": 62
+    },
+    {
+      "speaker": null,
+      "text": "Type script development or something like that or is just an expert planner like how would you even go about like what goes into the chat",
+      "start": "00:05:10.630",
+      "end": "00:05:17.790",
+      "id": 63
+    },
+    {
+      "speaker": null,
+      "text": "Mode file you said the front matter, but like in the order of operations",
+      "start": "00:05:17.830",
+      "end": "00:05:21.410",
+      "id": 64
+    },
+    {
+      "speaker": null,
+      "text": "There's the name of it right models you can select and this works with any model",
+      "start": "00:05:21.750",
+      "end": "00:05:26.470",
+      "id": 65
+    },
+    {
+      "speaker": null,
+      "text": "So in your case you're customizing GPT-41",
+      "start": "00:05:26.470",
+      "end": "00:05:28.950",
+      "id": 66
+    },
+    {
+      "speaker": null,
+      "text": "But it works with you know any of these modes were with any model",
+      "start": "00:05:29.230",
+      "end": "00:05:32.310",
+      "id": 67
+    },
+    {
+      "speaker": null,
+      "text": "But you could craft one towards a model like you did",
+      "start": "00:05:32.310",
+      "end": "00:05:34.670",
+      "id": 68
+    },
+    {
+      "speaker": null,
+      "text": "But then also it's just a markdown file",
+      "start": "00:05:34.790",
+      "end": "00:05:37.430",
+      "id": 69
+    },
+    {
+      "speaker": null,
+      "text": "So like what goes into that markdown file like what order of operation is that being sent like because you said there's a system prompt",
+      "start": "00:05:37.430",
+      "end": "00:05:45.710",
+      "id": 70
+    },
+    {
+      "speaker": null,
+      "text": "Like that's always gonna get sent I assume from like oh, yeah, like what what would someone's thinking about? Oh, I",
+      "start": "00:05:45.870",
+      "end": "00:05:51.310",
+      "id": 71
+    },
+    {
+      "speaker": null,
+      "text": "Like I think I may need a chat mode",
+      "start": "00:05:51.310",
+      "end": "00:05:53.950",
+      "id": 72
+    },
+    {
+      "speaker": null,
+      "text": "But like what would I even put into that thing like what's the minimum and then mid and then like you went all out",
+      "start": "00:05:53.950",
+      "end": "00:05:59.490",
+      "id": 73
+    },
+    {
+      "speaker": null,
+      "text": "Be style yeah",
+      "start": "00:05:59.490",
+      "end": "00:06:00.830",
+      "id": 74
+    },
+    {
+      "speaker": null,
+      "text": "So when we have the the system prompt which is getting sent and and that prompt if you could go in and you can look at it",
+      "start": "00:06:00.830",
+      "end": "00:06:07.630",
+      "id": 75
+    },
+    {
+      "speaker": null,
+      "text": "It looks something like",
+      "start": "00:06:07.630",
+      "end": "00:06:09.630",
+      "id": 76
+    },
+    {
+      "speaker": null,
+      "text": "You are an agent. You're a coding agent. Your name is GitHub co-pilot",
+      "start": "00:06:09.790",
+      "end": "00:06:13.550",
+      "id": 77
+    },
+    {
+      "speaker": null,
+      "text": "You are tasked with completing the user's query",
+      "start": "00:06:13.870",
+      "end": "00:06:16.390",
+      "id": 78
+    },
+    {
+      "speaker": null,
+      "text": "Do not come back to them and until you have completed it and there's different things for different models in there",
+      "start": "00:06:16.750",
+      "end": "00:06:21.630",
+      "id": 79
+    },
+    {
+      "speaker": null,
+      "text": "There's like there's a keep going prompt which is essentially gives the model more agency",
+      "start": "00:06:21.670",
+      "end": "00:06:25.810",
+      "id": 80
+    },
+    {
+      "speaker": null,
+      "text": "There's it there's if you look there's the tools you have access to this tool",
+      "start": "00:06:25.910",
+      "end": "00:06:30.790",
+      "id": 81
+    },
+    {
+      "speaker": null,
+      "text": "These are the parameters. This is what the tool does you don't see any of this stuff",
+      "start": "00:06:30.790",
+      "end": "00:06:34.470",
+      "id": 82
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, but if you looked at the prompt it's actually there",
+      "start": "00:06:34.470",
+      "end": "00:06:37.110",
+      "id": 83
+    },
+    {
+      "speaker": null,
+      "text": "So your custom chat mode gets added on to the end of that but let's take your example of like",
+      "start": "00:06:37.310",
+      "end": "00:06:42.950",
+      "id": 84
+    },
+    {
+      "speaker": null,
+      "text": "Planning mode. I'm gonna use research mode. So let's just make let's just say you create a mode called",
+      "start": "00:06:43.310",
+      "end": "00:06:47.810",
+      "id": 85
+    },
+    {
+      "speaker": null,
+      "text": "Researcher and the researcher mode all it does do is research",
+      "start": "00:06:48.110",
+      "end": "00:06:51.230",
+      "id": 86
+    },
+    {
+      "speaker": null,
+      "text": "So you would then go in in your front matter and you would basically probably not give it access to right files",
+      "start": "00:06:51.310",
+      "end": "00:06:57.550",
+      "id": 87
+    },
+    {
+      "speaker": null,
+      "text": "But you would give it access to fetch and fetch allows it to go out",
+      "start": "00:06:57.550",
+      "end": "00:07:01.750",
+      "id": 88
+    },
+    {
+      "speaker": null,
+      "text": "Read a page on the internet and return that content is marked down and then what I would do is I'd start going through and I would give it a",
+      "start": "00:07:01.750",
+      "end": "00:07:07.990",
+      "id": 89
+    },
+    {
+      "speaker": null,
+      "text": "Roll I'd start with a roll and this is what beast mode does you are an expert researcher",
+      "start": "00:07:07.990",
+      "end": "00:07:12.510",
+      "id": 90
+    },
+    {
+      "speaker": null,
+      "text": "Your job is to search the internet to find as much information as you can about the users query and then distill that down",
+      "start": "00:07:12.990",
+      "end": "00:07:19.190",
+      "id": 91
+    },
+    {
+      "speaker": null,
+      "text": "into actionable results",
+      "start": "00:07:19.550",
+      "end": "00:07:21.110",
+      "id": 92
+    },
+    {
+      "speaker": null,
+      "text": "Something like this and then actually when I'm in there writing these prompts get up",
+      "start": "00:07:21.110",
+      "end": "00:07:25.670",
+      "id": 93
+    },
+    {
+      "speaker": null,
+      "text": "Co-pilot is completing things for me because that's what it does",
+      "start": "00:07:25.670",
+      "end": "00:07:28.910",
+      "id": 94
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, it aggressively completes what you're trying to write and it's extremely helpful for this",
+      "start": "00:07:29.150",
+      "end": "00:07:33.750",
+      "id": 95
+    },
+    {
+      "speaker": null,
+      "text": "Got it. So that this is called there's an there's a word for this is called metaprompting where the AI is actually helping you compose the prompt",
+      "start": "00:07:34.470",
+      "end": "00:07:42.310",
+      "id": 96
+    },
+    {
+      "speaker": null,
+      "text": "Because it's quite good at that. Yeah, I've seen this a bit when when very early chat mode came out",
+      "start": "00:07:43.110",
+      "end": "00:07:49.270",
+      "id": 97
+    },
+    {
+      "speaker": null,
+      "text": "I would remember seeing all of these websites and repos pop up with all of these",
+      "start": "00:07:49.270",
+      "end": "00:07:54.830",
+      "id": 98
+    },
+    {
+      "speaker": null,
+      "text": "How they were calling them modes?",
+      "start": "00:07:55.030",
+      "end": "00:07:56.390",
+      "id": 99
+    },
+    {
+      "speaker": null,
+      "text": "It was just a bunch of prompts right and what you would do is you go into the chat mode",
+      "start": "00:07:56.390",
+      "end": "00:07:59.790",
+      "id": 100
+    },
+    {
+      "speaker": null,
+      "text": "You say I am an expert TypeScript developer and I love TypeScript and TypeScript the best and like write this and this",
+      "start": "00:07:59.790",
+      "end": "00:08:04.230",
+      "id": 101
+    },
+    {
+      "speaker": null,
+      "text": "And this is what and you would send that with like every request over and over and over again",
+      "start": "00:08:04.230",
+      "end": "00:08:08.310",
+      "id": 102
+    },
+    {
+      "speaker": null,
+      "text": "It's sort of like you were giving it a mind frame to be in",
+      "start": "00:08:08.310",
+      "end": "00:08:11.590",
+      "id": 103
+    },
+    {
+      "speaker": null,
+      "text": "but what you're saying here is",
+      "start": "00:08:11.910",
+      "end": "00:08:13.910",
+      "id": 104
+    },
+    {
+      "speaker": null,
+      "text": "let's make that",
+      "start": "00:08:13.910",
+      "end": "00:08:15.670",
+      "id": 105
+    },
+    {
+      "speaker": null,
+      "text": "Just something that gets sent with every request right?",
+      "start": "00:08:15.670",
+      "end": "00:08:18.550",
+      "id": 106
+    },
+    {
+      "speaker": null,
+      "text": "So for example if you're in research mode what I'm understanding is you give it this context about searching the internet",
+      "start": "00:08:18.550",
+      "end": "00:08:23.950",
+      "id": 107
+    },
+    {
+      "speaker": null,
+      "text": "But then you might tell it what to do I assume too like would you tell us like create here's how I want like here's an example",
+      "start": "00:08:23.950",
+      "end": "00:08:30.230",
+      "id": 108
+    },
+    {
+      "speaker": null,
+      "text": "Is in feedback flow my social analysis tool?",
+      "start": "00:08:30.510",
+      "end": "00:08:33.950",
+      "id": 109
+    },
+    {
+      "speaker": null,
+      "text": "I kind of give my LLM a bunch of data and I give it a prompt like hey",
+      "start": "00:08:33.950",
+      "end": "00:08:39.190",
+      "id": 110
+    },
+    {
+      "speaker": null,
+      "text": "You're an expert. This like my prompt is literally this. It's like you're a expert social media analyst and here's how",
+      "start": "00:08:39.350",
+      "end": "00:08:46.270",
+      "id": 111
+    },
+    {
+      "speaker": null,
+      "text": "Here's what you want to do to generate a report so go off analyze this",
+      "start": "00:08:46.270",
+      "end": "00:08:49.910",
+      "id": 112
+    },
+    {
+      "speaker": null,
+      "text": "You're gonna analyze sentiment positive blah blah blah and then generate this report for me and come back with this",
+      "start": "00:08:49.910",
+      "end": "00:08:55.770",
+      "id": 113
+    },
+    {
+      "speaker": null,
+      "text": "Sort of mindset of thinking and then return that back as markdown",
+      "start": "00:08:56.070",
+      "end": "00:08:59.270",
+      "id": 114
+    },
+    {
+      "speaker": null,
+      "text": "That's what I kind of say now that's an extreme",
+      "start": "00:08:59.270",
+      "end": "00:09:01.350",
+      "id": 115
+    },
+    {
+      "speaker": null,
+      "text": "But I'm assuming there's some crossover between",
+      "start": "00:09:01.350",
+      "end": "00:09:03.350",
+      "id": 116
+    },
+    {
+      "speaker": null,
+      "text": "You're a type script type script expert or you're a research expert and like what goes into that chat mode file like how much stuff are you putting in there to get",
+      "start": "00:09:04.070",
+      "end": "00:09:11.850",
+      "id": 117
+    },
+    {
+      "speaker": null,
+      "text": "Let's walk out. Let's walk that out",
+      "start": "00:09:11.850",
+      "end": "00:09:13.070",
+      "id": 118
+    },
+    {
+      "speaker": null,
+      "text": "So usually you start with the role and then what I do is I try to give it exact steps",
+      "start": "00:09:13.070",
+      "end": "00:09:18.510",
+      "id": 119
+    },
+    {
+      "speaker": null,
+      "text": "Then I want to follow",
+      "start": "00:09:18.510",
+      "end": "00:09:19.510",
+      "id": 120
+    },
+    {
+      "speaker": null,
+      "text": "Because when you're writing prompts you can think of prompt engineering is just giving the model the answer that you want",
+      "start": "00:09:19.510",
+      "end": "00:09:25.030",
+      "id": 121
+    },
+    {
+      "speaker": null,
+      "text": "Because theoretically if you put all the context in the right order in the prompt",
+      "start": "00:09:25.470",
+      "end": "00:09:30.670",
+      "id": 122
+    },
+    {
+      "speaker": null,
+      "text": "The model is just gonna spit back out to you the correct answer from that",
+      "start": "00:09:30.670",
+      "end": "00:09:35.110",
+      "id": 123
+    },
+    {
+      "speaker": null,
+      "text": "That's all you're really doing with prompt engineering. Yeah, so in the case of a researcher",
+      "start": "00:09:35.470",
+      "end": "00:09:39.550",
+      "id": 124
+    },
+    {
+      "speaker": null,
+      "text": "What I would do is I would say I want you to follow these steps the first thing",
+      "start": "00:09:39.550",
+      "end": "00:09:41.970",
+      "id": 125
+    },
+    {
+      "speaker": null,
+      "text": "I want you to do is I want you to do a Google search for the subject the user is asked about in the format",
+      "start": "00:09:41.970",
+      "end": "00:09:49.130",
+      "id": 126
+    },
+    {
+      "speaker": null,
+      "text": "Google.com slash or maybe I should say Bing.com",
+      "start": "00:09:49.130",
+      "end": "00:09:52.290",
+      "id": 127
+    },
+    {
+      "speaker": null,
+      "text": "Slash right and then the query parameter and then the user's query and I would put it in there",
+      "start": "00:09:52.470",
+      "end": "00:09:56.910",
+      "id": 128
+    },
+    {
+      "speaker": null,
+      "text": "It doesn't matter what syntax you use it can it can read anything",
+      "start": "00:09:56.910",
+      "end": "00:10:00.210",
+      "id": 129
+    },
+    {
+      "speaker": null,
+      "text": "And then I would say and then look at those search results if any of the results on the page",
+      "start": "00:10:00.450",
+      "end": "00:10:05.930",
+      "id": 130
+    },
+    {
+      "speaker": null,
+      "text": "Look like they're relevant to the context then you need to fetch those then step three",
+      "start": "00:10:06.490",
+      "end": "00:10:11.970",
+      "id": 131
+    },
+    {
+      "speaker": null,
+      "text": "You need to recursively perform this operation until you feel like you have enough context and then step four",
+      "start": "00:10:11.970",
+      "end": "00:10:18.730",
+      "id": 132
+    },
+    {
+      "speaker": null,
+      "text": "You should re-examine the context at this point and decide if you need to do any additional Google searches",
+      "start": "00:10:18.730",
+      "end": "00:10:24.250",
+      "id": 133
+    },
+    {
+      "speaker": null,
+      "text": "To actually have enough context right so you you really repetitive",
+      "start": "00:10:24.450",
+      "end": "00:10:28.890",
+      "id": 134
+    },
+    {
+      "speaker": null,
+      "text": "You have to think about models as being like",
+      "start": "00:10:28.890",
+      "end": "00:10:30.770",
+      "id": 135
+    },
+    {
+      "speaker": null,
+      "text": "Almost like little children where you have to tell them the same thing over and over and over again in order to get them to",
+      "start": "00:10:32.610",
+      "end": "00:10:38.970",
+      "id": 136
+    },
+    {
+      "speaker": null,
+      "text": "Complete the task you'd be very specific and very repetitive and then I would specify the exact format that I want the results in",
+      "start": "00:10:38.970",
+      "end": "00:10:46.490",
+      "id": 137
+    },
+    {
+      "speaker": null,
+      "text": "Here's what I want you to do once you have the results. I want you to write a summary at the top next",
+      "start": "00:10:46.690",
+      "end": "00:10:51.890",
+      "id": 138
+    },
+    {
+      "speaker": null,
+      "text": "I want you to just to distill down into this is what you do with prompt flow, right? You have a template that it follows",
+      "start": "00:10:51.890",
+      "end": "00:10:56.810",
+      "id": 139
+    },
+    {
+      "speaker": null,
+      "text": "Right and this is important give it a template so that because otherwise every single time it's gonna shell out",
+      "start": "00:10:57.530",
+      "end": "00:11:02.810",
+      "id": 140
+    },
+    {
+      "speaker": null,
+      "text": "Something else. Yeah, that you may or may not want right exactly as it doesn't know it doesn't know exactly",
+      "start": "00:11:03.450",
+      "end": "00:11:08.810",
+      "id": 141
+    },
+    {
+      "speaker": null,
+      "text": "So that makes a lot of sense especially when you're creating this custom mode",
+      "start": "00:11:08.810",
+      "end": "00:11:11.450",
+      "id": 142
+    },
+    {
+      "speaker": null,
+      "text": "If you're a research like hey, and this is how I want my research then or maybe you give it access to",
+      "start": "00:11:11.690",
+      "end": "00:11:16.090",
+      "id": 143
+    },
+    {
+      "speaker": null,
+      "text": "Like you know being able to create documents like and make sure you like",
+      "start": "00:11:16.490",
+      "end": "00:11:20.810",
+      "id": 144
+    },
+    {
+      "speaker": null,
+      "text": "Save this document right like every single research save the document say the document",
+      "start": "00:11:21.650",
+      "end": "00:11:25.170",
+      "id": 145
+    },
+    {
+      "speaker": null,
+      "text": "In this format here's an example of what it would look like",
+      "start": "00:11:25.170",
+      "end": "00:11:28.290",
+      "id": 146
+    },
+    {
+      "speaker": null,
+      "text": "Boom, and I think if someone was saying okay, what about with coding?",
+      "start": "00:11:28.890",
+      "end": "00:11:32.810",
+      "id": 147
+    },
+    {
+      "speaker": null,
+      "text": "I'm thinking like if I was doing testing or if I was doing just even my own custom mode is like I",
+      "start": "00:11:32.810",
+      "end": "00:11:39.330",
+      "id": 148
+    },
+    {
+      "speaker": null,
+      "text": "Could imagine you know after you write the code like make sure that I want you to",
+      "start": "00:11:39.810",
+      "end": "00:11:44.370",
+      "id": 149
+    },
+    {
+      "speaker": null,
+      "text": "Run a build run the task. I want you to fix any bugs that are in the test",
+      "start": "00:11:45.010",
+      "end": "00:11:48.850",
+      "id": 150
+    },
+    {
+      "speaker": null,
+      "text": "I want you to reevaluate like do I have like analyze the code coverage like basically all the things that I might do",
+      "start": "00:11:48.850",
+      "end": "00:11:54.450",
+      "id": 151
+    },
+    {
+      "speaker": null,
+      "text": "Over and over again like here's the additional stuff that I want you to do because you could write that into the box",
+      "start": "00:11:55.090",
+      "end": "00:12:01.490",
+      "id": 152
+    },
+    {
+      "speaker": null,
+      "text": "Every single thread correct right, but that seems like a waste of your precious",
+      "start": "00:12:01.890",
+      "end": "00:12:06.450",
+      "id": 153
+    },
+    {
+      "speaker": null,
+      "text": "Keystrokes and you only have so many of those last as mr. Scott handsome and once told me so you got to reserve those keystrokes",
+      "start": "00:12:06.770",
+      "end": "00:12:12.850",
+      "id": 154
+    },
+    {
+      "speaker": null,
+      "text": "That's correct. So I what I would tell people is it like you don't realize this but when you work you actually have a",
+      "start": "00:12:13.330",
+      "end": "00:12:19.490",
+      "id": 155
+    },
+    {
+      "speaker": null,
+      "text": "Workflow",
+      "start": "00:12:19.890",
+      "end": "00:12:21.090",
+      "id": 156
+    },
+    {
+      "speaker": null,
+      "text": "You may not be able to articulate what that is because you haven't thought about it",
+      "start": "00:12:21.570",
+      "end": "00:12:24.770",
+      "id": 157
+    },
+    {
+      "speaker": null,
+      "text": "But as you go along you need to be asking yourself",
+      "start": "00:12:24.930",
+      "end": "00:12:27.490",
+      "id": 158
+    },
+    {
+      "speaker": null,
+      "text": "What am I doing over and over that I can just automate here? Do I keep doing the same thing?",
+      "start": "00:12:27.650",
+      "end": "00:12:32.810",
+      "id": 159
+    },
+    {
+      "speaker": null,
+      "text": "Do I keep going into this test file to check on something?",
+      "start": "00:12:33.050",
+      "end": "00:12:36.770",
+      "id": 160
+    },
+    {
+      "speaker": null,
+      "text": "Do I keep going to the package Jason file to check to check on something?",
+      "start": "00:12:36.770",
+      "end": "00:12:40.690",
+      "id": 161
+    },
+    {
+      "speaker": null,
+      "text": "What are the workflows that you use as a developer and then begin to develop prompts?",
+      "start": "00:12:40.810",
+      "end": "00:12:46.290",
+      "id": 162
+    },
+    {
+      "speaker": null,
+      "text": "Instructions and chat modes that automate those things away. You're literally just trying to automate the smaller parts of your own workflow",
+      "start": "00:12:46.450",
+      "end": "00:12:53.090",
+      "id": 163
+    },
+    {
+      "speaker": null,
+      "text": "I wanted the things that I think that",
+      "start": "00:12:53.490",
+      "end": "00:12:55.490",
+      "id": 164
+    },
+    {
+      "speaker": null,
+      "text": "Is a little bit misleading right now is that we have this idea a lot of ideas are being thrown out there",
+      "start": "00:12:56.210",
+      "end": "00:13:01.410",
+      "id": 165
+    },
+    {
+      "speaker": null,
+      "text": "It's like you need to do spectraven development. Do you need to do spectrum development James? Honestly?",
+      "start": "00:13:01.410",
+      "end": "00:13:07.170",
+      "id": 166
+    },
+    {
+      "speaker": null,
+      "text": "I don't know I don't know I don't maybe I don't know",
+      "start": "00:13:07.170",
+      "end": "00:13:10.370",
+      "id": 167
+    },
+    {
+      "speaker": null,
+      "text": "But what I do know is how I work today",
+      "start": "00:13:10.530",
+      "end": "00:13:12.850",
+      "id": 168
+    },
+    {
+      "speaker": null,
+      "text": "And I can automate those things and if to go back to these pieces and examples",
+      "start": "00:13:13.410",
+      "end": "00:13:18.850",
+      "id": 169
+    },
+    {
+      "speaker": null,
+      "text": "Let me give you an example of how this works. How do I work?",
+      "start": "00:13:18.850",
+      "end": "00:13:21.330",
+      "id": 170
+    },
+    {
+      "speaker": null,
+      "text": "Well when I'm trying to solve a problem, what do I usually do?",
+      "start": "00:13:21.730",
+      "end": "00:13:24.210",
+      "id": 171
+    },
+    {
+      "speaker": null,
+      "text": "I go read the docs. Yeah, right?",
+      "start": "00:13:24.530",
+      "end": "00:13:26.370",
+      "id": 172
+    },
+    {
+      "speaker": null,
+      "text": "Google for the answer",
+      "start": "00:13:26.370",
+      "end": "00:13:27.410",
+      "id": 173
+    },
+    {
+      "speaker": null,
+      "text": "So make the model do the same thing. Why wouldn't you have the model just do the same thing that you do?",
+      "start": "00:13:27.570",
+      "end": "00:13:32.050",
+      "id": 174
+    },
+    {
+      "speaker": null,
+      "text": "Make it work for you. Correct. Make it do the thing you were about to do anyway",
+      "start": "00:13:32.290",
+      "end": "00:13:37.010",
+      "id": 175
+    },
+    {
+      "speaker": null,
+      "text": "So in beast mode, it literally says there's an all caps",
+      "start": "00:13:37.090",
+      "end": "00:13:40.050",
+      "id": 176
+    },
+    {
+      "speaker": null,
+      "text": "It says you definitely can't solve this problem without using the internet",
+      "start": "00:13:40.050",
+      "end": "00:13:43.970",
+      "id": 177
+    },
+    {
+      "speaker": null,
+      "text": "On a line because I want the model to I don't want it",
+      "start": "00:13:45.570",
+      "end": "00:13:49.890",
+      "id": 178
+    },
+    {
+      "speaker": null,
+      "text": "to think that it who said this I think it was",
+      "start": "00:13:50.610",
+      "end": "00:13:53.170",
+      "id": 179
+    },
+    {
+      "speaker": null,
+      "text": "Oh, who's the Chris Chris Harris the Python fellow",
+      "start": "00:13:55.330",
+      "end": "00:13:58.850",
+      "id": 180
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, push my hair. Yeah, he told me once he's like models are like a senior dev that are that's really really confident",
+      "start": "00:13:59.410",
+      "end": "00:14:05.890",
+      "id": 181
+    },
+    {
+      "speaker": null,
+      "text": "That they know the answer and they don't want to look up",
+      "start": "00:14:06.530",
+      "end": "00:14:09.490",
+      "id": 182
+    },
+    {
+      "speaker": null,
+      "text": "Any context. Yeah, they know they know I know just I mean, but they don't know because they're training dates at a date",
+      "start": "00:14:10.530",
+      "end": "00:14:16.850",
+      "id": 183
+    },
+    {
+      "speaker": null,
+      "text": "Whatever and so you really have to force it you have you definitely cannot do this without using Google. Yeah, I don't even try. Yeah",
+      "start": "00:14:17.810",
+      "end": "00:14:24.530",
+      "id": 184
+    },
+    {
+      "speaker": null,
+      "text": "So it's a very opinionated workflow that you're piecing together",
+      "start": "00:14:25.970",
+      "end": "00:14:30.450",
+      "id": 185
+    },
+    {
+      "speaker": null,
+      "text": "But it matches how you work as a dev. I like that",
+      "start": "00:14:30.530",
+      "end": "00:14:33.410",
+      "id": 186
+    },
+    {
+      "speaker": null,
+      "text": "I like actually I think that's the sales pitch for chat modes",
+      "start": "00:14:33.410",
+      "end": "00:14:36.370",
+      "id": 187
+    },
+    {
+      "speaker": null,
+      "text": "I think you I think if we were to update the documentation",
+      "start": "00:14:36.370",
+      "end": "00:14:39.490",
+      "id": 188
+    },
+    {
+      "speaker": null,
+      "text": "Which is like what is a chat mode? It's defining a workflowed for",
+      "start": "00:14:39.970",
+      "end": "00:14:44.130",
+      "id": 189
+    },
+    {
+      "speaker": null,
+      "text": "Using you know like using the agent right like all the things that we're talking about are workflows",
+      "start": "00:14:44.930",
+      "end": "00:14:49.570",
+      "id": 190
+    },
+    {
+      "speaker": null,
+      "text": "Right? I think about how you automate anything at the end of the day like almost like a rule",
+      "start": "00:14:49.570",
+      "end": "00:14:53.570",
+      "id": 191
+    },
+    {
+      "speaker": null,
+      "text": "Like your in outlook creating rules like if it does this is then go do this and put that over there",
+      "start": "00:14:53.890",
+      "end": "00:14:57.810",
+      "id": 192
+    },
+    {
+      "speaker": null,
+      "text": "And then do this thing like do the tell it to do the things you want to do",
+      "start": "00:14:57.810",
+      "end": "00:15:01.250",
+      "id": 193
+    },
+    {
+      "speaker": null,
+      "text": "So when you're creating this mode",
+      "start": "00:15:01.810",
+      "end": "00:15:03.650",
+      "id": 194
+    },
+    {
+      "speaker": null,
+      "text": "So I think people hopefully that then I'll actually solve a lot of like what I think of a chat mode in general",
+      "start": "00:15:03.730",
+      "end": "00:15:08.290",
+      "id": 195
+    },
+    {
+      "speaker": null,
+      "text": "Love and I can start to think about these different chat modes and how it would be used",
+      "start": "00:15:08.290",
+      "end": "00:15:11.090",
+      "id": 196
+    },
+    {
+      "speaker": null,
+      "text": "You can use it with any model",
+      "start": "00:15:11.090",
+      "end": "00:15:12.130",
+      "id": 197
+    },
+    {
+      "speaker": null,
+      "text": "But what did it actually talk pretty deep about how you developed B-Smode?",
+      "start": "00:15:12.530",
+      "end": "00:15:17.010",
+      "id": 198
+    },
+    {
+      "speaker": null,
+      "text": "Because I read some of your blogs a little bit deeper on it",
+      "start": "00:15:17.490",
+      "end": "00:15:21.090",
+      "id": 199
+    },
+    {
+      "speaker": null,
+      "text": "But if somebody was really prompt engineering really chat mode engineering",
+      "start": "00:15:21.330",
+      "end": "00:15:25.250",
+      "id": 200
+    },
+    {
+      "speaker": null,
+      "text": "Like what were the subs that you took?",
+      "start": "00:15:25.650",
+      "end": "00:15:27.650",
+      "id": 201
+    },
+    {
+      "speaker": null,
+      "text": "Because you really crafted towards for one specifically to get the most out of like how",
+      "start": "00:15:27.650",
+      "end": "00:15:33.090",
+      "id": 202
+    },
+    {
+      "speaker": null,
+      "text": "Because if you read the the B-Smode is pretty long involved",
+      "start": "00:15:33.650",
+      "end": "00:15:36.290",
+      "id": 203
+    },
+    {
+      "speaker": null,
+      "text": "There's multiple versions of it. What were the steps that you took to make sure that what you were putting in that chat mode was really",
+      "start": "00:15:36.290",
+      "end": "00:15:42.450",
+      "id": 204
+    },
+    {
+      "speaker": null,
+      "text": "Finally tuned to the model",
+      "start": "00:15:42.610",
+      "end": "00:15:44.610",
+      "id": 205
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, I mean like anything that you look at that looks complex and well thought out. It's really just a",
+      "start": "00:15:44.770",
+      "end": "00:15:50.050",
+      "id": 206
+    },
+    {
+      "speaker": null,
+      "text": "It's a combination of a bunch of iterative steps over time",
+      "start": "00:15:51.410",
+      "end": "00:15:54.690",
+      "id": 207
+    },
+    {
+      "speaker": null,
+      "text": "Right like when you read a book that book was written over like three years",
+      "start": "00:15:54.930",
+      "end": "00:15:57.730",
+      "id": 208
+    },
+    {
+      "speaker": null,
+      "text": "Right it's like 250 pages",
+      "start": "00:15:57.730",
+      "end": "00:15:59.090",
+      "id": 209
+    },
+    {
+      "speaker": null,
+      "text": "You're like how did somebody do that?",
+      "start": "00:15:59.090",
+      "end": "00:16:00.530",
+      "id": 210
+    },
+    {
+      "speaker": null,
+      "text": "Very slowly over a long period. It's not B-Smode is the same way",
+      "start": "00:16:00.610",
+      "end": "00:16:03.650",
+      "id": 211
+    },
+    {
+      "speaker": null,
+      "text": "When I put it together originally",
+      "start": "00:16:04.290",
+      "end": "00:16:06.290",
+      "id": 212
+    },
+    {
+      "speaker": null,
+      "text": "What I had discovered about I already knew from working with 4.1",
+      "start": "00:16:06.290",
+      "end": "00:16:10.050",
+      "id": 213
+    },
+    {
+      "speaker": null,
+      "text": "And trying to get it to replicate certain things for demos that I was doing internally for people",
+      "start": "00:16:10.050",
+      "end": "00:16:14.530",
+      "id": 214
+    },
+    {
+      "speaker": null,
+      "text": "Is that it would follow specific steps if they were numbered. So if I said",
+      "start": "00:16:14.530",
+      "end": "00:16:18.370",
+      "id": 215
+    },
+    {
+      "speaker": null,
+      "text": "I want you to do this don't do anything but this and follow these steps exactly",
+      "start": "00:16:19.330",
+      "end": "00:16:23.570",
+      "id": 216
+    },
+    {
+      "speaker": null,
+      "text": "I knew that 4.1 was good at that",
+      "start": "00:16:23.570",
+      "end": "00:16:25.810",
+      "id": 217
+    },
+    {
+      "speaker": null,
+      "text": "And so that's where I started from the initial beast mode was like",
+      "start": "00:16:26.370",
+      "end": "00:16:29.490",
+      "id": 218
+    },
+    {
+      "speaker": null,
+      "text": "I want you to first think hard about the problem",
+      "start": "00:16:29.490",
+      "end": "00:16:32.130",
+      "id": 219
+    },
+    {
+      "speaker": null,
+      "text": "And some of this I'm I'm actually taking from other system prompts",
+      "start": "00:16:32.690",
+      "end": "00:16:36.530",
+      "id": 220
+    },
+    {
+      "speaker": null,
+      "text": "I'm looking at system prompts that have been posted on the internet and seeing like well",
+      "start": "00:16:36.530",
+      "end": "00:16:40.690",
+      "id": 221
+    },
+    {
+      "speaker": null,
+      "text": "How has this done in co-pilot right now?",
+      "start": "00:16:40.690",
+      "end": "00:16:42.690",
+      "id": 222
+    },
+    {
+      "speaker": null,
+      "text": "How has this done in Claude code right now?",
+      "start": "00:16:43.010",
+      "end": "00:16:45.570",
+      "id": 223
+    },
+    {
+      "speaker": null,
+      "text": "How has this done in codex right now?",
+      "start": "00:16:45.650",
+      "end": "00:16:47.810",
+      "id": 224
+    },
+    {
+      "speaker": null,
+      "text": "Right I'm looking at all of these different things",
+      "start": "00:16:47.810",
+      "end": "00:16:49.810",
+      "id": 225
+    },
+    {
+      "speaker": null,
+      "text": "And what I get what I get out of that the initial version is something that works okay",
+      "start": "00:16:50.530",
+      "end": "00:16:55.490",
+      "id": 226
+    },
+    {
+      "speaker": null,
+      "text": "The agency seems to be better",
+      "start": "00:16:55.570",
+      "end": "00:16:57.570",
+      "id": 227
+    },
+    {
+      "speaker": null,
+      "text": "But I'm having trouble getting it to improve so I'm saying you know I'm asking it to",
+      "start": "00:16:57.810",
+      "end": "00:17:03.170",
+      "id": 228
+    },
+    {
+      "speaker": null,
+      "text": "Use it to do list or do this or do that and it's not following my instruction",
+      "start": "00:17:04.530",
+      "end": "00:17:07.490",
+      "id": 229
+    },
+    {
+      "speaker": null,
+      "text": "So at that point I don't know what to do",
+      "start": "00:17:07.490",
+      "end": "00:17:09.490",
+      "id": 230
+    },
+    {
+      "speaker": null,
+      "text": "So at this is the point at which I go back to what I should have done in the beginning",
+      "start": "00:17:09.650",
+      "end": "00:17:14.690",
+      "id": 231
+    },
+    {
+      "speaker": null,
+      "text": "Which is read the documentation",
+      "start": "00:17:14.690",
+      "end": "00:17:16.690",
+      "id": 232
+    },
+    {
+      "speaker": null,
+      "text": "Go figure",
+      "start": "00:17:16.930",
+      "end": "00:17:18.050",
+      "id": 233
+    },
+    {
+      "speaker": null,
+      "text": "Right",
+      "start": "00:17:18.050",
+      "end": "00:17:18.930",
+      "id": 234
+    },
+    {
+      "speaker": null,
+      "text": "Which no developer like this to do right just like giving the thing I'll figure it out of my own",
+      "start": "00:17:18.930",
+      "end": "00:17:22.530",
+      "id": 235
+    },
+    {
+      "speaker": null,
+      "text": "Yeah",
+      "start": "00:17:22.530",
+      "end": "00:17:23.010",
+      "id": 236
+    },
+    {
+      "speaker": null,
+      "text": "When it comes to models it's really important to read these prompt engineering guides",
+      "start": "00:17:23.010",
+      "end": "00:17:26.770",
+      "id": 237
+    },
+    {
+      "speaker": null,
+      "text": "Because that I'll tell you in there",
+      "start": "00:17:27.330",
+      "end": "00:17:29.330",
+      "id": 238
+    },
+    {
+      "speaker": null,
+      "text": "What it is that the model response do because they they trained it so they know",
+      "start": "00:17:30.290",
+      "end": "00:17:34.210",
+      "id": 239
+    },
+    {
+      "speaker": null,
+      "text": "So for instance like with gbt5 gbt5 actually looks for a specific tag called tool preambles",
+      "start": "00:17:34.210",
+      "end": "00:17:41.010",
+      "id": 240
+    },
+    {
+      "speaker": null,
+      "text": "If you put something in the tool preambles",
+      "start": "00:17:41.650",
+      "end": "00:17:43.810",
+      "id": 241
+    },
+    {
+      "speaker": null,
+      "text": "It will execute that before it calls the tool",
+      "start": "00:17:43.810",
+      "end": "00:17:46.050",
+      "id": 242
+    },
+    {
+      "speaker": null,
+      "text": "So if you want gbt5 to tell the user give me one line about what you're doing and why before you call it tool",
+      "start": "00:17:46.610",
+      "end": "00:17:53.170",
+      "id": 243
+    },
+    {
+      "speaker": null,
+      "text": "It will just ignore you",
+      "start": "00:17:53.650",
+      "end": "00:17:55.170",
+      "id": 244
+    },
+    {
+      "speaker": null,
+      "text": "But if you put it in the tool preambles it will do it every time",
+      "start": "00:17:55.170",
+      "end": "00:17:58.610",
+      "id": 245
+    },
+    {
+      "speaker": null,
+      "text": "Oh, interesting right",
+      "start": "00:17:58.610",
+      "end": "00:17:59.970",
+      "id": 246
+    },
+    {
+      "speaker": null,
+      "text": "But you would know that unless you read the docs until you tell me until you tell me right now on this podcast",
+      "start": "00:17:59.970",
+      "end": "00:18:04.930",
+      "id": 247
+    },
+    {
+      "speaker": null,
+      "text": "I would not know any idea",
+      "start": "00:18:04.930",
+      "end": "00:18:06.450",
+      "id": 248
+    },
+    {
+      "speaker": null,
+      "text": "Which is fine. I'm no date. You right? We're all the same in this regard",
+      "start": "00:18:06.450",
+      "end": "00:18:10.050",
+      "id": 249
+    },
+    {
+      "speaker": null,
+      "text": "So I read the open AI four dot one cookbook from start to finish",
+      "start": "00:18:10.050",
+      "end": "00:18:15.090",
+      "id": 250
+    },
+    {
+      "speaker": null,
+      "text": "I read every line in there",
+      "start": "00:18:15.650",
+      "end": "00:18:16.930",
+      "id": 251
+    },
+    {
+      "speaker": null,
+      "text": "I read every line in their test prompts",
+      "start": "00:18:16.930",
+      "end": "00:18:18.690",
+      "id": 252
+    },
+    {
+      "speaker": null,
+      "text": "And they actually have a test agent prompt in there",
+      "start": "00:18:18.690",
+      "end": "00:18:21.410",
+      "id": 253
+    },
+    {
+      "speaker": null,
+      "text": "And the whole top of beast mode is lifted straight from their agent prompt",
+      "start": "00:18:22.130",
+      "end": "00:18:26.770",
+      "id": 254
+    },
+    {
+      "speaker": null,
+      "text": "And in their agent prompt they're doing this ridiculous",
+      "start": "00:18:27.330",
+      "end": "00:18:29.970",
+      "id": 255
+    },
+    {
+      "speaker": null,
+      "text": "You are an agent",
+      "start": "00:18:30.530",
+      "end": "00:18:31.650",
+      "id": 256
+    },
+    {
+      "speaker": null,
+      "text": "You have everything you need to solve this don't come back to me until it's done",
+      "start": "00:18:31.970",
+      "end": "00:18:35.170",
+      "id": 257
+    },
+    {
+      "speaker": null,
+      "text": "I want you to finish the task you can finish the task",
+      "start": "00:18:35.170",
+      "end": "00:18:37.970",
+      "id": 258
+    },
+    {
+      "speaker": null,
+      "text": "I they say it seven times you can do it seven yeah",
+      "start": "00:18:37.970",
+      "end": "00:18:42.210",
+      "id": 259
+    },
+    {
+      "speaker": null,
+      "text": "My faith in you right and when you read it like if you go read beast mode",
+      "start": "00:18:42.210",
+      "end": "00:18:46.530",
+      "id": 260
+    },
+    {
+      "speaker": null,
+      "text": "You just read the top you're like wow that has redundant",
+      "start": "00:18:46.530",
+      "end": "00:18:48.530",
+      "id": 261
+    },
+    {
+      "speaker": null,
+      "text": "Yeah",
+      "start": "00:18:49.250",
+      "end": "00:18:50.050",
+      "id": 262
+    },
+    {
+      "speaker": null,
+      "text": "But it's lifted straight from their docs and does it work? Yeah, yeah, yeah, it does work",
+      "start": "00:18:50.210",
+      "end": "00:18:55.970",
+      "id": 263
+    },
+    {
+      "speaker": null,
+      "text": "I and I've noticed so what's really fun about this to really try this is if you have a prompt",
+      "start": "00:18:55.970",
+      "end": "00:19:00.610",
+      "id": 264
+    },
+    {
+      "speaker": null,
+      "text": "So a reusable prompt you know a prompt file",
+      "start": "00:19:00.610",
+      "end": "00:19:03.410",
+      "id": 265
+    },
+    {
+      "speaker": null,
+      "text": "I have one that goes and uses the get up mcp. I should use it also say like for doing research",
+      "start": "00:19:03.410",
+      "end": "00:19:07.330",
+      "id": 266
+    },
+    {
+      "speaker": null,
+      "text": "You could say always use perplexity for example",
+      "start": "00:19:07.330",
+      "end": "00:19:09.650",
+      "id": 267
+    },
+    {
+      "speaker": null,
+      "text": "And you could always do deep research that way or some other mcp server",
+      "start": "00:19:09.650",
+      "end": "00:19:12.530",
+      "id": 268
+    },
+    {
+      "speaker": null,
+      "text": "But I have one that is like literally go off to get hub",
+      "start": "00:19:12.530",
+      "end": "00:19:15.730",
+      "id": 269
+    },
+    {
+      "speaker": null,
+      "text": "And I want you to search for open and closed issues",
+      "start": "00:19:15.730",
+      "end": "00:19:17.970",
+      "id": 270
+    },
+    {
+      "speaker": null,
+      "text": "They have this in their title and I want you to create a",
+      "start": "00:19:17.970",
+      "end": "00:19:21.410",
+      "id": 271
+    },
+    {
+      "speaker": null,
+      "text": "Markdown table for me that describes all this information",
+      "start": "00:19:21.410",
+      "end": "00:19:24.290",
+      "id": 272
+    },
+    {
+      "speaker": null,
+      "text": "I want to run these reports every single day basically and then I want you to create a file in this thing",
+      "start": "00:19:24.290",
+      "end": "00:19:28.290",
+      "id": 273
+    },
+    {
+      "speaker": null,
+      "text": "And what I've noticed is that I write it now",
+      "start": "00:19:28.290",
+      "end": "00:19:30.690",
+      "id": 274
+    },
+    {
+      "speaker": null,
+      "text": "I want to write it but every model seems to execute it just a little bit different right",
+      "start": "00:19:30.690",
+      "end": "00:19:35.490",
+      "id": 275
+    },
+    {
+      "speaker": null,
+      "text": "It seems to to to just call tools a little bit different and do something different",
+      "start": "00:19:35.490",
+      "end": "00:19:39.970",
+      "id": 276
+    },
+    {
+      "speaker": null,
+      "text": "So what I've been doing is saying okay",
+      "start": "00:19:39.970",
+      "end": "00:19:42.050",
+      "id": 277
+    },
+    {
+      "speaker": null,
+      "text": "I'm going to fine tune this prompt for this specific model because I know how it works",
+      "start": "00:19:42.050",
+      "end": "00:19:46.290",
+      "id": 278
+    },
+    {
+      "speaker": null,
+      "text": "And how it actually is using and calling these tools kind of like you're saying like with the preamble for example",
+      "start": "00:19:46.290",
+      "end": "00:19:51.890",
+      "id": 279
+    },
+    {
+      "speaker": null,
+      "text": "And I think I've noticed that maybe five mini is like the one that actually understands me",
+      "start": "00:19:51.890",
+      "end": "00:19:56.930",
+      "id": 280
+    },
+    {
+      "speaker": null,
+      "text": "Maybe it understands me a little bit more and this kind of custom prompt",
+      "start": "00:19:56.930",
+      "end": "00:19:59.970",
+      "id": 281
+    },
+    {
+      "speaker": null,
+      "text": "You know what I mean because it's interpreting how I'm doing it yeah",
+      "start": "00:19:59.970",
+      "end": "00:20:02.610",
+      "id": 282
+    },
+    {
+      "speaker": null,
+      "text": "That's super interesting",
+      "start": "00:20:02.610",
+      "end": "00:20:03.410",
+      "id": 283
+    },
+    {
+      "speaker": null,
+      "text": "Like everybody has a model that they really like you're like obviously minds four to one",
+      "start": "00:20:03.410",
+      "end": "00:20:07.250",
+      "id": 284
+    },
+    {
+      "speaker": null,
+      "text": "Because I know how to talk to it",
+      "start": "00:20:07.250",
+      "end": "00:20:09.410",
+      "id": 285
+    },
+    {
+      "speaker": null,
+      "text": "I know it would it would respond to",
+      "start": "00:20:09.410",
+      "end": "00:20:11.010",
+      "id": 286
+    },
+    {
+      "speaker": null,
+      "text": "And I think another thing that's important here",
+      "start": "00:20:11.650",
+      "end": "00:20:14.530",
+      "id": 287
+    },
+    {
+      "speaker": null,
+      "text": "James is like when I was going through",
+      "start": "00:20:14.530",
+      "end": "00:20:16.370",
+      "id": 288
+    },
+    {
+      "speaker": null,
+      "text": "I would say like I need it to use it to do list",
+      "start": "00:20:16.370",
+      "end": "00:20:18.530",
+      "id": 289
+    },
+    {
+      "speaker": null,
+      "text": "And it would sometimes do it sometimes it wouldn't and then sometimes it would do it and it would use the wrong format",
+      "start": "00:20:19.010",
+      "end": "00:20:23.410",
+      "id": 290
+    },
+    {
+      "speaker": null,
+      "text": "And I was actually trying to use emoji",
+      "start": "00:20:23.410",
+      "end": "00:20:25.410",
+      "id": 291
+    },
+    {
+      "speaker": null,
+      "text": "And so I was like use a green emoji for checked off and it would just it was like all over the map",
+      "start": "00:20:26.370",
+      "end": "00:20:30.930",
+      "id": 292
+    },
+    {
+      "speaker": null,
+      "text": "And so I would just go in and ask it",
+      "start": "00:20:30.930",
+      "end": "00:20:32.850",
+      "id": 293
+    },
+    {
+      "speaker": null,
+      "text": "I would say like hey I asked you I would stop it while I was testing the prompt and say hey",
+      "start": "00:20:32.850",
+      "end": "00:20:37.250",
+      "id": 294
+    },
+    {
+      "speaker": null,
+      "text": "I asked you to use it to do list and I gave you the format",
+      "start": "00:20:37.250",
+      "end": "00:20:40.770",
+      "id": 295
+    },
+    {
+      "speaker": null,
+      "text": "But you didn't do it",
+      "start": "00:20:40.770",
+      "end": "00:20:41.890",
+      "id": 296
+    },
+    {
+      "speaker": null,
+      "text": "Why and then the first thing that it will do is come back and be like hey yo you're absolutely right",
+      "start": "00:20:41.890",
+      "end": "00:20:46.930",
+      "id": 297
+    },
+    {
+      "speaker": null,
+      "text": "I didn't and I should have I'm gonna do it right now and then I'd stop it again and I'd say",
+      "start": "00:20:47.650",
+      "end": "00:20:51.730",
+      "id": 298
+    },
+    {
+      "speaker": null,
+      "text": "I want you to explain to me",
+      "start": "00:20:52.530",
+      "end": "00:20:54.370",
+      "id": 299
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, you did not follow the instruction it would come back and it will tell you",
+      "start": "00:20:54.370",
+      "end": "00:20:57.730",
+      "id": 300
+    },
+    {
+      "speaker": null,
+      "text": "You said do this but earlier in the instructions",
+      "start": "00:20:58.290",
+      "end": "00:21:01.090",
+      "id": 301
+    },
+    {
+      "speaker": null,
+      "text": "Maybe in the system prompted said this and so then I would ask it",
+      "start": "00:21:01.090",
+      "end": "00:21:04.530",
+      "id": 302
+    },
+    {
+      "speaker": null,
+      "text": "What is a format that you will understand every time and it came back in an and it said mark down",
+      "start": "00:21:05.250",
+      "end": "00:21:11.010",
+      "id": 303
+    },
+    {
+      "speaker": null,
+      "text": "Most language models are very good at mark down",
+      "start": "00:21:11.010",
+      "end": "00:21:13.570",
+      "id": 304
+    },
+    {
+      "speaker": null,
+      "text": "And so that's how I got an easy mark down to do list and I said to it I said okay great",
+      "start": "00:21:13.570",
+      "end": "00:21:17.490",
+      "id": 305
+    },
+    {
+      "speaker": null,
+      "text": "Write the prompt for a language model such as yourself",
+      "start": "00:21:18.050",
+      "end": "00:21:21.330",
+      "id": 306
+    },
+    {
+      "speaker": null,
+      "text": "That would cause you to follow the construction every single time",
+      "start": "00:21:21.730",
+      "end": "00:21:24.690",
+      "id": 307
+    },
+    {
+      "speaker": null,
+      "text": "No, and again, this is metaprocting",
+      "start": "00:21:24.690",
+      "end": "00:21:26.690",
+      "id": 308
+    },
+    {
+      "speaker": null,
+      "text": "Get the model to explain itself",
+      "start": "00:21:27.170",
+      "end": "00:21:29.250",
+      "id": 309
+    },
+    {
+      "speaker": null,
+      "text": "It doesn't want to",
+      "start": "00:21:29.250",
+      "end": "00:21:30.530",
+      "id": 310
+    },
+    {
+      "speaker": null,
+      "text": "But if you push on it it will and then it will write its own prompt",
+      "start": "00:21:30.530",
+      "end": "00:21:33.810",
+      "id": 311
+    },
+    {
+      "speaker": null,
+      "text": "It doesn't work every time",
+      "start": "00:21:33.810",
+      "end": "00:21:34.930",
+      "id": 312
+    },
+    {
+      "speaker": null,
+      "text": "Sometimes it's still just ignores it but that's another strategy that you can employ",
+      "start": "00:21:35.570",
+      "end": "00:21:40.130",
+      "id": 313
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, I really like that. That's a good idea. I push on the model",
+      "start": "00:21:40.130",
+      "end": "00:21:43.490",
+      "id": 314
+    },
+    {
+      "speaker": null,
+      "text": "Have it explain I felt like and I've seen people do this too, which is",
+      "start": "00:21:43.490",
+      "end": "00:21:47.730",
+      "id": 315
+    },
+    {
+      "speaker": null,
+      "text": "And there's actually if you go to prompt prompt boost",
+      "start": "00:21:48.530",
+      "end": "00:21:51.010",
+      "id": 316
+    },
+    {
+      "speaker": null,
+      "text": "Dot dev or awesome",
+      "start": "00:21:51.810",
+      "end": "00:21:53.810",
+      "id": 317
+    },
+    {
+      "speaker": null,
+      "text": "I wrote shout out to or and you can find prompts and starksons chat modes",
+      "start": "00:21:53.810",
+      "end": "00:21:57.810",
+      "id": 318
+    },
+    {
+      "speaker": null,
+      "text": "You can see beast mode planner mode debugging mode",
+      "start": "00:21:57.810",
+      "end": "00:22:00.610",
+      "id": 319
+    },
+    {
+      "speaker": null,
+      "text": "Now I've had this before where like debugging mode is like in my mind",
+      "start": "00:22:00.610",
+      "end": "00:22:04.290",
+      "id": 320
+    },
+    {
+      "speaker": null,
+      "text": "I'll be working with the agent like working on here's the bug",
+      "start": "00:22:04.290",
+      "end": "00:22:06.530",
+      "id": 321
+    },
+    {
+      "speaker": null,
+      "text": "Here's the problem",
+      "start": "00:22:06.530",
+      "end": "00:22:07.090",
+      "id": 322
+    },
+    {
+      "speaker": null,
+      "text": "It's like I think I fixed it and I was like no, like I'll just be going over and over and over again",
+      "start": "00:22:07.090",
+      "end": "00:22:10.370",
+      "id": 323
+    },
+    {
+      "speaker": null,
+      "text": "But now I'm thinking like actually what I've should have done is flipped it into this custom mode",
+      "start": "00:22:10.370",
+      "end": "00:22:14.610",
+      "id": 324
+    },
+    {
+      "speaker": null,
+      "text": "Because I'm gonna be debugging my app all the time",
+      "start": "00:22:14.610",
+      "end": "00:22:16.690",
+      "id": 325
+    },
+    {
+      "speaker": null,
+      "text": "I mean planning features all the time",
+      "start": "00:22:16.690",
+      "end": "00:22:18.930",
+      "id": 326
+    },
+    {
+      "speaker": null,
+      "text": "So if I think about jobs to be done",
+      "start": "00:22:18.930",
+      "end": "00:22:21.490",
+      "id": 327
+    },
+    {
+      "speaker": null,
+      "text": "Those are almost chat modes to be implemented",
+      "start": "00:22:21.490",
+      "end": "00:22:23.490",
+      "id": 328
+    },
+    {
+      "speaker": null,
+      "text": "In a way if they're they're focused and yours specifically beast mode is coding agent",
+      "start": "00:22:24.370",
+      "end": "00:22:29.250",
+      "id": 329
+    },
+    {
+      "speaker": null,
+      "text": "Is optimization mode basically I want to code put it in to beast mode go",
+      "start": "00:22:29.890",
+      "end": "00:22:34.050",
+      "id": 330
+    },
+    {
+      "speaker": null,
+      "text": "Correct, and there's multiple again",
+      "start": "00:22:34.610",
+      "end": "00:22:36.050",
+      "id": 331
+    },
+    {
+      "speaker": null,
+      "text": "There's so many different ways to work beast mode is how I work",
+      "start": "00:22:36.050",
+      "end": "00:22:39.090",
+      "id": 332
+    },
+    {
+      "speaker": null,
+      "text": "I work iteratively",
+      "start": "00:22:39.410",
+      "end": "00:22:40.370",
+      "id": 333
+    },
+    {
+      "speaker": null,
+      "text": "I'm like let's do this small thing and I wanted to act like a developer",
+      "start": "00:22:40.370",
+      "end": "00:22:43.730",
+      "id": 334
+    },
+    {
+      "speaker": null,
+      "text": "But some people they want to use a planning mode",
+      "start": "00:22:43.730",
+      "end": "00:22:46.450",
+      "id": 335
+    },
+    {
+      "speaker": null,
+      "text": "So they have a mode where it first it writes a plan",
+      "start": "00:22:46.450",
+      "end": "00:22:48.530",
+      "id": 336
+    },
+    {
+      "speaker": null,
+      "text": "Then they go into spec mode where it then converts the plan to a spec",
+      "start": "00:22:48.530",
+      "end": "00:22:51.890",
+      "id": 337
+    },
+    {
+      "speaker": null,
+      "text": "You then they go into implementation mode where it implements the spec",
+      "start": "00:22:51.890",
+      "end": "00:22:55.970",
+      "id": 338
+    },
+    {
+      "speaker": null,
+      "text": "Then they go into critic mode and the critic all the critic does is find flaws in what the implementer just implemented",
+      "start": "00:22:55.970",
+      "end": "00:23:02.210",
+      "id": 339
+    },
+    {
+      "speaker": null,
+      "text": "And then they go into revise mode",
+      "start": "00:23:02.210",
+      "end": "00:23:04.210",
+      "id": 340
+    },
+    {
+      "speaker": null,
+      "text": "Right and so they're just moving I don't work that way some people do",
+      "start": "00:23:04.210",
+      "end": "00:23:08.290",
+      "id": 341
+    },
+    {
+      "speaker": null,
+      "text": "Yeah",
+      "start": "00:23:08.290",
+      "end": "00:23:09.010",
+      "id": 342
+    },
+    {
+      "speaker": null,
+      "text": "What one of the things if you're listening to this podcast here's something you can do right now",
+      "start": "00:23:09.010",
+      "end": "00:23:12.850",
+      "id": 343
+    },
+    {
+      "speaker": null,
+      "text": "That's a lot of fun",
+      "start": "00:23:13.090",
+      "end": "00:23:14.850",
+      "id": 344
+    },
+    {
+      "speaker": null,
+      "text": "So I know that if you're a dev you probably",
+      "start": "00:23:14.850",
+      "end": "00:23:17.490",
+      "id": 345
+    },
+    {
+      "speaker": null,
+      "text": "Probably use GitHub you may not but if you if you do",
+      "start": "00:23:18.210",
+      "end": "00:23:20.530",
+      "id": 346
+    },
+    {
+      "speaker": null,
+      "text": "You use issues and you probably have the terrible experience of trying to figure out whether or not your issue",
+      "start": "00:23:21.330",
+      "end": "00:23:27.170",
+      "id": 347
+    },
+    {
+      "speaker": null,
+      "text": "Already exists. It's been opened already. Maybe so what you can use you can create a custom mode",
+      "start": "00:23:27.410",
+      "end": "00:23:31.970",
+      "id": 348
+    },
+    {
+      "speaker": null,
+      "text": "In co-pilot called and just call it you know issue and then in the custom mode just tell it",
+      "start": "00:23:32.770",
+      "end": "00:23:38.130",
+      "id": 349
+    },
+    {
+      "speaker": null,
+      "text": "Use the GitHub tool make sure you specify that in the tool preambles",
+      "start": "00:23:38.610",
+      "end": "00:23:41.890",
+      "id": 350
+    },
+    {
+      "speaker": null,
+      "text": "to search for the user's",
+      "start": "00:23:42.450",
+      "end": "00:23:45.010",
+      "id": 351
+    },
+    {
+      "speaker": null,
+      "text": "Issue to see if it already exists",
+      "start": "00:23:45.890",
+      "end": "00:23:47.890",
+      "id": 352
+    },
+    {
+      "speaker": null,
+      "text": "If it doesn't already exist then go ahead and create a draft of the issue and ask the user if they would like any changes",
+      "start": "00:23:48.290",
+      "end": "00:23:55.730",
+      "id": 353
+    },
+    {
+      "speaker": null,
+      "text": "Then you can use this mode literally any time you have an issue",
+      "start": "00:23:56.210",
+      "end": "00:23:59.250",
+      "id": 354
+    },
+    {
+      "speaker": null,
+      "text": "And make co-pilot search GitHub for you like you don't have to do that",
+      "start": "00:23:59.890",
+      "end": "00:24:03.490",
+      "id": 355
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, and you can even generate the issue for you and it can create the issue for you too",
+      "start": "00:24:03.490",
+      "end": "00:24:08.450",
+      "id": 356
+    },
+    {
+      "speaker": null,
+      "text": "So you just it's it's just have to think about AI is like this automation tool",
+      "start": "00:24:09.570",
+      "end": "00:24:14.530",
+      "id": 357
+    },
+    {
+      "speaker": null,
+      "text": "It just lets you move quicker. Yeah, I like that. I like that. I like that",
+      "start": "00:24:14.610",
+      "end": "00:24:18.050",
+      "id": 358
+    },
+    {
+      "speaker": null,
+      "text": "That's a great you know example of",
+      "start": "00:24:18.050",
+      "end": "00:24:20.050",
+      "id": 359
+    },
+    {
+      "speaker": null,
+      "text": "Different things again that you would be doing manually, right? Like even in my mind when I'm coming with a list of",
+      "start": "00:24:20.450",
+      "end": "00:24:26.050",
+      "id": 360
+    },
+    {
+      "speaker": null,
+      "text": "Things to implement a feature. I'm thinking of it to do list a task list",
+      "start": "00:24:26.050",
+      "end": "00:24:29.090",
+      "id": 361
+    },
+    {
+      "speaker": null,
+      "text": "I got to go I got to update the CSS and I got to go do this",
+      "start": "00:24:29.090",
+      "end": "00:24:31.410",
+      "id": 362
+    },
+    {
+      "speaker": null,
+      "text": "I like oh just tell it to create the task list right or even better. Yeah, what I've done",
+      "start": "00:24:31.410",
+      "end": "00:24:35.090",
+      "id": 363
+    },
+    {
+      "speaker": null,
+      "text": "Is in that sort of planning issue mode is I'm like, okay, let's implement this feature and then come up with the task list of things",
+      "start": "00:24:36.210",
+      "end": "00:24:42.210",
+      "id": 364
+    },
+    {
+      "speaker": null,
+      "text": "You want to do and what order need to be done and then I can actually just feed that to the model as well",
+      "start": "00:24:42.290",
+      "end": "00:24:46.530",
+      "id": 365
+    },
+    {
+      "speaker": null,
+      "text": "You can do those in different steps. You could do it in planning you could do it in execution",
+      "start": "00:24:46.530",
+      "end": "00:24:49.970",
+      "id": 366
+    },
+    {
+      "speaker": null,
+      "text": "Or you could do it at different parts based on how you work and I think bring it back to the beginning of we don't know",
+      "start": "00:24:50.370",
+      "end": "00:24:56.370",
+      "id": 367
+    },
+    {
+      "speaker": null,
+      "text": "The millions upon millions of VS code users develop every day what their mindset is that they spectrum and are they issue?",
+      "start": "00:24:56.850",
+      "end": "00:25:02.370",
+      "id": 368
+    },
+    {
+      "speaker": null,
+      "text": "They just want to jam on some code do they want lists or they're not one list",
+      "start": "00:25:02.370",
+      "end": "00:25:05.410",
+      "id": 369
+    },
+    {
+      "speaker": null,
+      "text": "Like but you get to decide and that's what I think the fun of the custom modes are is like you get to define",
+      "start": "00:25:05.890",
+      "end": "00:25:10.690",
+      "id": 370
+    },
+    {
+      "speaker": null,
+      "text": "How you want the thing to work for you?",
+      "start": "00:25:11.330",
+      "end": "00:25:13.490",
+      "id": 371
+    },
+    {
+      "speaker": null,
+      "text": "100% I so well said and I think so many of us are waiting for like someone to just drop in and be like",
+      "start": "00:25:14.530",
+      "end": "00:25:20.530",
+      "id": 372
+    },
+    {
+      "speaker": null,
+      "text": "Here's how you just use AI and it does everything you want the first time",
+      "start": "00:25:21.090",
+      "end": "00:25:24.290",
+      "id": 373
+    },
+    {
+      "speaker": null,
+      "text": "And I I don't know what to say here other than I don't think that answers coming for you",
+      "start": "00:25:24.850",
+      "end": "00:25:28.690",
+      "id": 374
+    },
+    {
+      "speaker": null,
+      "text": "What is coming for you though is your ability to automate yourself and speed yourself up and you can do that today",
+      "start": "00:25:29.250",
+      "end": "00:25:35.490",
+      "id": 375
+    },
+    {
+      "speaker": null,
+      "text": "With these custom modes. There's so many prompts just go read what other people are doing",
+      "start": "00:25:35.890",
+      "end": "00:25:40.290",
+      "id": 376
+    },
+    {
+      "speaker": null,
+      "text": "You don't have to use their prompts just learn from what they're doing automate what you're doing and",
+      "start": "00:25:40.450",
+      "end": "00:25:45.730",
+      "id": 377
+    },
+    {
+      "speaker": null,
+      "text": "And I think that's that's how you realize the value of AI right now",
+      "start": "00:25:46.850",
+      "end": "00:25:50.290",
+      "id": 378
+    },
+    {
+      "speaker": null,
+      "text": "That's what I do you and I both do this because we haven't really written any code",
+      "start": "00:25:50.290",
+      "end": "00:25:54.130",
+      "id": 379
+    },
+    {
+      "speaker": null,
+      "text": "We talked about this the other day in some time. Yeah, it's been odd. We've reviewed a lot of code. Yeah",
+      "start": "00:25:54.130",
+      "end": "00:25:59.010",
+      "id": 380
+    },
+    {
+      "speaker": null,
+      "text": "I do review a lot of code all in real time",
+      "start": "00:25:59.810",
+      "end": "00:26:01.730",
+      "id": 381
+    },
+    {
+      "speaker": null,
+      "text": "I'm sure that bar on the bottom is filled to the right in my AI stats as for sure",
+      "start": "00:26:01.730",
+      "end": "00:26:05.330",
+      "id": 382
+    },
+    {
+      "speaker": null,
+      "text": "Well, we're thanks for coming on and talking about in depth because I think we've shown it off and talked about it",
+      "start": "00:26:05.650",
+      "end": "00:26:10.850",
+      "id": 383
+    },
+    {
+      "speaker": null,
+      "text": "But I don't think we've talked about the methodology behind these custom modes and how you actually",
+      "start": "00:26:10.850",
+      "end": "00:26:15.330",
+      "id": 384
+    },
+    {
+      "speaker": null,
+      "text": "Developed beast mode. I learned a lot on this one. So thanks for coming on and showing us all",
+      "start": "00:26:15.730",
+      "end": "00:26:19.410",
+      "id": 385
+    },
+    {
+      "speaker": null,
+      "text": "My pleasure to be here and check out custom chat modes super easy to use you can't mess it up",
+      "start": "00:26:19.410",
+      "end": "00:26:24.130",
+      "id": 386
+    },
+    {
+      "speaker": null,
+      "text": "Y'all there's no right or wrong way to do this just jump in there and start kickin tires up a links to the docs",
+      "start": "00:26:24.130",
+      "end": "00:26:29.090",
+      "id": 387
+    },
+    {
+      "speaker": null,
+      "text": "To prompt boost and to awesome co-pilot and to Burke's awesome post",
+      "start": "00:26:29.250",
+      "end": "00:26:32.850",
+      "id": 388
+    },
+    {
+      "speaker": null,
+      "text": "I was gonna do it for this VS code inside his podcast",
+      "start": "00:26:33.170",
+      "end": "00:26:35.570",
+      "id": 389
+    },
+    {
+      "speaker": null,
+      "text": "Don't forget to like subscribe share with your fellow friends and co-workers",
+      "start": "00:26:35.570",
+      "end": "00:26:38.690",
+      "id": 390
+    },
+    {
+      "speaker": null,
+      "text": "So we boost this podcast up into the charge",
+      "start": "00:26:39.010",
+      "end": "00:26:42.290",
+      "id": 391
+    },
+    {
+      "speaker": null,
+      "text": "We really appreciate it and let us know hit up me at James Montz imago at Bert Collin on ax on our socials",
+      "start": "00:26:42.290",
+      "end": "00:26:47.730",
+      "id": 392
+    },
+    {
+      "speaker": null,
+      "text": "Wherever let us know what else you want to hear behind the scenes of VS code",
+      "start": "00:26:47.730",
+      "end": "00:26:51.570",
+      "id": 393
+    },
+    {
+      "speaker": null,
+      "text": "Let's go do it for this one. So until next time happy coding",
+      "start": "00:26:51.570",
+      "end": "00:26:54.210",
+      "id": 394
+    }
+  ]
+}

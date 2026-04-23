@@ -2,11 +2,13 @@
 
 [← Copilot SDK](copilot-sdk.md) | [Part II Overview](part-2-primitives.md) | [Part III Reference →](part-3-reference.md)
 
-*Updated: April 17, 2026 · Validated against GitHub Copilot docs as of April 16, 2026.*
+*Updated: April 22, 2026 · Validated against GitHub Copilot docs as of April 16, 2026.*
 
 ---
 
 ## Overview
+
+Read this page as "the same repository rules, but applied to pull request review." Code review is not a separate customization system. It is another place where GitHub Copilot consumes the instruction layer and repository memory, then turns that context into comments instead of chat replies or code edits.
 
 **Where it runs:** GitHub.com pull request reviews, VS Code (review selection), Visual Studio, JetBrains, Xcode, GitHub CLI, GitHub Mobile
 **Best for:** Automated first-pass review of PRs against team conventions, security rules, and architectural standards

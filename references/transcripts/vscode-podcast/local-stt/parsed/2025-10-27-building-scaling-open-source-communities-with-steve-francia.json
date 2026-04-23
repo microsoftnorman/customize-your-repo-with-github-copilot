@@ -1,0 +1,2790 @@
+{
+  "source_file": "2025-10-27-building-scaling-open-source-communities-with-steve-francia.md",
+  "transcript_format": "local_stt_segments",
+  "segment_count": 395,
+  "metadata": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 11,
+    "title": "Building & Scaling Open Source Communities with Steve Francia",
+    "url": "https://www.vscodepodcast.com/11",
+    "transcript_url": "",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/88430776-665c-4c97-aadf-a36d266a90a2.mp3",
+    "published": "2025-10-27",
+    "duration": "25:42",
+    "transcript_available": false,
+    "source_file": "2025-10-27-building-scaling-open-source-communities-with-steve-francia.md",
+    "source_path": "references\\transcripts\\vscode-podcast\\2025-10-27-building-scaling-open-source-communities-with-steve-francia.md",
+    "local_stt": true,
+    "local_stt_model": "tiny.en",
+    "local_stt_language": "en",
+    "local_stt_device": "cpu",
+    "local_stt_compute_type": "int8"
+  },
+  "segments": [
+    {
+      "speaker": null,
+      "text": "I'm super excited today to have Steve Francia on the podcast.",
+      "start": "00:00:00.000",
+      "end": "00:00:05.200",
+      "id": 1
+    },
+    {
+      "speaker": null,
+      "text": "You know, we'd like to give behind the scenes of sort of the world of development,",
+      "start": "00:00:05.200",
+      "end": "00:00:08.840",
+      "id": 2
+    },
+    {
+      "speaker": null,
+      "text": "use it with the team and VSCO team, but also a major, awesome individual and developer",
+      "start": "00:00:08.840",
+      "end": "00:00:15.440",
+      "id": 3
+    },
+    {
+      "speaker": null,
+      "text": "community kind of get behind the scenes.",
+      "start": "00:00:15.440",
+      "end": "00:00:16.880",
+      "id": 4
+    },
+    {
+      "speaker": null,
+      "text": "I understand how people build software, like how they're evolving as well.",
+      "start": "00:00:16.880",
+      "end": "00:00:20.240",
+      "id": 5
+    },
+    {
+      "speaker": null,
+      "text": "But Steve, one thing I like to do in the podcast that I just started today is read",
+      "start": "00:00:20.240",
+      "end": "00:00:24.520",
+      "id": 6
+    },
+    {
+      "speaker": null,
+      "text": "people's bios from their website because I personally have done this for conferences",
+      "start": "00:00:24.520",
+      "end": "00:00:30.040",
+      "id": 7
+    },
+    {
+      "speaker": null,
+      "text": "and it's always not correct.",
+      "start": "00:00:30.040",
+      "end": "00:00:31.440",
+      "id": 8
+    },
+    {
+      "speaker": null,
+      "text": "So we're going to see how accurate it is today.",
+      "start": "00:00:31.440",
+      "end": "00:00:33.560",
+      "id": 9
+    },
+    {
+      "speaker": null,
+      "text": "Okay, depends which website you're reading it from.",
+      "start": "00:00:33.560",
+      "end": "00:00:35.640",
+      "id": 10
+    },
+    {
+      "speaker": null,
+      "text": "And that's a good question because our bios are all over.",
+      "start": "00:00:35.640",
+      "end": "00:00:37.680",
+      "id": 11
+    },
+    {
+      "speaker": null,
+      "text": "Okay, Steve builds tools that makes developers lives better.",
+      "start": "00:00:37.680",
+      "end": "00:00:42.080",
+      "id": 12
+    },
+    {
+      "speaker": null,
+      "text": "Accurate?",
+      "start": "00:00:42.080",
+      "end": "00:00:43.080",
+      "id": 13
+    },
+    {
+      "speaker": null,
+      "text": "Yeah.",
+      "start": "00:00:43.080",
+      "end": "00:00:44.080",
+      "id": 14
+    },
+    {
+      "speaker": null,
+      "text": "Cool.",
+      "start": "00:00:44.080",
+      "end": "00:00:45.080",
+      "id": 15
+    },
+    {
+      "speaker": null,
+      "text": "He creates open source projects including Hugo and Cobra that have earned over 185,000",
+      "start": "00:00:45.080",
+      "end": "00:00:49.040",
+      "id": 16
+    },
+    {
+      "speaker": null,
+      "text": "GitHub stars.",
+      "start": "00:00:49.040",
+      "end": "00:00:50.040",
+      "id": 17
+    },
+    {
+      "speaker": null,
+      "text": "Maybe a little bit more now.",
+      "start": "00:00:50.040",
+      "end": "00:00:51.920",
+      "id": 18
+    },
+    {
+      "speaker": null,
+      "text": "We shape the modern developer stack from architecting MongoDB's user experience and scaling",
+      "start": "00:00:51.920",
+      "end": "00:00:55.800",
+      "id": 19
+    },
+    {
+      "speaker": null,
+      "text": "go at Google to pioneer container standards at Docker and driving AI at two Sigma.",
+      "start": "00:00:55.800",
+      "end": "00:01:01.640",
+      "id": 20
+    },
+    {
+      "speaker": null,
+      "text": "Is that correct?",
+      "start": "00:01:01.640",
+      "end": "00:01:03.680",
+      "id": 21
+    },
+    {
+      "speaker": null,
+      "text": "That's accurate.",
+      "start": "00:01:03.680",
+      "end": "00:01:04.680",
+      "id": 22
+    },
+    {
+      "speaker": null,
+      "text": "Yeah.",
+      "start": "00:01:04.680",
+      "end": "00:01:05.680",
+      "id": 23
+    },
+    {
+      "speaker": null,
+      "text": "Okay, good.",
+      "start": "00:01:05.680",
+      "end": "00:01:06.680",
+      "id": 24
+    },
+    {
+      "speaker": null,
+      "text": "Yeah.",
+      "start": "00:01:06.680",
+      "end": "00:01:07.680",
+      "id": 25
+    },
+    {
+      "speaker": null,
+      "text": "That's cool.",
+      "start": "00:01:07.680",
+      "end": "00:01:08.680",
+      "id": 26
+    },
+    {
+      "speaker": null,
+      "text": "I mostly have realized that I never update any of my websites.",
+      "start": "00:01:08.680",
+      "end": "00:01:12.400",
+      "id": 27
+    },
+    {
+      "speaker": null,
+      "text": "Yeah.",
+      "start": "00:01:12.400",
+      "end": "00:01:13.400",
+      "id": 28
+    },
+    {
+      "speaker": null,
+      "text": "So you've had a long history of huge projects that you worked on across many different",
+      "start": "00:01:13.400",
+      "end": "00:01:20.280",
+      "id": 29
+    },
+    {
+      "speaker": null,
+      "text": "areas.",
+      "start": "00:01:20.280",
+      "end": "00:01:21.280",
+      "id": 30
+    },
+    {
+      "speaker": null,
+      "text": "Go as a language.",
+      "start": "00:01:21.640",
+      "end": "00:01:22.640",
+      "id": 31
+    },
+    {
+      "speaker": null,
+      "text": "No, I'm not going to be a stack.",
+      "start": "00:01:22.640",
+      "end": "00:01:24.240",
+      "id": 32
+    },
+    {
+      "speaker": null,
+      "text": "I think of these Hugo.",
+      "start": "00:01:24.240",
+      "end": "00:01:26.240",
+      "id": 33
+    },
+    {
+      "speaker": null,
+      "text": "Like how did you actually get involved in these projects?",
+      "start": "00:01:26.240",
+      "end": "00:01:30.440",
+      "id": 34
+    },
+    {
+      "speaker": null,
+      "text": "What led you to working on these projects and building these open source projects?",
+      "start": "00:01:30.440",
+      "end": "00:01:36.080",
+      "id": 35
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, interesting.",
+      "start": "00:01:36.080",
+      "end": "00:01:38.960",
+      "id": 36
+    },
+    {
+      "speaker": null,
+      "text": "It's been a wild ride to be really honest.",
+      "start": "00:01:38.960",
+      "end": "00:01:44.680",
+      "id": 37
+    },
+    {
+      "speaker": null,
+      "text": "There's not a consistent theme, but I started my career mostly in web, consumer facing",
+      "start": "00:01:44.680",
+      "end": "00:01:50.480",
+      "id": 38
+    },
+    {
+      "speaker": null,
+      "text": "things and had the good fortune of being able to be really early adopter of MongoDB,",
+      "start": "00:01:50.560",
+      "end": "00:02:00.320",
+      "id": 39
+    },
+    {
+      "speaker": null,
+      "text": "like really early, like first three adopters of MongoDB.",
+      "start": "00:02:00.320",
+      "end": "00:02:05.640",
+      "id": 40
+    },
+    {
+      "speaker": null,
+      "text": "And that led to getting to know the team and the founders and which led to an experience",
+      "start": "00:02:05.640",
+      "end": "00:02:12.040",
+      "id": 41
+    },
+    {
+      "speaker": null,
+      "text": "of joining very early and having a very formative role in that company and building out",
+      "start": "00:02:12.040",
+      "end": "00:02:17.240",
+      "id": 42
+    },
+    {
+      "speaker": null,
+      "text": "the product and making sure that it had a really stellar user experience as well as a",
+      "start": "00:02:17.280",
+      "end": "00:02:24.240",
+      "id": 43
+    },
+    {
+      "speaker": null,
+      "text": "vibrant community around it.",
+      "start": "00:02:24.240",
+      "end": "00:02:25.760",
+      "id": 44
+    },
+    {
+      "speaker": null,
+      "text": "So we pioneered also a lot of the dev rel things that have become part of the playbook",
+      "start": "00:02:25.760",
+      "end": "00:02:32.760",
+      "id": 45
+    },
+    {
+      "speaker": null,
+      "text": "when we're at MongoDB.",
+      "start": "00:02:32.760",
+      "end": "00:02:35.440",
+      "id": 46
+    },
+    {
+      "speaker": null,
+      "text": "And there I was leading a team about 150 people and some of the other VPs.",
+      "start": "00:02:35.440",
+      "end": "00:02:44.120",
+      "id": 47
+    },
+    {
+      "speaker": null,
+      "text": "I noticed weren't really coding anymore and hadn't coded in a long time.",
+      "start": "00:02:44.200",
+      "end": "00:02:47.320",
+      "id": 48
+    },
+    {
+      "speaker": null,
+      "text": "And I didn't like that for me.",
+      "start": "00:02:47.320",
+      "end": "00:02:50.440",
+      "id": 49
+    },
+    {
+      "speaker": null,
+      "text": "I really wanted to keep my fingers on the pulse of what was changing.",
+      "start": "00:02:50.440",
+      "end": "00:02:56.040",
+      "id": 50
+    },
+    {
+      "speaker": null,
+      "text": "So I was always doing open source stuff to just keep my skill sharp and this led to many",
+      "start": "00:02:56.040",
+      "end": "00:03:02.320",
+      "id": 51
+    },
+    {
+      "speaker": null,
+      "text": "of the other projects that you mentioned.",
+      "start": "00:03:02.320",
+      "end": "00:03:03.760",
+      "id": 52
+    },
+    {
+      "speaker": null,
+      "text": "So I was managing ultimately 12 different languages at MongoDB.",
+      "start": "00:03:03.760",
+      "end": "00:03:11.160",
+      "id": 53
+    },
+    {
+      "speaker": null,
+      "text": "And the last one we added was go of the 12 and I was like, I need a project to learn",
+      "start": "00:03:12.160",
+      "end": "00:03:16.840",
+      "id": 54
+    },
+    {
+      "speaker": null,
+      "text": "this language and I was frustrated with some of the experiences that I was having with",
+      "start": "00:03:16.840",
+      "end": "00:03:23.240",
+      "id": 55
+    },
+    {
+      "speaker": null,
+      "text": "WordPress security and how expensive it was not that it's expensive.",
+      "start": "00:03:23.240",
+      "end": "00:03:27.280",
+      "id": 56
+    },
+    {
+      "speaker": null,
+      "text": "But for me who had to start a content, I was paying a lot to host this dynamic website.",
+      "start": "00:03:27.280",
+      "end": "00:03:33.240",
+      "id": 57
+    },
+    {
+      "speaker": null,
+      "text": "And so my first scope project was Hugo and now it's grown to become the most popular",
+      "start": "00:03:33.240",
+      "end": "00:03:39.840",
+      "id": 58
+    },
+    {
+      "speaker": null,
+      "text": "wish that I generated.",
+      "start": "00:03:39.840",
+      "end": "00:03:42.000",
+      "id": 59
+    },
+    {
+      "speaker": null,
+      "text": "And out of that I knew the experience I wanted.",
+      "start": "00:03:42.000",
+      "end": "00:03:44.920",
+      "id": 60
+    },
+    {
+      "speaker": null,
+      "text": "So I built Cobra to create that experience.",
+      "start": "00:03:44.920",
+      "end": "00:03:47.800",
+      "id": 61
+    },
+    {
+      "speaker": null,
+      "text": "Turns out GO is was really good for the use case of Hugo but it's really good for both",
+      "start": "00:03:47.800",
+      "end": "00:03:54.200",
+      "id": 62
+    },
+    {
+      "speaker": null,
+      "text": "the use case of creating web content as well as CLIs.",
+      "start": "00:03:54.200",
+      "end": "00:03:58.800",
+      "id": 63
+    },
+    {
+      "speaker": null,
+      "text": "And now GO, it's one of the staples of GO companies all over the world use it.",
+      "start": "00:03:58.800",
+      "end": "00:04:04.280",
+      "id": 64
+    },
+    {
+      "speaker": null,
+      "text": "Cooper Netties, GitHub, are all built with Cobra.",
+      "start": "00:04:04.280",
+      "end": "00:04:09.320",
+      "id": 65
+    },
+    {
+      "speaker": null,
+      "text": "How are you balancing life work and open source?",
+      "start": "00:04:09.320",
+      "end": "00:04:13.520",
+      "id": 66
+    },
+    {
+      "speaker": null,
+      "text": "Because I took a lot of open source creators and I am myself as well.",
+      "start": "00:04:13.520",
+      "end": "00:04:17.200",
+      "id": 67
+    },
+    {
+      "speaker": null,
+      "text": "And as these projects grow, it starts off with an idea.",
+      "start": "00:04:17.200",
+      "end": "00:04:19.320",
+      "id": 68
+    },
+    {
+      "speaker": null,
+      "text": "I want to be the thing and then you just put it out there.",
+      "start": "00:04:19.320",
+      "end": "00:04:22.280",
+      "id": 69
+    },
+    {
+      "speaker": null,
+      "text": "And sometimes nothing happens.",
+      "start": "00:04:22.280",
+      "end": "00:04:23.280",
+      "id": 70
+    },
+    {
+      "speaker": null,
+      "text": "You don't use it for yourself, which is some of my favorite software.",
+      "start": "00:04:23.280",
+      "end": "00:04:25.800",
+      "id": 71
+    },
+    {
+      "speaker": null,
+      "text": "It doesn't go to software for myself.",
+      "start": "00:04:25.800",
+      "end": "00:04:27.440",
+      "id": 72
+    },
+    {
+      "speaker": null,
+      "text": "But then all of a sudden, hockey puck, right?",
+      "start": "00:04:27.440",
+      "end": "00:04:30.240",
+      "id": 73
+    },
+    {
+      "speaker": null,
+      "text": "Like what is that balance?",
+      "start": "00:04:30.240",
+      "end": "00:04:32.280",
+      "id": 74
+    },
+    {
+      "speaker": null,
+      "text": "How do you balance that out?",
+      "start": "00:04:32.280",
+      "end": "00:04:34.080",
+      "id": 75
+    },
+    {
+      "speaker": null,
+      "text": "Because not only do you have one big project, you have several of the China Arts projects.",
+      "start": "00:04:34.080",
+      "end": "00:04:38.520",
+      "id": 76
+    },
+    {
+      "speaker": null,
+      "text": "Yeah.",
+      "start": "00:04:38.520",
+      "end": "00:04:41.440",
+      "id": 77
+    },
+    {
+      "speaker": null,
+      "text": "I think a big thing to do is, and I kind of had this epiphany early on was get out of",
+      "start": "00:04:41.440",
+      "end": "00:04:48.480",
+      "id": 78
+    },
+    {
+      "speaker": null,
+      "text": "the way of your project.",
+      "start": "00:04:48.480",
+      "end": "00:04:49.480",
+      "id": 79
+    },
+    {
+      "speaker": null,
+      "text": "What do you mean by that?",
+      "start": "00:04:49.480",
+      "end": "00:04:50.480",
+      "id": 80
+    },
+    {
+      "speaker": null,
+      "text": "Because you want to code it, right?",
+      "start": "00:04:50.480",
+      "end": "00:04:52.840",
+      "id": 81
+    },
+    {
+      "speaker": null,
+      "text": "You want to be honored or don't you?",
+      "start": "00:04:52.840",
+      "end": "00:04:55.160",
+      "id": 82
+    },
+    {
+      "speaker": null,
+      "text": "I do but I realize that some of the projects I have, I'm the only maintainer on and nobody",
+      "start": "00:04:55.160",
+      "end": "00:05:03.330",
+      "id": 83
+    },
+    {
+      "speaker": null,
+      "text": "else uses.",
+      "start": "00:05:03.330",
+      "end": "00:05:04.650",
+      "id": 84
+    },
+    {
+      "speaker": null,
+      "text": "Other projects really become the foundation for a lot of the industry software.",
+      "start": "00:05:04.650",
+      "end": "00:05:11.250",
+      "id": 85
+    },
+    {
+      "speaker": null,
+      "text": "And once that happens, it's not yours anymore.",
+      "start": "00:05:11.250",
+      "end": "00:05:13.650",
+      "id": 86
+    },
+    {
+      "speaker": null,
+      "text": "Got it.",
+      "start": "00:05:13.650",
+      "end": "00:05:14.650",
+      "id": 87
+    },
+    {
+      "speaker": null,
+      "text": "You just got your name on it.",
+      "start": "00:05:14.650",
+      "end": "00:05:16.290",
+      "id": 88
+    },
+    {
+      "speaker": null,
+      "text": "But once Microsoft and Google and GitHub and Amazon, everyone else starts adopting your",
+      "start": "00:05:16.290",
+      "end": "00:05:25.650",
+      "id": 89
+    },
+    {
+      "speaker": null,
+      "text": "project, you can't break the world by making changes to it just because you have",
+      "start": "00:05:25.650",
+      "end": "00:05:30.930",
+      "id": 90
+    },
+    {
+      "speaker": null,
+      "text": "a whim.",
+      "start": "00:05:30.930",
+      "end": "00:05:31.930",
+      "id": 91
+    },
+    {
+      "speaker": null,
+      "text": "So you really have a social contract that we sign as part of participating in open source",
+      "start": "00:05:31.930",
+      "end": "00:05:37.890",
+      "id": 92
+    },
+    {
+      "speaker": null,
+      "text": "that you're going to be responsible for these things.",
+      "start": "00:05:37.890",
+      "end": "00:05:40.290",
+      "id": 93
+    },
+    {
+      "speaker": null,
+      "text": "And I realize that that's a big burden, but there's lots and lots of interested parties",
+      "start": "00:05:40.290",
+      "end": "00:05:44.930",
+      "id": 94
+    },
+    {
+      "speaker": null,
+      "text": "that want to see this succeed.",
+      "start": "00:05:44.930",
+      "end": "00:05:47.450",
+      "id": 95
+    },
+    {
+      "speaker": null,
+      "text": "And so as soon as I saw people were interested sending pull requests, you want to be a",
+      "start": "00:05:47.450",
+      "end": "00:05:52.250",
+      "id": 96
+    },
+    {
+      "speaker": null,
+      "text": "maintainer, you want to help review other people's and really got out of the way.",
+      "start": "00:05:52.250",
+      "end": "00:05:56.250",
+      "id": 97
+    },
+    {
+      "speaker": null,
+      "text": "to let other people do it, give some guidelines, set some goals.",
+      "start": "00:05:56.250",
+      "end": "00:06:01.410",
+      "id": 98
+    },
+    {
+      "speaker": null,
+      "text": "But it's amazing to see what the community does with open source.",
+      "start": "00:06:01.410",
+      "end": "00:06:07.850",
+      "id": 99
+    },
+    {
+      "speaker": null,
+      "text": "So right now I'm not the lead maintainer on any of these projects.",
+      "start": "00:06:07.850",
+      "end": "00:06:11.050",
+      "id": 100
+    },
+    {
+      "speaker": null,
+      "text": "I'm still maintainer on all the projects, but I've asked the torch over to wonderful",
+      "start": "00:06:11.050",
+      "end": "00:06:16.650",
+      "id": 101
+    },
+    {
+      "speaker": null,
+      "text": "maintainers who really have found a lot of pride of maintaining these popular pieces of software",
+      "start": "00:06:16.650",
+      "end": "00:06:25.010",
+      "id": 102
+    },
+    {
+      "speaker": null,
+      "text": "and they're doing a great job and have for years.",
+      "start": "00:06:25.010",
+      "end": "00:06:28.090",
+      "id": 103
+    },
+    {
+      "speaker": null,
+      "text": "You kind of consider yourself sort of like a mentor in that space.",
+      "start": "00:06:28.090",
+      "end": "00:06:30.450",
+      "id": 104
+    },
+    {
+      "speaker": null,
+      "text": "At this point kind of like that or was it sort of a natural like, hey, this is just like",
+      "start": "00:06:30.450",
+      "end": "00:06:35.250",
+      "id": 105
+    },
+    {
+      "speaker": null,
+      "text": "me passing the baton?",
+      "start": "00:06:35.250",
+      "end": "00:06:36.770",
+      "id": 106
+    },
+    {
+      "speaker": null,
+      "text": "I think it's a bit of bulk.",
+      "start": "00:06:36.770",
+      "end": "00:06:38.650",
+      "id": 107
+    },
+    {
+      "speaker": null,
+      "text": "There's things that they're better.",
+      "start": "00:06:38.650",
+      "end": "00:06:40.810",
+      "id": 108
+    },
+    {
+      "speaker": null,
+      "text": "They now know the code base is far better than I do.",
+      "start": "00:06:40.810",
+      "end": "00:06:45.290",
+      "id": 109
+    },
+    {
+      "speaker": null,
+      "text": "They're much closer to working with the latest changes.",
+      "start": "00:06:45.290",
+      "end": "00:06:49.930",
+      "id": 110
+    },
+    {
+      "speaker": null,
+      "text": "They're reviewing all the pull requests that come.",
+      "start": "00:06:49.930",
+      "end": "00:06:52.050",
+      "id": 111
+    },
+    {
+      "speaker": null,
+      "text": "They're really up to speed and fantastic on the coding side.",
+      "start": "00:06:53.050",
+      "end": "00:06:57.050",
+      "id": 112
+    },
+    {
+      "speaker": null,
+      "text": "There's a lot more that go into an open source project than just the code.",
+      "start": "00:06:57.050",
+      "end": "00:07:01.890",
+      "id": 113
+    },
+    {
+      "speaker": null,
+      "text": "And a lot of the other aspects of building the community leadership, marketing, all of",
+      "start": "00:07:01.890",
+      "end": "00:07:09.090",
+      "id": 114
+    },
+    {
+      "speaker": null,
+      "text": "that is an area where I still feel like I can add value and continue to do so.",
+      "start": "00:07:09.090",
+      "end": "00:07:15.810",
+      "id": 115
+    },
+    {
+      "speaker": null,
+      "text": "Some of those things mentoring, but a lot of the things they honestly mentor me.",
+      "start": "00:07:15.810",
+      "end": "00:07:20.690",
+      "id": 116
+    },
+    {
+      "speaker": null,
+      "text": "And so, lean on them for their expertise.",
+      "start": "00:07:20.690",
+      "end": "00:07:26.610",
+      "id": 117
+    },
+    {
+      "speaker": null,
+      "text": "That's probably here about just this evolution of these projects because I think when",
+      "start": "00:07:26.610",
+      "end": "00:07:31.010",
+      "id": 118
+    },
+    {
+      "speaker": null,
+      "text": "I talk to myself included giving up that control, giving up that, hey, I built this thing,",
+      "start": "00:07:31.010",
+      "end": "00:07:37.810",
+      "id": 119
+    },
+    {
+      "speaker": null,
+      "text": "I built it for myself and I wanted this way and now it's not really mine anymore.",
+      "start": "00:07:37.810",
+      "end": "00:07:42.530",
+      "id": 120
+    },
+    {
+      "speaker": null,
+      "text": "I'm actually saying, it's not about me.",
+      "start": "00:07:42.530",
+      "end": "00:07:45.570",
+      "id": 121
+    },
+    {
+      "speaker": null,
+      "text": "It's about the community around it and evolving it.",
+      "start": "00:07:45.570",
+      "end": "00:07:47.810",
+      "id": 122
+    },
+    {
+      "speaker": null,
+      "text": "How did you make that mind shift and maybe the first project for you to say, okay,",
+      "start": "00:07:47.810",
+      "end": "00:07:53.810",
+      "id": 123
+    },
+    {
+      "speaker": null,
+      "text": "this was my thing.",
+      "start": "00:07:53.810",
+      "end": "00:07:54.810",
+      "id": 124
+    },
+    {
+      "speaker": null,
+      "text": "Now, it's kind of my thing because when I talk to a lot of creators, that's the struggle",
+      "start": "00:07:54.810",
+      "end": "00:07:59.570",
+      "id": 125
+    },
+    {
+      "speaker": null,
+      "text": "is I think two-factor.",
+      "start": "00:07:59.570",
+      "end": "00:08:01.370",
+      "id": 126
+    },
+    {
+      "speaker": null,
+      "text": "I don't have the time and the energy and effort.",
+      "start": "00:08:01.370",
+      "end": "00:08:02.930",
+      "id": 127
+    },
+    {
+      "speaker": null,
+      "text": "But I also don't want to give up control of the thing that I wanted because I built this",
+      "start": "00:08:02.930",
+      "end": "00:08:05.490",
+      "id": 128
+    },
+    {
+      "speaker": null,
+      "text": "thing for myself.",
+      "start": "00:08:05.490",
+      "end": "00:08:07.490",
+      "id": 129
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, I think control, this sounds like a pass out of a control is an illusion.",
+      "start": "00:08:07.490",
+      "end": "00:08:14.170",
+      "id": 130
+    },
+    {
+      "speaker": null,
+      "text": "We tell ourselves that we have control of things but as soon as people start adopting",
+      "start": "00:08:14.170",
+      "end": "00:08:18.610",
+      "id": 131
+    },
+    {
+      "speaker": null,
+      "text": "it, you don't have control anymore.",
+      "start": "00:08:18.610",
+      "end": "00:08:22.530",
+      "id": 132
+    },
+    {
+      "speaker": null,
+      "text": "Maybe you do have control but only in ways that can hurt it.",
+      "start": "00:08:22.530",
+      "end": "00:08:26.090",
+      "id": 133
+    },
+    {
+      "speaker": null,
+      "text": "You could do something that would make your project less successful.",
+      "start": "00:08:26.090",
+      "end": "00:08:30.050",
+      "id": 134
+    },
+    {
+      "speaker": null,
+      "text": "But it's like music.",
+      "start": "00:08:30.050",
+      "end": "00:08:31.850",
+      "id": 135
+    },
+    {
+      "speaker": null,
+      "text": "Once a song's written, it doesn't matter what the author's intent was because it matters",
+      "start": "00:08:31.850",
+      "end": "00:08:35.890",
+      "id": 136
+    },
+    {
+      "speaker": null,
+      "text": "the experience of the listener and how they connect to it.",
+      "start": "00:08:35.890",
+      "end": "00:08:40.410",
+      "id": 137
+    },
+    {
+      "speaker": null,
+      "text": "So to think that you own someone else's experiences is weird.",
+      "start": "00:08:40.450",
+      "end": "00:08:46.650",
+      "id": 138
+    },
+    {
+      "speaker": null,
+      "text": "I feel responsibility for these things but I don't feel control.",
+      "start": "00:08:46.650",
+      "end": "00:08:51.330",
+      "id": 139
+    },
+    {
+      "speaker": null,
+      "text": "I never have.",
+      "start": "00:08:51.330",
+      "end": "00:08:52.330",
+      "id": 140
+    },
+    {
+      "speaker": null,
+      "text": "I've always thought, let's collectively do this together and give it the best potential.",
+      "start": "00:08:52.330",
+      "end": "00:08:59.170",
+      "id": 141
+    },
+    {
+      "speaker": null,
+      "text": "Once Kubernetes was a big early user of Cobra and once that happened, it was clear that",
+      "start": "00:08:59.170",
+      "end": "00:09:07.250",
+      "id": 142
+    },
+    {
+      "speaker": null,
+      "text": "the use cases that they had and what they were building with it was far beyond what",
+      "start": "00:09:07.250",
+      "end": "00:09:12.650",
+      "id": 143
+    },
+    {
+      "speaker": null,
+      "text": "I built it for Hugo.",
+      "start": "00:09:12.650",
+      "end": "00:09:14.450",
+      "id": 144
+    },
+    {
+      "speaker": null,
+      "text": "You could also see that this would benefit lots of other companies and projects as it went",
+      "start": "00:09:14.450",
+      "end": "00:09:19.890",
+      "id": 145
+    },
+    {
+      "speaker": null,
+      "text": "on.",
+      "start": "00:09:19.890",
+      "end": "00:09:20.890",
+      "id": 146
+    },
+    {
+      "speaker": null,
+      "text": "It was clear that let's collectively take this in a new direction to push the boundaries",
+      "start": "00:09:20.890",
+      "end": "00:09:27.650",
+      "id": 147
+    },
+    {
+      "speaker": null,
+      "text": "further.",
+      "start": "00:09:27.650",
+      "end": "00:09:31.130",
+      "id": 148
+    },
+    {
+      "speaker": null,
+      "text": "It wasn't about my vision anymore.",
+      "start": "00:09:31.130",
+      "end": "00:09:33.410",
+      "id": 149
+    },
+    {
+      "speaker": null,
+      "text": "It was about my vision would have limited its potential.",
+      "start": "00:09:33.410",
+      "end": "00:09:40.130",
+      "id": 150
+    },
+    {
+      "speaker": null,
+      "text": "Why would I want to limit the potential of this thing that I was fortunate enough to create",
+      "start": "00:09:40.130",
+      "end": "00:09:44.130",
+      "id": 151
+    },
+    {
+      "speaker": null,
+      "text": "and resonated with people?",
+      "start": "00:09:44.130",
+      "end": "00:09:47.770",
+      "id": 152
+    },
+    {
+      "speaker": null,
+      "text": "I think my realization was, why am I getting the way of my own project?",
+      "start": "00:09:47.770",
+      "end": "00:09:57.130",
+      "id": 153
+    },
+    {
+      "speaker": null,
+      "text": "Let me step out of the way, take the ego out and let this project succeed collectively",
+      "start": "00:09:57.130",
+      "end": "00:10:04.530",
+      "id": 154
+    },
+    {
+      "speaker": null,
+      "text": "now as the community itself is building.",
+      "start": "00:10:04.530",
+      "end": "00:10:07.930",
+      "id": 155
+    },
+    {
+      "speaker": null,
+      "text": "Let's talk about that community because I think that's one of the things I love about being",
+      "start": "00:10:07.930",
+      "end": "00:10:11.690",
+      "id": 156
+    },
+    {
+      "speaker": null,
+      "text": "in the developer community space is like amazing developers and it's rich ecosystem.",
+      "start": "00:10:11.690",
+      "end": "00:10:15.730",
+      "id": 157
+    },
+    {
+      "speaker": null,
+      "text": "How did you help or what did you do to have this thriving ecosystem like and especially",
+      "start": "00:10:15.730",
+      "end": "00:10:21.730",
+      "id": 158
+    },
+    {
+      "speaker": null,
+      "text": "for maintainers of open source projects?",
+      "start": "00:10:21.730",
+      "end": "00:10:23.690",
+      "id": 159
+    },
+    {
+      "speaker": null,
+      "text": "I'm ready to start this and I have a few people.",
+      "start": "00:10:24.690",
+      "end": "00:10:29.290",
+      "id": 160
+    },
+    {
+      "speaker": null,
+      "text": "What are the best projects?",
+      "start": "00:10:29.290",
+      "end": "00:10:30.290",
+      "id": 161
+    },
+    {
+      "speaker": null,
+      "text": "What was the first step in helping to build this community around these huge general",
+      "start": "00:10:30.290",
+      "end": "00:10:35.370",
+      "id": 162
+    },
+    {
+      "speaker": null,
+      "text": "and open source projects that it made them continue to be successful?",
+      "start": "00:10:35.370",
+      "end": "00:10:39.290",
+      "id": 163
+    },
+    {
+      "speaker": null,
+      "text": "It's been different for different projects.",
+      "start": "00:10:39.290",
+      "end": "00:10:42.690",
+      "id": 164
+    },
+    {
+      "speaker": null,
+      "text": "There's not a playbook that you can just use.",
+      "start": "00:10:42.690",
+      "end": "00:10:46.650",
+      "id": 165
+    },
+    {
+      "speaker": null,
+      "text": "Our approach for go was very different than MongoDB, very different than Docker and different",
+      "start": "00:10:46.650",
+      "end": "00:10:52.250",
+      "id": 166
+    },
+    {
+      "speaker": null,
+      "text": "from Hugo and Cobra and Viper and all of these are taking different approaches.",
+      "start": "00:10:52.250",
+      "end": "00:10:59.490",
+      "id": 167
+    },
+    {
+      "speaker": null,
+      "text": "Partly because they've peeled the different communities.",
+      "start": "00:10:59.490",
+      "end": "00:11:02.330",
+      "id": 168
+    },
+    {
+      "speaker": null,
+      "text": "The web community is very different than the database community.",
+      "start": "00:11:02.330",
+      "end": "00:11:05.930",
+      "id": 169
+    },
+    {
+      "speaker": null,
+      "text": "Language community is very different.",
+      "start": "00:11:05.930",
+      "end": "00:11:08.810",
+      "id": 170
+    },
+    {
+      "speaker": null,
+      "text": "And so I think there's some common threads to that.",
+      "start": "00:11:08.810",
+      "end": "00:11:12.970",
+      "id": 171
+    },
+    {
+      "speaker": null,
+      "text": "One is at many of the places I've done some similar things.",
+      "start": "00:11:12.970",
+      "end": "00:11:21.130",
+      "id": 172
+    },
+    {
+      "speaker": null,
+      "text": "So at Docker we created the idea of the first ever, I've never heard of anyone else",
+      "start": "00:11:21.130",
+      "end": "00:11:30.010",
+      "id": 173
+    },
+    {
+      "speaker": null,
+      "text": "doing it.",
+      "start": "00:11:30.010",
+      "end": "00:11:31.010",
+      "id": 174
+    },
+    {
+      "speaker": null,
+      "text": "It was a contributorathon.",
+      "start": "00:11:31.010",
+      "end": "00:11:32.850",
+      "id": 175
+    },
+    {
+      "speaker": null,
+      "text": "So we had, I think it was 12 events and 12 cities at the same weekend for the same couple",
+      "start": "00:11:32.850",
+      "end": "00:11:40.210",
+      "id": 176
+    },
+    {
+      "speaker": null,
+      "text": "days.",
+      "start": "00:11:40.210",
+      "end": "00:11:41.210",
+      "id": 177
+    },
+    {
+      "speaker": null,
+      "text": "And we flew out to these places.",
+      "start": "00:11:41.210",
+      "end": "00:11:43.610",
+      "id": 178
+    },
+    {
+      "speaker": null,
+      "text": "We divided up the team.",
+      "start": "00:11:43.610",
+      "end": "00:11:44.610",
+      "id": 179
+    },
+    {
+      "speaker": null,
+      "text": "We flew out to all these places.",
+      "start": "00:11:44.610",
+      "end": "00:11:46.410",
+      "id": 180
+    },
+    {
+      "speaker": null,
+      "text": "We hosted maybe 100 to 300 people in each city.",
+      "start": "00:11:46.410",
+      "end": "00:11:53.090",
+      "id": 181
+    },
+    {
+      "speaker": null,
+      "text": "And we tried to have everybody make their first commit to Docker.",
+      "start": "00:11:53.090",
+      "end": "00:11:57.330",
+      "id": 182
+    },
+    {
+      "speaker": null,
+      "text": "And so we really wanted to show that we're open to contributions.",
+      "start": "00:11:57.330",
+      "end": "00:12:03.330",
+      "id": 183
+    },
+    {
+      "speaker": null,
+      "text": "Later I joined the Go team leading the Go project at Google.",
+      "start": "00:12:03.330",
+      "end": "00:12:08.130",
+      "id": 184
+    },
+    {
+      "speaker": null,
+      "text": "And at Go for Com we decided to do a very similar thing.",
+      "start": "00:12:08.130",
+      "end": "00:12:10.850",
+      "id": 185
+    },
+    {
+      "speaker": null,
+      "text": "We didn't do it in many cities.",
+      "start": "00:12:10.850",
+      "end": "00:12:11.970",
+      "id": 186
+    },
+    {
+      "speaker": null,
+      "text": "We had one of those big rooms at the convention center.",
+      "start": "00:12:11.970",
+      "end": "00:12:17.370",
+      "id": 187
+    },
+    {
+      "speaker": null,
+      "text": "We built a dashboard that put on the wall with a projector.",
+      "start": "00:12:17.370",
+      "end": "00:12:22.650",
+      "id": 188
+    },
+    {
+      "speaker": null,
+      "text": "And everyone's in the same room.",
+      "start": "00:12:22.650",
+      "end": "00:12:23.730",
+      "id": 189
+    },
+    {
+      "speaker": null,
+      "text": "We've got Go members sitting at every table and mentors from the community.",
+      "start": "00:12:23.730",
+      "end": "00:12:29.050",
+      "id": 190
+    },
+    {
+      "speaker": null,
+      "text": "People that were Go members at Google, Go team members at Google and people that were",
+      "start": "00:12:29.050",
+      "end": "00:12:33.130",
+      "id": 191
+    },
+    {
+      "speaker": null,
+      "text": "contributors from the community, mentoring people.",
+      "start": "00:12:33.130",
+      "end": "00:12:36.610",
+      "id": 192
+    },
+    {
+      "speaker": null,
+      "text": "And anyone who went to Go for Com could come and participate.",
+      "start": "00:12:36.610",
+      "end": "00:12:40.290",
+      "id": 193
+    },
+    {
+      "speaker": null,
+      "text": "And the goal is to make your first contribution to the Go project.",
+      "start": "00:12:40.290",
+      "end": "00:12:43.850",
+      "id": 194
+    },
+    {
+      "speaker": null,
+      "text": "We got hundreds of contributions that night to a project that many people",
+      "start": "00:12:43.850",
+      "end": "00:12:50.610",
+      "id": 195
+    },
+    {
+      "speaker": null,
+      "text": "didn't feel like they were either welcomed to contribute or maybe that they,",
+      "start": "00:12:50.610",
+      "end": "00:12:57.450",
+      "id": 196
+    },
+    {
+      "speaker": null,
+      "text": "well, what I can contribute.",
+      "start": "00:12:57.450",
+      "end": "00:12:59.090",
+      "id": 197
+    },
+    {
+      "speaker": null,
+      "text": "I'm not the level of Ken Thompson and Rob Pike to be able to,",
+      "start": "00:12:59.090",
+      "end": "00:13:04.010",
+      "id": 198
+    },
+    {
+      "speaker": null,
+      "text": "I can't contribute to this.",
+      "start": "00:13:04.010",
+      "end": "00:13:05.330",
+      "id": 199
+    },
+    {
+      "speaker": null,
+      "text": "There's a ton of things that entry, people that are young and",
+      "start": "00:13:05.330",
+      "end": "00:13:10.130",
+      "id": 200
+    },
+    {
+      "speaker": null,
+      "text": "their careers, young and their development can do.",
+      "start": "00:13:10.130",
+      "end": "00:13:12.130",
+      "id": 201
+    },
+    {
+      "speaker": null,
+      "text": "There's some things that you need to be far more experienced, but",
+      "start": "00:13:12.130",
+      "end": "00:13:15.530",
+      "id": 202
+    },
+    {
+      "speaker": null,
+      "text": "everyone can contribute.",
+      "start": "00:13:15.530",
+      "end": "00:13:17.410",
+      "id": 203
+    },
+    {
+      "speaker": null,
+      "text": "And that ethos of just like you're welcome here, we want you to be a part of,",
+      "start": "00:13:17.410",
+      "end": "00:13:22.970",
+      "id": 204
+    },
+    {
+      "speaker": null,
+      "text": "there's also two communities.",
+      "start": "00:13:22.970",
+      "end": "00:13:25.290",
+      "id": 205
+    },
+    {
+      "speaker": null,
+      "text": "There's a contributor community and then there's the user community.",
+      "start": "00:13:25.290",
+      "end": "00:13:28.450",
+      "id": 206
+    },
+    {
+      "speaker": null,
+      "text": "Yeah. And those are different approaches.",
+      "start": "00:13:28.450",
+      "end": "00:13:30.050",
+      "id": 207
+    },
+    {
+      "speaker": null,
+      "text": "But for both of them, that spirit of you're welcome here,",
+      "start": "00:13:30.050",
+      "end": "00:13:33.210",
+      "id": 208
+    },
+    {
+      "speaker": null,
+      "text": "we want you to be a part of this and making sure that we have good code of conduct.",
+      "start": "00:13:33.210",
+      "end": "00:13:38.010",
+      "id": 209
+    },
+    {
+      "speaker": null,
+      "text": "And we adhere to that and we have that culture has been a critical part of",
+      "start": "00:13:38.010",
+      "end": "00:13:42.690",
+      "id": 210
+    },
+    {
+      "speaker": null,
+      "text": "growing all these communities.",
+      "start": "00:13:42.690",
+      "end": "00:13:44.130",
+      "id": 211
+    },
+    {
+      "speaker": null,
+      "text": "That's lovely.",
+      "start": "00:13:44.130",
+      "end": "00:13:44.610",
+      "id": 212
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, I think when I talk to a lot of developers,",
+      "start": "00:13:44.610",
+      "end": "00:13:46.850",
+      "id": 213
+    },
+    {
+      "speaker": null,
+      "text": "like that being feeling like they're welcome, right?",
+      "start": "00:13:46.850",
+      "end": "00:13:49.490",
+      "id": 214
+    },
+    {
+      "speaker": null,
+      "text": "I feel like you're allowed to do this.",
+      "start": "00:13:49.490",
+      "end": "00:13:50.730",
+      "id": 215
+    },
+    {
+      "speaker": null,
+      "text": "And I often talk to community members and developers and say,",
+      "start": "00:13:50.730",
+      "end": "00:13:54.770",
+      "id": 216
+    },
+    {
+      "speaker": null,
+      "text": "listen, it doesn't matter if it's adding to documentation,",
+      "start": "00:13:54.770",
+      "end": "00:13:57.770",
+      "id": 217
+    },
+    {
+      "speaker": null,
+      "text": "fixing the typo, fixing up the read, me, making,",
+      "start": "00:13:57.770",
+      "end": "00:14:01.370",
+      "id": 218
+    },
+    {
+      "speaker": null,
+      "text": "you know, doing an issue, right?",
+      "start": "00:14:01.370",
+      "end": "00:14:03.170",
+      "id": 219
+    },
+    {
+      "speaker": null,
+      "text": "Just even posting that, that's a contribution to itself.",
+      "start": "00:14:03.170",
+      "end": "00:14:05.450",
+      "id": 220
+    },
+    {
+      "speaker": null,
+      "text": "Like I don't great bug report or following up or doing something.",
+      "start": "00:14:05.450",
+      "end": "00:14:08.370",
+      "id": 221
+    },
+    {
+      "speaker": null,
+      "text": "And then even just saying, hey, I'll take this on.",
+      "start": "00:14:08.370",
+      "end": "00:14:10.210",
+      "id": 222
+    },
+    {
+      "speaker": null,
+      "text": "It could be small.",
+      "start": "00:14:10.210",
+      "end": "00:14:10.770",
+      "id": 223
+    },
+    {
+      "speaker": null,
+      "text": "It could be little every single contributions.",
+      "start": "00:14:10.770",
+      "end": "00:14:12.530",
+      "id": 224
+    },
+    {
+      "speaker": null,
+      "text": "Welcome.",
+      "start": "00:14:12.530",
+      "end": "00:14:13.130",
+      "id": 225
+    },
+    {
+      "speaker": null,
+      "text": "Is there things that you did maybe in the repo level that like,",
+      "start": "00:14:13.130",
+      "end": "00:14:16.410",
+      "id": 226
+    },
+    {
+      "speaker": null,
+      "text": "you said, you know, the standards and things like, yeah, maybe not just in",
+      "start": "00:14:16.410",
+      "end": "00:14:19.970",
+      "id": 227
+    },
+    {
+      "speaker": null,
+      "text": "the repo level, like from the issues or the poor requests,",
+      "start": "00:14:19.970",
+      "end": "00:14:22.730",
+      "id": 228
+    },
+    {
+      "speaker": null,
+      "text": "like that maybe folks could that would be worked or then didn't work.",
+      "start": "00:14:22.730",
+      "end": "00:14:27.090",
+      "id": 229
+    },
+    {
+      "speaker": null,
+      "text": "Yeah.",
+      "start": "00:14:27.090",
+      "end": "00:14:27.730",
+      "id": 230
+    },
+    {
+      "speaker": null,
+      "text": "That maybe folks could maybe adopt that would like encourage that type of",
+      "start": "00:14:27.730",
+      "end": "00:14:30.610",
+      "id": 231
+    },
+    {
+      "speaker": null,
+      "text": "contributions.",
+      "start": "00:14:30.610",
+      "end": "00:14:32.250",
+      "id": 232
+    },
+    {
+      "speaker": null,
+      "text": "So it depends on the scale of the project.",
+      "start": "00:14:32.250",
+      "end": "00:14:34.570",
+      "id": 233
+    },
+    {
+      "speaker": null,
+      "text": "So for the GOAP project, we did some very specific things to encourage this.",
+      "start": "00:14:34.570",
+      "end": "00:14:39.810",
+      "id": 234
+    },
+    {
+      "speaker": null,
+      "text": "For some of the smaller relatively smaller projects like Cobra,",
+      "start": "00:14:39.810",
+      "end": "00:14:43.290",
+      "id": 235
+    },
+    {
+      "speaker": null,
+      "text": "we haven't done these.",
+      "start": "00:14:43.290",
+      "end": "00:14:45.370",
+      "id": 236
+    },
+    {
+      "speaker": null,
+      "text": "And I think the level of contribution there is a little more targeted.",
+      "start": "00:14:45.370",
+      "end": "00:14:49.570",
+      "id": 237
+    },
+    {
+      "speaker": null,
+      "text": "It's just, you know, the scope, not the user base is different,",
+      "start": "00:14:49.570",
+      "end": "00:14:52.890",
+      "id": 238
+    },
+    {
+      "speaker": null,
+      "text": "but just the scope GOA is an editor, compiler.",
+      "start": "00:14:52.890",
+      "end": "00:14:58.090",
+      "id": 239
+    },
+    {
+      "speaker": null,
+      "text": "I mean, it's got the full scope of everything about the powers,",
+      "start": "00:14:58.090",
+      "end": "00:15:03.010",
+      "id": 240
+    },
+    {
+      "speaker": null,
+      "text": "and the entire GOECA system is within that one project.",
+      "start": "00:15:03.010",
+      "end": "00:15:05.570",
+      "id": 241
+    },
+    {
+      "speaker": null,
+      "text": "So for this, we have a special tag,",
+      "start": "00:15:05.570",
+      "end": "00:15:09.610",
+      "id": 242
+    },
+    {
+      "speaker": null,
+      "text": "a label that we put on issues that are beginner issues.",
+      "start": "00:15:09.610",
+      "end": "00:15:13.290",
+      "id": 243
+    },
+    {
+      "speaker": null,
+      "text": "Part of our dashboard that we made and is still there is that you can go and",
+      "start": "00:15:13.290",
+      "end": "00:15:18.850",
+      "id": 244
+    },
+    {
+      "speaker": null,
+      "text": "find beginner issues.",
+      "start": "00:15:18.850",
+      "end": "00:15:21.490",
+      "id": 245
+    },
+    {
+      "speaker": null,
+      "text": "And so we really wanted to say like new contributions.",
+      "start": "00:15:22.690",
+      "end": "00:15:26.450",
+      "id": 246
+    },
+    {
+      "speaker": null,
+      "text": "Welcome.",
+      "start": "00:15:26.450",
+      "end": "00:15:27.370",
+      "id": 247
+    },
+    {
+      "speaker": null,
+      "text": "Really tried to make it good for them.",
+      "start": "00:15:27.370",
+      "end": "00:15:30.250",
+      "id": 248
+    },
+    {
+      "speaker": null,
+      "text": "We also built, we wrote guides and a tool that helps people make their first",
+      "start": "00:15:30.250",
+      "end": "00:15:37.250",
+      "id": 249
+    },
+    {
+      "speaker": null,
+      "text": "contributions because we had a bit of a specific workflow of how we do things.",
+      "start": "00:15:37.250",
+      "end": "00:15:42.050",
+      "id": 250
+    },
+    {
+      "speaker": null,
+      "text": "And so I think brilliant idea was to create, was not my idea.",
+      "start": "00:15:42.050",
+      "end": "00:15:48.970",
+      "id": 251
+    },
+    {
+      "speaker": null,
+      "text": "So my idea was to polish up our guides and we did and they're really good.",
+      "start": "00:15:48.970",
+      "end": "00:15:55.850",
+      "id": 252
+    },
+    {
+      "speaker": null,
+      "text": "But an even better idea was to write a tool that guided it, you through it,",
+      "start": "00:15:56.810",
+      "end": "00:16:01.730",
+      "id": 253
+    },
+    {
+      "speaker": null,
+      "text": "step by step.",
+      "start": "00:16:01.730",
+      "end": "00:16:02.410",
+      "id": 254
+    },
+    {
+      "speaker": null,
+      "text": "So it's interactive CLI tool that just, okay, step one and then it took you on",
+      "start": "00:16:02.410",
+      "end": "00:16:07.530",
+      "id": 255
+    },
+    {
+      "speaker": null,
+      "text": "that step and it had you log in and do things and then step two.",
+      "start": "00:16:07.530",
+      "end": "00:16:11.970",
+      "id": 256
+    },
+    {
+      "speaker": null,
+      "text": "So it was very sequential and rather than reading something and then coming",
+      "start": "00:16:11.970",
+      "end": "00:16:15.930",
+      "id": 257
+    },
+    {
+      "speaker": null,
+      "text": "over here and doing something, you stayed in your terminal and it stepped you",
+      "start": "00:16:15.930",
+      "end": "00:16:19.930",
+      "id": 258
+    },
+    {
+      "speaker": null,
+      "text": "through all the things that you needed to do interactively.",
+      "start": "00:16:19.930",
+      "end": "00:16:22.730",
+      "id": 259
+    },
+    {
+      "speaker": null,
+      "text": "As you had more people contribute to these projects, one thing that I often",
+      "start": "00:16:22.770",
+      "end": "00:16:26.810",
+      "id": 260
+    },
+    {
+      "speaker": null,
+      "text": "hear from maintainers, but also myself, I'm saying maintainers, but I'm actually",
+      "start": "00:16:26.810",
+      "end": "00:16:31.050",
+      "id": 261
+    },
+    {
+      "speaker": null,
+      "text": "just most referring to myself as a maintainer, but you know, it worked at huge",
+      "start": "00:16:31.050",
+      "end": "00:16:34.810",
+      "id": 262
+    },
+    {
+      "speaker": null,
+      "text": "projects here at Microsoft is as you get more contributions, you get more",
+      "start": "00:16:34.810",
+      "end": "00:16:39.370",
+      "id": 263
+    },
+    {
+      "speaker": null,
+      "text": "users, you get more issues, you get more pull requests.",
+      "start": "00:16:39.370",
+      "end": "00:16:43.210",
+      "id": 264
+    },
+    {
+      "speaker": null,
+      "text": "How did you balance that to grow this community out as more things were coming",
+      "start": "00:16:43.210",
+      "end": "00:16:48.170",
+      "id": 265
+    },
+    {
+      "speaker": null,
+      "text": "in because the overhead of saying, I just actually like an issue",
+      "start": "00:16:48.170",
+      "end": "00:16:51.690",
+      "id": 266
+    },
+    {
+      "speaker": null,
+      "text": "with triage and a pull request reviewer at the end of the day compared to",
+      "start": "00:16:51.770",
+      "end": "00:16:55.290",
+      "id": 267
+    },
+    {
+      "speaker": null,
+      "text": "like I get to write code, right?",
+      "start": "00:16:55.290",
+      "end": "00:16:56.570",
+      "id": 268
+    },
+    {
+      "speaker": null,
+      "text": "Or wow, someone did a PR, but we're so swamped that actually is going to take",
+      "start": "00:16:56.570",
+      "end": "00:17:02.170",
+      "id": 269
+    },
+    {
+      "speaker": null,
+      "text": "a week or two weeks and that can demotivate people as well.",
+      "start": "00:17:02.170",
+      "end": "00:17:04.490",
+      "id": 270
+    },
+    {
+      "speaker": null,
+      "text": "How do you balance that in these projects as they continue to grow?",
+      "start": "00:17:04.490",
+      "end": "00:17:08.250",
+      "id": 271
+    },
+    {
+      "speaker": null,
+      "text": "First, I think it's one of the biggest challenges.",
+      "start": "00:17:08.250",
+      "end": "00:17:10.410",
+      "id": 272
+    },
+    {
+      "speaker": null,
+      "text": "I think people dramatically underestimate the maintenance cost",
+      "start": "00:17:10.410",
+      "end": "00:17:18.490",
+      "id": 273
+    },
+    {
+      "speaker": null,
+      "text": "of creating software.",
+      "start": "00:17:18.490",
+      "end": "00:17:19.610",
+      "id": 274
+    },
+    {
+      "speaker": null,
+      "text": "And maintainer burdens big.",
+      "start": "00:17:20.490",
+      "end": "00:17:23.130",
+      "id": 275
+    },
+    {
+      "speaker": null,
+      "text": "We had Docker, we had a dramatically oversized pool of contributions.",
+      "start": "00:17:23.130",
+      "end": "00:17:28.650",
+      "id": 276
+    },
+    {
+      "speaker": null,
+      "text": "We had developed very specific strategies that were somewhat unique to",
+      "start": "00:17:28.650",
+      "end": "00:17:33.450",
+      "id": 277
+    },
+    {
+      "speaker": null,
+      "text": "Docker and the challenges that we had there.",
+      "start": "00:17:33.450",
+      "end": "00:17:35.370",
+      "id": 278
+    },
+    {
+      "speaker": null,
+      "text": "Go similar thing, we actually had LGTM bot that came and did things.",
+      "start": "00:17:36.330",
+      "end": "00:17:42.890",
+      "id": 279
+    },
+    {
+      "speaker": null,
+      "text": "So we built some different really agents that would connect to things,",
+      "start": "00:17:42.890",
+      "end": "00:17:48.010",
+      "id": 280
+    },
+    {
+      "speaker": null,
+      "text": "look for different triggers and analyze the content and just help facilitate",
+      "start": "00:17:48.010",
+      "end": "00:17:52.410",
+      "id": 281
+    },
+    {
+      "speaker": null,
+      "text": "the human aspect of it.",
+      "start": "00:17:53.690",
+      "end": "00:17:55.610",
+      "id": 282
+    },
+    {
+      "speaker": null,
+      "text": "The project that I've been involved with that I think did this the best and still is the",
+      "start": "00:17:56.650",
+      "end": "00:18:00.810",
+      "id": 283
+    },
+    {
+      "speaker": null,
+      "text": "gold standard for a contributor, a contributor of community is Drupal.",
+      "start": "00:18:00.810",
+      "end": "00:18:06.730",
+      "id": 284
+    },
+    {
+      "speaker": null,
+      "text": "Most people I don't think are aware that Drupal is the second most active",
+      "start": "00:18:08.330",
+      "end": "00:18:12.330",
+      "id": 285
+    },
+    {
+      "speaker": null,
+      "text": "open source project in history.",
+      "start": "00:18:12.330",
+      "end": "00:18:14.170",
+      "id": 286
+    },
+    {
+      "speaker": null,
+      "text": "Oh wow, I didn't know.",
+      "start": "00:18:14.170",
+      "end": "00:18:14.970",
+      "id": 287
+    },
+    {
+      "speaker": null,
+      "text": "So Linux kernel has the most active contributors and Drupal is number two.",
+      "start": "00:18:14.970",
+      "end": "00:18:19.130",
+      "id": 288
+    },
+    {
+      "speaker": null,
+      "text": "And they just do a fabulous job of different roles.",
+      "start": "00:18:20.650",
+      "end": "00:18:23.690",
+      "id": 289
+    },
+    {
+      "speaker": null,
+      "text": "There's a lot of interest in contributing and being part of Drupal,",
+      "start": "00:18:25.450",
+      "end": "00:18:30.570",
+      "id": 290
+    },
+    {
+      "speaker": null,
+      "text": "but they have different roles that you can take.",
+      "start": "00:18:30.570",
+      "end": "00:18:32.330",
+      "id": 291
+    },
+    {
+      "speaker": null,
+      "text": "So one of the roles is just a triager.",
+      "start": "00:18:32.330",
+      "end": "00:18:34.010",
+      "id": 292
+    },
+    {
+      "speaker": null,
+      "text": "And that's how you kind of get your feet wet with the project and start really understanding it",
+      "start": "00:18:34.010",
+      "end": "00:18:38.890",
+      "id": 293
+    },
+    {
+      "speaker": null,
+      "text": "better.",
+      "start": "00:18:38.890",
+      "end": "00:18:39.210",
+      "id": 294
+    },
+    {
+      "speaker": null,
+      "text": "And so as each as you kind of grow in contributions, you get more things that you can do,",
+      "start": "00:18:39.210",
+      "end": "00:18:46.250",
+      "id": 295
+    },
+    {
+      "speaker": null,
+      "text": "but they really distribute the burden and load of this across a broad group of people.",
+      "start": "00:18:46.250",
+      "end": "00:18:53.050",
+      "id": 296
+    },
+    {
+      "speaker": null,
+      "text": "And what they've created is this pipeline that as new people are always open source and everything",
+      "start": "00:18:53.050",
+      "end": "00:19:00.170",
+      "id": 297
+    },
+    {
+      "speaker": null,
+      "text": "in life, like comes out to different events happen.",
+      "start": "00:19:00.170",
+      "end": "00:19:04.330",
+      "id": 298
+    },
+    {
+      "speaker": null,
+      "text": "You might have a kid or an illness or whatever it is or a new job that has taken you out of the",
+      "start": "00:19:04.330",
+      "end": "00:19:09.850",
+      "id": 299
+    },
+    {
+      "speaker": null,
+      "text": "pipeline.",
+      "start": "00:19:09.850",
+      "end": "00:19:10.330",
+      "id": 300
+    },
+    {
+      "speaker": null,
+      "text": "But new people are coming into the pipeline.",
+      "start": "00:19:11.290",
+      "end": "00:19:13.370",
+      "id": 301
+    },
+    {
+      "speaker": null,
+      "text": "And so you want to make sure that they get the right training and continue that to go through it.",
+      "start": "00:19:14.010",
+      "end": "00:19:19.210",
+      "id": 302
+    },
+    {
+      "speaker": null,
+      "text": "And so I've learned a lot from Drupal.",
+      "start": "00:19:19.210",
+      "end": "00:19:22.090",
+      "id": 303
+    },
+    {
+      "speaker": null,
+      "text": "I had a benefit of being a part of the Drupal Association board for many years.",
+      "start": "00:19:22.090",
+      "end": "00:19:26.570",
+      "id": 304
+    },
+    {
+      "speaker": null,
+      "text": "There's a way to contribute back from all the things I learned from how well they did with this.",
+      "start": "00:19:27.290",
+      "end": "00:19:31.050",
+      "id": 305
+    },
+    {
+      "speaker": null,
+      "text": "And I hands off to Dries and Angie and the rest of the folks that really built this amazing",
+      "start": "00:19:31.050",
+      "end": "00:19:36.970",
+      "id": 306
+    },
+    {
+      "speaker": null,
+      "text": "contributor community there.",
+      "start": "00:19:38.170",
+      "end": "00:19:39.610",
+      "id": 307
+    },
+    {
+      "speaker": null,
+      "text": "Yeah.",
+      "start": "00:19:39.610",
+      "end": "00:19:40.010",
+      "id": 308
+    },
+    {
+      "speaker": null,
+      "text": "I love that journey because just like how we were talking about high,",
+      "start": "00:19:40.010",
+      "end": "00:19:42.410",
+      "id": 309
+    },
+    {
+      "speaker": null,
+      "text": "any contribution matters.",
+      "start": "00:19:42.410",
+      "end": "00:19:43.610",
+      "id": 310
+    },
+    {
+      "speaker": null,
+      "text": "Also, any of those contributions, any of those levels, actually just reviewing the PRs and going through",
+      "start": "00:19:43.610",
+      "end": "00:19:48.410",
+      "id": 311
+    },
+    {
+      "speaker": null,
+      "text": "and reviewing the issues.",
+      "start": "00:19:48.410",
+      "end": "00:19:49.770",
+      "id": 312
+    },
+    {
+      "speaker": null,
+      "text": "I think what's fascinating, a lot of friends that I work with is many of them are like,",
+      "start": "00:19:49.770",
+      "end": "00:19:57.690",
+      "id": 313
+    },
+    {
+      "speaker": null,
+      "text": "I love developing, but what I really like doing is writing amazing documentation.",
+      "start": "00:19:58.170",
+      "end": "00:20:02.010",
+      "id": 314
+    },
+    {
+      "speaker": null,
+      "text": "That's what I love doing.",
+      "start": "00:20:02.010",
+      "end": "00:20:03.290",
+      "id": 315
+    },
+    {
+      "speaker": null,
+      "text": "Like let me just do that.",
+      "start": "00:20:03.290",
+      "end": "00:20:04.570",
+      "id": 316
+    },
+    {
+      "speaker": null,
+      "text": "And that's it.",
+      "start": "00:20:04.570",
+      "end": "00:20:05.530",
+      "id": 317
+    },
+    {
+      "speaker": null,
+      "text": "And you focus on the code, all right, the docs writer.",
+      "start": "00:20:05.530",
+      "end": "00:20:07.530",
+      "id": 318
+    },
+    {
+      "speaker": null,
+      "text": "People are like, I'm really good at marketing, right?",
+      "start": "00:20:07.530",
+      "end": "00:20:09.450",
+      "id": 319
+    },
+    {
+      "speaker": null,
+      "text": "And like for developer marketing, even though they're an engineer, this is actually what I want",
+      "start": "00:20:09.450",
+      "end": "00:20:12.890",
+      "id": 320
+    },
+    {
+      "speaker": null,
+      "text": "to do in the social project.",
+      "start": "00:20:12.890",
+      "end": "00:20:13.850",
+      "id": 321
+    },
+    {
+      "speaker": null,
+      "text": "And all of those are super valuable contributions.",
+      "start": "00:20:13.850",
+      "end": "00:20:16.410",
+      "id": 322
+    },
+    {
+      "speaker": null,
+      "text": "Yeah.",
+      "start": "00:20:16.410",
+      "end": "00:20:16.890",
+      "id": 323
+    },
+    {
+      "speaker": null,
+      "text": "I think one thing that I'm fascinating because it wouldn't be the year 2025,",
+      "start": "00:20:16.890",
+      "end": "00:20:20.010",
+      "id": 324
+    },
+    {
+      "speaker": null,
+      "text": "I would talk about a little bit of AI.",
+      "start": "00:20:20.010",
+      "end": "00:20:21.530",
+      "id": 325
+    },
+    {
+      "speaker": null,
+      "text": "But actually like in these open source projects, as we have more agents,",
+      "start": "00:20:21.530",
+      "end": "00:20:26.730",
+      "id": 326
+    },
+    {
+      "speaker": null,
+      "text": "we have more automated pull requests.",
+      "start": "00:20:26.730",
+      "end": "00:20:29.610",
+      "id": 327
+    },
+    {
+      "speaker": null,
+      "text": "Like how is that evolving?",
+      "start": "00:20:29.610",
+      "end": "00:20:30.810",
+      "id": 328
+    },
+    {
+      "speaker": null,
+      "text": "How you think about building the communities and continuing to grow these projects",
+      "start": "00:20:30.810",
+      "end": "00:20:36.570",
+      "id": 329
+    },
+    {
+      "speaker": null,
+      "text": "as just the entire sort of software engineering cycle is going through like this transformation,",
+      "start": "00:20:37.530",
+      "end": "00:20:44.250",
+      "id": 330
+    },
+    {
+      "speaker": null,
+      "text": "especially for open source projects.",
+      "start": "00:20:44.250",
+      "end": "00:20:45.610",
+      "id": 331
+    },
+    {
+      "speaker": null,
+      "text": "Yeah.",
+      "start": "00:20:45.610",
+      "end": "00:20:45.690",
+      "id": 332
+    },
+    {
+      "speaker": null,
+      "text": "It's a really interesting question.",
+      "start": "00:20:47.370",
+      "end": "00:20:49.130",
+      "id": 333
+    },
+    {
+      "speaker": null,
+      "text": "And I think my personal opinion about this is, and it's confusing.",
+      "start": "00:20:49.130",
+      "end": "00:20:54.650",
+      "id": 334
+    },
+    {
+      "speaker": null,
+      "text": "Like I don't think we have a good sense of how it's going to evolve.",
+      "start": "00:20:54.650",
+      "end": "00:20:57.370",
+      "id": 335
+    },
+    {
+      "speaker": null,
+      "text": "There's definitely a sense of the more things that we give to robots, the less involved humans are,",
+      "start": "00:20:59.530",
+      "end": "00:21:06.970",
+      "id": 336
+    },
+    {
+      "speaker": null,
+      "text": "which is a challenging thing because I think the human experience is to create.",
+      "start": "00:21:07.930",
+      "end": "00:21:12.650",
+      "id": 337
+    },
+    {
+      "speaker": null,
+      "text": "I think that's a fundamental part of the human experience.",
+      "start": "00:21:12.650",
+      "end": "00:21:15.050",
+      "id": 338
+    },
+    {
+      "speaker": null,
+      "text": "And now we've got robots creating things.",
+      "start": "00:21:15.690",
+      "end": "00:21:17.770",
+      "id": 339
+    },
+    {
+      "speaker": null,
+      "text": "And it's really changing it.",
+      "start": "00:21:18.650",
+      "end": "00:21:21.690",
+      "id": 340
+    },
+    {
+      "speaker": null,
+      "text": "It's changing the shape of the community.",
+      "start": "00:21:21.690",
+      "end": "00:21:23.210",
+      "id": 341
+    },
+    {
+      "speaker": null,
+      "text": "I think a key part of it is to find the right balance between doing creative things",
+      "start": "00:21:23.850",
+      "end": "00:21:30.250",
+      "id": 342
+    },
+    {
+      "speaker": null,
+      "text": "that you love and are passionate about and having robots help facilitate and assist that.",
+      "start": "00:21:30.250",
+      "end": "00:21:35.450",
+      "id": 343
+    },
+    {
+      "speaker": null,
+      "text": "And I don't think we have the right answer to what that looks like yet.",
+      "start": "00:21:37.050",
+      "end": "00:21:40.490",
+      "id": 344
+    },
+    {
+      "speaker": null,
+      "text": "I think the more automated these things are, kind of the less human experience is part of it.",
+      "start": "00:21:44.810",
+      "end": "00:21:51.370",
+      "id": 345
+    },
+    {
+      "speaker": null,
+      "text": "But at the same time, we've been using machines the whole time to automate different aspects of it",
+      "start": "00:21:51.370",
+      "end": "00:21:57.530",
+      "id": 346
+    },
+    {
+      "speaker": null,
+      "text": "and to make it better for us.",
+      "start": "00:21:57.530",
+      "end": "00:21:59.290",
+      "id": 347
+    },
+    {
+      "speaker": null,
+      "text": "So I think we've really got to figure out what the right balance is across those.",
+      "start": "00:21:59.290",
+      "end": "00:22:03.530",
+      "id": 348
+    },
+    {
+      "speaker": null,
+      "text": "And I think it's changing not only the software development life cycle,",
+      "start": "00:22:03.530",
+      "end": "00:22:08.010",
+      "id": 349
+    },
+    {
+      "speaker": null,
+      "text": "it's also changing how we find new packages.",
+      "start": "00:22:08.570",
+      "end": "00:22:10.970",
+      "id": 350
+    },
+    {
+      "speaker": null,
+      "text": "Right? Because nowadays most of the time, the alarms are making the suggestion.",
+      "start": "00:22:11.690",
+      "end": "00:22:14.810",
+      "id": 351
+    },
+    {
+      "speaker": null,
+      "text": "You're not going to GitHub or Google or, you know, like the Go.dev webpage.",
+      "start": "00:22:14.810",
+      "end": "00:22:20.410",
+      "id": 352
+    },
+    {
+      "speaker": null,
+      "text": "You're going to your terminal or to your editor.",
+      "start": "00:22:20.410",
+      "end": "00:22:24.810",
+      "id": 353
+    },
+    {
+      "speaker": null,
+      "text": "And it's suggesting when it builds this function, it's putting the import statement in there for you.",
+      "start": "00:22:25.130",
+      "end": "00:22:30.250",
+      "id": 354
+    },
+    {
+      "speaker": null,
+      "text": "Yeah. So it's really fundamentally changing how we approach things.",
+      "start": "00:22:30.250",
+      "end": "00:22:35.210",
+      "id": 355
+    },
+    {
+      "speaker": null,
+      "text": "It's also like a lot of times now you're not reading the documentation,",
+      "start": "00:22:35.210",
+      "end": "00:22:39.850",
+      "id": 356
+    },
+    {
+      "speaker": null,
+      "text": "but an agent's reading the documentation.",
+      "start": "00:22:39.850",
+      "end": "00:22:41.930",
+      "id": 357
+    },
+    {
+      "speaker": null,
+      "text": "And so how are we adapting our projects to be able to fit into this new structure where",
+      "start": "00:22:41.930",
+      "end": "00:22:47.210",
+      "id": 358
+    },
+    {
+      "speaker": null,
+      "text": "agents might be the primary audience.",
+      "start": "00:22:47.850",
+      "end": "00:22:50.570",
+      "id": 359
+    },
+    {
+      "speaker": null,
+      "text": "I think it's going to really, we'll see how it plays out over the next few months,",
+      "start": "00:22:51.610",
+      "end": "00:22:56.570",
+      "id": 360
+    },
+    {
+      "speaker": null,
+      "text": "but it's certainly something that we need to think about.",
+      "start": "00:22:56.570",
+      "end": "00:22:58.810",
+      "id": 361
+    },
+    {
+      "speaker": null,
+      "text": "Yeah. And sometimes they're writing the documentation.",
+      "start": "00:22:58.810",
+      "end": "00:23:00.730",
+      "id": 362
+    },
+    {
+      "speaker": null,
+      "text": "A lot of times they're writing.",
+      "start": "00:23:00.730",
+      "end": "00:23:01.770",
+      "id": 363
+    },
+    {
+      "speaker": null,
+      "text": "Yeah. Well, let me wrap up with this because this has been really awesome.",
+      "start": "00:23:01.770",
+      "end": "00:23:06.330",
+      "id": 364
+    },
+    {
+      "speaker": null,
+      "text": "I really appreciate it because every day I'm working in huge projects here,",
+      "start": "00:23:06.330",
+      "end": "00:23:11.370",
+      "id": 365
+    },
+    {
+      "speaker": null,
+      "text": "like yourself and outside of work as well and being about how do I balance everything",
+      "start": "00:23:11.370",
+      "end": "00:23:15.930",
+      "id": 366
+    },
+    {
+      "speaker": null,
+      "text": "and how you've done it and these projects and work with the communities.",
+      "start": "00:23:16.010",
+      "end": "00:23:18.250",
+      "id": 367
+    },
+    {
+      "speaker": null,
+      "text": "And there's so many different unique ways.",
+      "start": "00:23:18.250",
+      "end": "00:23:19.930",
+      "id": 368
+    },
+    {
+      "speaker": null,
+      "text": "I think what I'm learning at least is they're not one approach.",
+      "start": "00:23:19.930",
+      "end": "00:23:21.930",
+      "id": 369
+    },
+    {
+      "speaker": null,
+      "text": "There's many approaches like pool or spouse for you in this.",
+      "start": "00:23:21.930",
+      "end": "00:23:24.330",
+      "id": 370
+    },
+    {
+      "speaker": null,
+      "text": "Well, as you just excited about the future of open source,",
+      "start": "00:23:24.330",
+      "end": "00:23:26.570",
+      "id": 371
+    },
+    {
+      "speaker": null,
+      "text": "I mean, it's been a while journey, I have to imagine since the beginning of kind of working",
+      "start": "00:23:26.570",
+      "end": "00:23:30.810",
+      "id": 372
+    },
+    {
+      "speaker": null,
+      "text": "in these projects. Well, how's your excited for the future of open source going forward?",
+      "start": "00:23:30.810",
+      "end": "00:23:34.330",
+      "id": 373
+    },
+    {
+      "speaker": null,
+      "text": "So I think we're at a really interesting time. A really exciting time.",
+      "start": "00:23:35.450",
+      "end": "00:23:39.610",
+      "id": 374
+    },
+    {
+      "speaker": null,
+      "text": "We've got this new technology that the LMs that can do things that we've struggled with",
+      "start": "00:23:40.330",
+      "end": "00:23:46.890",
+      "id": 375
+    },
+    {
+      "speaker": null,
+      "text": "since the beginning of computing. And figuring out how to balance this new incorporate,",
+      "start": "00:23:47.450",
+      "end": "00:23:54.250",
+      "id": 376
+    },
+    {
+      "speaker": null,
+      "text": "this new capability that we didn't have before into things, into how we've done things before.",
+      "start": "00:23:54.250",
+      "end": "00:24:00.970",
+      "id": 377
+    },
+    {
+      "speaker": null,
+      "text": "And it really unlocks a lot of potential. And I'm really excited to see how that evolves",
+      "start": "00:24:00.970",
+      "end": "00:24:06.970",
+      "id": 378
+    },
+    {
+      "speaker": null,
+      "text": "to the developer experience, how it involves the open source experience.",
+      "start": "00:24:06.970",
+      "end": "00:24:10.250",
+      "id": 379
+    },
+    {
+      "speaker": null,
+      "text": "I think there's just a ton of potential that we're barely scratched the surface of how really this",
+      "start": "00:24:11.450",
+      "end": "00:24:16.250",
+      "id": 380
+    },
+    {
+      "speaker": null,
+      "text": "integration looks. And I'm also excited that we can do things that we've never done before.",
+      "start": "00:24:16.250",
+      "end": "00:24:22.250",
+      "id": 381
+    },
+    {
+      "speaker": null,
+      "text": "Yeah. Things that we've even have the time to code before. Now, we have more time to code",
+      "start": "00:24:22.250",
+      "end": "00:24:28.650",
+      "id": 382
+    },
+    {
+      "speaker": null,
+      "text": "because the assistants accelerate what we're doing, as well as it's really giving us opportunities",
+      "start": "00:24:28.650",
+      "end": "00:24:37.370",
+      "id": 383
+    },
+    {
+      "speaker": null,
+      "text": "to write software that before there wasn't this capability of a lot of the old methods of understanding,",
+      "start": "00:24:37.370",
+      "end": "00:24:46.810",
+      "id": 384
+    },
+    {
+      "speaker": null,
+      "text": "these like flexible content, whether images or other things, just wasn't available. And now",
+      "start": "00:24:49.290",
+      "end": "00:24:55.850",
+      "id": 385
+    },
+    {
+      "speaker": null,
+      "text": "we've got, it's been unlocked by these multimodal models that can really understand things in a",
+      "start": "00:24:55.850",
+      "end": "00:25:01.530",
+      "id": 386
+    },
+    {
+      "speaker": null,
+      "text": "way that would have been very challenging before. So I think it's a very exciting time where we're",
+      "start": "00:25:01.530",
+      "end": "00:25:06.970",
+      "id": 387
+    },
+    {
+      "speaker": null,
+      "text": "able to build things faster than we've ever built before and unlock new capabilities. And I'm excited",
+      "start": "00:25:06.970",
+      "end": "00:25:12.330",
+      "id": 388
+    },
+    {
+      "speaker": null,
+      "text": "to see what the world does with it. That's awesome. Yeah. For me for sure, I've definitely written",
+      "start": "00:25:12.330",
+      "end": "00:25:16.730",
+      "id": 389
+    },
+    {
+      "speaker": null,
+      "text": "more software faster than I ever have in my life. And stuff that I wouldn't have built. I think",
+      "start": "00:25:16.730",
+      "end": "00:25:22.250",
+      "id": 390
+    },
+    {
+      "speaker": null,
+      "text": "that's what's interesting too is I may not have had the time to build that feature, build that",
+      "start": "00:25:22.250",
+      "end": "00:25:26.570",
+      "id": 391
+    },
+    {
+      "speaker": null,
+      "text": "little project. And somebody's capability just enable me to do it, right? Whether it's short-lived",
+      "start": "00:25:26.570",
+      "end": "00:25:32.250",
+      "id": 392
+    },
+    {
+      "speaker": null,
+      "text": "or long-lived. Yeah. We'll see things so much for coming on the path. Perfect. Thank you.",
+      "start": "00:25:32.250",
+      "end": "00:25:34.890",
+      "id": 393
+    },
+    {
+      "speaker": null,
+      "text": "I'm not always, I really enjoyed it. We'll put links to everything. Find all your projects and",
+      "start": "00:25:34.890",
+      "end": "00:25:38.410",
+      "id": 394
+    },
+    {
+      "speaker": null,
+      "text": "everything in the show. That'll be great. So thanks again for coming on. Appreciate it. Thank you. I appreciate it.",
+      "start": "00:25:38.410",
+      "end": "00:25:42.730",
+      "id": 395
+    }
+  ]
+}

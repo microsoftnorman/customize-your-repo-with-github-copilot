@@ -1,0 +1,2419 @@
+{
+  "source_file": "2025-09-08-language-model-chat-provider-aka-byok-api-with-logan-ramos.md",
+  "transcript_format": "local_stt_segments",
+  "segment_count": 342,
+  "metadata": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 4,
+    "title": "Language Model Chat Provider (aka BYOK) API with Logan Ramos",
+    "url": "https://www.vscodepodcast.com/4",
+    "transcript_url": "",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/5b141784-3cf5-4b2b-9c51-8b7168c0a76b.mp3",
+    "published": "2025-09-08",
+    "duration": "17:08",
+    "transcript_available": false,
+    "source_file": "2025-09-08-language-model-chat-provider-aka-byok-api-with-logan-ramos.md",
+    "source_path": "references\\transcripts\\vscode-podcast\\2025-09-08-language-model-chat-provider-aka-byok-api-with-logan-ramos.md",
+    "local_stt": true,
+    "local_stt_model": "tiny",
+    "local_stt_language": "en",
+    "local_stt_device": "cpu",
+    "local_stt_compute_type": "auto"
+  },
+  "segments": [
+    {
+      "speaker": null,
+      "text": "Welcome back, everyone, to the VS Code Insiders podcast",
+      "start": "00:00:00.000",
+      "end": "00:00:03.200",
+      "id": 1
+    },
+    {
+      "speaker": null,
+      "text": "you're behind the scenes with the VS Code team",
+      "start": "00:00:03.200",
+      "end": "00:00:05.280",
+      "id": 2
+    },
+    {
+      "speaker": null,
+      "text": "and your favorite code editor.",
+      "start": "00:00:05.280",
+      "end": "00:00:06.640",
+      "id": 3
+    },
+    {
+      "speaker": null,
+      "text": "I'm one of your host James Montemagno,",
+      "start": "00:00:06.640",
+      "end": "00:00:09.040",
+      "id": 4
+    },
+    {
+      "speaker": null,
+      "text": "P.M. on our developer community team.",
+      "start": "00:00:09.040",
+      "end": "00:00:10.800",
+      "id": 5
+    },
+    {
+      "speaker": null,
+      "text": "And with me today, I'm super excited.",
+      "start": "00:00:10.800",
+      "end": "00:00:13.120",
+      "id": 6
+    },
+    {
+      "speaker": null,
+      "text": "I have Logan, Ramos, a senior software engineer",
+      "start": "00:00:13.120",
+      "end": "00:00:16.080",
+      "id": 7
+    },
+    {
+      "speaker": null,
+      "text": "on the VS Code team, how's it going, Logan?",
+      "start": "00:00:16.080",
+      "end": "00:00:18.640",
+      "id": 8
+    },
+    {
+      "speaker": null,
+      "text": "I'm good, James, how are you?",
+      "start": "00:00:18.640",
+      "end": "00:00:19.920",
+      "id": 9
+    },
+    {
+      "speaker": null,
+      "text": "I'm doing awesome and I just learned that you actually",
+      "start": "00:00:19.920",
+      "end": "00:00:24.400",
+      "id": 10
+    },
+    {
+      "speaker": null,
+      "text": "have been at Microsoft that a while,",
+      "start": "00:00:24.400",
+      "end": "00:00:25.680",
+      "id": 11
+    },
+    {
+      "speaker": null,
+      "text": "but you've actually interned on multiple teams,",
+      "start": "00:00:25.680",
+      "end": "00:00:29.600",
+      "id": 12
+    },
+    {
+      "speaker": null,
+      "text": "like in the editor space before which I had no idea",
+      "start": "00:00:29.600",
+      "end": "00:00:32.160",
+      "id": 13
+    },
+    {
+      "speaker": null,
+      "text": "which is so cool.",
+      "start": "00:00:32.160",
+      "end": "00:00:33.520",
+      "id": 14
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, yeah, it's been a great time.",
+      "start": "00:00:33.520",
+      "end": "00:00:35.520",
+      "id": 15
+    },
+    {
+      "speaker": null,
+      "text": "I think what I initially joined as an intern",
+      "start": "00:00:35.520",
+      "end": "00:00:37.920",
+      "id": 16
+    },
+    {
+      "speaker": null,
+      "text": "from Microsoft in 2018, I believe.",
+      "start": "00:00:37.920",
+      "end": "00:00:40.880",
+      "id": 17
+    },
+    {
+      "speaker": null,
+      "text": "I thought developer tooling was kind of lame",
+      "start": "00:00:40.880",
+      "end": "00:00:42.880",
+      "id": 18
+    },
+    {
+      "speaker": null,
+      "text": "and like I was like, this is not exciting.",
+      "start": "00:00:42.880",
+      "end": "00:00:44.400",
+      "id": 19
+    },
+    {
+      "speaker": null,
+      "text": "Like, I want to work on Xbox,",
+      "start": "00:00:44.400",
+      "end": "00:00:46.160",
+      "id": 20
+    },
+    {
+      "speaker": null,
+      "text": "but it's been amazing to see how passionate",
+      "start": "00:00:46.160",
+      "end": "00:00:48.640",
+      "id": 21
+    },
+    {
+      "speaker": null,
+      "text": "everyone has in the developer space in every day",
+      "start": "00:00:48.640",
+      "end": "00:00:50.640",
+      "id": 22
+    },
+    {
+      "speaker": null,
+      "text": "that I get to work with people who are like myself.",
+      "start": "00:00:50.640",
+      "end": "00:00:53.360",
+      "id": 23
+    },
+    {
+      "speaker": null,
+      "text": "Like, I am the customer kind of up this product",
+      "start": "00:00:53.360",
+      "end": "00:00:55.280",
+      "id": 24
+    },
+    {
+      "speaker": null,
+      "text": "and it makes it much easier to connect with them.",
+      "start": "00:00:55.280",
+      "end": "00:00:58.400",
+      "id": 25
+    },
+    {
+      "speaker": null,
+      "text": "That's awesome, yeah, when we just had Tyler on,",
+      "start": "00:00:58.480",
+      "end": "00:01:00.400",
+      "id": 26
+    },
+    {
+      "speaker": null,
+      "text": "I think that was, he said the exact same thing,",
+      "start": "00:01:00.400",
+      "end": "00:01:02.960",
+      "id": 27
+    },
+    {
+      "speaker": null,
+      "text": "which is like, I am building the tool that I want to use",
+      "start": "00:01:02.960",
+      "end": "00:01:06.720",
+      "id": 28
+    },
+    {
+      "speaker": null,
+      "text": "with a team that once used the tools every single day",
+      "start": "00:01:06.720",
+      "end": "00:01:09.360",
+      "id": 29
+    },
+    {
+      "speaker": null,
+      "text": "to make the tool better, which is so cool.",
+      "start": "00:01:09.360",
+      "end": "00:01:11.200",
+      "id": 30
+    },
+    {
+      "speaker": null,
+      "text": "And I agree with you, I started my career",
+      "start": "00:01:11.200",
+      "end": "00:01:13.280",
+      "id": 31
+    },
+    {
+      "speaker": null,
+      "text": "making video games for the Xbox 360",
+      "start": "00:01:13.280",
+      "end": "00:01:15.840",
+      "id": 32
+    },
+    {
+      "speaker": null,
+      "text": "and then I became a win-forms developer building desktop apps",
+      "start": "00:01:15.840",
+      "end": "00:01:19.440",
+      "id": 33
+    },
+    {
+      "speaker": null,
+      "text": "and then I fell into loving dev tools in the space.",
+      "start": "00:01:19.440",
+      "end": "00:01:22.640",
+      "id": 34
+    },
+    {
+      "speaker": null,
+      "text": "I don't know, just something about it.",
+      "start": "00:01:22.640",
+      "end": "00:01:23.520",
+      "id": 35
+    },
+    {
+      "speaker": null,
+      "text": "Just collect, I'm out of the video game space,",
+      "start": "00:01:23.520",
+      "end": "00:01:25.520",
+      "id": 36
+    },
+    {
+      "speaker": null,
+      "text": "but, yeah, for some reason,",
+      "start": "00:01:25.520",
+      "end": "00:01:29.600",
+      "id": 37
+    },
+    {
+      "speaker": null,
+      "text": "desktop applications were calling my name.",
+      "start": "00:01:29.600",
+      "end": "00:01:31.760",
+      "id": 38
+    },
+    {
+      "speaker": null,
+      "text": "And apparently yours is well, which is awesome.",
+      "start": "00:01:31.760",
+      "end": "00:01:34.960",
+      "id": 39
+    },
+    {
+      "speaker": null,
+      "text": "I wonder if you want because there's been a feature",
+      "start": "00:01:34.960",
+      "end": "00:01:38.480",
+      "id": 40
+    },
+    {
+      "speaker": null,
+      "text": "that a lot of people talk about inside of VS Code,",
+      "start": "00:01:38.480",
+      "end": "00:01:42.160",
+      "id": 41
+    },
+    {
+      "speaker": null,
+      "text": "which has a funky name, and I don't actually think describes",
+      "start": "00:01:42.160",
+      "end": "00:01:45.680",
+      "id": 42
+    },
+    {
+      "speaker": null,
+      "text": "maybe what the feature, I mean, it does describe",
+      "start": "00:01:45.680",
+      "end": "00:01:47.680",
+      "id": 43
+    },
+    {
+      "speaker": null,
+      "text": "like what the implementation of the feature is,",
+      "start": "00:01:47.680",
+      "end": "00:01:50.000",
+      "id": 44
+    },
+    {
+      "speaker": null,
+      "text": "but maybe not why you would want to use it",
+      "start": "00:01:50.000",
+      "end": "00:01:52.960",
+      "id": 45
+    },
+    {
+      "speaker": null,
+      "text": "and like, on the podcast, we want to talk about like,",
+      "start": "00:01:52.960",
+      "end": "00:01:54.560",
+      "id": 46
+    },
+    {
+      "speaker": null,
+      "text": "not what the feature does, like, why?",
+      "start": "00:01:54.640",
+      "end": "00:01:56.400",
+      "id": 47
+    },
+    {
+      "speaker": null,
+      "text": "Why was this thing even put into the product?",
+      "start": "00:01:56.400",
+      "end": "00:01:58.240",
+      "id": 48
+    },
+    {
+      "speaker": null,
+      "text": "How is it evolving? How are we getting feedback?",
+      "start": "00:01:58.240",
+      "end": "00:02:00.400",
+      "id": 49
+    },
+    {
+      "speaker": null,
+      "text": "And this is something that people see as BYOK",
+      "start": "00:02:00.400",
+      "end": "00:02:03.200",
+      "id": 50
+    },
+    {
+      "speaker": null,
+      "text": "or bring your own key, which, I guess you're bringing a key,",
+      "start": "00:02:03.200",
+      "end": "00:02:08.080",
+      "id": 51
+    },
+    {
+      "speaker": null,
+      "text": "but it's kind of in the model selection.",
+      "start": "00:02:08.080",
+      "end": "00:02:10.800",
+      "id": 52
+    },
+    {
+      "speaker": null,
+      "text": "Like, what is bring your own key?",
+      "start": "00:02:10.800",
+      "end": "00:02:12.560",
+      "id": 53
+    },
+    {
+      "speaker": null,
+      "text": "Like, how is it thought about like, why is it in the product?",
+      "start": "00:02:12.560",
+      "end": "00:02:16.000",
+      "id": 54
+    },
+    {
+      "speaker": null,
+      "text": "And why was someone even used this thing?",
+      "start": "00:02:16.000",
+      "end": "00:02:18.080",
+      "id": 55
+    },
+    {
+      "speaker": null,
+      "text": "Before we talk about how it's evolving in the latest versions?",
+      "start": "00:02:18.080",
+      "end": "00:02:20.560",
+      "id": 56
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, yeah, so I mean, I think I named it bring your",
+      "start": "00:02:20.560",
+      "end": "00:02:23.440",
+      "id": 57
+    },
+    {
+      "speaker": null,
+      "text": "and key when I first started implementing it.",
+      "start": "00:02:23.440",
+      "end": "00:02:25.440",
+      "id": 58
+    },
+    {
+      "speaker": null,
+      "text": "It's a burn-out.",
+      "start": "00:02:25.440",
+      "end": "00:02:26.160",
+      "id": 59
+    },
+    {
+      "speaker": null,
+      "text": "It's the air, not a marketer,",
+      "start": "00:02:26.160",
+      "end": "00:02:27.600",
+      "id": 60
+    },
+    {
+      "speaker": null,
+      "text": "and maybe it should have been called bring your own model,",
+      "start": "00:02:27.600",
+      "end": "00:02:29.600",
+      "id": 61
+    },
+    {
+      "speaker": null,
+      "text": "but that's what we've been calling it since.",
+      "start": "00:02:29.600",
+      "end": "00:02:31.920",
+      "id": 62
+    },
+    {
+      "speaker": null,
+      "text": "It's official name is language model chat providers.",
+      "start": "00:02:31.920",
+      "end": "00:02:34.880",
+      "id": 63
+    },
+    {
+      "speaker": null,
+      "text": "So there's actually a full vehicle API",
+      "start": "00:02:34.880",
+      "end": "00:02:37.200",
+      "id": 64
+    },
+    {
+      "speaker": null,
+      "text": "that we could talk about at some point.",
+      "start": "00:02:37.200",
+      "end": "00:02:39.280",
+      "id": 65
+    },
+    {
+      "speaker": null,
+      "text": "But the reason for this comes down to VS Code",
+      "start": "00:02:39.280",
+      "end": "00:02:42.160",
+      "id": 66
+    },
+    {
+      "speaker": null,
+      "text": "has always been about developer choice,",
+      "start": "00:02:42.160",
+      "end": "00:02:44.080",
+      "id": 67
+    },
+    {
+      "speaker": null,
+      "text": "our extension ecosystem, et cetera.",
+      "start": "00:02:44.080",
+      "end": "00:02:45.760",
+      "id": 68
+    },
+    {
+      "speaker": null,
+      "text": "And while GitHub co-pilot gives you some amazing models",
+      "start": "00:02:45.760",
+      "end": "00:02:48.880",
+      "id": 69
+    },
+    {
+      "speaker": null,
+      "text": "to work with out of the box, the truth is,",
+      "start": "00:02:48.880",
+      "end": "00:02:50.960",
+      "id": 70
+    },
+    {
+      "speaker": null,
+      "text": "there's just, it's impossible for us to support every model.",
+      "start": "00:02:50.960",
+      "end": "00:02:54.160",
+      "id": 71
+    },
+    {
+      "speaker": null,
+      "text": "Every model you add to GitHub co-pilot",
+      "start": "00:02:54.160",
+      "end": "00:02:55.680",
+      "id": 72
+    },
+    {
+      "speaker": null,
+      "text": "bifurcates your GPU capacity, right?",
+      "start": "00:02:55.680",
+      "end": "00:02:57.520",
+      "id": 73
+    },
+    {
+      "speaker": null,
+      "text": "So if you have 1000 GPUs and you have two models,",
+      "start": "00:02:57.520",
+      "end": "00:03:00.000",
+      "id": 74
+    },
+    {
+      "speaker": null,
+      "text": "you know, then maybe 500 model,",
+      "start": "00:03:00.000",
+      "end": "00:03:01.680",
+      "id": 75
+    },
+    {
+      "speaker": null,
+      "text": "if you're doing 50, 50 balancing.",
+      "start": "00:03:01.680",
+      "end": "00:03:03.760",
+      "id": 76
+    },
+    {
+      "speaker": null,
+      "text": "So every day, a brand new LM comes out.",
+      "start": "00:03:03.760",
+      "end": "00:03:06.640",
+      "id": 77
+    },
+    {
+      "speaker": null,
+      "text": "I mean, I'm sure you see all the articles.",
+      "start": "00:03:06.640",
+      "end": "00:03:08.800",
+      "id": 78
+    },
+    {
+      "speaker": null,
+      "text": "And so some people are really passionate about wanting to be on the cutting edge",
+      "start": "00:03:08.800",
+      "end": "00:03:11.520",
+      "id": 79
+    },
+    {
+      "speaker": null,
+      "text": "and trying new things.",
+      "start": "00:03:11.520",
+      "end": "00:03:12.800",
+      "id": 80
+    },
+    {
+      "speaker": null,
+      "text": "And it's just not something we're able to provide with the subscription.",
+      "start": "00:03:12.800",
+      "end": "00:03:16.800",
+      "id": 81
+    },
+    {
+      "speaker": null,
+      "text": "And so bring your own key or bring your own model,",
+      "start": "00:03:16.800",
+      "end": "00:03:19.120",
+      "id": 82
+    },
+    {
+      "speaker": null,
+      "text": "allows you to add any model you want to get up co-pilot",
+      "start": "00:03:19.200",
+      "end": "00:03:24.240",
+      "id": 83
+    },
+    {
+      "speaker": null,
+      "text": "and speak to it through the chat interfaces,",
+      "start": "00:03:24.240",
+      "end": "00:03:26.560",
+      "id": 84
+    },
+    {
+      "speaker": null,
+      "text": "through the agent, treating it as if it came right with the product.",
+      "start": "00:03:26.560",
+      "end": "00:03:30.800",
+      "id": 85
+    },
+    {
+      "speaker": null,
+      "text": "So it's a really cool feature.",
+      "start": "00:03:30.800",
+      "end": "00:03:32.400",
+      "id": 86
+    },
+    {
+      "speaker": null,
+      "text": "Now, these models from any provider,",
+      "start": "00:03:32.400",
+      "end": "00:03:35.760",
+      "id": 87
+    },
+    {
+      "speaker": null,
+      "text": "like what's in the box, like here,",
+      "start": "00:03:35.760",
+      "end": "00:03:37.760",
+      "id": 88
+    },
+    {
+      "speaker": null,
+      "text": "because like I out of the box today,",
+      "start": "00:03:37.760",
+      "end": "00:03:39.680",
+      "id": 89
+    },
+    {
+      "speaker": null,
+      "text": "I go in, I select my models, I got GPT-5, I got clawed,",
+      "start": "00:03:39.680",
+      "end": "00:03:44.000",
+      "id": 90
+    },
+    {
+      "speaker": null,
+      "text": "I got Gemini in there.",
+      "start": "00:03:44.000",
+      "end": "00:03:45.840",
+      "id": 91
+    },
+    {
+      "speaker": null,
+      "text": "Like, is it also sort of like that today,",
+      "start": "00:03:45.840",
+      "end": "00:03:50.000",
+      "id": 92
+    },
+    {
+      "speaker": null,
+      "text": "where there is just additional models or like the users can figure it,",
+      "start": "00:03:50.000",
+      "end": "00:03:55.840",
+      "id": 93
+    },
+    {
+      "speaker": null,
+      "text": "or like what's that setup process look like?",
+      "start": "00:03:55.840",
+      "end": "00:03:57.920",
+      "id": 94
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, yeah. So I mean, the bring your own key arc started with",
+      "start": "00:03:57.920",
+      "end": "00:04:01.520",
+      "id": 95
+    },
+    {
+      "speaker": null,
+      "text": "it was all done in the chat extension.",
+      "start": "00:04:01.520",
+      "end": "00:04:04.160",
+      "id": 96
+    },
+    {
+      "speaker": null,
+      "text": "But what we found is because there's so many different model providers.",
+      "start": "00:04:04.160",
+      "end": "00:04:07.200",
+      "id": 97
+    },
+    {
+      "speaker": null,
+      "text": "I mean, you've been drop it, Google,",
+      "start": "00:04:07.200",
+      "end": "00:04:10.000",
+      "id": 98
+    },
+    {
+      "speaker": null,
+      "text": "opening eye, you know, deep sea,",
+      "start": "00:04:10.000",
+      "end": "00:04:12.480",
+      "id": 99
+    },
+    {
+      "speaker": null,
+      "text": "call these other ones that keep appearing.",
+      "start": "00:04:12.480",
+      "end": "00:04:15.040",
+      "id": 100
+    },
+    {
+      "speaker": null,
+      "text": "It's just unsustainable for us to maintain the model.",
+      "start": "00:04:15.040",
+      "end": "00:04:17.280",
+      "id": 101
+    },
+    {
+      "speaker": null,
+      "text": "So we've put a few in out at the box at the moment,",
+      "start": "00:04:17.280",
+      "end": "00:04:20.320",
+      "id": 102
+    },
+    {
+      "speaker": null,
+      "text": "that provide pretty much the most commonly used ones,",
+      "start": "00:04:20.320",
+      "end": "00:04:24.960",
+      "id": 103
+    },
+    {
+      "speaker": null,
+      "text": "based on popularity.",
+      "start": "00:04:24.960",
+      "end": "00:04:26.720",
+      "id": 104
+    },
+    {
+      "speaker": null,
+      "text": "And then the idea is that other extensions can go and implement theirs as well,",
+      "start": "00:04:26.720",
+      "end": "00:04:29.840",
+      "id": 105
+    },
+    {
+      "speaker": null,
+      "text": "and contribute to the growing ecosystem.",
+      "start": "00:04:29.840",
+      "end": "00:04:32.640",
+      "id": 106
+    },
+    {
+      "speaker": null,
+      "text": "So pretty much any opening eye compatible model will be support,",
+      "start": "00:04:32.640",
+      "end": "00:04:35.920",
+      "id": 107
+    },
+    {
+      "speaker": null,
+      "text": "and that happens to be kind of the spec that a lot of model providers have decided on.",
+      "start": "00:04:35.920",
+      "end": "00:04:41.040",
+      "id": 108
+    },
+    {
+      "speaker": null,
+      "text": "Now, are these models, like,",
+      "start": "00:04:41.040",
+      "end": "00:04:43.280",
+      "id": 109
+    },
+    {
+      "speaker": null,
+      "text": "someone want to use this because they're on the cutting edge,",
+      "start": "00:04:43.360",
+      "end": "00:04:45.200",
+      "id": 110
+    },
+    {
+      "speaker": null,
+      "text": "but also like, are they all cloud models?",
+      "start": "00:04:45.200",
+      "end": "00:04:48.080",
+      "id": 111
+    },
+    {
+      "speaker": null,
+      "text": "Like, like, where do these things run?",
+      "start": "00:04:48.080",
+      "end": "00:04:49.840",
+      "id": 112
+    },
+    {
+      "speaker": null,
+      "text": "Like, who's paying for them as well?",
+      "start": "00:04:49.840",
+      "end": "00:04:51.840",
+      "id": 113
+    },
+    {
+      "speaker": null,
+      "text": "Like, or if I have four, I have five, I've 18 machines in front of me,",
+      "start": "00:04:51.840",
+      "end": "00:04:56.880",
+      "id": 114
+    },
+    {
+      "speaker": null,
+      "text": "and 76 Nintendo Switches.",
+      "start": "00:04:56.880",
+      "end": "00:04:59.680",
+      "id": 115
+    },
+    {
+      "speaker": null,
+      "text": "Can I just like run a model on my Nintendo Switch,",
+      "start": "00:04:59.680",
+      "end": "00:05:02.000",
+      "id": 116
+    },
+    {
+      "speaker": null,
+      "text": "and then like plug that in?",
+      "start": "00:05:02.000",
+      "end": "00:05:03.360",
+      "id": 117
+    },
+    {
+      "speaker": null,
+      "text": "Yes.",
+      "start": "00:05:03.360",
+      "end": "00:05:03.840",
+      "id": 118
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, there's two conflicting kind of opinions on what you bring your own key is good for.",
+      "start": "00:05:03.840",
+      "end": "00:05:09.120",
+      "id": 119
+    },
+    {
+      "speaker": null,
+      "text": "The first is model access, and the second is privacy.",
+      "start": "00:05:09.120",
+      "end": "00:05:12.640",
+      "id": 120
+    },
+    {
+      "speaker": null,
+      "text": "And so there's an idea, especially in, you know,",
+      "start": "00:05:12.720",
+      "end": "00:05:15.200",
+      "id": 121
+    },
+    {
+      "speaker": null,
+      "text": "some of these more regulated spaces, like health care, et cetera,",
+      "start": "00:05:15.200",
+      "end": "00:05:18.800",
+      "id": 122
+    },
+    {
+      "speaker": null,
+      "text": "that maybe a local LLM is what you want.",
+      "start": "00:05:18.800",
+      "end": "00:05:21.280",
+      "id": 123
+    },
+    {
+      "speaker": null,
+      "text": "And so being open and compatible, we support LM Studio,",
+      "start": "00:05:21.280",
+      "end": "00:05:26.880",
+      "id": 124
+    },
+    {
+      "speaker": null,
+      "text": "you know, like LM, Alama, and all these common local LM providers,",
+      "start": "00:05:26.880",
+      "end": "00:05:31.920",
+      "id": 125
+    },
+    {
+      "speaker": null,
+      "text": "and I've been able to run, you know, the latest GFT or SES models",
+      "start": "00:05:31.920",
+      "end": "00:05:35.360",
+      "id": 126
+    },
+    {
+      "speaker": null,
+      "text": "that came out of opening eye recently, a straight online hackbook,",
+      "start": "00:05:35.360",
+      "end": "00:05:38.160",
+      "id": 127
+    },
+    {
+      "speaker": null,
+      "text": "and actually pretty decent, and do a good job.",
+      "start": "00:05:38.160",
+      "end": "00:05:42.080",
+      "id": 128
+    },
+    {
+      "speaker": null,
+      "text": "I would say that, you know, the local models don't quite compete with the fact",
+      "start": "00:05:42.080",
+      "end": "00:05:45.360",
+      "id": 129
+    },
+    {
+      "speaker": null,
+      "text": "that these cloud models are using such massive amounts of GPU compute,",
+      "start": "00:05:45.360",
+      "end": "00:05:49.840",
+      "id": 130
+    },
+    {
+      "speaker": null,
+      "text": "but it does have the benefit of being privacy first and fully on their machine.",
+      "start": "00:05:49.840",
+      "end": "00:05:54.480",
+      "id": 131
+    },
+    {
+      "speaker": null,
+      "text": "That makes sense. Maybe I can run on my Series X,",
+      "start": "00:05:54.480",
+      "end": "00:05:56.320",
+      "id": 132
+    },
+    {
+      "speaker": null,
+      "text": "and I get a little bit more news in the power there.",
+      "start": "00:05:56.320",
+      "end": "00:05:58.080",
+      "id": 133
+    },
+    {
+      "speaker": null,
+      "text": "Now, the one other question I had, too, is,",
+      "start": "00:05:58.080",
+      "end": "00:06:00.880",
+      "id": 134
+    },
+    {
+      "speaker": null,
+      "text": "so I go into VS code, and then how you see this is,",
+      "start": "00:06:00.880",
+      "end": "00:06:04.960",
+      "id": 135
+    },
+    {
+      "speaker": null,
+      "text": "you select a model, and there's managed models.",
+      "start": "00:06:04.960",
+      "end": "00:06:07.520",
+      "id": 136
+    },
+    {
+      "speaker": null,
+      "text": "Now, I actually love a feature that people don't know about,",
+      "start": "00:06:07.520",
+      "end": "00:06:09.760",
+      "id": 137
+    },
+    {
+      "speaker": null,
+      "text": "as it doesn't do with bring your own key, but it's in the bring your own key selector,",
+      "start": "00:06:09.760",
+      "end": "00:06:12.560",
+      "id": 138
+    },
+    {
+      "speaker": null,
+      "text": "which is managing the models that show up in the model selector with copilot.",
+      "start": "00:06:12.560",
+      "end": "00:06:16.160",
+      "id": 139
+    },
+    {
+      "speaker": null,
+      "text": "You can manage and pick those.",
+      "start": "00:06:16.160",
+      "end": "00:06:17.600",
+      "id": 140
+    },
+    {
+      "speaker": null,
+      "text": "But when you're inside of there, yeah, you get this drop down today,",
+      "start": "00:06:17.600",
+      "end": "00:06:20.560",
+      "id": 141
+    },
+    {
+      "speaker": null,
+      "text": "which is Azure and Thropic, XA, Alama, OpenAI, Google,",
+      "start": "00:06:21.440",
+      "end": "00:06:25.680",
+      "id": 142
+    },
+    {
+      "speaker": null,
+      "text": "Grock with Q, OpenRouter, OpenAI compatible, and you can configure.",
+      "start": "00:06:25.680",
+      "end": "00:06:29.760",
+      "id": 143
+    },
+    {
+      "speaker": null,
+      "text": "So if I select Azure, I'm going to type in, like, my endpoint,",
+      "start": "00:06:29.760",
+      "end": "00:06:33.040",
+      "id": 144
+    },
+    {
+      "speaker": null,
+      "text": "and my API key, basically, into that.",
+      "start": "00:06:33.040",
+      "end": "00:06:35.040",
+      "id": 145
+    },
+    {
+      "speaker": null,
+      "text": "So for example, if I wanted to use GPT-5 Nano,",
+      "start": "00:06:35.040",
+      "end": "00:06:37.920",
+      "id": 146
+    },
+    {
+      "speaker": null,
+      "text": "some of the big fan of, I could just spin up,",
+      "start": "00:06:38.000",
+      "end": "00:06:41.280",
+      "id": 147
+    },
+    {
+      "speaker": null,
+      "text": "I'm thinking of practical insins, like I have my model.",
+      "start": "00:06:41.280",
+      "end": "00:06:44.480",
+      "id": 148
+    },
+    {
+      "speaker": null,
+      "text": "I have spin up Nano, grab the URL, grab my key boom,",
+      "start": "00:06:44.480",
+      "end": "00:06:49.200",
+      "id": 149
+    },
+    {
+      "speaker": null,
+      "text": "and then now all my requests are going to be routed through my Azure OpenAI.",
+      "start": "00:06:49.200",
+      "end": "00:06:52.640",
+      "id": 150
+    },
+    {
+      "speaker": null,
+      "text": "I am pointed to articulate what you said correctly.",
+      "start": "00:06:52.640",
+      "end": "00:06:55.120",
+      "id": 151
+    },
+    {
+      "speaker": null,
+      "text": "Yes, yep, that's correct.",
+      "start": "00:06:55.120",
+      "end": "00:06:56.720",
+      "id": 152
+    },
+    {
+      "speaker": null,
+      "text": "And yeah, you can either do it through Azure,",
+      "start": "00:06:58.160",
+      "end": "00:07:00.240",
+      "id": 153
+    },
+    {
+      "speaker": null,
+      "text": "or there's open analyst directly if you don't want to do the whole data",
+      "start": "00:07:00.240",
+      "end": "00:07:03.440",
+      "id": 154
+    },
+    {
+      "speaker": null,
+      "text": "of setting up your own compute,",
+      "start": "00:07:03.600",
+      "end": "00:07:05.440",
+      "id": 155
+    },
+    {
+      "speaker": null,
+      "text": "I think on your use cases, that makes a lot of sense.",
+      "start": "00:07:05.440",
+      "end": "00:07:08.240",
+      "id": 156
+    },
+    {
+      "speaker": null,
+      "text": "Now, on top of that, though, how do then the system prompts work",
+      "start": "00:07:08.240",
+      "end": "00:07:14.480",
+      "id": 157
+    },
+    {
+      "speaker": null,
+      "text": "in this model, right?",
+      "start": "00:07:14.480",
+      "end": "00:07:16.400",
+      "id": 158
+    },
+    {
+      "speaker": null,
+      "text": "Because the team fine tunes, and they're all open,",
+      "start": "00:07:16.400",
+      "end": "00:07:18.960",
+      "id": 159
+    },
+    {
+      "speaker": null,
+      "text": "so as you can see, the system prompts,",
+      "start": "00:07:18.960",
+      "end": "00:07:20.480",
+      "id": 160
+    },
+    {
+      "speaker": null,
+      "text": "are they using the same system prompts?",
+      "start": "00:07:20.480",
+      "end": "00:07:22.000",
+      "id": 161
+    },
+    {
+      "speaker": null,
+      "text": "Like if I configure, you know, OpenAI or O-Lama,",
+      "start": "00:07:22.000",
+      "end": "00:07:26.960",
+      "id": 162
+    },
+    {
+      "speaker": null,
+      "text": "or Anthropic with these keys in the bring your own key model,",
+      "start": "00:07:26.960",
+      "end": "00:07:32.960",
+      "id": 163
+    },
+    {
+      "speaker": null,
+      "text": "is it one to one kind of, or is it going down different path based",
+      "start": "00:07:32.960",
+      "end": "00:07:37.120",
+      "id": 164
+    },
+    {
+      "speaker": null,
+      "text": "on kind of the models that are there, or how's that work?",
+      "start": "00:07:37.120",
+      "end": "00:07:40.640",
+      "id": 165
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, yeah, I mean, we try our best to make it one to one.",
+      "start": "00:07:40.640",
+      "end": "00:07:43.200",
+      "id": 166
+    },
+    {
+      "speaker": null,
+      "text": "We want to bring your key to feel like a first, you know,",
+      "start": "00:07:43.200",
+      "end": "00:07:46.160",
+      "id": 167
+    },
+    {
+      "speaker": null,
+      "text": "class experience, we're not looking to treat copilot favorably,",
+      "start": "00:07:46.160",
+      "end": "00:07:50.160",
+      "id": 168
+    },
+    {
+      "speaker": null,
+      "text": "one way or the other.",
+      "start": "00:07:50.160",
+      "end": "00:07:50.960",
+      "id": 169
+    },
+    {
+      "speaker": null,
+      "text": "It's all about whatever makes the developer the most efficient",
+      "start": "00:07:50.960",
+      "end": "00:07:53.680",
+      "id": 170
+    },
+    {
+      "speaker": null,
+      "text": "and enabling them to use AI in their day to day jobs.",
+      "start": "00:07:53.680",
+      "end": "00:07:57.360",
+      "id": 171
+    },
+    {
+      "speaker": null,
+      "text": "So, we do try to use a custom prompts, of course,",
+      "start": "00:07:57.360",
+      "end": "00:08:00.000",
+      "id": 172
+    },
+    {
+      "speaker": null,
+      "text": "for something, you know, that just came out that we don't have,",
+      "start": "00:08:00.000",
+      "end": "00:08:03.440",
+      "id": 173
+    },
+    {
+      "speaker": null,
+      "text": "like, you know, some of these new moonshot models, et cetera.",
+      "start": "00:08:03.440",
+      "end": "00:08:05.840",
+      "id": 174
+    },
+    {
+      "speaker": null,
+      "text": "Like, we will have custom prompts for them,",
+      "start": "00:08:05.840",
+      "end": "00:08:07.600",
+      "id": 175
+    },
+    {
+      "speaker": null,
+      "text": "so they will fall back to some default prompt that we have,",
+      "start": "00:08:07.600",
+      "end": "00:08:10.560",
+      "id": 176
+    },
+    {
+      "speaker": null,
+      "text": "kind of decided that works well for generic use cases.",
+      "start": "00:08:10.560",
+      "end": "00:08:14.000",
+      "id": 177
+    },
+    {
+      "speaker": null,
+      "text": "That makes a lot of sense, go.",
+      "start": "00:08:15.040",
+      "end": "00:08:16.400",
+      "id": 178
+    },
+    {
+      "speaker": null,
+      "text": "So, today the team has been adding them.",
+      "start": "00:08:16.400",
+      "end": "00:08:18.880",
+      "id": 179
+    },
+    {
+      "speaker": null,
+      "text": "So, like, I noticed that in the latest rev,",
+      "start": "00:08:18.880",
+      "end": "00:08:20.960",
+      "id": 180
+    },
+    {
+      "speaker": null,
+      "text": "there's like OpenAI compatible models, like, obviously,",
+      "start": "00:08:20.960",
+      "end": "00:08:25.040",
+      "id": 181
+    },
+    {
+      "speaker": null,
+      "text": "a few other ones were recently added in there.",
+      "start": "00:08:25.040",
+      "end": "00:08:27.520",
+      "id": 182
+    },
+    {
+      "speaker": null,
+      "text": "Every time I open that, it seems like there's a drop down there,",
+      "start": "00:08:27.520",
+      "end": "00:08:29.920",
+      "id": 183
+    },
+    {
+      "speaker": null,
+      "text": "but you said that there's an API, I mean,",
+      "start": "00:08:30.080",
+      "end": "00:08:32.480",
+      "id": 184
+    },
+    {
+      "speaker": null,
+      "text": "that actually VS code itself is like a series of APIs that developers",
+      "start": "00:08:32.480",
+      "end": "00:08:35.120",
+      "id": 185
+    },
+    {
+      "speaker": null,
+      "text": "have been to for extensions, and I think not a lot of people need that,",
+      "start": "00:08:35.120",
+      "end": "00:08:38.720",
+      "id": 186
+    },
+    {
+      "speaker": null,
+      "text": "know that maybe of how the thing works.",
+      "start": "00:08:38.720",
+      "end": "00:08:40.720",
+      "id": 187
+    },
+    {
+      "speaker": null,
+      "text": "And we were talking about the iteration planning,",
+      "start": "00:08:40.720",
+      "end": "00:08:43.200",
+      "id": 188
+    },
+    {
+      "speaker": null,
+      "text": "recently, on a podcast, and Pierce was talking about things,",
+      "start": "00:08:43.200",
+      "end": "00:08:45.680",
+      "id": 189
+    },
+    {
+      "speaker": null,
+      "text": "and we were talking about, oh, there's all these APIs that are being built in.",
+      "start": "00:08:45.680",
+      "end": "00:08:49.520",
+      "id": 190
+    },
+    {
+      "speaker": null,
+      "text": "So, you all on the team have to add one.",
+      "start": "00:08:49.520",
+      "end": "00:08:52.720",
+      "id": 191
+    },
+    {
+      "speaker": null,
+      "text": "So, if Moonchart comes out or whatever, you have to manually add one today.",
+      "start": "00:08:52.720",
+      "end": "00:08:56.160",
+      "id": 192
+    },
+    {
+      "speaker": null,
+      "text": "And for my understanding, that is changing.",
+      "start": "00:08:56.160",
+      "end": "00:08:58.160",
+      "id": 193
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, so, bring your own key.",
+      "start": "00:08:59.120",
+      "end": "00:09:01.280",
+      "id": 194
+    },
+    {
+      "speaker": null,
+      "text": "First, started not with an API.",
+      "start": "00:09:01.280",
+      "end": "00:09:02.880",
+      "id": 195
+    },
+    {
+      "speaker": null,
+      "text": "It started as just a custom experience built into the copilot chat extension.",
+      "start": "00:09:02.880",
+      "end": "00:09:06.400",
+      "id": 196
+    },
+    {
+      "speaker": null,
+      "text": "The downside is exactly what you're saying.",
+      "start": "00:09:06.400",
+      "end": "00:09:08.400",
+      "id": 197
+    },
+    {
+      "speaker": null,
+      "text": "It started to get out from under us with the space of the AI space,",
+      "start": "00:09:08.400",
+      "end": "00:09:12.800",
+      "id": 198
+    },
+    {
+      "speaker": null,
+      "text": "it's just moving so incredibly fast,",
+      "start": "00:09:12.800",
+      "end": "00:09:14.880",
+      "id": 199
+    },
+    {
+      "speaker": null,
+      "text": "that it's kind of impossible for, you know, one engineer to keep up with all that.",
+      "start": "00:09:14.880",
+      "end": "00:09:18.560",
+      "id": 200
+    },
+    {
+      "speaker": null,
+      "text": "So, what we decided to do is kind of pivot,",
+      "start": "00:09:18.560",
+      "end": "00:09:20.560",
+      "id": 201
+    },
+    {
+      "speaker": null,
+      "text": "and we've now developed a full, accessible surface for people to contribute to this.",
+      "start": "00:09:20.560",
+      "end": "00:09:26.320",
+      "id": 202
+    },
+    {
+      "speaker": null,
+      "text": "And now we've started reaching out to some of the more popular, you know, LLM providers,",
+      "start": "00:09:26.320",
+      "end": "00:09:30.240",
+      "id": 203
+    },
+    {
+      "speaker": null,
+      "text": "and we're going to start working on helping them get extensions into the marketplace.",
+      "start": "00:09:30.240",
+      "end": "00:09:34.240",
+      "id": 204
+    },
+    {
+      "speaker": null,
+      "text": "So, then, when you download VS code and download copilot chat,",
+      "start": "00:09:34.240",
+      "end": "00:09:37.360",
+      "id": 205
+    },
+    {
+      "speaker": null,
+      "text": "if you wanted to say get a different provider's models, you'd go to the marketplace and install",
+      "start": "00:09:37.360",
+      "end": "00:09:42.080",
+      "id": 206
+    },
+    {
+      "speaker": null,
+      "text": "their extension as well, and then they would just automatically print a list,",
+      "start": "00:09:42.080",
+      "end": "00:09:45.120",
+      "id": 207
+    },
+    {
+      "speaker": null,
+      "text": "and be treated properly like that as well.",
+      "start": "00:09:45.120",
+      "end": "00:09:48.320",
+      "id": 208
+    },
+    {
+      "speaker": null,
+      "text": "The benefit to this as well.",
+      "start": "00:09:48.320",
+      "end": "00:09:50.480",
+      "id": 209
+    },
+    {
+      "speaker": null,
+      "text": "The benefit to this is that some providers are not open-animal.",
+      "start": "00:09:50.480",
+      "end": "00:09:53.600",
+      "id": 210
+    },
+    {
+      "speaker": null,
+      "text": "Uh, for example, in PropEx, a good one, it uses their custom API surface,",
+      "start": "00:09:54.240",
+      "end": "00:09:59.760",
+      "id": 211
+    },
+    {
+      "speaker": null,
+      "text": "and therefore maintaining, you know, six different API shapes,",
+      "start": "00:09:59.760",
+      "end": "00:10:03.520",
+      "id": 212
+    },
+    {
+      "speaker": null,
+      "text": "et cetera, is really difficult.",
+      "start": "00:10:03.520",
+      "end": "00:10:05.200",
+      "id": 213
+    },
+    {
+      "speaker": null,
+      "text": "So, we end up collapsing to a common open-an AI shape,",
+      "start": "00:10:05.200",
+      "end": "00:10:07.920",
+      "id": 214
+    },
+    {
+      "speaker": null,
+      "text": "which loses some of the capabilities of these model providers like custom features.",
+      "start": "00:10:07.920",
+      "end": "00:10:12.560",
+      "id": 215
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, so if I'm James, James AI, and I come along, and I'm like, you know, I have the best",
+      "start": "00:10:13.440",
+      "end": "00:10:18.240",
+      "id": 216
+    },
+    {
+      "speaker": null,
+      "text": "new model in the entire world.",
+      "start": "00:10:18.240",
+      "end": "00:10:20.240",
+      "id": 217
+    },
+    {
+      "speaker": null,
+      "text": "I want people to use this, and it's not open-an AI compatible.",
+      "start": "00:10:20.320",
+      "end": "00:10:23.600",
+      "id": 218
+    },
+    {
+      "speaker": null,
+      "text": "It's my own custom James surface, right?",
+      "start": "00:10:23.600",
+      "end": "00:10:26.640",
+      "id": 219
+    },
+    {
+      "speaker": null,
+      "text": "In some of that, what's the process look like now for me, James developer,",
+      "start": "00:10:26.640",
+      "end": "00:10:31.280",
+      "id": 220
+    },
+    {
+      "speaker": null,
+      "text": "James LLC AI, that I want to come in and do this.",
+      "start": "00:10:31.280",
+      "end": "00:10:34.880",
+      "id": 221
+    },
+    {
+      "speaker": null,
+      "text": "You said that I've created an extension, there's APIs on top of it,",
+      "start": "00:10:34.880",
+      "end": "00:10:38.400",
+      "id": 222
+    },
+    {
+      "speaker": null,
+      "text": "am I writing it in TypeScript, like what's the, what's the jam?",
+      "start": "00:10:38.400",
+      "end": "00:10:42.080",
+      "id": 223
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, step one is to offer your model for free, because that's the best way to get people to use it.",
+      "start": "00:10:42.080",
+      "end": "00:10:46.560",
+      "id": 224
+    },
+    {
+      "speaker": null,
+      "text": "Uh, so you know, you might lose a lot of money,",
+      "start": "00:10:46.560",
+      "end": "00:10:48.960",
+      "id": 225
+    },
+    {
+      "speaker": null,
+      "text": "but it seems to make things very popular, people like free.",
+      "start": "00:10:48.960",
+      "end": "00:10:52.080",
+      "id": 226
+    },
+    {
+      "speaker": null,
+      "text": "Uh, but yeah, we have extension samples in our VS Code Extension sample repository.",
+      "start": "00:10:52.080",
+      "end": "00:10:57.040",
+      "id": 227
+    },
+    {
+      "speaker": null,
+      "text": "And we also have a, a doc that'll drop soon on our website for people to read about,",
+      "start": "00:10:57.040",
+      "end": "00:11:02.320",
+      "id": 228
+    },
+    {
+      "speaker": null,
+      "text": "uh, how to implement these providers, but it's pretty simple.",
+      "start": "00:11:02.320",
+      "end": "00:11:05.440",
+      "id": 229
+    },
+    {
+      "speaker": null,
+      "text": "It's just, you have to provide a list of your models, and some metadata about them, like, you know,",
+      "start": "00:11:05.440",
+      "end": "00:11:09.840",
+      "id": 230
+    },
+    {
+      "speaker": null,
+      "text": "how many tokens can it take in, how many tokens can take out,",
+      "start": "00:11:09.840",
+      "end": "00:11:12.800",
+      "id": 231
+    },
+    {
+      "speaker": null,
+      "text": "but let's support processing images and tools.",
+      "start": "00:11:12.800",
+      "end": "00:11:15.680",
+      "id": 232
+    },
+    {
+      "speaker": null,
+      "text": "And that helps us show the models in the right context.",
+      "start": "00:11:15.680",
+      "end": "00:11:18.080",
+      "id": 233
+    },
+    {
+      "speaker": null,
+      "text": "For example, if you don't support tool calling, we can't show you in our agent mode,",
+      "start": "00:11:18.080",
+      "end": "00:11:20.880",
+      "id": 234
+    },
+    {
+      "speaker": null,
+      "text": "because that is a tool driven flow.",
+      "start": "00:11:20.880",
+      "end": "00:11:23.040",
+      "id": 235
+    },
+    {
+      "speaker": null,
+      "text": "Uh, so then you just go and quickly implement the extension.",
+      "start": "00:11:24.080",
+      "end": "00:11:26.640",
+      "id": 236
+    },
+    {
+      "speaker": null,
+      "text": "A lot of them will be pretty similar.",
+      "start": "00:11:26.640",
+      "end": "00:11:28.480",
+      "id": 237
+    },
+    {
+      "speaker": null,
+      "text": "I would say, and then boom your, after the races, I was going to ask that because, yeah,",
+      "start": "00:11:28.480",
+      "end": "00:11:33.360",
+      "id": 238
+    },
+    {
+      "speaker": null,
+      "text": "when I go in and I'd like, for example, if I can figure, you know, GPT 5 mini,",
+      "start": "00:11:33.360",
+      "end": "00:11:38.320",
+      "id": 239
+    },
+    {
+      "speaker": null,
+      "text": "it's going to support some inputs and not other inputs, right?",
+      "start": "00:11:38.320",
+      "end": "00:11:41.760",
+      "id": 240
+    },
+    {
+      "speaker": null,
+      "text": "Or like, James, AI, LLM model, maybe not support images, or something like that.",
+      "start": "00:11:41.760",
+      "end": "00:11:46.160",
+      "id": 241
+    },
+    {
+      "speaker": null,
+      "text": "Like you said, tool calling.",
+      "start": "00:11:46.160",
+      "end": "00:11:47.600",
+      "id": 242
+    },
+    {
+      "speaker": null,
+      "text": "So from a user's perspective, I'm now, you, Logan, you, in some of my extension,",
+      "start": "00:11:47.600",
+      "end": "00:11:53.440",
+      "id": 243
+    },
+    {
+      "speaker": null,
+      "text": "does that, what's that experience look like?",
+      "start": "00:11:54.320",
+      "end": "00:11:56.400",
+      "id": 244
+    },
+    {
+      "speaker": null,
+      "text": "From a user's perspective, do I need to know a lot about the model?",
+      "start": "00:11:56.400",
+      "end": "00:11:59.280",
+      "id": 245
+    },
+    {
+      "speaker": null,
+      "text": "Or like am I just slapping an API key and I'm good?",
+      "start": "00:11:59.280",
+      "end": "00:12:01.840",
+      "id": 246
+    },
+    {
+      "speaker": null,
+      "text": "Or how is, how is the user experience go?",
+      "start": "00:12:01.840",
+      "end": "00:12:04.080",
+      "id": 247
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, it really depends on the extension.",
+      "start": "00:12:04.080",
+      "end": "00:12:06.080",
+      "id": 248
+    },
+    {
+      "speaker": null,
+      "text": "I mean, we try to leave things as customizable as possible.",
+      "start": "00:12:06.080",
+      "end": "00:12:09.200",
+      "id": 249
+    },
+    {
+      "speaker": null,
+      "text": "For, we have a provider built in right now called OpenAI compatible.",
+      "start": "00:12:09.200",
+      "end": "00:12:14.560",
+      "id": 250
+    },
+    {
+      "speaker": null,
+      "text": "And that one, you have to know everything about the model because we don't know anything.",
+      "start": "00:12:14.640",
+      "end": "00:12:17.120",
+      "id": 251
+    },
+    {
+      "speaker": null,
+      "text": "So we're going to ask you, you know, first token limits,",
+      "start": "00:12:17.120",
+      "end": "00:12:19.760",
+      "id": 252
+    },
+    {
+      "speaker": null,
+      "text": "fourths, vision capabilities.",
+      "start": "00:12:19.760",
+      "end": "00:12:21.520",
+      "id": 253
+    },
+    {
+      "speaker": null,
+      "text": "But if I download James AI and theory, James should know everything about the model,",
+      "start": "00:12:21.520",
+      "end": "00:12:24.960",
+      "id": 254
+    },
+    {
+      "speaker": null,
+      "text": "and I should just be throwing an API key and boom, my model has configured properly,",
+      "start": "00:12:24.960",
+      "end": "00:12:28.880",
+      "id": 255
+    },
+    {
+      "speaker": null,
+      "text": "ready to talk to and very simple to use.",
+      "start": "00:12:28.880",
+      "end": "00:12:31.760",
+      "id": 256
+    },
+    {
+      "speaker": null,
+      "text": "I like that, that makes sense.",
+      "start": "00:12:33.040",
+      "end": "00:12:34.560",
+      "id": 257
+    },
+    {
+      "speaker": null,
+      "text": "Now, there are all of these existing ones in here.",
+      "start": "00:12:34.560",
+      "end": "00:12:38.160",
+      "id": 258
+    },
+    {
+      "speaker": null,
+      "text": "Are these existing ones using the new API, or like, where they're using an API that",
+      "start": "00:12:38.160",
+      "end": "00:12:42.160",
+      "id": 259
+    },
+    {
+      "speaker": null,
+      "text": "I got exposed, like, because there's a bunch in there,",
+      "start": "00:12:42.160",
+      "end": "00:12:45.600",
+      "id": 260
+    },
+    {
+      "speaker": null,
+      "text": "and you said it's impossible to maintain all of these and things like that.",
+      "start": "00:12:45.600",
+      "end": "00:12:49.120",
+      "id": 261
+    },
+    {
+      "speaker": null,
+      "text": "But like, are we using the our own APIs basically?",
+      "start": "00:12:49.120",
+      "end": "00:12:53.120",
+      "id": 262
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, I mean, as I'm sure speaking to every developer you'll see is we're all very",
+      "start": "00:12:53.840",
+      "end": "00:12:58.160",
+      "id": 263
+    },
+    {
+      "speaker": null,
+      "text": "pro dog foodings.",
+      "start": "00:12:58.160",
+      "end": "00:12:59.200",
+      "id": 264
+    },
+    {
+      "speaker": null,
+      "text": "So we are dog fooding our own stuff here.",
+      "start": "00:12:59.200",
+      "end": "00:13:01.040",
+      "id": 265
+    },
+    {
+      "speaker": null,
+      "text": "So we're using the API testing it.",
+      "start": "00:13:01.040",
+      "end": "00:13:03.280",
+      "id": 266
+    },
+    {
+      "speaker": null,
+      "text": "We fixed many bugs and had some pain points.",
+      "start": "00:13:03.280",
+      "end": "00:13:06.240",
+      "id": 267
+    },
+    {
+      "speaker": null,
+      "text": "So hopefully it's easy for you now and everything goes to the same flow.",
+      "start": "00:13:06.240",
+      "end": "00:13:10.480",
+      "id": 268
+    },
+    {
+      "speaker": null,
+      "text": "And nothing is treated, especially every extension should get the same access",
+      "start": "00:13:10.480",
+      "end": "00:13:14.160",
+      "id": 269
+    },
+    {
+      "speaker": null,
+      "text": "to be able to belong in the VS code AI ecosystem.",
+      "start": "00:13:15.360",
+      "end": "00:13:19.120",
+      "id": 270
+    },
+    {
+      "speaker": null,
+      "text": "When you're working with developers and speaking with different customers",
+      "start": "00:13:19.120",
+      "end": "00:13:23.520",
+      "id": 271
+    },
+    {
+      "speaker": null,
+      "text": "and different use cases, you talk about a lot of different use cases for it.",
+      "start": "00:13:23.520",
+      "end": "00:13:26.640",
+      "id": 272
+    },
+    {
+      "speaker": null,
+      "text": "Like in the real world, how are we seeing usage and adoption of built-in models,",
+      "start": "00:13:26.640",
+      "end": "00:13:33.440",
+      "id": 273
+    },
+    {
+      "speaker": null,
+      "text": "these custom models, these extensions, like, you know,",
+      "start": "00:13:33.440",
+      "end": "00:13:36.560",
+      "id": 274
+    },
+    {
+      "speaker": null,
+      "text": "they're different use cases people are using them for, like, you know, you obviously are like,",
+      "start": "00:13:36.560",
+      "end": "00:13:42.000",
+      "id": 275
+    },
+    {
+      "speaker": null,
+      "text": "in it, right? So you're hearing back from people that are using it.",
+      "start": "00:13:42.000",
+      "end": "00:13:44.400",
+      "id": 276
+    },
+    {
+      "speaker": null,
+      "text": "If you break something, they'll probably let you know, right?",
+      "start": "00:13:44.400",
+      "end": "00:13:46.560",
+      "id": 277
+    },
+    {
+      "speaker": null,
+      "text": "Like, how is the feedback since this feature kind of rolled out a while ago,",
+      "start": "00:13:46.560",
+      "end": "00:13:51.280",
+      "id": 278
+    },
+    {
+      "speaker": null,
+      "text": "kind of been for you and the team?",
+      "start": "00:13:51.280",
+      "end": "00:13:52.640",
+      "id": 279
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, it's been really great. I mean, we've, it's been a very passionate feature.",
+      "start": "00:13:53.600",
+      "end": "00:13:58.240",
+      "id": 280
+    },
+    {
+      "speaker": null,
+      "text": "I think it definitely invites the tinker at the moment.",
+      "start": "00:13:58.240",
+      "end": "00:14:01.200",
+      "id": 281
+    },
+    {
+      "speaker": null,
+      "text": "I think it's still a bit new.",
+      "start": "00:14:01.200",
+      "end": "00:14:02.800",
+      "id": 282
+    },
+    {
+      "speaker": null,
+      "text": "So enterprises have not really started picking it up as much yet,",
+      "start": "00:14:02.800",
+      "end": "00:14:05.920",
+      "id": 283
+    },
+    {
+      "speaker": null,
+      "text": "but I have seen some playing around with it.",
+      "start": "00:14:06.080",
+      "end": "00:14:07.520",
+      "id": 284
+    },
+    {
+      "speaker": null,
+      "text": "And it's also taught me that these model providers are super finicky.",
+      "start": "00:14:07.520",
+      "end": "00:14:11.120",
+      "id": 285
+    },
+    {
+      "speaker": null,
+      "text": "And everyone treats the parameters just slightly different.",
+      "start": "00:14:11.120",
+      "end": "00:14:13.600",
+      "id": 286
+    },
+    {
+      "speaker": null,
+      "text": "And supporting all of them has been quite challenging.",
+      "start": "00:14:13.600",
+      "end": "00:14:16.720",
+      "id": 287
+    },
+    {
+      "speaker": null,
+      "text": "But I see people who super excited, you know, the second a new model drops,",
+      "start": "00:14:16.720",
+      "end": "00:14:20.880",
+      "id": 288
+    },
+    {
+      "speaker": null,
+      "text": "you know, they're having it running in a cup of a chat and like, oh my gosh,",
+      "start": "00:14:20.880",
+      "end": "00:14:23.440",
+      "id": 289
+    },
+    {
+      "speaker": null,
+      "text": "look at these, you know, 10 things as part of their, you know,",
+      "start": "00:14:23.440",
+      "end": "00:14:26.800",
+      "id": 290
+    },
+    {
+      "speaker": null,
+      "text": "thread engagement farming they're doing. They'll show you all the fun different things",
+      "start": "00:14:26.800",
+      "end": "00:14:30.640",
+      "id": 291
+    },
+    {
+      "speaker": null,
+      "text": "they're doing with the AM model.",
+      "start": "00:14:30.640",
+      "end": "00:14:31.680",
+      "id": 292
+    },
+    {
+      "speaker": null,
+      "text": "Wow, that's really cool.",
+      "start": "00:14:32.480",
+      "end": "00:14:33.440",
+      "id": 293
+    },
+    {
+      "speaker": null,
+      "text": "Anything else you want to talk about the new API or the new models or anything like that?",
+      "start": "00:14:33.520",
+      "end": "00:14:36.320",
+      "id": 294
+    },
+    {
+      "speaker": null,
+      "text": "How do we kind of cover it all?",
+      "start": "00:14:36.320",
+      "end": "00:14:37.280",
+      "id": 295
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, I mean, I think that pretty much covers it all.",
+      "start": "00:14:38.480",
+      "end": "00:14:41.200",
+      "id": 296
+    },
+    {
+      "speaker": null,
+      "text": "I definitely would tell everyone to go out and try implementing their own",
+      "start": "00:14:41.200",
+      "end": "00:14:45.520",
+      "id": 297
+    },
+    {
+      "speaker": null,
+      "text": "extension and see what's what it's like. It's really exciting.",
+      "start": "00:14:45.520",
+      "end": "00:14:49.440",
+      "id": 298
+    },
+    {
+      "speaker": null,
+      "text": "And if you have any feedback, of course,",
+      "start": "00:14:49.440",
+      "end": "00:14:51.200",
+      "id": 299
+    },
+    {
+      "speaker": null,
+      "text": "I'll let us know and I'm happy to hear it.",
+      "start": "00:14:51.200",
+      "end": "00:14:53.040",
+      "id": 300
+    },
+    {
+      "speaker": null,
+      "text": "And if you have an existing extension that's doing something,",
+      "start": "00:14:53.040",
+      "end": "00:14:55.680",
+      "id": 301
+    },
+    {
+      "speaker": null,
+      "text": "some other integration of the terminal or something like that,",
+      "start": "00:14:55.680",
+      "end": "00:14:58.000",
+      "id": 302
+    },
+    {
+      "speaker": null,
+      "text": "is an AI extension. I'm imagining you want to create another extension.",
+      "start": "00:14:58.000",
+      "end": "00:15:02.400",
+      "id": 303
+    },
+    {
+      "speaker": null,
+      "text": "You could just build into your extension.",
+      "start": "00:15:02.400",
+      "end": "00:15:04.080",
+      "id": 304
+    },
+    {
+      "speaker": null,
+      "text": "The support for this, or would it be its own standalone extension?",
+      "start": "00:15:04.640",
+      "end": "00:15:07.440",
+      "id": 305
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, there's no reason that you have to build your own a completely new extension.",
+      "start": "00:15:07.440",
+      "end": "00:15:11.280",
+      "id": 306
+    },
+    {
+      "speaker": null,
+      "text": "So, for example, if the Azure extension, you know,",
+      "start": "00:15:11.280",
+      "end": "00:15:14.240",
+      "id": 307
+    },
+    {
+      "speaker": null,
+      "text": "wanted to start contributing Azure language models, they could just add it so that you download",
+      "start": "00:15:14.240",
+      "end": "00:15:18.080",
+      "id": 308
+    },
+    {
+      "speaker": null,
+      "text": "Azure and you get all Azure stuff. It's just yet another API surface you can talk to.",
+      "start": "00:15:18.080",
+      "end": "00:15:22.640",
+      "id": 309
+    },
+    {
+      "speaker": null,
+      "text": "Very cool. This is awesome. I'm really excited to see how it evolves.",
+      "start": "00:15:22.640",
+      "end": "00:15:25.600",
+      "id": 310
+    },
+    {
+      "speaker": null,
+      "text": "And to see that list fill up with fun and funky stuff.",
+      "start": "00:15:25.600",
+      "end": "00:15:29.920",
+      "id": 311
+    },
+    {
+      "speaker": null,
+      "text": "Because like you said, there's so many models.",
+      "start": "00:15:29.920",
+      "end": "00:15:32.880",
+      "id": 312
+    },
+    {
+      "speaker": null,
+      "text": "And when I talk to different developers and friends,",
+      "start": "00:15:32.880",
+      "end": "00:15:35.760",
+      "id": 313
+    },
+    {
+      "speaker": null,
+      "text": "they're always like, oh, yeah, I try it out.",
+      "start": "00:15:35.760",
+      "end": "00:15:37.040",
+      "id": 314
+    },
+    {
+      "speaker": null,
+      "text": "This thing is really good for this specific thing.",
+      "start": "00:15:37.040",
+      "end": "00:15:39.680",
+      "id": 315
+    },
+    {
+      "speaker": null,
+      "text": "Right. I think that's the type of thing that intrigues me is like when I'm doing",
+      "start": "00:15:39.680",
+      "end": "00:15:43.600",
+      "id": 316
+    },
+    {
+      "speaker": null,
+      "text": "different data processing, different things like this model is really good at this thing.",
+      "start": "00:15:43.600",
+      "end": "00:15:47.040",
+      "id": 317
+    },
+    {
+      "speaker": null,
+      "text": "And it's really fast at this specific thing besides like a more general model.",
+      "start": "00:15:47.040",
+      "end": "00:15:51.280",
+      "id": 318
+    },
+    {
+      "speaker": null,
+      "text": "So, yeah, this is awesome.",
+      "start": "00:15:51.280",
+      "end": "00:15:52.960",
+      "id": 319
+    },
+    {
+      "speaker": null,
+      "text": "Well, I'm excited to see it fill up.",
+      "start": "00:15:53.040",
+      "end": "00:15:54.240",
+      "id": 320
+    },
+    {
+      "speaker": null,
+      "text": "And we'll put in the show notes, links to all the issues in the development in real time.",
+      "start": "00:15:54.240",
+      "end": "00:15:58.400",
+      "id": 321
+    },
+    {
+      "speaker": null,
+      "text": "You can follow the team, build the thing in real time.",
+      "start": "00:15:58.400",
+      "end": "00:16:00.080",
+      "id": 322
+    },
+    {
+      "speaker": null,
+      "text": "I think that was the most fun. I think it's like getting on the call and updates and seeing",
+      "start": "00:16:00.080",
+      "end": "00:16:03.920",
+      "id": 323
+    },
+    {
+      "speaker": null,
+      "text": "those checkbox updates as well that are there.",
+      "start": "00:16:03.920",
+      "end": "00:16:06.000",
+      "id": 324
+    },
+    {
+      "speaker": null,
+      "text": "So, well, look at things so much for coming on and talking through not only",
+      "start": "00:16:06.000",
+      "end": "00:16:10.000",
+      "id": 325
+    },
+    {
+      "speaker": null,
+      "text": "what bring your own key models are, but like actually how it's evolved to be even more open.",
+      "start": "00:16:10.000",
+      "end": "00:16:14.960",
+      "id": 326
+    },
+    {
+      "speaker": null,
+      "text": "So, everyone can kind of grow this out.",
+      "start": "00:16:14.960",
+      "end": "00:16:17.200",
+      "id": 327
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, it's very exciting. And as you say, as that list will fill up,",
+      "start": "00:16:17.200",
+      "end": "00:16:20.320",
+      "id": 328
+    },
+    {
+      "speaker": null,
+      "text": "we will have something fun and store called Automode and hopes to make the selecting",
+      "start": "00:16:20.960",
+      "end": "00:16:25.440",
+      "id": 329
+    },
+    {
+      "speaker": null,
+      "text": "of the models even easier because there's a benefit and a downside to model choice,",
+      "start": "00:16:25.440",
+      "end": "00:16:29.440",
+      "id": 330
+    },
+    {
+      "speaker": null,
+      "text": "which is, you know, this idea of choice fatigue.",
+      "start": "00:16:29.440",
+      "end": "00:16:31.680",
+      "id": 331
+    },
+    {
+      "speaker": null,
+      "text": "So, if you don't like to choose a model, keep it eye out for that as well.",
+      "start": "00:16:31.680",
+      "end": "00:16:35.600",
+      "id": 332
+    },
+    {
+      "speaker": null,
+      "text": "That should be coming soon.",
+      "start": "00:16:35.600",
+      "end": "00:16:36.880",
+      "id": 333
+    },
+    {
+      "speaker": null,
+      "text": "Very cool. We'll deep dive on that in upcoming VS Code Insiders podcast Logan.",
+      "start": "00:16:36.880",
+      "end": "00:16:42.000",
+      "id": 334
+    },
+    {
+      "speaker": null,
+      "text": "Just did the perfect little cliffhanger that I really appreciate it.",
+      "start": "00:16:42.000",
+      "end": "00:16:46.240",
+      "id": 335
+    },
+    {
+      "speaker": null,
+      "text": "Logan, you have to set it out for me, perfect.",
+      "start": "00:16:46.320",
+      "end": "00:16:48.400",
+      "id": 336
+    },
+    {
+      "speaker": null,
+      "text": "So, make sure you subscribe on your favorite podcast applications, Spotify,",
+      "start": "00:16:48.400",
+      "end": "00:16:52.400",
+      "id": 337
+    },
+    {
+      "speaker": null,
+      "text": "YouTube. If you want the video version of this, we'll put in little images and little",
+      "start": "00:16:52.400",
+      "end": "00:16:56.240",
+      "id": 338
+    },
+    {
+      "speaker": null,
+      "text": "screenshots and little videos until like that in there, but we make these to be audio first.",
+      "start": "00:16:56.240",
+      "end": "00:16:59.760",
+      "id": 339
+    },
+    {
+      "speaker": null,
+      "text": "So, subscribe on your favorite podcast application.",
+      "start": "00:16:59.760",
+      "end": "00:17:01.520",
+      "id": 340
+    },
+    {
+      "speaker": null,
+      "text": "But let's go to this VS Code Insiders podcast until next time, James.",
+      "start": "00:17:01.520",
+      "end": "00:17:05.120",
+      "id": 341
+    },
+    {
+      "speaker": null,
+      "text": "Thanks for watching and listening and happy coding.",
+      "start": "00:17:05.120",
+      "end": "00:17:07.760",
+      "id": 342
+    }
+  ]
+}

@@ -1,0 +1,635 @@
+[00:00:00.080] Welcome back everyone to the VS code insiders podcast you're behind the scenes of everything VS code
+
+[00:00:05.720] I'm your host James Monson magnet PM on a developer community and today I have one of my best friends in the entire world
+
+[00:00:11.320] The one and only Toby Padilla has a go and Toby hi James. Thank you for the warm intro. It's super great to be here
+
+[00:00:18.400] I am super said now funnily enough like you and I only met it's kind of like I swear
+
+[00:00:24.300] It's kind of like talking about like what model you're using. I don't know what it was a Tuesday
+
+[00:00:27.460] I'm probably using a new model you and I only actually I think met in person at build on our MCP panel
+
+[00:00:33.300] And then I was like wow Toby's like amazing so cool. I know anything about you and maybe some of our listeners
+
+[00:00:38.220] Don't do you want to give a little TLDR about what you're doing to get him sure
+
+[00:00:42.180] So I'm Toby Padilla. I'm a principal product manager at GitHub
+
+[00:00:45.660] I am in charge of our MCP initiatives and so this is the GitHub MCP server
+
+[00:00:50.780] The new registry that we launched
+
+[00:00:52.560] I'm also on the MCP steering committee for the as a maintainer for the open source
+
+[00:00:58.140] MCP registry and we can talk today about how all of these things wire up
+
+[00:01:01.600] I'm relatively new. I started in December last year. So I'm coming up on my my first year
+
+[00:01:06.520] It's been an amazing journey and and James and I we're just setting about how much it's changed in this year, right?
+
+[00:01:11.960] Like we're moving
+
+[00:01:13.460] super fast now we have one of the most popular MCP servers in the world
+
+[00:01:17.440] We have a super popular registry the agent stuff is coming out. We've got copilot coding agent
+
+[00:01:22.240] There's there's a lot of really interesting stuff going on
+
+[00:01:24.840] And so it's been it's been a good journey prior to that
+
+[00:01:27.120] I was the founder of charm which is a very popular open source command line startup
+
+[00:01:31.680] And before that I was the VP of mobile for tweet deck and last of them and way back in today as an engineer at Apple
+
+[00:01:38.560] So it's been a been a long time in the industry
+
+[00:01:41.640] But to see these changes in the last 12 to 24 months
+
+[00:01:46.000] That's probably been the most exciting time in tech since I was like eight years old using a VIC 20 back in the day
+
+[00:01:52.520] It's so cool too because pretty much every product that you've worked on I've used so
+
+[00:01:58.120] Well, let's talk about MCP model context protocol now if people you know every blog with to say what it is
+
+[00:02:03.920] So Toby what is model context protocol and how are you using MCP servers today in your actual workflow?
+
+[00:02:11.600] So MCP model context protocol is a way for LLMs to interact
+
+[00:02:15.920] With the outside world and this means sort of primarily two things one is they can fetch
+
+[00:02:20.400] Context they can fetch data right and so if you think about how an LLM works
+
+[00:02:24.320] I had a cutoff date when it was trained and anything past that cutoff date or anything that was private won't be
+
+[00:02:30.080] accessible to the LLM so think of MCP as a way for it to go out and fetch either private information or more
+
+[00:02:36.320] Recent information you can say what are the top five things on Hacker News for instance and it could go go get that from like right now
+
+[00:02:42.320] The other thing it can do is it can create side effects it can interact with the outside world
+
+[00:02:46.040] So it can create a repo on GitHub
+
+[00:02:48.840] They can create a pull request that can create a figma file
+
+[00:02:52.000] so it's really the LLM's way to to interact and the history there's kind of interesting because
+
+[00:02:58.520] There was a function calling API for a lot of these models like opening
+
+[00:03:03.440] I had this function calling API and it was it was essentially the same thing
+
+[00:03:06.240] But it wasn't standardized it was sort of proprietary to each model and and thropic about a year ago now
+
+[00:03:12.120] Did the hard work of creating the standard and one of the ways they sort of bootstrapped the standard was they created like 20 or 30
+
+[00:03:19.040] Reference servers themselves
+
+[00:03:20.560] And one of those reference servers was the GitHub MCP server and they told us it was the most popular of all the reference servers
+
+[00:03:26.280] And so we took ownership of that from them and put it out there and just like we said
+
+[00:03:30.720] It's a way for LLM's not to interact with GitHub and and the GitHub platform
+
+[00:03:35.040] And you see a lot of these for a lot of services, right?
+
+[00:03:37.760] Like you're they're kind of wrapping rest API's or they're doing even better and they're putting agentic workflows together as as tools
+
+[00:03:44.000] The ones I use a lot are are the GitHub MCP server
+
+[00:03:46.960] I use play light right a lot as well and for people who aren't familiar with that
+
+[00:03:50.480] This is a Microsoft MCP server that gives LLM's of the ability to browse the web
+
+[00:03:55.440] And that's a super amazing thing right as like the LLM like driving through through websites and the way I use these is primarily through
+
+[00:04:03.360] The copilot coding agent and so James you and I were talking about this earlier today
+
+[00:04:08.640] There's a bunch of ways you can do agentic development, right? Like you can have an agent to do yes code or cursor
+
+[00:04:15.440] Caught code you can be on the command line. There's a bunch of different things you can do my preferred way is to use GitHub itself
+
+[00:04:21.680] And so for those are all who aren't familiar the copilot coding agent is a feature where you can assign an issue to copilot
+
+[00:04:27.520] And it turns away for like 20 minutes and it will come back and open up a pull request with what you wanted in there
+
+[00:04:33.360] And if you want to change that or it got something wrong you just leave comments to it
+
+[00:04:37.360] You're like hey at copilot, you know, I actually won 13 color themes instead of like the six that you added or you got this wrong
+
+[00:04:43.440] I want to use SQLite instead of MongoDB and then it'll go back and it will do another commit on the PR
+
+[00:04:49.440] Well, the copilot coding agent is mcp enabled and by default it has two mcp servers installed
+
+[00:04:54.640] One is the GitHub mcp server and the other is playwright
+
+[00:04:57.760] And it uses the GitHub mcp server for all of its interaction with GitHub
+
+[00:05:01.440] So as it's doing commits as it's looking through the history of files as it's looking at other reposts using
+
+[00:05:06.560] The GitHub mcp server there and then if you're building a web app
+
+[00:05:09.920] It uses playwright to like take screenshots of it to test the functionality that it implemented
+
+[00:05:14.160] And it's kind of incredible because a lot of the times you'll get back a pull request from the coding agent
+
+[00:05:18.000] And it'll have a screenshot of what it just built and it used playwright for that
+
+[00:05:21.360] And it validated at least a lot of the user flows through this web application by using playwrights
+
+[00:05:26.960] So for me the combination of those three things the coding agent the GitHub mcp server and the playwright mcp servers
+
+[00:05:34.320] Really unlocked some pretty amazing stuff
+
+[00:05:37.440] Yeah, that's super cool and the cool type part of mcp is like you were talking about is it's
+
+[00:05:41.280] It's not just for coding. It's in a bunch of different things right? So a bunch of different editors like i use vsvs code
+
+[00:05:46.800] But also there's different desktop apps that can connect to and that's the idea as it's a universal standard
+
+[00:05:51.280] That's out there. So when you go to the model context protocol website
+
+[00:05:53.760] Which we'll put in the links below you'll see all that stuff
+
+[00:05:55.840] Yeah, like for me inside of us code just yesterday
+
+[00:05:58.160] I was I have my blazer website and I was like hey, I really want to optimize my
+
+[00:06:03.040] static assets
+
+[00:06:04.240] So I just said you know I had the Microsoft learn mcp server
+
+[00:06:08.160] I said go search the docs
+
+[00:06:09.760] It pulled down the docs and then I said hey go create a plan
+
+[00:06:12.640] So I'm inside of just my ask mode inside of us code
+
+[00:06:15.200] Like cool now go break this down into like five digestible get-up issues
+
+[00:06:19.680] And then go open those for me and they get up mcp kicks in and it does it right
+
+[00:06:23.760] I could manually do that in vscode, but I don't want to waste my keystrokes
+
+[00:06:27.280] I just go and do it right and then the last thing I said okay, let's go ahead and figure out which one has like the most
+
+[00:06:32.560] Kind of viable like you know
+
+[00:06:35.440] First order of operation go ahead and assign that to the coding agent and then go and do it right
+
+[00:06:39.440] All from without leaving my IDE, which is super cool
+
+[00:06:42.480] And like you said I do that a lot which is like I'm implementing a new web
+
+[00:06:46.320] You know component and then I'm like all right
+
+[00:06:47.920] You've implemented it you know co-pilot now go do end-to-end testing on that with playwright
+
+[00:06:52.560] And then just like test it so you can validate itself so cool and there's a bunch of them out there
+
+[00:06:57.600] Um
+
+[00:06:59.200] You know and if you're not using these things give it a trial even with those simple ones like the get-up mcp one
+
+[00:07:03.520] It's like blows my mind and there's a bajillion tools in there
+
+[00:07:05.840] You might say tools are kind of like function calls right? Yep, but I think that ends up becoming like the problem
+
+[00:07:10.800] What we actually want to talk about today which is like finding managing and
+
+[00:07:16.080] Going off so we just like talked about this but then like where do people go like how do you find it right?
+
+[00:07:21.680] And you talked about earlier about this mcp registry and then we have our own mcp rutches a there's a bunch of registries like
+
+[00:07:28.640] We know about mcp now, but like
+
+[00:07:31.280] What is this registry? How did it come about right because it's not inherently from us that you were talking about with the the team and?
+
+[00:07:38.560] And
+
+[00:07:39.760] How is it evolved since like the need for a registry evolved?
+
+[00:07:44.000] Yeah, that's a
+
+[00:07:46.000] Really good overview of the sort of messy situation we found ourselves in right?
+
+[00:07:49.680] So again a year ago and tropic creates mcp and it just starts taking off like wildfire
+
+[00:07:55.360] After their initial set of mcp servers people just start like cranking things out because it's actually pretty easy to make a local
+
+[00:08:01.920] Mcp server just to command line to it just wraps some stuff and all it does is it presents a function like when you set a tools
+
+[00:08:08.880] A function a function to the LLM a text description of what that function does
+
+[00:08:13.520] So if we say get pull requests is the function and then the description is goes to GitHub and gets the pull requests
+
+[00:08:18.960] And then it has a JSON schema for arguments and so the LLMs have been sort of fine tuned on this
+
+[00:08:23.840] So it's really easy to make these things and so it's all just an explosion of them and what you also saw as an explosion of of
+
+[00:08:30.000] registries to collect these things right because the problem is exactly what you said
+
+[00:08:33.840] Okay, now everyone's making mcp servers. Everyone's really excited about it
+
+[00:08:37.360] How do you find them and so a lot of just like third parties and independent developers and open source people started making
+
+[00:08:43.600] Registry like pulse mcp was one of them. I'm glam my AI was another one
+
+[00:08:48.240] But it became a problem for publishers right like we have the GitHub mcp server
+
+[00:08:52.720] We do a new release
+
+[00:08:54.160] How do we update these 12 or 13 registries that are out there? And there's this sort of more registries coming out every day
+
+[00:09:00.240] So the mcp steering committee got together and said, you know
+
+[00:09:03.360] Let's solve this and let's create a single point of truth
+
+[00:09:06.080] Where publishers can push their mcp servers into any updates for their mcp servers
+
+[00:09:11.280] We have all the information required to install these mcp servers in this API
+
+[00:09:16.000] And then a bunch of downstream registries can pull from this because our goal with this open source canonical
+
+[00:09:22.320] registry that we're building with mcp steering committee is not to be an end destination for users
+
+[00:09:27.680] It's a meant to be an end destination for publishers
+
+[00:09:30.240] So we published into this and then a bunch of downstream registries pull from this API and one of those registries is the GitHub
+
+[00:09:36.720] MCP registry doesn't pull from this yet because we're still in preview mode of the open source registry
+
+[00:09:41.680] But we're working with them and and I should say us because I'm on both sides of this equation
+
+[00:09:46.400] Yeah, you get
+
+[00:09:47.440] When you publish shows up in the GitHub mcp registry
+
+[00:09:50.480] So the GitHub mcp registry which we just launched two weeks ago now
+
+[00:09:54.800] Is a curated set of high quality servers just to bootstrap and get the thing out there
+
+[00:10:00.320] And then when we're confident that the open source registry is is done changing the API shape
+
+[00:10:05.680] We work through all the issues because we're really building it in public
+
+[00:10:07.920] Then we're going to sit they can have the mcp registry on top of it
+
+[00:10:10.960] And part of this flow is that you publish as a publisher in the open source registry
+
+[00:10:15.840] downstream registries github goose extensions marketplace cursor all these things pull from it
+
+[00:10:20.480] And then they enhance that data with platform specific information
+
+[00:10:24.480] So for us on the GitHub side that means adding star counts
+
+[00:10:27.920] It means displaying the readmees
+
+[00:10:29.680] It means one click installs in the VS code and VS code insiders and visual studio and an intelligent and all of our first-party platforms
+
+[00:10:36.240] And it means linking back to the repos so we can sort of get this flow going of people discovering and contributing to these mcp servers
+
+[00:10:44.080] And so that's the overall vision and all of this and we're kind of marching it forward
+
+[00:10:47.760] The great thing about mcp the ecosystem in general is that it's it's very organic right like
+
+[00:10:53.920] A lot of this is open source all this is being built in public
+
+[00:10:57.200] We put something out people find problems they open issues
+
+[00:11:00.000] We fix them
+
+[00:11:00.880] So it's really a work in progress
+
+[00:11:02.720] And if you want to be involved you can go to the link that will add to this and you can just start chiming
+
+[00:11:07.440] And you can even do a pull request on it
+
+[00:11:09.440] And start publishing to the server and this is banging on it
+
+[00:11:11.600] And we actually have a discord as well for the mcp steering committee that you can join and chime in there
+
+[00:11:16.400] But it's kind of a very fun very organic very early stage ecosystem thing with a bunch of different
+
+[00:11:22.400] open source people working together large companies like github and microsoft and open AI and
+
+[00:11:27.920] And thropic and it's it's a very cool mix of a bunch of different sized entities. It's kind of fun
+
+[00:11:34.240] Yeah, I think that's one of the cool parts about so we're with den quite a lot on things and he's been on
+
+[00:11:39.520] You know many of our live streams and talking about spec kit and a bunch of other stuff
+
+[00:11:43.360] N mcp of course we presented a build together
+
+[00:11:46.160] With kd on my team and it was super fun and we were on the panel together
+
+[00:11:50.400] I'm very fascinated about this register because I think when at least for me as a developer
+
+[00:11:53.760] I think of a register
+
+[00:11:54.320] I think of like nugget and npm right and these different like you know
+
+[00:11:57.680] Cocoa pods on all these different things
+
+[00:11:59.200] Is inherently like should we think about it the same way like if I'm going in
+
+[00:12:03.040] And I built a library in this case in mcp like is right now today for example
+
+[00:12:08.160] Like I have my monkey mcp server, which is great
+
+[00:12:10.560] And also one for my feedback flow application, but inherently today what I'm doing is I am
+
+[00:12:16.400] Doing two things one I have
+
+[00:12:19.200] I'm publishing it to Docker Hub so people can pull it down if they want to locally on their machine
+
+[00:12:24.480] But I'm also publishing it up to azure functions
+
+[00:12:28.000] As a public endpoint for remote mcp servers
+
+[00:12:30.880] I have both of those things available based on what people want to use there
+
+[00:12:35.920] And mostly as a sample just to like show that you can do both of them
+
+[00:12:39.120] But that's where I stopped like do I think about this registry as like another place to publish or have to do something
+
+[00:12:46.000] Am I a repo like it's on github? It's in the read me like you know
+
+[00:12:49.520] Just pick it up and like put it somewhere like what do I got to do as a developer to actually like
+
+[00:12:54.240] in interact with this registry
+
+[00:12:57.280] Yeah, that's a great question
+
+[00:12:58.720] And so one thing about this registry is is there they're kind of meta registries
+
+[00:13:03.680] And so this has the information about your server
+
+[00:13:06.240] But like you said, you're publishing the Docker Hub and you have a remote version of this right?
+
+[00:13:10.080] And so what you'll do is you'll use a command line tool from this open source project
+
+[00:13:15.520] and create a you can do
+
+[00:13:17.520] Publisher init and it'll create a server JSON which is a manifest for your mcp server name
+
+[00:13:23.200] Identifier and
+
+[00:13:25.040] Remote and local server information
+
+[00:13:27.120] So you'll actually put the Docker
+
+[00:13:29.120] Command in there that you'll need the clients to run to run locally and the URL for your remote mcp
+
+[00:13:36.160] Server endpoint so we're not actually hosting any of the binaries or anything like that in this registry
+
+[00:13:40.400] We're just pointing to other registries mpm docker hub new yet
+
+[00:13:44.720] Right like all of this kind of stuff
+
+[00:13:46.480] So what you as a server author would do get the command line tool from the open source registry
+
+[00:13:51.120] In it a server JSON
+
+[00:13:52.640] Edit it so it has all of your information all of the flags that you need in Docker
+
+[00:13:56.640] The endpoint for your remote URL the description for your server
+
+[00:13:59.840] And then you publish it to the open source registry
+
+[00:14:02.240] And then all of the downstream registries will sync from that and it will show up in all these different platforms
+
+[00:14:06.880] Okay, I think that that really at least for me like unlocked
+
+[00:14:11.040] A whole lot and we definitely need a blog post on that that is for sure
+
+[00:14:14.240] But I think that mind my job because I was just thinking about that when you were saying in real time is for people out of listening
+
+[00:14:19.680] Is yet you can build mcp servers and tons of programming languages right?
+
+[00:14:23.120] mpm is specific for like the web you know JavaScript right and then
+
+[00:14:27.360] You know new get is specific for dot net right?
+
+[00:14:29.680] But inherently you're right mcp servers might be on a plethora of remote servers or they could be a new get package
+
+[00:14:35.040] It could be a Docker thing they could be on some any registry right?
+
+[00:14:37.200] It's like any Docker thing or it could be an mpm package or you know
+
+[00:14:40.480] In saw with piff or whatever right for python
+
+[00:14:42.720] So that's really fascinating that it's really just this this file that's connecting up
+
+[00:14:47.680] To it and then what decides because there is this
+
+[00:14:50.400] I really want to dive deeper onto this because
+
+[00:14:52.880] Inherently like you said, there's meta there's there's registries built on top of registries like how should we think about
+
+[00:15:00.000] Like the open source registry versus like the github registry versus other registries out there
+
+[00:15:04.800] And like why do so many of them exist for example?
+
+[00:15:08.720] That yeah, that's that's like a question too and and so a lot of this has to do with the multiple platforms right?
+
+[00:15:14.560] And so with the github mcp registry
+
+[00:15:18.320] Not only can you browse it on github.com
+
+[00:15:21.280] But the api behind it powers the in app browsing inside of VS code
+
+[00:15:26.240] So if your in VS code and you want to install an mcp server
+
+[00:15:29.520] It's going to hit the github registry
+
+[00:15:31.120] Which in turn is hitting the open source registry to get all of the mcp servers eventually when we get there
+
+[00:15:36.640] And so you're seeing this inside of VS code and you can imagine
+
+[00:15:40.480] Winsor wants this goose wants this right like you instance so that users don't have to exit
+
+[00:15:45.440] Their experience when they want to install an mcp server. They're inside their IDE
+
+[00:15:49.600] They're inside their clients. They're browsing for tools to install
+
+[00:15:53.440] And so you'll see all of these different platforms want to slightly different view or different information about it
+
+[00:15:59.920] That's relevant and pertinent to their users
+
+[00:16:02.160] I'm that they're going to have to enhance this sort of baseline
+
+[00:16:05.200] Oh, you know, here's how you install from Docker and use the remote endpoint great past steps to the github mcp registry
+
+[00:16:10.080] Well, it's got 10,000 stars and here's the read me pass it to the goose extensions marketplace
+
+[00:16:14.240] Well, here's the buttons to install it and goose right and so you see these integrations for end users
+
+[00:16:19.120] As close to the developer or in some cases non developer as they can possibly get
+
+[00:16:23.280] And so it's this chaining and federation of mcp registries to get there
+
+[00:16:27.360] And we may even see more interesting composition there where it's like someone goes from the open source registry
+
+[00:16:32.960] We at github enhance it with star count and then maybe a security company
+
+[00:16:37.440] Has a security scan that they do on all the mcp servers or maybe we end up doing that as well
+
+[00:16:41.440] And then they take our registry data and they enhance it right and so you can start to
+
+[00:16:45.280] Make a more rich data set when you start passing these things through specialized services or or products and platforms
+
+[00:16:52.880] That have domain specific expertise
+
+[00:16:55.440] And then if you would like a enterprise for example
+
+[00:16:58.640] Right does it mean that you maybe would have
+
+[00:17:01.840] Like our own internal like Microsoft registry or like
+
+[00:17:05.920] You know company whatever registry like if I'm a company and I want to kind of
+
+[00:17:10.320] Maintain a list just for my developers like is that is that
+
+[00:17:13.920] Kind of like the vision that we kind of see here in a way
+
+[00:17:16.320] Yes, and that's actually one of the biggest blocking points and asks that we've heard from from customers and partners
+
+[00:17:22.560] In the enterprise space right they may have regulatory
+
+[00:17:26.960] Standards that they have to meet they may have private information that they're very concerned about getting expo traded someplace
+
+[00:17:32.320] So they don't want to just allow
+
+[00:17:34.320] All of the people on their intranet and all of their developers or employees to just install random mcp servers right if some
+
+[00:17:41.920] Teenager and Kansas cranks out
+
+[00:17:44.640] Death xx mcp. You don't necessarily want that going into your banks workflow right and so what they want is a validated set
+
+[00:17:52.560] of mcp servers that they've maybe done security audits on that they have a business relationship with the publishers
+
+[00:17:58.240] Maybe they're only comfortable with like the GitHub mcp server and the figma mcp server right and so
+
+[00:18:04.800] What they want is governance around mcp and they also will probably in a lot of cases have developed internal
+
+[00:18:10.960] mcp servers that won't be available
+
+[00:18:13.680] Outside of the company and so they won't be in any of these public registries right
+
+[00:18:17.520] one of the goals of this open source registry product is to define a standardized API
+
+[00:18:24.000] For registries and so what we're telling people to do and what we're adding support for inside of GitHub
+
+[00:18:29.120] Is the ability to expose any of these registries that adhere to the standardized API and to use it as a governance
+
+[00:18:35.600] Allow list for mcp usage inside your enterprise
+
+[00:18:38.880] So something that we launched a week ago
+
+[00:18:40.960] Was the public preview in github where any enterprise or org admin can go in and set the URL for any
+
+[00:18:47.600] Registry that adheres to the standard and it will act as an allow list and this is again super early
+
+[00:18:53.120] So it's enforced in VS code and VS code and I think only VS code insiders currently and it's working its way into VS code mainline
+
+[00:18:59.440] And that will be the mcp servers that are installed by people who are members of this org or this enterprise and starts
+
+[00:19:05.760] Starts to add this governance layer of not only mcp servers that you're comfortable with your employees using but internal mcp servers
+
+[00:19:12.800] That wouldn't be in these things
+
+[00:19:13.920] But again, it's coming through the same format right like the same open api that's being defined in this open source project
+
+[00:19:20.160] That's super cool because even internally how we work there are tons of mcp servers internally that teams have built
+
+[00:19:27.120] That are in you know helping different teams do different things inherently for one p right internally first first party like at
+
+[00:19:34.080] Microsoft the net get up
+
+[00:19:35.520] So yet we would never publish those out onto the internet
+
+[00:19:37.840] But we have our internal feed kind of like we have our own internal feeds of like
+
+[00:19:41.040] Early builds of net or different things that we're doing or private things that are out into the world
+
+[00:19:46.000] As well, so it's our own private. That's really cool to think about and you talked a little bit about the integration so you have like you have
+
+[00:19:52.320] The registry URLs you have this governance you have a
+
+[00:19:56.000] The extension thing is a at mcp and then browse mcp's and then there's also a
+
+[00:20:00.960] GitHub website right like where do people go to actually browse this?
+
+[00:20:04.160] I mean obviously inside of VS code, but also outside of you as go to right and yeah
+
+[00:20:07.920] If you go to github.com slash mcp you'll see our
+
+[00:20:11.200] Right now again, it's a curated list, but ultimately this is going to be where we show all the open source mcp servers or the public mcp
+
+[00:20:18.320] Server's like because they don't necessarily have to be open source that I have been published to the open source registry
+
+[00:20:24.000] Very cool now. I was just saying evolving
+
+[00:20:25.360] What's the future of mcp registries in your mind to kind of like capstone this in a way?
+
+[00:20:29.680] You know what I mean like where is this going because it really I mean this thing just happened you know I think we
+
+[00:20:35.760] We announced it. I think at the mcp dev days a few months ago. Now. It's like a reality. It's thing is happening
+
+[00:20:41.040] It's early days, but like what's next like what are you already hearing and what's the team the entire steering committee working on next?
+
+[00:20:46.880] I think I think two big areas for innovation and and sort of adoption one is is the governance in the enterprise right because a lot of big companies are
+
+[00:20:55.680] Very excited by mcp, but they're just not able to use it until there's a governance layer
+
+[00:20:59.120] And so I think you'll see registries play a huge role in getting the sort of corporate
+
+[00:21:04.560] Adoption of mcp servers on sort of the more fun side of things
+
+[00:21:08.800] I really do think that we'll see an mcp server in front of these registries to allow agents to discover and find tools
+
+[00:21:16.080] I run time install them to complete a task and then maybe do away with them and and maybe it's not even just a full
+
+[00:21:23.600] mcp server it could be a subset of tools you can imagine like hey, you know
+
+[00:21:27.120] I want to get a design done and do some coding
+
+[00:21:31.280] You know this sort of abstract and then it's like okay, Figma does design and they get help mcp server
+
+[00:21:35.280] I'll let me do going
+
+[00:21:36.320] I'm gonna take these six tools from Figma these five tools from the get help mcp server constitute a virtual mcp server on the fly
+
+[00:21:43.440] And then present it for just this one circle and round through the LLM's and then when the user says that they want to add
+
+[00:21:50.080] A log in flow that I'm gonna go find something else and do the same thing right so the registries are gonna be the raw input to making that kind of use case become a reality
+
+[00:21:59.440] I love that I love that is a great way to end it because that I think to me
+
+[00:22:04.960] I see it and it might work flow like I don't want to have to go
+
+[00:22:08.320] Sometimes you even find the thing it can recommend the things for me
+
+[00:22:10.720] It's like it's like when you know agent is just like running commands like I can build
+
+[00:22:14.240] I can test I can run these things like I have to run these commands for you
+
+[00:22:16.640] It's like cool like your one step ahead of where I was gonna do that next naturally
+
+[00:22:21.200] We were one step ahead. Yeah, yeah, go find the mcp server like if I'm asking you to go search documentation
+
+[00:22:26.560] Go find the the mcp server for the documentation. So it will tell me this is amazing
+
+[00:22:30.560] I'll put all the links in the show notes. Thank you so much for coming on to the pod and talking about this
+
+[00:22:34.880] Yeah, thank you for having me. It's super fun
+
+[00:22:37.120] Yeah, and don't forget everyone that this is both podcast audio form and you can also watch on the VS code
+
+[00:22:42.320] YouTube if you enjoyed this make sure you subscribe like do all the things and spread the word
+
+[00:22:47.840] It's a new podcast out in the world tell your friends tire colleagues Wow
+
+[00:22:51.440] I'm more VS code goodies into our eardrums every single week
+
+[00:22:54.400] All right, this is gonna do it for this one. So until next time. I'm James and happy coding

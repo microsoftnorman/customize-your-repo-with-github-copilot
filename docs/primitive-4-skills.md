@@ -20,7 +20,9 @@ Unlike prompts (which users invoke explicitly via `/`), skills activate automati
 
 **Official docs:** [Agent skills](https://code.visualstudio.com/docs/copilot/customization/agent-skills)
 
-**See it in action:** [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=383s) — Courtney Webster opens a `SKILL.md`, explains how skills differ from always-on instructions, and shows how the agent discovers them from their description.
+**Code to study:** [VS Code Copilot Chat source](https://github.com/microsoft/vscode-copilot-chat) for the host implementation, [Awesome Copilot skills](https://github.com/github/awesome-copilot/tree/main/skills) for working examples, and the repo's own `.agents/skills/` tree for first-party test coverage.
+
+**See it in action:** [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=266s) — Courtney Webster contrasts skills with always-on instructions and shows how skills load on demand for reusable capabilities.
 
 ### Agent Skills
 
@@ -36,7 +38,7 @@ For full documentation and the specification, visit [agentskills.io](https://age
 
 ### Creating This Primitive
 
-Sound off before you steer — let Copilot draft the skill. Skills have more moving parts than any other primitive: a folder, a `SKILL.md` with frontmatter whose `description` governs whether the skill ever activates, and often scripts or templates alongside. A hand-authored skill with a vague description or a misplaced `SKILL.md` is a skill that never loads. Use the built-in creation command and read the draft.
+Start with the built-in skill generator and review the draft before editing by hand. Skills have more moving parts than any other primitive: a folder, a `SKILL.md` with frontmatter whose `description` governs whether the skill ever activates, and often scripts or templates alongside. A hand-authored skill with a vague description or a misplaced `SKILL.md` is a skill that never loads.
 
 **In VS Code**, run `/create-skill` in Chat. The command scaffolds the folder under `.github/skills/`, writes `SKILL.md` with valid frontmatter, and prompts for the metadata that drives discovery. **In the Copilot CLI**, ask the agent to create the skill directly — the CLI has access to the same generator. See [Don't Hand-Type Primitives — Let the Helmsman Repeat the Order](part-2-primitives.md#dont-hand-type-primitives--let-the-helmsman-repeat-the-order) for the rationale.
 

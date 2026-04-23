@@ -1,0 +1,789 @@
+[00:00:00.000] I'm super excited today to have Steve Francia on the podcast.
+
+[00:00:05.200] You know, we'd like to give behind the scenes of sort of the world of development,
+
+[00:00:08.840] use it with the team and VSCO team, but also a major, awesome individual and developer
+
+[00:00:15.440] community kind of get behind the scenes.
+
+[00:00:16.880] I understand how people build software, like how they're evolving as well.
+
+[00:00:20.240] But Steve, one thing I like to do in the podcast that I just started today is read
+
+[00:00:24.520] people's bios from their website because I personally have done this for conferences
+
+[00:00:30.040] and it's always not correct.
+
+[00:00:31.440] So we're going to see how accurate it is today.
+
+[00:00:33.560] Okay, depends which website you're reading it from.
+
+[00:00:35.640] And that's a good question because our bios are all over.
+
+[00:00:37.680] Okay, Steve builds tools that makes developers lives better.
+
+[00:00:42.080] Accurate?
+
+[00:00:43.080] Yeah.
+
+[00:00:44.080] Cool.
+
+[00:00:45.080] He creates open source projects including Hugo and Cobra that have earned over 185,000
+
+[00:00:49.040] GitHub stars.
+
+[00:00:50.040] Maybe a little bit more now.
+
+[00:00:51.920] We shape the modern developer stack from architecting MongoDB's user experience and scaling
+
+[00:00:55.800] go at Google to pioneer container standards at Docker and driving AI at two Sigma.
+
+[00:01:01.640] Is that correct?
+
+[00:01:03.680] That's accurate.
+
+[00:01:04.680] Yeah.
+
+[00:01:05.680] Okay, good.
+
+[00:01:06.680] Yeah.
+
+[00:01:07.680] That's cool.
+
+[00:01:08.680] I mostly have realized that I never update any of my websites.
+
+[00:01:12.400] Yeah.
+
+[00:01:13.400] So you've had a long history of huge projects that you worked on across many different
+
+[00:01:20.280] areas.
+
+[00:01:21.640] Go as a language.
+
+[00:01:22.640] No, I'm not going to be a stack.
+
+[00:01:24.240] I think of these Hugo.
+
+[00:01:26.240] Like how did you actually get involved in these projects?
+
+[00:01:30.440] What led you to working on these projects and building these open source projects?
+
+[00:01:36.080] Yeah, interesting.
+
+[00:01:38.960] It's been a wild ride to be really honest.
+
+[00:01:44.680] There's not a consistent theme, but I started my career mostly in web, consumer facing
+
+[00:01:50.560] things and had the good fortune of being able to be really early adopter of MongoDB,
+
+[00:02:00.320] like really early, like first three adopters of MongoDB.
+
+[00:02:05.640] And that led to getting to know the team and the founders and which led to an experience
+
+[00:02:12.040] of joining very early and having a very formative role in that company and building out
+
+[00:02:17.280] the product and making sure that it had a really stellar user experience as well as a
+
+[00:02:24.240] vibrant community around it.
+
+[00:02:25.760] So we pioneered also a lot of the dev rel things that have become part of the playbook
+
+[00:02:32.760] when we're at MongoDB.
+
+[00:02:35.440] And there I was leading a team about 150 people and some of the other VPs.
+
+[00:02:44.200] I noticed weren't really coding anymore and hadn't coded in a long time.
+
+[00:02:47.320] And I didn't like that for me.
+
+[00:02:50.440] I really wanted to keep my fingers on the pulse of what was changing.
+
+[00:02:56.040] So I was always doing open source stuff to just keep my skill sharp and this led to many
+
+[00:03:02.320] of the other projects that you mentioned.
+
+[00:03:03.760] So I was managing ultimately 12 different languages at MongoDB.
+
+[00:03:12.160] And the last one we added was go of the 12 and I was like, I need a project to learn
+
+[00:03:16.840] this language and I was frustrated with some of the experiences that I was having with
+
+[00:03:23.240] WordPress security and how expensive it was not that it's expensive.
+
+[00:03:27.280] But for me who had to start a content, I was paying a lot to host this dynamic website.
+
+[00:03:33.240] And so my first scope project was Hugo and now it's grown to become the most popular
+
+[00:03:39.840] wish that I generated.
+
+[00:03:42.000] And out of that I knew the experience I wanted.
+
+[00:03:44.920] So I built Cobra to create that experience.
+
+[00:03:47.800] Turns out GO is was really good for the use case of Hugo but it's really good for both
+
+[00:03:54.200] the use case of creating web content as well as CLIs.
+
+[00:03:58.800] And now GO, it's one of the staples of GO companies all over the world use it.
+
+[00:04:04.280] Cooper Netties, GitHub, are all built with Cobra.
+
+[00:04:09.320] How are you balancing life work and open source?
+
+[00:04:13.520] Because I took a lot of open source creators and I am myself as well.
+
+[00:04:17.200] And as these projects grow, it starts off with an idea.
+
+[00:04:19.320] I want to be the thing and then you just put it out there.
+
+[00:04:22.280] And sometimes nothing happens.
+
+[00:04:23.280] You don't use it for yourself, which is some of my favorite software.
+
+[00:04:25.800] It doesn't go to software for myself.
+
+[00:04:27.440] But then all of a sudden, hockey puck, right?
+
+[00:04:30.240] Like what is that balance?
+
+[00:04:32.280] How do you balance that out?
+
+[00:04:34.080] Because not only do you have one big project, you have several of the China Arts projects.
+
+[00:04:38.520] Yeah.
+
+[00:04:41.440] I think a big thing to do is, and I kind of had this epiphany early on was get out of
+
+[00:04:48.480] the way of your project.
+
+[00:04:49.480] What do you mean by that?
+
+[00:04:50.480] Because you want to code it, right?
+
+[00:04:52.840] You want to be honored or don't you?
+
+[00:04:55.160] I do but I realize that some of the projects I have, I'm the only maintainer on and nobody
+
+[00:05:03.330] else uses.
+
+[00:05:04.650] Other projects really become the foundation for a lot of the industry software.
+
+[00:05:11.250] And once that happens, it's not yours anymore.
+
+[00:05:13.650] Got it.
+
+[00:05:14.650] You just got your name on it.
+
+[00:05:16.290] But once Microsoft and Google and GitHub and Amazon, everyone else starts adopting your
+
+[00:05:25.650] project, you can't break the world by making changes to it just because you have
+
+[00:05:30.930] a whim.
+
+[00:05:31.930] So you really have a social contract that we sign as part of participating in open source
+
+[00:05:37.890] that you're going to be responsible for these things.
+
+[00:05:40.290] And I realize that that's a big burden, but there's lots and lots of interested parties
+
+[00:05:44.930] that want to see this succeed.
+
+[00:05:47.450] And so as soon as I saw people were interested sending pull requests, you want to be a
+
+[00:05:52.250] maintainer, you want to help review other people's and really got out of the way.
+
+[00:05:56.250] to let other people do it, give some guidelines, set some goals.
+
+[00:06:01.410] But it's amazing to see what the community does with open source.
+
+[00:06:07.850] So right now I'm not the lead maintainer on any of these projects.
+
+[00:06:11.050] I'm still maintainer on all the projects, but I've asked the torch over to wonderful
+
+[00:06:16.650] maintainers who really have found a lot of pride of maintaining these popular pieces of software
+
+[00:06:25.010] and they're doing a great job and have for years.
+
+[00:06:28.090] You kind of consider yourself sort of like a mentor in that space.
+
+[00:06:30.450] At this point kind of like that or was it sort of a natural like, hey, this is just like
+
+[00:06:35.250] me passing the baton?
+
+[00:06:36.770] I think it's a bit of bulk.
+
+[00:06:38.650] There's things that they're better.
+
+[00:06:40.810] They now know the code base is far better than I do.
+
+[00:06:45.290] They're much closer to working with the latest changes.
+
+[00:06:49.930] They're reviewing all the pull requests that come.
+
+[00:06:53.050] They're really up to speed and fantastic on the coding side.
+
+[00:06:57.050] There's a lot more that go into an open source project than just the code.
+
+[00:07:01.890] And a lot of the other aspects of building the community leadership, marketing, all of
+
+[00:07:09.090] that is an area where I still feel like I can add value and continue to do so.
+
+[00:07:15.810] Some of those things mentoring, but a lot of the things they honestly mentor me.
+
+[00:07:20.690] And so, lean on them for their expertise.
+
+[00:07:26.610] That's probably here about just this evolution of these projects because I think when
+
+[00:07:31.010] I talk to myself included giving up that control, giving up that, hey, I built this thing,
+
+[00:07:37.810] I built it for myself and I wanted this way and now it's not really mine anymore.
+
+[00:07:42.530] I'm actually saying, it's not about me.
+
+[00:07:45.570] It's about the community around it and evolving it.
+
+[00:07:47.810] How did you make that mind shift and maybe the first project for you to say, okay,
+
+[00:07:53.810] this was my thing.
+
+[00:07:54.810] Now, it's kind of my thing because when I talk to a lot of creators, that's the struggle
+
+[00:07:59.570] is I think two-factor.
+
+[00:08:01.370] I don't have the time and the energy and effort.
+
+[00:08:02.930] But I also don't want to give up control of the thing that I wanted because I built this
+
+[00:08:05.490] thing for myself.
+
+[00:08:07.490] Yeah, I think control, this sounds like a pass out of a control is an illusion.
+
+[00:08:14.170] We tell ourselves that we have control of things but as soon as people start adopting
+
+[00:08:18.610] it, you don't have control anymore.
+
+[00:08:22.530] Maybe you do have control but only in ways that can hurt it.
+
+[00:08:26.090] You could do something that would make your project less successful.
+
+[00:08:30.050] But it's like music.
+
+[00:08:31.850] Once a song's written, it doesn't matter what the author's intent was because it matters
+
+[00:08:35.890] the experience of the listener and how they connect to it.
+
+[00:08:40.450] So to think that you own someone else's experiences is weird.
+
+[00:08:46.650] I feel responsibility for these things but I don't feel control.
+
+[00:08:51.330] I never have.
+
+[00:08:52.330] I've always thought, let's collectively do this together and give it the best potential.
+
+[00:08:59.170] Once Kubernetes was a big early user of Cobra and once that happened, it was clear that
+
+[00:09:07.250] the use cases that they had and what they were building with it was far beyond what
+
+[00:09:12.650] I built it for Hugo.
+
+[00:09:14.450] You could also see that this would benefit lots of other companies and projects as it went
+
+[00:09:19.890] on.
+
+[00:09:20.890] It was clear that let's collectively take this in a new direction to push the boundaries
+
+[00:09:27.650] further.
+
+[00:09:31.130] It wasn't about my vision anymore.
+
+[00:09:33.410] It was about my vision would have limited its potential.
+
+[00:09:40.130] Why would I want to limit the potential of this thing that I was fortunate enough to create
+
+[00:09:44.130] and resonated with people?
+
+[00:09:47.770] I think my realization was, why am I getting the way of my own project?
+
+[00:09:57.130] Let me step out of the way, take the ego out and let this project succeed collectively
+
+[00:10:04.530] now as the community itself is building.
+
+[00:10:07.930] Let's talk about that community because I think that's one of the things I love about being
+
+[00:10:11.690] in the developer community space is like amazing developers and it's rich ecosystem.
+
+[00:10:15.730] How did you help or what did you do to have this thriving ecosystem like and especially
+
+[00:10:21.730] for maintainers of open source projects?
+
+[00:10:24.690] I'm ready to start this and I have a few people.
+
+[00:10:29.290] What are the best projects?
+
+[00:10:30.290] What was the first step in helping to build this community around these huge general
+
+[00:10:35.370] and open source projects that it made them continue to be successful?
+
+[00:10:39.290] It's been different for different projects.
+
+[00:10:42.690] There's not a playbook that you can just use.
+
+[00:10:46.650] Our approach for go was very different than MongoDB, very different than Docker and different
+
+[00:10:52.250] from Hugo and Cobra and Viper and all of these are taking different approaches.
+
+[00:10:59.490] Partly because they've peeled the different communities.
+
+[00:11:02.330] The web community is very different than the database community.
+
+[00:11:05.930] Language community is very different.
+
+[00:11:08.810] And so I think there's some common threads to that.
+
+[00:11:12.970] One is at many of the places I've done some similar things.
+
+[00:11:21.130] So at Docker we created the idea of the first ever, I've never heard of anyone else
+
+[00:11:30.010] doing it.
+
+[00:11:31.010] It was a contributorathon.
+
+[00:11:32.850] So we had, I think it was 12 events and 12 cities at the same weekend for the same couple
+
+[00:11:40.210] days.
+
+[00:11:41.210] And we flew out to these places.
+
+[00:11:43.610] We divided up the team.
+
+[00:11:44.610] We flew out to all these places.
+
+[00:11:46.410] We hosted maybe 100 to 300 people in each city.
+
+[00:11:53.090] And we tried to have everybody make their first commit to Docker.
+
+[00:11:57.330] And so we really wanted to show that we're open to contributions.
+
+[00:12:03.330] Later I joined the Go team leading the Go project at Google.
+
+[00:12:08.130] And at Go for Com we decided to do a very similar thing.
+
+[00:12:10.850] We didn't do it in many cities.
+
+[00:12:11.970] We had one of those big rooms at the convention center.
+
+[00:12:17.370] We built a dashboard that put on the wall with a projector.
+
+[00:12:22.650] And everyone's in the same room.
+
+[00:12:23.730] We've got Go members sitting at every table and mentors from the community.
+
+[00:12:29.050] People that were Go members at Google, Go team members at Google and people that were
+
+[00:12:33.130] contributors from the community, mentoring people.
+
+[00:12:36.610] And anyone who went to Go for Com could come and participate.
+
+[00:12:40.290] And the goal is to make your first contribution to the Go project.
+
+[00:12:43.850] We got hundreds of contributions that night to a project that many people
+
+[00:12:50.610] didn't feel like they were either welcomed to contribute or maybe that they,
+
+[00:12:57.450] well, what I can contribute.
+
+[00:12:59.090] I'm not the level of Ken Thompson and Rob Pike to be able to,
+
+[00:13:04.010] I can't contribute to this.
+
+[00:13:05.330] There's a ton of things that entry, people that are young and
+
+[00:13:10.130] their careers, young and their development can do.
+
+[00:13:12.130] There's some things that you need to be far more experienced, but
+
+[00:13:15.530] everyone can contribute.
+
+[00:13:17.410] And that ethos of just like you're welcome here, we want you to be a part of,
+
+[00:13:22.970] there's also two communities.
+
+[00:13:25.290] There's a contributor community and then there's the user community.
+
+[00:13:28.450] Yeah. And those are different approaches.
+
+[00:13:30.050] But for both of them, that spirit of you're welcome here,
+
+[00:13:33.210] we want you to be a part of this and making sure that we have good code of conduct.
+
+[00:13:38.010] And we adhere to that and we have that culture has been a critical part of
+
+[00:13:42.690] growing all these communities.
+
+[00:13:44.130] That's lovely.
+
+[00:13:44.610] Yeah, I think when I talk to a lot of developers,
+
+[00:13:46.850] like that being feeling like they're welcome, right?
+
+[00:13:49.490] I feel like you're allowed to do this.
+
+[00:13:50.730] And I often talk to community members and developers and say,
+
+[00:13:54.770] listen, it doesn't matter if it's adding to documentation,
+
+[00:13:57.770] fixing the typo, fixing up the read, me, making,
+
+[00:14:01.370] you know, doing an issue, right?
+
+[00:14:03.170] Just even posting that, that's a contribution to itself.
+
+[00:14:05.450] Like I don't great bug report or following up or doing something.
+
+[00:14:08.370] And then even just saying, hey, I'll take this on.
+
+[00:14:10.210] It could be small.
+
+[00:14:10.770] It could be little every single contributions.
+
+[00:14:12.530] Welcome.
+
+[00:14:13.130] Is there things that you did maybe in the repo level that like,
+
+[00:14:16.410] you said, you know, the standards and things like, yeah, maybe not just in
+
+[00:14:19.970] the repo level, like from the issues or the poor requests,
+
+[00:14:22.730] like that maybe folks could that would be worked or then didn't work.
+
+[00:14:27.090] Yeah.
+
+[00:14:27.730] That maybe folks could maybe adopt that would like encourage that type of
+
+[00:14:30.610] contributions.
+
+[00:14:32.250] So it depends on the scale of the project.
+
+[00:14:34.570] So for the GOAP project, we did some very specific things to encourage this.
+
+[00:14:39.810] For some of the smaller relatively smaller projects like Cobra,
+
+[00:14:43.290] we haven't done these.
+
+[00:14:45.370] And I think the level of contribution there is a little more targeted.
+
+[00:14:49.570] It's just, you know, the scope, not the user base is different,
+
+[00:14:52.890] but just the scope GOA is an editor, compiler.
+
+[00:14:58.090] I mean, it's got the full scope of everything about the powers,
+
+[00:15:03.010] and the entire GOECA system is within that one project.
+
+[00:15:05.570] So for this, we have a special tag,
+
+[00:15:09.610] a label that we put on issues that are beginner issues.
+
+[00:15:13.290] Part of our dashboard that we made and is still there is that you can go and
+
+[00:15:18.850] find beginner issues.
+
+[00:15:22.690] And so we really wanted to say like new contributions.
+
+[00:15:26.450] Welcome.
+
+[00:15:27.370] Really tried to make it good for them.
+
+[00:15:30.250] We also built, we wrote guides and a tool that helps people make their first
+
+[00:15:37.250] contributions because we had a bit of a specific workflow of how we do things.
+
+[00:15:42.050] And so I think brilliant idea was to create, was not my idea.
+
+[00:15:48.970] So my idea was to polish up our guides and we did and they're really good.
+
+[00:15:56.810] But an even better idea was to write a tool that guided it, you through it,
+
+[00:16:01.730] step by step.
+
+[00:16:02.410] So it's interactive CLI tool that just, okay, step one and then it took you on
+
+[00:16:07.530] that step and it had you log in and do things and then step two.
+
+[00:16:11.970] So it was very sequential and rather than reading something and then coming
+
+[00:16:15.930] over here and doing something, you stayed in your terminal and it stepped you
+
+[00:16:19.930] through all the things that you needed to do interactively.
+
+[00:16:22.770] As you had more people contribute to these projects, one thing that I often
+
+[00:16:26.810] hear from maintainers, but also myself, I'm saying maintainers, but I'm actually
+
+[00:16:31.050] just most referring to myself as a maintainer, but you know, it worked at huge
+
+[00:16:34.810] projects here at Microsoft is as you get more contributions, you get more
+
+[00:16:39.370] users, you get more issues, you get more pull requests.
+
+[00:16:43.210] How did you balance that to grow this community out as more things were coming
+
+[00:16:48.170] in because the overhead of saying, I just actually like an issue
+
+[00:16:51.770] with triage and a pull request reviewer at the end of the day compared to
+
+[00:16:55.290] like I get to write code, right?
+
+[00:16:56.570] Or wow, someone did a PR, but we're so swamped that actually is going to take
+
+[00:17:02.170] a week or two weeks and that can demotivate people as well.
+
+[00:17:04.490] How do you balance that in these projects as they continue to grow?
+
+[00:17:08.250] First, I think it's one of the biggest challenges.
+
+[00:17:10.410] I think people dramatically underestimate the maintenance cost
+
+[00:17:18.490] of creating software.
+
+[00:17:20.490] And maintainer burdens big.
+
+[00:17:23.130] We had Docker, we had a dramatically oversized pool of contributions.
+
+[00:17:28.650] We had developed very specific strategies that were somewhat unique to
+
+[00:17:33.450] Docker and the challenges that we had there.
+
+[00:17:36.330] Go similar thing, we actually had LGTM bot that came and did things.
+
+[00:17:42.890] So we built some different really agents that would connect to things,
+
+[00:17:48.010] look for different triggers and analyze the content and just help facilitate
+
+[00:17:53.690] the human aspect of it.
+
+[00:17:56.650] The project that I've been involved with that I think did this the best and still is the
+
+[00:18:00.810] gold standard for a contributor, a contributor of community is Drupal.
+
+[00:18:08.330] Most people I don't think are aware that Drupal is the second most active
+
+[00:18:12.330] open source project in history.
+
+[00:18:14.170] Oh wow, I didn't know.
+
+[00:18:14.970] So Linux kernel has the most active contributors and Drupal is number two.
+
+[00:18:20.650] And they just do a fabulous job of different roles.
+
+[00:18:25.450] There's a lot of interest in contributing and being part of Drupal,
+
+[00:18:30.570] but they have different roles that you can take.
+
+[00:18:32.330] So one of the roles is just a triager.
+
+[00:18:34.010] And that's how you kind of get your feet wet with the project and start really understanding it
+
+[00:18:38.890] better.
+
+[00:18:39.210] And so as each as you kind of grow in contributions, you get more things that you can do,
+
+[00:18:46.250] but they really distribute the burden and load of this across a broad group of people.
+
+[00:18:53.050] And what they've created is this pipeline that as new people are always open source and everything
+
+[00:19:00.170] in life, like comes out to different events happen.
+
+[00:19:04.330] You might have a kid or an illness or whatever it is or a new job that has taken you out of the
+
+[00:19:09.850] pipeline.
+
+[00:19:11.290] But new people are coming into the pipeline.
+
+[00:19:14.010] And so you want to make sure that they get the right training and continue that to go through it.
+
+[00:19:19.210] And so I've learned a lot from Drupal.
+
+[00:19:22.090] I had a benefit of being a part of the Drupal Association board for many years.
+
+[00:19:27.290] There's a way to contribute back from all the things I learned from how well they did with this.
+
+[00:19:31.050] And I hands off to Dries and Angie and the rest of the folks that really built this amazing
+
+[00:19:38.170] contributor community there.
+
+[00:19:39.610] Yeah.
+
+[00:19:40.010] I love that journey because just like how we were talking about high,
+
+[00:19:42.410] any contribution matters.
+
+[00:19:43.610] Also, any of those contributions, any of those levels, actually just reviewing the PRs and going through
+
+[00:19:48.410] and reviewing the issues.
+
+[00:19:49.770] I think what's fascinating, a lot of friends that I work with is many of them are like,
+
+[00:19:58.170] I love developing, but what I really like doing is writing amazing documentation.
+
+[00:20:02.010] That's what I love doing.
+
+[00:20:03.290] Like let me just do that.
+
+[00:20:04.570] And that's it.
+
+[00:20:05.530] And you focus on the code, all right, the docs writer.
+
+[00:20:07.530] People are like, I'm really good at marketing, right?
+
+[00:20:09.450] And like for developer marketing, even though they're an engineer, this is actually what I want
+
+[00:20:12.890] to do in the social project.
+
+[00:20:13.850] And all of those are super valuable contributions.
+
+[00:20:16.410] Yeah.
+
+[00:20:16.890] I think one thing that I'm fascinating because it wouldn't be the year 2025,
+
+[00:20:20.010] I would talk about a little bit of AI.
+
+[00:20:21.530] But actually like in these open source projects, as we have more agents,
+
+[00:20:26.730] we have more automated pull requests.
+
+[00:20:29.610] Like how is that evolving?
+
+[00:20:30.810] How you think about building the communities and continuing to grow these projects
+
+[00:20:37.530] as just the entire sort of software engineering cycle is going through like this transformation,
+
+[00:20:44.250] especially for open source projects.
+
+[00:20:45.610] Yeah.
+
+[00:20:47.370] It's a really interesting question.
+
+[00:20:49.130] And I think my personal opinion about this is, and it's confusing.
+
+[00:20:54.650] Like I don't think we have a good sense of how it's going to evolve.
+
+[00:20:59.530] There's definitely a sense of the more things that we give to robots, the less involved humans are,
+
+[00:21:07.930] which is a challenging thing because I think the human experience is to create.
+
+[00:21:12.650] I think that's a fundamental part of the human experience.
+
+[00:21:15.690] And now we've got robots creating things.
+
+[00:21:18.650] And it's really changing it.
+
+[00:21:21.690] It's changing the shape of the community.
+
+[00:21:23.850] I think a key part of it is to find the right balance between doing creative things
+
+[00:21:30.250] that you love and are passionate about and having robots help facilitate and assist that.
+
+[00:21:37.050] And I don't think we have the right answer to what that looks like yet.
+
+[00:21:44.810] I think the more automated these things are, kind of the less human experience is part of it.
+
+[00:21:51.370] But at the same time, we've been using machines the whole time to automate different aspects of it
+
+[00:21:57.530] and to make it better for us.
+
+[00:21:59.290] So I think we've really got to figure out what the right balance is across those.
+
+[00:22:03.530] And I think it's changing not only the software development life cycle,
+
+[00:22:08.570] it's also changing how we find new packages.
+
+[00:22:11.690] Right? Because nowadays most of the time, the alarms are making the suggestion.
+
+[00:22:14.810] You're not going to GitHub or Google or, you know, like the Go.dev webpage.
+
+[00:22:20.410] You're going to your terminal or to your editor.
+
+[00:22:25.130] And it's suggesting when it builds this function, it's putting the import statement in there for you.
+
+[00:22:30.250] Yeah. So it's really fundamentally changing how we approach things.
+
+[00:22:35.210] It's also like a lot of times now you're not reading the documentation,
+
+[00:22:39.850] but an agent's reading the documentation.
+
+[00:22:41.930] And so how are we adapting our projects to be able to fit into this new structure where
+
+[00:22:47.850] agents might be the primary audience.
+
+[00:22:51.610] I think it's going to really, we'll see how it plays out over the next few months,
+
+[00:22:56.570] but it's certainly something that we need to think about.
+
+[00:22:58.810] Yeah. And sometimes they're writing the documentation.
+
+[00:23:00.730] A lot of times they're writing.
+
+[00:23:01.770] Yeah. Well, let me wrap up with this because this has been really awesome.
+
+[00:23:06.330] I really appreciate it because every day I'm working in huge projects here,
+
+[00:23:11.370] like yourself and outside of work as well and being about how do I balance everything
+
+[00:23:16.010] and how you've done it and these projects and work with the communities.
+
+[00:23:18.250] And there's so many different unique ways.
+
+[00:23:19.930] I think what I'm learning at least is they're not one approach.
+
+[00:23:21.930] There's many approaches like pool or spouse for you in this.
+
+[00:23:24.330] Well, as you just excited about the future of open source,
+
+[00:23:26.570] I mean, it's been a while journey, I have to imagine since the beginning of kind of working
+
+[00:23:30.810] in these projects. Well, how's your excited for the future of open source going forward?
+
+[00:23:35.450] So I think we're at a really interesting time. A really exciting time.
+
+[00:23:40.330] We've got this new technology that the LMs that can do things that we've struggled with
+
+[00:23:47.450] since the beginning of computing. And figuring out how to balance this new incorporate,
+
+[00:23:54.250] this new capability that we didn't have before into things, into how we've done things before.
+
+[00:24:00.970] And it really unlocks a lot of potential. And I'm really excited to see how that evolves
+
+[00:24:06.970] to the developer experience, how it involves the open source experience.
+
+[00:24:11.450] I think there's just a ton of potential that we're barely scratched the surface of how really this
+
+[00:24:16.250] integration looks. And I'm also excited that we can do things that we've never done before.
+
+[00:24:22.250] Yeah. Things that we've even have the time to code before. Now, we have more time to code
+
+[00:24:28.650] because the assistants accelerate what we're doing, as well as it's really giving us opportunities
+
+[00:24:37.370] to write software that before there wasn't this capability of a lot of the old methods of understanding,
+
+[00:24:49.290] these like flexible content, whether images or other things, just wasn't available. And now
+
+[00:24:55.850] we've got, it's been unlocked by these multimodal models that can really understand things in a
+
+[00:25:01.530] way that would have been very challenging before. So I think it's a very exciting time where we're
+
+[00:25:06.970] able to build things faster than we've ever built before and unlock new capabilities. And I'm excited
+
+[00:25:12.330] to see what the world does with it. That's awesome. Yeah. For me for sure, I've definitely written
+
+[00:25:16.730] more software faster than I ever have in my life. And stuff that I wouldn't have built. I think
+
+[00:25:22.250] that's what's interesting too is I may not have had the time to build that feature, build that
+
+[00:25:26.570] little project. And somebody's capability just enable me to do it, right? Whether it's short-lived
+
+[00:25:32.250] or long-lived. Yeah. We'll see things so much for coming on the path. Perfect. Thank you.
+
+[00:25:34.890] I'm not always, I really enjoyed it. We'll put links to everything. Find all your projects and
+
+[00:25:38.410] everything in the show. That'll be great. So thanks again for coming on. Appreciate it. Thank you. I appreciate it.

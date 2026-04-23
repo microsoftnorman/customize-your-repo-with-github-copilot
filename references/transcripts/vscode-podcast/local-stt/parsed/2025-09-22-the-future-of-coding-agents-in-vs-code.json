@@ -1,0 +1,1936 @@
+{
+  "source_file": "2025-09-22-the-future-of-coding-agents-in-vs-code.md",
+  "transcript_format": "local_stt_segments",
+  "segment_count": 273,
+  "metadata": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 6,
+    "title": "The Future of Coding Agents in VS Code",
+    "url": "https://www.vscodepodcast.com/6",
+    "transcript_url": "",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/66a3041f-aa20-4f28-9678-8ec6568c977e.mp3",
+    "published": "2025-09-22",
+    "duration": "22:24",
+    "transcript_available": false,
+    "source_file": "2025-09-22-the-future-of-coding-agents-in-vs-code.md",
+    "source_path": "references\\transcripts\\vscode-podcast\\2025-09-22-the-future-of-coding-agents-in-vs-code.md",
+    "local_stt": true,
+    "local_stt_model": "tiny",
+    "local_stt_language": "en",
+    "local_stt_device": "cpu",
+    "local_stt_compute_type": "auto"
+  },
+  "segments": [
+    {
+      "speaker": null,
+      "text": "Welcome back everyone to the VS Code Insiders podcast you're behind the scenes look at your favorite code editor",
+      "start": "00:00:00.300",
+      "end": "00:00:06.260",
+      "id": 1
+    },
+    {
+      "speaker": null,
+      "text": "VS code today. I have two amazing spectacular guests some of my best friends in the entire world",
+      "start": "00:00:06.260",
+      "end": "00:00:11.420",
+      "id": 2
+    },
+    {
+      "speaker": null,
+      "text": "Brigitte Mertal and Josh Spicer from the VS Code team. How's it going?",
+      "start": "00:00:11.420",
+      "end": "00:00:14.820",
+      "id": 3
+    },
+    {
+      "speaker": null,
+      "text": "Go under there. Yeah, I'm so excited to be talking to you today because we're gonna be talking all about coding agents",
+      "start": "00:00:15.420",
+      "end": "00:00:21.780",
+      "id": 4
+    },
+    {
+      "speaker": null,
+      "text": "and all the amazing stuff that's been happening in it but before we do there, Brigitte,",
+      "start": "00:00:21.780",
+      "end": "00:00:25.620",
+      "id": 5
+    },
+    {
+      "speaker": null,
+      "text": "I'll have you on a little bit about yourself. Yeah, so I'm Brigitte. I'm a product manager on the VS Code team here at Microsoft",
+      "start": "00:00:25.620",
+      "end": "00:00:31.300",
+      "id": 6
+    },
+    {
+      "speaker": null,
+      "text": "I get to work on a ton of really cool features",
+      "start": "00:00:31.300",
+      "end": "00:00:33.540",
+      "id": 7
+    },
+    {
+      "speaker": null,
+      "text": "Specifically in co-pilot. I work on our co-pilot coding agent integration and I work on our next edit suggestions experience",
+      "start": "00:00:33.860",
+      "end": "00:00:40.020",
+      "id": 8
+    },
+    {
+      "speaker": null,
+      "text": "And I'll let you Josh",
+      "start": "00:00:40.740",
+      "end": "00:00:42.260",
+      "id": 9
+    },
+    {
+      "speaker": null,
+      "text": "Sweet. Yeah, and I am Josh. I have been on the team for about a year as an engineer",
+      "start": "00:00:42.260",
+      "end": "00:00:47.540",
+      "id": 10
+    },
+    {
+      "speaker": null,
+      "text": "I've worked on a wide range of things in the past year",
+      "start": "00:00:48.100",
+      "end": "00:00:50.580",
+      "id": 11
+    },
+    {
+      "speaker": null,
+      "text": "I'm worked on some like a psych remote SSH bits worked on some enterprise policy and now working on a lot of the coding",
+      "start": "00:00:51.060",
+      "end": "00:00:57.540",
+      "id": 12
+    },
+    {
+      "speaker": null,
+      "text": "Engine work that we're doing now awesome now. You're also world famous for your what I like to call the",
+      "start": "00:00:57.540",
+      "end": "00:01:04.220",
+      "id": 13
+    },
+    {
+      "speaker": null,
+      "text": "Tatt the Tattoine theme inside of VS Code. That's sort of officially named it. What it's called like solar or something",
+      "start": "00:01:04.220",
+      "end": "00:01:10.220",
+      "id": 14
+    },
+    {
+      "speaker": null,
+      "text": "What's it called?",
+      "start": "00:01:10.220",
+      "end": "00:01:11.220",
+      "id": 15
+    },
+    {
+      "speaker": null,
+      "text": "Yes, it's called",
+      "start": "00:01:11.220",
+      "end": "00:01:13.220",
+      "id": 16
+    },
+    {
+      "speaker": null,
+      "text": "Solarized I believe is what I named it. I have heard it. He called like the theme that looks like a Kindle",
+      "start": "00:01:13.220",
+      "end": "00:01:18.300",
+      "id": 17
+    },
+    {
+      "speaker": null,
+      "text": "I've never heard like the Tattoine theme",
+      "start": "00:01:18.380",
+      "end": "00:01:20.380",
+      "id": 18
+    },
+    {
+      "speaker": null,
+      "text": "So there's a whole bunch of names for it. Yeah, I had actually forked this theme from another great theme that was",
+      "start": "00:01:21.020",
+      "end": "00:01:26.700",
+      "id": 19
+    },
+    {
+      "speaker": null,
+      "text": "Also like a solarized kind of name to it and I I loved it. So I wanted to extend it",
+      "start": "00:01:28.380",
+      "end": "00:01:35.180",
+      "id": 20
+    },
+    {
+      "speaker": null,
+      "text": "And now every like release note. I get at least a message for you. You know, not about the work I'm doing but about my theme specifically, so",
+      "start": "00:01:36.060",
+      "end": "00:01:42.700",
+      "id": 21
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, sure if you're watching on YouTube or Spotify right now, you will see that. I will be putting it up",
+      "start": "00:01:43.420",
+      "end": "00:01:48.460",
+      "id": 22
+    },
+    {
+      "speaker": null,
+      "text": "It's my default theme. Did you know that? It's my new default theme. I do not know that. That's very exciting nice",
+      "start": "00:01:48.460",
+      "end": "00:01:52.940",
+      "id": 23
+    },
+    {
+      "speaker": null,
+      "text": "It's yeah, does anything want me to add let me know",
+      "start": "00:01:52.940",
+      "end": "00:01:54.940",
+      "id": 24
+    },
+    {
+      "speaker": null,
+      "text": "Oh, yeah, well, yeah, there's some there's something I haven't done. I love it and I love it",
+      "start": "00:01:55.740",
+      "end": "00:02:00.060",
+      "id": 25
+    },
+    {
+      "speaker": null,
+      "text": "Also that it really upsets peers whenever I share my screen and we do something like",
+      "start": "00:02:00.060",
+      "end": "00:02:03.500",
+      "id": 26
+    },
+    {
+      "speaker": null,
+      "text": "He hates they're very divisive. Yeah",
+      "start": "00:02:04.060",
+      "end": "00:02:06.060",
+      "id": 27
+    },
+    {
+      "speaker": null,
+      "text": "So I love that he ate it, but I love that I love it",
+      "start": "00:02:06.940",
+      "end": "00:02:09.580",
+      "id": 28
+    },
+    {
+      "speaker": null,
+      "text": "And yes, I love knowing that peer states that that is good info that I wasn't",
+      "start": "00:02:10.140",
+      "end": "00:02:13.260",
+      "id": 29
+    },
+    {
+      "speaker": null,
+      "text": "Exactly, yeah, I just get some well, let's get into it because for me",
+      "start": "00:02:14.460",
+      "end": "00:02:19.740",
+      "id": 30
+    },
+    {
+      "speaker": null,
+      "text": "You know when I was introduced to agent mode inside of the VS code many moons ago a revolutionized how I worked and then",
+      "start": "00:02:20.620",
+      "end": "00:02:27.980",
+      "id": 31
+    },
+    {
+      "speaker": null,
+      "text": "When coding agents came about like that were not agent mode, which I want to clarify here",
+      "start": "00:02:28.540",
+      "end": "00:02:34.060",
+      "id": 32
+    },
+    {
+      "speaker": null,
+      "text": "That also revolutionized how I work again, but I think many people who are brand new not even just a",
+      "start": "00:02:34.060",
+      "end": "00:02:39.020",
+      "id": 33
+    },
+    {
+      "speaker": null,
+      "text": "Using VS code and using chat and using agent mode, they may not actually know even what coding agents are like what ours are like with the",
+      "start": "00:02:39.340",
+      "end": "00:02:47.260",
+      "id": 34
+    },
+    {
+      "speaker": null,
+      "text": "Interition, so what is a coding agent and how exactly is that different",
+      "start": "00:02:47.260",
+      "end": "00:02:52.300",
+      "id": 35
+    },
+    {
+      "speaker": null,
+      "text": "Than agent modes inside of VS code? Yeah, great. Yeah, so I think when you know",
+      "start": "00:02:52.860",
+      "end": "00:02:58.780",
+      "id": 36
+    },
+    {
+      "speaker": null,
+      "text": "Proding agents kind of came on the scene, you know, we had like the CLI based like the few I based coding agents",
+      "start": "00:02:58.780",
+      "end": "00:03:03.980",
+      "id": 37
+    },
+    {
+      "speaker": null,
+      "text": "Came on the scene and I know the VS code team was incredibly excited about it",
+      "start": "00:03:04.940",
+      "end": "00:03:09.020",
+      "id": 38
+    },
+    {
+      "speaker": null,
+      "text": "It's really cool concept. We have coding agent now from GitHub",
+      "start": "00:03:09.740",
+      "end": "00:03:12.780",
+      "id": 39
+    },
+    {
+      "speaker": null,
+      "text": "Or essentially and how we kind of do this in VS code is that you have some unit of work that you want to kind of",
+      "start": "00:03:13.180",
+      "end": "00:03:19.260",
+      "id": 40
+    },
+    {
+      "speaker": null,
+      "text": "Ship off and delegate to be done on your behalf, so it isn't going to be the work won't be performed on your machine",
+      "start": "00:03:19.820",
+      "end": "00:03:25.980",
+      "id": 41
+    },
+    {
+      "speaker": null,
+      "text": "Like with agent mode for instance, it's kind of",
+      "start": "00:03:26.380",
+      "end": "00:03:29.260",
+      "id": 42
+    },
+    {
+      "speaker": null,
+      "text": "That's work will be done in isolated environments. You can kind of you know go and check in on it every now and again",
+      "start": "00:03:29.900",
+      "end": "00:03:35.260",
+      "id": 43
+    },
+    {
+      "speaker": null,
+      "text": "CS progress",
+      "start": "00:03:35.260",
+      "end": "00:03:37.260",
+      "id": 44
+    },
+    {
+      "speaker": null,
+      "text": "You're happy with it. You can kind of pull that down or you can make a pull request",
+      "start": "00:03:37.260",
+      "end": "00:03:40.300",
+      "id": 45
+    },
+    {
+      "speaker": null,
+      "text": "Again such change if you're not happy with it",
+      "start": "00:03:41.260",
+      "end": "00:03:43.660",
+      "id": 46
+    },
+    {
+      "speaker": null,
+      "text": "You can either from the coding agent again to continue working asynchronously on it or you can even you know",
+      "start": "00:03:43.820",
+      "end": "00:03:49.980",
+      "id": 47
+    },
+    {
+      "speaker": null,
+      "text": "Take some of those changes down to your local machine and edit them yourself, so it's a very flexible way to work",
+      "start": "00:03:49.980",
+      "end": "00:03:55.260",
+      "id": 48
+    },
+    {
+      "speaker": null,
+      "text": "Especially if you have a number of tasks that are all independent if you kind of you know",
+      "start": "00:03:56.060",
+      "end": "00:04:00.540",
+      "id": 49
+    },
+    {
+      "speaker": null,
+      "text": "Did be them up between your coding agents and get a lot more work done. It's a pretty cool",
+      "start": "00:04:00.540",
+      "end": "00:04:04.780",
+      "id": 50
+    },
+    {
+      "speaker": null,
+      "text": "Now I feel like they also have a lot of names. I think Bridget used that there was like 28 different ways",
+      "start": "00:04:06.060",
+      "end": "00:04:10.700",
+      "id": 51
+    },
+    {
+      "speaker": null,
+      "text": "Like so what are some other things that people may",
+      "start": "00:04:10.700",
+      "end": "00:04:12.380",
+      "id": 52
+    },
+    {
+      "speaker": null,
+      "text": "Actually like here when we talk about it because I call it about 20 different things",
+      "start": "00:04:12.860",
+      "end": "00:04:16.380",
+      "id": 53
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, and I think it's interesting to see how the name and yet kind of evolves",
+      "start": "00:04:17.020",
+      "end": "00:04:21.420",
+      "id": 54
+    },
+    {
+      "speaker": null,
+      "text": "It kind of I think it speaks to as well how people already work because one of the things that I've worked on a lot in VS code is our",
+      "start": "00:04:21.420",
+      "end": "00:04:27.420",
+      "id": 55
+    },
+    {
+      "speaker": null,
+      "text": "Development experience is then it felt natural for me to call when you're delegating something you're a coding agent",
+      "start": "00:04:27.420",
+      "end": "00:04:32.060",
+      "id": 56
+    },
+    {
+      "speaker": null,
+      "text": "Like, oh, that's the remote agent because it's not something that I'm actively thinking on it's not like in my local machine",
+      "start": "00:04:32.060",
+      "end": "00:04:37.660",
+      "id": 57
+    },
+    {
+      "speaker": null,
+      "text": "And that can just go delegated tasks to like Josh is mentioning",
+      "start": "00:04:37.660",
+      "end": "00:04:40.700",
+      "id": 58
+    },
+    {
+      "speaker": null,
+      "text": "But you might have heard terms like remote agent background agent asynchronous agent",
+      "start": "00:04:40.860",
+      "end": "00:04:45.100",
+      "id": 59
+    },
+    {
+      "speaker": null,
+      "text": "Cloud agents and I think to an extent it depends too because the next coding agent could refer to something that is on your local machine or on a remote",
+      "start": "00:04:45.980",
+      "end": "00:04:53.420",
+      "id": 60
+    },
+    {
+      "speaker": null,
+      "text": "Machines that can also vary based on actual implementation but for co pilot coding agent for instance like that is happening in the cloud",
+      "start": "00:04:53.420",
+      "end": "00:05:00.220",
+      "id": 61
+    },
+    {
+      "speaker": null,
+      "text": "So I could step away from my machine. I could turn off my machine and the agent is still gonna be working on that task that I delegated",
+      "start": "00:05:00.220",
+      "end": "00:05:06.700",
+      "id": 62
+    },
+    {
+      "speaker": null,
+      "text": "Miracle and so",
+      "start": "00:05:07.740",
+      "end": "00:05:09.740",
+      "id": 63
+    },
+    {
+      "speaker": null,
+      "text": "So I guess when we think about even with agent mode like in chat",
+      "start": "00:05:09.740",
+      "end": "00:05:12.380",
+      "id": 64
+    },
+    {
+      "speaker": null,
+      "text": "I mean, it is an agent like it's just kind of different when we're talking about coding agents",
+      "start": "00:05:13.020",
+      "end": "00:05:16.540",
+      "id": 65
+    },
+    {
+      "speaker": null,
+      "text": "We often are talking about that asynchronous work things that are firing off. So for example, I just literally did this",
+      "start": "00:05:16.540",
+      "end": "00:05:22.300",
+      "id": 66
+    },
+    {
+      "speaker": null,
+      "text": "In my feedback flow app that I did I went into",
+      "start": "00:05:22.700",
+      "end": "00:05:25.340",
+      "id": 67
+    },
+    {
+      "speaker": null,
+      "text": "Into VS code and I created a new",
+      "start": "00:05:25.900",
+      "end": "00:05:28.540",
+      "id": 68
+    },
+    {
+      "speaker": null,
+      "text": "Coding I went into while I went into the agent mode and said I'm gonna do some work",
+      "start": "00:05:29.980",
+      "end": "00:05:32.940",
+      "id": 69
+    },
+    {
+      "speaker": null,
+      "text": "But I'm gonna delegate it so normally in the flow. I would type in. I want to do this thing and",
+      "start": "00:05:32.940",
+      "end": "00:05:37.820",
+      "id": 70
+    },
+    {
+      "speaker": null,
+      "text": "Agent mode would get to work on my branch on my local machine",
+      "start": "00:05:37.820",
+      "end": "00:05:40.860",
+      "id": 71
+    },
+    {
+      "speaker": null,
+      "text": "But instead of doing that I said hey, I want to add a checkbox here to have individual reports versus combined reports for this like",
+      "start": "00:05:40.860",
+      "end": "00:05:48.380",
+      "id": 72
+    },
+    {
+      "speaker": null,
+      "text": "Analyzer that I have and instead of saying send I said delegate to coding agent and when I did that",
+      "start": "00:05:48.380",
+      "end": "00:05:54.380",
+      "id": 73
+    },
+    {
+      "speaker": null,
+      "text": "Things happened",
+      "start": "00:05:55.740",
+      "end": "00:05:57.740",
+      "id": 74
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, not about there",
+      "start": "00:05:58.220",
+      "end": "00:06:00.220",
+      "id": 75
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, was that we sent all of the context from your chat up to the cloud right up up to your code",
+      "start": "00:06:00.220",
+      "end": "00:06:07.340",
+      "id": 76
+    },
+    {
+      "speaker": null,
+      "text": "And that work was performed not on your machine and what you saw was some information coming back from the coding agent of exactly what it was performing",
+      "start": "00:06:08.220",
+      "end": "00:06:16.540",
+      "id": 77
+    },
+    {
+      "speaker": null,
+      "text": "But it allows you to continue working on maybe some other more complex task on your local machine",
+      "start": "00:06:17.900",
+      "end": "00:06:22.700",
+      "id": 78
+    },
+    {
+      "speaker": null,
+      "text": "Well, you kind of delegate at new checkboxes or whatever you are doing in your application to",
+      "start": "00:06:22.700",
+      "end": "00:06:28.060",
+      "id": 79
+    },
+    {
+      "speaker": null,
+      "text": "Secondary coding agent",
+      "start": "00:06:29.900",
+      "end": "00:06:31.900",
+      "id": 80
+    },
+    {
+      "speaker": null,
+      "text": "Back can do the work on your behalf and that's what we're really excited about I think in VS code",
+      "start": "00:06:31.900",
+      "end": "00:06:36.860",
+      "id": 81
+    },
+    {
+      "speaker": null,
+      "text": "Flexibility",
+      "start": "00:06:37.740",
+      "end": "00:06:38.940",
+      "id": 82
+    },
+    {
+      "speaker": null,
+      "text": "You know, what are the use cases like inside of VS code or even outside of VS code because like yeah",
+      "start": "00:06:38.940",
+      "end": "00:06:42.940",
+      "id": 83
+    },
+    {
+      "speaker": null,
+      "text": "I could go to get up.com and also start one of these as well",
+      "start": "00:06:42.940",
+      "end": "00:06:45.020",
+      "id": 84
+    },
+    {
+      "speaker": null,
+      "text": "Like what are the use cases that you're seeing for yourself on the team?",
+      "start": "00:06:45.020",
+      "end": "00:06:47.340",
+      "id": 85
+    },
+    {
+      "speaker": null,
+      "text": "But also like our engineers and developers using VS code using these for yeah, right?",
+      "start": "00:06:47.580",
+      "end": "00:06:52.460",
+      "id": 86
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, so I think it's still like",
+      "start": "00:06:53.420",
+      "end": "00:06:55.100",
+      "id": 87
+    },
+    {
+      "speaker": null,
+      "text": "Super open ended exactly how folks are going to use these tools which I think is the exciting part",
+      "start": "00:06:55.100",
+      "end": "00:06:58.780",
+      "id": 88
+    },
+    {
+      "speaker": null,
+      "text": "You know, working on this this right now, right?",
+      "start": "00:06:58.780",
+      "end": "00:07:00.940",
+      "id": 89
+    },
+    {
+      "speaker": null,
+      "text": "Is that we're actually experimenting every month and I'll release notes. You'll see a lot of changes",
+      "start": "00:07:01.740",
+      "end": "00:07:06.220",
+      "id": 90
+    },
+    {
+      "speaker": null,
+      "text": "In this entire experience which is very exciting. We're getting a lot of feedback the entire team is self-hosting on it every day",
+      "start": "00:07:06.780",
+      "end": "00:07:12.540",
+      "id": 91
+    },
+    {
+      "speaker": null,
+      "text": "So everyone's kind of using it a little differently the way I like to use it is really if I have a small isolated issue",
+      "start": "00:07:13.420",
+      "end": "00:07:21.980",
+      "id": 92
+    },
+    {
+      "speaker": null,
+      "text": "That's open",
+      "start": "00:07:22.700",
+      "end": "00:07:24.380",
+      "id": 93
+    },
+    {
+      "speaker": null,
+      "text": "That I think can be handled nicely by coding agent. That's the main use case that I'm seeing these days for it",
+      "start": "00:07:24.380",
+      "end": "00:07:28.940",
+      "id": 94
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, and I was going to say that that resonates with me",
+      "start": "00:07:31.260",
+      "end": "00:07:33.500",
+      "id": 95
+    },
+    {
+      "speaker": null,
+      "text": "I said think something that's cool is that in VS code because we are being really flexible of trying to meet developers where they are",
+      "start": "00:07:33.500",
+      "end": "00:07:39.180",
+      "id": 96
+    },
+    {
+      "speaker": null,
+      "text": "However, they want to use these tools. We want to provide those different entry points",
+      "start": "00:07:39.180",
+      "end": "00:07:42.620",
+      "id": 97
+    },
+    {
+      "speaker": null,
+      "text": "We have this extension called the hip-hole quest extension that we also have coding agent integration within",
+      "start": "00:07:43.100",
+      "end": "00:07:48.780",
+      "id": 98
+    },
+    {
+      "speaker": null,
+      "text": "So when copilot creates a PR on your behalf, it'll show up in a special section in the PR view there",
+      "start": "00:07:48.780",
+      "end": "00:07:54.460",
+      "id": 99
+    },
+    {
+      "speaker": null,
+      "text": "And so the thing I think that's cool is if you open up issues in a repo, you just want to look at all the issues in a repo",
+      "start": "00:07:54.860",
+      "end": "00:07:59.260",
+      "id": 100
+    },
+    {
+      "speaker": null,
+      "text": "You can see that from within VS code as well",
+      "start": "00:07:59.260",
+      "end": "00:08:01.500",
+      "id": 101
+    },
+    {
+      "speaker": null,
+      "text": "And we have an icon where you can just assign that to copilot and then from there, you'll be able to just have copilot work on it and the background will you do some other work?",
+      "start": "00:08:01.820",
+      "end": "00:08:09.180",
+      "id": 102
+    },
+    {
+      "speaker": null,
+      "text": "And I found that to be nice because sometimes it's like, I'm tracking something that I'm doing either for like a personal repo that I have",
+      "start": "00:08:09.180",
+      "end": "00:08:15.260",
+      "id": 103
+    },
+    {
+      "speaker": null,
+      "text": "Or for something that I file maybe for the team in general and I'm like, I wonder if the coding agent can try tackling that",
+      "start": "00:08:15.660",
+      "end": "00:08:21.420",
+      "id": 104
+    },
+    {
+      "speaker": null,
+      "text": "It's really convenient just being able to pop over and assign that to copilot too. So kind of these chat driven flows and we also have these PR driven flows",
+      "start": "00:08:21.420",
+      "end": "00:08:28.780",
+      "id": 105
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, and I think my favorite integration these days is if there's a to-do comment in your code",
+      "start": "00:08:29.740",
+      "end": "00:08:34.460",
+      "id": 106
+    },
+    {
+      "speaker": null,
+      "text": "You know show a little code action right next to that line that allows you to delegate that specific comment to coding agent",
+      "start": "00:08:35.100",
+      "end": "00:08:42.220",
+      "id": 107
+    },
+    {
+      "speaker": null,
+      "text": "And it'll use the context of the file that you've chosen as well as the actual comment, of course, and",
+      "start": "00:08:42.540",
+      "end": "00:08:47.980",
+      "id": 108
+    },
+    {
+      "speaker": null,
+      "text": "You can just as you're working on some other issue you kind of see this",
+      "start": "00:08:48.380",
+      "end": "00:08:52.380",
+      "id": 109
+    },
+    {
+      "speaker": null,
+      "text": "Comment now that was maybe there for three or four years or something and now you can just delegate that and",
+      "start": "00:08:52.780",
+      "end": "00:08:57.980",
+      "id": 110
+    },
+    {
+      "speaker": null,
+      "text": "Go check all of like the results the PR that it creates at any point after that. But I think it's really cool",
+      "start": "00:08:58.860",
+      "end": "00:09:05.740",
+      "id": 111
+    },
+    {
+      "speaker": null,
+      "text": "That we have a lot of new ways to experiment with this tool that we have never seen before",
+      "start": "00:09:06.140",
+      "end": "00:09:12.300",
+      "id": 112
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, I think a lot of people may have seen this for the very first time it build this year when Satyo is on stage and he",
+      "start": "00:09:13.260",
+      "end": "00:09:18.700",
+      "id": 113
+    },
+    {
+      "speaker": null,
+      "text": "Had the get up issue there and then he assigned it to copilot which for all intents and purposes is that kind of was the original flow",
+      "start": "00:09:19.260",
+      "end": "00:09:26.700",
+      "id": 114
+    },
+    {
+      "speaker": null,
+      "text": "But what you both just described are many different flows. So so can we step actually",
+      "start": "00:09:26.860",
+      "end": "00:09:31.980",
+      "id": 115
+    },
+    {
+      "speaker": null,
+      "text": "Through each of those different flows of where a developer today would fire off these coding agents inside of",
+      "start": "00:09:32.700",
+      "end": "00:09:40.140",
+      "id": 116
+    },
+    {
+      "speaker": null,
+      "text": "The VS code and the implications of how is that different from",
+      "start": "00:09:40.700",
+      "end": "00:09:44.220",
+      "id": 117
+    },
+    {
+      "speaker": null,
+      "text": "Creating an issue and a sign here because I think bridge you just said yeah, you can pull up your issues and assign them from there",
+      "start": "00:09:44.700",
+      "end": "00:09:49.980",
+      "id": 118
+    },
+    {
+      "speaker": null,
+      "text": "And then it will create a branch off a meaning go",
+      "start": "00:09:50.220",
+      "end": "00:09:52.220",
+      "id": 119
+    },
+    {
+      "speaker": null,
+      "text": "But there's many places and many new places especially in 103 and 104 that just drop recently",
+      "start": "00:09:52.540",
+      "end": "00:09:57.900",
+      "id": 120
+    },
+    {
+      "speaker": null,
+      "text": "But they kind of do work a little bit different than that. So can we walk through each of those to kind of get that under the hood of what's happening?",
+      "start": "00:09:58.460",
+      "end": "00:10:05.020",
+      "id": 121
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, I think one of my other kind of flows that I use and I know a lot of folks on our team actually do is",
+      "start": "00:10:06.220",
+      "end": "00:10:12.700",
+      "id": 122
+    },
+    {
+      "speaker": null,
+      "text": "You know",
+      "start": "00:10:13.420",
+      "end": "00:10:14.380",
+      "id": 123
+    },
+    {
+      "speaker": null,
+      "text": "to have a successful coding agents",
+      "start": "00:10:14.380",
+      "end": "00:10:16.700",
+      "id": 124
+    },
+    {
+      "speaker": null,
+      "text": "You know kind of session to actually get the result that you're looking for at the end",
+      "start": "00:10:17.260",
+      "end": "00:10:21.260",
+      "id": 125
+    },
+    {
+      "speaker": null,
+      "text": "Especially for a code based like the escode you need a lot of context right there's a lot of",
+      "start": "00:10:21.260",
+      "end": "00:10:25.180",
+      "id": 126
+    },
+    {
+      "speaker": null,
+      "text": "Information that needs to go into the",
+      "start": "00:10:25.820",
+      "end": "00:10:27.820",
+      "id": 127
+    },
+    {
+      "speaker": null,
+      "text": "Task so that the coding agent actually will do this successfully and one way that I found that it's really",
+      "start": "00:10:28.620",
+      "end": "00:10:34.540",
+      "id": 128
+    },
+    {
+      "speaker": null,
+      "text": "That has been really helpful is to ask mode inside of the escode",
+      "start": "00:10:35.180",
+      "end": "00:10:38.300",
+      "id": 129
+    },
+    {
+      "speaker": null,
+      "text": "You can have a conversation essentially with",
+      "start": "00:10:39.500",
+      "end": "00:10:42.380",
+      "id": 130
+    },
+    {
+      "speaker": null,
+      "text": "Copilot you can explain exactly what you're looking for",
+      "start": "00:10:43.020",
+      "end": "00:10:45.340",
+      "id": 131
+    },
+    {
+      "speaker": null,
+      "text": "So maybe you have a very vague issue, maybe it's you know one or two lines from a teammate and you know what to do",
+      "start": "00:10:45.340",
+      "end": "00:10:50.380",
+      "id": 132
+    },
+    {
+      "speaker": null,
+      "text": "But if you just assign that issue to Copilot, it's not going to",
+      "start": "00:10:50.940",
+      "end": "00:10:53.900",
+      "id": 133
+    },
+    {
+      "speaker": null,
+      "text": "Really understand it the way that you understand it. So by having a conversation and ask mode",
+      "start": "00:10:54.540",
+      "end": "00:10:59.420",
+      "id": 134
+    },
+    {
+      "speaker": null,
+      "text": "You're really able to kind of nail down you know, like these are the files that would be interesting",
+      "start": "00:10:59.820",
+      "end": "00:11:04.140",
+      "id": 135
+    },
+    {
+      "speaker": null,
+      "text": "That would be relevant to this task, you know, this needs to",
+      "start": "00:11:04.700",
+      "end": "00:11:07.500",
+      "id": 136
+    },
+    {
+      "speaker": null,
+      "text": "Work on Windows and Mac so make sure that you know kind of have those considerations in mind maybe there's this, you know",
+      "start": "00:11:08.620",
+      "end": "00:11:13.500",
+      "id": 137
+    },
+    {
+      "speaker": null,
+      "text": "Also it's very able to depending on the kind of issue you're solving and then from there after your confident that you know",
+      "start": "00:11:13.500",
+      "end": "00:11:19.340",
+      "id": 138
+    },
+    {
+      "speaker": null,
+      "text": "You and Copilot are on the same page you guys kind of get it like where everyone is",
+      "start": "00:11:19.420",
+      "end": "00:11:24.540",
+      "id": 139
+    },
+    {
+      "speaker": null,
+      "text": "Understanding the issue from map what you hit a delegate to Copilot or the coding agent button so the one",
+      "start": "00:11:25.340",
+      "end": "00:11:30.700",
+      "id": 140
+    },
+    {
+      "speaker": null,
+      "text": "Write in chat right to the left of the send button the normal send button",
+      "start": "00:11:31.100",
+      "end": "00:11:34.380",
+      "id": 141
+    },
+    {
+      "speaker": null,
+      "text": "And then from there it'll send up all the contacts the entire conversation, you know, verbatim",
+      "start": "00:11:36.060",
+      "end": "00:11:40.140",
+      "id": 142
+    },
+    {
+      "speaker": null,
+      "text": "You can see it on the power quest",
+      "start": "00:11:40.940",
+      "end": "00:11:42.780",
+      "id": 143
+    },
+    {
+      "speaker": null,
+      "text": "exactly what we're sending is context",
+      "start": "00:11:43.500",
+      "end": "00:11:45.660",
+      "id": 144
+    },
+    {
+      "speaker": null,
+      "text": "You can see that and I find that to be a lot more successful just in a day-to-day",
+      "start": "00:11:46.620",
+      "end": "00:11:51.740",
+      "id": 145
+    },
+    {
+      "speaker": null,
+      "text": "Kind of",
+      "start": "00:11:52.460",
+      "end": "00:11:53.660",
+      "id": 146
+    },
+    {
+      "speaker": null,
+      "text": "Not too quick trivial issue say",
+      "start": "00:11:53.660",
+      "end": "00:11:55.660",
+      "id": 147
+    },
+    {
+      "speaker": null,
+      "text": "Now, that makes a lot of sense because I think how I was doing it in the early days was",
+      "start": "00:11:56.940",
+      "end": "00:12:00.940",
+      "id": 148
+    },
+    {
+      "speaker": null,
+      "text": "Working defining an issue creating an issue assigning an issue and going",
+      "start": "00:12:01.580",
+      "end": "00:12:05.820",
+      "id": 149
+    },
+    {
+      "speaker": null,
+      "text": "But the one thing that I've noticed is often I might be working on a project and when",
+      "start": "00:12:06.380",
+      "end": "00:12:10.700",
+      "id": 150
+    },
+    {
+      "speaker": null,
+      "text": "I'm working on a feature or I'm working on something. I'm already on a branch and",
+      "start": "00:12:11.580",
+      "end": "00:12:15.740",
+      "id": 151
+    },
+    {
+      "speaker": null,
+      "text": "What I've noticed is that when I hit that delegate to coding agent",
+      "start": "00:12:16.300",
+      "end": "00:12:20.060",
+      "id": 152
+    },
+    {
+      "speaker": null,
+      "text": "There's a lot of different pop-ups and different questions because it does like you said Josh it sends the context of everything in in there",
+      "start": "00:12:20.700",
+      "end": "00:12:26.460",
+      "id": 153
+    },
+    {
+      "speaker": null,
+      "text": "But it also gives you a lot of flexibility as a developer and options of how that thing is performed",
+      "start": "00:12:26.620",
+      "end": "00:12:32.620",
+      "id": 154
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, and I think like you mentioned to you can kind of do as much or as little planning as you want",
+      "start": "00:12:34.540",
+      "end": "00:12:39.340",
+      "id": 155
+    },
+    {
+      "speaker": null,
+      "text": "It's like when Josh said hey, there's times our we really want to make sure I'm on the same page",
+      "start": "00:12:39.340",
+      "end": "00:12:43.340",
+      "id": 156
+    },
+    {
+      "speaker": null,
+      "text": "Just go by like generally that's where you want to be but if it's something I found too",
+      "start": "00:12:43.340",
+      "end": "00:12:47.100",
+      "id": 157
+    },
+    {
+      "speaker": null,
+      "text": "Sometimes it's a little bit more exploratory of I'm like hey, I have this repo that I use for different demos and examples",
+      "start": "00:12:47.100",
+      "end": "00:12:52.460",
+      "id": 158
+    },
+    {
+      "speaker": null,
+      "text": "Help identify some language of the scenario is that aren't included in this code yet",
+      "start": "00:12:53.020",
+      "end": "00:12:57.100",
+      "id": 159
+    },
+    {
+      "speaker": null,
+      "text": "I didn't go by that kind of identify that we could come up with a plan",
+      "start": "00:12:57.100",
+      "end": "00:13:00.060",
+      "id": 160
+    },
+    {
+      "speaker": null,
+      "text": "We can use the to-dos that we have in chat now and then I can say okay go work on the first to-do or go work on all of these to-dos",
+      "start": "00:13:00.060",
+      "end": "00:13:06.220",
+      "id": 161
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, and that also kind of reminded me we also have a feature that I added a couple months ago that",
+      "start": "00:13:06.380",
+      "end": "00:13:13.660",
+      "id": 162
+    },
+    {
+      "speaker": null,
+      "text": "If you have you know pending changes in your workspace, it'll actually ask you do you want to push",
+      "start": "00:13:14.620",
+      "end": "00:13:19.180",
+      "id": 163
+    },
+    {
+      "speaker": null,
+      "text": "those changes before you start the coding agent sessions",
+      "start": "00:13:19.180",
+      "end": "00:13:22.220",
+      "id": 164
+    },
+    {
+      "speaker": null,
+      "text": "You can even write some of the implementation yourself to really get it on the right track",
+      "start": "00:13:22.220",
+      "end": "00:13:26.620",
+      "id": 165
+    },
+    {
+      "speaker": null,
+      "text": "You can say kind of you know kind of stuff out the the work saying you know",
+      "start": "00:13:26.620",
+      "end": "00:13:30.940",
+      "id": 166
+    },
+    {
+      "speaker": null,
+      "text": "In this file, this is where you should do X and in this file you should do Y",
+      "start": "00:13:31.580",
+      "end": "00:13:36.300",
+      "id": 167
+    },
+    {
+      "speaker": null,
+      "text": "You can push up your changes and your chat context and then and then the coding agent has a ton to work on right?",
+      "start": "00:13:37.180",
+      "end": "00:13:42.620",
+      "id": 168
+    },
+    {
+      "speaker": null,
+      "text": "It's not like it's gonna go in there blind. It has a lot of information of how to solve the problem in the way that you want it to be solved",
+      "start": "00:13:42.620",
+      "end": "00:13:49.420",
+      "id": 169
+    },
+    {
+      "speaker": null,
+      "text": "I use both of these in a lot of different mechanisms like",
+      "start": "00:13:50.460",
+      "end": "00:13:53.340",
+      "id": 170
+    },
+    {
+      "speaker": null,
+      "text": "So I'll kind of tell from row where I'll say he's a lot of everything that we have but a lot of some",
+      "start": "00:13:54.380",
+      "end": "00:13:58.940",
+      "id": 171
+    },
+    {
+      "speaker": null,
+      "text": "So the",
+      "start": "00:13:59.820",
+      "end": "00:14:01.820",
+      "id": 172
+    },
+    {
+      "speaker": null,
+      "text": "When I have that a spark of idea, but I've no time to work on it. That's when I'm like fire and forget go",
+      "start": "00:14:01.820",
+      "end": "00:14:06.380",
+      "id": 173
+    },
+    {
+      "speaker": null,
+      "text": "Like that check box thing. I was literally coming up with a presentation that I'm doing in a week",
+      "start": "00:14:06.780",
+      "end": "00:14:11.420",
+      "id": 174
+    },
+    {
+      "speaker": null,
+      "text": "For for how I use all this stuff internally and how I built this out and I was like",
+      "start": "00:14:12.140",
+      "end": "00:14:15.820",
+      "id": 175
+    },
+    {
+      "speaker": null,
+      "text": "Oh, I need to add this feature because I want to show it so I just went in and I went in and I just fire it off",
+      "start": "00:14:15.820",
+      "end": "00:14:20.700",
+      "id": 176
+    },
+    {
+      "speaker": null,
+      "text": "Here's an idea ago, right and just pull requests open no issue just top of mine go, right?",
+      "start": "00:14:20.700",
+      "end": "00:14:25.900",
+      "id": 177
+    },
+    {
+      "speaker": null,
+      "text": "But so that thing that you were just talking about",
+      "start": "00:14:25.900",
+      "end": "00:14:27.900",
+      "id": 178
+    },
+    {
+      "speaker": null,
+      "text": "A bridge it was like the planning which I've done that a lot of that like planning going back and then send it all off",
+      "start": "00:14:29.900",
+      "end": "00:14:34.460",
+      "id": 179
+    },
+    {
+      "speaker": null,
+      "text": "Because I had this big idea and I have time to work it out, but I don't have time to work on it",
+      "start": "00:14:34.460",
+      "end": "00:14:38.060",
+      "id": 180
+    },
+    {
+      "speaker": null,
+      "text": "And the other thing Josh so this is how it like trickles down which I think the flexibility part of it as it's evolved is hey",
+      "start": "00:14:38.060",
+      "end": "00:14:44.540",
+      "id": 181
+    },
+    {
+      "speaker": null,
+      "text": "I have been working on this",
+      "start": "00:14:45.660",
+      "end": "00:14:47.660",
+      "id": 182
+    },
+    {
+      "speaker": null,
+      "text": "But it's five o'clock and I got to go like I like I don't you know",
+      "start": "00:14:47.900",
+      "end": "00:14:52.540",
+      "id": 183
+    },
+    {
+      "speaker": null,
+      "text": "We've all been in that state where we're working on a bug. We're fixing a feature",
+      "start": "00:14:52.940",
+      "end": "00:14:56.460",
+      "id": 184
+    },
+    {
+      "speaker": null,
+      "text": "We're just prototyping something cool and you're like, well, I",
+      "start": "00:14:57.100",
+      "end": "00:15:00.540",
+      "id": 185
+    },
+    {
+      "speaker": null,
+      "text": "Kind of want to keep work on this, but I really want to go eat dinners but go spend time with my family",
+      "start": "00:15:01.260",
+      "end": "00:15:05.820",
+      "id": 186
+    },
+    {
+      "speaker": null,
+      "text": "And that's when I'm like send it off to the coding agent and let it cook overnight or what I mean doesn't take that long",
+      "start": "00:15:05.820",
+      "end": "00:15:11.580",
+      "id": 187
+    },
+    {
+      "speaker": null,
+      "text": "But like let it cook while I'm gone, right and as a PM",
+      "start": "00:15:11.580",
+      "end": "00:15:14.540",
+      "id": 188
+    },
+    {
+      "speaker": null,
+      "text": "AKA all I'm doing is I have like five minutes in between meeting so I'm just like okay fire and then review and fire off another one",
+      "start": "00:15:15.260",
+      "end": "00:15:20.940",
+      "id": 189
+    },
+    {
+      "speaker": null,
+      "text": "It's like I can code in quotes throughout the day there, but I have noticed that all these enhancements are there",
+      "start": "00:15:20.940",
+      "end": "00:15:25.900",
+      "id": 190
+    },
+    {
+      "speaker": null,
+      "text": "But one of the biggest enhancements that love for y'all to dive deeper into is that sort of integration of how we interact with the coding agent while it's going",
+      "start": "00:15:26.220",
+      "end": "00:15:34.940",
+      "id": 191
+    },
+    {
+      "speaker": null,
+      "text": "Because as I mentioned early on it was just a sign it to an issue and now I could view the session and see what it was doing in the cloud",
+      "start": "00:15:35.100",
+      "end": "00:15:43.100",
+      "id": 192
+    },
+    {
+      "speaker": null,
+      "text": "But I feel like now it's a lot more interactive and evolved than ever",
+      "start": "00:15:43.580",
+      "end": "00:15:47.980",
+      "id": 193
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, so yeah, so kind of how this evolved right is maybe",
+      "start": "00:15:48.860",
+      "end": "00:15:52.220",
+      "id": 194
+    },
+    {
+      "speaker": null,
+      "text": "Three or four months ago now. We really did the basic integration of like you can start a session right you",
+      "start": "00:15:52.780",
+      "end": "00:15:58.300",
+      "id": 195
+    },
+    {
+      "speaker": null,
+      "text": "You can kind of push up some context. It wasn't as complete as what we have now",
+      "start": "00:15:58.860",
+      "end": "00:16:01.900",
+      "id": 196
+    },
+    {
+      "speaker": null,
+      "text": "that you could push up some context from VS code and it would start the session and then that was kind of",
+      "start": "00:16:01.900",
+      "end": "00:16:07.740",
+      "id": 197
+    },
+    {
+      "speaker": null,
+      "text": "Kind of where the experience ended in VS code. There were some integration points, but it wasn't you know",
+      "start": "00:16:08.300",
+      "end": "00:16:12.460",
+      "id": 198
+    },
+    {
+      "speaker": null,
+      "text": "complete, you know, like it wasn't the spot that we",
+      "start": "00:16:12.940",
+      "end": "00:16:15.100",
+      "id": 199
+    },
+    {
+      "speaker": null,
+      "text": "envisioned it being in and over the past",
+      "start": "00:16:15.820",
+      "end": "00:16:17.660",
+      "id": 200
+    },
+    {
+      "speaker": null,
+      "text": "Month or two we've invested a lot in new extension APIs that we've been playing with so that",
+      "start": "00:16:17.820",
+      "end": "00:16:23.500",
+      "id": 201
+    },
+    {
+      "speaker": null,
+      "text": "As well as other folks in the future I can integrate",
+      "start": "00:16:24.220",
+      "end": "00:16:27.020",
+      "id": 202
+    },
+    {
+      "speaker": null,
+      "text": "With like our native chat widgets that we use so the same chat widgets that we have",
+      "start": "00:16:28.460",
+      "end": "00:16:33.020",
+      "id": 203
+    },
+    {
+      "speaker": null,
+      "text": "For you know locally jamoted things of that sort and making it feel like it's very integrated and tightly connected to VS code while still",
+      "start": "00:16:33.980",
+      "end": "00:16:41.180",
+      "id": 204
+    },
+    {
+      "speaker": null,
+      "text": "Allowing that power of you know actually delegating to two in agent. So that's all what we've been working on this",
+      "start": "00:16:41.500",
+      "end": "00:16:47.740",
+      "id": 205
+    },
+    {
+      "speaker": null,
+      "text": "a couple months and we'll be continuing to work on for I think",
+      "start": "00:16:48.460",
+      "end": "00:16:50.940",
+      "id": 206
+    },
+    {
+      "speaker": null,
+      "text": "a decent amount of time in the future and if people want to like find out like where is that inside of VS code like",
+      "start": "00:16:52.220",
+      "end": "00:16:58.700",
+      "id": 207
+    },
+    {
+      "speaker": null,
+      "text": "Obviously that there's a delegate buying but where's all the other stuff and you said there's like yes",
+      "start": "00:16:58.700",
+      "end": "00:17:03.260",
+      "id": 208
+    },
+    {
+      "speaker": null,
+      "text": "And there's stuff like how would people people go yeah, so you'll definitely need to get a",
+      "start": "00:17:03.260",
+      "end": "00:17:08.220",
+      "id": 209
+    },
+    {
+      "speaker": null,
+      "text": "poor request extension so that's where where that's kind of like the first consumer of this API",
+      "start": "00:17:08.220",
+      "end": "00:17:13.420",
+      "id": 210
+    },
+    {
+      "speaker": null,
+      "text": "That isn't out for all folks to use that because we're still iterating on it",
+      "start": "00:17:13.820",
+      "end": "00:17:17.500",
+      "id": 211
+    },
+    {
+      "speaker": null,
+      "text": "But if you have the poor request extension in the chat extension",
+      "start": "00:17:17.500",
+      "end": "00:17:20.460",
+      "id": 212
+    },
+    {
+      "speaker": null,
+      "text": "You're you know most of the way there the only thing that you need is now in the latest stable release there is a VS code setting",
+      "start": "00:17:21.180",
+      "end": "00:17:27.100",
+      "id": 213
+    },
+    {
+      "speaker": null,
+      "text": "Chets session view if you search that in your VS code settings",
+      "start": "00:17:28.780",
+      "end": "00:17:32.780",
+      "id": 214
+    },
+    {
+      "speaker": null,
+      "text": "Are you could turn this on and then you'll get a new view on the left hand side that is kind of your control center",
+      "start": "00:17:32.780",
+      "end": "00:17:37.980",
+      "id": 215
+    },
+    {
+      "speaker": null,
+      "text": "You can kind of see everything that's happening",
+      "start": "00:17:38.060",
+      "end": "00:17:40.060",
+      "id": 216
+    },
+    {
+      "speaker": null,
+      "text": "Involving your local chats and coding agents and things that that's sort so that's a great",
+      "start": "00:17:41.340",
+      "end": "00:17:45.740",
+      "id": 217
+    },
+    {
+      "speaker": null,
+      "text": "Kind of I live a overview of what's going on and then from there",
+      "start": "00:17:46.300",
+      "end": "00:17:49.660",
+      "id": 218
+    },
+    {
+      "speaker": null,
+      "text": "It'll enable these chat integrations where you can kind of expand out into one of these chat sessions",
+      "start": "00:17:50.780",
+      "end": "00:17:56.700",
+      "id": 219
+    },
+    {
+      "speaker": null,
+      "text": "And we have docs as well where we keep all this updated so if you fall along with the latest release notes",
+      "start": "00:17:58.300",
+      "end": "00:18:02.780",
+      "id": 220
+    },
+    {
+      "speaker": null,
+      "text": "You'll see all the great features of the teams working on and then we also keep a doc in the",
+      "start": "00:18:02.780",
+      "end": "00:18:06.620",
+      "id": 221
+    },
+    {
+      "speaker": null,
+      "text": "Copilot section of the VS code docs updated all dedicated to our Copilot coding agent integration and we'll make sure we have",
+      "start": "00:18:06.620",
+      "end": "00:18:12.700",
+      "id": 222
+    },
+    {
+      "speaker": null,
+      "text": "All the latest settings and screenshots in there so folks can follow along",
+      "start": "00:18:12.700",
+      "end": "00:18:16.060",
+      "id": 223
+    },
+    {
+      "speaker": null,
+      "text": "Very cool now where is this sweet you got?",
+      "start": "00:18:16.860",
+      "end": "00:18:19.100",
+      "id": 224
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, and then as this could be also in our latest release notes. We always also mentioned this stuff",
+      "start": "00:18:19.980",
+      "end": "00:18:24.060",
+      "id": 225
+    },
+    {
+      "speaker": null,
+      "text": "So where is this going what is next to kind of like kind of bring this to a heck?",
+      "start": "00:18:26.380",
+      "end": "00:18:30.220",
+      "id": 226
+    },
+    {
+      "speaker": null,
+      "text": "Because a lot of work has been done here, you know, what are maybe some",
+      "start": "00:18:30.220",
+      "end": "00:18:33.980",
+      "id": 227
+    },
+    {
+      "speaker": null,
+      "text": "You know, in other words, so if you've area at 18 minutes now you're invested in understanding like what's next",
+      "start": "00:18:34.460",
+      "end": "00:18:38.940",
+      "id": 228
+    },
+    {
+      "speaker": null,
+      "text": "Like if you've listened to this podcast for this long and this is the inside of podcast",
+      "start": "00:18:38.940",
+      "end": "00:18:43.100",
+      "id": 229
+    },
+    {
+      "speaker": null,
+      "text": "Even then we talk a lot of us haven't stable like what are some things that maybe the team is working on you know",
+      "start": "00:18:43.100",
+      "end": "00:18:47.580",
+      "id": 230
+    },
+    {
+      "speaker": null,
+      "text": "Everything is tracked in the open things like that like you talked to some APIs and things like where are things headed next or as much as you could",
+      "start": "00:18:47.580",
+      "end": "00:18:54.620",
+      "id": 231
+    },
+    {
+      "speaker": null,
+      "text": "You know",
+      "start": "00:18:55.180",
+      "end": "00:18:56.380",
+      "id": 232
+    },
+    {
+      "speaker": null,
+      "text": "You know give us a guess behind the scene. Yeah, so yeah",
+      "start": "00:18:56.380",
+      "end": "00:18:59.900",
+      "id": 233
+    },
+    {
+      "speaker": null,
+      "text": "kind of exactly what I was saying is that we're working on an extension API, right? We are using this extension API in the core",
+      "start": "00:19:00.140",
+      "end": "00:19:06.620",
+      "id": 234
+    },
+    {
+      "speaker": null,
+      "text": "Quest extension for the GitHub coding agent, right?",
+      "start": "00:19:06.620",
+      "end": "00:19:09.340",
+      "id": 235
+    },
+    {
+      "speaker": null,
+      "text": "And kind of like my vision for it is that",
+      "start": "00:19:10.540",
+      "end": "00:19:12.540",
+      "id": 236
+    },
+    {
+      "speaker": null,
+      "text": "Any extension that has a coding agent that they can contribute to VS code would be able to through our APIs",
+      "start": "00:19:13.820",
+      "end": "00:19:19.420",
+      "id": 237
+    },
+    {
+      "speaker": null,
+      "text": "To really have that nice tightly integrated experience of VS code and that gives you so much when you say I want to reference a file or",
+      "start": "00:19:20.140",
+      "end": "00:19:27.660",
+      "id": 238
+    },
+    {
+      "speaker": null,
+      "text": "You know just do work locally and with an agent. It's nice to use one tool instead of having to use two or three different tools",
+      "start": "00:19:28.620",
+      "end": "00:19:37.260",
+      "id": 239
+    },
+    {
+      "speaker": null,
+      "text": "I may be like a web browser",
+      "start": "00:19:37.260",
+      "end": "00:19:39.260",
+      "id": 240
+    },
+    {
+      "speaker": null,
+      "text": "Or some of it. So that's that's really the goal to keep the developer",
+      "start": "00:19:40.060",
+      "end": "00:19:43.580",
+      "id": 241
+    },
+    {
+      "speaker": null,
+      "text": "loop tight to be able to work on a task and then you can delegate some tasks and everything's unified in one spot",
+      "start": "00:19:44.300",
+      "end": "00:19:50.540",
+      "id": 242
+    },
+    {
+      "speaker": null,
+      "text": "Very cool. All right anything else from the two of you that you want to",
+      "start": "00:19:51.820",
+      "end": "00:19:54.700",
+      "id": 243
+    },
+    {
+      "speaker": null,
+      "text": "Give insight into tell developers have them go try out anything like that before you wrap up",
+      "start": "00:19:55.340",
+      "end": "00:20:00.380",
+      "id": 244
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, well power to say we have a lot",
+      "start": "00:20:01.420",
+      "end": "00:20:03.900",
+      "id": 245
+    },
+    {
+      "speaker": null,
+      "text": "That we've been working on over the past months, so please read the release notes and try all the settings that aren't",
+      "start": "00:20:04.860",
+      "end": "00:20:09.020",
+      "id": 246
+    },
+    {
+      "speaker": null,
+      "text": "Enable for everyone will slowly roll these out as time continues, but we keep things behind settings",
+      "start": "00:20:09.340",
+      "end": "00:20:14.860",
+      "id": 247
+    },
+    {
+      "speaker": null,
+      "text": "At the beginning just stay other feedback. So if you are interested please turn on our settings and try it out. It will let's know you think",
+      "start": "00:20:15.740",
+      "end": "00:20:21.660",
+      "id": 248
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, just jumping off of that. Getting feedback is super helpful to us because it's",
+      "start": "00:20:21.900",
+      "end": "00:20:27.500",
+      "id": 249
+    },
+    {
+      "speaker": null,
+      "text": "Like Josh mentioned it's evolving just how within our own team we use this stuff and how we're seeing users adopted and think about these things",
+      "start": "00:20:28.140",
+      "end": "00:20:34.060",
+      "id": 250
+    },
+    {
+      "speaker": null,
+      "text": "So hearing the kind of workflows people are trying and",
+      "start": "00:20:34.380",
+      "end": "00:20:36.620",
+      "id": 251
+    },
+    {
+      "speaker": null,
+      "text": "Seeing the limits to which people push it and how can we expand it further? I think getting all that feedback and seeing more about people scenarios is super helpful",
+      "start": "00:20:37.420",
+      "end": "00:20:44.460",
+      "id": 252
+    },
+    {
+      "speaker": null,
+      "text": "So we're super excited to hear everyone's feedback",
+      "start": "00:20:44.460",
+      "end": "00:20:46.460",
+      "id": 253
+    },
+    {
+      "speaker": null,
+      "text": "That's awesome. I've been loving just like the amazing work that the team has been doing because",
+      "start": "00:20:46.860",
+      "end": "00:20:51.260",
+      "id": 254
+    },
+    {
+      "speaker": null,
+      "text": "I'm not only just firing off, you know these tasks to delegate, but I'm having conversations, right?",
+      "start": "00:20:51.660",
+      "end": "00:20:56.620",
+      "id": 255
+    },
+    {
+      "speaker": null,
+      "text": "Just like I have a conversation with the agent mode and chat. I'm having conversation with these background agents as they're finishing up work or stopping their work",
+      "start": "00:20:56.620",
+      "end": "00:21:02.700",
+      "id": 256
+    },
+    {
+      "speaker": null,
+      "text": "A reviewing work and allows me as a developer to have a lot of work streams happening at the same time. I might be actually working on code",
+      "start": "00:21:02.700",
+      "end": "00:21:10.700",
+      "id": 257
+    },
+    {
+      "speaker": null,
+      "text": "Things might be firing off. I might be reviewing code. I might be seeing sessions and happen and and you know",
+      "start": "00:21:10.700",
+      "end": "00:21:16.060",
+      "id": 258
+    },
+    {
+      "speaker": null,
+      "text": "I think it's so amazing to see",
+      "start": "00:21:16.060",
+      "end": "00:21:18.060",
+      "id": 259
+    },
+    {
+      "speaker": null,
+      "text": "If you have five ideas in your head, you can be working on all five of them at the same time",
+      "start": "00:21:18.860",
+      "end": "00:21:22.940",
+      "id": 260
+    },
+    {
+      "speaker": null,
+      "text": "Like you know you are working side by side",
+      "start": "00:21:23.260",
+      "end": "00:21:25.260",
+      "id": 261
+    },
+    {
+      "speaker": null,
+      "text": "These agents and so I want to say like you know we're working on this right as like we're going to add together, right?",
+      "start": "00:21:25.740",
+      "end": "00:21:29.580",
+      "id": 262
+    },
+    {
+      "speaker": null,
+      "text": "I think it's true. That's how I see it like the code that it's right is because I've guided it down that path of the code that I want",
+      "start": "00:21:29.580",
+      "end": "00:21:35.340",
+      "id": 263
+    },
+    {
+      "speaker": null,
+      "text": "Through things like agents on MD and copilot instructions and all these amazing things like kind of give it insight",
+      "start": "00:21:35.580",
+      "end": "00:21:40.940",
+      "id": 264
+    },
+    {
+      "speaker": null,
+      "text": "So it's great to hear the the where it started where it's at and where it's going and when you of course new things come out",
+      "start": "00:21:40.940",
+      "end": "00:21:47.900",
+      "id": 265
+    },
+    {
+      "speaker": null,
+      "text": "And they trickle out. We'll be sure to have y'all back on the podcast as well",
+      "start": "00:21:48.060",
+      "end": "00:21:51.500",
+      "id": 266
+    },
+    {
+      "speaker": null,
+      "text": "So Bridget, Josh, thank you so much for coming on to the podcast. I really appreciate it",
+      "start": "00:21:51.740",
+      "end": "00:21:54.940",
+      "id": 267
+    },
+    {
+      "speaker": null,
+      "text": "Thank you. This is great. Yes, it's fun. I'm",
+      "start": "00:21:55.500",
+      "end": "00:21:57.900",
+      "id": 268
+    },
+    {
+      "speaker": null,
+      "text": "And it lived my dream as a podcast with the first time. It's exciting",
+      "start": "00:21:58.700",
+      "end": "00:22:01.580",
+      "id": 269
+    },
+    {
+      "speaker": null,
+      "text": "First time but not the last time and of course we'll put links to everything that we talked about",
+      "start": "00:22:02.940",
+      "end": "00:22:06.620",
+      "id": 270
+    },
+    {
+      "speaker": null,
+      "text": "Down in the show notes if you're in your favorite podcast application or watching on Spotify or YouTube",
+      "start": "00:22:07.020",
+      "end": "00:22:11.420",
+      "id": 271
+    },
+    {
+      "speaker": null,
+      "text": "So make sure you subscribe on on your favorite podcast application. Give us a five-star review",
+      "start": "00:22:11.900",
+      "end": "00:22:15.660",
+      "id": 272
+    },
+    {
+      "speaker": null,
+      "text": "Tell all of your co-workers about it. Let's go do it for this VS code insiders podcast until next time happy coding",
+      "start": "00:22:15.660",
+      "end": "00:22:23.100",
+      "id": 273
+    }
+  ]
+}

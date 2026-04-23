@@ -1,0 +1,668 @@
+{
+  "source_file": "2026-01-12-orchestrating-multiple-agents-in-vs-code-with-ben-peng.md",
+  "transcript_format": "speaker_turns",
+  "segment_count": 130,
+  "metadata": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 18,
+    "title": "Orchestrating Multiple Agents in VS Code with Ben & Peng",
+    "url": "https://www.vscodepodcast.com/18",
+    "transcript_url": "https://media24.fireside.fm/file/fireside-images-2024/podcasts/transcripts/f/fc261209-0765-4b49-be13-c610671ae141/episodes/3/373249ca-7bcc-44e2-af64-e713064a7d92/transcript.txt",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/373249ca-7bcc-44e2-af64-e713064a7d92.mp3",
+    "published": "2026-01-12",
+    "duration": "40:31",
+    "transcript_available": true
+  },
+  "segments": [
+    {
+      "start": "00:00.73",
+      "speaker": "James",
+      "text": "Welcome back, everyone, to the VS Code Insiders a podcast, the behind-the-scenes with the team that built your favorite code editor. I'm your host, James Montemagno. And today, with me, two my favorite people in the entire world, Ben and Peng, software engineers on the VS Code team. I've been working with these guys for like the last year, and I absolutely love every single time I get to hang out with them. paying I know we go way back and and I love every time we get to hang out, but people may not know you guys. So Ben, don't you kick us off and introduce a little bit about yourself."
+    },
+    {
+      "start": "00:31.72",
+      "speaker": "Ben",
+      "text": "Yeah, sure. hey James. Thanks for having me. I've been with the team pretty much from the beginning, ah building Monaco, when it was still called Monaco, and now VS Code."
+    },
+    {
+      "start": "00:43.33",
+      "speaker": "Ben",
+      "text": "I'm passionate about user experience, always been focused on on trying to make it look great, feel great. um I'm also passionate about runtime, so I've been involved in making sure VS Code works on all platforms, including web."
+    },
+    {
+      "start": "00:59.24",
+      "speaker": "Ben",
+      "text": "I've done the Electron integration in the beginning. um And more lately, I'm obviously more involved with the AI integration into VS Code. So for example, a year ago is the time when we shipped Copilot Free to everyone. That was one of my big first involvements with AI, where we want to really make sure Copilot can be used by everyone for free in VS Code. And since the topic today is about agents in VS Code, now I'm also working on agent sessions in VS Code."
+    },
+    {
+      "start": "01:29.92",
+      "speaker": "James",
+      "text": "What about you, Peng?"
+    },
+    {
+      "start": "01:31.74",
+      "speaker": "Peng",
+      "text": "yeah right Thank you. yeah Thanks for inviting me. My name is Pan. I'm an engineer manager on VS Code team. um My team focuses on notebook search, remote SSH, and recently written a lot of agents work."
+    },
+    {
+      "start": "01:44.44",
+      "speaker": "Peng",
+      "text": "And I joined the team back in 2016 when we started grow the Redmond team. right I started initially working on Monaco editor. right and then the GitHub pull request integration into VS Code before the GitHub acquisition, and then kick off the native notebook work, and over the last couple of years, it's pretty deep on the AI integration or copilot work, which is what do we talked about today."
+    },
+    {
+      "start": "02:07.03",
+      "speaker": "Peng",
+      "text": "And I still write a lot of code, or more precisely, i use a lot of tokens. Yeah."
+    },
+    {
+      "start": "02:13.08",
+      "speaker": "James",
+      "text": "Yeah, burn those tokens. I say that that's, ah that's my, that's my, my holiday gift was how many tokens can I burn? Oh, I think that's really cool because know, I've been using VS code probably since the jump and actually this holiday, i think I wrote more code than I've ever written in my entire life and shit more products than I ever have. I had an idea i could do it. And VS code was that editor. with its integrations that enabled me to bring my ideas to to life, just like it always has, but in new innovative ways where maybe i didn't have the time before and now I'm able to add new features faster than ever. And funny you talk about the pull requests paying because I have this new flow, which is to kick off several, like break down a feature into many, many smaller chunks using copilot to break it down."
+    },
+    {
+      "start": "02:55.35",
+      "speaker": "James",
+      "text": "create different issues, assign them all out. And then what i'll do is i will i will attach as context like five different pull requests all in the same chunk, have it review all the five pull requests and build and do things all at the same time that are all part of a bigger strategy. And it's kind of been like my new my new new new ticket. It's like, how can i attach context of issues and pull requests into the code changes to see bring it all together so I can kind of review smaller chunks instead of huge pull requests. And that's been my new vibe. And I feel like, honestly, in the last year, every month is like the team delivers just like a bag of like goodies. Like I'm just so excited. Like I was, I honestly, I did tweet. I said, I'm sad over the holiday break that I don't get that little notification in the bottom left of little updates. Like I'm ready and insiders every single day, I open it up and i'm like, what did the team, what goodies did the team deliver to me to try out? So i was a little like, oh, I had to wait a little bit longer,"
+    },
+    {
+      "start": "03:51.51",
+      "speaker": "James",
+      "text": "but i I want to kind of talk about agents and agent sessions and how we interact with agents because Ben, you kind of mentioned it like actually ah a year ago, the team shipped free. So people, everyone could just go, but agent mode wasn't even really out until, you know, I think ah ah Burke and Pierce did that the the recap. I think it was like March, February, or March."
+    },
+    {
+      "start": "04:12.44",
+      "speaker": "James",
+      "text": "But in this last year, really like agents, ah since we introduced even agent mode and free tier and and doing edits, everything has really changed. like Can we talk a little bit about how just how agents themselves have evolved inside of ES code since the team started to introduce them over a year ago?"
+    },
+    {
+      "start": "04:33.94",
+      "speaker": "Peng",
+      "text": "Yeah, so I mean, we have basically shipped a ton of features, right? Since the introduction of agent mode back in February 2025, ton of stuff, right? Custom agents, the full spec, MCP support, we have a planning mode, right?"
+    },
+    {
+      "start": "04:46.62",
+      "speaker": "Peng",
+      "text": "um But for the small group here, Ben and me, the one area we focus on, right, along with the team is agent integration agent and agent sessions management. um We introduced the co-pilot coding agent integration to VS Code back in July, and which that allows you to, you know, assign the issue on github.com,"
+    },
+    {
+      "start": "05:04.41",
+      "speaker": "Peng",
+      "text": "and then the agent you know will work on that issue or bug fix on your behalf right remotely in in in GitHub Action. And then when you come back to VS Code, you can now browse and review the changes, and you can also interact with it, right just like how you you know communicate or collaborate with a local agent."
+    },
+    {
+      "start": "05:21.37",
+      "speaker": "Peng",
+      "text": "And the next big thing is bringing the Copilot CLI into VS Code, which is now the what powers the background agents experience. And along with the integration with OpenAI Codex extension, right? So you can kind of use all sorts of agents, whether it's the cloud one or running the terminal UI or running the background or in your foreground."
+    },
+    {
+      "start": "05:42.52",
+      "speaker": "Peng",
+      "text": "and And the natural next step, right, on top of that is, hey, since I have so many different types of agents, different capabilities, where how do I manage them, right? it's And the world is now entering a world where from running one single agent synchronously in the foreground to a world where you can manage multiple types of agents, right? is massively paralyzed agent sessions. So we start exploring, how can we build a view for you to manage all of them, right? And still feel like you are um managing the same type of agents in a unified place."
+    },
+    {
+      "start": "06:14.54",
+      "speaker": "Peng",
+      "text": "That's a work, you know, when Ben and us, you know, start to working together over the last two months, right, to polish and explore what's right for agent sessions management or orchestration."
+    },
+    {
+      "start": "06:23.18",
+      "speaker": "James",
+      "text": "you"
+    },
+    {
+      "start": "06:27.19",
+      "speaker": "Ben",
+      "text": "Yeah, as I said, ra I'm super passionate about UX. And as Pan was saying, right so these these concepts, they were already there since half a year, um background agents and cloud agent. But they were not really, i would say, easy to understand and easy to use for a user. right So I think we were trying to take all this great technology and really make it simple to use and natural be integrated into VS Code."
+    },
+    {
+      "start": "06:55.90",
+      "speaker": "Ben",
+      "text": "um and And that was really a great chance because it was all focused on UX, like the technology was already there. I mean, we have GitHub basically providing us with the coding agents that run on every issue that you assign it to, right? So that was already there."
+    },
+    {
+      "start": "07:10.04",
+      "speaker": "Ben",
+      "text": "And then as Pan was saying, we can run with the SDK, with the co-pilot CLI SDK, we can actually run them in the background too. So the the building blocks are there, but then it's always a challenge how to make it fit it in a nice UI, right?"
+    },
+    {
+      "start": "07:22.84",
+      "speaker": "Ben",
+      "text": "And this was like something that we also really wanted to finish by the end of the year, because holiday season is usually when people even like you, as you just said, try to hack around. And so we really tried to put it together in a relatively short timeframe."
+    },
+    {
+      "start": "07:39.26",
+      "speaker": "Ben",
+      "text": "and and release this to everyone so that they can play around with it. um And as Pam was saying, right, so what changed for me in this one year is really this this change of thinking about agents as just being the one thing, but actually as many as you want, right? um you So Eric Gamma on our team did a nice quote. He said that he really hates waiting on output or response."
+    },
+    {
+      "start": "08:06.74",
+      "speaker": "Ben",
+      "text": "So you don't want to sit there and and wait for the spinner to two to to do something and then in the end give you a code change. You want to already submit your next idea, right? and just fire fire fire and that naturally means you are dealing with multiple agent sessions at once."
+    },
+    {
+      "start": "08:24.60",
+      "speaker": "Ben",
+      "text": "And so the prime focus was of VS Code as an AI development tool is no longer to show you just one agent, but it's actually allow you to manage as many sessions as your brain can think of at the same time."
+    },
+    {
+      "start": "08:37.50",
+      "speaker": "Ben",
+      "text": "And that's that's really fun to see and fun to to work with."
+    },
+    {
+      "start": "08:42.07",
+      "speaker": "James",
+      "text": "Yeah, I think that it's fascinating. You say that because even before the team introduced sort of these new management of agents, I think you made a great point, Ben, which is, you know, as engineers and as developers, as we're solving a problem, we're almost sometimes thinking about the next problem to solve, or as we're writing this code, what potential other things may arise from this or other integrations that we may want to do. And what I found myself doing you know, probably the beginning of mid, I would say like ju July or August of last year is starting to open up multiple chat sessions at the same time."
+    },
+    {
+      "start": "09:18.52",
+      "speaker": "James",
+      "text": "And which in theory are multiple agents running at the same time, but it made it ah kind of complicated because they're working on the same code base and the same branch. And so I would have to, in my head say okay, I understand that this agent kind of like I have James over here, an agent working over here on this feature. And now I want to document something or I want to work on a unit test in my mind. I'm like, okay, where is the code? Are the agents going to conflict? What's going to happen there? And they would would they would then i would be waiting on multiple things to finish at the same time. But but I think it's interesting because now"
+    },
+    {
+      "start": "09:52.79",
+      "speaker": "James",
+      "text": "There are, like you guys were saying, many different ways to engage with agents, right? Even that the local agent inside of VS Code, but you know local background claw cloud, and not just assigning issues, right? But also just giving it tasks to do and letting it go and fire off and open the pull requests."
+    },
+    {
+      "start": "10:13.27",
+      "speaker": "James",
+      "text": "How do people even think about these different agents and when to use them? How does the team think about them? I'm imagining everyone kind uses them different, but don't know, Peng, how do you think about these different agents when it comes to how developers are engaging and and using them every day?"
+    },
+    {
+      "start": "10:26.59",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "10:27.16",
+      "speaker": "Peng",
+      "text": "yeah I want to quickly have a comment for what do you just described. Your experience of you know dealing with multiple PRs. right Try to create multiple different chat editors so you can have multiple agent sessions um you know back in July."
+    },
+    {
+      "start": "10:43.10",
+      "speaker": "Peng",
+      "text": "and that time, I guess you are using agent editors. right because We don't allow you to run agents in the sidebar."
+    },
+    {
+      "start": "10:47.93",
+      "speaker": "James",
+      "text": "Yeah."
+    },
+    {
+      "start": "10:47.99",
+      "speaker": "Peng",
+      "text": "and And I would say like the our team kind of had the same experience. right And our our design principle, for i mean the number one to me is, how do we bring them into you? right How do we bring the remote agent, cloud agent, to you as a user and to our team so we can then experience it, right feel the pain? Because we are all learning. Everyone's at a different you know stage of their AI journey. um So we have to experience, have the first-hand experience. I mean, we call it dog food or self-hosting."
+    },
+    {
+      "start": "11:14.94",
+      "speaker": "Peng",
+      "text": "And then we see, oh, it doesn't make sense, right? There are so many paper classes and we to improve them. And that's why the first thing to me is how do we bring all types of agents, the industry is exploring into VS code."
+    },
+    {
+      "start": "11:27.38",
+      "speaker": "Peng",
+      "text": "And the very the first one is very natural, right? the The local agent, the one you play around with every day in the sidebar, and that one is meant to be know responsive, right It has to be interactive. You do expect fast response."
+    },
+    {
+      "start": "11:38.68",
+      "speaker": "Peng",
+      "text": "Like Ben said, right you don't want to sit there and just keep waiting for another 10 minutes to get the response back. right and it's not You're doing things sequentially. right You're not that productive. Then the next one is, hey, can we have some you know background agents? And it's more it's more like, hey, here's the task and here's the context I gathered already."
+    },
+    {
+      "start": "11:57.27",
+      "speaker": "Peng",
+      "text": "And you go and do it, right? And I don't want it to mess up with the UI or the current edit session I have in the foreground. Like on my open editors and terminals, don not do not mess up with that. right And I do expect there's many more interruptions. You don't keep prompting me, hey, do you allow to do this or that? right Have some autonomy, be a bit more autonomous. But again, at the that same time, it still runs on the same machine. they have access to the MC server you set up."
+    },
+    {
+      "start": "12:25.24",
+      "speaker": "Peng",
+      "text": "um And at the end, when it finishes, you get notified, hey, this time for you to review the results. right And this one is you know brought in via Copilot CI from the GitHub team to power this experience."
+    },
+    {
+      "start": "12:38.39",
+      "speaker": "Peng",
+      "text": "And then the next thing is Cloud Agents. right We know Cloud Agents is more isolated it runs you know in the cloud remotely. You can kick off from anywhere you want. right A typical workflow is assigned issues."
+    },
+    {
+      "start": "12:50.71",
+      "speaker": "Peng",
+      "text": "And then you can also, like, hey, before I go to lunch, I don't want to hand off or delegate the task or the active foreground task to the cloud, and so it continues to run. um But at the same time, they might have limited tools right to local agents."
+    },
+    {
+      "start": "13:04.73",
+      "speaker": "Peng",
+      "text": "um And here, um and I guess we need to be a little bit more precise about the terminologies because they represent you know your mental model. We think about, hey, there's a local slash foreground. That's the one really interactive."
+    },
+    {
+      "start": "13:19.26",
+      "speaker": "Peng",
+      "text": "And then there's a background, you know which runs on still maybe on the same machine, right? With some file isolation, environment isolation, once we start to explore dev containers, and there's cloud, right? Cloud is extreme, right?"
+    },
+    {
+      "start": "13:34.52",
+      "speaker": "Peng",
+      "text": "Full autonomous, running completely out from your machines, runs in the cloud. And then we now have these three types of agents. And the next thing is, which is Ben keep pushing from the UX perspective,"
+    },
+    {
+      "start": "13:48.95",
+      "speaker": "Peng",
+      "text": "Initially, the local agent in the sidebar, background agent, and cloud agent, they are all in the chat editors. And Ben probably asked me a dozen times, oh, why does this one work different from the other one?"
+    },
+    {
+      "start": "14:01.24",
+      "speaker": "Peng",
+      "text": "why Why do they behave differently, right? So that's pushing us the next thing. Hey, they probably you probably do expect them to be managed in the same unified view."
+    },
+    {
+      "start": "14:11.67",
+      "speaker": "Peng",
+      "text": "And the same time, we still keep in mind that, hey, there are different expectations and different capabilities from each type of agents and how do we present them to users? That's i current how I think about it. I'm not sure makes sense to you."
+    },
+    {
+      "start": "14:25.46",
+      "speaker": "James",
+      "text": "Yeah, no, I think it makes a lot of sense. and And it is hard, right? Because I think you made a great point. Like everyone's on a different part of their journey, right? Some people are opening and seeing that chat for the very first time and engaging and asking it it a question. And other folks are s spinning up and having, you know, hundreds of agents do a bunch of stuff on a bunch of different repos and trying to figure out how do I orchestrate and manage all of this?"
+    },
+    {
+      "start": "14:46.74",
+      "speaker": "James",
+      "text": "And Peng, I think it was so fascinating talking about as the team was introducing these different types of flavors of agents that that sort of mentality of sort of ah how to engage with them has evolved and changed too because inherently yeah like how I you said it right and I'm engaging with the local foreground agent is different than the background agent and is very different than the cloud agent, which is spinning up an entirely different cloud environment. Ben, how do we think about designing that user experience and how's it evolved? Because I've noticed it's changed a lot since the team introduced all of them, but even just engaging with the agents, like how has that evolved and how has the team been thinking about like evolving that along with these different agent models?"
+    },
+    {
+      "start": "15:30.44",
+      "speaker": "Ben",
+      "text": "Yeah, as Pang was saying, right, first of all, We are great dog fooders in the team. So the first step is already like convince the team to use it and understand it. So we have daily stand-ups and we are presenting the ideas. So that's like already like a very good feedback cycle that I get immediately from the team. And then the first thing was it's too complex, right? Make it easy to use, right? So make the UX consistent, make it accessible like a local chat, right? So don't change my habits that I've already established. Just let me pick from the chat view, right?"
+    },
+    {
+      "start": "16:03.16",
+      "speaker": "Ben",
+      "text": "And so that's how we ended up having like a relatively consistent experience all in the chat view. You can still use chat editors by the way, right? So we didn't want to really take away functionality that we've already had. If you want to split your editor into a three by three grid and see your chats everywhere, be my guest. You can use floating windows, everything still works."
+    },
+    {
+      "start": "16:22.53",
+      "speaker": "Ben",
+      "text": "But like, we have to think about the default experience because as you said, different users are at a different step of the journey towards like this, full agent orchestration, right? And there are still users that just prefer a single agent all in the foreground."
+    },
+    {
+      "start": "16:37.05",
+      "speaker": "Ben",
+      "text": "um I think what we still have to improve and what we are currently working on is really to tell users what the difference is between like what we call local background and cloud, right? Because at least between local and background, that's something that you actually need to try out understand, okay, it uses work trees in the back. So how do we get to this kind of isolation that we have, right?"
+    },
+    {
+      "start": "17:00.18",
+      "speaker": "Ben",
+      "text": "How do we make it easy that from the chat view you can pick a background agent? Currently, it's it's relatively hidden, but where we want to get at is that you are in your chat view and you all those three kinds of sessions are equal. There shouldn't be a favorite one. There's one that is right for the task at hand. And how do you understand which agent to use for the test that you that you want to build? That's actually a challenge. And that's something that we really have as a number one priority for this month to like make it easier for you to understand when when to pick what."
+    },
+    {
+      "start": "17:32.92",
+      "speaker": "Ben",
+      "text": "um The other thing that I would like to mention is they're also more advanced. user experience flows in this case, which is actually the delegation. right So you can think about the local chat or the interactive chat, as I would like to say it, as to really to build up context, build up a plan, add files into the chat, add terminal output, everything. right So you're actually using the local for interactive chat as a way to like plan something and and build up a chat history that exactly explains what you want. And then we have this delegate action that you can actually copy this whole context into a background or cloud chat. And that's something that's also a little bit hidden and in something in the UX that we could improve, but I think it's very powerful."
+    },
+    {
+      "start": "18:19.26",
+      "speaker": "Ben",
+      "text": "Because that means you don't just have to have multiple background or cloud sessions that are like just single prompts, but you can actually use the local one to build a plan, hand it off to background or a cloud, and then go on to the next one. right And that's I think that's very powerful. And that's something where now it's a little bit hidden and hard to discover. But as soon as people understand these concepts, I think, and as soon as we make it easier to use, the more I think people are willing to paralyze all these work streams. right um And I think just as a final thing, that one thing I want to say is what we're also looking into."
+    },
+    {
+      "start": "18:52.98",
+      "speaker": "Ben",
+      "text": "Today we are looking... pretty much just from the workspace into an agent. So you open a workspace and you run your sessions. But it doesn't stop there. right So what we actually want to build is also an experience where can you have like a VS Code window that goes over all your workspaces and shows you the sessions? right Because naturally, the next step is you parallelize work across multiple folders."
+    },
+    {
+      "start": "19:15.61",
+      "speaker": "Ben",
+      "text": "And so that's also something that is, in terms of user experience, is definitely challenging and something we we have on the plan and on the radar map. for the near future."
+    },
+    {
+      "start": "19:32.15",
+      "speaker": "James",
+      "text": "Did you have anything, Peng?"
+    },
+    {
+      "start": "19:33.91",
+      "speaker": "Peng",
+      "text": "Yeah, I think it's been already you know briefly touched on that right the the challenges right we we have right now with the agents, um you know, regarding that, how do we present, you know, the. the capabilities right um on different type of agents, background and cloud. And I think also ties to your the AR readiness of your projects. right That's really true for the VS Code team because if you start a Greenfield project, right and we made everything ready for you to enter the ah holiday season, and I guess a lot of, you know when we came back from holiday,"
+    },
+    {
+      "start": "20:04.15",
+      "speaker": "Peng",
+      "text": "half of the team you know did some demos. Hey, I built this new iOS app, I do this new utility or website, and I use agents mode or the background agent or cloud agent to fully drive it. But then coming back to our VS Code repo, which has millions lines of code, right a lot of tribal knowledge there, and how do we set up this the project to allow you to you know enable you to use background agents. right To give you one example, right I would love to run you know the testing in the background agent. right not just unit tests, but also integration tests and also smoke tests, along with you know an MCP server like Playwright, which can launch a browser and take screenshots."
+    },
+    {
+      "start": "20:43.51",
+      "speaker": "Peng",
+      "text": "But this one requires a careful you know setup right to make sure that the the content or the artifacts generated by the MCP servers, they're not just meant for humans, but also for the agents to review. right Then the agent can iterating based on the feedback from the MCP server or the um the the testing results."
+    },
+    {
+      "start": "21:04.92",
+      "speaker": "Peng",
+      "text": "But this one right now is missing, right? We we give these options to you. Oh, you can dedicate to background, but if your project's not set up properly or it's not AI ready yet, right? Pushing to background, you probably don't get a good result, right? It probably still doesn't compile it after you finish the run, right? And then how do we bring this and make it clear to you that you can probably define a few ah hooks, right? Define a few scales or prompt buyers And or maybe you should the write a workflow for you. and the optimal workflow is you can use plan mode to get all the context so the background has everything ready when it started to work, right?"
+    },
+    {
+      "start": "21:41.40",
+      "speaker": "Peng",
+      "text": "That run is something we need to explore how to you know lower um you know the burden of using those background and cloud agents and making sure that you can have a successful rate of using the two of them, right?"
+    },
+    {
+      "start": "21:55.80",
+      "speaker": "Peng",
+      "text": "And on top of that, um yeah the other you know challenge we have right now, ah we do show you know code changes to you after each type of sessions. But at same time, the code is not the only artifact generated along in the session."
+    },
+    {
+      "start": "22:12.95",
+      "speaker": "Peng",
+      "text": "I could argue that if I use agent to run testing and that test runs probably like 20 to 30 minutes using Xcode MCP for iOS apps or Playwright, I'm not sure I ran at this very moment, I 100% trust the agent outputs, right? Give me a summary, tell me, hey, here's what I did ABC, but I don't fully trust. I still want to skim through the reasoning, take a look at the screenshots, right? Of the key screenshots, right?"
+    },
+    {
+      "start": "22:38.94",
+      "speaker": "Peng",
+      "text": "And right now we don't have a great way to present those artifacts to you in the VS Code workbench. That's at the other main UX strategy we have right now and what we are exploring in January."
+    },
+    {
+      "start": "22:53.00",
+      "speaker": "James",
+      "text": "Ben."
+    },
+    {
+      "start": "22:53.72",
+      "speaker": "Ben",
+      "text": "I wanted to touch exactly on this. right i I think as soon as you have so many sessions running, you still have to reason about it. right So the complexity just increases. We will have 100 sessions that are all waiting for you to merge the change in, and you're still just one person to reason about it. right And I think as Pang was saying,"
+    },
+    {
+      "start": "23:16.63",
+      "speaker": "Ben",
+      "text": "um maybe a year ago with the agent mode we had, it was all about reading the output, the textual output, and then doing a code review. But that is not really, i think, how we as engineers are reasoning about a change, right? So we want to see, we want to try it out. We want to see a video or like a playground where we can execute We want to see test results. We want to maybe see documentation and and planning documents getting written, right? So there's so many more things around ah um and like around a code change that is not code that we need to really surface to the user. So I really like the idea that the result of a session is a lot more than just a code change. Still, I think"
+    },
+    {
+      "start": "23:58.04",
+      "speaker": "Ben",
+      "text": "can do a lot better to allow you to make it easier to code review. Because at least I personally still like to understand every line of code that changed, especially in a project like VS Code, where you have the millions of lines written not by AI. It needs to still fit, I think, into this kind of you know existing code base. So what we want to also build is a great code review experience that goes beyond of what we have today. How can we use ai to make a code review like assisted by an agent that tells you exactly what was going on. right And I'm really excited about it because I can already see today, my limiting factor today is not the agent doing something, but me reasoning about it. So the bottleneck is on my end, and I really want to have use code help me there."
+    },
+    {
+      "start": "24:46.65",
+      "speaker": "James",
+      "text": "You got anything else paying on that?"
+    },
+    {
+      "start": "24:49.11",
+      "speaker": "Peng",
+      "text": "Yeah, just because Ben mentioned like code review, right, especially for the changes coming to VS Code. mean, for my own personal projects, I probably don't care. i like, yeah, AI generating the code, right? It's a tiny app managing the LED device, you know, behind me, right?"
+    },
+    {
+      "start": "25:04.63",
+      "speaker": "Peng",
+      "text": "And it just take like one hour to finish, right? If it's not working, it's fine that if I have to discard all the changes and rewrite, rep it's probably fine, right? But then for VS Code, the other thing about is it's a massive product, right? And also it's open source project."
+    },
+    {
+      "start": "25:18.48",
+      "speaker": "Peng",
+      "text": "We do set a high bar for code quality and that still matters. And I'm pretty sure there are tons of projects like VS Code. Well, you do have an expectation of the architecture, the code smell, right?"
+    },
+    {
+      "start": "25:31.51",
+      "speaker": "Peng",
+      "text": "And that's when we do need a way for ah like a proper tool to do a code review, right? You are still keeping it. At the same time, this code review tool needs to be are smart enough for any reduced cognitive loads. Because when I think about VS Code, we have 3,000 interest amounts."
+    },
+    {
+      "start": "25:49.18",
+      "speaker": "Peng",
+      "text": "And the size of them are bugs. Imagine that we set up the pipeline really, you know, perfectly and properly, right? It can analyze the code base to find the root cause, make code change, it compares and using Tyler, he has a VS Code MPCSphere to validate everything. And to the end, yep, it works."
+    },
+    {
+      "start": "26:08.18",
+      "speaker": "Peng",
+      "text": "It just, you know, every month you get a thousand PRs. And how do we review those changes, right? And like Ben said, now we as human in the process, all of a sudden we become the bottleneck, right?"
+    },
+    {
+      "start": "26:18.87",
+      "speaker": "Peng",
+      "text": "And that's what we can, you do in VS Code. to help us out, right? To you know still be creative, you know stay focused on the important or critical paths, but at same time, some of them delegate to the agents."
+    },
+    {
+      "start": "26:33.85",
+      "speaker": "James",
+      "text": "Yeah, I think I really like this conversation because a lot of what you guys are talking about are things that I've, especially this holiday season, tried to incorporate closer into what are the artifacts of but from the start of an agent session to the end of the agent session, wherever it lives. Right. And I think, um, I'm learning a lot because, I,"
+    },
+    {
+      "start": "26:54.65",
+      "speaker": "James",
+      "text": "I am using it in new and different ways. And i'm also learning a lot about how y'all are thinking about it. Because I had did find myself doing a lot more context planning ahead of time to get it into a right state."
+    },
+    {
+      "start": "27:05.24",
+      "speaker": "James",
+      "text": "And then at the end, it wasn't about the code, really, it was, hey, did you link the code? Did you build the code? Does this thing compile? Hey, did you spin up and actually test it out so you can navigate to the new feature? And that was the thing that was really validating for me."
+    },
+    {
+      "start": "27:20.89",
+      "speaker": "James",
+      "text": "um and And right now i'm kind of doing it manually with sort of instructions and sort of hoping that it doesn't say at the end of every turn, make sure you do this and make sure you do that and you know and and hoping that it does it. and the cloud agent kind of does it in one way versus kind of the local agents or background agents."
+    },
+    {
+      "start": "27:36.76",
+      "speaker": "James",
+      "text": "But I found that's what was really important. It wasn't important that, hey, you could add this new feature. What was important is that you started to do the things that I would be doing naturally, which would be compiling the code, running the code, running my unit test. Right. so I think that's an interesting part. don't know how you think about it i don't know, Ben, if you have any thoughts on it."
+    },
+    {
+      "start": "27:55.62",
+      "speaker": "Ben",
+      "text": "Yeah, this is a great point because it was also fun to see over the one year how in the Visus Code Repository we really, not only did we add instructions, right, which helped a lot, but we also pushed a lot of linting rules and a lot of new TypeScript configuration to the project. So to really make sure that the things that tooling can help AI, um that it doesn't produce warnings, errors, or uses the any type in types code, right? Those things, if you can build that into the into the project, not only does it help a i it also helps people that are new to the team that actually write partially code with AI, partially not. So it was really great to see how much more rules we could add because we had a lot of linting rules before. And some of these rules were more like tribal knowledge, not really written out and spelled out. And now it's really fun with AI to see how AI tries to solve something and then how that doesn't actually violate our rules."
+    },
+    {
+      "start": "28:52.89",
+      "speaker": "Ben",
+      "text": "So the best advice I can give is like do as many of those linting and TS config things as possible and test frameworks, right? So to really ensure at the moment when the human kicks in,"
+    },
+    {
+      "start": "29:05.98",
+      "speaker": "Ben",
+      "text": "everything has to be already linted, tested, compiling, ideally with like maybe a video that shows you what's going on. right And what what also um resonates with me is that AI is also great in trying out something and then reasoning about it itself. right So use the model to actually, or the agent to actually try it out, run it, observe the change, and and and go into a loop, even to the UI. right And as Pan was saying,"
+    },
+    {
+      "start": "29:35.67",
+      "speaker": "Ben",
+      "text": "Small projects have it a little bit easier because it's easier to set up. VS Code is a massive project. So we need to invest more into ways how an agent can also run VS Code and get the output. And we have done explorations there. right So that's that's really cool to see."
+    },
+    {
+      "start": "29:51.48",
+      "speaker": "James",
+      "text": "Yeah, what do you think, Peng?"
+    },
+    {
+      "start": "29:53.75",
+      "speaker": "Peng",
+      "text": "And for me, a massive amount of time is really like optimizing my workflows and this just keep changing. right And then initially, like i it's yeah I do need LinkedIn rules because the agent is always forgets to do that."
+    },
+    {
+      "start": "30:06.84",
+      "speaker": "Peng",
+      "text": "But now with the model getting smarter, it knows how to read the package.json, do npm run install and knows, oh, you're using ROM npm but a node version and knows how to solve that. But then I have to come back again and do everything seen you know synchronously in the foreground agent or local agent i kind of It's kind of painful, right? And i because I do it together with agent, I probably do that faster myself, but I still try to, hey, let's see if I let agent do the work, how many mistakes it made, right?"
+    },
+    {
+      "start": "30:32.70",
+      "speaker": "Peng",
+      "text": "And then I will then take a step back, right? If I keep myself repetitively doing the same thing along with agent, and I will say, how do I kind of extract this thing into a shared utenity a utility?"
+    },
+    {
+      "start": "30:43.83",
+      "speaker": "Peng",
+      "text": "and and to make it more structured, right? That can be a profile, right? Now I have profile to slash run E2E tasks, right? And it can be a custom agent or it can be a skill, right? And then maybe in one month or two, you can have hooks, right?"
+    },
+    {
+      "start": "30:58.48",
+      "speaker": "Peng",
+      "text": "So that's what I try to observe myself, how me together with agents, the foreground agent, do the work and then try to turn them into a shareable component."
+    },
+    {
+      "start": "31:09.94",
+      "speaker": "Peng",
+      "text": "which once I have you know a set of utilities, right, and I then feel much better to push them into the background or cloud agents. And also the other thing I find myself doing is, um I know we keep talking about planning mode and spec mode, I personally prefer to save them into the docs."
+    },
+    {
+      "start": "31:18.93",
+      "speaker": "James",
+      "text": "Fantastic."
+    },
+    {
+      "start": "31:26.74",
+      "speaker": "Peng",
+      "text": "And I always use this one as a and living document, right? And when when we build features for VS Code, we start with an issue released on web page, Zheng Chen, Like the common scenarios right, how do we expect users to use it right the most natural Zheng Chen, And that one is the guidance when like it's an all star for for the team members, you focusing on the same task or project. Zheng Chen, I give that to the agents and agents start working by itself right and that at the very end I want."
+    },
+    {
+      "start": "31:57.14",
+      "speaker": "Peng",
+      "text": "the agent to also like maybe another agent to test this feature, I give the agent the same spec or plan. And now all a sudden this initially it's like a plan now becomes a test plan."
+    },
+    {
+      "start": "32:09.85",
+      "speaker": "Peng",
+      "text": "And then asking the agent to kind of validate, hey, does the change, can you go through the steps right as we listed in the initial issue? right And that was what I found really powerful. And you can see that all of a sudden now the the design spec and also the test plan testing plan, they are all in this natural language, right which is the core value. right But at this very moment, I have to say, I find it's pretty successful with small projects, but for median or large projects, it's more thinking and craft."
+    },
+    {
+      "start": "32:42.30",
+      "speaker": "Peng",
+      "text": "Yeah."
+    },
+    {
+      "start": "32:43.32",
+      "speaker": "James",
+      "text": "Yeah. And, and I think what's fascinating is those small projects, those suddenly become medium and large size projects as you start to add more features and some of these practices that you begin with evolve over time as well. I want to bring it back, kind of finish it off was, you know, Ben talked about the beginning, know, it's been a year plus now since, know, the free mode, uh, introduced, introduced, we have more developers than ever using co-pilot and the AI integrations into VS code."
+    },
+    {
+      "start": "33:11.45",
+      "speaker": "James",
+      "text": "And the team, you know, right before the holiday, you know, in the, in the, in the November release, right? November release. Yeah. Um, introduce kind of this new management that you've been talking about, Ben of the agent sessions, engaging with the other ones, what do developers really need to know?"
+    },
+    {
+      "start": "33:29.56",
+      "speaker": "James",
+      "text": "How should they think about it differently? How should they manage it? Like what's in the product today, which obviously will evolve over time. But what's there today? Because it's changed a lot. I think people opened up that they opened up that release and they're like, what's going on? like what what do i Where do I go? What do I do? So what what should developers know about what's in the release today? you know What they should try out and how they should think about managing these agents inside of VS Code?"
+    },
+    {
+      "start": "33:55.19",
+      "speaker": "Ben",
+      "text": "Yeah, so um all those agent management capabilities are right in the chat view. So that should actually feel natural. We see the secondary sidebar, which chat is it like the AI central, where like you do your your AI work. So it felt natural that sessions would also appear there."
+    },
+    {
+      "start": "34:14.36",
+      "speaker": "Ben",
+      "text": "But I can already say this is not where we are stopping, right? So the idea is that agent sessions will be more visible in all of the parts of VS Code. But that was our first step. So if you run a chat session today, as you did before, you will already notice that there's a list of recent sessions appearing to to on top of every empty chat, right?"
+    },
+    {
+      "start": "34:34.90",
+      "speaker": "Ben",
+      "text": "And what's really cool is we haven't talked about it but that was also a change for November. You can now actually start a local chat and just create another local chat. And that local chat will continue to run."
+    },
+    {
+      "start": "34:46.52",
+      "speaker": "Ben",
+      "text": "And that is something which is cool because you don't have to use background in Cloud. you can still parallelize multiple sessions as you with the local chat stuff that we have. The only thing to keep in mind is that you don't get that isolation. right So if you start five local chats, they will happily start to change files in your workspace. And maybe you want that, maybe you don't."
+    },
+    {
+      "start": "35:08.09",
+      "speaker": "Ben",
+      "text": "But I urge you try it out. right So you can do that already today. And then from the little plus icon in the in and the chat view, that's the dropdown, you can actually say background or Cloud Chat or Cloud Agent. um The Cloud one obviously requires some kind of GitHub backend. right So if you don't have a GitHub project, then you're probably just the using background."
+    },
+    {
+      "start": "35:32.89",
+      "speaker": "Ben",
+      "text": "um but I suggest you try it out. And then the sessions list will always show you the most recent sessions. If you make this chat view wide enough, you will actually see them to the side, right? In a nice tree. We updated that for our release that we pushed out yesterday. And then the idea is really, it's almost like an email that you get, right? So sessions can be archived. They can be read, unread. They talk to you. So I really think about it like an email that comes in."
+    },
+    {
+      "start": "35:58.42",
+      "speaker": "Ben",
+      "text": "Hey, I want I have something for you, right? So for example, I have a change for you. please open me and accept the change. So that's how I start to think about it. It's it's it's actually very lightweight. These sessions basically tell you what they did, but mainly like they want to draw attention, hey, I have a change for you. right So I think that the outcome of most of the chat sessions should be that there is something to apply to your workspace. And then it's up to you to do it through a pull request or through like ah you just copy the changes over to your local workspace. um"
+    },
+    {
+      "start": "36:29.56",
+      "speaker": "Ben",
+      "text": "But yeah. i I would suggest try it out in the current state. And I'm promising you it will be much easier in the future. We are working on it. We are also listening to feedback. right So what I really encourage everyone is, if you see something doesn't work or doesn't add up, GitHub issues on VS Code Project is still the best way to talk to at least the engineers. So I'm there."
+    },
+    {
+      "start": "36:49.82",
+      "speaker": "Ben",
+      "text": "If you file an issue, the chances are that I'm going to reply to you. But social media is also fine. right So we're also observing all the social channels as good as we can."
+    },
+    {
+      "start": "37:00.76",
+      "speaker": "James",
+      "text": "That's awesome. i I like these two analogies and I want to kind of double click on them. One developers, least myself, ah for sure in the past were terrified to hit that plus button when something was happening."
+    },
+    {
+      "start": "37:14.78",
+      "speaker": "James",
+      "text": "And because, you know, I don't want to interrupt the current session. And the first time that I, I finally enough, I accidentally, i accidentally hit the plus button. i was like, oh no. And then I realized that I could just hit the back button."
+    },
+    {
+      "start": "37:28.07",
+      "speaker": "James",
+      "text": "There's like now a back arrow. And I saw all my agent sessions there and there was a still little indicators like, oh my goodness. And what that enabled me to do is change my workflow, which was, I could have the local agent be working on something or it could be in a background too. And I could start planning my next feature. Right. um I might not be, that's an interesting part is you're not always generating code. Like you're saying with, um, these agents, you're doing many things. I would start my next plan for my next feature and start iterating because let the thing cook. Right."
+    },
+    {
+      "start": "37:54.33",
+      "speaker": "James",
+      "text": "And then my new favorite thing I'm going use this all the time, which are agent sessions are just like triaging emails, right? They're there. Sometimes you got to reply. Sometimes you got to reply all, sometimes you gotta, you know, wait a little bit longer, you know, for, for more replies to come in or you just archive it. Right. So I love, I love that analogy. I'm going to use it all the time because that's definitely how it feels. All right. Any last thoughts, comments, anything from you, Peng?"
+    },
+    {
+      "start": "38:20.41",
+      "speaker": "Peng",
+      "text": "yeah ill Yeah, on top of what um Ben said, I would ask everyone to try to spend a bit time and see how do you embed them into your workflow. you know Because we keep changing every day, right? The interest one you just mentioned, lot now you can run multiple of them."
+    },
+    {
+      "start": "38:34.98",
+      "speaker": "Peng",
+      "text": "The foreground on multiple of them. Previously before I had this feature, what I always do is putting the the prompt, the new prompt into the same chat. right And this of a sudden become my meta chat, right? Because I know I don't want to hit the plus button, right?"
+    },
+    {
+      "start": "38:46.91",
+      "speaker": "Peng",
+      "text": "of a sudden now I can run multiple of them and then I no longer see it as, oh, this is an async agent."
+    },
+    {
+      "start": "38:53.00",
+      "speaker": "Ben",
+      "text": "Thank you."
+    },
+    {
+      "start": "38:53.02",
+      "speaker": "Peng",
+      "text": "No, it's not, right? You can run multiple of them asynchronously in parallel, right? And then the one i thing about the background, oh, they they are, it's so about isolation, right? file level isolation, environment isolation, and even device isolation."
+    },
+    {
+      "start": "39:06.46",
+      "speaker": "Peng",
+      "text": "And um everyone, like ah we said, you know for this podcast, like we are also learning. And I really encourage everyone to give that a try, to see that, okay, when you try to embed it into your workflow, you feel itchy, right? Do you have any paper cuts, right, and file issues? And then we can see how can we improve our product."
+    },
+    {
+      "start": "39:24.91",
+      "speaker": "James",
+      "text": "I love it. Yeah. And let us know. Right. I think that's the cool part about the like ah the GitHub co-pilot, like ah Reddit and the VS Code Reddit and then the social like to talk about your wins. Like, oh, I tried this new thing. Share the things. Share your success in between failures, whatever it is. And of course, report the bugs. ben Peng, thank you so much for coming on. This is like so enlightening. I love this conversation. I'll put links to everything that we talked about, all the recent releases, um all your guys' sessions that you've done in the past as well. I'll put that in the show notes there. So really appreciate you guys coming on, taking time out of your your evening. I know it's late for you, ah Ben, and your early morning with me, Peng. really appreciate you drinking some coffee and hanging out with me."
+    },
+    {
+      "start": "40:06.04",
+      "speaker": "James",
+      "text": "Um, so it was really great And we'll have you guys back on as we continue to evolve because I'm excited as kind of you mixed in there, a lot of this future potential. So thank you guys for coming on. I really appreciate it."
+    },
+    {
+      "start": "40:16.20",
+      "speaker": "Ben",
+      "text": "Thanks, James. Thanks for having me."
+    },
+    {
+      "start": "40:18.04",
+      "speaker": "Peng",
+      "text": "Yeah, thank you for having us."
+    },
+    {
+      "start": "40:19.64",
+      "speaker": "James",
+      "text": "Awesome. And don't forget if you're brand new here, we put out podcasts just about every other week here, both so you can just listen to us in your favorite podcast application. So make sure you follow the VS Code Insiders podcast, or you can check out of course the VS Code YouTube as well."
+    },
+    {
+      "start": "40:34.04",
+      "speaker": "James",
+      "text": "Join the hundreds of thousands of developers tuning in every single week for awesome VS Code content. So you stay up to date with everything that the amazing team is delivering every single day. right, that's going to do it for this VS Code Insiders podcast. So until next time, happy coding."
+    }
+  ]
+}

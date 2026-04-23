@@ -1,0 +1,769 @@
+[00:00:00.110] Welcome back everyone to the VS Code Insiders podcast or behind the scenes scoop on everything VS Code
+
+[00:00:06.750] I'm one of your host James Montemagno and with me again, Mr. Pierce Logan has a gone peers
+
+[00:00:11.630] Hello doing amazing games what I love about this is like Pierce all of a sudden goes into like the serious mode like if you watch in this
+
+[00:00:18.350] YouTube you're like all of a sudden like what's going on? It's like a a deer
+
+[00:00:22.430] We also have Daniel and he's from the engineering team is going to give us a sneak peek behind the scenes on all the brand new
+
+[00:00:28.670] Terminal updates, you know I'm a huge terminal fan if you follow me
+
+[00:00:32.190] But we want to give you the behind the scenes kind of one of the point of this entire podcast because you can watch the YouTube
+
+[00:00:37.910] You can watch and read the release notes and all the awesome things that are going in to the product itself
+
+[00:00:43.150] But as everything is developing you see things in the open you get insider builds every single day
+
+[00:00:49.430] You don't need to subscribe to anything everyone can be an insider and if you're listening to this
+
+[00:00:53.430] You can also just use mainline to we talk about new features there, but the cool part that I've
+
+[00:00:58.350] You've been following for a long time, but actually I had no idea how any of it worked is how the planning works
+
+[00:01:03.550] Like you know I work in Microsoft we do a lot of planning and we do a lot of stuff
+
+[00:01:06.750] But actually everything just open as well
+
+[00:01:09.670] But I don't really know how it all works. So I want to appear as I kind of break down the August plan iteration plan
+
+[00:01:15.470] What's in it? How do people like get involved like what's the actual actions that are going on because
+
+[00:01:21.390] To me the cool part is like not only just when the new features are coming out in release, but following along giving feedback as well
+
+[00:01:28.470] That's right. Yeah, so like any good team we have a giant Azure DevOps backlog with tons of ethics
+
+[00:01:35.070] Now I'm just kidding. We're going to do any of that
+
+[00:01:37.230] That's how we work at all
+
+[00:01:39.230] So like you were saying James like the cool thing about this team that's very unique is like it's not only that we work in the open
+
+[00:01:45.670] I think that's pretty common actually is like you know our code and issues and PRs are in the open
+
+[00:01:51.350] That's pretty common for open source, but like our planning is also in the open, right?
+
+[00:01:56.150] So every single month, basically, we do right as kind of forgetting ready to ship you
+
+[00:02:01.550] Then you stable release. We kind of go through this process of planning and it's kind of
+
+[00:02:06.470] Bottom up, so the individual engineers working in their areas. They know the features best
+
+[00:02:10.750] They know the feedback for their areas best and they can really represent what needs to happen the next iteration
+
+[00:02:15.430] Which is basically what we call a sprint on the team and so like everyone kind of sources some items
+
+[00:02:20.990] At the same time, of course, there's like some goals that like from a leadership perspective
+
+[00:02:24.910] We're like, well, we kind of want to take the product in this direction
+
+[00:02:27.470] This is something we really need to take care of because of X-Wiresy reason and so there's kind of like this reasoning process
+
+[00:02:32.910] We're you know people bring their bottoms up ask and there's some top-down ask and we kind of have a little bit of a process for working as things out
+
+[00:02:40.350] Look for any conflicts things like that and then the first Monday of our next iteration
+
+[00:02:45.270] We actually publish this plan on get up
+
+[00:02:47.510] So the entire plan and what every single person on this team is working on you can actually go if you go to the
+
+[00:02:54.230] GitHub issue if you go to the issues tab of the VS Code repo
+
+[00:02:57.350] There's a pinned issue called iteration plan and you can actually look through that and you can see
+
+[00:03:03.430] Exactly all the different things that every single person on the team is going to be working on with linked issues
+
+[00:03:08.510] Right so you can see exactly
+
+[00:03:10.510] You know that fall along with the process you go to the issue you can see any PRs or anything like that
+
+[00:03:14.790] You can see the discussion about how we're going to implement it the design
+
+[00:03:18.190] So all of that is actually happening in the open and like you said James like if you're using insiders
+
+[00:03:22.510] You'll actually see like okay Daniel will deliver some feature
+
+[00:03:25.990] He'll check it off on that how close the issue and then you'll actually see that show up and insiders
+
+[00:03:30.430] Right and so that's like a really cool loop of not only are could being out in the open
+
+[00:03:34.510] But also are plating being out in the open and so there's also some cool things like as you look through the plan that you'll notice like we have
+
+[00:03:40.950] Amodis for everything so if something has like a running person next to it
+
+[00:03:45.310] It means that's what the person on the team is actually working on
+
+[00:03:48.430] Obviously if it's checked it's done
+
+[00:03:50.430] So there's like cool little things like that in the issues that you can kind of go through and see and so
+
+[00:03:56.110] One thing we really want to do in this podcast because this is the insiders podcast is be talking about
+
+[00:04:00.750] What's on our plan for this month before you actually see it in the product and of course as week by week
+
+[00:04:06.110] As we're adding these things have people like Daniel come on and talk about the improvements
+
+[00:04:09.470] We're making inside the product. Yeah, like when you go on you look at this like the first thing you see from Kai here is
+
+[00:04:15.830] Kind of like the date like this is the August work
+
+[00:04:18.230] So it's working done in August deliver in the beginning of September and it means endgame like to someone coming in
+
+[00:04:23.890] What does that actually mean like I know there's like an emoji
+
+[00:04:26.330] I don't even know what endgame mean like the soon that I mean that's like done
+
+[00:04:29.910] But what does there's begins and done but they're in September, but not in August
+
+[00:04:32.910] What does that mean like from someone looking at this thing?
+
+[00:04:36.030] Dean, you'll do you want to talk a little bit about like what in game entails
+
+[00:04:40.230] Sure, so so our iterations are broken up into
+
+[00:04:45.030] development weeks which are typically
+
+[00:04:47.270] two to three weeks and then after that comes endgame, which is a week that we focus on
+
+[00:04:53.830] Testing and stabilizing and then the week after that is called debt week where we try to focus on technical debt
+
+[00:05:00.590] And it will also continue to stabilize the the release before it releases later
+
+[00:05:06.270] So everything that kind of is there a point basically that's like if the features not done it just goes to the next iteration
+
+[00:05:12.110] Like is it like I mean, obviously this this list has to be evolving through out like the month right
+
+[00:05:19.950] Yeah, so
+
+[00:05:21.550] So they'll sometimes go over to the next month maybe they'll land in stable in like a partially implemented state
+
+[00:05:27.510] Maybe defending on the future it could be experimental disabled by default you can turn it on
+
+[00:05:33.230] It's very very fluid
+
+[00:05:35.710] So and we actually have like our test plan items we later like our you can see our test plan
+
+[00:05:41.830] For the release so each engineer also writes their own tests right in terms of like the flow
+
+[00:05:46.830] We have some tooling internally that will automatically assign every single person no matter your role on the team
+
+[00:05:51.710] VMs designers whoever might be to actually go and run through these issues
+
+[00:05:56.390] You know depending on your OS you may get different issues and that sort of thing and then there's like this reconciliation process
+
+[00:06:01.950] That kind of happens is part of that of like oh, I feel like pretty good about this like you know
+
+[00:06:06.710] We didn't really have anything come up during you know the test plan
+
+[00:06:10.590] We can promote this stable and then of course there's like the conversation of like okay
+
+[00:06:14.790] Well, maybe this is in stable, but we have this as a setting and it's off by default
+
+[00:06:18.670] Or maybe it's on by default or maybe we're gonna start with it off by default
+
+[00:06:22.350] But there's some risk so we actually want to do a controlled rollout throughout the month
+
+[00:06:26.070] So there's a the types of kind of conversations that happen in addition to the testing going on that week
+
+[00:06:30.830] You know when you're in here like you also scroll the bottom so everything's broken down at different categories as well
+
+[00:06:35.510] The very bottom it's interesting like how just all works. There's like deferred. It's like gain of you're like working on like a
+
+[00:06:42.310] feature like
+
+[00:06:44.310] what determines
+
+[00:06:46.310] Like where it goes how it goes or if it does get deferred like and where in the process does that happen?
+
+[00:06:53.150] Well the third specifically is about things that we were planning to do but we're no longer planning to do so it's like accountability
+
+[00:07:00.310] Where we had it in the plan, but it's it's being removed
+
+[00:07:04.270] We're not doing that anymore for what you might have thought at me
+
+[00:07:07.430] And actually is that it carries over, but that's that's just the case for anything that's not complete typically
+
+[00:07:14.630] God it that makes sense
+
+[00:07:17.350] Is there anything Pierce and this sort of release? I see there's like all the emojis. There's there's red things. There's blocked work
+
+[00:07:25.390] All the emojis is running. I go into the planning meetings on there's like it feels like the team
+
+[00:07:30.870] I don't know Daniel like people they seem to want to report like different emojis statuses or like I really want to be a red dot today
+
+[00:07:37.390] I really wanted to be a running person like
+
+[00:07:40.310] Did to these emojis kind of excite the team like in in that stand-up on Monday the red dot specifically
+
+[00:07:46.110] We call the clown nose and it's it's a
+
+[00:07:49.510] This cold out every week that hey, yes, I don't got an issue tracking this
+
+[00:07:55.390] But yeah, that most issues would have nothing or run a if it has a runner and it's checked
+
+[00:08:01.550] It means we're gonna be talking about it in our planning sink
+
+[00:08:05.550] If it's just checked, it means it's already been talked about the previous week
+
+[00:08:09.470] But then there's other ones like the hands that means it's blocked
+
+[00:08:13.390] There's the black box which means it'll take a bunch of iterations
+
+[00:08:19.150] Yeah, there's more, but I can't take it from now. Did these also include like community contributions?
+
+[00:08:24.430] How are those part of like the planning iteration?
+
+[00:08:29.310] Very rarely to community contributions show up here if if
+
+[00:08:33.790] Say there's a big PR that comes in from the community it may show up as as in it's gonna take someone of the team
+
+[00:08:39.550] Is significant around a ref it to look into it
+
+[00:08:43.150] But typically community contributions are a smaller they come in through pull requests and then they go to the feature owners who review them
+
+[00:08:51.630] As part of their regular work
+
+[00:08:53.710] Gotcha, that makes that makes sense
+
+[00:08:55.470] So that if it was something like really big and really juicy then you're like okay, like let's let's pull this in basically
+
+[00:09:00.910] But it's less less looking
+
+[00:09:03.710] So the the community contributions also get cold out in our release notes at the bottom
+
+[00:09:08.510] And if if it is a big juicy one as you say they would get a call out in a
+
+[00:09:13.710] Section above that as well, which is like you want to tell people about the new features
+
+[00:09:19.230] Yeah, if you haven't just I think
+
+[00:09:21.950] We were doing this podcast. We kicked it off and a lot of people like oh, like I love you know
+
+[00:09:26.030] Just like seeing like visual like just talking about the features like people like driving to work
+
+[00:09:30.030] And not really in the release notes, but my favorite part of the release notes is that everyone that works on the features
+
+[00:09:34.990] It appears to all me like does their part of the release notes and
+
+[00:09:38.750] We put now this is like in the release notes from last one is it is it Josh?
+
+[00:09:44.670] Is that what that has like crazy Josh Spicer's theme yeah, which everyone has their own screenshots, too
+
+[00:09:50.430] Yeah, and everyone on YouTube there's a reddit thread that I
+
+[00:09:55.310] That will kick off on the videos code reddit that was like what is this theme because it's in the release notes
+
+[00:09:59.950] And we had in the video I this is my new default theme is the Josh. I can't stand that theme
+
+[00:10:04.990] I'm sorry to Josh. It's it thought it was me to death. I'm a little insulted no one's asked me about my queen
+
+[00:10:10.190] Oh, I never like everyone someone asked me what my theme is I said default
+
+[00:10:14.590] I don't know what are big defaults kind of big defaults guy that is for sure
+
+[00:10:18.590] I call Josh is in the tattoo in theme. I think that is reminds me of a beautiful desert plan
+
+[00:10:24.110] So what is in this what do people need to know about this august or kind of coming up the end of August?
+
+[00:10:28.750] But obviously things roll out there what are the big
+
+[00:10:31.710] Bolders pierce you want to kind of call out for people to kind of follow on
+
+[00:10:35.230] Yeah, so I mean I think
+
+[00:10:37.230] Last month we started some work on kind of some source control features around supporting kit work trees and a lot of our source control
+
+[00:10:43.710] features as you realize like how much we're gonna be doing with agents and multi agent and all that stuff
+
+[00:10:49.870] You start to realize the importance of get in this workflow and where it is great and where it falls out
+
+[00:10:56.190] So we started work on work trees which basically loves you to have multiple branches checked out at the same time last iteration
+
+[00:11:01.550] And so there's some more kind of work on going from that this iteration
+
+[00:11:04.910] But another big one that I've hit a lot with the coding agent is just you have a lot more merge complex, right?
+
+[00:11:10.110] If you're just kicking off work all over the place, it's great
+
+[00:11:12.670] But like then suddenly something changes in the branch that you base it off of and now you have a merge conflict
+
+[00:11:17.630] And so we're kind of exploring this idea of how can we have co-private help you to resolve this merge complex?
+
+[00:11:23.070] Because like we want multi agent to be making more productive, right?
+
+[00:11:26.750] We don't want it to be oh you're having to do with merge complex all the time and so this is a cool scenario
+
+[00:11:31.390] Where we're saying okay, how can AI help us? So that's super neat
+
+[00:11:35.790] Bring your own key. I'm a big bring your own key guy and so we have a lot of improvements coming there
+
+[00:11:41.870] So we just added support actually in incitors for open AI compatible
+
+[00:11:46.030] In points so pretty much all the major LLM providers and friends providers at this point
+
+[00:11:51.710] Follow that syntax to varying degrees and so if you have I have ever wanted to use like a model inside of co-pilot
+
+[00:11:58.350] But we don't support it and it's not an Azure and throw off a group an AI or Jim and I
+
+[00:12:03.870] Then this is a cool way that you can actually explore using that inside of
+
+[00:12:07.310] GitHub co-pilot now the problem is you're not going to get any you know prompt specific tweaks or anything like that
+
+[00:12:12.190] But if you just want to go give it a try it works pretty well
+
+[00:12:15.710] But in the case that you want something a bit more integrated we also actually just
+
+[00:12:21.870] Released a new proposed API that we're hoping to finalize this iteration that's basically
+
+[00:12:26.990] Allows extensions to contribute models to GitHub pilot well, like if I have yeah like the fireworks.ai
+
+[00:12:34.910] Extension that could actually contribute models that would show up in the model picker
+
+[00:12:39.230] Which is really cool. So this is like another example of like how we build BS code and the
+
+[00:12:43.630] Exincibility and how we want extensions to be able to hook into all this stuff we're doing with GitHub
+
+[00:12:47.790] pilot so that's super exciting because now like every single inference for writer on earth
+
+[00:12:52.750] Not just the ones that our team has time to go write a provider for can actually show up and that experience
+
+[00:12:59.390] Couple other things just to hit quickly like mcp
+
+[00:13:02.430] We've been really exploring this idea of registries like how can we
+
+[00:13:05.950] Inside the kind of extensions view similar to what we do for the visual studio marketplace show mcp servers and there's a lot of kind of improvements there
+
+[00:13:13.150] Coating agent continuing to like kind of iterate on the chat sessions view that we added last
+
+[00:13:17.870] Interaction where you can basically see what's happening with your remote GitHub copilot coding agent session locally
+
+[00:13:23.870] Also trying to do better with like packaging and defaults because it does require you to go and saw to get
+
+[00:13:28.270] Whole requests extension and turn on some features and
+
+[00:13:31.390] That's definitely not the happy path that was just kind of where we started to get some early feedback and so I think you're going to start seeing that more
+
+[00:13:36.910] Kind of in the default experience and then I think last month if I remember correctly
+
+[00:13:42.190] Mercad this awesome thread like what do you want to see as fix inside of chat and there's a ton of UX paper cuts and things like that and
+
+[00:13:50.110] So we basically have a whole bunch of those that we want to tackle this iteration
+
+[00:13:53.070] We tackled some last iteration like a checkpoints for example, but there's some we want to tackle this iteration
+
+[00:13:58.110] Some of which are already inside of insideers like basically the the changed files thing you get inside of chat is now collapsed by default
+
+[00:14:05.230] So it takes up a little less space
+
+[00:14:07.230] We want to show how close you are to like filling the context window
+
+[00:14:10.990] Because that's important for some people because they want to avoid summarization because it can reduce the quality of the outputs
+
+[00:14:16.030] You get from the model because you can only fit so much context into the context window
+
+[00:14:20.350] Show like thinking tokens so like for some of the models we support inside of
+
+[00:14:25.310] Get help cope out. We actually have reasoning turned on but you can actually see that reasoning trace and so
+
+[00:14:30.670] We're going to add like kind of thinking tokens to the UX
+
+[00:14:33.390] You can actually see okay, here's how the model is reasoning about your problem before it actually starts streaming in the actual response tokens
+
+[00:14:40.110] So we have a lot of kind of cool enhancements based off things we did last month that should be coming throughout this iteration and some of which have already landed
+
+[00:14:47.230] That's awesome. Yeah, I'm super excited because I know at at build we talked a lot about the MCP
+
+[00:14:51.870] Regres and the MCP dev days as well. I have an anthropic there and the worth is being done in the open and then yeah
+
+[00:14:56.830] I am pretty sure handsome and was like the best feature ever was collapse a bull keep on
+
+[00:15:00.510] Who's so I don't just blew his mind, but you know
+
+[00:15:04.350] Handsomen is a terminal guy. I am not a terminal guy
+
+[00:15:08.110] Unlike everybody else my terminals your big buttons guy as has been established in many of our life streams
+
+[00:15:13.870] I love big I love buttons. I love buttons. You press on. I love a UI. I'm a big UI person
+
+[00:15:19.550] I know I get over here. You know what my terminal is whatever the show whatever the default is now
+
+[00:15:23.710] I do insult power show, but that's about it. There's no customizations no colors what's in the box
+
+[00:15:28.350] It's in the box. I don't even know how to figure it out on a Mac and just whatever the position
+
+[00:15:33.070] That's what it is. I don't I don't know and then you know what I do
+
+[00:15:35.950] I just ask copilot run the commands build it fix it do it run it. I don't know I'm working on the VS code website right now
+
+[00:15:42.270] We have dev day to work on some new community stuff and I'm like I don't know just do and then run it and all this stuff
+
+[00:15:46.910] However, there's been I I've noticed because I've been using the terminal a lot because of all the amazing
+
+[00:15:52.430] Integrations with the chat in the agent mode
+
+[00:15:54.510] There's been tons of improvement improvement and that's why I brought Daniel on to not just talk about the process
+
+[00:15:58.190] But to go deep on like what is happening in the terminal because if you actually go to the August iteration plan
+
+[00:16:02.910] I just talked about there's a pretty beefy block Daniel of terminal stuff that's being worked on
+
+[00:16:08.270] But also there's been a lot of stuff that's already shipping as well. It's like what is happening in the terminal in VS code?
+
+[00:16:17.230] Yeah, so I thought I'd cover
+
+[00:16:19.710] Initially what what just landed in stable with the the rewrite of the terminal tool so
+
+[00:16:26.270] Historically before code cop out chat was open source
+
+[00:16:30.510] The tool was implemented in that extension and that means that we're bound to what the extension API can do
+
+[00:16:41.230] But basically dealing with that has a lot of overhead especially when when it comes to anything to do with UI
+
+[00:16:48.830] So much overhead that we didn't even pursue some things such as like trying to show the terminal in line inside the chat
+
+[00:16:55.150] Instead of opening a terminal which is much easier to with the extension API
+
+[00:17:01.070] But yeah, it comes with other things like it now has much richer access to like APIs and internally
+
+[00:17:08.990] So instead of the very the very high level and easy to use API and extension host
+
+[00:17:16.510] We have much lower level things that essentially allows us to
+
+[00:17:21.470] Track down all of these cases with the terminal tool hanging and and fix them
+
+[00:17:28.350] So when you say tool you mean like kind of like the tool drop down like inside the the cutting edge like these are things
+
+[00:17:33.710] There was like a terminal tool and like you're saying the extension like the the copilot extension
+
+[00:17:40.670] Kind of went down this route instead of just having direct access like like somewhat assumed because of is the integrated
+
+[00:17:48.110] Yeah, so there's been terminal extension APIs for many many years now
+
+[00:17:53.630] And the the tool for that allowed copilot to run anything in the terminal was all built on these APIs
+
+[00:18:01.950] Yeah, does that in see question yeah, I think so so does that mean that like those APIs and approval for other extension creators at the same time during this read right
+
+[00:18:10.670] So as I was trying to stabilize the
+
+[00:18:14.110] The terminal tool on the extension host. I fixed a bunch of bugs actually in the extension host and I
+
+[00:18:18.990] I improved some of the API there, but ultimately we needed lower level
+
+[00:18:24.350] stuff in order to give the sort of experience that we want so
+
+[00:18:29.070] Yeah, and not on that experience that we want so
+
+[00:18:32.110] It definitely wasn't where I wanted it we wanted it to be before and there were a whole bunch of
+
+[00:18:38.350] cases where the terminal could hang when a command ran and
+
+[00:18:42.910] The reason for that is it's quite complicated
+
+[00:18:48.430] One of the major contributors is this is all built on shell integration which
+
+[00:18:53.710] We have a script that we inject into the shell when it launches and that inserts little little markers basically that allows us to see okay
+
+[00:19:00.670] This is where the prompt start this is where the command started this is where the output started
+
+[00:19:04.110] Here's the exit code here's what the command line was exactly
+
+[00:19:07.630] But when you launch your default terminal we might either get what we call rich shell integration which is exactly what we want
+
+[00:19:16.030] We might get no shell integration and then we might get what we call basic shell integration which is that huge spectrum in between nothing and rich and
+
+[00:19:26.670] Yeah, there's just so many different configurations so many different ways to do things that it's hard to to capture everything
+
+[00:19:32.990] Is there a like I mean, I do want to pick favorites, but like is there like a hey
+
+[00:19:39.310] Like this shell
+
+[00:19:40.990] Provides one of those better experiences are the box
+
+[00:19:44.990] If you if you open your terminal and hover it
+
+[00:19:49.390] We'll actually show what type of shell integration there is now
+
+[00:19:52.750] If it says shell integration rich
+
+[00:19:55.470] You're probably gonna have a good experience if it doesn't
+
+[00:19:59.470] We hope you have a good experience
+
+[00:20:03.310] So if you don't have any shell integration for example, it'll say that you don't have shell integration and what that means is
+
+[00:20:10.590] The terminal is just a black box of text and
+
+[00:20:14.590] We have to rely on things like waiting for the terminal to idle briefly in order to
+
+[00:20:21.150] Before we send a command to make sure that the terminal's not doing anything
+
+[00:20:24.830] That falls over in in many different places
+
+[00:20:27.390] Um, another thing is when the command finishes we we don't know so
+
+[00:20:33.230] One of the mechanisms we use is to wait on idle. It's not the only one
+
+[00:20:38.030] But yeah, that can fall over say you you're command echoes something every two seconds it'll it'll prematurely exit so
+
+[00:20:47.150] Yeah, and inside as we'll show a warning saying you have no shell integration you should look into it to
+
+[00:20:53.950] Improved command detection
+
+[00:20:55.710] That's really bad. I feel like that needs a whole blog deep dive just like
+
+[00:20:59.790] What that means for folks because as it so it was interesting is as a non
+
+[00:21:05.230] Terminal
+
+[00:21:06.590] User myself if I can stay away from the command line that's my goal in life like
+
+[00:21:11.230] So just that's just my goal right, but but what's interesting is the more I use
+
+[00:21:16.750] Like agents
+
+[00:21:18.750] Is that the power not only of MCPs are like it calling CLIs for it to
+
+[00:21:24.270] Different commands that are out there like I was just building an app this weekend and I needed icons
+
+[00:21:29.470] So what did it do it generated SVGs and then it like converted them to PNGs
+
+[00:21:33.230] I don't know what it did. It was just running stuff and I was like this is great
+
+[00:21:37.390] So like those commands and those rebats are like really important at the end of the day for it to execute sort of different logic
+
+[00:21:42.910] So you're actually kind of the perfect user in my eyes because you don't touch the defaults and the
+
+[00:21:50.190] The most most of that uses we're things start to get wrong is when you use an obscure shell
+
+[00:21:56.990] or if you use something like
+
+[00:21:59.870] Aziz is show with with a bunch of plug-ins they can bet the show integration
+
+[00:22:06.110] But yeah if you just use the defaults or if you just installed the the light up house show that's even better
+
+[00:22:12.350] Then yeah, it should just work
+
+[00:22:14.830] Like that yeah, I'm a big power shell person. That's that and I come from the down at background
+
+[00:22:18.430] So I feel like the first thing I do in every new machine is like power shall done. I just feel like I know
+
+[00:22:22.430] It'll figure it out in general
+
+[00:22:26.000] Yeah, and so this rewrite Daniel. This is all in stable right and what kind of improvements are we seeing like on our side in terms of the experience for folks
+
+[00:22:36.480] So we went we went doing the best job tracking this behind the scenes before
+
+[00:22:41.920] But what we were seeing was when an exception was thrown
+
+[00:22:45.600] At 2.4% of all terminal calls an exception was thrown and what that meant was
+
+[00:22:52.000] Either an unexpected exception or the tool was canceled
+
+[00:22:56.800] After the new tool shipped
+
+[00:22:58.800] We do do for differentiate those now and the unexpected exception case is like 0.007% or something
+
+[00:23:06.400] Ridiculous this wall and then the cancel rate is 1% so
+
+[00:23:10.560] It's great. It's very clearly improved
+
+[00:23:13.200] Some canceles are expected
+
+[00:23:16.000] It's hard to gauge whether we we call everything in that but it's certainly a significant improvement from what we see
+
+[00:23:22.320] Together that baseline basically on there and the one thing I've noticed as well is that there seems to be this goal of
+
+[00:23:29.920] Not having the user click continue as much or
+
+[00:23:34.320] Approve or run as much like I actually kind of see this in some of the newer build where things just that are safe just kind of happen
+
+[00:23:42.160] You know, there's this
+
+[00:23:44.560] Thought of you're just just let me just call you know tell the agent want to do and just have it do it
+
+[00:23:51.840] But in that case
+
+[00:23:53.840] You know, you kind of want to be safe about it. So like every MCP call right ask for your permission
+
+[00:23:58.720] Almost every single terminal call previously at least always ask for your permission even like get status like
+
+[00:24:04.640] I just get the status like it's not gonna do anything, right?
+
+[00:24:07.280] But that's also been vastly improved and I continue to see iterations there. I know that that's been in in this current iteration as well as further improvements
+
+[00:24:16.560] I did notice that there was a beautiful UI
+
+[00:24:20.320] Now, it's not a beautiful UI
+
+[00:24:22.080] But I understand there's some beautiful UI so like in this approving world like what is going on there because the terminal is not working better
+
+[00:24:29.040] That means that we should just be using the terminal more and then should just do more stuff, right?
+
+[00:24:33.520] Yeah, yeah, so if you're if your confirmations there are the more autonomous agent motors the more useful it is the less annoying it is
+
+[00:24:42.400] So in the past in this this most recent release in the previous one we've been iterating on
+
+[00:24:47.920] the terminal auto approve system
+
+[00:24:52.160] It's it's kind of hidden you have to find the setting you have to configure your own rules right now
+
+[00:24:58.880] But it's become pretty pretty capable and reliable
+
+[00:25:03.520] And it didn't most recent one in particular so
+
+[00:25:08.080] So yeah coming into inside is a whole bunch of stuff it's been happening
+
+[00:25:12.880] So rules can now
+
+[00:25:14.960] Target half a little a little nicer so if you have say scripts slash test that you want to always allow
+
+[00:25:23.520] If you add that rule it'll it'll handle like dot slash prefixes
+
+[00:25:28.240] It'll handle the different the different separators for windows and non windows
+
+[00:25:33.520] Um, there's also a UI entry point so
+
+[00:25:36.800] When you're at a command there'll be a continue button the regular continue button
+
+[00:25:41.200] But also a drop down that allows you to
+
+[00:25:44.880] I'd go to the setting or or add some some new rules based on you know what we suggest based on what was what was run
+
+[00:25:54.080] Um
+
+[00:25:55.360] Another thing that's that's nice is that so there is a new UI for the confirm and there's supplies to all tools
+
+[00:26:01.920] But once once you confirm or once you add a rule
+
+[00:26:05.040] We'll actually tell you exactly what the rule was that order will appear to this thing
+
+[00:26:10.400] And you can click into it to go to the setting so it's like really transparent
+
+[00:26:14.960] It's really clear
+
+[00:26:16.960] How to change the rules if you want to back out you can you can click it and just undo it
+
+[00:26:24.320] Yeah, and then and then the other big thing is is we're adding a bunch of defaults
+
+[00:26:28.160] Uh
+
+[00:26:30.640] I like to call them safety faults. Okay, so
+
+[00:26:35.040] So uh, yeah, there's a lot of a lot of things the terminal commands can do so
+
+[00:26:40.800] As an example of of something we do
+
+[00:26:44.720] There's the fine command that lets you find text as ad files
+
+[00:26:49.360] You might think that that's safe to run generally. It's not actually because there's a whole bunch of arguments
+
+[00:26:55.360] Such as the hyphen exact argument that lets you just execute a sub commit inside
+
+[00:27:03.200] So for find we will allow that command
+
+[00:27:06.400] But we'll block it when there is certain arguments used no are and this applies to a whole bunch of uh
+
+[00:27:15.120] I think like sort has an issue like that and
+
+[00:27:18.800] J2 I can we consider adding that but I ended up removing it because it's like trivial to execute anything from the JQ trend
+
+[00:27:27.440] Oh, wow, you know you and I were talking about it quite a bit and the list you know
+
+[00:27:31.440] I was like I do they here's my defaults like you're batting like you know
+
+[00:27:34.480] Don't have build on a test like you then PM things all the stuff and then actually like talking through with you
+
+[00:27:39.280] I was like oh things are actually like a lot more complex than I thought think about because I never think about the additional arguments
+
+[00:27:45.520] And the complexity of it because like I'm memorizing like every argument that could be passed into a pretty single command on there like
+
+[00:27:51.840] Was this a collaboration with like a bunch of people on the team like with the community?
+
+[00:27:55.200] Obviously, I think it's just rolling to the get-up issue and on it as well, but like how did you actually make that decision?
+
+[00:28:02.080] Yeah, I've asked a whole lot of people for feedback on this
+
+[00:28:06.080] Oh, so internally inside the team
+
+[00:28:09.520] internally side Microsoft we have dog-feeding channels where a whole bunch of people get together
+
+[00:28:14.160] I think I asked on Twitter. I'm certainly tweeted at people saying can you review this?
+
+[00:28:20.000] Security of people and say get her live reviewed it and then I also just last week
+
+[00:28:26.480] Like sat down with with opus and
+
+[00:28:30.000] Did like several security reviews iterating on it and it found a whole bunch of cases. Oh, wow
+
+[00:28:36.160] So it's in a pretty good state now and it's uh
+
+[00:28:39.920] It's interesting because you might think that at having these defaults
+
+[00:28:44.960] Could be more risky, but when you consider things like we've done the research about these arguments
+
+[00:28:50.080] It's actually much more safe if you'll allow us to approve find but not these special arguments rather than
+
+[00:28:56.800] The user seeing this and saying I'll find a safe, you know check I think the other thing about that is like when
+
+[00:29:05.520] There is no good defaults then the user is way more because it is frustrating, right?
+
+[00:29:10.560] Like when you're working with the agent and there's like definitely some friction there of like as a user
+
+[00:29:14.560] I just want things to happen, right? And so
+
+[00:29:17.200] Sometimes there's like a user preference to just be like
+
+[00:29:20.800] I just want everything to happen, right? And so if you have no defaults you actually end up pushing the user to a more extreme position
+
+[00:29:26.480] Then just taking a reasonable one to begin with
+
+[00:29:29.760] Yep, something else please something else we might add
+
+[00:29:34.560] Along this is deferring some of this to to an element so if it's something's like
+
+[00:29:40.560] Script files it's really hard to for us to say oh, that's that's safe because the script file could do anything
+
+[00:29:47.600] But if we
+
+[00:29:49.280] Ask a LMM is this fine to run then it could add it to the approved list
+
+[00:29:54.480] the terminal auto approved mechanism also has a denialist so if
+
+[00:29:59.680] If that's that was allowed by LMM but it was denied by say it used the RM command
+
+[00:30:06.480] It still wouldn't run despite the LMM saying we say so it's just an extra thing
+
+[00:30:11.120] That's not in the inside as yet, but it maybe it will be in the future
+
+[00:30:14.560] I like that because I think I kind of just like Pearson you kind of been mentioning is like right now
+
+[00:30:18.720] If every single terminal command I have to you know, yes, yes, yes, yes, yes
+
+[00:30:22.960] Your default turns into yes, but now
+
+[00:30:25.920] With this and since I've been using it, I'm like, okay, I know the VS codes only gonna really prompt me
+
+[00:30:32.800] When it really needs to prompt me more right and then I can start to say, okay, yeah, I want Donette builder
+
+[00:30:38.080] I want Donette test, but I don't want Donette run really because I don't want you running things in general, right?
+
+[00:30:42.240] So kind of having this step through this is awesome
+
+[00:30:45.920] I will put links to everything then you link so much for coming on and talking through
+
+[00:30:49.200] I'll be back as the terminal continues to evolve and of course, you know
+
+[00:30:53.680] Check out the iteration plans. I'm sure some time will be here in no time and personal will be back
+
+[00:30:58.720] With more VS code inside as podcast
+
+[00:31:00.640] I don't forget that you can subscribe of course on our YouTube if you want to see our beautiful faces
+
+[00:31:04.880] There, but you can also now subscribe in your favorite podcast app run everything. I woke up really early
+
+[00:31:11.440] After launching the first video and got everything up on the apple podcast on the Spotify's on the podcast and all the things
+
+[00:31:16.400] You can go to VS code podcast.com to find links to everything
+
+[00:31:20.240] Let's go do for this VS code inside as podcast Daniel. Thank you. Pierce. Thank you. Okay, gen the next one

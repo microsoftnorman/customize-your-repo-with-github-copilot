@@ -1,0 +1,1526 @@
+[
+  {
+    "id": 1,
+    "start": "00:00:00.000",
+    "end": "00:00:03.360",
+    "text": "Welcome back everyone to the VS Code insiders podcast."
+  },
+  {
+    "id": 2,
+    "start": "00:00:03.360",
+    "end": "00:00:08.400",
+    "text": "You're behind the scenes look at all the amazing things in your favorite code editor VS code."
+  },
+  {
+    "id": 3,
+    "start": "00:00:08.400",
+    "end": "00:00:12.400",
+    "text": "This is where we take a look behind the scenes with some of the team members building"
+  },
+  {
+    "id": 4,
+    "start": "00:00:12.400",
+    "end": "00:00:16.160",
+    "text": "the code editor and developers using the code editors that you love today with me."
+  },
+  {
+    "id": 5,
+    "start": "00:00:16.160",
+    "end": "00:00:19.440",
+    "text": "Bob, you from the VS code team software engineer."
+  },
+  {
+    "id": 6,
+    "start": "00:00:19.440",
+    "end": "00:00:21.680",
+    "text": "We're kind of all sorts of goodies. How's it going, Bob?"
+  },
+  {
+    "id": 7,
+    "start": "00:00:22.480",
+    "end": "00:00:24.640",
+    "text": "I'm doing it. How are you? How is it?"
+  },
+  {
+    "id": 8,
+    "start": "00:00:24.640",
+    "end": "00:00:28.160",
+    "text": "I'm doing delightful. Just got back from GitHub universe."
+  },
+  {
+    "id": 9,
+    "start": "00:00:28.160",
+    "end": "00:00:32.400",
+    "text": "We're going to talk about a brand new feature that just launched that got highlighted at the keynote."
+  },
+  {
+    "id": 10,
+    "start": "00:00:33.360",
+    "end": "00:00:36.800",
+    "text": "Before we get into it, maybe you could tell I want a little bit about yourself."
+  },
+  {
+    "id": 11,
+    "start": "00:00:37.440",
+    "end": "00:00:41.840",
+    "text": "Yeah. Hi everyone. I'm a software engineer on the VS Code team."
+  },
+  {
+    "id": 12,
+    "start": "00:00:41.840",
+    "end": "00:00:47.600",
+    "text": "I've been on the team for about three years now. Previously on the team, I worked on the"
+  },
+  {
+    "id": 13,
+    "start": "00:00:47.600",
+    "end": "00:00:51.360",
+    "text": "at least called chat participant. You may have played around with in the chat panel."
+  },
+  {
+    "id": 14,
+    "start": "00:00:51.360",
+    "end": "00:00:55.440",
+    "text": "So that helps you with Q&A finding commands and settings in VS Code,"
+  },
+  {
+    "id": 15,
+    "start": "00:00:55.440",
+    "end": "00:01:00.080",
+    "text": "answering general VS code related questions about like APIs and release notes."
+  },
+  {
+    "id": 16,
+    "start": "00:01:00.080",
+    "end": "00:01:04.720",
+    "text": "I've also worked on the hash new tool that we have in the agent that helps you"
+  },
+  {
+    "id": 17,
+    "start": "00:01:04.720",
+    "end": "00:01:08.880",
+    "text": "scaffold new projects leveraging MCP tools like context seven."
+  },
+  {
+    "id": 18,
+    "start": "00:01:09.600",
+    "end": "00:01:13.520",
+    "text": "And I also worked on the to do tool, which is getting a bit of a facelift in the next release."
+  },
+  {
+    "id": 19,
+    "start": "00:01:14.400",
+    "end": "00:01:18.720",
+    "text": "And then more recently, I've been helping build out our agent prompts for some of the latest"
+  },
+  {
+    "id": 20,
+    "start": "00:01:18.720",
+    "end": "00:01:23.360",
+    "text": "model releases. And I also contributed to the hand of feature that you'll see in the planning mode."
+  },
+  {
+    "id": 21,
+    "start": "00:01:23.360",
+    "end": "00:01:28.160",
+    "text": "And generally when you use agent modes, yeah, in VS Code, but that was recently announced"
+  },
+  {
+    "id": 22,
+    "start": "00:01:28.160",
+    "end": "00:01:32.320",
+    "text": "on GitHub, you know, it's so cool. I've used like every single one of your features probably in"
+  },
+  {
+    "id": 23,
+    "start": "00:01:32.320",
+    "end": "00:01:37.680",
+    "text": "the last like day two, I think as well, everything you worked on. I recently did use the,"
+  },
+  {
+    "id": 24,
+    "start": "00:01:37.680",
+    "end": "00:01:45.920",
+    "text": "I think the most under looked at feature is the hash new. I used it recently and like blue my mind"
+  },
+  {
+    "id": 25,
+    "start": "00:01:45.920",
+    "end": "00:01:50.000",
+    "text": "because I was just like starting a new, I was like, well, there's like crazy and like it"
+  },
+  {
+    "id": 26,
+    "start": "00:01:50.000",
+    "end": "00:01:54.880",
+    "text": "does his hand off and then it like opens a new workspace and it's like mind boggling. It's like"
+  },
+  {
+    "id": 27,
+    "start": "00:01:54.880",
+    "end": "00:02:00.000",
+    "text": "so cool. Nice. Glad to hear that. I'm glad you're enjoying that. If you have any feedback or want"
+  },
+  {
+    "id": 28,
+    "start": "00:02:00.000",
+    "end": "00:02:05.200",
+    "text": "to see any improvements, you know, what to find? Yes. And of course, everyone can always go to the"
+  },
+  {
+    "id": 29,
+    "start": "00:02:05.200",
+    "end": "00:02:09.760",
+    "text": "VS Code, get up age as the best place to put it as well. The team reads all those. I opened tons"
+  },
+  {
+    "id": 30,
+    "start": "00:02:09.760",
+    "end": "00:02:12.800",
+    "text": "of issues myself. I was just talking to Rob. I've like, has this great idea. And he's like, I'll just"
+  },
+  {
+    "id": 31,
+    "start": "00:02:12.800",
+    "end": "00:02:18.560",
+    "text": "open an issue do this thing for setting. So a big gooey person. So I love making settings look better."
+  },
+  {
+    "id": 32,
+    "start": "00:02:18.720",
+    "end": "00:02:24.400",
+    "text": "My new plan for my end of year goal for VS Code is really work with the settings. And I know"
+  },
+  {
+    "id": 33,
+    "start": "00:02:24.400",
+    "end": "00:02:28.080",
+    "text": "there's people and engineers working on it now. Well, you talked about some really cool things."
+  },
+  {
+    "id": 34,
+    "start": "00:02:28.080",
+    "end": "00:02:32.240",
+    "text": "You talked about to do's and then you also talked about this planning agent, the kind of planning"
+  },
+  {
+    "id": 35,
+    "start": "00:02:32.240",
+    "end": "00:02:37.360",
+    "text": "mode. Maybe can you talk a little bit about like to do's first and then because like they've been"
+  },
+  {
+    "id": 36,
+    "start": "00:02:37.360",
+    "end": "00:02:43.120",
+    "text": "around for a few releases now. And then like what this new plan thing is and like how developers use"
+  },
+  {
+    "id": 37,
+    "start": "00:02:43.120",
+    "end": "00:02:48.560",
+    "text": "each of those and how they're the same? Are they different? Yeah. So we initially started with"
+  },
+  {
+    "id": 38,
+    "start": "00:02:48.560",
+    "end": "00:02:54.160",
+    "text": "the to do tool. So it's a tool that you can invoke in the chat panel. I think it's behind. You can"
+  },
+  {
+    "id": 39,
+    "start": "00:02:54.160",
+    "end": "00:02:59.840",
+    "text": "invoke it with hash to do's. So this is sort of like our way of trying to ensure that the agent"
+  },
+  {
+    "id": 40,
+    "start": "00:02:59.840",
+    "end": "00:03:06.160",
+    "text": "would stay focused when you're engaging with the agent for a complex task. So something that has"
+  },
+  {
+    "id": 41,
+    "start": "00:03:06.160",
+    "end": "00:03:11.520",
+    "text": "multi-step that the agent laid out. And then as you see the context growing, you can see sometimes"
+  },
+  {
+    "id": 42,
+    "start": "00:03:11.520",
+    "end": "00:03:16.560",
+    "text": "that the agent would completely forget what it started off with. So kind of giving some sort of"
+  },
+  {
+    "id": 43,
+    "start": "00:03:17.520",
+    "end": "00:03:22.320",
+    "text": "context, grounding context on the higher level context that the agent can maintain as it works through"
+  },
+  {
+    "id": 44,
+    "start": "00:03:22.320",
+    "end": "00:03:28.160",
+    "text": "complex tasks. And then kind of also be realized as we shipped this. And as we started having"
+  },
+  {
+    "id": 45,
+    "start": "00:03:28.160",
+    "end": "00:03:33.440",
+    "text": "more users tried out that it was a neat way for the users to also get context on what the chat"
+  },
+  {
+    "id": 46,
+    "start": "00:03:33.440",
+    "end": "00:03:38.080",
+    "text": "does actually try to do right at that point in time. Sometimes the chat panel can be pretty"
+  },
+  {
+    "id": 47,
+    "start": "00:03:38.080",
+    "end": "00:03:43.920",
+    "text": "verbose. So it's kind of hard to get context on what's happening. So you can take a look at the"
+  },
+  {
+    "id": 48,
+    "start": "00:03:43.920",
+    "end": "00:03:50.000",
+    "text": "to do's, which are now in closer to the chat input area in the new insiders. So when you can"
+  },
+  {
+    "id": 49,
+    "start": "00:03:50.000",
+    "end": "00:03:55.280",
+    "text": "quickly get context on what the current step the agent does at. And then you can choose to go and"
+  },
+  {
+    "id": 50,
+    "start": "00:03:55.280",
+    "end": "00:04:00.160",
+    "text": "look at the rest of the tasks that are upcoming that the agent will engage with. Or you can just"
+  },
+  {
+    "id": 51,
+    "start": "00:04:00.160",
+    "end": "00:04:04.240",
+    "text": "let the agent cook and then see what happens. And then once it's done, the agent should have marked"
+  },
+  {
+    "id": 52,
+    "start": "00:04:04.240",
+    "end": "00:04:10.640",
+    "text": "everything is done. And then yeah, though you can also be confident more often than not that most"
+  },
+  {
+    "id": 53,
+    "start": "00:04:10.640",
+    "end": "00:04:20.770",
+    "text": "of your tasks are done. Yeah. So I love that because I use the to do's a lot because like when I give"
+  },
+  {
+    "id": 54,
+    "start": "00:04:20.770",
+    "end": "00:04:25.730",
+    "text": "it the prompt and it creates a to do list for me or if I asked it to create the to do list,"
+  },
+  {
+    "id": 55,
+    "start": "00:04:25.730",
+    "end": "00:04:30.610",
+    "text": "the nice thing about it is I get to like real time review. Now it's already starting to cook,"
+  },
+  {
+    "id": 56,
+    "start": "00:04:30.610",
+    "end": "00:04:35.250",
+    "text": "but I get to review the steps. So I could actually stop it if I'm like, oh, you actually missed a"
+  },
+  {
+    "id": 57,
+    "start": "00:04:35.250",
+    "end": "00:04:39.090",
+    "text": "thing or like, you might not like, okay, let it finish and I'll like follow up with additional to"
+  },
+  {
+    "id": 58,
+    "start": "00:04:39.090",
+    "end": "00:04:44.530",
+    "text": "do's or things like that. And then I'm a PM. So I'm on calls every single day pretty much all the time."
+  },
+  {
+    "id": 59,
+    "start": "00:04:44.530",
+    "end": "00:04:51.490",
+    "text": "So I just kind of like put like my teams overlaps over. So I can just see like the to do's being"
+  },
+  {
+    "id": 60,
+    "start": "00:04:51.490",
+    "end": "00:04:56.930",
+    "text": "checked off in real time. So I know like if I need like, you know, turn off my webcam for a second"
+  },
+  {
+    "id": 61,
+    "start": "00:04:56.930",
+    "end": "00:05:01.010",
+    "text": "then follow up after it's all done. So it's like nice to see it while it's cooking in the background."
+  },
+  {
+    "id": 62,
+    "start": "00:05:01.490",
+    "end": "00:05:05.570",
+    "text": "I like to I like to cook while I'm on calls, you know, you know, so that that way,"
+  },
+  {
+    "id": 63,
+    "start": "00:05:06.130",
+    "end": "00:05:10.210",
+    "text": "that way I get a lot of code down like send a prompt to join a team's call and then boom good to go."
+  },
+  {
+    "id": 64,
+    "start": "00:05:10.210",
+    "end": "00:05:10.530",
+    "text": "So"
+  },
+  {
+    "id": 65,
+    "start": "00:05:11.410",
+    "end": "00:05:16.770",
+    "text": "another neat thing that about the to do's is if for whatever is in your agent task was interrupted,"
+  },
+  {
+    "id": 66,
+    "start": "00:05:16.770",
+    "end": "00:05:21.250",
+    "text": "um, we can pick right back up and the to do context gets injected back to the agent."
+  },
+  {
+    "id": 67,
+    "start": "00:05:21.250",
+    "end": "00:05:26.290",
+    "text": "So it knows where to pick it up from and usually I've seen a, seen a do a good job with continuity,"
+  },
+  {
+    "id": 68,
+    "start": "00:05:26.850",
+    "end": "00:05:32.370",
+    "text": "especially long tasks. That's awesome. That's very cool. So it's kind of like the to do's are sort of"
+  },
+  {
+    "id": 69,
+    "start": "00:05:33.570",
+    "end": "00:05:40.130",
+    "text": "planning. They're like plans that are being executed, but then this new plan agent is kind of like"
+  },
+  {
+    "id": 70,
+    "start": "00:05:40.130",
+    "end": "00:05:46.610",
+    "text": "flipping that a little bit, right? Yeah, to do some more on this, the scope is much smaller. I would"
+  },
+  {
+    "id": 71,
+    "start": "00:05:46.610",
+    "end": "00:05:53.010",
+    "text": "say for to do so, they're more for the immediate steps at hand. Planning is more for a more complex"
+  },
+  {
+    "id": 72,
+    "start": "00:05:53.010",
+    "end": "00:05:59.410",
+    "text": "tasks that involves like a lot of deep research and then a lot of context gathering, going around"
+  },
+  {
+    "id": 73,
+    "start": "00:05:59.410",
+    "end": "00:06:03.570",
+    "text": "and figuring out what's in your code base trying to understand how you could race this setup,"
+  },
+  {
+    "id": 74,
+    "start": "00:06:03.570",
+    "end": "00:06:08.530",
+    "text": "what instructions do you what instructions you want the agent to be following and then compiling"
+  },
+  {
+    "id": 75,
+    "start": "00:06:08.530",
+    "end": "00:06:17.090",
+    "text": "all of that into some sort of an executable and follow along, um, markdown or a draft of a plan"
+  },
+  {
+    "id": 76,
+    "start": "00:06:17.650",
+    "end": "00:06:24.050",
+    "text": "that you can then have agents work on either synchronously with local agents or you can just kick"
+  },
+  {
+    "id": 77,
+    "start": "00:06:24.050",
+    "end": "00:06:28.450",
+    "text": "them off on background agents or remote coding agents and take it off from there. So I would say"
+  },
+  {
+    "id": 78,
+    "start": "00:06:28.450",
+    "end": "00:06:34.930",
+    "text": "planning is a much higher level focused task where it's to do some more in session and just scope"
+  },
+  {
+    "id": 79,
+    "start": "00:06:34.930",
+    "end": "00:06:40.850",
+    "text": "to the task at hand. Yeah. Okay, gotcha. So when I'm inside of VS code, I mean inside the chat and then"
+  },
+  {
+    "id": 80,
+    "start": "00:06:40.850",
+    "end": "00:06:45.490",
+    "text": "you know, we've primarily always had asked at it agent and agents of the default, right? Just going to"
+  },
+  {
+    "id": 81,
+    "start": "00:06:45.490",
+    "end": "00:06:50.050",
+    "text": "go do stuff unless I tell it don't write any code, but I there's now plan there. So this is that"
+  },
+  {
+    "id": 82,
+    "start": "00:06:50.050",
+    "end": "00:06:55.650",
+    "text": "plan agent. So how do I think about it as a developer like when I should switch into that"
+  },
+  {
+    "id": 83,
+    "start": "00:06:55.650",
+    "end": "00:07:01.650",
+    "text": "context? Because like I know if I just ask the agent to do something with the agent mode,"
+  },
+  {
+    "id": 84,
+    "start": "00:07:01.650",
+    "end": "00:07:05.490",
+    "text": "like it's going to do a little bit of pre planning and task collaboration. So when should I think"
+  },
+  {
+    "id": 85,
+    "start": "00:07:05.490",
+    "end": "00:07:12.690",
+    "text": "about like, oh, like I should actually do some planning first? More often than not, this is the way"
+  },
+  {
+    "id": 86,
+    "start": "00:07:12.690",
+    "end": "00:07:17.490",
+    "text": "we've seen, we use it within the team. And I'm sure this as you start using planning mode,"
+  },
+  {
+    "id": 87,
+    "start": "00:07:17.490",
+    "end": "00:07:23.410",
+    "text": "you'll find more ways to use it. But we like to start off with trying to define like a really"
+  },
+  {
+    "id": 88,
+    "start": "00:07:23.410",
+    "end": "00:07:29.650",
+    "text": "broad level task and then have the agent explore exactly what needs to be done. So think about it"
+  },
+  {
+    "id": 89,
+    "start": "00:07:29.650",
+    "end": "00:07:34.930",
+    "text": "for like high level tasks, such as hey, I want to start something from you, like start a new feature"
+  },
+  {
+    "id": 90,
+    "start": "00:07:34.930",
+    "end": "00:07:40.690",
+    "text": "like a really large coping feature. So for example, when I wrote the to do tool and move that out on"
+  },
+  {
+    "id": 91,
+    "start": "00:07:40.690",
+    "end": "00:07:46.130",
+    "text": "in VS code, I started off in planning mode trying to explore where the chat widget goes and then"
+  },
+  {
+    "id": 92,
+    "start": "00:07:46.130",
+    "end": "00:07:51.490",
+    "text": "how it's rendered and then what are the different moving parts there. So helping kind of first going"
+  },
+  {
+    "id": 93,
+    "start": "00:07:51.490",
+    "end": "00:07:56.050",
+    "text": "and finding context, understanding what all the moving parts are and then building out this other"
+  },
+  {
+    "id": 94,
+    "start": "00:07:56.050",
+    "end": "00:08:01.490",
+    "text": "widget that would then integrate with this widget, making sure I don't break tests, making sure that"
+  },
+  {
+    "id": 95,
+    "start": "00:08:01.490",
+    "end": "00:08:09.810",
+    "text": "the UX is aligned with all of the different UX surfaces we have in VS code. So a complex multi-step"
+  },
+  {
+    "id": 96,
+    "start": "00:08:09.810",
+    "end": "00:08:16.210",
+    "text": "task that involves a lot of research and a lot of planning is why you would use the planning"
+  },
+  {
+    "id": 97,
+    "start": "00:08:16.210",
+    "end": "00:08:21.970",
+    "text": "mode is what I would say. Yeah. I think one thing that's been fascinating and I'm interested in how"
+  },
+  {
+    "id": 98,
+    "start": "00:08:21.970",
+    "end": "00:08:28.610",
+    "text": "it actually works like under the hood. But when I've used plan agent, the planning agent is that"
+  },
+  {
+    "id": 99,
+    "start": "00:08:28.610",
+    "end": "00:08:32.610",
+    "text": "it seems to ask me questions too. So it doesn't give me a plan. It seems to ask me questions."
+  },
+  {
+    "id": 100,
+    "start": "00:08:32.610",
+    "end": "00:08:37.010",
+    "text": "Like how is this thing working? And I guess how is it different than how it would traditionally"
+  },
+  {
+    "id": 101,
+    "start": "00:08:37.010",
+    "end": "00:08:43.170",
+    "text": "plan and then why is it asking me questions? Yeah. So we've scoped on planning with the goal that"
+  },
+  {
+    "id": 102,
+    "start": "00:08:43.170",
+    "end": "00:08:49.090",
+    "text": "it helps you achieve come up with the detailed plan. We've scoped the tools that it has access"
+  },
+  {
+    "id": 103,
+    "start": "00:08:49.090",
+    "end": "00:08:55.330",
+    "text": "to to only read only tools and then code based search tools. So it can read through your code"
+  },
+  {
+    "id": 104,
+    "start": "00:08:55.330",
+    "end": "00:09:01.170",
+    "text": "based to understand how it works. It only has re-access. So it can read through all of the code changes"
+  },
+  {
+    "id": 105,
+    "start": "00:09:01.170",
+    "end": "00:09:06.370",
+    "text": "and then all of the different other instructions that you might have in your repository."
+  },
+  {
+    "id": 106,
+    "start": "00:09:06.450",
+    "end": "00:09:12.850",
+    "text": "And then comes up with the detailed level plan. And then you can take it from there. It usually"
+  },
+  {
+    "id": 107,
+    "start": "00:09:12.850",
+    "end": "00:09:20.450",
+    "text": "tries to help you. We've prompted it in such a way that it also helps identify potential gaps in"
+  },
+  {
+    "id": 108,
+    "start": "00:09:20.450",
+    "end": "00:09:24.610",
+    "text": "what you're missing with the task that you're asking for. So it always asks you an open-ended"
+  },
+  {
+    "id": 109,
+    "start": "00:09:24.610",
+    "end": "00:09:30.770",
+    "text": "questions. It figures out that needs resolution. And then you can take it from there. You can choose"
+  },
+  {
+    "id": 110,
+    "start": "00:09:30.770",
+    "end": "00:09:35.890",
+    "text": "to try to resolve all of the open-ended questions and then go ahead and implement it. Or you can be"
+  },
+  {
+    "id": 111,
+    "start": "00:09:35.890",
+    "end": "00:09:41.090",
+    "text": "like, you know what? I'm just trying to explore this. So why don't you pick defaults and go from there"
+  },
+  {
+    "id": 112,
+    "start": "00:09:41.090",
+    "end": "00:09:46.210",
+    "text": "and start implementing and then see what happens. Yeah. That makes sense. So sort of inherently the team,"
+  },
+  {
+    "id": 113,
+    "start": "00:09:46.210",
+    "end": "00:09:49.730",
+    "text": "you said, as I'm kind of summarised it here. So I understand it as well as"
+  },
+  {
+    "id": 114,
+    "start": "00:09:50.770",
+    "end": "00:09:57.730",
+    "text": "the team basically has this agent prompt set up in a way that is scope tooling. But then also"
+  },
+  {
+    "id": 115,
+    "start": "00:09:58.690",
+    "end": "00:10:07.730",
+    "text": "is using those tools in a planning way and specifying that it should inherently ask those follow-up"
+  },
+  {
+    "id": 116,
+    "start": "00:10:07.730",
+    "end": "00:10:12.370",
+    "text": "questions if there are open-ended questions. Have you found like there's different"
+  },
+  {
+    "id": 117,
+    "start": "00:10:13.890",
+    "end": "00:10:22.610",
+    "text": "threshold? Is it always going to ask me questions? Is it one of the requirements? Or will there be"
+  },
+  {
+    "id": 118,
+    "start": "00:10:22.610",
+    "end": "00:10:27.330",
+    "text": "instances where there's none? And how many times could it possibly ask me questions? Is it an"
+  },
+  {
+    "id": 119,
+    "start": "00:10:27.330",
+    "end": "00:10:34.210",
+    "text": "infinimal or how it's how it's? So this is a prompt that we are fine-tuning and then working on"
+  },
+  {
+    "id": 120,
+    "start": "00:10:34.210",
+    "end": "00:10:40.850",
+    "text": "constantly. Currently, the way it works is we ask it to go and explore. We also use this tool called"
+  },
+  {
+    "id": 121,
+    "start": "00:10:40.850",
+    "end": "00:10:47.570",
+    "text": "the run subagent tasks, the web agent's tool that goes ahead and does like DP search in its own little"
+  },
+  {
+    "id": 122,
+    "start": "00:10:47.570",
+    "end": "00:10:54.210",
+    "text": "subagent context and comes back with you. It comes back to you, which is the right amount of"
+  },
+  {
+    "id": 123,
+    "start": "00:10:54.210",
+    "end": "00:11:00.290",
+    "text": "context that you need for your actual tasks. So there is not much context mixing between the two."
+  },
+  {
+    "id": 124,
+    "start": "00:11:01.010",
+    "end": "00:11:06.050",
+    "text": "And then also keeps your context for the main tasks scope. So we're trying to build this out so that"
+  },
+  {
+    "id": 125,
+    "start": "00:11:06.050",
+    "end": "00:11:10.530",
+    "text": "it tries to go and do this research and comes back with all of the information that it found and"
+  },
+  {
+    "id": 126,
+    "start": "00:11:10.530",
+    "end": "00:11:15.890",
+    "text": "then tries to put it back to the question that you'd try to form. And then it identifies open"
+  },
+  {
+    "id": 127,
+    "start": "00:11:15.890",
+    "end": "00:11:20.850",
+    "text": "questions. More often than not, I've seen it ask you questions having you kind of engage with it"
+  },
+  {
+    "id": 128,
+    "start": "00:11:20.850",
+    "end": "00:11:26.530",
+    "text": "in the Q&A to try to resolve the open-ended questions. Sometimes it can get a little"
+  },
+  {
+    "id": 129,
+    "start": "00:11:26.530",
+    "end": "00:11:32.290",
+    "text": "duty and then we're working on fixing that up. But I've found it really useful in the questions"
+  },
+  {
+    "id": 130,
+    "start": "00:11:32.290",
+    "end": "00:11:37.170",
+    "text": "that it asks because I wouldn't have thought of it. I do as well. I'm not going to lie. I'm like,"
+  },
+  {
+    "id": 131,
+    "start": "00:11:37.170",
+    "end": "00:11:42.690",
+    "text": "oh, I should have asked that. Can you customize it in any way? You said that there's a predefined"
+  },
+  {
+    "id": 132,
+    "start": "00:11:42.690",
+    "end": "00:11:47.250",
+    "text": "set of tools. But what if I have like MCP servers and I'm really interested in doing research on a bug and"
+  },
+  {
+    "id": 133,
+    "start": "00:11:47.250",
+    "end": "00:11:52.130",
+    "text": "I need it to go search GitHub or sentries like that? Is it customizable? Kind of like the other"
+  },
+  {
+    "id": 134,
+    "start": "00:11:52.130",
+    "end": "00:11:58.850",
+    "text": "sort of agents in there? Yeah, you can create custom agents as we're calling them now. So you can"
+  },
+  {
+    "id": 135,
+    "start": "00:11:58.850",
+    "end": "00:12:05.570",
+    "text": "open up the chat panel and in the gear icon you can create a new custom agent. And we have"
+  },
+  {
+    "id": 136,
+    "start": "00:12:05.570",
+    "end": "00:12:11.010",
+    "text": "commands to help you do this. And each agent you can define kind of the role that you want the"
+  },
+  {
+    "id": 137,
+    "start": "00:12:11.010",
+    "end": "00:12:16.690",
+    "text": "agents to play. So what we built in is the planning agent. But imagine you'd want an agent that"
+  },
+  {
+    "id": 138,
+    "start": "00:12:16.690",
+    "end": "00:12:21.890",
+    "text": "helps you to test driven development. So you can go and build up an agent and scope down the tooling"
+  },
+  {
+    "id": 139,
+    "start": "00:12:21.890",
+    "end": "00:12:26.930",
+    "text": "so that you have access to the testing tools and then being able to compile and run your code."
+  },
+  {
+    "id": 140,
+    "start": "00:12:27.730",
+    "end": "00:12:33.330",
+    "text": "And then there's you can also define the handoffs between one agent to the other. So going"
+  },
+  {
+    "id": 141,
+    "start": "00:12:33.330",
+    "end": "00:12:41.250",
+    "text": "seamlessly from planning and then going to a test development agent. So yeah, like you can customize it."
+  },
+  {
+    "id": 142,
+    "start": "00:12:41.250",
+    "end": "00:12:45.890",
+    "text": "We we've added support for creating custom chat modes where you can define the model that you"
+  },
+  {
+    "id": 143,
+    "start": "00:12:45.890",
+    "end": "00:12:53.970",
+    "text": "want. You can define handoffs which agent to handoff tasks to the tools that you want to customize."
+  },
+  {
+    "id": 144,
+    "start": "00:12:53.970",
+    "end": "00:12:58.210",
+    "text": "And then finally the instructions that you want which define the role that the agent will play."
+  },
+  {
+    "id": 145,
+    "start": "00:12:58.930",
+    "end": "00:13:03.010",
+    "text": "Oh, that's very cool. So you kind of see exactly if you were like, oh, I think like this planning"
+  },
+  {
+    "id": 146,
+    "start": "00:13:03.010",
+    "end": "00:13:07.250",
+    "text": "mode, like is working good, but like I need to customize it and kind of copy it and create my own"
+  },
+  {
+    "id": 147,
+    "start": "00:13:07.250",
+    "end": "00:13:12.930",
+    "text": "custom planning mode, like James is planning mode, basically. Yeah, you can also look at a"
+  },
+  {
+    "id": 148,
+    "start": "00:13:12.930",
+    "end": "00:13:19.570",
+    "text": "a peek at our custom art planning mode that we've added. So if you open the agent to drop down,"
+  },
+  {
+    "id": 149,
+    "start": "00:13:19.570",
+    "end": "00:13:24.690",
+    "text": "there's a little icon there that asks you to configure agents. And if you click on that and you'll"
+  },
+  {
+    "id": 150,
+    "start": "00:13:24.690",
+    "end": "00:13:29.410",
+    "text": "be presented a quick pick with the different agents, you can go and click on the planning agent"
+  },
+  {
+    "id": 151,
+    "start": "00:13:29.410",
+    "end": "00:13:34.690",
+    "text": "that shows them there. And then you can it's a markdown file. You can go and take a look at it to see"
+  },
+  {
+    "id": 152,
+    "start": "00:13:34.690",
+    "end": "00:13:38.690",
+    "text": "exactly what we've defined. And you can see our custom prompt in there too. And you can copy over it"
+  },
+  {
+    "id": 153,
+    "start": "00:13:39.410",
+    "end": "00:13:44.130",
+    "text": "to a kid. Oh, that's awesome. That's super cool. Yeah. Like that it's like, it's just open. It's just"
+  },
+  {
+    "id": 154,
+    "start": "00:13:44.130",
+    "end": "00:13:48.210",
+    "text": "there. So you can see exactly what the team's doing. Well, what about like actually the prompt for it?"
+  },
+  {
+    "id": 155,
+    "start": "00:13:48.210",
+    "end": "00:13:53.330",
+    "text": "Like because I think one thing, like I've really worked on, but I've been like over the last,"
+  },
+  {
+    "id": 156,
+    "start": "00:13:53.330",
+    "end": "00:13:57.250",
+    "text": "you know, eight, nine months since like each of mode came out. It's kind of crazy. I think it's like"
+  },
+  {
+    "id": 157,
+    "start": "00:13:57.250",
+    "end": "00:14:02.770",
+    "text": "only been like less than a year. But I really try to work on like my prompting of like what I'm doing,"
+  },
+  {
+    "id": 158,
+    "start": "00:14:02.770",
+    "end": "00:14:06.930",
+    "text": "like asking questions. Like when it comes to like model prompting, are there any best projects that you"
+  },
+  {
+    "id": 159,
+    "start": "00:14:06.930",
+    "end": "00:14:12.130",
+    "text": "found like in this plan? Like how much context should I give it? Like other specific models that like"
+  },
+  {
+    "id": 160,
+    "start": "00:14:12.130",
+    "end": "00:14:17.250",
+    "text": "should be picking a thinking model and this like what are your thoughts from like the engineering"
+  },
+  {
+    "id": 161,
+    "start": "00:14:17.250",
+    "end": "00:14:22.690",
+    "text": "side of like how much context to give ahead of time for the plan and also like models or they're"
+  },
+  {
+    "id": 162,
+    "start": "00:14:22.690",
+    "end": "00:14:29.730",
+    "text": "like models that maybe would work better in this context? Working with agents as all about context"
+  },
+  {
+    "id": 163,
+    "start": "00:14:29.730",
+    "end": "00:14:35.410",
+    "text": "engineering. Right? So trying to figure out the right level of context engineering is kind of it,"
+  },
+  {
+    "id": 164,
+    "start": "00:14:35.410",
+    "end": "00:14:41.090",
+    "text": "you could call it science, but sometimes I've also seen it go kind of a right. So it's, there's a"
+  },
+  {
+    "id": 165,
+    "start": "00:14:41.090",
+    "end": "00:14:45.570",
+    "text": "bunch of levers that you can pull that we provide to help with context engineering, especially with"
+  },
+  {
+    "id": 166,
+    "start": "00:14:45.570",
+    "end": "00:14:53.970",
+    "text": "prompting. So for starters, at just the code base level, you can have actual GitHub instructions,"
+  },
+  {
+    "id": 167,
+    "start": "00:14:53.970",
+    "end": "00:14:59.090",
+    "text": "start MD files that kind of layout like all of the best practices that you follow in code, kind of"
+  },
+  {
+    "id": 168,
+    "start": "00:14:59.090",
+    "end": "00:15:04.450",
+    "text": "the code structure that you have, where to go looking. If you want to look at all of the UX,"
+  },
+  {
+    "id": 169,
+    "start": "00:15:04.450",
+    "end": "00:15:10.210",
+    "text": "widgets that exist or all of the testing infrastructure that exists. So adding that to context"
+  },
+  {
+    "id": 170,
+    "start": "00:15:10.210",
+    "end": "00:15:15.730",
+    "text": "when you're trying to figure out what sort of code you want to implement. So it's all about"
+  },
+  {
+    "id": 171,
+    "start": "00:15:15.730",
+    "end": "00:15:20.770",
+    "text": "context engineering and then you will allow you to customize it at different levels. One is the"
+  },
+  {
+    "id": 172,
+    "start": "00:15:20.770",
+    "end": "00:15:25.490",
+    "text": "instructions files that you provide. The other one is the agents with their specific rules that you"
+  },
+  {
+    "id": 173,
+    "start": "00:15:25.490",
+    "end": "00:15:32.370",
+    "text": "can assign them. And in a in a specific prompt that you would write, I would say it all comes"
+  },
+  {
+    "id": 174,
+    "start": "00:15:32.370",
+    "end": "00:15:37.890",
+    "text": "down to giving it the right set of tools and giving it the one the right set of tools to go and"
+  },
+  {
+    "id": 175,
+    "start": "00:15:37.890",
+    "end": "00:15:43.410",
+    "text": "look for what it wants to find and also kind of giving it direction. So open ended questions are great"
+  },
+  {
+    "id": 176,
+    "start": "00:15:43.410",
+    "end": "00:15:49.570",
+    "text": "when you're exploring. But if you have some sort of context in terms of it could even be a previous"
+  },
+  {
+    "id": 177,
+    "start": "00:15:49.570",
+    "end": "00:15:54.530",
+    "text": "commit or a previous pull request that you worked on. So you can give that to the agent and the agent"
+  },
+  {
+    "id": 178,
+    "start": "00:15:54.530",
+    "end": "00:16:00.290",
+    "text": "knows to go and use the GitHub MCP tools to go and fetch the differences and then figure out what"
+  },
+  {
+    "id": 179,
+    "start": "00:16:00.290",
+    "end": "00:16:06.450",
+    "text": "was implemented and then take it from there. So within a given con given task that you're trying to"
+  },
+  {
+    "id": 180,
+    "start": "00:16:06.450",
+    "end": "00:16:13.010",
+    "text": "achieve trying to find the right bits of context to give it without overwhelming the model is the way"
+  },
+  {
+    "id": 181,
+    "start": "00:16:13.010",
+    "end": "00:16:19.810",
+    "text": "to go. It does really task driven. So even when I'm in planning agent, like I should still be like"
+  },
+  {
+    "id": 182,
+    "start": "00:16:19.810",
+    "end": "00:16:24.050",
+    "text": "referencing files or friends and commits and things like that. If that's valuable I guess right."
+  },
+  {
+    "id": 183,
+    "start": "00:16:24.050",
+    "end": "00:16:31.410",
+    "text": "Yes, definitely. Yeah, referencing files, giving it best practices on what to do, what not to do"
+  },
+  {
+    "id": 184,
+    "start": "00:16:31.410",
+    "end": "00:16:36.530",
+    "text": "potentially. As you start planning it out, tell the model that here I want you to follow a test"
+  },
+  {
+    "id": 185,
+    "start": "00:16:36.530",
+    "end": "00:16:40.850",
+    "text": "driven development. So start with failing tests. So make sure you also account for writing tests"
+  },
+  {
+    "id": 186,
+    "start": "00:16:41.810",
+    "end": "00:16:45.250",
+    "text": "in this plan that you've built out so that I can go and delegate it later on."
+  },
+  {
+    "id": 187,
+    "start": "00:16:45.890",
+    "end": "00:16:51.090",
+    "text": "Oh, very cool. I've seen the planning agent. There's something different than the other agents,"
+  },
+  {
+    "id": 188,
+    "start": "00:16:51.090",
+    "end": "00:16:57.170",
+    "text": "like Ask Edit and Agent Agent Agent, if we will. Is that like when it finishes the plan? It has"
+  },
+  {
+    "id": 189,
+    "start": "00:16:57.170",
+    "end": "00:17:01.730",
+    "text": "like little buttons. Like that are there that pop up like what are those buttons? Like I've never seen"
+  },
+  {
+    "id": 190,
+    "start": "00:17:01.730",
+    "end": "00:17:08.210",
+    "text": "them before and like what should I use? Like there's a few options there. Those buttons are what"
+  },
+  {
+    "id": 191,
+    "start": "00:17:08.210",
+    "end": "00:17:14.930",
+    "text": "we call as handoffs and those are something that's available in Insiders right now for folks to use."
+  },
+  {
+    "id": 192,
+    "start": "00:17:15.010",
+    "end": "00:17:23.330",
+    "text": "And handoffs are way of helping users kind of go from one agent performing a task to"
+  },
+  {
+    "id": 193,
+    "start": "00:17:23.330",
+    "end": "00:17:29.410",
+    "text": "seamlessly handing off to another role. So start off with planning in once you're happy with where"
+  },
+  {
+    "id": 194,
+    "start": "00:17:29.410",
+    "end": "00:17:35.170",
+    "text": "the plan is. Take that plan all of the context that you've gathered in that session and then hand it off"
+  },
+  {
+    "id": 195,
+    "start": "00:17:35.170",
+    "end": "00:17:41.890",
+    "text": "to an agent to go and build it or go and test something out. So you can, that's the mechanism for it."
+  },
+  {
+    "id": 196,
+    "start": "00:17:41.890",
+    "end": "00:17:48.210",
+    "text": "And then you can define these handoffs in your agent modes that you define in the custom agent modes."
+  },
+  {
+    "id": 197,
+    "start": "00:17:48.210",
+    "end": "00:17:54.610",
+    "text": "So you can define the agent, the tools that the agent needs, the description and then you can"
+  },
+  {
+    "id": 198,
+    "start": "00:17:54.610",
+    "end": "00:17:59.410",
+    "text": "define something called as handoffs. We have good documentation for this where you can call out"
+  },
+  {
+    "id": 199,
+    "start": "00:17:59.410",
+    "end": "00:18:06.370",
+    "text": "which agent you want as handoffs. So planning agent you will see has handoffs to our default agent"
+  },
+  {
+    "id": 200,
+    "start": "00:18:06.370",
+    "end": "00:18:11.410",
+    "text": "so that it can go and start implementing things or you can also save all of the conversation"
+  },
+  {
+    "id": 201,
+    "start": "00:18:11.410",
+    "end": "00:18:16.610",
+    "text": "as a markdown file so that it's a draft of a plan that you can share and review and then reuse"
+  },
+  {
+    "id": 202,
+    "start": "00:18:16.610",
+    "end": "00:18:22.050",
+    "text": "across the team. So you can go and define custom agents so that they can talk to each other."
+  },
+  {
+    "id": 203,
+    "start": "00:18:22.050",
+    "end": "00:18:27.410",
+    "text": "Previously you'd have to like get into this specific mode chat mode we would call it, go through"
+  },
+  {
+    "id": 204,
+    "start": "00:18:27.410",
+    "end": "00:18:32.130",
+    "text": "all of this planning and then the owners was on you to switch out agents and then go and implement"
+  },
+  {
+    "id": 205,
+    "start": "00:18:32.130",
+    "end": "00:18:37.570",
+    "text": "it. But with handoffs we kind of make this as a reusable component that you can use and share"
+  },
+  {
+    "id": 206,
+    "start": "00:18:37.570",
+    "end": "00:18:43.010",
+    "text": "within the team so that you can also automate these tasks. Well that's very cool. Like that kind"
+  },
+  {
+    "id": 207,
+    "start": "00:18:43.010",
+    "end": "00:18:47.410",
+    "text": "of now understand exactly what's happening. I thought it was just like doing something completely"
+  },
+  {
+    "id": 208,
+    "start": "00:18:47.410",
+    "end": "00:18:50.690",
+    "text": "different but that makes a lot of sense. It's really cool that you can define these agents and handoffs"
+  },
+  {
+    "id": 209,
+    "start": "00:18:50.690",
+    "end": "00:18:54.850",
+    "text": "as well. I'll put links to the documentation in the show notes as well which is awesome."
+  },
+  {
+    "id": 210,
+    "start": "00:18:54.850",
+    "end": "00:18:59.730",
+    "text": "And we're saying insiders so if you're on 106 that's what it'll be in and of course you might be"
+  },
+  {
+    "id": 211,
+    "start": "00:18:59.730",
+    "end": "00:19:04.450",
+    "text": "listening to this later so check your version that's out there I might be in there. Or just open up"
+  },
+  {
+    "id": 212,
+    "start": "00:19:04.530",
+    "end": "00:19:09.170",
+    "text": "the panel if you see plan then you have the you haven't and if you don't there you're there."
+  },
+  {
+    "id": 213,
+    "start": "00:19:09.170",
+    "end": "00:19:15.650",
+    "text": "So I did want to ask one final question here is like I'm going to the plan and I see these handoffs."
+  },
+  {
+    "id": 214,
+    "start": "00:19:16.610",
+    "end": "00:19:21.250",
+    "text": "Do you have like opinions or like what I should do? I know you probably don't but like"
+  },
+  {
+    "id": 215,
+    "start": "00:19:22.210",
+    "end": "00:19:26.850",
+    "text": "like there's the ability to like have the mark down there. Like is there an advantage to that? Like"
+  },
+  {
+    "id": 216,
+    "start": "00:19:26.850",
+    "end": "00:19:31.330",
+    "text": "what's the purpose of that that I should think about when I'm deciding to just implement or like"
+  },
+  {
+    "id": 217,
+    "start": "00:19:31.330",
+    "end": "00:19:36.210",
+    "text": "have it save the document? What's your thoughts on that? I guess it comes down to what you want"
+  },
+  {
+    "id": 218,
+    "start": "00:19:36.210",
+    "end": "00:19:41.970",
+    "text": "to do with the mark down. If it's a really long detailed plan it would be good to save it because"
+  },
+  {
+    "id": 219,
+    "start": "00:19:41.970",
+    "end": "00:19:47.090",
+    "text": "there's all of this deep research that's happened through subagents and trying to figure out all of"
+  },
+  {
+    "id": 220,
+    "start": "00:19:47.090",
+    "end": "00:19:53.010",
+    "text": "the different code structures and patterns and implementation details that you'd want to save and kind"
+  },
+  {
+    "id": 221,
+    "start": "00:19:53.010",
+    "end": "00:19:58.530",
+    "text": "of also have as a reference when the model goes and actually implements it. So you could save"
+  },
+  {
+    "id": 222,
+    "start": "00:19:58.530",
+    "end": "00:20:04.770",
+    "text": "your file and then provide that as context to another agent or you could pick pieces from that file"
+  },
+  {
+    "id": 223,
+    "start": "00:20:04.770",
+    "end": "00:20:09.570",
+    "text": "while still providing the file as context and have different agents working on different pieces of that"
+  },
+  {
+    "id": 224,
+    "start": "00:20:10.210",
+    "end": "00:20:17.650",
+    "text": "plan. So that's how I see it. So it's for not two complex fits still a complex task. I would say"
+  },
+  {
+    "id": 225,
+    "start": "00:20:17.650",
+    "end": "00:20:22.450",
+    "text": "you don't really need to make a plan. Just go figure out what happens and then hand that off to an agent"
+  },
+  {
+    "id": 226,
+    "start": "00:20:22.450",
+    "end": "00:20:27.730",
+    "text": "to go take care of. But if you're building something from scratch it's good to capture all of the"
+  },
+  {
+    "id": 227,
+    "start": "00:20:27.890",
+    "end": "00:20:32.210",
+    "text": "requirements in terms of the platform. You chose why you chose a specific way to do something"
+  },
+  {
+    "id": 228,
+    "start": "00:20:32.930",
+    "end": "00:20:37.090",
+    "text": "where all the tests are, what testing infrastructure you use and then have different agents"
+  },
+  {
+    "id": 229,
+    "start": "00:20:37.090",
+    "end": "00:20:43.090",
+    "text": "implement different things. Go have something implement like failing tests, have another agent"
+  },
+  {
+    "id": 230,
+    "start": "00:20:43.090",
+    "end": "00:20:49.490",
+    "text": "explore the different UX options to implement and then build that out. So that's where I think"
+  },
+  {
+    "id": 231,
+    "start": "00:20:49.490",
+    "end": "00:20:54.930",
+    "text": "the plan is handy. And you can also save this plan in the end as a part of your eekney file so that"
+  },
+  {
+    "id": 232,
+    "start": "00:20:55.490",
+    "end": "00:21:00.850",
+    "text": "other folks have a repository using your repository can reference it. That's super cool. That's"
+  },
+  {
+    "id": 233,
+    "start": "00:21:00.850",
+    "end": "00:21:05.490",
+    "text": "really great breakdown because I've just thought about it as well of course we'll just save it."
+  },
+  {
+    "id": 234,
+    "start": "00:21:05.490",
+    "end": "00:21:08.610",
+    "text": "I don't even know if I'll use it but I like the idea as like yeah I'm probably going to be planning"
+  },
+  {
+    "id": 235,
+    "start": "00:21:08.610",
+    "end": "00:21:12.770",
+    "text": "really really big things and maybe I want to break it down into multiple chunks or open issues"
+  },
+  {
+    "id": 236,
+    "start": "00:21:12.770",
+    "end": "00:21:16.930",
+    "text": "off of it or refine it with a team member and you just have that mark down as super nifty. Anything"
+  },
+  {
+    "id": 237,
+    "start": "00:21:16.930",
+    "end": "00:21:21.250",
+    "text": "else you want to talk about the planning agent at all? Probably before you wrap up. We covered the"
+  },
+  {
+    "id": 238,
+    "start": "00:21:21.250",
+    "end": "00:21:26.210",
+    "text": "planning agent. The fact that you can hand it off. No, I think you got it on."
+  },
+  {
+    "id": 239,
+    "start": "00:21:27.330",
+    "end": "00:21:31.570",
+    "text": "I'm super excited. I've been using this every single day since I got it. I love it. I"
+  },
+  {
+    "id": 240,
+    "start": "00:21:32.290",
+    "end": "00:21:36.450",
+    "text": "almost plan. I think every single thing that I do now because I'm like why not? Why not?"
+  },
+  {
+    "id": 241,
+    "start": "00:21:36.450",
+    "end": "00:21:40.450",
+    "text": "Just plan and give it a little bit more context. I think what I've seen at least and I don't know if"
+  },
+  {
+    "id": 242,
+    "start": "00:21:40.450",
+    "end": "00:21:44.290",
+    "text": "you've seen it but I've seen definitely better faster results. Like I know it takes like a little"
+  },
+  {
+    "id": 243,
+    "start": "00:21:44.290",
+    "end": "00:21:48.450",
+    "text": "bit more time planning ahead of time but for me I think those follow-up questions are important like"
+  },
+  {
+    "id": 244,
+    "start": "00:21:48.450",
+    "end": "00:21:55.010",
+    "text": "okay like is it coming up with the to to to do is in the plan that I actually had in my mind that"
+  },
+  {
+    "id": 245,
+    "start": "00:21:55.010",
+    "end": "00:21:59.250",
+    "text": "was like one sentence you know that I give it enough context. So I've been using every day and I love it."
+  },
+  {
+    "id": 246,
+    "start": "00:21:59.250",
+    "end": "00:22:06.830",
+    "text": "So I hope everyone that's listening gives it a try. So well I will put links to everything"
+  },
+  {
+    "id": 247,
+    "start": "00:22:06.830",
+    "end": "00:22:11.390",
+    "text": "at GitHub universe that definitely if you've even seen it go check out the the Latino there. I'll put"
+  },
+  {
+    "id": 248,
+    "start": "00:22:11.390",
+    "end": "00:22:15.310",
+    "text": "links to that and then if you're watching on YouTube I'll put like a little demo video as well."
+  },
+  {
+    "id": 249,
+    "start": "00:22:15.310",
+    "end": "00:22:18.910",
+    "text": "I'll do my own plan. I'll put on there's a lot. Bobby thank you so much for coming on and talking"
+  },
+  {
+    "id": 250,
+    "start": "00:22:19.150",
+    "end": "00:22:22.590",
+    "text": "about planning agent. Yeah thank you so much for having me. This is so much fun."
+  },
+  {
+    "id": 251,
+    "start": "00:22:23.230",
+    "end": "00:22:26.270",
+    "text": "Awesome and thanks for everyone listening and don't forget you can of course watch on the"
+  },
+  {
+    "id": 252,
+    "start": "00:22:26.270",
+    "end": "00:22:30.750",
+    "text": "VS Code YouTube and you can also listen in your favorite podcast. Players don't forget just"
+  },
+  {
+    "id": 253,
+    "start": "00:22:30.750",
+    "end": "00:22:36.110",
+    "text": "search VS Code Insiders podcast. Subscribe like do all the things send it to all your colleagues"
+  },
+  {
+    "id": 254,
+    "start": "00:22:36.110",
+    "end": "00:22:42.190",
+    "text": "and with that. Thank you so much for listening and are watching and happy coding."
+  }
+]

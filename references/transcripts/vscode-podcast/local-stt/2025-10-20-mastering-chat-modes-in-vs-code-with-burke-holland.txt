@@ -1,0 +1,787 @@
+[00:00:00.050] Welcome back everyone to the VS code insiders podcast behind the scenes with the team that builds the tools that you love and use every single day and with me the one and only Burke Holland has a gone buddy
+
+[00:00:10.850] What's up chat? Do you see chats on a podcast? I don't know if you do or if you don't I just did well
+
+[00:00:16.450] Maybe probably listeners or they could be viewers because you could be watching this on the VS code YouTube like subscribe ring that notification bell
+
+[00:00:23.370] Of course you can subscribe on your favorite podcast application
+
+[00:00:26.410] Give us all the reviews and stars and likes and share with a friend share with a co-worker
+
+[00:00:31.490] out there
+
+[00:00:32.210] I'm one of your host James about to make known sometimes pierces with me as well from the VS code team and what I wanted to do today is a lot of people
+
+[00:00:39.410] See you online Burke see your videos see the teams videos that are on the VS code YouTube that are like kind of like seeing behind the scenes and joining the live streams
+
+[00:00:48.850] They say yes cook on Fridays live using agent mode and doing a much fun stuff
+
+[00:00:53.170] But one of the things that I think really caught a lot of people's attention
+
+[00:00:58.170] Was this custom chat mode that you had developed called?
+
+[00:01:02.330] B-smowed and we've talked about it you've demoed it we've done live streams on it
+
+[00:01:06.730] But I think what I wanted to do was unravel chat modes in general because I don't really think that a lot of people
+
+[00:01:13.570] Understand what they are why you would use them or even how you would go about developing one
+
+[00:01:18.970] But you developed one I'm gonna say developed because I think there's a craft in an art to this
+
+[00:01:23.770] That has been adopted and sort of reinvigorated some of the GPT-41
+
+[00:01:30.010] Like qualms that people were having when using that model and sort of revolutionize it so Burke
+
+[00:01:36.690] What the heck actually is a custom chat mode?
+
+[00:01:39.770] And why would people even think about using one when they're inside of VS code in agent mode?
+
+[00:01:44.570] That's a great question. So let's start with custom chat modes
+
+[00:01:47.730] There's so many different ways that you can provide the model with your own prompts in
+
+[00:01:52.250] VS code when the other like the most straightforward ways to just type in the chat box
+
+[00:01:56.530] That's a way to give a prompt, but then we provide other ways
+
+[00:01:59.210] We have these copilot instructions
+
+[00:02:01.930] That you can add to your project and those will be picked up and added with every request and then there's
+
+[00:02:07.810] Instruction files and there's prompt files and then there's chat modes and it's kind of like all of these things have their place
+
+[00:02:13.610] But let's just talk about what chat modes are since we only have so much time
+
+[00:02:16.810] When you have in your chat box when you're typing your prompt you have three modes in the little box here
+
+[00:02:23.030] Ask edit in agent and you and I've done a video on this like the difference between these these are chat modes
+
+[00:02:28.890] Okay, so you can specify your own mode
+
+[00:02:32.010] That will then show up in that box and you do that by clicking on the box and saying configure modes
+
+[00:02:36.410] And again all this is is you this is just you adding in custom instructions to the model
+
+[00:02:42.450] They get appended onto whatever instructions were already sending and what you can do with a custom chat mode is it has a little bit more
+
+[00:02:49.970] Control so it allows you to specify what we call tools in the front matter and the tools are just what the model has access to do
+
+[00:02:58.810] So in other words when you have an ask mode
+
+[00:03:00.930] You can tell the model to do something and it will give you an answer, but it won't write any code
+
+[00:03:05.450] Why doesn't it write any code James? Why doesn't it write any code doesn't it doesn't it doesn't know how because the tools?
+
+[00:03:11.250] It doesn't it wasn't given the tools to do it so it just doesn't even bother to try to do it
+
+[00:03:15.450] Whereas in agent mode we give it the tool to do it, which is why it does it instead of answering your question
+
+[00:03:21.330] Unless the model is GPT four dot one in which case
+
+[00:03:25.650] It's still just likes to answer your question and
+
+[00:03:29.290] This is the fun of AI right now is that the models almost have personalities. They have quirks and
+
+[00:03:37.010] One of the quirks for like Claude is that it's very very capable
+
+[00:03:41.970] But it tries to do a lot and it's not the fastest model of the bunch right? So those are the quirks of Claude
+
+[00:03:49.370] One of the quirks of GPT four one is that it's extremely fast
+
+[00:03:53.570] But that it doesn't actually like to take any action. It likes to tell you what it's gonna do and then you're like cool
+
+[00:03:59.170] Do it it's like great. I'm gonna do it. Yeah, and then it doesn't do it. Yeah, and so
+
+[00:04:04.530] What when you create these custom chat modes what I did was I had this when we shipped custom chat modes
+
+[00:04:11.290] I had this hypothesis that can I make GPT four dot one more
+
+[00:04:16.410] Directable or more agentic we use this word agentic which just means that the model continues and actually takes care of
+
+[00:04:25.350] Finishing the task that it's been asked to do
+
+[00:04:27.910] Without you having to ask it to do more stuff over and over again
+
+[00:04:31.790] I make something like agency
+
+[00:04:34.190] Yeah, because in these chat modes that was your idea
+
+[00:04:37.230] But what I've also seen is these chat modes for like planning mode, right?
+
+[00:04:41.430] Like put on the mind of a planner put in your mind of a tester
+
+[00:04:45.070] I'm doing playwright scripting or testing in this instance or I am
+
+[00:04:50.270] Research mode basically like these different modes
+
+[00:04:52.790] So I guess like when I think about a mode like ask edit an agent kind of makes a little bit of sense
+
+[00:04:57.330] Because you're asking you're editing and telling you what it can do
+
+[00:04:59.530] But I guess when someone comes up with a chat mode you have the idea I have an idea right
+
+[00:05:04.150] Maybe I want to create a custom chat mode that is an expert in you know, Donnie Maui development or you know
+
+[00:05:10.630] Type script development or something like that or is just an expert planner like how would you even go about like what goes into the chat
+
+[00:05:17.830] Mode file you said the front matter, but like in the order of operations
+
+[00:05:21.750] There's the name of it right models you can select and this works with any model
+
+[00:05:26.470] So in your case you're customizing GPT-41
+
+[00:05:29.230] But it works with you know any of these modes were with any model
+
+[00:05:32.310] But you could craft one towards a model like you did
+
+[00:05:34.790] But then also it's just a markdown file
+
+[00:05:37.430] So like what goes into that markdown file like what order of operation is that being sent like because you said there's a system prompt
+
+[00:05:45.870] Like that's always gonna get sent I assume from like oh, yeah, like what what would someone's thinking about? Oh, I
+
+[00:05:51.310] Like I think I may need a chat mode
+
+[00:05:53.950] But like what would I even put into that thing like what's the minimum and then mid and then like you went all out
+
+[00:05:59.490] Be style yeah
+
+[00:06:00.830] So when we have the the system prompt which is getting sent and and that prompt if you could go in and you can look at it
+
+[00:06:07.630] It looks something like
+
+[00:06:09.790] You are an agent. You're a coding agent. Your name is GitHub co-pilot
+
+[00:06:13.870] You are tasked with completing the user's query
+
+[00:06:16.750] Do not come back to them and until you have completed it and there's different things for different models in there
+
+[00:06:21.670] There's like there's a keep going prompt which is essentially gives the model more agency
+
+[00:06:25.910] There's it there's if you look there's the tools you have access to this tool
+
+[00:06:30.790] These are the parameters. This is what the tool does you don't see any of this stuff
+
+[00:06:34.470] Yeah, but if you looked at the prompt it's actually there
+
+[00:06:37.310] So your custom chat mode gets added on to the end of that but let's take your example of like
+
+[00:06:43.310] Planning mode. I'm gonna use research mode. So let's just make let's just say you create a mode called
+
+[00:06:48.110] Researcher and the researcher mode all it does do is research
+
+[00:06:51.310] So you would then go in in your front matter and you would basically probably not give it access to right files
+
+[00:06:57.550] But you would give it access to fetch and fetch allows it to go out
+
+[00:07:01.750] Read a page on the internet and return that content is marked down and then what I would do is I'd start going through and I would give it a
+
+[00:07:07.990] Roll I'd start with a roll and this is what beast mode does you are an expert researcher
+
+[00:07:12.990] Your job is to search the internet to find as much information as you can about the users query and then distill that down
+
+[00:07:19.550] into actionable results
+
+[00:07:21.110] Something like this and then actually when I'm in there writing these prompts get up
+
+[00:07:25.670] Co-pilot is completing things for me because that's what it does
+
+[00:07:29.150] Yeah, it aggressively completes what you're trying to write and it's extremely helpful for this
+
+[00:07:34.470] Got it. So that this is called there's an there's a word for this is called metaprompting where the AI is actually helping you compose the prompt
+
+[00:07:43.110] Because it's quite good at that. Yeah, I've seen this a bit when when very early chat mode came out
+
+[00:07:49.270] I would remember seeing all of these websites and repos pop up with all of these
+
+[00:07:55.030] How they were calling them modes?
+
+[00:07:56.390] It was just a bunch of prompts right and what you would do is you go into the chat mode
+
+[00:07:59.790] You say I am an expert TypeScript developer and I love TypeScript and TypeScript the best and like write this and this
+
+[00:08:04.230] And this is what and you would send that with like every request over and over and over again
+
+[00:08:08.310] It's sort of like you were giving it a mind frame to be in
+
+[00:08:11.910] but what you're saying here is
+
+[00:08:13.910] let's make that
+
+[00:08:15.670] Just something that gets sent with every request right?
+
+[00:08:18.550] So for example if you're in research mode what I'm understanding is you give it this context about searching the internet
+
+[00:08:23.950] But then you might tell it what to do I assume too like would you tell us like create here's how I want like here's an example
+
+[00:08:30.510] Is in feedback flow my social analysis tool?
+
+[00:08:33.950] I kind of give my LLM a bunch of data and I give it a prompt like hey
+
+[00:08:39.350] You're an expert. This like my prompt is literally this. It's like you're a expert social media analyst and here's how
+
+[00:08:46.270] Here's what you want to do to generate a report so go off analyze this
+
+[00:08:49.910] You're gonna analyze sentiment positive blah blah blah and then generate this report for me and come back with this
+
+[00:08:56.070] Sort of mindset of thinking and then return that back as markdown
+
+[00:08:59.270] That's what I kind of say now that's an extreme
+
+[00:09:01.350] But I'm assuming there's some crossover between
+
+[00:09:04.070] You're a type script type script expert or you're a research expert and like what goes into that chat mode file like how much stuff are you putting in there to get
+
+[00:09:11.850] Let's walk out. Let's walk that out
+
+[00:09:13.070] So usually you start with the role and then what I do is I try to give it exact steps
+
+[00:09:18.510] Then I want to follow
+
+[00:09:19.510] Because when you're writing prompts you can think of prompt engineering is just giving the model the answer that you want
+
+[00:09:25.470] Because theoretically if you put all the context in the right order in the prompt
+
+[00:09:30.670] The model is just gonna spit back out to you the correct answer from that
+
+[00:09:35.470] That's all you're really doing with prompt engineering. Yeah, so in the case of a researcher
+
+[00:09:39.550] What I would do is I would say I want you to follow these steps the first thing
+
+[00:09:41.970] I want you to do is I want you to do a Google search for the subject the user is asked about in the format
+
+[00:09:49.130] Google.com slash or maybe I should say Bing.com
+
+[00:09:52.470] Slash right and then the query parameter and then the user's query and I would put it in there
+
+[00:09:56.910] It doesn't matter what syntax you use it can it can read anything
+
+[00:10:00.450] And then I would say and then look at those search results if any of the results on the page
+
+[00:10:06.490] Look like they're relevant to the context then you need to fetch those then step three
+
+[00:10:11.970] You need to recursively perform this operation until you feel like you have enough context and then step four
+
+[00:10:18.730] You should re-examine the context at this point and decide if you need to do any additional Google searches
+
+[00:10:24.450] To actually have enough context right so you you really repetitive
+
+[00:10:28.890] You have to think about models as being like
+
+[00:10:32.610] Almost like little children where you have to tell them the same thing over and over and over again in order to get them to
+
+[00:10:38.970] Complete the task you'd be very specific and very repetitive and then I would specify the exact format that I want the results in
+
+[00:10:46.690] Here's what I want you to do once you have the results. I want you to write a summary at the top next
+
+[00:10:51.890] I want you to just to distill down into this is what you do with prompt flow, right? You have a template that it follows
+
+[00:10:57.530] Right and this is important give it a template so that because otherwise every single time it's gonna shell out
+
+[00:11:03.450] Something else. Yeah, that you may or may not want right exactly as it doesn't know it doesn't know exactly
+
+[00:11:08.810] So that makes a lot of sense especially when you're creating this custom mode
+
+[00:11:11.690] If you're a research like hey, and this is how I want my research then or maybe you give it access to
+
+[00:11:16.490] Like you know being able to create documents like and make sure you like
+
+[00:11:21.650] Save this document right like every single research save the document say the document
+
+[00:11:25.170] In this format here's an example of what it would look like
+
+[00:11:28.890] Boom, and I think if someone was saying okay, what about with coding?
+
+[00:11:32.810] I'm thinking like if I was doing testing or if I was doing just even my own custom mode is like I
+
+[00:11:39.810] Could imagine you know after you write the code like make sure that I want you to
+
+[00:11:45.010] Run a build run the task. I want you to fix any bugs that are in the test
+
+[00:11:48.850] I want you to reevaluate like do I have like analyze the code coverage like basically all the things that I might do
+
+[00:11:55.090] Over and over again like here's the additional stuff that I want you to do because you could write that into the box
+
+[00:12:01.890] Every single thread correct right, but that seems like a waste of your precious
+
+[00:12:06.770] Keystrokes and you only have so many of those last as mr. Scott handsome and once told me so you got to reserve those keystrokes
+
+[00:12:13.330] That's correct. So I what I would tell people is it like you don't realize this but when you work you actually have a
+
+[00:12:19.890] Workflow
+
+[00:12:21.570] You may not be able to articulate what that is because you haven't thought about it
+
+[00:12:24.930] But as you go along you need to be asking yourself
+
+[00:12:27.650] What am I doing over and over that I can just automate here? Do I keep doing the same thing?
+
+[00:12:33.050] Do I keep going into this test file to check on something?
+
+[00:12:36.770] Do I keep going to the package Jason file to check to check on something?
+
+[00:12:40.810] What are the workflows that you use as a developer and then begin to develop prompts?
+
+[00:12:46.450] Instructions and chat modes that automate those things away. You're literally just trying to automate the smaller parts of your own workflow
+
+[00:12:53.490] I wanted the things that I think that
+
+[00:12:56.210] Is a little bit misleading right now is that we have this idea a lot of ideas are being thrown out there
+
+[00:13:01.410] It's like you need to do spectraven development. Do you need to do spectrum development James? Honestly?
+
+[00:13:07.170] I don't know I don't know I don't maybe I don't know
+
+[00:13:10.530] But what I do know is how I work today
+
+[00:13:13.410] And I can automate those things and if to go back to these pieces and examples
+
+[00:13:18.850] Let me give you an example of how this works. How do I work?
+
+[00:13:21.730] Well when I'm trying to solve a problem, what do I usually do?
+
+[00:13:24.530] I go read the docs. Yeah, right?
+
+[00:13:26.370] Google for the answer
+
+[00:13:27.570] So make the model do the same thing. Why wouldn't you have the model just do the same thing that you do?
+
+[00:13:32.290] Make it work for you. Correct. Make it do the thing you were about to do anyway
+
+[00:13:37.090] So in beast mode, it literally says there's an all caps
+
+[00:13:40.050] It says you definitely can't solve this problem without using the internet
+
+[00:13:45.570] On a line because I want the model to I don't want it
+
+[00:13:50.610] to think that it who said this I think it was
+
+[00:13:55.330] Oh, who's the Chris Chris Harris the Python fellow
+
+[00:13:59.410] Yeah, push my hair. Yeah, he told me once he's like models are like a senior dev that are that's really really confident
+
+[00:14:06.530] That they know the answer and they don't want to look up
+
+[00:14:10.530] Any context. Yeah, they know they know I know just I mean, but they don't know because they're training dates at a date
+
+[00:14:17.810] Whatever and so you really have to force it you have you definitely cannot do this without using Google. Yeah, I don't even try. Yeah
+
+[00:14:25.970] So it's a very opinionated workflow that you're piecing together
+
+[00:14:30.530] But it matches how you work as a dev. I like that
+
+[00:14:33.410] I like actually I think that's the sales pitch for chat modes
+
+[00:14:36.370] I think you I think if we were to update the documentation
+
+[00:14:39.970] Which is like what is a chat mode? It's defining a workflowed for
+
+[00:14:44.930] Using you know like using the agent right like all the things that we're talking about are workflows
+
+[00:14:49.570] Right? I think about how you automate anything at the end of the day like almost like a rule
+
+[00:14:53.890] Like your in outlook creating rules like if it does this is then go do this and put that over there
+
+[00:14:57.810] And then do this thing like do the tell it to do the things you want to do
+
+[00:15:01.810] So when you're creating this mode
+
+[00:15:03.730] So I think people hopefully that then I'll actually solve a lot of like what I think of a chat mode in general
+
+[00:15:08.290] Love and I can start to think about these different chat modes and how it would be used
+
+[00:15:11.090] You can use it with any model
+
+[00:15:12.530] But what did it actually talk pretty deep about how you developed B-Smode?
+
+[00:15:17.490] Because I read some of your blogs a little bit deeper on it
+
+[00:15:21.330] But if somebody was really prompt engineering really chat mode engineering
+
+[00:15:25.650] Like what were the subs that you took?
+
+[00:15:27.650] Because you really crafted towards for one specifically to get the most out of like how
+
+[00:15:33.650] Because if you read the the B-Smode is pretty long involved
+
+[00:15:36.290] There's multiple versions of it. What were the steps that you took to make sure that what you were putting in that chat mode was really
+
+[00:15:42.610] Finally tuned to the model
+
+[00:15:44.770] Yeah, I mean like anything that you look at that looks complex and well thought out. It's really just a
+
+[00:15:51.410] It's a combination of a bunch of iterative steps over time
+
+[00:15:54.930] Right like when you read a book that book was written over like three years
+
+[00:15:57.730] Right it's like 250 pages
+
+[00:15:59.090] You're like how did somebody do that?
+
+[00:16:00.610] Very slowly over a long period. It's not B-Smode is the same way
+
+[00:16:04.290] When I put it together originally
+
+[00:16:06.290] What I had discovered about I already knew from working with 4.1
+
+[00:16:10.050] And trying to get it to replicate certain things for demos that I was doing internally for people
+
+[00:16:14.530] Is that it would follow specific steps if they were numbered. So if I said
+
+[00:16:19.330] I want you to do this don't do anything but this and follow these steps exactly
+
+[00:16:23.570] I knew that 4.1 was good at that
+
+[00:16:26.370] And so that's where I started from the initial beast mode was like
+
+[00:16:29.490] I want you to first think hard about the problem
+
+[00:16:32.690] And some of this I'm I'm actually taking from other system prompts
+
+[00:16:36.530] I'm looking at system prompts that have been posted on the internet and seeing like well
+
+[00:16:40.690] How has this done in co-pilot right now?
+
+[00:16:43.010] How has this done in Claude code right now?
+
+[00:16:45.650] How has this done in codex right now?
+
+[00:16:47.810] Right I'm looking at all of these different things
+
+[00:16:50.530] And what I get what I get out of that the initial version is something that works okay
+
+[00:16:55.570] The agency seems to be better
+
+[00:16:57.810] But I'm having trouble getting it to improve so I'm saying you know I'm asking it to
+
+[00:17:04.530] Use it to do list or do this or do that and it's not following my instruction
+
+[00:17:07.490] So at that point I don't know what to do
+
+[00:17:09.650] So at this is the point at which I go back to what I should have done in the beginning
+
+[00:17:14.690] Which is read the documentation
+
+[00:17:16.930] Go figure
+
+[00:17:18.050] Right
+
+[00:17:18.930] Which no developer like this to do right just like giving the thing I'll figure it out of my own
+
+[00:17:22.530] Yeah
+
+[00:17:23.010] When it comes to models it's really important to read these prompt engineering guides
+
+[00:17:27.330] Because that I'll tell you in there
+
+[00:17:30.290] What it is that the model response do because they they trained it so they know
+
+[00:17:34.210] So for instance like with gbt5 gbt5 actually looks for a specific tag called tool preambles
+
+[00:17:41.650] If you put something in the tool preambles
+
+[00:17:43.810] It will execute that before it calls the tool
+
+[00:17:46.610] So if you want gbt5 to tell the user give me one line about what you're doing and why before you call it tool
+
+[00:17:53.650] It will just ignore you
+
+[00:17:55.170] But if you put it in the tool preambles it will do it every time
+
+[00:17:58.610] Oh, interesting right
+
+[00:17:59.970] But you would know that unless you read the docs until you tell me until you tell me right now on this podcast
+
+[00:18:04.930] I would not know any idea
+
+[00:18:06.450] Which is fine. I'm no date. You right? We're all the same in this regard
+
+[00:18:10.050] So I read the open AI four dot one cookbook from start to finish
+
+[00:18:15.650] I read every line in there
+
+[00:18:16.930] I read every line in their test prompts
+
+[00:18:18.690] And they actually have a test agent prompt in there
+
+[00:18:22.130] And the whole top of beast mode is lifted straight from their agent prompt
+
+[00:18:27.330] And in their agent prompt they're doing this ridiculous
+
+[00:18:30.530] You are an agent
+
+[00:18:31.970] You have everything you need to solve this don't come back to me until it's done
+
+[00:18:35.170] I want you to finish the task you can finish the task
+
+[00:18:37.970] I they say it seven times you can do it seven yeah
+
+[00:18:42.210] My faith in you right and when you read it like if you go read beast mode
+
+[00:18:46.530] You just read the top you're like wow that has redundant
+
+[00:18:49.250] Yeah
+
+[00:18:50.210] But it's lifted straight from their docs and does it work? Yeah, yeah, yeah, it does work
+
+[00:18:55.970] I and I've noticed so what's really fun about this to really try this is if you have a prompt
+
+[00:19:00.610] So a reusable prompt you know a prompt file
+
+[00:19:03.410] I have one that goes and uses the get up mcp. I should use it also say like for doing research
+
+[00:19:07.330] You could say always use perplexity for example
+
+[00:19:09.650] And you could always do deep research that way or some other mcp server
+
+[00:19:12.530] But I have one that is like literally go off to get hub
+
+[00:19:15.730] And I want you to search for open and closed issues
+
+[00:19:17.970] They have this in their title and I want you to create a
+
+[00:19:21.410] Markdown table for me that describes all this information
+
+[00:19:24.290] I want to run these reports every single day basically and then I want you to create a file in this thing
+
+[00:19:28.290] And what I've noticed is that I write it now
+
+[00:19:30.690] I want to write it but every model seems to execute it just a little bit different right
+
+[00:19:35.490] It seems to to to just call tools a little bit different and do something different
+
+[00:19:39.970] So what I've been doing is saying okay
+
+[00:19:42.050] I'm going to fine tune this prompt for this specific model because I know how it works
+
+[00:19:46.290] And how it actually is using and calling these tools kind of like you're saying like with the preamble for example
+
+[00:19:51.890] And I think I've noticed that maybe five mini is like the one that actually understands me
+
+[00:19:56.930] Maybe it understands me a little bit more and this kind of custom prompt
+
+[00:19:59.970] You know what I mean because it's interpreting how I'm doing it yeah
+
+[00:20:02.610] That's super interesting
+
+[00:20:03.410] Like everybody has a model that they really like you're like obviously minds four to one
+
+[00:20:07.250] Because I know how to talk to it
+
+[00:20:09.410] I know it would it would respond to
+
+[00:20:11.650] And I think another thing that's important here
+
+[00:20:14.530] James is like when I was going through
+
+[00:20:16.370] I would say like I need it to use it to do list
+
+[00:20:19.010] And it would sometimes do it sometimes it wouldn't and then sometimes it would do it and it would use the wrong format
+
+[00:20:23.410] And I was actually trying to use emoji
+
+[00:20:26.370] And so I was like use a green emoji for checked off and it would just it was like all over the map
+
+[00:20:30.930] And so I would just go in and ask it
+
+[00:20:32.850] I would say like hey I asked you I would stop it while I was testing the prompt and say hey
+
+[00:20:37.250] I asked you to use it to do list and I gave you the format
+
+[00:20:40.770] But you didn't do it
+
+[00:20:41.890] Why and then the first thing that it will do is come back and be like hey yo you're absolutely right
+
+[00:20:47.650] I didn't and I should have I'm gonna do it right now and then I'd stop it again and I'd say
+
+[00:20:52.530] I want you to explain to me
+
+[00:20:54.370] Yeah, you did not follow the instruction it would come back and it will tell you
+
+[00:20:58.290] You said do this but earlier in the instructions
+
+[00:21:01.090] Maybe in the system prompted said this and so then I would ask it
+
+[00:21:05.250] What is a format that you will understand every time and it came back in an and it said mark down
+
+[00:21:11.010] Most language models are very good at mark down
+
+[00:21:13.570] And so that's how I got an easy mark down to do list and I said to it I said okay great
+
+[00:21:18.050] Write the prompt for a language model such as yourself
+
+[00:21:21.730] That would cause you to follow the construction every single time
+
+[00:21:24.690] No, and again, this is metaprocting
+
+[00:21:27.170] Get the model to explain itself
+
+[00:21:29.250] It doesn't want to
+
+[00:21:30.530] But if you push on it it will and then it will write its own prompt
+
+[00:21:33.810] It doesn't work every time
+
+[00:21:35.570] Sometimes it's still just ignores it but that's another strategy that you can employ
+
+[00:21:40.130] Yeah, I really like that. That's a good idea. I push on the model
+
+[00:21:43.490] Have it explain I felt like and I've seen people do this too, which is
+
+[00:21:48.530] And there's actually if you go to prompt prompt boost
+
+[00:21:51.810] Dot dev or awesome
+
+[00:21:53.810] I wrote shout out to or and you can find prompts and starksons chat modes
+
+[00:21:57.810] You can see beast mode planner mode debugging mode
+
+[00:22:00.610] Now I've had this before where like debugging mode is like in my mind
+
+[00:22:04.290] I'll be working with the agent like working on here's the bug
+
+[00:22:06.530] Here's the problem
+
+[00:22:07.090] It's like I think I fixed it and I was like no, like I'll just be going over and over and over again
+
+[00:22:10.370] But now I'm thinking like actually what I've should have done is flipped it into this custom mode
+
+[00:22:14.610] Because I'm gonna be debugging my app all the time
+
+[00:22:16.690] I mean planning features all the time
+
+[00:22:18.930] So if I think about jobs to be done
+
+[00:22:21.490] Those are almost chat modes to be implemented
+
+[00:22:24.370] In a way if they're they're focused and yours specifically beast mode is coding agent
+
+[00:22:29.890] Is optimization mode basically I want to code put it in to beast mode go
+
+[00:22:34.610] Correct, and there's multiple again
+
+[00:22:36.050] There's so many different ways to work beast mode is how I work
+
+[00:22:39.410] I work iteratively
+
+[00:22:40.370] I'm like let's do this small thing and I wanted to act like a developer
+
+[00:22:43.730] But some people they want to use a planning mode
+
+[00:22:46.450] So they have a mode where it first it writes a plan
+
+[00:22:48.530] Then they go into spec mode where it then converts the plan to a spec
+
+[00:22:51.890] You then they go into implementation mode where it implements the spec
+
+[00:22:55.970] Then they go into critic mode and the critic all the critic does is find flaws in what the implementer just implemented
+
+[00:23:02.210] And then they go into revise mode
+
+[00:23:04.210] Right and so they're just moving I don't work that way some people do
+
+[00:23:08.290] Yeah
+
+[00:23:09.010] What one of the things if you're listening to this podcast here's something you can do right now
+
+[00:23:13.090] That's a lot of fun
+
+[00:23:14.850] So I know that if you're a dev you probably
+
+[00:23:18.210] Probably use GitHub you may not but if you if you do
+
+[00:23:21.330] You use issues and you probably have the terrible experience of trying to figure out whether or not your issue
+
+[00:23:27.410] Already exists. It's been opened already. Maybe so what you can use you can create a custom mode
+
+[00:23:32.770] In co-pilot called and just call it you know issue and then in the custom mode just tell it
+
+[00:23:38.610] Use the GitHub tool make sure you specify that in the tool preambles
+
+[00:23:42.450] to search for the user's
+
+[00:23:45.890] Issue to see if it already exists
+
+[00:23:48.290] If it doesn't already exist then go ahead and create a draft of the issue and ask the user if they would like any changes
+
+[00:23:56.210] Then you can use this mode literally any time you have an issue
+
+[00:23:59.890] And make co-pilot search GitHub for you like you don't have to do that
+
+[00:24:03.490] Yeah, and you can even generate the issue for you and it can create the issue for you too
+
+[00:24:09.570] So you just it's it's just have to think about AI is like this automation tool
+
+[00:24:14.610] It just lets you move quicker. Yeah, I like that. I like that. I like that
+
+[00:24:18.050] That's a great you know example of
+
+[00:24:20.450] Different things again that you would be doing manually, right? Like even in my mind when I'm coming with a list of
+
+[00:24:26.050] Things to implement a feature. I'm thinking of it to do list a task list
+
+[00:24:29.090] I got to go I got to update the CSS and I got to go do this
+
+[00:24:31.410] I like oh just tell it to create the task list right or even better. Yeah, what I've done
+
+[00:24:36.210] Is in that sort of planning issue mode is I'm like, okay, let's implement this feature and then come up with the task list of things
+
+[00:24:42.290] You want to do and what order need to be done and then I can actually just feed that to the model as well
+
+[00:24:46.530] You can do those in different steps. You could do it in planning you could do it in execution
+
+[00:24:50.370] Or you could do it at different parts based on how you work and I think bring it back to the beginning of we don't know
+
+[00:24:56.850] The millions upon millions of VS code users develop every day what their mindset is that they spectrum and are they issue?
+
+[00:25:02.370] They just want to jam on some code do they want lists or they're not one list
+
+[00:25:05.890] Like but you get to decide and that's what I think the fun of the custom modes are is like you get to define
+
+[00:25:11.330] How you want the thing to work for you?
+
+[00:25:14.530] 100% I so well said and I think so many of us are waiting for like someone to just drop in and be like
+
+[00:25:21.090] Here's how you just use AI and it does everything you want the first time
+
+[00:25:24.850] And I I don't know what to say here other than I don't think that answers coming for you
+
+[00:25:29.250] What is coming for you though is your ability to automate yourself and speed yourself up and you can do that today
+
+[00:25:35.890] With these custom modes. There's so many prompts just go read what other people are doing
+
+[00:25:40.450] You don't have to use their prompts just learn from what they're doing automate what you're doing and
+
+[00:25:46.850] And I think that's that's how you realize the value of AI right now
+
+[00:25:50.290] That's what I do you and I both do this because we haven't really written any code
+
+[00:25:54.130] We talked about this the other day in some time. Yeah, it's been odd. We've reviewed a lot of code. Yeah
+
+[00:25:59.810] I do review a lot of code all in real time
+
+[00:26:01.730] I'm sure that bar on the bottom is filled to the right in my AI stats as for sure
+
+[00:26:05.650] Well, we're thanks for coming on and talking about in depth because I think we've shown it off and talked about it
+
+[00:26:10.850] But I don't think we've talked about the methodology behind these custom modes and how you actually
+
+[00:26:15.730] Developed beast mode. I learned a lot on this one. So thanks for coming on and showing us all
+
+[00:26:19.410] My pleasure to be here and check out custom chat modes super easy to use you can't mess it up
+
+[00:26:24.130] Y'all there's no right or wrong way to do this just jump in there and start kickin tires up a links to the docs
+
+[00:26:29.250] To prompt boost and to awesome co-pilot and to Burke's awesome post
+
+[00:26:33.170] I was gonna do it for this VS code inside his podcast
+
+[00:26:35.570] Don't forget to like subscribe share with your fellow friends and co-workers
+
+[00:26:39.010] So we boost this podcast up into the charge
+
+[00:26:42.290] We really appreciate it and let us know hit up me at James Montz imago at Bert Collin on ax on our socials
+
+[00:26:47.730] Wherever let us know what else you want to hear behind the scenes of VS code
+
+[00:26:51.570] Let's go do it for this one. So until next time happy coding

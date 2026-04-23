@@ -1,0 +1,723 @@
+[00:00:00.080] Welcome back everyone to the VS Code Insiders podcast your one stop shop for all things behind the scenes of VS code your favorite code editor
+
+[00:00:08.180] I'm your host James Montemagno and with me the one and only
+
+[00:00:12.400] Harold Kirchner pm on the VS code team you know him from all the mcp
+
+[00:00:17.280] Goodies that have come out and so much more Harold. How is it going?
+
+[00:00:20.840] Hey James happy to be yours, but first time on the pod
+
+[00:00:24.720] Yes, we've talked about it many many times about you coming on the pod and then you're finally
+
+[00:00:30.240] Landing on something that I don't even think we would have talked about it before because there's a lot of brand new stuff
+
+[00:00:35.000] Maybe people don't know you a little bit. Maybe talk about you know background what you do on the team and which you've been working on recently
+
+[00:00:42.040] Yeah, I've been on team for
+
+[00:00:44.040] You know these six years now. It's coming up during the coming days. I think
+
+[00:00:48.040] previously working on fire folks deaf tools so always working on developer stuff building tools for developers to debilled better experience
+
+[00:00:56.320] So it was more accessible experiences
+
+[00:00:58.680] Can I make it easier for everybody to build so?
+
+[00:01:02.000] Yeah, I just kind of joined with that passion on the VS code team and for like two and a half
+
+[00:01:07.160] The years now nearly kind of working on the AI parts and getting into how do you make this easy to use
+
+[00:01:13.440] How to make this more powerful basically really stretch the limits and every every month is something new
+
+[00:01:19.080] But there is always like new paradigms new in the city center. So it's really exciting to just stay on top of it
+
+[00:01:24.400] So it's VS code its customization. So what I'm talking about today is really
+
+[00:01:28.760] Close my heart talking to a lot the obvious about this talking to like larger teams about this so we're excited to bring this here
+
+[00:01:35.680] Yeah, and I think what's been really exciting as we kind of like unravel and go behind the scenes a little bit of
+
+[00:01:41.240] VS code and how things are evolving how things are changing you know
+
+[00:01:45.000] Being the open source AI code editor. There's many parts to that not just like the code being open source
+
+[00:01:50.920] But also the integrations. We've recently talked quite a bit about like the different extensions that can now kind of tap in
+
+[00:01:57.000] To providing models for examples. So now we see many many models available to the chat for example and agent mode
+
+[00:02:03.960] I think one thing that many people maybe haven't used too much
+
+[00:02:08.600] Maybe don't have too much insight into are all of the other components to chat and when I mean that I'm really talking about of course
+
+[00:02:16.080] MCP but also I'm talking about things like modes and prompts and instructions and
+
+[00:02:22.720] People may know the basics of these but can you kind of give like a TLDR of like what each of those three are and like
+
+[00:02:29.400] How you're using them today and like why they're important?
+
+[00:02:33.200] Yeah, definitely so the the OG one is
+
+[00:02:37.360] instructions and the that comes from the earliest of chat to be T where you could set custom instructions
+
+[00:02:44.240] To give chat to receive some more of a background of yourself
+
+[00:02:47.320] How do you like to be talked to how you like to have it to kind of reason explain things?
+
+[00:02:52.560] So you had like this very
+
+[00:02:54.560] Thin layer of customization on top of the model basically give it something
+
+[00:02:59.600] some of the some sense of
+
+[00:03:01.600] You see it's a good system problem basically of how how you want it to work and
+
+[00:03:07.600] That's where instructions come from and that's kind of any developer world that most often sits in your work
+
+[00:03:14.080] Space and with these markdown files do it's like copad dash instructions and D
+
+[00:03:19.680] Sitting in a dot GitHub folder
+
+[00:03:21.680] That's kind of the the OG version of that and that's just a
+
+[00:03:25.120] Plain markdown file in most cases. It just describes your code base. So as the LM works
+
+[00:03:32.320] It doesn't need to again and again
+
+[00:03:34.560] Look at you read me and figure out what what the heck you're working on
+
+[00:03:38.560] Look at ten different files to figure out what your ease lens rules are and what your packages are
+
+[00:03:43.280] But all of that is in a context engineered in a very dense one-to-two-pager
+
+[00:03:49.040] Of like this is what you're working on. This is where code sits
+
+[00:03:52.960] If you need anything else like we'll look it up there, right? So that's that's kind of what the custom instructions are
+
+[00:04:00.320] then
+
+[00:04:02.320] prompts are
+
+[00:04:04.880] one-shot reusable
+
+[00:04:07.120] Workflows and one shot here means you basically it's
+
+[00:04:11.360] Most of your places what you would send the LM and user message like write test for this
+
+[00:04:16.720] That could be a slash as a test prompt
+
+[00:04:20.000] And what you notice when you do prom crafting then you oftentimes. Oh it wrote tests
+
+[00:04:24.480] But it didn't do acts or it wrote tests, but it only wrote three and it didn't
+
+[00:04:29.840] Look for hundreds and coverage. So you start writing like all right tests, but
+
+[00:04:33.440] Get to at least a percent coverage. So you keep expanding the prompt and really
+
+[00:04:38.000] Honing in the best practices of what you're looking for and making that
+
+[00:04:42.240] Reusable because everybody across your team
+
+[00:04:45.200] At some point probably has the right tests. They're like you know, I test follow best practices
+
+[00:04:49.680] And most of the times there's probably a document somewhere with best practices how to write tests
+
+[00:04:54.320] So on one side you could put those into custom instructions
+
+[00:04:58.160] Like this is how you write tests and then you your prompt is just write tests
+
+[00:05:01.920] You can also write this info problems. I give it more of a workflow like rest write tests
+
+[00:05:06.720] Run the coverage make sure the test pass and give it all the things it would usually do wrong
+
+[00:05:12.320] And then then you keep this workflow very lean and mostly one shot of measurements you run it and the outcome works really well
+
+[00:05:20.240] So that's our first two
+
+[00:05:22.640] Yeah, that makes sense to me and then modes. I think seem to be something
+
+[00:05:27.200] Then maybe I kind of going in this order where I think most people like you said like OG instructions prompts
+
+[00:05:32.080] Maybe you're very using but there are built in modes and there's also custom modes
+
+[00:05:37.600] Yes, so the building modes are agent ask and edits and
+
+[00:05:42.640] We're probably going to clean this up because like most of the time right now. We set ourselves spending time in agent
+
+[00:05:47.680] Yeah, so ask we already have settings so make
+
+[00:05:51.440] Ask more agenda as well
+
+[00:05:53.120] But it's more of a kind of read only and answer questions based on my code based kind of mode
+
+[00:05:58.160] So that's what most people use it for just general asking me all I'm question asked me my own questions about the code base
+
+[00:06:05.200] And then I can most of the time you should probably be in the agent mode and you can do the same thing if you just prompted right
+
+[00:06:11.280] So those are the build in ones, but the custom chat modes
+
+[00:06:14.960] out probably frame as
+
+[00:06:16.960] most or often often when I ask users that you see those as kind of personas or
+
+[00:06:22.320] roles or
+
+[00:06:23.920] Workflows so workflows. I have for example, I can demo this later
+
+[00:06:29.840] I for example prom to do data analysis because mostly works in one shot, but then I have a workflow to do
+
+[00:06:36.240] Planning which takes usually get some plan back now. I go. No, let's like tweak this one or it has questions first and answer questions
+
+[00:06:43.280] So it kind of carries over and continues over multiple steps
+
+[00:06:48.400] depending on what I'm doing and
+
+[00:06:50.640] The other thing is the chat modes also go into the system prompt for you know
+
+[00:06:55.120] Copa so they're not just a user message like a prompt
+
+[00:06:58.000] But the really like this is how you're supposed to work as an agent kind of instructions
+
+[00:07:02.880] So they're much more adhering and you can set the model
+
+[00:07:05.760] You can constrain the tools that you're using in the chat mode as well. They consistently get carried over and not not being lost
+
+[00:07:12.960] so there's way more
+
+[00:07:15.040] a specific thing you work in
+
+[00:07:17.440] versus a task you hand off to do
+
+[00:07:20.880] Oh, and it's really fascinating because you kind of set it there at the end
+
+[00:07:24.640] But you can start to sort of chain these things together where you know in your mode
+
+[00:07:29.440] You can specify a model but also a prompt can specify a mode
+
+[00:07:34.560] Right, you could have a prompt that says here's a prompt of something. I want to do and then use this mode
+
+[00:07:39.600] Right, so if you had a planning mode you might have a plan fast or plan deep or something like that and it uses that mode
+
+[00:07:44.720] But then additionally or like write tests right you have a testing mode
+
+[00:07:48.560] Additionally, you might have instructions which can be generic for every file
+
+[00:07:52.320] But also for specific types of file or glob structures
+
+[00:07:55.520] Are folder structures and you could say you know what when you're writing tests
+
+[00:07:58.640] It's gonna write it into this folder
+
+[00:08:00.160] So then also adhere to these instructions which are like very test me
+
+[00:08:03.520] So they kind of all chained together now up until this point
+
+[00:08:07.040] Like you know everyone's been for all intents and purposes
+
+[00:08:11.760] Doing one of two things primarily
+
+[00:08:15.600] putting
+
+[00:08:17.120] Markdown files into your codebase right that's like primarily you have a dot get up folder like you said
+
+[00:08:22.640] You have the sub folders you have a copilot instructions you might have an agent's dot MD as well which works
+
+[00:08:29.040] For instructions prompts and the prompts folder modes and the most photos there's a bunch of other folders too
+
+[00:08:34.080] Or there's recently been like mcp servers that can actually expose prompts for example
+
+[00:08:39.920] Which is kind of cool
+
+[00:08:41.680] However like up into that point
+
+[00:08:43.200] It's really been the developer of the team that's been defining these
+
+[00:08:46.800] Interactions but it's kind of changing in the latest version of VS code one dot 105
+
+[00:08:53.200] Because there's some new API's available is that correct?
+
+[00:08:56.400] Yes, we have a proposed API which means it's not yet
+
+[00:09:01.200] Officially available but people can try it out and use it into extensions locally
+
+[00:09:05.360] You cannot chip an extension against a post API
+
+[00:09:08.560] But you can start
+
+[00:09:10.080] Trying out and giving us feedback. That's the main purpose
+
+[00:09:13.440] And what we so we noticed in the wild is that we had these
+
+[00:09:18.240] Accention helpers we've been working with and a
+
+[00:09:20.880] They were putting mcp's and extensions or building these really nice bundles of like
+
+[00:09:26.160] Here's how user product here is the extension surface and extension APIs which give the human
+
+[00:09:31.840] The right information to work with the product and then they provide mcp
+
+[00:09:36.720] Tools using a basically as the protocol to extend the agent to give the agent more information
+
+[00:09:43.040] The
+
+[00:09:45.040] Missing piece was then like okay now we want to provide custom chat modes like how that there's no extension surface for that yet
+
+[00:09:50.080] So we're like okay. We we have a concept for that chat modes already
+
+[00:09:54.880] So let's expose it as like tension API so you can provide that
+
+[00:09:58.800] Customization there as well and you saw just Monday this week
+
+[00:10:03.840] Playwright agents came out which is if you look at it
+
+[00:10:06.480] It's just
+
+[00:10:07.840] a few chat modes put into a folder and you can now
+
+[00:10:11.600] Analyze a codebase which tests the right it makes a mark on document and say write these tests
+
+[00:10:15.840] And then it can actually heal the test well like three different chat modes or agents
+
+[00:10:20.640] That kind of very spooky take parts of the workflow you would do and that you can move in between too
+
+[00:10:26.800] So that's been the impetus and that's we have to support problems instructions and modes
+
+[00:10:33.760] also because i think it's
+
+[00:10:36.000] VS code in the past was very
+
+[00:10:38.720] Workspace centric but customizations so you could have a dot b's code folder
+
+[00:10:44.320] And you had settings.json and then if you look at the VS code repo and unmakes-off
+
+[00:10:50.720] Get up to a concept Microsoft
+
+[00:10:52.720] You actually see that we have a settings folder and many customizations for VS code
+
+[00:10:56.080] So if you open the VS code
+
+[00:10:57.760] Workspace the first time like the VS code rich og source
+
+[00:11:01.600] You actually get a bunch of customizations out of box
+
+[00:11:04.240] It's how we think you should work on the VS code codebase
+
+[00:11:08.160] And that's how it customizes and that's chat modes and problems and all that works the same
+
+[00:11:12.800] But then if you have like a
+
+[00:11:14.960] Multi repo setup microservices like 10,000 because that's the kind of customers I talked to it's like how do we customize this
+
+[00:11:21.440] And many of these customers actually have
+
+[00:11:23.760] obvious code customizations already
+
+[00:11:26.080] That they shipped to developers next session this one way
+
+[00:11:28.800] So that's also not a reason like the internal
+
+[00:11:31.520] Customization plus if you have a developer product you want to have that agent plus UI experience
+
+[00:11:38.480] Yeah, it's really fascinating
+
+[00:11:39.520] I mean I think there was in some sense
+
+[00:11:41.440] You know you think of dev containers or code spaces right the whole idea is
+
+[00:11:44.880] The team is a configuration and then it all builds up and everyone gets the same exact thing compared
+
+[00:11:49.520] I'm going to clone and then here's this
+
+[00:11:51.520] I will say I'd recently did clone the VS code repo and yeah
+
+[00:11:54.320] Things looks a little bit different actually if you watch the 105 release video
+
+[00:11:57.520] There's a bunch of customizations including like having suggested action
+
+[00:12:00.800] There's suggested prompts like when you open an empty state for example
+
+[00:12:03.600] Which is really cool
+
+[00:12:04.800] Actually stole the plan mode and the prompts from the VS code
+
+[00:12:10.160] The repo is like this is pretty good
+
+[00:12:12.400] And I expose more tools that I wanted to use so I use it and customize it
+
+[00:12:16.640] So it's interesting. It's a proposed API and you can read it and we'll put it in the release notes
+
+[00:12:21.360] But what does that actually mean like like what is the scenario
+
+[00:12:25.920] for
+
+[00:12:26.560] Extension creator that
+
+[00:12:29.440] This would enable them to do and I'm prompting you because you created an extension that uses these things
+
+[00:12:35.040] So what was the problem that you were looking to solve and how did you use these new APIs?
+
+[00:12:41.680] Yeah, um
+
+[00:12:42.720] And a place where I tried out first I
+
+[00:12:47.520] Claude
+
+[00:12:49.120] Announcements or anthropic announcements came out at the beginning of last week and
+
+[00:12:54.960] One thing that I know is very curious because I'm also investigating the same problems is an error of memory
+
+[00:13:00.880] So there's some really cool videos where
+
+[00:13:04.320] The AI plays
+
+[00:13:06.960] Uh
+
+[00:13:08.000] Kazan and then I had to make choices about how to play the game and how to win
+
+[00:13:12.960] So you see kind of using memory as a concept and yeah going back and forth and that's I think the mainly quest
+
+[00:13:19.120] I also get from
+
+[00:13:20.480] Developers like can I can AI start self improving
+
+[00:13:25.040] And that that very broad under defined surface of memory always comes up
+
+[00:13:30.320] So I'm saying like what what did they ship?
+
+[00:13:32.320] Like can I try this out? So there's a there's some tool definitions that they documented
+
+[00:13:36.640] I was like we don't have this in VS code yet in our agent. So but we have
+
+[00:13:42.240] A language model tools API for extensions
+
+[00:13:45.280] So I can just expose memory tool that does look like
+
+[00:13:48.240] What they describe then I just basically gave it to dogs
+
+[00:13:51.600] I gave it the language model tool docs
+
+[00:13:54.080] Bootstrap in your extension and within
+
+[00:13:56.560] Five minutes
+
+[00:13:58.320] It's sorry. You're putting things in memory and like oh, it's just working. So cool
+
+[00:14:01.760] Um
+
+[00:14:02.800] But then there's all these like interesting things they also propose for memory like what if the LMs can compress it like if what if the
+
+[00:14:09.280] Clean it up like anything that
+
+[00:14:12.480] It's not like relevant. Maybe it gets too wordy because you see that with all a kind of documentation like the Lm keeps adding like
+
+[00:14:18.320] Oh, I learned this like I'm going to just keep setting up
+
+[00:14:22.240] And unless you prompted sometimes it doesn't clean it up. That's what they they promised some two degree like the cloud is somehow
+
+[00:14:29.200] Hot sounded 4.5 is aware of the memory and will
+
+[00:14:32.320] They help which which I was party experiment. They haven't gotten to it yet, but
+
+[00:14:36.320] Someone expected to go in and say like I got a now shrink my memory
+
+[00:14:40.880] And I see I saw a science of that. It's more token aware, but not not that yet
+
+[00:14:45.440] So I was like this could be prompt. This could be just
+
+[00:14:49.440] Compressed memory like it's now. It's getting too big. It's getting too slow. It's reading different files
+
+[00:14:53.840] It keeps looking for memory and that's a kind of idea. You you create
+
+[00:14:57.760] Different chat sessions and the arm retains the task that you're working in and usually that's like a
+
+[00:15:05.120] Spec.md or like a task folder with markdown files in your repo, but I like I don't want to clutter my repo of markdown files
+
+[00:15:13.520] Yeah, I just want to have this maybe
+
+[00:15:16.560] And that's a feature request. It just came came to my take right before this podcast
+
+[00:15:19.680] I should implement this like a per branch memory given that the that how it stores it is in memory, but even per branch
+
+[00:15:25.760] So I can go back to it, but I don't want marked on files sitting around the memory is kind of
+
+[00:15:32.000] If you look at how it works, it actually is very file based. It's like looking at the list like opening a file and
+
+[00:15:38.400] Replacing parts of it. So
+
+[00:15:40.960] Yeah, but then it prompts. I was like, okay, let's make some memory prompts and then
+
+[00:15:45.200] So it's compression. It's
+
+[00:15:47.680] Giving a high level overview. So you don't have to click every file
+
+[00:15:51.280] It's all these things. I could I could what could people do like once you have an alarm that has memory?
+
+[00:15:56.160] What would you want to do and people do it with touch pt as well? It's like
+
+[00:16:00.160] Basically explained back to me who I am based on a conversation I had with you kind of
+
+[00:16:05.120] thing
+
+[00:16:07.280] So I'm hearing in this instance right. I think about
+
+[00:16:12.240] you have these prompts and
+
+[00:16:15.920] Again, if you were to say hey, I created this extension to this thing inherently
+
+[00:16:20.320] Previously would just be like here's a bunch of prompts
+
+[00:16:22.560] You'd have to copy into your repo if you want to use these new features
+
+[00:16:26.400] So I notice that you're using like if I install your extension and I enable it like magically there's ways of doing it
+
+[00:16:33.520] Because out there right
+
+[00:16:36.720] The prompts just automatically show up a slash but I also noticed that
+
+[00:16:41.680] Not only are there prompts but when I make a prompt and send any prompt off
+
+[00:16:46.480] I see that now not only my co-pilot instructions are being used
+
+[00:16:49.280] But also some memory instructions are being used and I also noticed that there's a new chat mode being used right?
+
+[00:16:54.000] So it's like you're not just using here's a cool prompt. It's and there's other things that are happening too
+
+[00:16:59.200] How did you decide?
+
+[00:17:01.040] And what are these new API sort of enable for those flows that kind of not possible before because again all this
+
+[00:17:06.640] I've seen is possible, but then you got to like put it all together yourself
+
+[00:17:10.960] Yeah, that's a big I mean what just mentioned
+
+[00:17:13.280] What I didn't mention what the extension also does it it contributes a
+
+[00:17:17.280] an instruction as well and
+
+[00:17:20.800] It's basically copied right from the
+
+[00:17:23.440] And for big documentation about how to use memory is just
+
+[00:17:27.840] It's very odd. It's like
+
+[00:17:29.840] Like the typical
+
+[00:17:31.040] Hopper case mandatory
+
+[00:17:33.520] Before everything should check your memory
+
+[00:17:36.480] Read memory if there's something related
+
+[00:17:39.200] And that's what the instructions adding
+
+[00:17:42.240] And it's a apply to
+
+[00:17:45.280] Exaction which means it's included for every conversation by default
+
+[00:17:49.520] And that's actually a use case. I have gotten a ton of requests for
+
+[00:17:54.480] That if you install for example the Azure extension
+
+[00:17:58.560] The Azure Center wants to tell the agent like we have all these tools
+
+[00:18:03.680] And these tools like some of them need to be used in a specific order
+
+[00:18:07.440] Some of them are more kind of explanatory like there's a best practices tool at some point
+
+[00:18:11.440] And you want to guide the agent to the gray
+
+[00:18:15.520] Maybe giving it some contact maybe it's more
+
+[00:18:19.680] More actually look at the workspace up front and then expanding a bit like how would you use the Azure tools in this case
+
+[00:18:25.200] So some basically baseline
+
+[00:18:27.200] instructions about how to use
+
+[00:18:29.680] The group of tools that you have underneath the same for memory. It's like
+
+[00:18:33.440] There's a whole new concept of memory and there's a tool description
+
+[00:18:36.800] Trying to explain the agent when and how to use it
+
+[00:18:39.600] But an instruction is going to bring it all together
+
+[00:18:42.320] Into the context of a workflow. So there's some a little more
+
+[00:18:44.800] Reinforcement going on there of just like really use memory and this is how you do it
+
+[00:18:49.760] Like update is we can learn something
+
+[00:18:52.800] So just like in one area just one group of all about memory
+
+[00:18:58.000] I really need to think about as a extension creator the possibility to
+
+[00:19:03.120] Create these extensions that just don't extend like the core of VS code or themes or things like that or
+
+[00:19:10.240] You know, they're contributing models that you can use
+
+[00:19:13.440] You know as well from different providers
+
+[00:19:16.240] Then also to think about like a lot of us are inherently either for our team or for ourselves
+
+[00:19:22.000] Coming up in shipping these custom modes instructions prompts. You go to awesome copilot, right?
+
+[00:19:27.360] And get up.com slash get up slash awesome copilot like there is a whole suite of community and Microsoft and get up
+
+[00:19:34.320] contributed
+
+[00:19:35.600] These instructions prompts and modes and like you said the playwright agents have a bunch of chat modes and there's like
+
+[00:19:41.040] MCP stuff happening there and then there's also
+
+[00:19:43.360] You know spec kit which is a bunch of prompts and a bunch of other you know
+
+[00:19:46.640] magical files that do stuff but inherently at the end of the day
+
+[00:19:51.040] Those files have to be committed to your code base. So in as an extension creator
+
+[00:19:55.920] I think the magical part that is that you now have the ability to update those for the user
+
+[00:20:02.720] Right. I was talking to Dan and we're like hey what happens when you update these prompts?
+
+[00:20:06.560] And he's like we haven't figured that out yet and I was like that's even you know
+
+[00:20:09.600] Like that seems like maybe something to do
+
+[00:20:11.120] But it seems as though, you know like this kind of extension is like hey
+
+[00:20:14.400] You're in this ecosystem obviously. It's you know, it's a
+
+[00:20:16.880] VSCode extension, but if you're in that world
+
+[00:20:20.080] Then now you can start to implement these modes these features these new pieces of functionality
+
+[00:20:24.960] It required the user to do a lot of manual lifting like it seems like before these proposed APIs
+
+[00:20:31.440] This was possible for you, but not really kind of
+
+[00:20:36.960] Ish
+
+[00:20:38.160] Yeah, yeah, it's a massive problem thing. I see
+
+[00:20:41.680] Like one is most of us shouldn't think about creating these prompts like it's just
+
+[00:20:48.080] Just how you don't think about how you set up CI CD for
+
+[00:20:51.360] The enterprise project working like that somebody somebody's problem that thinks about the architecture and maybe like has
+
+[00:20:57.280] More of the DevOps had on like that everybody's fiddling around with the ammo files to
+
+[00:21:02.160] change deployments. So there's a
+
+[00:21:04.160] If you have a bunch of AI champions in your team like they they will thrive in that kind of
+
+[00:21:10.000] ambiguity of prompt crafting. It's like I don't know if it's a good prompt, but it
+
+[00:21:14.480] I have enough hands-on testing kind of viketesting different scenarios that I know my team relies on and it provides better results
+
+[00:21:22.160] If I change it like this, I add a like mandatory over here or a simplified else instructions
+
+[00:21:28.480] So I think that's they are always living documents to degree and there there is a high bar like always when I go to
+
+[00:21:35.600] Conferences or meetups and I
+
+[00:21:37.840] Want to say she has kank who is good at prompt crafting?
+
+[00:21:41.680] Live in a Bay area. There's even few hands going up here. It's like room of 50 people on one hand goes up
+
+[00:21:47.280] It's like because people don't trust themselves to really understand graphic. Like once you learned it and you feel comfortable
+
+[00:21:52.560] And new model comes out and ignores everything you said before right so
+
+[00:21:56.880] So it is a doesn't art to it. So that thing makes puts up a high bar and how people do it
+
+[00:22:01.760] So if you're just wanting it into it, there's a generate Asian instructions button
+
+[00:22:06.720] Right in the chat if you click on the on the cog menu there
+
+[00:22:10.800] Generation extraction which is look at your code base and
+
+[00:22:14.160] Right down the obvious of what it sees if it looks at different files and folders and
+
+[00:22:19.200] Then you can correct it like no, that's
+
+[00:22:21.520] Like that at more detail remove things. So it's a great way to start and most of my modes and problems I write
+
+[00:22:28.720] I also don't bootstrap from scratch. I just ask the lm like
+
+[00:22:33.120] I want to try test and development like write me a product write me a mode that describes as an element like as a
+
+[00:22:38.400] One-patcher keep it short and I will break down the steps and I have a lot to work from so
+
+[00:22:45.280] But then the sharing part is hard for like if if it just you and
+
+[00:22:50.320] You're playing around with you can do personal ones and your user folder. So you get a sense and that's that's a lot
+
+[00:22:56.320] Why I have my if one to?
+
+[00:22:58.880] Commit my changes and create a PR. That's just my own workflow. I asked the team would that be something we wouldn't have the code base now probably
+
+[00:23:06.320] Not to code base related more your own person workflow. I can live it that so it's and then I've one for
+
+[00:23:13.200] Resolving merge conflicts which might be more useful
+
+[00:23:16.160] I shall something we're bringing into the product
+
+[00:23:18.960] So yeah, so you can automate all these little things for yourself to make yourself objective and when you see like this is really the 10x prompt
+
+[00:23:27.520] Makes my life easier and I want this for everybody then
+
+[00:23:31.520] Put it in the like shared extension everybody uses so you distribute it or you bring it into repo or share elsewhere
+
+[00:23:38.560] And then the as you mentioned the awesome co-pig repos a great place to
+
+[00:23:42.160] Get inspiration from like what's possible like expand your mind on what you want to do with these prompts and modes
+
+[00:23:49.440] That's super cool. Yeah, I think it's like a really great place to start as like see what other people are doing
+
+[00:23:54.560] Then if you are creating these reusable steps one thing I did is like imagine you scaffold it out a new API
+
+[00:24:00.400] You're testing the API and it is data integration doing testing
+
+[00:24:03.600] One thing that I've learned a lot is you can just ask
+
+[00:24:06.720] The model the LLM to create a prompt that's reusable for the things that we just did right
+
+[00:24:13.040] Like obviously cut out the parts or fix up the parts for like if you had to like iterate on it or whatnot
+
+[00:24:17.600] But I've done that so it's like here's this step so then you can rerun that prompt over and over again
+
+[00:24:21.600] Well, it's a really neat Herald. I mean, I think it's really cool to talk about these different modes
+
+[00:24:25.280] And I'm going to have Burke on and go super deep on modes themselves and beast mode and the things that he created and how he created that stuff
+
+[00:24:31.520] Which is kind of like walk through these different steps and then these new proposed APIs that folks can start to poke around with and they can also give the
+
+[00:24:39.040] Age of memory extension a try today, right?
+
+[00:24:41.680] Yes, if you're just going to this code look for agent memory you can try out my extension
+
+[00:24:46.160] Give it five stars and give me feedback, but otherwise it's it's very bootstrappy. It's very experimental
+
+[00:24:52.560] And would love to see like what people expect from memory and and how this whole thing works
+
+[00:24:57.600] I think does it's this area where people just have so many ideas and so many expectations and
+
+[00:25:03.600] It's not yet delivered in the ecosystem really so yeah
+
+[00:25:07.200] Very cool. I'll put a link in the show notes below to this to the 105 release and so much more Herald
+
+[00:25:11.600] Thanks so much for coming on diving through all this stuff and talking a little bit about how you created agent mode and
+
+[00:25:16.720] Or major memory and put all these things together. It's so cool
+
+[00:25:19.600] Hey, thanks for having me and saying thanks for listening
+
+[00:25:22.400] Yes, and don't forget you can subscribe on your favorite podcast application
+
+[00:25:25.920] Also leave it five stars sent to a friend sent into a colleague show the podcast as we continue to come out every single week
+
+[00:25:32.400] And of course you can always watch us live on youtube at youtube.com for a slash at code
+
+[00:25:38.000] It's gonna do for this one. So until next time happy coding

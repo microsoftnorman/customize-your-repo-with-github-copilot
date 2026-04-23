@@ -2,7 +2,7 @@
 
 [← Back to Guide](../ReadMe.md) | [← Why Customize](part-1b-why-customize.md)
 
-*Updated: April 17, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
+*Updated: April 22, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
 
 ---
 

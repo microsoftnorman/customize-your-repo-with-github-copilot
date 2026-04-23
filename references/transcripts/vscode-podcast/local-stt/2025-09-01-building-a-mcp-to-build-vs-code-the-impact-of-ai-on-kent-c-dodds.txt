@@ -1,0 +1,1399 @@
+[00:00:00.180] Welcome back everyone to the VS Code Insiders podcast you're behind the scenes and everything happening in the world of VS Code for developers
+
+[00:00:07.940] I'm your host today just by myself. No peers. I'm James Montemagno. I'm a lead under developer community team
+
+[00:00:14.060] And with me one of my best friends in the entire world Tyler Lee and Hart. How's it going Tyler?
+
+[00:00:19.540] Good James. How you doing?
+
+[00:00:21.540] It's great. It's so good to have you on the podcast. We've been friends forever. I'm pretty sure and
+
+[00:00:28.020] And it was great
+
+[00:00:30.020] Recently hanging out with the VS Code team around MCP Dev days
+
+[00:00:34.580] We're just chatting catching up you and I go way back to your PowerShell days a whole bunch of other cool things
+
+[00:00:40.420] But if people don't know Tyler you're obviously an engineer on the VS Code team, but maybe tell you
+
+[00:00:44.740] Want a little bit about yourself because I'm excited to talk about what you're been up to
+
+[00:00:48.420] Yeah, that's right
+
+[00:00:49.940] Yeah, so my name is Tyler. I am a dev on the VS Code team. I've been with the team since
+
+[00:00:57.220] Gosh December 2020
+
+[00:01:00.260] So five years now and time flies
+
+[00:01:04.100] Yeah, I own a whole bunch of like random things across the product
+
+[00:01:09.380] Anything from like like I own a command palette to like
+
+[00:01:12.980] Leposition to
+
+[00:01:15.620] authentication
+
+[00:01:16.980] which now has
+
+[00:01:18.980] grown into like MCP awe as well
+
+[00:01:22.580] So yeah, and a bunch of other random random oddities and ends
+
+[00:01:28.580] But yeah, but yeah, I'm I'm all over the place
+
+[00:01:32.420] Yeah, and you've been at Microsoft and around this world we were just talking
+
+[00:01:37.540] On the last podcast all about like the with the annual about the terminal rewrite and I've see I know you're
+
+[00:01:42.260] Into the world of shells and have been in the world of shells for a long time
+
+[00:01:44.900] So I think we go way back
+
+[00:01:46.180] I knew it was just so cool just to kind of catch up on everything and I was like I got to get Tyler onto the podcast
+
+[00:01:51.380] I got to be one of the first ones because they're doing so many cool things
+
+[00:01:53.860] I don't know about you
+
+[00:01:54.980] But I love working on a little bit of everything. I don't want to just own like a save button
+
+[00:01:59.540] I don't know how how did it feel like joining the team and then sort of like where you're at now and it is sort of as you respond to the release of grown
+
+[00:02:06.660] It's uh, it's really cool. I mean, I
+
+[00:02:09.940] Came into the team as like
+
+[00:02:12.980] An extension author right because I was on the PowerShell team and I was working on the PowerShell extension for VS Code
+
+[00:02:18.420] Like that was one of my like main things that I was working on and then
+
+[00:02:23.700] That
+
+[00:02:24.900] Basically turned into all right
+
+[00:02:28.500] I want to make a move over to the the core team right and of course a lot of folks there had known me because I had open issues
+
+[00:02:36.900] Related to the you know to be extension API and stuff like that so
+
+[00:02:42.740] So yeah, that was cool to like come into the core team and then once I got into the core team
+
+[00:02:48.500] I was able to not only focus on like just you know one extension but like focus on a bunch of different pieces which I I think I much prefer are like having
+
+[00:02:58.180] My my fingers across a bunch of two pieces
+
+[00:03:02.180] So when I'm frustrated with one thing I can switch to something else I've worked on that
+
+[00:03:06.500] And I love the the iteration like update planning that I got to be part of now and
+
+[00:03:12.740] On days with the team we talk about this we went really in death with Daniel and like how people can see the insight
+
+[00:03:17.460] What I love is like all the different pieces that people are working on right and like people are like updates on everything
+
+[00:03:23.060] It's I get to real insight into what everyone's working on and people want to actually deeper on your story your journey
+
+[00:03:29.380] If you will your developer journey
+
+[00:03:31.380] Actually a few months ago you did an entire developer journey a podcast here on the VS Code channel as well
+
+[00:03:38.740] Yeah, if you want to go deeper. Yeah, that was what I was fun. Yeah. Oh, and actually I just I just wanted to say
+
+[00:03:46.580] You've been in in our call where we talk about what we've been working on but like like all of that information is
+
+[00:03:52.420] Public like it's just in a GitHub issue in the VS Code repo. So like I
+
+[00:03:57.700] Had to break a few jams. You're not that special
+
+[00:04:00.980] That was an insider. Oh wait everybody's an insider. Yeah. That's right. That's right. Oh, yeah, yeah, but anyway. Yeah, the
+
+[00:04:09.140] The video that I was on with with Olivia and and rental that was a lot of fun
+
+[00:04:16.500] They you were asked things about like you know my journey and I kind of gave you an approached version from from moving from partial team over here
+
+[00:04:24.660] But but yeah, it was a lot of fun
+
+[00:04:26.660] That's awesome. What you've been doing tons of stuff like I said around MCP and authentication
+
+[00:04:31.300] What have you been working like what's new for developers like in the world of stuff that you've been working on and like what's got you excited about that
+
+[00:04:38.660] Yeah, yeah, so yeah, as I mentioned before, I owned off in VS Code which is
+
+[00:04:45.620] quite a beast of a component as I'm sure any wood would know if if they've done any sort of off-related things it's kind of a
+
+[00:04:55.540] Kind of a crazy place
+
+[00:04:57.540] Yeah, not for the faint of heart perhaps but anyway
+
+[00:05:02.820] so
+
+[00:05:04.260] MCP came around and you know the concept of
+
+[00:05:08.340] an MCP server running not only like locally on your machine, but then graduating that too like okay
+
+[00:05:15.860] What does a remote MCP server look like where you are being exposed to
+
+[00:05:21.940] tools that the model can use to invoke certain like APIs for that provider, right? So
+
+[00:05:30.180] So like get hub being a great example
+
+[00:05:34.420] Like there are a bunch of tools that you would want the model to be able to do a bunch of tasks that you want the model to be able to do
+
+[00:05:42.260] on get hub and
+
+[00:05:45.460] While they did start originally with like a local MCP server
+
+[00:05:50.100] that like
+
+[00:05:52.100] Accepted like a personal access token that you go and min them on getup.com and then and then you like
+
+[00:05:58.420] suspiciously place it in your on your local machine
+
+[00:06:03.220] suspiciously place it's very true
+
+[00:06:05.620] You're always happy to open up notes app and I'm like, I guess I'll put this here from
+
+[00:06:11.220] That seems safe. Don't do that. That's not a security that's like it's then would be very upset
+
+[00:06:15.220] You know we we did the right thing in that regard of like yes if you're putting a secret in here
+
+[00:06:20.580] Well, like store it within the secret storage of VS code
+
+[00:06:24.020] But like really you should leverage things that are
+
+[00:06:29.780] Pretty well known like OAuth
+
+[00:06:31.780] For interacting with with the remote service especially because there's no there's no like real benefit of having that server
+
+[00:06:38.100] Locally if it's just gonna turn around and call API
+
+[00:06:40.980] Yeah, so
+
+[00:06:42.500] So the idea there is like GitHub can just host their own MCP server and then models can interact
+
+[00:06:47.940] Directly with that but
+
+[00:06:50.260] We don't want to just still have this like token just sitting on your machine
+
+[00:06:55.060] Being used to make use these tool calls, so that's when like the adoption of like typical OA
+
+[00:07:03.540] to kind of
+
+[00:07:05.700] flows in remote MCP servers
+
+[00:07:09.140] came about and
+
+[00:07:11.860] On the team that's like my red and butter, so
+
+[00:07:16.100] So so I picked that up and and yeah
+
+[00:07:19.940] So we have we have that in in VS code today. It's been there since gosh few months now
+
+[00:07:26.580] And it's been such a wild right because like
+
+[00:07:31.780] When when we talk about off in VS code we've mostly just been focused on like GitHub off and like Microsoft
+
+[00:07:39.620] Off yeah and both of those two are complicated to their own to their own regard
+
+[00:07:45.700] But when you talk about MCP off you're now talking about like a bunch of services
+
+[00:07:50.900] Not just these two that I've mentioned and so now you have to think about like
+
+[00:07:56.420] Now you have to really go deep into the OAuth spec and make sure that you support as many things that are
+
+[00:08:03.700] adhering to that spec is possible because
+
+[00:08:06.420] The reality is that all of these providers have their own interpretation of that spec
+
+[00:08:12.420] And sports or features where others don't and so
+
+[00:08:15.700] Yeah, it's been a really interesting exercise and me having to dig deep deep deep into all of these OAuth specs
+
+[00:08:25.220] And and figure out okay, what are the things that
+
+[00:08:28.820] Need to be prioritized now and then and then the things that we can add on later. So
+
+[00:08:33.540] It makes sense and I love the ability where like for the GitHub MCP where you're already off and if you're already logged in with GitHub
+
+[00:08:39.220] Then it just kind of pops up naturally to log in on the flow you pick your account and there's a lot of like newer features
+
+[00:08:44.420] Like being able to like obviously like easy a sign out like control the authorization like per MCP server and
+
+[00:08:50.420] Recit things and untrust things and go through and things like that and obviously that of spec is evolving as well
+
+[00:08:55.780] So like I think if you're interested in that stuff go to the iteration of planning to search for Tyler and then you'll see all the things
+
+[00:09:02.180] Very happening
+
+[00:09:04.420] Yeah, that's right, but talking about MCP servers like I feel like something that many people won't
+
+[00:09:11.300] Ever see I'm not sure if they will you have to tell me but you sent me this
+
+[00:09:16.980] message on teams about
+
+[00:09:20.340] How your sort of deeply integrating creating your own MCP
+
+[00:09:25.460] For the VS code team when doing development and you show me this video on your ultra wide
+
+[00:09:30.580] Which is beautiful because half the screen because I'm also right half your screen was one VS code and the other one was another
+
+[00:09:35.380] VS code. They should have been different themes. I think Josh. Yeah, Josh is tattooing theme is my personal preference
+
+[00:09:41.700] But that's just me
+
+[00:09:42.980] It's now officially the tattooing theme forever by the way, and I'll put a big thing right here so you can see it
+
+[00:09:47.220] And I'll link to to Josh everyone loves it like the reddit what crazy about it
+
+[00:09:51.220] So how are you evolving
+
+[00:09:54.260] MCP for like the VS code engineering team and like how does that apply?
+
+[00:09:58.420] Maybe even to like developers just like listening this
+
+[00:10:01.460] for sure. Yeah, so it's something that I'm doing this this iteration
+
+[00:10:06.020] is
+
+[00:10:09.220] Like taking is so I'm good mentioning MCP off. We'll set that aside and just talk about like MCP servers in general
+
+[00:10:17.060] And one one MCP server that's like very popular is playwrights MCP server
+
+[00:10:23.300] Which is which is so cool if you don't if you haven't tried it out before
+
+[00:10:27.860] It has the ability to like spin up a browser
+
+[00:10:31.860] And then and then interact with that browser almost as if as if you were doing it yourself
+
+[00:10:38.340] And it makes sense because playwright is also a testing framework for for these kinds of scenarios right?
+
+[00:10:43.460] So you would for to narrowly write some tests playwright tests and then that would go and like control of browser
+
+[00:10:48.900] Let you take screenshots
+
+[00:10:50.900] Let's you look at the DOM that's where it's thing to like truly end to end test your web app
+
+[00:10:57.060] well
+
+[00:10:58.980] We've been working pretty close with that team for a while now and we actually have a big suite of tests
+
+[00:11:05.460] Playwright smoke tests as we call them
+
+[00:11:09.060] That use playwright to test BS code itself both
+
+[00:11:13.300] The browser based BS code and also the desktop because
+
+[00:11:18.100] Since the desktop version is just an electron app which is really just the web app
+
+[00:11:23.540] Playwright was able to like hook into that as well and work with that
+
+[00:11:27.140] So we've got that foundational piece of like all right playwright can interact with with a
+
+[00:11:32.980] local build of the s code and then there's also an existing playwright mcp server
+
+[00:11:39.300] How do we like bring those together?
+
+[00:11:41.700] So that we could have like an mcp server that is specifically for
+
+[00:11:46.740] Interacting with a local build of the s code and so then you might be asking well, why do you need that?
+
+[00:11:52.740] Yeah, why do you need that tag of that sounds crazy?
+
+[00:11:54.660] He sounds cool. Why do you need that? That's a great question.
+
+[00:11:59.220] So I don't know if you've had this experience before, but especially around
+
+[00:12:06.340] UI bugs when you give like agent mode a UI bug it's going to it's going to make some changes
+
+[00:12:14.180] That's almost certain
+
+[00:12:16.340] But the real question is are they the right changes and and like you know
+
+[00:12:22.500] Compilation can only go so far like you can check to make sure that like
+
+[00:12:28.820] TypeScript compilation spine and
+
+[00:12:32.100] You can check all of these like static things
+
+[00:12:35.300] But when it comes down look at all the CSS look at all the HTML like looking out everything is coming together
+
+[00:12:41.220] But yeah, it's just a it's that's just a description of what it should be honestly what it is
+
+[00:12:47.140] Right exactly so so then the question is all right
+
+[00:12:52.180] We know everything with like it's made the change at compile time, but does does this change actually work and
+
+[00:12:58.740] Until this work that I've been working on we the model they agent mode couldn't really do that sort of thing
+
+[00:13:06.660] So we've added in VS code so this is like an mtv mcp server that's like checked into the VS code repo
+
+[00:13:14.260] Is that the the model can then go and
+
+[00:13:18.900] Run some tools that it has access to
+
+[00:13:22.660] Because the the way that it set up is that the mcp server's checked into the code and then in the work space settings for the VS code repo
+
+[00:13:32.340] You can put an mcp.json file in there and list out and like name an mcp server that you want to be available with that workspace, right so
+
+[00:13:43.540] For me like a VS code developer
+
+[00:13:48.980] I don't even have to like think about setup. It's just there when I get the workspace so long as I trust that workspace, which is the VS code repo. So I do
+
+[00:13:57.220] So the model just immediately has access to these tools and
+
+[00:14:03.140] And we also added like a like a prompt file so that you can say all right
+
+[00:14:08.740] You know, I'm making these kinds of UI changes
+
+[00:14:12.340] I need you to take a screenshot before
+
+[00:14:16.020] And after the changes that you make and then truly verify that you you've actually solved the problem and so what that's going to do is
+
+[00:14:24.740] And yeah, so the video that I that I showed you before was I actually used the get-home mcp server to like fetch an issue
+
+[00:14:33.860] That I had and the issue was that like there were these buttons that were too close together and I needed to add
+
+[00:14:40.100] some padding to them and so
+
+[00:14:43.060] So yeah, it fetched the content from from the issue using get-of mcp server. So I didn't have to like copy paste that in there
+
+[00:14:50.900] All I did was say like slash playwright fixed this issue and I gave it a little bit of context of like where that component is because
+
+[00:14:59.700] The model doesn't necessarily know where every
+
+[00:15:02.660] Bell and whistle of of VS code is and so then what that did is it like
+
+[00:15:08.180] Spun up then second this like local dev build of VS code and then
+
+[00:15:15.060] Took this preliminary screenshot of the of the state before made some changes
+
+[00:15:22.260] Reloaded the window of that local dev build
+
+[00:15:26.820] relaunched the component this was in the tools picker in chat for context and then took a new screenshot of
+
+[00:15:35.780] Of the experience post it's changed and verified that that is what it was expecting to do
+
+[00:15:42.420] So so not only do we have like this this feedback that the compilation looks good
+
+[00:15:49.620] But also
+
+[00:15:51.860] We have confirmation we can have confirmation at runtime that those changes are actually actually applied so we could delegate
+
+[00:15:59.780] theoretically even more to
+
+[00:16:02.340] to agent modes to
+
+[00:16:04.820] Make more changes in the scope which is great
+
+[00:16:06.900] It's super cool because I often hear developers thinking about like well, how do I integrate these mcp servers like into my work flow, right?
+
+[00:16:13.140] Like oh isn't there like a playwright like ms you know like actual like see a line
+
+[00:16:18.180] I could just like call and I could write these things I could do these things, right?
+
+[00:16:21.220] Like well in this case like this could be run anywhere right like that's kind of like the beautiful part of it
+
+[00:16:25.460] And actually when you use the coding agent
+
+[00:16:27.220] They get up coding agent when you delegate task to it you actually see like playwright deeply integrated in that it's doing screenshots
+
+[00:16:32.020] Doing something like this what I like about what this workflow is it's like for that local dev experience like funnily enough
+
+[00:16:38.500] I kind of want this for myself literally last night Tyler. I was struggling
+
+[00:16:44.420] On this this mobile app that I'm building it's like a scorekeeper application and I was struggling with CSS
+
+[00:16:49.940] And I was struggling with like different overrides of CSS and I was going back and forth a different different models and to investigate
+
+[00:16:56.180] I'm like look at everything look at this in this
+
+[00:16:57.780] What the problem was is like every single time I'd be trying like send it in image and send it this and then I have to run the app and then stop the app and then run the app
+
+[00:17:04.420] Like ideally in my work flow and I see go fix this but then validate it, right?
+
+[00:17:07.620] Like I think it's okay if I want to go through this workflow which is like yes, spend a little bit more time
+
+[00:17:13.780] Analyzing and revving on it because for your instance, right?
+
+[00:17:16.980] Then it can validate and if it doesn't look correct
+
+[00:17:19.700] Then it can go back and iterate again. Now it has like a ongoing record of the changes and then you do too
+
+[00:17:24.820] Which is super cool. So I'll be playing the video here like if people are watching the audio version
+
+[00:17:28.580] You can go to the YouTube you can see the video version of this, but what you described is like
+
+[00:17:32.980] Exactly what I saw and I like mine was kind of blown and I was like well this makes sense and I could see how beneficial it would be
+
+[00:17:37.620] And combining MCP servers together. It was so cool. Like was this out of a like out of a
+
+[00:17:45.300] frustration
+
+[00:17:47.300] There was a yeah, yeah, yeah, yeah, yeah, yeah, we're worried it come about was it was the right
+
+[00:17:51.940] Yeah, yeah, yeah, because you know
+
+[00:17:53.460] I was I was having like agent that makes some makes some UI changes right and then I'm realizing like okay
+
+[00:18:00.260] So I have to like I have to sit here right and like
+
+[00:18:05.460] Manually verify the changes that it's making right and like go through the UI and like find where it is and and say okay
+
+[00:18:12.980] Now take a screenshot give it back to chat and be like
+
+[00:18:16.740] Clearly it's not working like yeah, keep trying right yeah, and it's like what am I doing here
+
+[00:18:23.140] Like I shouldn't need to be in the loop for this for this particular task it can if it has the right tools available to it
+
+[00:18:29.940] And it can just go into it by itself so
+
+[00:18:33.780] So yeah that was kind of the the that was the motivation to to investigate this sort of thing
+
+[00:18:40.660] And it's been it's been really interesting to use I mean
+
+[00:18:43.460] I haven't been like the biggest
+
+[00:18:46.020] I haven't
+
+[00:18:47.460] Crafted too many
+
+[00:18:49.620] prompts in in my in my tenure thus far and
+
+[00:18:54.660] It's it's challenging for sure
+
+[00:18:58.180] But but yeah
+
+[00:19:00.820] It's it's clear that like this
+
+[00:19:04.020] This developer loop of like giving the model
+
+[00:19:08.420] Not only build time stuff but run time stuff is is what can really kind of unlock
+
+[00:19:14.420] Unlockful potential of this and like maybe we get to a point where you know the the model can go and make these changes and like
+
+[00:19:21.700] I don't need to run them myself because I have the confidence that it went in like actually tried those out
+
+[00:19:26.420] Which is what I do for somebody on the team right it's like yeah when I review their PR
+
+[00:19:30.100] I assume that they they've run it at least that's the culture on our on our team that like we make the assumption that they've run it and and
+
+[00:19:37.700] Tested it well right so I'd love to get to that point for
+
+[00:19:42.260] For each in the and I could see exactly the the loop sort of finalizing too
+
+[00:19:47.540] Which is the next step is in this process
+
+[00:19:49.940] Which is hey, okay now you verify it now you have all these screenshots go create a PR and then
+
+[00:19:55.300] Draft that PR with all of this information before the after the changes you made and like given in depth detail and the model has that context because it just did it right
+
+[00:20:02.500] And that's yeah the cool part is my favorite part of combining MCP servers developing this workflow is time saving right
+
+[00:20:08.900] In the model do a lot of that has the context for me that context and I'll have to waste my precious keystrokes right
+
+[00:20:15.220] I don't have so many keystrokes left. I need to preserve all I think was really nice
+
+[00:20:19.780] And I appreciate you coming on and talking about this is is hearing how the VS code engineering team
+
+[00:20:25.460] Is using these sort of advanced scenarios using the tools to build the tools right it's real world a lot of people ask us
+
+[00:20:32.020] How are you using this damn are you really using this thing like when I saw the demos like well
+
+[00:20:36.580] I think so much for come on and talking about this and that's that's like how our team operates we've always operated this way
+
+[00:20:42.980] So I mean that's that's what you get when you're when you're working on developer tooling as a developer right
+
+[00:20:49.620] I'm the customer here, right just as much as you are and everybody else so
+
+[00:20:54.020] Oh, boy, well, I will put a link to all the the issues and all the things
+
+[00:20:58.820] Everything like that and to your video as well Tyler now was really cool is that you and I also have another best friend
+
+[00:21:03.860] Which is can't see dots and I actually sent down with can see dots when we're all meeting up for MCP Devdays about his journey in how he is using MCB servers
+
+[00:21:12.420] With VS code and his background how it's evolved his sort of entire changing so
+
+[00:21:16.980] Funnily enough now if you want to hang around not you Tyler, but everyone else that's listening to a bonus
+
+[00:21:23.060] A VS code insider's bonus first time episode where we're dropping in episode three whoa
+
+[00:21:27.620] With my sit down interview with can't see dots his entire journey is developer journey
+
+[00:21:32.340] I guess I should put on the developer journey podcast, but really in depth about how he sees the future of MCP and evolving
+
+[00:21:38.180] These different workflows as well. So Tyler, thanks for coming on. We'll find everywhere all the links below and don't forget
+
+[00:21:43.460] You can subscribe the VS code podcast everywhere of VS code podcast.com
+
+[00:21:47.300] You can listen you can watch you do stuff so stick around for a little bit of interview with can see dots let's head over to that interview now
+
+[00:21:53.140] Everyone I'm here with can't see dots how's it going can super hi everybody
+
+[00:21:58.900] I'm super excited it's your first time on the Microsoft campus. We just had you here for MCP Devdays
+
+[00:22:03.700] I just want to sit down and kind of talk about the state of engineering a little bit
+
+[00:22:07.460] And how you see it. I think people may know you as a prolific and
+
+[00:22:11.780] Junior in the react world in the testing world especially around play right and
+
+[00:22:16.900] Also more recently in and around AI and around MCP
+
+[00:22:20.660] But if you don't know you you want to kind of give a TLDR a little bit about yourself
+
+[00:22:24.180] Yeah, yeah, so I live in Utah with my wife and almost six kids
+
+[00:22:29.780] So that's very busy my wife's full-time mom, so I'm able to to work and still get things done
+
+[00:22:36.500] But yeah, I am a full-time educator. I worked at various companies and decided I enjoyed
+
+[00:22:42.180] Educating the most and so yes since 2019 I've been just teaching people
+
+[00:22:46.100] Yeah testing and react and full stack and now AI and MCP stuff that's very cool and you know
+
+[00:22:53.460] I think as myself I love teaching people stuff. I think that's why I do what I do here at Microsoft
+
+[00:22:58.500] I love teaching something to someone that I think is just amazing and really awesome
+
+[00:23:02.660] I watch one of your videos because I quietly softer YouTube a little bit about your background a lot of
+
+[00:23:09.060] yourself these are something really unique
+
+[00:23:11.460] Which was like if I was to teach you the cure for cancer, but you didn't remember it then I didn't really
+
+[00:23:17.540] You probably remember that better than I did didn't matter. Yeah, it doesn't matter at all, right?
+
+[00:23:21.860] So what was this shift from a full-time engineer to like becoming an educator on what like
+
+[00:23:28.900] Why I guess why was that spark that sort of lit up for you?
+
+[00:23:32.820] I've been teaching since I was young in church we would speak in front of our peers from the age of three
+
+[00:23:38.740] So like with mom was bringing in your ear to say right, but yeah, so being up in front of people is something
+
+[00:23:45.460] I've just always done not everybody who goes through my church also feels the same way but for me
+
+[00:23:50.740] It just it mattered or just felt really fun and interesting and and so when I was even in school
+
+[00:23:59.620] I decided to run a workshop for my classmates and I got a sponsor to sponsor pizza so people would show up and
+
+[00:24:07.220] Yeah, so like it's just been kind of a thing that I've wanted to I've enjoyed doing and when I was working as an independent or
+
+[00:24:13.860] It's an individual contributor
+
+[00:24:16.500] also just felt driven to
+
+[00:24:19.220] Share the
+
+[00:24:20.180] Experiences and things that I'd learned and found ways to do that in such a way that it could be
+
+[00:24:25.220] Maximized the impact of that so it's posted on the public blog. It's not private proprietary information there anything and
+
+[00:24:31.460] And and just found myself like more and more even actually before I
+
+[00:24:38.660] Was doing a lot of the teaching of the technical stuff. I
+
+[00:24:41.700] Really enjoyed the process of documenting and figuring out how to communicate what what I had built so people can use it most effectively
+
+[00:24:48.500] So it's always just been about communication and helping people understand things that I just get a kick out of
+
+[00:24:54.580] Is there a moment or some sort of connection that you have with someone there like oh I like made the right choice
+
+[00:25:00.100] Like this is a moment. They maybe you'll never forget. I know I have mine
+
+[00:25:03.460] Like in deciding to be an educator and after you got started and like kind of like, you know
+
+[00:25:09.380] The folks that you interact with your students if you will right
+
+[00:25:12.340] Or maybe you gave a presentation at a conference and like there's a moment that made a connection like oh wow like this kind of not like
+
+[00:25:19.700] Validated it but kind of you know, oh, yeah, this is why I do what I do. Yeah, I
+
+[00:25:24.260] So now because I've been teaching for so long and and taught so many people and
+
+[00:25:30.180] I'll go to conferences and people will come so they can meet me and just tell me how much of an impact I've had so I have those kinds of experiences a lot now
+
+[00:25:37.380] And it's it really don't stop please if you do if I have impacted your life, it actually helps
+
+[00:25:43.140] Motivate me and validate a lot
+
+[00:25:46.180] It keeps me going for sure. So yeah, I don't know
+
+[00:25:50.260] that I can I think of
+
+[00:25:52.740] necessarily the first experience that I had that
+
+[00:25:55.540] sort of thing but
+
+[00:25:57.540] just
+
+[00:25:59.540] Hearing that somebody really I think we can all relate to this you did this is what you do and you did a good job doing it right
+
+[00:26:06.180] like that just feels really really good
+
+[00:26:09.140] And so yeah, I do here that and of course I also hear the other like you this is what you do and you fell short in this way
+
+[00:26:16.500] And so I am in my workshops every single exercise. There's a feedback
+
+[00:26:21.460] Form that I asked people to fill out I have tens of thousands of responses to that form now and
+
+[00:26:26.340] constantly looking for ways to improve the way that I communicate because that's yeah, that's what I do
+
+[00:26:32.340] How did you land on epic everything seems to be epic epic epic with can I mean maybe I maybe even asked us a thousand times
+
+[00:26:37.780] But I didn't sit down and do my research at listening to every interview
+
+[00:26:41.860] has done but
+
+[00:26:43.860] No, I tend to use the word like awesome all the time everything's awesome and obviously awesome like you know on get up is like a thing
+
+[00:26:49.220] But how do you land on epic and everyone's everything so epic? Yeah, yeah, so 2020 we're I've decided to
+
+[00:26:55.460] Turn all of my React workshop material into a series before that I had done testing JavaScript.com
+
+[00:27:02.420] Had a bunch of testing material turned it into workshops and then posted up for that and so
+
+[00:27:08.500] I had like six workshops at the time and eventually I think it grew to like 11 workshop workshops, but
+
+[00:27:15.300] Yeah, I was thinking okay, we're gonna package this app it's gonna be a something
+
+[00:27:19.780] That's a lot of workshops. That's a lot of material. They're
+
+[00:27:23.540] Not I don't know of a single platform educator who's produced so much content in a single place about
+
+[00:27:31.540] React and so
+
+[00:27:33.540] Just talking with Joel Hooks my partner and crime and in all of this stuff that we've done
+
+[00:27:40.260] We were going back forth. I think the word epic was his he said it first if I remember right and
+
+[00:27:46.900] And it just like you know, this is an epic amount of material or something like that and so that's where that came from and then
+
+[00:27:52.580] Epic like it also to me speaks like universe space like that that's always been an interesting thing for me as well
+
+[00:27:59.620] And just like thinking about
+
+[00:28:01.620] You know the grand cosmos and and so yeah epic kind of
+
+[00:28:05.860] Became a thing for epic React and then when I wanted to go beyond just react and do more full stack stuff
+
+[00:28:11.140] Let's get into authentication and database stuff like full application stuff
+
+[00:28:15.380] Epic just seemed to communicate that too. So with epic web it was even bigger than epic react was
+
+[00:28:21.540] And then of course epic AI it's like well of course. It's going to be epic and everything's epic now
+
+[00:28:27.460] Unfortunately
+
+[00:28:28.980] Somebody has bought the domain epic AI
+
+[00:28:31.300] I don't know and they so we had epic reactive epic web dev and
+
+[00:28:36.820] They wanted like 30 grand for it or something. I'm not gonna pay 30 grand for that
+
+[00:28:42.260] And so we went with epic AI pro and I feel pretty
+
+[00:28:47.380] Yeah, we're pros like it's okay
+
+[00:28:50.020] I could tell you fine. Okay, I'm not as happy. I would be much happier if we were epic
+
+[00:28:54.500] But epic AI pro is good
+
+[00:28:56.500] Yeah, like you decide to run a developer conference. Yes. How do that go? Yeah. Yeah, so I
+
+[00:29:02.820] After epic react I took a little bit of a break from from creating
+
+[00:29:09.140] Material because a year after epic react Ryan Florence and Michael Jackson were working on
+
+[00:29:14.500] Remix and actually just like two months after I launched epic react
+
+[00:29:19.300] Remix developer preview came out and you have to pay to have access to this framework
+
+[00:29:23.780] They're going to try and make money charging for licenses
+
+[00:29:26.820] Which I guess Microsoft did that so
+
+[00:29:29.140] Or trust it kind of work
+
+[00:29:30.660] But yeah, so I had been working with it. I was like, yeah, this is absolutely the way I want to build react apps and if it's the way I want to build it so way
+
+[00:29:38.020] What I want to teach and so I'm talking with them
+
+[00:29:42.100] It's
+
+[00:29:44.100] Eventually became clear that like it's not really ready for something like epic react for remix and so
+
+[00:29:50.740] They asked me to just join up and be a co-founder with them and so I joined up and I was with them for
+
+[00:29:57.460] For a while, but as soon as I joined up we launched the open source version of remix and then I was like we need to have a conference
+
+[00:30:05.140] I'm
+
+[00:30:07.140] Been speaking at conferences for a long time. I think bringing people together is what motivates people to build really cool things
+
+[00:30:14.340] You have a lot of examples of things that have conference driven development and stuff like that
+
+[00:30:18.980] So you just want to get people together and so I
+
+[00:30:21.940] There's a company in Utah that has been running ng-conf for Angular for a long time
+
+[00:30:26.420] They run a whole bunch of it. They've run react-conf
+
+[00:30:29.220] Number of times as well, and so I reached out to them and we organized remix-conf
+
+[00:30:34.580] Over 300 people there six months after open sourcing like this pretty
+
+[00:30:39.700] Yeah, pretty significant pretty cool and then
+
+[00:30:43.140] I schedule remix-conf your two. I decide to leave and then I go start building epic web
+
+[00:30:50.500] And
+
+[00:30:51.620] Shopify asked me can you run your two for us and so I ran your two and then the following year. I'd launched epic web
+
+[00:30:58.740] And I was like, I kind of like running this conference. So I shifted it now. I wasn't at remix anymore. I shifted it over to epic web
+
+[00:31:05.860] Conf. And so ran that two years in a row and
+
+[00:31:09.540] It's just I really get a kick out of getting people together. It's fun. It's something you know
+
+[00:31:13.940] We even just hear whenever I'm on campus, right? Because I live
+
+[00:31:17.620] Down in Oregon and in Berksdown and in Tennessee and like we're all over but the conversations that you have when you put two people
+
+[00:31:23.140] Three people for people in a room. It's completely different and Katie on my team. We're just talking about that and just
+
+[00:31:28.100] Even getting to know somebody and sort of not just you can ask questions when you're talking to someone
+
+[00:31:34.180] I'm like a team scholar zoom call when you're actually making different connections like sort of like sticks a little bit more like you and I had a great
+
+[00:31:39.780] Conversation my family and my family. Yeah, I think hopefully you'll remember a little bit
+
+[00:31:42.980] I remember a little bit of that but when you're switching that context as you know that next call is coming it's a little bit different
+
+[00:31:48.900] And I love the conference lead moment because this year's build I feel like it was awesome
+
+[00:31:53.140] The people were up build. It was fantastic and we'll get you there. I can't do it
+
+[00:31:56.660] But I really feel that way when people are at the booth and they're talking to you even at
+
+[00:32:00.980] Combs I've been at Combs is the same any of them they're all the same like
+
+[00:32:03.620] Because there's come in there's want to talk to engineers talking to engineers and he's like you just like thrive off of that
+
+[00:32:08.180] Right just so it's a great moment
+
+[00:32:11.940] But running conferences is complicated any like I know we're gonna talk about a big guy
+
+[00:32:15.840] I said boy, but any lessons learned from running these conferences because a lot of people are always interested in running
+
+[00:32:20.500] Combs is we used to have a done at fringe conference down in Portland and it was just like one track people in a room
+
+[00:32:27.140] Like it just kind of happened. I've no idea what happened. The hard as it were great
+
+[00:32:30.340] But any lessons learned like things that you would tell people they're interested in starting sort of conferences like this
+
+[00:32:36.020] Yeah, I would say for anybody who is wanting to get people well first you got to decide what is your motivation like what's your primary
+
+[00:32:43.380] goal
+
+[00:32:44.740] For most people it's just I don't know if you just kind of want to get people together
+
+[00:32:48.420] And if that's the case then it doesn't have to be big and impressive and have like a ton of people if you're the kind of person
+
+[00:32:55.060] He's like oh, I want to make a bunch of money. There are other ways to do that, but it like you can it is possible
+
+[00:33:00.980] I know people who throw really big events and and in that case you just want to chase whatever's hot, and you know
+
+[00:33:07.540] Whatever's got the money and stuff, but that's not what I do bringing people together
+
+[00:33:13.220] You can do that with a meetup and then you evolve the meetup. That's what I would suggest
+
+[00:33:18.660] I ran a couple of other events before and then like the other benefit as I did have that company that has run many events before
+
+[00:33:27.060] So I just I was in charge of the website finding sponsors and finding speakers and that was my job and I can totally do that
+
+[00:33:33.780] I have good relationships with people and everything. So yeah, if you're just getting into this my biggest advice would be
+
+[00:33:39.300] Start accruing those relationships
+
+[00:33:42.180] Not just with
+
+[00:33:43.780] potential speakers, but also with sponsors
+
+[00:33:46.900] Because these events
+
+[00:33:48.740] Even if you do something small and simple
+
+[00:33:51.620] Food just costs a lot if you cost a lot, but that's the thing too is
+
+[00:33:57.140] It doesn't have to be huge you don't have to record it
+
+[00:33:59.940] You can
+
+[00:34:01.300] Just do it in some office or something. It doesn't have to be a big thing because the goal is just getting people together
+
+[00:34:07.460] And you can do that in a simple way and then iterate to something
+
+[00:34:11.460] Bigger and more
+
+[00:34:13.220] Full yeah, create those spaces for people to have those conversations. Yeah, I think that's the biggest part
+
+[00:34:17.940] Where I talked to my team or talk to go to every conference my favorite thing is the hallway track
+
+[00:34:22.900] Just be hanging out and talking. Yeah, that's all I kind of wanted to do and there was a time
+
+[00:34:27.060] You know right after COVID or I was like I kind of want to get in and I want to get out and now in the last few years
+
+[00:34:31.140] I've been getting back and like I'm like I just I'm not going to leave the conference hall or the center
+
+[00:34:35.780] I'm just going to be here. I tell everyone after my talk like you
+
+[00:34:38.660] You if you don't see me then tell my boss. I've done something wrong
+
+[00:34:42.260] Like you will find you will see me. I will be at lunch. I'll be here. I'll be lingering. If you see me
+
+[00:34:46.500] I'm here engage with me. I give someone the 10 day conference like I don't care if it's kind I don't care if it's hands
+
+[00:34:52.340] I don't care if it's satia. Let's go to say hello. So go up to them like they're there for you
+
+[00:34:56.660] I think there's something that I've learned in my many years of doing this is like that's kind of my favorite part
+
+[00:35:02.180] Some people come and talk. Yeah, you know like I think you're worried that they're gonna
+
+[00:35:06.820] Be bothered by you being there if they were bothered they would leave right and so they're
+
+[00:35:13.140] They're not gonna be bothered the other thing that you hear is like don't meet your heroes because they're gonna be mean or something
+
+[00:35:18.820] Honestly like most of the time they're not and if they are then it's good good for you to know
+
+[00:35:24.740] That's like what maybe you shouldn't to heroize them. I guess if that's a word, but yeah, I
+
+[00:35:31.700] Most of the time they're much more interested in talking with you than you might think. Yeah, I totally agree
+
+[00:35:37.460] All right, let's talk about a big AI
+
+[00:35:39.460] When you went from like epic react epic web and you've involved this is that just like you've been looking at like the trend in the industry
+
+[00:35:46.020] Or is this like feedback from your students and genre makes a both like how does this evolve?
+
+[00:35:50.500] I was all evolving. Yeah. Yeah. I definitely
+
+[00:35:53.380] Watch and listen to my students and like make sure that I'm addressing the needs that they have
+
+[00:35:58.740] But my primary
+
+[00:36:01.780] Directive or the thing that directs me is what interests me and and what I think is
+
+[00:36:07.380] The best way to build the best user experience. So I go out and I build something and I'm like wow
+
+[00:36:12.180] That was really great way to do this. Let me figure out how to make this even better
+
+[00:36:16.900] To solve this particular problem. Then I'll go teach people how to do it. So
+
+[00:36:20.660] With testing that was okay. I'm
+
+[00:36:23.860] Solving testing problems at work and in my open source stuff now I'll teach people how I did that and then with react
+
+[00:36:29.140] It's like okay. I'm building on these react applications. I mean at PayPal in particular at the time
+
+[00:36:34.260] Let me show people how I have done that. Okay, and now we're I'm building I built Kentc.com
+
+[00:36:40.420] Redit it from scratch
+
+[00:36:42.420] Way over scoped for any
+
+[00:36:44.820] Personal website. You mean you did it right? Yeah, yeah, so I make a point to say over scoped not over engineered
+
+[00:36:51.620] So it yeah, it's definitely a way more complicated than most personal websites
+
+[00:36:54.980] How then you write to be but I am very intentionally did that so that I could know
+
+[00:36:59.380] Okay, what does it take to build an app like this with the modern tools that we have and then epic web and teaching how to do that
+
+[00:37:04.500] So epic AI is the same
+
+[00:37:07.220] I just looked at the landscape how our user like how is this AI?
+
+[00:37:11.300] I think going to change the way that we are
+
+[00:37:14.660] And typically I'm thinking through the lens of a product engineer because that's how I grew up
+
+[00:37:19.380] That was a product engineer and
+
+[00:37:22.660] And I'm thinking okay. How is this going to change the way that a product engineer approaches their users or or even me?
+
+[00:37:27.860] I am a product engineer still
+
+[00:37:30.900] Working independently and and so how does this change away? I develop software and then I go and develop software that way
+
+[00:37:37.460] Kind of figure out how to do it and then I teach people how I did that and I really do believe that
+
+[00:37:43.060] MCP is going to have a major role in the way that we develop software for our users and
+
+[00:37:48.420] Deliver our services to to our users and so that's why I've pivoted so much to this now
+
+[00:37:54.180] React and testing like those all of that still exists over there and if you need to learn that stuff
+
+[00:37:59.060] Testingjowscript.com epic react epic web still really great go use that
+
+[00:38:04.500] But tomorrow you're gonna be like oh shoot, I need to learn how to connect my service with these AI agents
+
+[00:38:11.940] And I'll be there ready for you when you you're ready. I do feel like there's a
+
+[00:38:16.980] A lot of questions about do feel like to that point
+
+[00:38:20.340] Like a lot of you like it's always the best time to learn is like now, but you know, and if you're not there
+
+[00:38:24.900] It's okay tomorrow or the next day or whatever
+
+[00:38:26.980] But I do find that you know because I can be in the space at Microsoft and AI of all thing and co-pilot and VS code and just all the stuff
+
+[00:38:34.260] That when I start to talk to engineers talk to companies there's tons of people you can feel like you're behind
+
+[00:38:39.940] But you're not like you can actually you're not super behind it all and if you're looking to start now
+
+[00:38:44.340] You're actually way ahead than like a lot of other people. Yeah because a lot of companies a lot of enterprise are just now
+
+[00:38:48.740] So we're in there. They're figuring out what tools are out there. What should they use?
+
+[00:38:51.380] How do you work when you have a web team a back in team a mobile team?
+
+[00:38:55.060] You know using all different programming languages different tools
+
+[00:38:57.620] How does that all come together? So as you're evolving this like how did it? How is the impact of just AI?
+
+[00:39:03.300] Not just MCP, but AI just impacted you as a personal developer like that's what you were looking at
+
+[00:39:07.620] I was like how was it in every buddy right it's
+
+[00:39:11.380] Three or so years ago when chat GPT came out like that was
+
+[00:39:16.260] We've had LLMs before. It's not like this is a new thing, but what was new was the ease of access to
+
+[00:39:22.020] LLMs and from that moment I like you probably threw code at it and like what can you do with this code and so
+
+[00:39:30.340] It instantly changed things like I could paste in even syntax that I'd not not seem before or a language that I'm not familiar with and ask
+
+[00:39:37.300] Questions about that so it instantly impacted the way that we develop software and and learn about software
+
+[00:39:42.420] Especially me as an educator. I'm taking okay, so how does this change the way that I educated about software?
+
+[00:39:47.940] I got thoughts on that too, but
+
+[00:39:50.580] Yeah from from an impact standpoint
+
+[00:39:53.060] There are a lot of gaps that are left because
+
+[00:39:58.100] Just the way that LLMs work and and these applications are filling in those gaps is best they can by adding the necessary
+
+[00:40:04.340] Contacts to make sure they're not adding irrelevant context like that context engineering mindset
+
+[00:40:10.180] Is a constant challenge that we're just getting better at all the time
+
+[00:40:14.900] But I was sticking around with react and and full stack
+
+[00:40:20.180] Remakes react router all of that
+
+[00:40:22.740] Even with all of this and what made me make this pivot
+
+[00:40:27.060] Was MCP because I would see people building chat bots in their applications and like okay
+
+[00:40:33.380] I can teach people how to do that like I could do that sure
+
+[00:40:37.140] But I
+
+[00:40:38.820] Users don't want a chat bot in your application like yes, they do want to be able to communicate with your service using natural language
+
+[00:40:45.540] Absolutely but they don't want to have to say okay. I'm gonna copy paste context from this chat bot into this one and then from you know
+
+[00:40:52.020] What comes out of that goes into this one and then it comes back here and like all of that context
+
+[00:40:56.980] Movement and oh, yeah, this chat bot doesn't know my personal preferences and I got to like they want a single
+
+[00:41:03.540] general
+
+[00:41:05.540] Chat bot that knows everything they want to know about them
+
+[00:41:10.580] That can communicate with all these services and so that just never captured me as a thing that product engineers are gonna do
+
+[00:41:16.500] There will be some people who work in those spaces for sure and there are lower levels as well
+
+[00:41:22.900] But again, I'm just thinking about the product engineers and in my mind most of the product engineers were still doing
+
+[00:41:28.420] React up and in fact, that's probably still certainly is still the case
+
+[00:41:32.820] But I think in the coming year or so we're going to see a lot more people transitioning
+
+[00:41:39.380] Over into the MCP space where you why will still be relevant? I think react
+
+[00:41:44.340] still has relevance
+
+[00:41:46.340] Possibility there too, but yeah, the real point is I'm thinking about the product engineer and it wasn't until MCP that I thought okay
+
+[00:41:54.020] This is product engineers gonna be interacting with AI in this way
+
+[00:41:58.020] Yeah, when you what was it about what when you saw MCP like what was it that kind of clicked for you like what was it that you're like like
+
+[00:42:05.940] Oh, this is the thing. Well, so I had been talking with my friend Ryan Florence
+
+[00:42:11.620] For about a year we were driving home together from a react to comp
+
+[00:42:16.980] at 24 last year and talking about how AI is changing over the course like that's half of our conversation
+
+[00:42:25.540] That's all it is all years has been just about AI and how it's changing things is very exciting. We use that we're a lot and
+
+[00:42:32.100] I'll probably use the word exciting a couple times in this conversation, but
+
+[00:42:36.740] He was talking about Jarvis
+
+[00:42:38.740] and he was like like
+
+[00:42:40.740] Tony Stark just has this thing and it just does he he says I need this thing and Jarvis just builds the app
+
+[00:42:46.900] You know in real time it you know exactly what he needs and
+
+[00:42:50.100] And this was like really early v0 days too, so and and bolts new and all that like before bolt
+
+[00:42:58.260] And so I just been thinking about this a lot and then I had epic webconfter on this year and once that was done
+
+[00:43:04.420] I actually Ryan was gonna come speak at the conference he was sick and so I brought all this swag over to his house
+
+[00:43:09.460] And I was like hey, sorry, he was sick. Here's that and then we got to talking and it was now
+
+[00:43:15.220] Okay, I'm done with the conference. What am I gonna do next and he was like
+
+[00:43:18.900] You need to look at the MCP thing and I hadn't actually heard about it because I was so focused on that react conference and
+
+[00:43:25.700] The epic web conference and
+
+[00:43:27.700] So I looked into it and like oh, okay now so before it was Jarvis
+
+[00:43:32.260] Is like can you answer your questions?
+
+[00:43:34.660] There are some specific tool integrations you can build and so like you still have the integration problem at that point where you have to build a tool for every single little thing
+
+[00:43:42.980] You with a developer if you want to make Jarvis you have to make all those integrations and then
+
+[00:43:48.020] MCP it's like oh no you don't you just have to build a Jarvis that has the standard input and then other people can build the part that goes into that input
+
+[00:43:59.300] I don't like this analogy, but it's the USB of
+
+[00:44:02.900] Services I said it during the key. It's on the website. It's what they say
+
+[00:44:08.900] I'm not saying USB-C is the best port
+
+[00:44:12.100] To be but it's just what we have yeah, so
+
+[00:44:14.820] Exactly that really is the point though is some people complain about MCP having gaps
+
+[00:44:21.060] What I don't care about gaps. I care about foundations and the foundation is solid like it's could it be better?
+
+[00:44:28.020] Yeah, sure ever you build a house you finish building the house
+
+[00:44:31.140] Foundation is an exactly what I wanted it to be but it's solid and that's what matters
+
+[00:44:34.900] You can build something on top of that and so and then also the fact that everybody has bought it to MCP and so
+
+[00:44:42.020] At the time this is March the new author or actually the first part of the spec that added support for
+
+[00:44:49.780] Auth showed up in March and I was like okay, no you can build something real with this like actual
+
+[00:44:55.060] Services product engineers can expose their services to AI we can make Jarvis and that's what got me into it
+
+[00:45:00.900] That makes sense. I do love the Jarvis analogy. I know it's part of your talk and eras
+
+[00:45:05.140] Watching the champion like oh, I finally get it, right? There's sometimes like it really is just that something that kind of clicks for people
+
+[00:45:10.820] And and for me in an architecture when I moved into like MDVM
+
+[00:45:14.900] We're all the I'm a Xamil.net person. It kind of clicked for me. I was like, oh, I get it
+
+[00:45:18.900] I get the Xamil. I can understand this HTML JavaScript. I don't know like I get this and I remember the first time I sat down
+
+[00:45:27.780] And I was working with you know the copilot and chat GPT in these tools. I might
+
+[00:45:32.740] Do stuff and like I can regenerate code. I was like what about this? What about this? And I was in vision
+
+[00:45:37.620] Now I saw this like the thing that I really wanted to saw is I want it to go build the house go go do it
+
+[00:45:42.500] Just go do the thing I want you to do do I if you're talking to Siri or talking to Gemini or talking to copilot
+
+[00:45:46.740] I want you to do the thing and ever time is like oh, I can't do that yet
+
+[00:45:49.380] I'm like oh, but I want but do I want you to do the thing I see but in my mind I was like this is gonna happen
+
+[00:45:54.260] And I don't know how it's gonna happen, but at some point it's gonna happen. I remember the first time dead came to me
+
+[00:45:58.420] Like try this out. You're like show me an MCP server. I was like
+
+[00:46:03.060] Like there's an amazing and he's like I was like well, how's this different than an API
+
+[00:46:07.060] He's like well, no, let me explain to you guys everything. Maybe I how do you explain to people about MCP is not an API
+
+[00:46:12.020] When you're going and you're talking to your students like oh, you know
+
+[00:46:14.660] I have I've invested 10 years in restful APIs and I moved on to GraphQL like how is this different?
+
+[00:46:21.220] Why can't does all these elements just call every single swagger API?
+
+[00:46:23.940] Yeah, yeah, yeah, there we have a bit API why not exactly that honestly that is such a common question
+
+[00:46:30.100] As soon as I introduce tools that's one of the first questions from people is okay
+
+[00:46:34.500] Is there like some sort of tool that can just take my open API and expose those things as tools?
+
+[00:46:40.660] The answer is yes, there is
+
+[00:46:42.980] But yeah, and I recommend you try it so that you can at first hand experience why it's a bad idea
+
+[00:46:50.340] so like
+
+[00:46:52.660] The the real unlock for me when thinking about assistance and
+
+[00:46:56.980] MCP is to
+
+[00:46:59.940] Okay, AI is not a human that's just to be clear
+
+[00:47:03.380] But if you think of it as a human then it a lot of things make a lot more sense now it's a really capable
+
+[00:47:09.460] Confident human it's not an intelligent human it just has a lot of experience but it
+
+[00:47:16.420] For humans even if you hired a human assistant to accomplish the task that assistance can I go to Google or being
+
+[00:47:23.620] And it's going to do a search
+
+[00:47:25.780] Find the tools that are necessary to accomplish the task and then execute on those
+
+[00:47:30.020] But the the search results are going to give it websites that have links and buttons and things that are very clear
+
+[00:47:34.900] Very clear workflows and stuff
+
+[00:47:36.900] Each one of those websites could also just return a page that has
+
+[00:47:41.540] Like you can generate a website from an open API now spec right like you here's all the mutations and all the everything
+
+[00:47:49.460] And you can generate forms out of that there's a reason we don't do that and it's because it's too confusing for a human to
+
+[00:47:55.380] Understand, okay, so I need to call this or I need to submit this form and then take the output from that form and submit this form and then take the output from that
+
+[00:48:02.500] And like oh, I missed a step like if you think about the the mutations that your users are doing in a website
+
+[00:48:08.020] You often are calling this API then this API then that IPI and putting it together to do a thing and so if you just expose your entire rest
+
+[00:48:15.900] API or open API or swagger or whatever documentation to
+
+[00:48:20.260] an LLM it's going to get confused and and and I would say
+
+[00:48:24.900] Maybe this is a limitation in the model some people will say well the foundation of model just get better and I'll just be able to figure it out
+
+[00:48:29.940] But I mean, I just don't like let's assume that we have complete trust and and that's 100% trust worthy
+
+[00:48:37.060] Would you really just open up your database to like execute any SQL statement you want?
+
+[00:48:42.740] Yeah, right assuming that we could trust it right
+
+[00:48:45.540] Probably not because it would just mess up the like some of our assumptions about the way the data is supposed to be there like
+
+[00:48:52.820] So for that reason having tools and prompts and resources give a much more curated experience the same way that we do with the website
+
+[00:49:00.660] Yeah, and and like thinking about okay the LLM as a human
+
+[00:49:05.860] The the host application is the chat app that we use to talk to our human or maybe
+
+[00:49:11.460] Even you know voice conversation, however, and then that assistant then
+
+[00:49:17.460] Goes to some sort of mechanism to identify the proper tools and then it interacts with those tools and thinking about
+
+[00:49:24.260] Those tools as a website for a human helps me organize the way that I think about the right way to build those
+
+[00:49:30.740] Service that integration layer and makes a lot of sense. Yeah, I think and as I'm building software
+
+[00:49:36.660] Yeah, you could build everything and deliver everything as a final product
+
+[00:49:42.100] How do you even know if those users need 80% of that functionality, right? Like focus on making
+
+[00:49:47.380] What users actually are going to use fantastic for those inputs and those outputs so that LLM can interact over it
+
+[00:49:53.060] I think when the first time that den show me this example of like the off flow and then using like
+
+[00:49:58.100] Proplexity AI and then using like these documentation searches and then opening issues and assigning issues and doing this like just from natural
+
+[00:50:05.220] I'm like I'm going to describe what I want it to do and then it can use all of its knowledge based all of this and like all the summarization and do this stuff
+
+[00:50:12.420] I'm like I'm never going to create
+
+[00:50:14.420] up an issue ever again manually in my entire life
+
+[00:50:18.660] I'm never going to plan a new feature the same way that I ever did. I'm going to plan together
+
+[00:50:23.620] Because it can have so much more context that I would be manually search like I could go do it
+
+[00:50:28.740] But I can pull all these things together and then when I saw like context seven
+
+[00:50:32.100] Which was giving this infinite knowledge graph of every single library out there because that's always the promise everything's evolving at the same time
+
+[00:50:38.420] I'll keep up I thought context seven I was like oh yeah, this is a no brand that this is how it works and I have all these people
+
+[00:50:42.820] How do I get this and that's like no just context seven it knows it does it once it starts to get into this pattern of it
+
+[00:50:49.300] Doing the things that you would just do naturally, right, which is I have like I have like you know my Proplexity server
+
+[00:50:54.420] I have context seven I have Microsoft Docs I get up server all these different tools and I have on these different phases
+
+[00:51:00.020] And when I'm in it, I'm just like doing things that would normally do okay, let's plan out this feature do this stuff
+
+[00:51:03.940] And it just starts to call the tools and the things that I would naturally be doing anyways
+
+[00:51:07.060] Yeah, but it does it about thousand times faster. I don't know about you
+
+[00:51:10.660] I'm on calls like all day so like usually sending a query off to to co-pilot and then
+
+[00:51:16.100] Entering a call and then like come back 30 minutes later and then it has like a whole bunch of stuff
+
+[00:51:19.140] Yeah, but in automotive and just go
+
+[00:51:21.780] Something you'll know just go let's do this, right?
+
+[00:51:24.820] Yeah, that's like how many so how many rounds you want to do 10,000 just go
+
+[00:51:28.500] Anyone I don't care burn them all, but I think that was that unlock for me because I was starting to see this
+
+[00:51:34.580] Future in my engineering life that
+
+[00:51:38.500] I had thought about like a year ago kind of like you're talking about this job as an example
+
+[00:51:41.780] Yeah, like when I watch Iron Man for the first time I told it I was like yeah
+
+[00:51:44.820] I think everyone looks at that like I want that that'd be cool like if you're great, right?
+
+[00:51:48.580] Just plan it out. Talk to me have this conversation and I was like that's gonna happen at some point
+
+[00:51:52.500] I think we're getting closer and the MCP. I think has been unlocking these capabilities
+
+[00:51:56.500] When you've been doing all of these
+
+[00:51:58.980] Trainings and workshops like how are people reacting to it like I was
+
+[00:52:03.700] They were exciting they're signing up. I'm pretty sure I don't see and I've been able to sign up myself because I've been sold out so much
+
+[00:52:09.700] That's true, but like what's the reaction been like from your students as far as like going through the course?
+
+[00:52:15.620] Yeah, I've actually been I've never experienced anything like this
+
+[00:52:19.060] Where I will list the workshop and it sells out really quickly every time
+
+[00:52:24.660] And I think there's like there's a piece of hype and like fear of missing out in there
+
+[00:52:29.300] But there's also like the practical I'm using this and it's really helpful. I want to figure out how to like integrate this in the service that I offer
+
+[00:52:39.060] The as far as the reaction goes I
+
+[00:52:43.860] Especially with something new I kind of expected that people would come to me to the workshop and they're like I'm just attending because you say I should care
+
+[00:52:51.220] Because people trust me. I'm I'm not a teacher and so I can understand it but like
+
+[00:52:56.100] Where they're saying I need you to explain to me why I should care
+
+[00:53:01.220] But they're not like they they already know why they should care and they're really
+
+[00:53:06.980] Just wanting to understand the fundamentals of how these pieces fit together and how they can actually integrate it themselves
+
+[00:53:14.180] There are definitely gaps in the mcp spec and
+
+[00:53:18.340] servers that I'm building
+
+[00:53:20.740] That are like actual servers that people actually use and as well as demos and things
+
+[00:53:26.500] Are revealing a number of those gaps that I'm still trying to help
+
+[00:53:32.100] Make solutions for but the more and more people you get into the ecosystem the more these problems are revealed and installed
+
+[00:53:39.220] But yeah, I've just been really surprised at how yes, there's an element of hype but people actually seem to know
+
+[00:53:48.100] Where this fits in and our motivated to to play a part in this future of human interaction
+
+[00:53:55.300] And I think if you are someone who's been building apis
+
+[00:53:58.900] Hopefully this kind of clicks with you a little bit that it is sort of this natural evolution of apis for
+
+[00:54:04.820] LLams in a way, but just yeah, yeah, I actually had somebody yesterday
+
+[00:54:10.100] In a workshop who kept on relating it to
+
+[00:54:13.620] REST APIs and stuff like oh, this is the list collection thing and yeah, yeah, that is kind of what it is and
+
+[00:54:19.300] The thing is like mcp was designed to make it so that the servers are easier to implement as easy as possible
+
+[00:54:26.500] At the expense of the client so clients are a lot more complicated to implement
+
+[00:54:30.340] Not that I've done it. I've never tried myself
+
+[00:54:33.300] Because I think in my vision of the future
+
+[00:54:36.820] The client is basically like the web browser and the server is your website and so we have like
+
+[00:54:42.580] Maybe five web browsers and five trillions
+
+[00:54:45.460] Websites, right, so I think most of us are working on the servers and that was intentional from the design
+
+[00:54:50.580] And I think that was just such a good idea
+
+[00:54:53.460] To make it so that the thing that we're going to be doing more of is is a little bit easier
+
+[00:54:58.820] I think there are some and the other part of that too is that this was designed by developers who
+
+[00:55:06.820] Do have experience with REST APIs and stuff and so they kind of knew
+
+[00:55:11.300] The ways to map these concepts to things that would be familiar to people
+
+[00:55:16.100] I think it actually does a pretty good job of that yeah, okay for a little chat here
+
+[00:55:20.500] What has you kind of excited about the future here? I'm not just MCP, but the AI space the dev space your
+
+[00:55:26.420] Career going forward and the educator space yeah for for me most the most exciting thing for me is getting to
+
+[00:55:33.700] A place where we can have a Jarvis like experience like a general agent
+
+[00:55:37.540] I'm excited about viscode like very focused agents that are like focus on specific task
+
+[00:55:43.940] You can get a lot further with viscode than you can with chat GPT of course like it just has those integrated tools
+
+[00:55:50.180] But the the general use agent that is useful for everybody regardless of whether their technical or not is the most exciting thing to me
+
+[00:55:57.940] And so just finding the I'm not really interested in building that myself. That's like
+
+[00:56:03.940] Really not only is it a tough problem, but I have almost six kids. I want to spend time with them
+
+[00:56:10.020] And so I'm just looking for what are the things that are stopping somebody from building that
+
+[00:56:15.460] And let me see how I can help and so one of the areas that I can help is teaching people to make quality servers
+
+[00:56:20.580] Which is what epic AI pro is doing also educating people on what the potential is and so I've been talking a lot about
+
+[00:56:27.780] A rag for MCP tools. So before you hand like 7,000 tools to the LM
+
+[00:56:34.740] You filter those down
+
+[00:56:37.540] Using rag with the the user's queries basically a search engine. It's like
+
+[00:56:42.100] Google for MCPs and so like talking about that and and their research papers about that
+
+[00:56:47.700] I didn't do the research so I'm grateful that
+
+[00:56:49.860] Actual research people do that, but like just promoting this idea and helping people see that
+
+[00:56:55.460] I'm not the kind of person who jumps on a hype train
+
+[00:56:58.660] That's that's not I'm very thoughtful about the things that I do, but once I get on the train
+
+[00:57:03.220] I turn it into a hype train and not in the negative way, but like in a hey everybody like this is the train
+
+[00:57:09.620] This is where we're going this is huge and you need to understand it so doing everything that I can to help
+
+[00:57:15.220] Bring more and more people into this ecosystem because I think that's that's a good thing
+
+[00:57:18.740] That's awesome. Well kind of thank you so much for sitting down. We're gonna be the fun you and Cody on the internet
+
+[00:57:24.340] Yeah, KentCdots.com and Epic AI. Pro. I'm also on X and GitHub at KentCdots everywhere
+
+[00:57:31.380] Perfect awesome. Thanks again. I really appreciate it. Thank you

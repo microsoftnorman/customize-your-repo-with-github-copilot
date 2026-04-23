@@ -2,7 +2,7 @@
 
 [← Hooks](primitive-7-hooks.md) | [Part II Overview](part-2-primitives.md)
 
-*Updated: April 17, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
+*Updated: April 22, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
 
 ---
 
@@ -18,6 +18,10 @@ The customization primitives covered in this guide (instructions, prompts, skill
 **Ownership:** Memory has no repo file to own, but **Security / Compliance** owns the enablement policy (enterprise or org setting), and **repository admins** own the periodic review-and-delete cadence for stored memories.
 
 **Official docs:** [Copilot Memory](https://docs.github.com/en/copilot/concepts/agents/copilot-memory) · [Managing memories](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory)
+
+**Code to study:** [GitHub Copilot CLI repository](https://github.com/github/copilot-cli) for one public surface that consumes Memory. The Memory service itself is GitHub-managed, so there is no repo-local implementation to inspect.
+
+**See it in action:** [VS Code Insiders Podcast Episode 9: Building agent memory for VS Code](https://www.vscodepodcast.com/9) — Harald Kirschner explains the mental model behind repository memory and why learned context complements explicit customization.
 
 ### Quick Reference: View, Edit, or Disable
 

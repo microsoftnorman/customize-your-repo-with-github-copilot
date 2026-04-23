@@ -1,0 +1,683 @@
+[00:00:00.000] Welcome back, everyone, to the VS Code Insiders podcast
+
+[00:00:03.200] you're behind the scenes with the VS Code team
+
+[00:00:05.280] and your favorite code editor.
+
+[00:00:06.640] I'm one of your host James Montemagno,
+
+[00:00:09.040] P.M. on our developer community team.
+
+[00:00:10.800] And with me today, I'm super excited.
+
+[00:00:13.120] I have Logan, Ramos, a senior software engineer
+
+[00:00:16.080] on the VS Code team, how's it going, Logan?
+
+[00:00:18.640] I'm good, James, how are you?
+
+[00:00:19.920] I'm doing awesome and I just learned that you actually
+
+[00:00:24.400] have been at Microsoft that a while,
+
+[00:00:25.680] but you've actually interned on multiple teams,
+
+[00:00:29.600] like in the editor space before which I had no idea
+
+[00:00:32.160] which is so cool.
+
+[00:00:33.520] Yeah, yeah, it's been a great time.
+
+[00:00:35.520] I think what I initially joined as an intern
+
+[00:00:37.920] from Microsoft in 2018, I believe.
+
+[00:00:40.880] I thought developer tooling was kind of lame
+
+[00:00:42.880] and like I was like, this is not exciting.
+
+[00:00:44.400] Like, I want to work on Xbox,
+
+[00:00:46.160] but it's been amazing to see how passionate
+
+[00:00:48.640] everyone has in the developer space in every day
+
+[00:00:50.640] that I get to work with people who are like myself.
+
+[00:00:53.360] Like, I am the customer kind of up this product
+
+[00:00:55.280] and it makes it much easier to connect with them.
+
+[00:00:58.480] That's awesome, yeah, when we just had Tyler on,
+
+[00:01:00.400] I think that was, he said the exact same thing,
+
+[00:01:02.960] which is like, I am building the tool that I want to use
+
+[00:01:06.720] with a team that once used the tools every single day
+
+[00:01:09.360] to make the tool better, which is so cool.
+
+[00:01:11.200] And I agree with you, I started my career
+
+[00:01:13.280] making video games for the Xbox 360
+
+[00:01:15.840] and then I became a win-forms developer building desktop apps
+
+[00:01:19.440] and then I fell into loving dev tools in the space.
+
+[00:01:22.640] I don't know, just something about it.
+
+[00:01:23.520] Just collect, I'm out of the video game space,
+
+[00:01:25.520] but, yeah, for some reason,
+
+[00:01:29.600] desktop applications were calling my name.
+
+[00:01:31.760] And apparently yours is well, which is awesome.
+
+[00:01:34.960] I wonder if you want because there's been a feature
+
+[00:01:38.480] that a lot of people talk about inside of VS Code,
+
+[00:01:42.160] which has a funky name, and I don't actually think describes
+
+[00:01:45.680] maybe what the feature, I mean, it does describe
+
+[00:01:47.680] like what the implementation of the feature is,
+
+[00:01:50.000] but maybe not why you would want to use it
+
+[00:01:52.960] and like, on the podcast, we want to talk about like,
+
+[00:01:54.640] not what the feature does, like, why?
+
+[00:01:56.400] Why was this thing even put into the product?
+
+[00:01:58.240] How is it evolving? How are we getting feedback?
+
+[00:02:00.400] And this is something that people see as BYOK
+
+[00:02:03.200] or bring your own key, which, I guess you're bringing a key,
+
+[00:02:08.080] but it's kind of in the model selection.
+
+[00:02:10.800] Like, what is bring your own key?
+
+[00:02:12.560] Like, how is it thought about like, why is it in the product?
+
+[00:02:16.000] And why was someone even used this thing?
+
+[00:02:18.080] Before we talk about how it's evolving in the latest versions?
+
+[00:02:20.560] Yeah, yeah, so I mean, I think I named it bring your
+
+[00:02:23.440] and key when I first started implementing it.
+
+[00:02:25.440] It's a burn-out.
+
+[00:02:26.160] It's the air, not a marketer,
+
+[00:02:27.600] and maybe it should have been called bring your own model,
+
+[00:02:29.600] but that's what we've been calling it since.
+
+[00:02:31.920] It's official name is language model chat providers.
+
+[00:02:34.880] So there's actually a full vehicle API
+
+[00:02:37.200] that we could talk about at some point.
+
+[00:02:39.280] But the reason for this comes down to VS Code
+
+[00:02:42.160] has always been about developer choice,
+
+[00:02:44.080] our extension ecosystem, et cetera.
+
+[00:02:45.760] And while GitHub co-pilot gives you some amazing models
+
+[00:02:48.880] to work with out of the box, the truth is,
+
+[00:02:50.960] there's just, it's impossible for us to support every model.
+
+[00:02:54.160] Every model you add to GitHub co-pilot
+
+[00:02:55.680] bifurcates your GPU capacity, right?
+
+[00:02:57.520] So if you have 1000 GPUs and you have two models,
+
+[00:03:00.000] you know, then maybe 500 model,
+
+[00:03:01.680] if you're doing 50, 50 balancing.
+
+[00:03:03.760] So every day, a brand new LM comes out.
+
+[00:03:06.640] I mean, I'm sure you see all the articles.
+
+[00:03:08.800] And so some people are really passionate about wanting to be on the cutting edge
+
+[00:03:11.520] and trying new things.
+
+[00:03:12.800] And it's just not something we're able to provide with the subscription.
+
+[00:03:16.800] And so bring your own key or bring your own model,
+
+[00:03:19.200] allows you to add any model you want to get up co-pilot
+
+[00:03:24.240] and speak to it through the chat interfaces,
+
+[00:03:26.560] through the agent, treating it as if it came right with the product.
+
+[00:03:30.800] So it's a really cool feature.
+
+[00:03:32.400] Now, these models from any provider,
+
+[00:03:35.760] like what's in the box, like here,
+
+[00:03:37.760] because like I out of the box today,
+
+[00:03:39.680] I go in, I select my models, I got GPT-5, I got clawed,
+
+[00:03:44.000] I got Gemini in there.
+
+[00:03:45.840] Like, is it also sort of like that today,
+
+[00:03:50.000] where there is just additional models or like the users can figure it,
+
+[00:03:55.840] or like what's that setup process look like?
+
+[00:03:57.920] Yeah, yeah. So I mean, the bring your own key arc started with
+
+[00:04:01.520] it was all done in the chat extension.
+
+[00:04:04.160] But what we found is because there's so many different model providers.
+
+[00:04:07.200] I mean, you've been drop it, Google,
+
+[00:04:10.000] opening eye, you know, deep sea,
+
+[00:04:12.480] call these other ones that keep appearing.
+
+[00:04:15.040] It's just unsustainable for us to maintain the model.
+
+[00:04:17.280] So we've put a few in out at the box at the moment,
+
+[00:04:20.320] that provide pretty much the most commonly used ones,
+
+[00:04:24.960] based on popularity.
+
+[00:04:26.720] And then the idea is that other extensions can go and implement theirs as well,
+
+[00:04:29.840] and contribute to the growing ecosystem.
+
+[00:04:32.640] So pretty much any opening eye compatible model will be support,
+
+[00:04:35.920] and that happens to be kind of the spec that a lot of model providers have decided on.
+
+[00:04:41.040] Now, are these models, like,
+
+[00:04:43.360] someone want to use this because they're on the cutting edge,
+
+[00:04:45.200] but also like, are they all cloud models?
+
+[00:04:48.080] Like, like, where do these things run?
+
+[00:04:49.840] Like, who's paying for them as well?
+
+[00:04:51.840] Like, or if I have four, I have five, I've 18 machines in front of me,
+
+[00:04:56.880] and 76 Nintendo Switches.
+
+[00:04:59.680] Can I just like run a model on my Nintendo Switch,
+
+[00:05:02.000] and then like plug that in?
+
+[00:05:03.360] Yes.
+
+[00:05:03.840] Yeah, there's two conflicting kind of opinions on what you bring your own key is good for.
+
+[00:05:09.120] The first is model access, and the second is privacy.
+
+[00:05:12.720] And so there's an idea, especially in, you know,
+
+[00:05:15.200] some of these more regulated spaces, like health care, et cetera,
+
+[00:05:18.800] that maybe a local LLM is what you want.
+
+[00:05:21.280] And so being open and compatible, we support LM Studio,
+
+[00:05:26.880] you know, like LM, Alama, and all these common local LM providers,
+
+[00:05:31.920] and I've been able to run, you know, the latest GFT or SES models
+
+[00:05:35.360] that came out of opening eye recently, a straight online hackbook,
+
+[00:05:38.160] and actually pretty decent, and do a good job.
+
+[00:05:42.080] I would say that, you know, the local models don't quite compete with the fact
+
+[00:05:45.360] that these cloud models are using such massive amounts of GPU compute,
+
+[00:05:49.840] but it does have the benefit of being privacy first and fully on their machine.
+
+[00:05:54.480] That makes sense. Maybe I can run on my Series X,
+
+[00:05:56.320] and I get a little bit more news in the power there.
+
+[00:05:58.080] Now, the one other question I had, too, is,
+
+[00:06:00.880] so I go into VS code, and then how you see this is,
+
+[00:06:04.960] you select a model, and there's managed models.
+
+[00:06:07.520] Now, I actually love a feature that people don't know about,
+
+[00:06:09.760] as it doesn't do with bring your own key, but it's in the bring your own key selector,
+
+[00:06:12.560] which is managing the models that show up in the model selector with copilot.
+
+[00:06:16.160] You can manage and pick those.
+
+[00:06:17.600] But when you're inside of there, yeah, you get this drop down today,
+
+[00:06:21.440] which is Azure and Thropic, XA, Alama, OpenAI, Google,
+
+[00:06:25.680] Grock with Q, OpenRouter, OpenAI compatible, and you can configure.
+
+[00:06:29.760] So if I select Azure, I'm going to type in, like, my endpoint,
+
+[00:06:33.040] and my API key, basically, into that.
+
+[00:06:35.040] So for example, if I wanted to use GPT-5 Nano,
+
+[00:06:38.000] some of the big fan of, I could just spin up,
+
+[00:06:41.280] I'm thinking of practical insins, like I have my model.
+
+[00:06:44.480] I have spin up Nano, grab the URL, grab my key boom,
+
+[00:06:49.200] and then now all my requests are going to be routed through my Azure OpenAI.
+
+[00:06:52.640] I am pointed to articulate what you said correctly.
+
+[00:06:55.120] Yes, yep, that's correct.
+
+[00:06:58.160] And yeah, you can either do it through Azure,
+
+[00:07:00.240] or there's open analyst directly if you don't want to do the whole data
+
+[00:07:03.600] of setting up your own compute,
+
+[00:07:05.440] I think on your use cases, that makes a lot of sense.
+
+[00:07:08.240] Now, on top of that, though, how do then the system prompts work
+
+[00:07:14.480] in this model, right?
+
+[00:07:16.400] Because the team fine tunes, and they're all open,
+
+[00:07:18.960] so as you can see, the system prompts,
+
+[00:07:20.480] are they using the same system prompts?
+
+[00:07:22.000] Like if I configure, you know, OpenAI or O-Lama,
+
+[00:07:26.960] or Anthropic with these keys in the bring your own key model,
+
+[00:07:32.960] is it one to one kind of, or is it going down different path based
+
+[00:07:37.120] on kind of the models that are there, or how's that work?
+
+[00:07:40.640] Yeah, yeah, I mean, we try our best to make it one to one.
+
+[00:07:43.200] We want to bring your key to feel like a first, you know,
+
+[00:07:46.160] class experience, we're not looking to treat copilot favorably,
+
+[00:07:50.160] one way or the other.
+
+[00:07:50.960] It's all about whatever makes the developer the most efficient
+
+[00:07:53.680] and enabling them to use AI in their day to day jobs.
+
+[00:07:57.360] So, we do try to use a custom prompts, of course,
+
+[00:08:00.000] for something, you know, that just came out that we don't have,
+
+[00:08:03.440] like, you know, some of these new moonshot models, et cetera.
+
+[00:08:05.840] Like, we will have custom prompts for them,
+
+[00:08:07.600] so they will fall back to some default prompt that we have,
+
+[00:08:10.560] kind of decided that works well for generic use cases.
+
+[00:08:15.040] That makes a lot of sense, go.
+
+[00:08:16.400] So, today the team has been adding them.
+
+[00:08:18.880] So, like, I noticed that in the latest rev,
+
+[00:08:20.960] there's like OpenAI compatible models, like, obviously,
+
+[00:08:25.040] a few other ones were recently added in there.
+
+[00:08:27.520] Every time I open that, it seems like there's a drop down there,
+
+[00:08:30.080] but you said that there's an API, I mean,
+
+[00:08:32.480] that actually VS code itself is like a series of APIs that developers
+
+[00:08:35.120] have been to for extensions, and I think not a lot of people need that,
+
+[00:08:38.720] know that maybe of how the thing works.
+
+[00:08:40.720] And we were talking about the iteration planning,
+
+[00:08:43.200] recently, on a podcast, and Pierce was talking about things,
+
+[00:08:45.680] and we were talking about, oh, there's all these APIs that are being built in.
+
+[00:08:49.520] So, you all on the team have to add one.
+
+[00:08:52.720] So, if Moonchart comes out or whatever, you have to manually add one today.
+
+[00:08:56.160] And for my understanding, that is changing.
+
+[00:08:59.120] Yeah, so, bring your own key.
+
+[00:09:01.280] First, started not with an API.
+
+[00:09:02.880] It started as just a custom experience built into the copilot chat extension.
+
+[00:09:06.400] The downside is exactly what you're saying.
+
+[00:09:08.400] It started to get out from under us with the space of the AI space,
+
+[00:09:12.800] it's just moving so incredibly fast,
+
+[00:09:14.880] that it's kind of impossible for, you know, one engineer to keep up with all that.
+
+[00:09:18.560] So, what we decided to do is kind of pivot,
+
+[00:09:20.560] and we've now developed a full, accessible surface for people to contribute to this.
+
+[00:09:26.320] And now we've started reaching out to some of the more popular, you know, LLM providers,
+
+[00:09:30.240] and we're going to start working on helping them get extensions into the marketplace.
+
+[00:09:34.240] So, then, when you download VS code and download copilot chat,
+
+[00:09:37.360] if you wanted to say get a different provider's models, you'd go to the marketplace and install
+
+[00:09:42.080] their extension as well, and then they would just automatically print a list,
+
+[00:09:45.120] and be treated properly like that as well.
+
+[00:09:48.320] The benefit to this as well.
+
+[00:09:50.480] The benefit to this is that some providers are not open-animal.
+
+[00:09:54.240] Uh, for example, in PropEx, a good one, it uses their custom API surface,
+
+[00:09:59.760] and therefore maintaining, you know, six different API shapes,
+
+[00:10:03.520] et cetera, is really difficult.
+
+[00:10:05.200] So, we end up collapsing to a common open-an AI shape,
+
+[00:10:07.920] which loses some of the capabilities of these model providers like custom features.
+
+[00:10:13.440] Yeah, so if I'm James, James AI, and I come along, and I'm like, you know, I have the best
+
+[00:10:18.240] new model in the entire world.
+
+[00:10:20.320] I want people to use this, and it's not open-an AI compatible.
+
+[00:10:23.600] It's my own custom James surface, right?
+
+[00:10:26.640] In some of that, what's the process look like now for me, James developer,
+
+[00:10:31.280] James LLC AI, that I want to come in and do this.
+
+[00:10:34.880] You said that I've created an extension, there's APIs on top of it,
+
+[00:10:38.400] am I writing it in TypeScript, like what's the, what's the jam?
+
+[00:10:42.080] Yeah, step one is to offer your model for free, because that's the best way to get people to use it.
+
+[00:10:46.560] Uh, so you know, you might lose a lot of money,
+
+[00:10:48.960] but it seems to make things very popular, people like free.
+
+[00:10:52.080] Uh, but yeah, we have extension samples in our VS Code Extension sample repository.
+
+[00:10:57.040] And we also have a, a doc that'll drop soon on our website for people to read about,
+
+[00:11:02.320] uh, how to implement these providers, but it's pretty simple.
+
+[00:11:05.440] It's just, you have to provide a list of your models, and some metadata about them, like, you know,
+
+[00:11:09.840] how many tokens can it take in, how many tokens can take out,
+
+[00:11:12.800] but let's support processing images and tools.
+
+[00:11:15.680] And that helps us show the models in the right context.
+
+[00:11:18.080] For example, if you don't support tool calling, we can't show you in our agent mode,
+
+[00:11:20.880] because that is a tool driven flow.
+
+[00:11:24.080] Uh, so then you just go and quickly implement the extension.
+
+[00:11:26.640] A lot of them will be pretty similar.
+
+[00:11:28.480] I would say, and then boom your, after the races, I was going to ask that because, yeah,
+
+[00:11:33.360] when I go in and I'd like, for example, if I can figure, you know, GPT 5 mini,
+
+[00:11:38.320] it's going to support some inputs and not other inputs, right?
+
+[00:11:41.760] Or like, James, AI, LLM model, maybe not support images, or something like that.
+
+[00:11:46.160] Like you said, tool calling.
+
+[00:11:47.600] So from a user's perspective, I'm now, you, Logan, you, in some of my extension,
+
+[00:11:54.320] does that, what's that experience look like?
+
+[00:11:56.400] From a user's perspective, do I need to know a lot about the model?
+
+[00:11:59.280] Or like am I just slapping an API key and I'm good?
+
+[00:12:01.840] Or how is, how is the user experience go?
+
+[00:12:04.080] Yeah, it really depends on the extension.
+
+[00:12:06.080] I mean, we try to leave things as customizable as possible.
+
+[00:12:09.200] For, we have a provider built in right now called OpenAI compatible.
+
+[00:12:14.640] And that one, you have to know everything about the model because we don't know anything.
+
+[00:12:17.120] So we're going to ask you, you know, first token limits,
+
+[00:12:19.760] fourths, vision capabilities.
+
+[00:12:21.520] But if I download James AI and theory, James should know everything about the model,
+
+[00:12:24.960] and I should just be throwing an API key and boom, my model has configured properly,
+
+[00:12:28.880] ready to talk to and very simple to use.
+
+[00:12:33.040] I like that, that makes sense.
+
+[00:12:34.560] Now, there are all of these existing ones in here.
+
+[00:12:38.160] Are these existing ones using the new API, or like, where they're using an API that
+
+[00:12:42.160] I got exposed, like, because there's a bunch in there,
+
+[00:12:45.600] and you said it's impossible to maintain all of these and things like that.
+
+[00:12:49.120] But like, are we using the our own APIs basically?
+
+[00:12:53.840] Yeah, I mean, as I'm sure speaking to every developer you'll see is we're all very
+
+[00:12:58.160] pro dog foodings.
+
+[00:12:59.200] So we are dog fooding our own stuff here.
+
+[00:13:01.040] So we're using the API testing it.
+
+[00:13:03.280] We fixed many bugs and had some pain points.
+
+[00:13:06.240] So hopefully it's easy for you now and everything goes to the same flow.
+
+[00:13:10.480] And nothing is treated, especially every extension should get the same access
+
+[00:13:15.360] to be able to belong in the VS code AI ecosystem.
+
+[00:13:19.120] When you're working with developers and speaking with different customers
+
+[00:13:23.520] and different use cases, you talk about a lot of different use cases for it.
+
+[00:13:26.640] Like in the real world, how are we seeing usage and adoption of built-in models,
+
+[00:13:33.440] these custom models, these extensions, like, you know,
+
+[00:13:36.560] they're different use cases people are using them for, like, you know, you obviously are like,
+
+[00:13:42.000] in it, right? So you're hearing back from people that are using it.
+
+[00:13:44.400] If you break something, they'll probably let you know, right?
+
+[00:13:46.560] Like, how is the feedback since this feature kind of rolled out a while ago,
+
+[00:13:51.280] kind of been for you and the team?
+
+[00:13:53.600] Yeah, it's been really great. I mean, we've, it's been a very passionate feature.
+
+[00:13:58.240] I think it definitely invites the tinker at the moment.
+
+[00:14:01.200] I think it's still a bit new.
+
+[00:14:02.800] So enterprises have not really started picking it up as much yet,
+
+[00:14:06.080] but I have seen some playing around with it.
+
+[00:14:07.520] And it's also taught me that these model providers are super finicky.
+
+[00:14:11.120] And everyone treats the parameters just slightly different.
+
+[00:14:13.600] And supporting all of them has been quite challenging.
+
+[00:14:16.720] But I see people who super excited, you know, the second a new model drops,
+
+[00:14:20.880] you know, they're having it running in a cup of a chat and like, oh my gosh,
+
+[00:14:23.440] look at these, you know, 10 things as part of their, you know,
+
+[00:14:26.800] thread engagement farming they're doing. They'll show you all the fun different things
+
+[00:14:30.640] they're doing with the AM model.
+
+[00:14:32.480] Wow, that's really cool.
+
+[00:14:33.520] Anything else you want to talk about the new API or the new models or anything like that?
+
+[00:14:36.320] How do we kind of cover it all?
+
+[00:14:38.480] Yeah, I mean, I think that pretty much covers it all.
+
+[00:14:41.200] I definitely would tell everyone to go out and try implementing their own
+
+[00:14:45.520] extension and see what's what it's like. It's really exciting.
+
+[00:14:49.440] And if you have any feedback, of course,
+
+[00:14:51.200] I'll let us know and I'm happy to hear it.
+
+[00:14:53.040] And if you have an existing extension that's doing something,
+
+[00:14:55.680] some other integration of the terminal or something like that,
+
+[00:14:58.000] is an AI extension. I'm imagining you want to create another extension.
+
+[00:15:02.400] You could just build into your extension.
+
+[00:15:04.640] The support for this, or would it be its own standalone extension?
+
+[00:15:07.440] Yeah, there's no reason that you have to build your own a completely new extension.
+
+[00:15:11.280] So, for example, if the Azure extension, you know,
+
+[00:15:14.240] wanted to start contributing Azure language models, they could just add it so that you download
+
+[00:15:18.080] Azure and you get all Azure stuff. It's just yet another API surface you can talk to.
+
+[00:15:22.640] Very cool. This is awesome. I'm really excited to see how it evolves.
+
+[00:15:25.600] And to see that list fill up with fun and funky stuff.
+
+[00:15:29.920] Because like you said, there's so many models.
+
+[00:15:32.880] And when I talk to different developers and friends,
+
+[00:15:35.760] they're always like, oh, yeah, I try it out.
+
+[00:15:37.040] This thing is really good for this specific thing.
+
+[00:15:39.680] Right. I think that's the type of thing that intrigues me is like when I'm doing
+
+[00:15:43.600] different data processing, different things like this model is really good at this thing.
+
+[00:15:47.040] And it's really fast at this specific thing besides like a more general model.
+
+[00:15:51.280] So, yeah, this is awesome.
+
+[00:15:53.040] Well, I'm excited to see it fill up.
+
+[00:15:54.240] And we'll put in the show notes, links to all the issues in the development in real time.
+
+[00:15:58.400] You can follow the team, build the thing in real time.
+
+[00:16:00.080] I think that was the most fun. I think it's like getting on the call and updates and seeing
+
+[00:16:03.920] those checkbox updates as well that are there.
+
+[00:16:06.000] So, well, look at things so much for coming on and talking through not only
+
+[00:16:10.000] what bring your own key models are, but like actually how it's evolved to be even more open.
+
+[00:16:14.960] So, everyone can kind of grow this out.
+
+[00:16:17.200] Yeah, it's very exciting. And as you say, as that list will fill up,
+
+[00:16:20.960] we will have something fun and store called Automode and hopes to make the selecting
+
+[00:16:25.440] of the models even easier because there's a benefit and a downside to model choice,
+
+[00:16:29.440] which is, you know, this idea of choice fatigue.
+
+[00:16:31.680] So, if you don't like to choose a model, keep it eye out for that as well.
+
+[00:16:35.600] That should be coming soon.
+
+[00:16:36.880] Very cool. We'll deep dive on that in upcoming VS Code Insiders podcast Logan.
+
+[00:16:42.000] Just did the perfect little cliffhanger that I really appreciate it.
+
+[00:16:46.320] Logan, you have to set it out for me, perfect.
+
+[00:16:48.400] So, make sure you subscribe on your favorite podcast applications, Spotify,
+
+[00:16:52.400] YouTube. If you want the video version of this, we'll put in little images and little
+
+[00:16:56.240] screenshots and little videos until like that in there, but we make these to be audio first.
+
+[00:16:59.760] So, subscribe on your favorite podcast application.
+
+[00:17:01.520] But let's go to this VS Code Insiders podcast until next time, James.
+
+[00:17:05.120] Thanks for watching and listening and happy coding.

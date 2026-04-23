@@ -1,0 +1,2559 @@
+{
+  "source_file": "2025-10-13-building-agent-memory-for-vs-code-with-harald-kirschner.md",
+  "transcript_format": "local_stt_segments",
+  "segment_count": 362,
+  "metadata": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 9,
+    "title": "Building agent memory for VS Code with Harald Kirschner",
+    "url": "https://www.vscodepodcast.com/9",
+    "transcript_url": "",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/63aaae99-78c0-40e4-b0b7-5a84b211fb9e.mp3",
+    "published": "2025-10-13",
+    "duration": "25:41",
+    "transcript_available": false,
+    "source_file": "2025-10-13-building-agent-memory-for-vs-code-with-harald-kirschner.md",
+    "source_path": "references\\transcripts\\vscode-podcast\\2025-10-13-building-agent-memory-for-vs-code-with-harald-kirschner.md",
+    "local_stt": true,
+    "local_stt_model": "tiny.en",
+    "local_stt_language": "en",
+    "local_stt_device": "cpu",
+    "local_stt_compute_type": "int8"
+  },
+  "segments": [
+    {
+      "speaker": null,
+      "text": "Welcome back everyone to the VS Code Insiders podcast your one stop shop for all things behind the scenes of VS code your favorite code editor",
+      "start": "00:00:00.080",
+      "end": "00:00:08.140",
+      "id": 1
+    },
+    {
+      "speaker": null,
+      "text": "I'm your host James Montemagno and with me the one and only",
+      "start": "00:00:08.180",
+      "end": "00:00:11.760",
+      "id": 2
+    },
+    {
+      "speaker": null,
+      "text": "Harold Kirchner pm on the VS code team you know him from all the mcp",
+      "start": "00:00:12.400",
+      "end": "00:00:16.880",
+      "id": 3
+    },
+    {
+      "speaker": null,
+      "text": "Goodies that have come out and so much more Harold. How is it going?",
+      "start": "00:00:17.280",
+      "end": "00:00:20.320",
+      "id": 4
+    },
+    {
+      "speaker": null,
+      "text": "Hey James happy to be yours, but first time on the pod",
+      "start": "00:00:20.840",
+      "end": "00:00:23.840",
+      "id": 5
+    },
+    {
+      "speaker": null,
+      "text": "Yes, we've talked about it many many times about you coming on the pod and then you're finally",
+      "start": "00:00:24.720",
+      "end": "00:00:29.780",
+      "id": 6
+    },
+    {
+      "speaker": null,
+      "text": "Landing on something that I don't even think we would have talked about it before because there's a lot of brand new stuff",
+      "start": "00:00:30.240",
+      "end": "00:00:35.000",
+      "id": 7
+    },
+    {
+      "speaker": null,
+      "text": "Maybe people don't know you a little bit. Maybe talk about you know background what you do on the team and which you've been working on recently",
+      "start": "00:00:35.000",
+      "end": "00:00:41.200",
+      "id": 8
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, I've been on team for",
+      "start": "00:00:42.040",
+      "end": "00:00:44.040",
+      "id": 9
+    },
+    {
+      "speaker": null,
+      "text": "You know these six years now. It's coming up during the coming days. I think",
+      "start": "00:00:44.040",
+      "end": "00:00:47.300",
+      "id": 10
+    },
+    {
+      "speaker": null,
+      "text": "previously working on fire folks deaf tools so always working on developer stuff building tools for developers to debilled better experience",
+      "start": "00:00:48.040",
+      "end": "00:00:56.280",
+      "id": 11
+    },
+    {
+      "speaker": null,
+      "text": "So it was more accessible experiences",
+      "start": "00:00:56.320",
+      "end": "00:00:58.280",
+      "id": 12
+    },
+    {
+      "speaker": null,
+      "text": "Can I make it easier for everybody to build so?",
+      "start": "00:00:58.680",
+      "end": "00:01:01.640",
+      "id": 13
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, I just kind of joined with that passion on the VS code team and for like two and a half",
+      "start": "00:01:02.000",
+      "end": "00:01:07.080",
+      "id": 14
+    },
+    {
+      "speaker": null,
+      "text": "The years now nearly kind of working on the AI parts and getting into how do you make this easy to use",
+      "start": "00:01:07.160",
+      "end": "00:01:13.440",
+      "id": 15
+    },
+    {
+      "speaker": null,
+      "text": "How to make this more powerful basically really stretch the limits and every every month is something new",
+      "start": "00:01:13.440",
+      "end": "00:01:18.600",
+      "id": 16
+    },
+    {
+      "speaker": null,
+      "text": "But there is always like new paradigms new in the city center. So it's really exciting to just stay on top of it",
+      "start": "00:01:19.080",
+      "end": "00:01:24.360",
+      "id": 17
+    },
+    {
+      "speaker": null,
+      "text": "So it's VS code its customization. So what I'm talking about today is really",
+      "start": "00:01:24.400",
+      "end": "00:01:28.360",
+      "id": 18
+    },
+    {
+      "speaker": null,
+      "text": "Close my heart talking to a lot the obvious about this talking to like larger teams about this so we're excited to bring this here",
+      "start": "00:01:28.760",
+      "end": "00:01:35.140",
+      "id": 19
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, and I think what's been really exciting as we kind of like unravel and go behind the scenes a little bit of",
+      "start": "00:01:35.680",
+      "end": "00:01:41.040",
+      "id": 20
+    },
+    {
+      "speaker": null,
+      "text": "VS code and how things are evolving how things are changing you know",
+      "start": "00:01:41.240",
+      "end": "00:01:44.680",
+      "id": 21
+    },
+    {
+      "speaker": null,
+      "text": "Being the open source AI code editor. There's many parts to that not just like the code being open source",
+      "start": "00:01:45.000",
+      "end": "00:01:50.880",
+      "id": 22
+    },
+    {
+      "speaker": null,
+      "text": "But also the integrations. We've recently talked quite a bit about like the different extensions that can now kind of tap in",
+      "start": "00:01:50.920",
+      "end": "00:01:56.920",
+      "id": 23
+    },
+    {
+      "speaker": null,
+      "text": "To providing models for examples. So now we see many many models available to the chat for example and agent mode",
+      "start": "00:01:57.000",
+      "end": "00:02:03.960",
+      "id": 24
+    },
+    {
+      "speaker": null,
+      "text": "I think one thing that many people maybe haven't used too much",
+      "start": "00:02:03.960",
+      "end": "00:02:08.280",
+      "id": 25
+    },
+    {
+      "speaker": null,
+      "text": "Maybe don't have too much insight into are all of the other components to chat and when I mean that I'm really talking about of course",
+      "start": "00:02:08.600",
+      "end": "00:02:16.080",
+      "id": 26
+    },
+    {
+      "speaker": null,
+      "text": "MCP but also I'm talking about things like modes and prompts and instructions and",
+      "start": "00:02:16.080",
+      "end": "00:02:21.800",
+      "id": 27
+    },
+    {
+      "speaker": null,
+      "text": "People may know the basics of these but can you kind of give like a TLDR of like what each of those three are and like",
+      "start": "00:02:22.720",
+      "end": "00:02:29.120",
+      "id": 28
+    },
+    {
+      "speaker": null,
+      "text": "How you're using them today and like why they're important?",
+      "start": "00:02:29.400",
+      "end": "00:02:32.240",
+      "id": 29
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, definitely so the the OG one is",
+      "start": "00:02:33.200",
+      "end": "00:02:37.020",
+      "id": 30
+    },
+    {
+      "speaker": null,
+      "text": "instructions and the that comes from the earliest of chat to be T where you could set custom instructions",
+      "start": "00:02:37.360",
+      "end": "00:02:43.920",
+      "id": 31
+    },
+    {
+      "speaker": null,
+      "text": "To give chat to receive some more of a background of yourself",
+      "start": "00:02:44.240",
+      "end": "00:02:47.320",
+      "id": 32
+    },
+    {
+      "speaker": null,
+      "text": "How do you like to be talked to how you like to have it to kind of reason explain things?",
+      "start": "00:02:47.320",
+      "end": "00:02:52.160",
+      "id": 33
+    },
+    {
+      "speaker": null,
+      "text": "So you had like this very",
+      "start": "00:02:52.560",
+      "end": "00:02:54.560",
+      "id": 34
+    },
+    {
+      "speaker": null,
+      "text": "Thin layer of customization on top of the model basically give it something",
+      "start": "00:02:54.560",
+      "end": "00:02:59.020",
+      "id": 35
+    },
+    {
+      "speaker": null,
+      "text": "some of the some sense of",
+      "start": "00:02:59.600",
+      "end": "00:03:01.600",
+      "id": 36
+    },
+    {
+      "speaker": null,
+      "text": "You see it's a good system problem basically of how how you want it to work and",
+      "start": "00:03:01.600",
+      "end": "00:03:06.560",
+      "id": 37
+    },
+    {
+      "speaker": null,
+      "text": "That's where instructions come from and that's kind of any developer world that most often sits in your work",
+      "start": "00:03:07.600",
+      "end": "00:03:13.840",
+      "id": 38
+    },
+    {
+      "speaker": null,
+      "text": "Space and with these markdown files do it's like copad dash instructions and D",
+      "start": "00:03:14.080",
+      "end": "00:03:18.880",
+      "id": 39
+    },
+    {
+      "speaker": null,
+      "text": "Sitting in a dot GitHub folder",
+      "start": "00:03:19.680",
+      "end": "00:03:21.680",
+      "id": 40
+    },
+    {
+      "speaker": null,
+      "text": "That's kind of the the OG version of that and that's just a",
+      "start": "00:03:21.680",
+      "end": "00:03:24.480",
+      "id": 41
+    },
+    {
+      "speaker": null,
+      "text": "Plain markdown file in most cases. It just describes your code base. So as the LM works",
+      "start": "00:03:25.120",
+      "end": "00:03:31.600",
+      "id": 42
+    },
+    {
+      "speaker": null,
+      "text": "It doesn't need to again and again",
+      "start": "00:03:32.320",
+      "end": "00:03:34.320",
+      "id": 43
+    },
+    {
+      "speaker": null,
+      "text": "Look at you read me and figure out what what the heck you're working on",
+      "start": "00:03:34.560",
+      "end": "00:03:37.840",
+      "id": 44
+    },
+    {
+      "speaker": null,
+      "text": "Look at ten different files to figure out what your ease lens rules are and what your packages are",
+      "start": "00:03:38.560",
+      "end": "00:03:42.560",
+      "id": 45
+    },
+    {
+      "speaker": null,
+      "text": "But all of that is in a context engineered in a very dense one-to-two-pager",
+      "start": "00:03:43.280",
+      "end": "00:03:48.400",
+      "id": 46
+    },
+    {
+      "speaker": null,
+      "text": "Of like this is what you're working on. This is where code sits",
+      "start": "00:03:49.040",
+      "end": "00:03:52.240",
+      "id": 47
+    },
+    {
+      "speaker": null,
+      "text": "If you need anything else like we'll look it up there, right? So that's that's kind of what the custom instructions are",
+      "start": "00:03:52.960",
+      "end": "00:03:59.040",
+      "id": 48
+    },
+    {
+      "speaker": null,
+      "text": "then",
+      "start": "00:04:00.320",
+      "end": "00:04:02.320",
+      "id": 49
+    },
+    {
+      "speaker": null,
+      "text": "prompts are",
+      "start": "00:04:02.320",
+      "end": "00:04:04.320",
+      "id": 50
+    },
+    {
+      "speaker": null,
+      "text": "one-shot reusable",
+      "start": "00:04:04.880",
+      "end": "00:04:06.880",
+      "id": 51
+    },
+    {
+      "speaker": null,
+      "text": "Workflows and one shot here means you basically it's",
+      "start": "00:04:07.120",
+      "end": "00:04:10.960",
+      "id": 52
+    },
+    {
+      "speaker": null,
+      "text": "Most of your places what you would send the LM and user message like write test for this",
+      "start": "00:04:11.360",
+      "end": "00:04:16.000",
+      "id": 53
+    },
+    {
+      "speaker": null,
+      "text": "That could be a slash as a test prompt",
+      "start": "00:04:16.720",
+      "end": "00:04:18.880",
+      "id": 54
+    },
+    {
+      "speaker": null,
+      "text": "And what you notice when you do prom crafting then you oftentimes. Oh it wrote tests",
+      "start": "00:04:20.000",
+      "end": "00:04:24.080",
+      "id": 55
+    },
+    {
+      "speaker": null,
+      "text": "But it didn't do acts or it wrote tests, but it only wrote three and it didn't",
+      "start": "00:04:24.480",
+      "end": "00:04:28.800",
+      "id": 56
+    },
+    {
+      "speaker": null,
+      "text": "Look for hundreds and coverage. So you start writing like all right tests, but",
+      "start": "00:04:29.840",
+      "end": "00:04:32.880",
+      "id": 57
+    },
+    {
+      "speaker": null,
+      "text": "Get to at least a percent coverage. So you keep expanding the prompt and really",
+      "start": "00:04:33.440",
+      "end": "00:04:37.040",
+      "id": 58
+    },
+    {
+      "speaker": null,
+      "text": "Honing in the best practices of what you're looking for and making that",
+      "start": "00:04:38.000",
+      "end": "00:04:41.520",
+      "id": 59
+    },
+    {
+      "speaker": null,
+      "text": "Reusable because everybody across your team",
+      "start": "00:04:42.240",
+      "end": "00:04:44.240",
+      "id": 60
+    },
+    {
+      "speaker": null,
+      "text": "At some point probably has the right tests. They're like you know, I test follow best practices",
+      "start": "00:04:45.200",
+      "end": "00:04:49.520",
+      "id": 61
+    },
+    {
+      "speaker": null,
+      "text": "And most of the times there's probably a document somewhere with best practices how to write tests",
+      "start": "00:04:49.680",
+      "end": "00:04:53.440",
+      "id": 62
+    },
+    {
+      "speaker": null,
+      "text": "So on one side you could put those into custom instructions",
+      "start": "00:04:54.320",
+      "end": "00:04:57.600",
+      "id": 63
+    },
+    {
+      "speaker": null,
+      "text": "Like this is how you write tests and then you your prompt is just write tests",
+      "start": "00:04:58.160",
+      "end": "00:05:01.360",
+      "id": 64
+    },
+    {
+      "speaker": null,
+      "text": "You can also write this info problems. I give it more of a workflow like rest write tests",
+      "start": "00:05:01.920",
+      "end": "00:05:05.760",
+      "id": 65
+    },
+    {
+      "speaker": null,
+      "text": "Run the coverage make sure the test pass and give it all the things it would usually do wrong",
+      "start": "00:05:06.720",
+      "end": "00:05:11.360",
+      "id": 66
+    },
+    {
+      "speaker": null,
+      "text": "And then then you keep this workflow very lean and mostly one shot of measurements you run it and the outcome works really well",
+      "start": "00:05:12.320",
+      "end": "00:05:19.120",
+      "id": 67
+    },
+    {
+      "speaker": null,
+      "text": "So that's our first two",
+      "start": "00:05:20.240",
+      "end": "00:05:22.240",
+      "id": 68
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, that makes sense to me and then modes. I think seem to be something",
+      "start": "00:05:22.640",
+      "end": "00:05:26.720",
+      "id": 69
+    },
+    {
+      "speaker": null,
+      "text": "Then maybe I kind of going in this order where I think most people like you said like OG instructions prompts",
+      "start": "00:05:27.200",
+      "end": "00:05:32.000",
+      "id": 70
+    },
+    {
+      "speaker": null,
+      "text": "Maybe you're very using but there are built in modes and there's also custom modes",
+      "start": "00:05:32.080",
+      "end": "00:05:36.160",
+      "id": 71
+    },
+    {
+      "speaker": null,
+      "text": "Yes, so the building modes are agent ask and edits and",
+      "start": "00:05:37.600",
+      "end": "00:05:41.760",
+      "id": 72
+    },
+    {
+      "speaker": null,
+      "text": "We're probably going to clean this up because like most of the time right now. We set ourselves spending time in agent",
+      "start": "00:05:42.640",
+      "end": "00:05:47.120",
+      "id": 73
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, so ask we already have settings so make",
+      "start": "00:05:47.680",
+      "end": "00:05:50.560",
+      "id": 74
+    },
+    {
+      "speaker": null,
+      "text": "Ask more agenda as well",
+      "start": "00:05:51.440",
+      "end": "00:05:52.960",
+      "id": 75
+    },
+    {
+      "speaker": null,
+      "text": "But it's more of a kind of read only and answer questions based on my code based kind of mode",
+      "start": "00:05:53.120",
+      "end": "00:05:57.520",
+      "id": 76
+    },
+    {
+      "speaker": null,
+      "text": "So that's what most people use it for just general asking me all I'm question asked me my own questions about the code base",
+      "start": "00:05:58.160",
+      "end": "00:06:04.160",
+      "id": 77
+    },
+    {
+      "speaker": null,
+      "text": "And then I can most of the time you should probably be in the agent mode and you can do the same thing if you just prompted right",
+      "start": "00:06:05.200",
+      "end": "00:06:10.160",
+      "id": 78
+    },
+    {
+      "speaker": null,
+      "text": "So those are the build in ones, but the custom chat modes",
+      "start": "00:06:11.280",
+      "end": "00:06:13.920",
+      "id": 79
+    },
+    {
+      "speaker": null,
+      "text": "out probably frame as",
+      "start": "00:06:14.960",
+      "end": "00:06:16.960",
+      "id": 80
+    },
+    {
+      "speaker": null,
+      "text": "most or often often when I ask users that you see those as kind of personas or",
+      "start": "00:06:16.960",
+      "end": "00:06:21.520",
+      "id": 81
+    },
+    {
+      "speaker": null,
+      "text": "roles or",
+      "start": "00:06:22.320",
+      "end": "00:06:23.760",
+      "id": 82
+    },
+    {
+      "speaker": null,
+      "text": "Workflows so workflows. I have for example, I can demo this later",
+      "start": "00:06:23.920",
+      "end": "00:06:28.640",
+      "id": 83
+    },
+    {
+      "speaker": null,
+      "text": "I for example prom to do data analysis because mostly works in one shot, but then I have a workflow to do",
+      "start": "00:06:29.840",
+      "end": "00:06:35.440",
+      "id": 84
+    },
+    {
+      "speaker": null,
+      "text": "Planning which takes usually get some plan back now. I go. No, let's like tweak this one or it has questions first and answer questions",
+      "start": "00:06:36.240",
+      "end": "00:06:43.280",
+      "id": 85
+    },
+    {
+      "speaker": null,
+      "text": "So it kind of carries over and continues over multiple steps",
+      "start": "00:06:43.280",
+      "end": "00:06:47.760",
+      "id": 86
+    },
+    {
+      "speaker": null,
+      "text": "depending on what I'm doing and",
+      "start": "00:06:48.400",
+      "end": "00:06:50.400",
+      "id": 87
+    },
+    {
+      "speaker": null,
+      "text": "The other thing is the chat modes also go into the system prompt for you know",
+      "start": "00:06:50.640",
+      "end": "00:06:55.120",
+      "id": 88
+    },
+    {
+      "speaker": null,
+      "text": "Copa so they're not just a user message like a prompt",
+      "start": "00:06:55.120",
+      "end": "00:06:57.360",
+      "id": 89
+    },
+    {
+      "speaker": null,
+      "text": "But the really like this is how you're supposed to work as an agent kind of instructions",
+      "start": "00:06:58.000",
+      "end": "00:07:02.000",
+      "id": 90
+    },
+    {
+      "speaker": null,
+      "text": "So they're much more adhering and you can set the model",
+      "start": "00:07:02.880",
+      "end": "00:07:05.120",
+      "id": 91
+    },
+    {
+      "speaker": null,
+      "text": "You can constrain the tools that you're using in the chat mode as well. They consistently get carried over and not not being lost",
+      "start": "00:07:05.760",
+      "end": "00:07:12.720",
+      "id": 92
+    },
+    {
+      "speaker": null,
+      "text": "so there's way more",
+      "start": "00:07:12.960",
+      "end": "00:07:14.960",
+      "id": 93
+    },
+    {
+      "speaker": null,
+      "text": "a specific thing you work in",
+      "start": "00:07:15.040",
+      "end": "00:07:17.040",
+      "id": 94
+    },
+    {
+      "speaker": null,
+      "text": "versus a task you hand off to do",
+      "start": "00:07:17.440",
+      "end": "00:07:19.920",
+      "id": 95
+    },
+    {
+      "speaker": null,
+      "text": "Oh, and it's really fascinating because you kind of set it there at the end",
+      "start": "00:07:20.880",
+      "end": "00:07:24.480",
+      "id": 96
+    },
+    {
+      "speaker": null,
+      "text": "But you can start to sort of chain these things together where you know in your mode",
+      "start": "00:07:24.640",
+      "end": "00:07:29.360",
+      "id": 97
+    },
+    {
+      "speaker": null,
+      "text": "You can specify a model but also a prompt can specify a mode",
+      "start": "00:07:29.440",
+      "end": "00:07:34.320",
+      "id": 98
+    },
+    {
+      "speaker": null,
+      "text": "Right, you could have a prompt that says here's a prompt of something. I want to do and then use this mode",
+      "start": "00:07:34.560",
+      "end": "00:07:39.440",
+      "id": 99
+    },
+    {
+      "speaker": null,
+      "text": "Right, so if you had a planning mode you might have a plan fast or plan deep or something like that and it uses that mode",
+      "start": "00:07:39.600",
+      "end": "00:07:44.480",
+      "id": 100
+    },
+    {
+      "speaker": null,
+      "text": "But then additionally or like write tests right you have a testing mode",
+      "start": "00:07:44.720",
+      "end": "00:07:48.000",
+      "id": 101
+    },
+    {
+      "speaker": null,
+      "text": "Additionally, you might have instructions which can be generic for every file",
+      "start": "00:07:48.560",
+      "end": "00:07:52.320",
+      "id": 102
+    },
+    {
+      "speaker": null,
+      "text": "But also for specific types of file or glob structures",
+      "start": "00:07:52.320",
+      "end": "00:07:54.960",
+      "id": 103
+    },
+    {
+      "speaker": null,
+      "text": "Are folder structures and you could say you know what when you're writing tests",
+      "start": "00:07:55.520",
+      "end": "00:07:58.320",
+      "id": 104
+    },
+    {
+      "speaker": null,
+      "text": "It's gonna write it into this folder",
+      "start": "00:07:58.640",
+      "end": "00:08:00.080",
+      "id": 105
+    },
+    {
+      "speaker": null,
+      "text": "So then also adhere to these instructions which are like very test me",
+      "start": "00:08:00.160",
+      "end": "00:08:03.520",
+      "id": 106
+    },
+    {
+      "speaker": null,
+      "text": "So they kind of all chained together now up until this point",
+      "start": "00:08:03.520",
+      "end": "00:08:06.320",
+      "id": 107
+    },
+    {
+      "speaker": null,
+      "text": "Like you know everyone's been for all intents and purposes",
+      "start": "00:08:07.040",
+      "end": "00:08:10.960",
+      "id": 108
+    },
+    {
+      "speaker": null,
+      "text": "Doing one of two things primarily",
+      "start": "00:08:11.760",
+      "end": "00:08:14.400",
+      "id": 109
+    },
+    {
+      "speaker": null,
+      "text": "putting",
+      "start": "00:08:15.600",
+      "end": "00:08:17.120",
+      "id": 110
+    },
+    {
+      "speaker": null,
+      "text": "Markdown files into your codebase right that's like primarily you have a dot get up folder like you said",
+      "start": "00:08:17.120",
+      "end": "00:08:22.400",
+      "id": 111
+    },
+    {
+      "speaker": null,
+      "text": "You have the sub folders you have a copilot instructions you might have an agent's dot MD as well which works",
+      "start": "00:08:22.640",
+      "end": "00:08:27.440",
+      "id": 112
+    },
+    {
+      "speaker": null,
+      "text": "For instructions prompts and the prompts folder modes and the most photos there's a bunch of other folders too",
+      "start": "00:08:29.040",
+      "end": "00:08:32.800",
+      "id": 113
+    },
+    {
+      "speaker": null,
+      "text": "Or there's recently been like mcp servers that can actually expose prompts for example",
+      "start": "00:08:34.080",
+      "end": "00:08:39.840",
+      "id": 114
+    },
+    {
+      "speaker": null,
+      "text": "Which is kind of cool",
+      "start": "00:08:39.920",
+      "end": "00:08:40.960",
+      "id": 115
+    },
+    {
+      "speaker": null,
+      "text": "However like up into that point",
+      "start": "00:08:41.680",
+      "end": "00:08:43.200",
+      "id": 116
+    },
+    {
+      "speaker": null,
+      "text": "It's really been the developer of the team that's been defining these",
+      "start": "00:08:43.200",
+      "end": "00:08:46.160",
+      "id": 117
+    },
+    {
+      "speaker": null,
+      "text": "Interactions but it's kind of changing in the latest version of VS code one dot 105",
+      "start": "00:08:46.800",
+      "end": "00:08:52.560",
+      "id": 118
+    },
+    {
+      "speaker": null,
+      "text": "Because there's some new API's available is that correct?",
+      "start": "00:08:53.200",
+      "end": "00:08:55.600",
+      "id": 119
+    },
+    {
+      "speaker": null,
+      "text": "Yes, we have a proposed API which means it's not yet",
+      "start": "00:08:56.400",
+      "end": "00:09:00.000",
+      "id": 120
+    },
+    {
+      "speaker": null,
+      "text": "Officially available but people can try it out and use it into extensions locally",
+      "start": "00:09:01.200",
+      "end": "00:09:05.360",
+      "id": 121
+    },
+    {
+      "speaker": null,
+      "text": "You cannot chip an extension against a post API",
+      "start": "00:09:05.360",
+      "end": "00:09:07.840",
+      "id": 122
+    },
+    {
+      "speaker": null,
+      "text": "But you can start",
+      "start": "00:09:08.560",
+      "end": "00:09:10.080",
+      "id": 123
+    },
+    {
+      "speaker": null,
+      "text": "Trying out and giving us feedback. That's the main purpose",
+      "start": "00:09:10.080",
+      "end": "00:09:12.480",
+      "id": 124
+    },
+    {
+      "speaker": null,
+      "text": "And what we so we noticed in the wild is that we had these",
+      "start": "00:09:13.440",
+      "end": "00:09:17.680",
+      "id": 125
+    },
+    {
+      "speaker": null,
+      "text": "Accention helpers we've been working with and a",
+      "start": "00:09:18.240",
+      "end": "00:09:20.240",
+      "id": 126
+    },
+    {
+      "speaker": null,
+      "text": "They were putting mcp's and extensions or building these really nice bundles of like",
+      "start": "00:09:20.880",
+      "end": "00:09:25.520",
+      "id": 127
+    },
+    {
+      "speaker": null,
+      "text": "Here's how user product here is the extension surface and extension APIs which give the human",
+      "start": "00:09:26.160",
+      "end": "00:09:31.040",
+      "id": 128
+    },
+    {
+      "speaker": null,
+      "text": "The right information to work with the product and then they provide mcp",
+      "start": "00:09:31.840",
+      "end": "00:09:36.080",
+      "id": 129
+    },
+    {
+      "speaker": null,
+      "text": "Tools using a basically as the protocol to extend the agent to give the agent more information",
+      "start": "00:09:36.720",
+      "end": "00:09:41.920",
+      "id": 130
+    },
+    {
+      "speaker": null,
+      "text": "The",
+      "start": "00:09:43.040",
+      "end": "00:09:45.040",
+      "id": 131
+    },
+    {
+      "speaker": null,
+      "text": "Missing piece was then like okay now we want to provide custom chat modes like how that there's no extension surface for that yet",
+      "start": "00:09:45.040",
+      "end": "00:09:50.080",
+      "id": 132
+    },
+    {
+      "speaker": null,
+      "text": "So we're like okay. We we have a concept for that chat modes already",
+      "start": "00:09:50.080",
+      "end": "00:09:54.000",
+      "id": 133
+    },
+    {
+      "speaker": null,
+      "text": "So let's expose it as like tension API so you can provide that",
+      "start": "00:09:54.880",
+      "end": "00:09:58.320",
+      "id": 134
+    },
+    {
+      "speaker": null,
+      "text": "Customization there as well and you saw just Monday this week",
+      "start": "00:09:58.800",
+      "end": "00:10:03.120",
+      "id": 135
+    },
+    {
+      "speaker": null,
+      "text": "Playwright agents came out which is if you look at it",
+      "start": "00:10:03.840",
+      "end": "00:10:06.480",
+      "id": 136
+    },
+    {
+      "speaker": null,
+      "text": "It's just",
+      "start": "00:10:06.480",
+      "end": "00:10:07.840",
+      "id": 137
+    },
+    {
+      "speaker": null,
+      "text": "a few chat modes put into a folder and you can now",
+      "start": "00:10:07.840",
+      "end": "00:10:10.880",
+      "id": 138
+    },
+    {
+      "speaker": null,
+      "text": "Analyze a codebase which tests the right it makes a mark on document and say write these tests",
+      "start": "00:10:11.600",
+      "end": "00:10:15.840",
+      "id": 139
+    },
+    {
+      "speaker": null,
+      "text": "And then it can actually heal the test well like three different chat modes or agents",
+      "start": "00:10:15.840",
+      "end": "00:10:19.840",
+      "id": 140
+    },
+    {
+      "speaker": null,
+      "text": "That kind of very spooky take parts of the workflow you would do and that you can move in between too",
+      "start": "00:10:20.640",
+      "end": "00:10:26.800",
+      "id": 141
+    },
+    {
+      "speaker": null,
+      "text": "So that's been the impetus and that's we have to support problems instructions and modes",
+      "start": "00:10:26.800",
+      "end": "00:10:32.000",
+      "id": 142
+    },
+    {
+      "speaker": null,
+      "text": "also because i think it's",
+      "start": "00:10:33.760",
+      "end": "00:10:35.760",
+      "id": 143
+    },
+    {
+      "speaker": null,
+      "text": "VS code in the past was very",
+      "start": "00:10:36.000",
+      "end": "00:10:38.000",
+      "id": 144
+    },
+    {
+      "speaker": null,
+      "text": "Workspace centric but customizations so you could have a dot b's code folder",
+      "start": "00:10:38.720",
+      "end": "00:10:43.520",
+      "id": 145
+    },
+    {
+      "speaker": null,
+      "text": "And you had settings.json and then if you look at the VS code repo and unmakes-off",
+      "start": "00:10:44.320",
+      "end": "00:10:50.080",
+      "id": 146
+    },
+    {
+      "speaker": null,
+      "text": "Get up to a concept Microsoft",
+      "start": "00:10:50.720",
+      "end": "00:10:52.720",
+      "id": 147
+    },
+    {
+      "speaker": null,
+      "text": "You actually see that we have a settings folder and many customizations for VS code",
+      "start": "00:10:52.720",
+      "end": "00:10:56.080",
+      "id": 148
+    },
+    {
+      "speaker": null,
+      "text": "So if you open the VS code",
+      "start": "00:10:56.080",
+      "end": "00:10:57.760",
+      "id": 149
+    },
+    {
+      "speaker": null,
+      "text": "Workspace the first time like the VS code rich og source",
+      "start": "00:10:57.760",
+      "end": "00:11:00.880",
+      "id": 150
+    },
+    {
+      "speaker": null,
+      "text": "You actually get a bunch of customizations out of box",
+      "start": "00:11:01.600",
+      "end": "00:11:03.840",
+      "id": 151
+    },
+    {
+      "speaker": null,
+      "text": "It's how we think you should work on the VS code codebase",
+      "start": "00:11:04.240",
+      "end": "00:11:08.160",
+      "id": 152
+    },
+    {
+      "speaker": null,
+      "text": "And that's how it customizes and that's chat modes and problems and all that works the same",
+      "start": "00:11:08.160",
+      "end": "00:11:11.920",
+      "id": 153
+    },
+    {
+      "speaker": null,
+      "text": "But then if you have like a",
+      "start": "00:11:12.800",
+      "end": "00:11:14.800",
+      "id": 154
+    },
+    {
+      "speaker": null,
+      "text": "Multi repo setup microservices like 10,000 because that's the kind of customers I talked to it's like how do we customize this",
+      "start": "00:11:14.960",
+      "end": "00:11:21.440",
+      "id": 155
+    },
+    {
+      "speaker": null,
+      "text": "And many of these customers actually have",
+      "start": "00:11:21.440",
+      "end": "00:11:22.960",
+      "id": 156
+    },
+    {
+      "speaker": null,
+      "text": "obvious code customizations already",
+      "start": "00:11:23.760",
+      "end": "00:11:25.760",
+      "id": 157
+    },
+    {
+      "speaker": null,
+      "text": "That they shipped to developers next session this one way",
+      "start": "00:11:26.080",
+      "end": "00:11:28.800",
+      "id": 158
+    },
+    {
+      "speaker": null,
+      "text": "So that's also not a reason like the internal",
+      "start": "00:11:28.800",
+      "end": "00:11:30.880",
+      "id": 159
+    },
+    {
+      "speaker": null,
+      "text": "Customization plus if you have a developer product you want to have that agent plus UI experience",
+      "start": "00:11:31.520",
+      "end": "00:11:37.600",
+      "id": 160
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, it's really fascinating",
+      "start": "00:11:38.480",
+      "end": "00:11:39.520",
+      "id": 161
+    },
+    {
+      "speaker": null,
+      "text": "I mean I think there was in some sense",
+      "start": "00:11:39.520",
+      "end": "00:11:41.440",
+      "id": 162
+    },
+    {
+      "speaker": null,
+      "text": "You know you think of dev containers or code spaces right the whole idea is",
+      "start": "00:11:41.440",
+      "end": "00:11:44.880",
+      "id": 163
+    },
+    {
+      "speaker": null,
+      "text": "The team is a configuration and then it all builds up and everyone gets the same exact thing compared",
+      "start": "00:11:44.880",
+      "end": "00:11:49.440",
+      "id": 164
+    },
+    {
+      "speaker": null,
+      "text": "I'm going to clone and then here's this",
+      "start": "00:11:49.520",
+      "end": "00:11:51.520",
+      "id": 165
+    },
+    {
+      "speaker": null,
+      "text": "I will say I'd recently did clone the VS code repo and yeah",
+      "start": "00:11:51.520",
+      "end": "00:11:54.320",
+      "id": 166
+    },
+    {
+      "speaker": null,
+      "text": "Things looks a little bit different actually if you watch the 105 release video",
+      "start": "00:11:54.320",
+      "end": "00:11:57.520",
+      "id": 167
+    },
+    {
+      "speaker": null,
+      "text": "There's a bunch of customizations including like having suggested action",
+      "start": "00:11:57.520",
+      "end": "00:12:00.800",
+      "id": 168
+    },
+    {
+      "speaker": null,
+      "text": "There's suggested prompts like when you open an empty state for example",
+      "start": "00:12:00.800",
+      "end": "00:12:03.600",
+      "id": 169
+    },
+    {
+      "speaker": null,
+      "text": "Which is really cool",
+      "start": "00:12:03.600",
+      "end": "00:12:04.800",
+      "id": 170
+    },
+    {
+      "speaker": null,
+      "text": "Actually stole the plan mode and the prompts from the VS code",
+      "start": "00:12:04.800",
+      "end": "00:12:09.440",
+      "id": 171
+    },
+    {
+      "speaker": null,
+      "text": "The repo is like this is pretty good",
+      "start": "00:12:10.160",
+      "end": "00:12:11.600",
+      "id": 172
+    },
+    {
+      "speaker": null,
+      "text": "And I expose more tools that I wanted to use so I use it and customize it",
+      "start": "00:12:12.400",
+      "end": "00:12:16.480",
+      "id": 173
+    },
+    {
+      "speaker": null,
+      "text": "So it's interesting. It's a proposed API and you can read it and we'll put it in the release notes",
+      "start": "00:12:16.640",
+      "end": "00:12:20.960",
+      "id": 174
+    },
+    {
+      "speaker": null,
+      "text": "But what does that actually mean like like what is the scenario",
+      "start": "00:12:21.360",
+      "end": "00:12:25.200",
+      "id": 175
+    },
+    {
+      "speaker": null,
+      "text": "for",
+      "start": "00:12:25.920",
+      "end": "00:12:26.560",
+      "id": 176
+    },
+    {
+      "speaker": null,
+      "text": "Extension creator that",
+      "start": "00:12:26.560",
+      "end": "00:12:28.720",
+      "id": 177
+    },
+    {
+      "speaker": null,
+      "text": "This would enable them to do and I'm prompting you because you created an extension that uses these things",
+      "start": "00:12:29.440",
+      "end": "00:12:34.960",
+      "id": 178
+    },
+    {
+      "speaker": null,
+      "text": "So what was the problem that you were looking to solve and how did you use these new APIs?",
+      "start": "00:12:35.040",
+      "end": "00:12:40.080",
+      "id": 179
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, um",
+      "start": "00:12:41.680",
+      "end": "00:12:42.720",
+      "id": 180
+    },
+    {
+      "speaker": null,
+      "text": "And a place where I tried out first I",
+      "start": "00:12:42.720",
+      "end": "00:12:45.680",
+      "id": 181
+    },
+    {
+      "speaker": null,
+      "text": "Claude",
+      "start": "00:12:47.520",
+      "end": "00:12:49.120",
+      "id": 182
+    },
+    {
+      "speaker": null,
+      "text": "Announcements or anthropic announcements came out at the beginning of last week and",
+      "start": "00:12:49.120",
+      "end": "00:12:53.840",
+      "id": 183
+    },
+    {
+      "speaker": null,
+      "text": "One thing that I know is very curious because I'm also investigating the same problems is an error of memory",
+      "start": "00:12:54.960",
+      "end": "00:13:00.880",
+      "id": 184
+    },
+    {
+      "speaker": null,
+      "text": "So there's some really cool videos where",
+      "start": "00:13:00.880",
+      "end": "00:13:02.880",
+      "id": 185
+    },
+    {
+      "speaker": null,
+      "text": "The AI plays",
+      "start": "00:13:04.320",
+      "end": "00:13:06.320",
+      "id": 186
+    },
+    {
+      "speaker": null,
+      "text": "Uh",
+      "start": "00:13:06.960",
+      "end": "00:13:08.000",
+      "id": 187
+    },
+    {
+      "speaker": null,
+      "text": "Kazan and then I had to make choices about how to play the game and how to win",
+      "start": "00:13:08.000",
+      "end": "00:13:12.880",
+      "id": 188
+    },
+    {
+      "speaker": null,
+      "text": "So you see kind of using memory as a concept and yeah going back and forth and that's I think the mainly quest",
+      "start": "00:13:12.960",
+      "end": "00:13:19.120",
+      "id": 189
+    },
+    {
+      "speaker": null,
+      "text": "I also get from",
+      "start": "00:13:19.120",
+      "end": "00:13:20.480",
+      "id": 190
+    },
+    {
+      "speaker": null,
+      "text": "Developers like can I can AI start self improving",
+      "start": "00:13:20.480",
+      "end": "00:13:24.560",
+      "id": 191
+    },
+    {
+      "speaker": null,
+      "text": "And that that very broad under defined surface of memory always comes up",
+      "start": "00:13:25.040",
+      "end": "00:13:29.600",
+      "id": 192
+    },
+    {
+      "speaker": null,
+      "text": "So I'm saying like what what did they ship?",
+      "start": "00:13:30.320",
+      "end": "00:13:32.240",
+      "id": 193
+    },
+    {
+      "speaker": null,
+      "text": "Like can I try this out? So there's a there's some tool definitions that they documented",
+      "start": "00:13:32.320",
+      "end": "00:13:36.640",
+      "id": 194
+    },
+    {
+      "speaker": null,
+      "text": "I was like we don't have this in VS code yet in our agent. So but we have",
+      "start": "00:13:36.640",
+      "end": "00:13:41.520",
+      "id": 195
+    },
+    {
+      "speaker": null,
+      "text": "A language model tools API for extensions",
+      "start": "00:13:42.240",
+      "end": "00:13:44.880",
+      "id": 196
+    },
+    {
+      "speaker": null,
+      "text": "So I can just expose memory tool that does look like",
+      "start": "00:13:45.280",
+      "end": "00:13:47.920",
+      "id": 197
+    },
+    {
+      "speaker": null,
+      "text": "What they describe then I just basically gave it to dogs",
+      "start": "00:13:48.240",
+      "end": "00:13:50.640",
+      "id": 198
+    },
+    {
+      "speaker": null,
+      "text": "I gave it the language model tool docs",
+      "start": "00:13:51.600",
+      "end": "00:13:53.600",
+      "id": 199
+    },
+    {
+      "speaker": null,
+      "text": "Bootstrap in your extension and within",
+      "start": "00:13:54.080",
+      "end": "00:13:55.920",
+      "id": 200
+    },
+    {
+      "speaker": null,
+      "text": "Five minutes",
+      "start": "00:13:56.560",
+      "end": "00:13:58.320",
+      "id": 201
+    },
+    {
+      "speaker": null,
+      "text": "It's sorry. You're putting things in memory and like oh, it's just working. So cool",
+      "start": "00:13:58.320",
+      "end": "00:14:01.360",
+      "id": 202
+    },
+    {
+      "speaker": null,
+      "text": "Um",
+      "start": "00:14:01.760",
+      "end": "00:14:02.800",
+      "id": 203
+    },
+    {
+      "speaker": null,
+      "text": "But then there's all these like interesting things they also propose for memory like what if the LMs can compress it like if what if the",
+      "start": "00:14:02.800",
+      "end": "00:14:08.960",
+      "id": 204
+    },
+    {
+      "speaker": null,
+      "text": "Clean it up like anything that",
+      "start": "00:14:09.280",
+      "end": "00:14:11.280",
+      "id": 205
+    },
+    {
+      "speaker": null,
+      "text": "It's not like relevant. Maybe it gets too wordy because you see that with all a kind of documentation like the Lm keeps adding like",
+      "start": "00:14:12.480",
+      "end": "00:14:18.320",
+      "id": 206
+    },
+    {
+      "speaker": null,
+      "text": "Oh, I learned this like I'm going to just keep setting up",
+      "start": "00:14:18.320",
+      "end": "00:14:21.200",
+      "id": 207
+    },
+    {
+      "speaker": null,
+      "text": "And unless you prompted sometimes it doesn't clean it up. That's what they they promised some two degree like the cloud is somehow",
+      "start": "00:14:22.240",
+      "end": "00:14:29.040",
+      "id": 208
+    },
+    {
+      "speaker": null,
+      "text": "Hot sounded 4.5 is aware of the memory and will",
+      "start": "00:14:29.200",
+      "end": "00:14:31.760",
+      "id": 209
+    },
+    {
+      "speaker": null,
+      "text": "They help which which I was party experiment. They haven't gotten to it yet, but",
+      "start": "00:14:32.320",
+      "end": "00:14:35.600",
+      "id": 210
+    },
+    {
+      "speaker": null,
+      "text": "Someone expected to go in and say like I got a now shrink my memory",
+      "start": "00:14:36.320",
+      "end": "00:14:40.160",
+      "id": 211
+    },
+    {
+      "speaker": null,
+      "text": "And I see I saw a science of that. It's more token aware, but not not that yet",
+      "start": "00:14:40.880",
+      "end": "00:14:44.880",
+      "id": 212
+    },
+    {
+      "speaker": null,
+      "text": "So I was like this could be prompt. This could be just",
+      "start": "00:14:45.440",
+      "end": "00:14:48.240",
+      "id": 213
+    },
+    {
+      "speaker": null,
+      "text": "Compressed memory like it's now. It's getting too big. It's getting too slow. It's reading different files",
+      "start": "00:14:49.440",
+      "end": "00:14:53.840",
+      "id": 214
+    },
+    {
+      "speaker": null,
+      "text": "It keeps looking for memory and that's a kind of idea. You you create",
+      "start": "00:14:53.840",
+      "end": "00:14:57.200",
+      "id": 215
+    },
+    {
+      "speaker": null,
+      "text": "Different chat sessions and the arm retains the task that you're working in and usually that's like a",
+      "start": "00:14:57.760",
+      "end": "00:15:04.000",
+      "id": 216
+    },
+    {
+      "speaker": null,
+      "text": "Spec.md or like a task folder with markdown files in your repo, but I like I don't want to clutter my repo of markdown files",
+      "start": "00:15:05.120",
+      "end": "00:15:13.200",
+      "id": 217
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, I just want to have this maybe",
+      "start": "00:15:13.520",
+      "end": "00:15:15.520",
+      "id": 218
+    },
+    {
+      "speaker": null,
+      "text": "And that's a feature request. It just came came to my take right before this podcast",
+      "start": "00:15:16.560",
+      "end": "00:15:19.680",
+      "id": 219
+    },
+    {
+      "speaker": null,
+      "text": "I should implement this like a per branch memory given that the that how it stores it is in memory, but even per branch",
+      "start": "00:15:19.680",
+      "end": "00:15:25.600",
+      "id": 220
+    },
+    {
+      "speaker": null,
+      "text": "So I can go back to it, but I don't want marked on files sitting around the memory is kind of",
+      "start": "00:15:25.760",
+      "end": "00:15:30.880",
+      "id": 221
+    },
+    {
+      "speaker": null,
+      "text": "If you look at how it works, it actually is very file based. It's like looking at the list like opening a file and",
+      "start": "00:15:32.000",
+      "end": "00:15:37.840",
+      "id": 222
+    },
+    {
+      "speaker": null,
+      "text": "Replacing parts of it. So",
+      "start": "00:15:38.400",
+      "end": "00:15:40.400",
+      "id": 223
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, but then it prompts. I was like, okay, let's make some memory prompts and then",
+      "start": "00:15:40.960",
+      "end": "00:15:44.480",
+      "id": 224
+    },
+    {
+      "speaker": null,
+      "text": "So it's compression. It's",
+      "start": "00:15:45.200",
+      "end": "00:15:47.200",
+      "id": 225
+    },
+    {
+      "speaker": null,
+      "text": "Giving a high level overview. So you don't have to click every file",
+      "start": "00:15:47.680",
+      "end": "00:15:50.480",
+      "id": 226
+    },
+    {
+      "speaker": null,
+      "text": "It's all these things. I could I could what could people do like once you have an alarm that has memory?",
+      "start": "00:15:51.280",
+      "end": "00:15:55.360",
+      "id": 227
+    },
+    {
+      "speaker": null,
+      "text": "What would you want to do and people do it with touch pt as well? It's like",
+      "start": "00:15:56.160",
+      "end": "00:15:59.600",
+      "id": 228
+    },
+    {
+      "speaker": null,
+      "text": "Basically explained back to me who I am based on a conversation I had with you kind of",
+      "start": "00:16:00.160",
+      "end": "00:16:04.240",
+      "id": 229
+    },
+    {
+      "speaker": null,
+      "text": "thing",
+      "start": "00:16:05.120",
+      "end": "00:16:07.120",
+      "id": 230
+    },
+    {
+      "speaker": null,
+      "text": "So I'm hearing in this instance right. I think about",
+      "start": "00:16:07.280",
+      "end": "00:16:11.120",
+      "id": 231
+    },
+    {
+      "speaker": null,
+      "text": "you have these prompts and",
+      "start": "00:16:12.240",
+      "end": "00:16:15.360",
+      "id": 232
+    },
+    {
+      "speaker": null,
+      "text": "Again, if you were to say hey, I created this extension to this thing inherently",
+      "start": "00:16:15.920",
+      "end": "00:16:19.840",
+      "id": 233
+    },
+    {
+      "speaker": null,
+      "text": "Previously would just be like here's a bunch of prompts",
+      "start": "00:16:20.320",
+      "end": "00:16:22.320",
+      "id": 234
+    },
+    {
+      "speaker": null,
+      "text": "You'd have to copy into your repo if you want to use these new features",
+      "start": "00:16:22.560",
+      "end": "00:16:25.680",
+      "id": 235
+    },
+    {
+      "speaker": null,
+      "text": "So I notice that you're using like if I install your extension and I enable it like magically there's ways of doing it",
+      "start": "00:16:26.400",
+      "end": "00:16:32.960",
+      "id": 236
+    },
+    {
+      "speaker": null,
+      "text": "Because out there right",
+      "start": "00:16:33.520",
+      "end": "00:16:35.520",
+      "id": 237
+    },
+    {
+      "speaker": null,
+      "text": "The prompts just automatically show up a slash but I also noticed that",
+      "start": "00:16:36.720",
+      "end": "00:16:40.720",
+      "id": 238
+    },
+    {
+      "speaker": null,
+      "text": "Not only are there prompts but when I make a prompt and send any prompt off",
+      "start": "00:16:41.680",
+      "end": "00:16:46.160",
+      "id": 239
+    },
+    {
+      "speaker": null,
+      "text": "I see that now not only my co-pilot instructions are being used",
+      "start": "00:16:46.480",
+      "end": "00:16:49.200",
+      "id": 240
+    },
+    {
+      "speaker": null,
+      "text": "But also some memory instructions are being used and I also noticed that there's a new chat mode being used right?",
+      "start": "00:16:49.280",
+      "end": "00:16:54.000",
+      "id": 241
+    },
+    {
+      "speaker": null,
+      "text": "So it's like you're not just using here's a cool prompt. It's and there's other things that are happening too",
+      "start": "00:16:54.000",
+      "end": "00:16:59.120",
+      "id": 242
+    },
+    {
+      "speaker": null,
+      "text": "How did you decide?",
+      "start": "00:16:59.200",
+      "end": "00:17:00.880",
+      "id": 243
+    },
+    {
+      "speaker": null,
+      "text": "And what are these new API sort of enable for those flows that kind of not possible before because again all this",
+      "start": "00:17:01.040",
+      "end": "00:17:06.640",
+      "id": 244
+    },
+    {
+      "speaker": null,
+      "text": "I've seen is possible, but then you got to like put it all together yourself",
+      "start": "00:17:06.640",
+      "end": "00:17:09.680",
+      "id": 245
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, that's a big I mean what just mentioned",
+      "start": "00:17:10.960",
+      "end": "00:17:12.960",
+      "id": 246
+    },
+    {
+      "speaker": null,
+      "text": "What I didn't mention what the extension also does it it contributes a",
+      "start": "00:17:13.280",
+      "end": "00:17:16.640",
+      "id": 247
+    },
+    {
+      "speaker": null,
+      "text": "an instruction as well and",
+      "start": "00:17:17.280",
+      "end": "00:17:19.280",
+      "id": 248
+    },
+    {
+      "speaker": null,
+      "text": "It's basically copied right from the",
+      "start": "00:17:20.800",
+      "end": "00:17:22.800",
+      "id": 249
+    },
+    {
+      "speaker": null,
+      "text": "And for big documentation about how to use memory is just",
+      "start": "00:17:23.440",
+      "end": "00:17:26.560",
+      "id": 250
+    },
+    {
+      "speaker": null,
+      "text": "It's very odd. It's like",
+      "start": "00:17:27.840",
+      "end": "00:17:29.840",
+      "id": 251
+    },
+    {
+      "speaker": null,
+      "text": "Like the typical",
+      "start": "00:17:29.840",
+      "end": "00:17:31.040",
+      "id": 252
+    },
+    {
+      "speaker": null,
+      "text": "Hopper case mandatory",
+      "start": "00:17:31.040",
+      "end": "00:17:33.040",
+      "id": 253
+    },
+    {
+      "speaker": null,
+      "text": "Before everything should check your memory",
+      "start": "00:17:33.520",
+      "end": "00:17:35.680",
+      "id": 254
+    },
+    {
+      "speaker": null,
+      "text": "Read memory if there's something related",
+      "start": "00:17:36.480",
+      "end": "00:17:38.480",
+      "id": 255
+    },
+    {
+      "speaker": null,
+      "text": "And that's what the instructions adding",
+      "start": "00:17:39.200",
+      "end": "00:17:41.200",
+      "id": 256
+    },
+    {
+      "speaker": null,
+      "text": "And it's a apply to",
+      "start": "00:17:42.240",
+      "end": "00:17:44.400",
+      "id": 257
+    },
+    {
+      "speaker": null,
+      "text": "Exaction which means it's included for every conversation by default",
+      "start": "00:17:45.280",
+      "end": "00:17:48.800",
+      "id": 258
+    },
+    {
+      "speaker": null,
+      "text": "And that's actually a use case. I have gotten a ton of requests for",
+      "start": "00:17:49.520",
+      "end": "00:17:53.200",
+      "id": 259
+    },
+    {
+      "speaker": null,
+      "text": "That if you install for example the Azure extension",
+      "start": "00:17:54.480",
+      "end": "00:17:57.760",
+      "id": 260
+    },
+    {
+      "speaker": null,
+      "text": "The Azure Center wants to tell the agent like we have all these tools",
+      "start": "00:17:58.560",
+      "end": "00:18:02.480",
+      "id": 261
+    },
+    {
+      "speaker": null,
+      "text": "And these tools like some of them need to be used in a specific order",
+      "start": "00:18:03.680",
+      "end": "00:18:07.200",
+      "id": 262
+    },
+    {
+      "speaker": null,
+      "text": "Some of them are more kind of explanatory like there's a best practices tool at some point",
+      "start": "00:18:07.440",
+      "end": "00:18:11.280",
+      "id": 263
+    },
+    {
+      "speaker": null,
+      "text": "And you want to guide the agent to the gray",
+      "start": "00:18:11.440",
+      "end": "00:18:14.880",
+      "id": 264
+    },
+    {
+      "speaker": null,
+      "text": "Maybe giving it some contact maybe it's more",
+      "start": "00:18:15.520",
+      "end": "00:18:18.160",
+      "id": 265
+    },
+    {
+      "speaker": null,
+      "text": "More actually look at the workspace up front and then expanding a bit like how would you use the Azure tools in this case",
+      "start": "00:18:19.680",
+      "end": "00:18:25.040",
+      "id": 266
+    },
+    {
+      "speaker": null,
+      "text": "So some basically baseline",
+      "start": "00:18:25.200",
+      "end": "00:18:27.200",
+      "id": 267
+    },
+    {
+      "speaker": null,
+      "text": "instructions about how to use",
+      "start": "00:18:27.200",
+      "end": "00:18:29.200",
+      "id": 268
+    },
+    {
+      "speaker": null,
+      "text": "The group of tools that you have underneath the same for memory. It's like",
+      "start": "00:18:29.680",
+      "end": "00:18:32.800",
+      "id": 269
+    },
+    {
+      "speaker": null,
+      "text": "There's a whole new concept of memory and there's a tool description",
+      "start": "00:18:33.440",
+      "end": "00:18:36.160",
+      "id": 270
+    },
+    {
+      "speaker": null,
+      "text": "Trying to explain the agent when and how to use it",
+      "start": "00:18:36.800",
+      "end": "00:18:39.600",
+      "id": 271
+    },
+    {
+      "speaker": null,
+      "text": "But an instruction is going to bring it all together",
+      "start": "00:18:39.600",
+      "end": "00:18:41.600",
+      "id": 272
+    },
+    {
+      "speaker": null,
+      "text": "Into the context of a workflow. So there's some a little more",
+      "start": "00:18:42.320",
+      "end": "00:18:44.800",
+      "id": 273
+    },
+    {
+      "speaker": null,
+      "text": "Reinforcement going on there of just like really use memory and this is how you do it",
+      "start": "00:18:44.800",
+      "end": "00:18:49.760",
+      "id": 274
+    },
+    {
+      "speaker": null,
+      "text": "Like update is we can learn something",
+      "start": "00:18:49.760",
+      "end": "00:18:52.160",
+      "id": 275
+    },
+    {
+      "speaker": null,
+      "text": "So just like in one area just one group of all about memory",
+      "start": "00:18:52.800",
+      "end": "00:18:56.640",
+      "id": 276
+    },
+    {
+      "speaker": null,
+      "text": "I really need to think about as a extension creator the possibility to",
+      "start": "00:18:58.000",
+      "end": "00:19:02.320",
+      "id": 277
+    },
+    {
+      "speaker": null,
+      "text": "Create these extensions that just don't extend like the core of VS code or themes or things like that or",
+      "start": "00:19:03.120",
+      "end": "00:19:09.920",
+      "id": 278
+    },
+    {
+      "speaker": null,
+      "text": "You know, they're contributing models that you can use",
+      "start": "00:19:10.240",
+      "end": "00:19:13.360",
+      "id": 279
+    },
+    {
+      "speaker": null,
+      "text": "You know as well from different providers",
+      "start": "00:19:13.440",
+      "end": "00:19:16.000",
+      "id": 280
+    },
+    {
+      "speaker": null,
+      "text": "Then also to think about like a lot of us are inherently either for our team or for ourselves",
+      "start": "00:19:16.240",
+      "end": "00:19:21.600",
+      "id": 281
+    },
+    {
+      "speaker": null,
+      "text": "Coming up in shipping these custom modes instructions prompts. You go to awesome copilot, right?",
+      "start": "00:19:22.000",
+      "end": "00:19:26.880",
+      "id": 282
+    },
+    {
+      "speaker": null,
+      "text": "And get up.com slash get up slash awesome copilot like there is a whole suite of community and Microsoft and get up",
+      "start": "00:19:27.360",
+      "end": "00:19:34.160",
+      "id": 283
+    },
+    {
+      "speaker": null,
+      "text": "contributed",
+      "start": "00:19:34.320",
+      "end": "00:19:35.600",
+      "id": 284
+    },
+    {
+      "speaker": null,
+      "text": "These instructions prompts and modes and like you said the playwright agents have a bunch of chat modes and there's like",
+      "start": "00:19:35.600",
+      "end": "00:19:41.040",
+      "id": 285
+    },
+    {
+      "speaker": null,
+      "text": "MCP stuff happening there and then there's also",
+      "start": "00:19:41.040",
+      "end": "00:19:43.040",
+      "id": 286
+    },
+    {
+      "speaker": null,
+      "text": "You know spec kit which is a bunch of prompts and a bunch of other you know",
+      "start": "00:19:43.360",
+      "end": "00:19:46.480",
+      "id": 287
+    },
+    {
+      "speaker": null,
+      "text": "magical files that do stuff but inherently at the end of the day",
+      "start": "00:19:46.640",
+      "end": "00:19:49.840",
+      "id": 288
+    },
+    {
+      "speaker": null,
+      "text": "Those files have to be committed to your code base. So in as an extension creator",
+      "start": "00:19:51.040",
+      "end": "00:19:55.920",
+      "id": 289
+    },
+    {
+      "speaker": null,
+      "text": "I think the magical part that is that you now have the ability to update those for the user",
+      "start": "00:19:55.920",
+      "end": "00:20:02.560",
+      "id": 290
+    },
+    {
+      "speaker": null,
+      "text": "Right. I was talking to Dan and we're like hey what happens when you update these prompts?",
+      "start": "00:20:02.720",
+      "end": "00:20:06.560",
+      "id": 291
+    },
+    {
+      "speaker": null,
+      "text": "And he's like we haven't figured that out yet and I was like that's even you know",
+      "start": "00:20:06.560",
+      "end": "00:20:09.440",
+      "id": 292
+    },
+    {
+      "speaker": null,
+      "text": "Like that seems like maybe something to do",
+      "start": "00:20:09.600",
+      "end": "00:20:11.120",
+      "id": 293
+    },
+    {
+      "speaker": null,
+      "text": "But it seems as though, you know like this kind of extension is like hey",
+      "start": "00:20:11.120",
+      "end": "00:20:14.400",
+      "id": 294
+    },
+    {
+      "speaker": null,
+      "text": "You're in this ecosystem obviously. It's you know, it's a",
+      "start": "00:20:14.400",
+      "end": "00:20:16.560",
+      "id": 295
+    },
+    {
+      "speaker": null,
+      "text": "VSCode extension, but if you're in that world",
+      "start": "00:20:16.880",
+      "end": "00:20:19.600",
+      "id": 296
+    },
+    {
+      "speaker": null,
+      "text": "Then now you can start to implement these modes these features these new pieces of functionality",
+      "start": "00:20:20.080",
+      "end": "00:20:24.560",
+      "id": 297
+    },
+    {
+      "speaker": null,
+      "text": "It required the user to do a lot of manual lifting like it seems like before these proposed APIs",
+      "start": "00:20:24.960",
+      "end": "00:20:30.640",
+      "id": 298
+    },
+    {
+      "speaker": null,
+      "text": "This was possible for you, but not really kind of",
+      "start": "00:20:31.440",
+      "end": "00:20:36.240",
+      "id": 299
+    },
+    {
+      "speaker": null,
+      "text": "Ish",
+      "start": "00:20:36.960",
+      "end": "00:20:38.160",
+      "id": 300
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, yeah, it's a massive problem thing. I see",
+      "start": "00:20:38.160",
+      "end": "00:20:40.720",
+      "id": 301
+    },
+    {
+      "speaker": null,
+      "text": "Like one is most of us shouldn't think about creating these prompts like it's just",
+      "start": "00:20:41.680",
+      "end": "00:20:47.600",
+      "id": 302
+    },
+    {
+      "speaker": null,
+      "text": "Just how you don't think about how you set up CI CD for",
+      "start": "00:20:48.080",
+      "end": "00:20:50.720",
+      "id": 303
+    },
+    {
+      "speaker": null,
+      "text": "The enterprise project working like that somebody somebody's problem that thinks about the architecture and maybe like has",
+      "start": "00:20:51.360",
+      "end": "00:20:57.040",
+      "id": 304
+    },
+    {
+      "speaker": null,
+      "text": "More of the DevOps had on like that everybody's fiddling around with the ammo files to",
+      "start": "00:20:57.280",
+      "end": "00:21:01.520",
+      "id": 305
+    },
+    {
+      "speaker": null,
+      "text": "change deployments. So there's a",
+      "start": "00:21:02.160",
+      "end": "00:21:04.160",
+      "id": 306
+    },
+    {
+      "speaker": null,
+      "text": "If you have a bunch of AI champions in your team like they they will thrive in that kind of",
+      "start": "00:21:04.160",
+      "end": "00:21:09.680",
+      "id": 307
+    },
+    {
+      "speaker": null,
+      "text": "ambiguity of prompt crafting. It's like I don't know if it's a good prompt, but it",
+      "start": "00:21:10.000",
+      "end": "00:21:13.680",
+      "id": 308
+    },
+    {
+      "speaker": null,
+      "text": "I have enough hands-on testing kind of viketesting different scenarios that I know my team relies on and it provides better results",
+      "start": "00:21:14.480",
+      "end": "00:21:22.080",
+      "id": 309
+    },
+    {
+      "speaker": null,
+      "text": "If I change it like this, I add a like mandatory over here or a simplified else instructions",
+      "start": "00:21:22.160",
+      "end": "00:21:27.360",
+      "id": 310
+    },
+    {
+      "speaker": null,
+      "text": "So I think that's they are always living documents to degree and there there is a high bar like always when I go to",
+      "start": "00:21:28.480",
+      "end": "00:21:35.440",
+      "id": 311
+    },
+    {
+      "speaker": null,
+      "text": "Conferences or meetups and I",
+      "start": "00:21:35.600",
+      "end": "00:21:37.600",
+      "id": 312
+    },
+    {
+      "speaker": null,
+      "text": "Want to say she has kank who is good at prompt crafting?",
+      "start": "00:21:37.840",
+      "end": "00:21:40.160",
+      "id": 313
+    },
+    {
+      "speaker": null,
+      "text": "Live in a Bay area. There's even few hands going up here. It's like room of 50 people on one hand goes up",
+      "start": "00:21:41.680",
+      "end": "00:21:46.960",
+      "id": 314
+    },
+    {
+      "speaker": null,
+      "text": "It's like because people don't trust themselves to really understand graphic. Like once you learned it and you feel comfortable",
+      "start": "00:21:47.280",
+      "end": "00:21:52.560",
+      "id": 315
+    },
+    {
+      "speaker": null,
+      "text": "And new model comes out and ignores everything you said before right so",
+      "start": "00:21:52.560",
+      "end": "00:21:56.160",
+      "id": 316
+    },
+    {
+      "speaker": null,
+      "text": "So it is a doesn't art to it. So that thing makes puts up a high bar and how people do it",
+      "start": "00:21:56.880",
+      "end": "00:22:01.680",
+      "id": 317
+    },
+    {
+      "speaker": null,
+      "text": "So if you're just wanting it into it, there's a generate Asian instructions button",
+      "start": "00:22:01.760",
+      "end": "00:22:05.760",
+      "id": 318
+    },
+    {
+      "speaker": null,
+      "text": "Right in the chat if you click on the on the cog menu there",
+      "start": "00:22:06.720",
+      "end": "00:22:10.080",
+      "id": 319
+    },
+    {
+      "speaker": null,
+      "text": "Generation extraction which is look at your code base and",
+      "start": "00:22:10.800",
+      "end": "00:22:13.520",
+      "id": 320
+    },
+    {
+      "speaker": null,
+      "text": "Right down the obvious of what it sees if it looks at different files and folders and",
+      "start": "00:22:14.160",
+      "end": "00:22:18.560",
+      "id": 321
+    },
+    {
+      "speaker": null,
+      "text": "Then you can correct it like no, that's",
+      "start": "00:22:19.200",
+      "end": "00:22:21.200",
+      "id": 322
+    },
+    {
+      "speaker": null,
+      "text": "Like that at more detail remove things. So it's a great way to start and most of my modes and problems I write",
+      "start": "00:22:21.520",
+      "end": "00:22:27.760",
+      "id": 323
+    },
+    {
+      "speaker": null,
+      "text": "I also don't bootstrap from scratch. I just ask the lm like",
+      "start": "00:22:28.720",
+      "end": "00:22:32.160",
+      "id": 324
+    },
+    {
+      "speaker": null,
+      "text": "I want to try test and development like write me a product write me a mode that describes as an element like as a",
+      "start": "00:22:33.120",
+      "end": "00:22:38.300",
+      "id": 325
+    },
+    {
+      "speaker": null,
+      "text": "One-patcher keep it short and I will break down the steps and I have a lot to work from so",
+      "start": "00:22:38.400",
+      "end": "00:22:44.640",
+      "id": 326
+    },
+    {
+      "speaker": null,
+      "text": "But then the sharing part is hard for like if if it just you and",
+      "start": "00:22:45.280",
+      "end": "00:22:49.040",
+      "id": 327
+    },
+    {
+      "speaker": null,
+      "text": "You're playing around with you can do personal ones and your user folder. So you get a sense and that's that's a lot",
+      "start": "00:22:50.320",
+      "end": "00:22:56.320",
+      "id": 328
+    },
+    {
+      "speaker": null,
+      "text": "Why I have my if one to?",
+      "start": "00:22:56.320",
+      "end": "00:22:58.320",
+      "id": 329
+    },
+    {
+      "speaker": null,
+      "text": "Commit my changes and create a PR. That's just my own workflow. I asked the team would that be something we wouldn't have the code base now probably",
+      "start": "00:22:58.880",
+      "end": "00:23:05.520",
+      "id": 330
+    },
+    {
+      "speaker": null,
+      "text": "Not to code base related more your own person workflow. I can live it that so it's and then I've one for",
+      "start": "00:23:06.320",
+      "end": "00:23:12.560",
+      "id": 331
+    },
+    {
+      "speaker": null,
+      "text": "Resolving merge conflicts which might be more useful",
+      "start": "00:23:13.200",
+      "end": "00:23:15.520",
+      "id": 332
+    },
+    {
+      "speaker": null,
+      "text": "I shall something we're bringing into the product",
+      "start": "00:23:16.160",
+      "end": "00:23:18.400",
+      "id": 333
+    },
+    {
+      "speaker": null,
+      "text": "So yeah, so you can automate all these little things for yourself to make yourself objective and when you see like this is really the 10x prompt",
+      "start": "00:23:18.960",
+      "end": "00:23:26.880",
+      "id": 334
+    },
+    {
+      "speaker": null,
+      "text": "Makes my life easier and I want this for everybody then",
+      "start": "00:23:27.520",
+      "end": "00:23:30.480",
+      "id": 335
+    },
+    {
+      "speaker": null,
+      "text": "Put it in the like shared extension everybody uses so you distribute it or you bring it into repo or share elsewhere",
+      "start": "00:23:31.520",
+      "end": "00:23:38.480",
+      "id": 336
+    },
+    {
+      "speaker": null,
+      "text": "And then the as you mentioned the awesome co-pig repos a great place to",
+      "start": "00:23:38.560",
+      "end": "00:23:41.280",
+      "id": 337
+    },
+    {
+      "speaker": null,
+      "text": "Get inspiration from like what's possible like expand your mind on what you want to do with these prompts and modes",
+      "start": "00:23:42.160",
+      "end": "00:23:48.560",
+      "id": 338
+    },
+    {
+      "speaker": null,
+      "text": "That's super cool. Yeah, I think it's like a really great place to start as like see what other people are doing",
+      "start": "00:23:49.440",
+      "end": "00:23:54.080",
+      "id": 339
+    },
+    {
+      "speaker": null,
+      "text": "Then if you are creating these reusable steps one thing I did is like imagine you scaffold it out a new API",
+      "start": "00:23:54.560",
+      "end": "00:23:59.920",
+      "id": 340
+    },
+    {
+      "speaker": null,
+      "text": "You're testing the API and it is data integration doing testing",
+      "start": "00:24:00.400",
+      "end": "00:24:03.200",
+      "id": 341
+    },
+    {
+      "speaker": null,
+      "text": "One thing that I've learned a lot is you can just ask",
+      "start": "00:24:03.600",
+      "end": "00:24:06.000",
+      "id": 342
+    },
+    {
+      "speaker": null,
+      "text": "The model the LLM to create a prompt that's reusable for the things that we just did right",
+      "start": "00:24:06.720",
+      "end": "00:24:12.560",
+      "id": 343
+    },
+    {
+      "speaker": null,
+      "text": "Like obviously cut out the parts or fix up the parts for like if you had to like iterate on it or whatnot",
+      "start": "00:24:13.040",
+      "end": "00:24:17.280",
+      "id": 344
+    },
+    {
+      "speaker": null,
+      "text": "But I've done that so it's like here's this step so then you can rerun that prompt over and over again",
+      "start": "00:24:17.600",
+      "end": "00:24:21.280",
+      "id": 345
+    },
+    {
+      "speaker": null,
+      "text": "Well, it's a really neat Herald. I mean, I think it's really cool to talk about these different modes",
+      "start": "00:24:21.600",
+      "end": "00:24:24.960",
+      "id": 346
+    },
+    {
+      "speaker": null,
+      "text": "And I'm going to have Burke on and go super deep on modes themselves and beast mode and the things that he created and how he created that stuff",
+      "start": "00:24:25.280",
+      "end": "00:24:31.280",
+      "id": 347
+    },
+    {
+      "speaker": null,
+      "text": "Which is kind of like walk through these different steps and then these new proposed APIs that folks can start to poke around with and they can also give the",
+      "start": "00:24:31.520",
+      "end": "00:24:38.960",
+      "id": 348
+    },
+    {
+      "speaker": null,
+      "text": "Age of memory extension a try today, right?",
+      "start": "00:24:39.040",
+      "end": "00:24:41.040",
+      "id": 349
+    },
+    {
+      "speaker": null,
+      "text": "Yes, if you're just going to this code look for agent memory you can try out my extension",
+      "start": "00:24:41.680",
+      "end": "00:24:45.840",
+      "id": 350
+    },
+    {
+      "speaker": null,
+      "text": "Give it five stars and give me feedback, but otherwise it's it's very bootstrappy. It's very experimental",
+      "start": "00:24:46.160",
+      "end": "00:24:51.600",
+      "id": 351
+    },
+    {
+      "speaker": null,
+      "text": "And would love to see like what people expect from memory and and how this whole thing works",
+      "start": "00:24:52.560",
+      "end": "00:24:57.440",
+      "id": 352
+    },
+    {
+      "speaker": null,
+      "text": "I think does it's this area where people just have so many ideas and so many expectations and",
+      "start": "00:24:57.600",
+      "end": "00:25:02.880",
+      "id": 353
+    },
+    {
+      "speaker": null,
+      "text": "It's not yet delivered in the ecosystem really so yeah",
+      "start": "00:25:03.600",
+      "end": "00:25:06.640",
+      "id": 354
+    },
+    {
+      "speaker": null,
+      "text": "Very cool. I'll put a link in the show notes below to this to the 105 release and so much more Herald",
+      "start": "00:25:07.200",
+      "end": "00:25:11.520",
+      "id": 355
+    },
+    {
+      "speaker": null,
+      "text": "Thanks so much for coming on diving through all this stuff and talking a little bit about how you created agent mode and",
+      "start": "00:25:11.600",
+      "end": "00:25:16.400",
+      "id": 356
+    },
+    {
+      "speaker": null,
+      "text": "Or major memory and put all these things together. It's so cool",
+      "start": "00:25:16.720",
+      "end": "00:25:19.040",
+      "id": 357
+    },
+    {
+      "speaker": null,
+      "text": "Hey, thanks for having me and saying thanks for listening",
+      "start": "00:25:19.600",
+      "end": "00:25:21.760",
+      "id": 358
+    },
+    {
+      "speaker": null,
+      "text": "Yes, and don't forget you can subscribe on your favorite podcast application",
+      "start": "00:25:22.400",
+      "end": "00:25:25.840",
+      "id": 359
+    },
+    {
+      "speaker": null,
+      "text": "Also leave it five stars sent to a friend sent into a colleague show the podcast as we continue to come out every single week",
+      "start": "00:25:25.920",
+      "end": "00:25:32.320",
+      "id": 360
+    },
+    {
+      "speaker": null,
+      "text": "And of course you can always watch us live on youtube at youtube.com for a slash at code",
+      "start": "00:25:32.400",
+      "end": "00:25:37.760",
+      "id": 361
+    },
+    {
+      "speaker": null,
+      "text": "It's gonna do for this one. So until next time happy coding",
+      "start": "00:25:38.000",
+      "end": "00:25:40.880",
+      "id": 362
+    }
+  ]
+}

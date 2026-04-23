@@ -2,7 +2,7 @@
 
 [← Back to Foundations](../part-1-foundations.md)
 
-*Updated: April 17, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026. The cloud agent is a continuously-updated server-side service, so always cross-check the [official docs](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent) for the latest capabilities.*
+*Updated: April 22, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026. The cloud agent is a continuously-updated server-side service, so always cross-check the [official docs](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent) for the latest capabilities.*
 
 ---
 
@@ -10,7 +10,9 @@ The [Copilot cloud agent](https://docs.github.com/en/copilot/concepts/agents/clo
 
 **Official docs:** [About Copilot cloud agent](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent)
 
-**See it in action:** [A Unified Agent Experience](https://www.youtube.com/watch?v=YmpjvZ3xkx8&t=0s). Josh Spicer demos how cloud agent sessions surface alongside local sessions in the unified Agent Sessions view.
+**Code to study:** [GitHub Copilot CLI repository](https://github.com/github/copilot-cli) and [GitHub Copilot SDK repository](https://github.com/github/copilot-sdk) for the closest public agent-runtime code and examples.
+
+**See it in action:** [A Unified Agent Experience](https://www.youtube.com/watch?v=YmpjvZ3xkx8&t=402s) — VS Code Team demos starting a cloud session from VS Code, letting it run remotely, and reviewing the resulting PR back in the editor.
 
 ## How It Works
 

@@ -1,0 +1,507 @@
+[00:00:00.000] Welcome back everyone to the VS Code insiders podcast.
+
+[00:00:03.360] You're behind the scenes look at all the amazing things in your favorite code editor VS code.
+
+[00:00:08.400] This is where we take a look behind the scenes with some of the team members building
+
+[00:00:12.400] the code editor and developers using the code editors that you love today with me.
+
+[00:00:16.160] Bob, you from the VS code team software engineer.
+
+[00:00:19.440] We're kind of all sorts of goodies. How's it going, Bob?
+
+[00:00:22.480] I'm doing it. How are you? How is it?
+
+[00:00:24.640] I'm doing delightful. Just got back from GitHub universe.
+
+[00:00:28.160] We're going to talk about a brand new feature that just launched that got highlighted at the keynote.
+
+[00:00:33.360] Before we get into it, maybe you could tell I want a little bit about yourself.
+
+[00:00:37.440] Yeah. Hi everyone. I'm a software engineer on the VS Code team.
+
+[00:00:41.840] I've been on the team for about three years now. Previously on the team, I worked on the
+
+[00:00:47.600] at least called chat participant. You may have played around with in the chat panel.
+
+[00:00:51.360] So that helps you with Q&A finding commands and settings in VS Code,
+
+[00:00:55.440] answering general VS code related questions about like APIs and release notes.
+
+[00:01:00.080] I've also worked on the hash new tool that we have in the agent that helps you
+
+[00:01:04.720] scaffold new projects leveraging MCP tools like context seven.
+
+[00:01:09.600] And I also worked on the to do tool, which is getting a bit of a facelift in the next release.
+
+[00:01:14.400] And then more recently, I've been helping build out our agent prompts for some of the latest
+
+[00:01:18.720] model releases. And I also contributed to the hand of feature that you'll see in the planning mode.
+
+[00:01:23.360] And generally when you use agent modes, yeah, in VS Code, but that was recently announced
+
+[00:01:28.160] on GitHub, you know, it's so cool. I've used like every single one of your features probably in
+
+[00:01:32.320] the last like day two, I think as well, everything you worked on. I recently did use the,
+
+[00:01:37.680] I think the most under looked at feature is the hash new. I used it recently and like blue my mind
+
+[00:01:45.920] because I was just like starting a new, I was like, well, there's like crazy and like it
+
+[00:01:50.000] does his hand off and then it like opens a new workspace and it's like mind boggling. It's like
+
+[00:01:54.880] so cool. Nice. Glad to hear that. I'm glad you're enjoying that. If you have any feedback or want
+
+[00:02:00.000] to see any improvements, you know, what to find? Yes. And of course, everyone can always go to the
+
+[00:02:05.200] VS Code, get up age as the best place to put it as well. The team reads all those. I opened tons
+
+[00:02:09.760] of issues myself. I was just talking to Rob. I've like, has this great idea. And he's like, I'll just
+
+[00:02:12.800] open an issue do this thing for setting. So a big gooey person. So I love making settings look better.
+
+[00:02:18.720] My new plan for my end of year goal for VS Code is really work with the settings. And I know
+
+[00:02:24.400] there's people and engineers working on it now. Well, you talked about some really cool things.
+
+[00:02:28.080] You talked about to do's and then you also talked about this planning agent, the kind of planning
+
+[00:02:32.240] mode. Maybe can you talk a little bit about like to do's first and then because like they've been
+
+[00:02:37.360] around for a few releases now. And then like what this new plan thing is and like how developers use
+
+[00:02:43.120] each of those and how they're the same? Are they different? Yeah. So we initially started with
+
+[00:02:48.560] the to do tool. So it's a tool that you can invoke in the chat panel. I think it's behind. You can
+
+[00:02:54.160] invoke it with hash to do's. So this is sort of like our way of trying to ensure that the agent
+
+[00:02:59.840] would stay focused when you're engaging with the agent for a complex task. So something that has
+
+[00:03:06.160] multi-step that the agent laid out. And then as you see the context growing, you can see sometimes
+
+[00:03:11.520] that the agent would completely forget what it started off with. So kind of giving some sort of
+
+[00:03:17.520] context, grounding context on the higher level context that the agent can maintain as it works through
+
+[00:03:22.320] complex tasks. And then kind of also be realized as we shipped this. And as we started having
+
+[00:03:28.160] more users tried out that it was a neat way for the users to also get context on what the chat
+
+[00:03:33.440] does actually try to do right at that point in time. Sometimes the chat panel can be pretty
+
+[00:03:38.080] verbose. So it's kind of hard to get context on what's happening. So you can take a look at the
+
+[00:03:43.920] to do's, which are now in closer to the chat input area in the new insiders. So when you can
+
+[00:03:50.000] quickly get context on what the current step the agent does at. And then you can choose to go and
+
+[00:03:55.280] look at the rest of the tasks that are upcoming that the agent will engage with. Or you can just
+
+[00:04:00.160] let the agent cook and then see what happens. And then once it's done, the agent should have marked
+
+[00:04:04.240] everything is done. And then yeah, though you can also be confident more often than not that most
+
+[00:04:10.640] of your tasks are done. Yeah. So I love that because I use the to do's a lot because like when I give
+
+[00:04:20.770] it the prompt and it creates a to do list for me or if I asked it to create the to do list,
+
+[00:04:25.730] the nice thing about it is I get to like real time review. Now it's already starting to cook,
+
+[00:04:30.610] but I get to review the steps. So I could actually stop it if I'm like, oh, you actually missed a
+
+[00:04:35.250] thing or like, you might not like, okay, let it finish and I'll like follow up with additional to
+
+[00:04:39.090] do's or things like that. And then I'm a PM. So I'm on calls every single day pretty much all the time.
+
+[00:04:44.530] So I just kind of like put like my teams overlaps over. So I can just see like the to do's being
+
+[00:04:51.490] checked off in real time. So I know like if I need like, you know, turn off my webcam for a second
+
+[00:04:56.930] then follow up after it's all done. So it's like nice to see it while it's cooking in the background.
+
+[00:05:01.490] I like to I like to cook while I'm on calls, you know, you know, so that that way,
+
+[00:05:06.130] that way I get a lot of code down like send a prompt to join a team's call and then boom good to go.
+
+[00:05:10.210] So
+
+[00:05:11.410] another neat thing that about the to do's is if for whatever is in your agent task was interrupted,
+
+[00:05:16.770] um, we can pick right back up and the to do context gets injected back to the agent.
+
+[00:05:21.250] So it knows where to pick it up from and usually I've seen a, seen a do a good job with continuity,
+
+[00:05:26.850] especially long tasks. That's awesome. That's very cool. So it's kind of like the to do's are sort of
+
+[00:05:33.570] planning. They're like plans that are being executed, but then this new plan agent is kind of like
+
+[00:05:40.130] flipping that a little bit, right? Yeah, to do some more on this, the scope is much smaller. I would
+
+[00:05:46.610] say for to do so, they're more for the immediate steps at hand. Planning is more for a more complex
+
+[00:05:53.010] tasks that involves like a lot of deep research and then a lot of context gathering, going around
+
+[00:05:59.410] and figuring out what's in your code base trying to understand how you could race this setup,
+
+[00:06:03.570] what instructions do you what instructions you want the agent to be following and then compiling
+
+[00:06:08.530] all of that into some sort of an executable and follow along, um, markdown or a draft of a plan
+
+[00:06:17.650] that you can then have agents work on either synchronously with local agents or you can just kick
+
+[00:06:24.050] them off on background agents or remote coding agents and take it off from there. So I would say
+
+[00:06:28.450] planning is a much higher level focused task where it's to do some more in session and just scope
+
+[00:06:34.930] to the task at hand. Yeah. Okay, gotcha. So when I'm inside of VS code, I mean inside the chat and then
+
+[00:06:40.850] you know, we've primarily always had asked at it agent and agents of the default, right? Just going to
+
+[00:06:45.490] go do stuff unless I tell it don't write any code, but I there's now plan there. So this is that
+
+[00:06:50.050] plan agent. So how do I think about it as a developer like when I should switch into that
+
+[00:06:55.650] context? Because like I know if I just ask the agent to do something with the agent mode,
+
+[00:07:01.650] like it's going to do a little bit of pre planning and task collaboration. So when should I think
+
+[00:07:05.490] about like, oh, like I should actually do some planning first? More often than not, this is the way
+
+[00:07:12.690] we've seen, we use it within the team. And I'm sure this as you start using planning mode,
+
+[00:07:17.490] you'll find more ways to use it. But we like to start off with trying to define like a really
+
+[00:07:23.410] broad level task and then have the agent explore exactly what needs to be done. So think about it
+
+[00:07:29.650] for like high level tasks, such as hey, I want to start something from you, like start a new feature
+
+[00:07:34.930] like a really large coping feature. So for example, when I wrote the to do tool and move that out on
+
+[00:07:40.690] in VS code, I started off in planning mode trying to explore where the chat widget goes and then
+
+[00:07:46.130] how it's rendered and then what are the different moving parts there. So helping kind of first going
+
+[00:07:51.490] and finding context, understanding what all the moving parts are and then building out this other
+
+[00:07:56.050] widget that would then integrate with this widget, making sure I don't break tests, making sure that
+
+[00:08:01.490] the UX is aligned with all of the different UX surfaces we have in VS code. So a complex multi-step
+
+[00:08:09.810] task that involves a lot of research and a lot of planning is why you would use the planning
+
+[00:08:16.210] mode is what I would say. Yeah. I think one thing that's been fascinating and I'm interested in how
+
+[00:08:21.970] it actually works like under the hood. But when I've used plan agent, the planning agent is that
+
+[00:08:28.610] it seems to ask me questions too. So it doesn't give me a plan. It seems to ask me questions.
+
+[00:08:32.610] Like how is this thing working? And I guess how is it different than how it would traditionally
+
+[00:08:37.010] plan and then why is it asking me questions? Yeah. So we've scoped on planning with the goal that
+
+[00:08:43.170] it helps you achieve come up with the detailed plan. We've scoped the tools that it has access
+
+[00:08:49.090] to to only read only tools and then code based search tools. So it can read through your code
+
+[00:08:55.330] based to understand how it works. It only has re-access. So it can read through all of the code changes
+
+[00:09:01.170] and then all of the different other instructions that you might have in your repository.
+
+[00:09:06.450] And then comes up with the detailed level plan. And then you can take it from there. It usually
+
+[00:09:12.850] tries to help you. We've prompted it in such a way that it also helps identify potential gaps in
+
+[00:09:20.450] what you're missing with the task that you're asking for. So it always asks you an open-ended
+
+[00:09:24.610] questions. It figures out that needs resolution. And then you can take it from there. You can choose
+
+[00:09:30.770] to try to resolve all of the open-ended questions and then go ahead and implement it. Or you can be
+
+[00:09:35.890] like, you know what? I'm just trying to explore this. So why don't you pick defaults and go from there
+
+[00:09:41.090] and start implementing and then see what happens. Yeah. That makes sense. So sort of inherently the team,
+
+[00:09:46.210] you said, as I'm kind of summarised it here. So I understand it as well as
+
+[00:09:50.770] the team basically has this agent prompt set up in a way that is scope tooling. But then also
+
+[00:09:58.690] is using those tools in a planning way and specifying that it should inherently ask those follow-up
+
+[00:10:07.730] questions if there are open-ended questions. Have you found like there's different
+
+[00:10:13.890] threshold? Is it always going to ask me questions? Is it one of the requirements? Or will there be
+
+[00:10:22.610] instances where there's none? And how many times could it possibly ask me questions? Is it an
+
+[00:10:27.330] infinimal or how it's how it's? So this is a prompt that we are fine-tuning and then working on
+
+[00:10:34.210] constantly. Currently, the way it works is we ask it to go and explore. We also use this tool called
+
+[00:10:40.850] the run subagent tasks, the web agent's tool that goes ahead and does like DP search in its own little
+
+[00:10:47.570] subagent context and comes back with you. It comes back to you, which is the right amount of
+
+[00:10:54.210] context that you need for your actual tasks. So there is not much context mixing between the two.
+
+[00:11:01.010] And then also keeps your context for the main tasks scope. So we're trying to build this out so that
+
+[00:11:06.050] it tries to go and do this research and comes back with all of the information that it found and
+
+[00:11:10.530] then tries to put it back to the question that you'd try to form. And then it identifies open
+
+[00:11:15.890] questions. More often than not, I've seen it ask you questions having you kind of engage with it
+
+[00:11:20.850] in the Q&A to try to resolve the open-ended questions. Sometimes it can get a little
+
+[00:11:26.530] duty and then we're working on fixing that up. But I've found it really useful in the questions
+
+[00:11:32.290] that it asks because I wouldn't have thought of it. I do as well. I'm not going to lie. I'm like,
+
+[00:11:37.170] oh, I should have asked that. Can you customize it in any way? You said that there's a predefined
+
+[00:11:42.690] set of tools. But what if I have like MCP servers and I'm really interested in doing research on a bug and
+
+[00:11:47.250] I need it to go search GitHub or sentries like that? Is it customizable? Kind of like the other
+
+[00:11:52.130] sort of agents in there? Yeah, you can create custom agents as we're calling them now. So you can
+
+[00:11:58.850] open up the chat panel and in the gear icon you can create a new custom agent. And we have
+
+[00:12:05.570] commands to help you do this. And each agent you can define kind of the role that you want the
+
+[00:12:11.010] agents to play. So what we built in is the planning agent. But imagine you'd want an agent that
+
+[00:12:16.690] helps you to test driven development. So you can go and build up an agent and scope down the tooling
+
+[00:12:21.890] so that you have access to the testing tools and then being able to compile and run your code.
+
+[00:12:27.730] And then there's you can also define the handoffs between one agent to the other. So going
+
+[00:12:33.330] seamlessly from planning and then going to a test development agent. So yeah, like you can customize it.
+
+[00:12:41.250] We we've added support for creating custom chat modes where you can define the model that you
+
+[00:12:45.890] want. You can define handoffs which agent to handoff tasks to the tools that you want to customize.
+
+[00:12:53.970] And then finally the instructions that you want which define the role that the agent will play.
+
+[00:12:58.930] Oh, that's very cool. So you kind of see exactly if you were like, oh, I think like this planning
+
+[00:13:03.010] mode, like is working good, but like I need to customize it and kind of copy it and create my own
+
+[00:13:07.250] custom planning mode, like James is planning mode, basically. Yeah, you can also look at a
+
+[00:13:12.930] a peek at our custom art planning mode that we've added. So if you open the agent to drop down,
+
+[00:13:19.570] there's a little icon there that asks you to configure agents. And if you click on that and you'll
+
+[00:13:24.690] be presented a quick pick with the different agents, you can go and click on the planning agent
+
+[00:13:29.410] that shows them there. And then you can it's a markdown file. You can go and take a look at it to see
+
+[00:13:34.690] exactly what we've defined. And you can see our custom prompt in there too. And you can copy over it
+
+[00:13:39.410] to a kid. Oh, that's awesome. That's super cool. Yeah. Like that it's like, it's just open. It's just
+
+[00:13:44.130] there. So you can see exactly what the team's doing. Well, what about like actually the prompt for it?
+
+[00:13:48.210] Like because I think one thing, like I've really worked on, but I've been like over the last,
+
+[00:13:53.330] you know, eight, nine months since like each of mode came out. It's kind of crazy. I think it's like
+
+[00:13:57.250] only been like less than a year. But I really try to work on like my prompting of like what I'm doing,
+
+[00:14:02.770] like asking questions. Like when it comes to like model prompting, are there any best projects that you
+
+[00:14:06.930] found like in this plan? Like how much context should I give it? Like other specific models that like
+
+[00:14:12.130] should be picking a thinking model and this like what are your thoughts from like the engineering
+
+[00:14:17.250] side of like how much context to give ahead of time for the plan and also like models or they're
+
+[00:14:22.690] like models that maybe would work better in this context? Working with agents as all about context
+
+[00:14:29.730] engineering. Right? So trying to figure out the right level of context engineering is kind of it,
+
+[00:14:35.410] you could call it science, but sometimes I've also seen it go kind of a right. So it's, there's a
+
+[00:14:41.090] bunch of levers that you can pull that we provide to help with context engineering, especially with
+
+[00:14:45.570] prompting. So for starters, at just the code base level, you can have actual GitHub instructions,
+
+[00:14:53.970] start MD files that kind of layout like all of the best practices that you follow in code, kind of
+
+[00:14:59.090] the code structure that you have, where to go looking. If you want to look at all of the UX,
+
+[00:15:04.450] widgets that exist or all of the testing infrastructure that exists. So adding that to context
+
+[00:15:10.210] when you're trying to figure out what sort of code you want to implement. So it's all about
+
+[00:15:15.730] context engineering and then you will allow you to customize it at different levels. One is the
+
+[00:15:20.770] instructions files that you provide. The other one is the agents with their specific rules that you
+
+[00:15:25.490] can assign them. And in a in a specific prompt that you would write, I would say it all comes
+
+[00:15:32.370] down to giving it the right set of tools and giving it the one the right set of tools to go and
+
+[00:15:37.890] look for what it wants to find and also kind of giving it direction. So open ended questions are great
+
+[00:15:43.410] when you're exploring. But if you have some sort of context in terms of it could even be a previous
+
+[00:15:49.570] commit or a previous pull request that you worked on. So you can give that to the agent and the agent
+
+[00:15:54.530] knows to go and use the GitHub MCP tools to go and fetch the differences and then figure out what
+
+[00:16:00.290] was implemented and then take it from there. So within a given con given task that you're trying to
+
+[00:16:06.450] achieve trying to find the right bits of context to give it without overwhelming the model is the way
+
+[00:16:13.010] to go. It does really task driven. So even when I'm in planning agent, like I should still be like
+
+[00:16:19.810] referencing files or friends and commits and things like that. If that's valuable I guess right.
+
+[00:16:24.050] Yes, definitely. Yeah, referencing files, giving it best practices on what to do, what not to do
+
+[00:16:31.410] potentially. As you start planning it out, tell the model that here I want you to follow a test
+
+[00:16:36.530] driven development. So start with failing tests. So make sure you also account for writing tests
+
+[00:16:41.810] in this plan that you've built out so that I can go and delegate it later on.
+
+[00:16:45.890] Oh, very cool. I've seen the planning agent. There's something different than the other agents,
+
+[00:16:51.090] like Ask Edit and Agent Agent Agent, if we will. Is that like when it finishes the plan? It has
+
+[00:16:57.170] like little buttons. Like that are there that pop up like what are those buttons? Like I've never seen
+
+[00:17:01.730] them before and like what should I use? Like there's a few options there. Those buttons are what
+
+[00:17:08.210] we call as handoffs and those are something that's available in Insiders right now for folks to use.
+
+[00:17:15.010] And handoffs are way of helping users kind of go from one agent performing a task to
+
+[00:17:23.330] seamlessly handing off to another role. So start off with planning in once you're happy with where
+
+[00:17:29.410] the plan is. Take that plan all of the context that you've gathered in that session and then hand it off
+
+[00:17:35.170] to an agent to go and build it or go and test something out. So you can, that's the mechanism for it.
+
+[00:17:41.890] And then you can define these handoffs in your agent modes that you define in the custom agent modes.
+
+[00:17:48.210] So you can define the agent, the tools that the agent needs, the description and then you can
+
+[00:17:54.610] define something called as handoffs. We have good documentation for this where you can call out
+
+[00:17:59.410] which agent you want as handoffs. So planning agent you will see has handoffs to our default agent
+
+[00:18:06.370] so that it can go and start implementing things or you can also save all of the conversation
+
+[00:18:11.410] as a markdown file so that it's a draft of a plan that you can share and review and then reuse
+
+[00:18:16.610] across the team. So you can go and define custom agents so that they can talk to each other.
+
+[00:18:22.050] Previously you'd have to like get into this specific mode chat mode we would call it, go through
+
+[00:18:27.410] all of this planning and then the owners was on you to switch out agents and then go and implement
+
+[00:18:32.130] it. But with handoffs we kind of make this as a reusable component that you can use and share
+
+[00:18:37.570] within the team so that you can also automate these tasks. Well that's very cool. Like that kind
+
+[00:18:43.010] of now understand exactly what's happening. I thought it was just like doing something completely
+
+[00:18:47.410] different but that makes a lot of sense. It's really cool that you can define these agents and handoffs
+
+[00:18:50.690] as well. I'll put links to the documentation in the show notes as well which is awesome.
+
+[00:18:54.850] And we're saying insiders so if you're on 106 that's what it'll be in and of course you might be
+
+[00:18:59.730] listening to this later so check your version that's out there I might be in there. Or just open up
+
+[00:19:04.530] the panel if you see plan then you have the you haven't and if you don't there you're there.
+
+[00:19:09.170] So I did want to ask one final question here is like I'm going to the plan and I see these handoffs.
+
+[00:19:16.610] Do you have like opinions or like what I should do? I know you probably don't but like
+
+[00:19:22.210] like there's the ability to like have the mark down there. Like is there an advantage to that? Like
+
+[00:19:26.850] what's the purpose of that that I should think about when I'm deciding to just implement or like
+
+[00:19:31.330] have it save the document? What's your thoughts on that? I guess it comes down to what you want
+
+[00:19:36.210] to do with the mark down. If it's a really long detailed plan it would be good to save it because
+
+[00:19:41.970] there's all of this deep research that's happened through subagents and trying to figure out all of
+
+[00:19:47.090] the different code structures and patterns and implementation details that you'd want to save and kind
+
+[00:19:53.010] of also have as a reference when the model goes and actually implements it. So you could save
+
+[00:19:58.530] your file and then provide that as context to another agent or you could pick pieces from that file
+
+[00:20:04.770] while still providing the file as context and have different agents working on different pieces of that
+
+[00:20:10.210] plan. So that's how I see it. So it's for not two complex fits still a complex task. I would say
+
+[00:20:17.650] you don't really need to make a plan. Just go figure out what happens and then hand that off to an agent
+
+[00:20:22.450] to go take care of. But if you're building something from scratch it's good to capture all of the
+
+[00:20:27.890] requirements in terms of the platform. You chose why you chose a specific way to do something
+
+[00:20:32.930] where all the tests are, what testing infrastructure you use and then have different agents
+
+[00:20:37.090] implement different things. Go have something implement like failing tests, have another agent
+
+[00:20:43.090] explore the different UX options to implement and then build that out. So that's where I think
+
+[00:20:49.490] the plan is handy. And you can also save this plan in the end as a part of your eekney file so that
+
+[00:20:55.490] other folks have a repository using your repository can reference it. That's super cool. That's
+
+[00:21:00.850] really great breakdown because I've just thought about it as well of course we'll just save it.
+
+[00:21:05.490] I don't even know if I'll use it but I like the idea as like yeah I'm probably going to be planning
+
+[00:21:08.610] really really big things and maybe I want to break it down into multiple chunks or open issues
+
+[00:21:12.770] off of it or refine it with a team member and you just have that mark down as super nifty. Anything
+
+[00:21:16.930] else you want to talk about the planning agent at all? Probably before you wrap up. We covered the
+
+[00:21:21.250] planning agent. The fact that you can hand it off. No, I think you got it on.
+
+[00:21:27.330] I'm super excited. I've been using this every single day since I got it. I love it. I
+
+[00:21:32.290] almost plan. I think every single thing that I do now because I'm like why not? Why not?
+
+[00:21:36.450] Just plan and give it a little bit more context. I think what I've seen at least and I don't know if
+
+[00:21:40.450] you've seen it but I've seen definitely better faster results. Like I know it takes like a little
+
+[00:21:44.290] bit more time planning ahead of time but for me I think those follow-up questions are important like
+
+[00:21:48.450] okay like is it coming up with the to to to do is in the plan that I actually had in my mind that
+
+[00:21:55.010] was like one sentence you know that I give it enough context. So I've been using every day and I love it.
+
+[00:21:59.250] So I hope everyone that's listening gives it a try. So well I will put links to everything
+
+[00:22:06.830] at GitHub universe that definitely if you've even seen it go check out the the Latino there. I'll put
+
+[00:22:11.390] links to that and then if you're watching on YouTube I'll put like a little demo video as well.
+
+[00:22:15.310] I'll do my own plan. I'll put on there's a lot. Bobby thank you so much for coming on and talking
+
+[00:22:19.150] about planning agent. Yeah thank you so much for having me. This is so much fun.
+
+[00:22:23.230] Awesome and thanks for everyone listening and don't forget you can of course watch on the
+
+[00:22:26.270] VS Code YouTube and you can also listen in your favorite podcast. Players don't forget just
+
+[00:22:30.750] search VS Code Insiders podcast. Subscribe like do all the things send it to all your colleagues
+
+[00:22:36.110] and with that. Thank you so much for listening and are watching and happy coding.

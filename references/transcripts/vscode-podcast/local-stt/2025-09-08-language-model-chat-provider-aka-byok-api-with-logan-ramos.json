@@ -1,0 +1,2079 @@
+{
+  "episode": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 4,
+    "title": "Language Model Chat Provider (aka BYOK) API with Logan Ramos",
+    "url": "https://www.vscodepodcast.com/4",
+    "transcript_url": "",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/5b141784-3cf5-4b2b-9c51-8b7168c0a76b.mp3",
+    "published": "2025-09-08",
+    "duration": "17:08",
+    "transcript_available": false,
+    "source_file": "2025-09-08-language-model-chat-provider-aka-byok-api-with-logan-ramos.md",
+    "source_path": "references\\transcripts\\vscode-podcast\\2025-09-08-language-model-chat-provider-aka-byok-api-with-logan-ramos.md"
+  },
+  "transcription": {
+    "language": "en",
+    "language_probability": 1,
+    "duration": 1028.3189375,
+    "duration_after_vad": 1028.3189375,
+    "model": "tiny",
+    "device": "cpu",
+    "compute_type": "auto"
+  },
+  "segment_count": 342,
+  "segments": [
+    {
+      "id": 1,
+      "start": "00:00:00.000",
+      "end": "00:00:03.200",
+      "text": "Welcome back, everyone, to the VS Code Insiders podcast"
+    },
+    {
+      "id": 2,
+      "start": "00:00:03.200",
+      "end": "00:00:05.280",
+      "text": "you're behind the scenes with the VS Code team"
+    },
+    {
+      "id": 3,
+      "start": "00:00:05.280",
+      "end": "00:00:06.640",
+      "text": "and your favorite code editor."
+    },
+    {
+      "id": 4,
+      "start": "00:00:06.640",
+      "end": "00:00:09.040",
+      "text": "I'm one of your host James Montemagno,"
+    },
+    {
+      "id": 5,
+      "start": "00:00:09.040",
+      "end": "00:00:10.800",
+      "text": "P.M. on our developer community team."
+    },
+    {
+      "id": 6,
+      "start": "00:00:10.800",
+      "end": "00:00:13.120",
+      "text": "And with me today, I'm super excited."
+    },
+    {
+      "id": 7,
+      "start": "00:00:13.120",
+      "end": "00:00:16.080",
+      "text": "I have Logan, Ramos, a senior software engineer"
+    },
+    {
+      "id": 8,
+      "start": "00:00:16.080",
+      "end": "00:00:18.640",
+      "text": "on the VS Code team, how's it going, Logan?"
+    },
+    {
+      "id": 9,
+      "start": "00:00:18.640",
+      "end": "00:00:19.920",
+      "text": "I'm good, James, how are you?"
+    },
+    {
+      "id": 10,
+      "start": "00:00:19.920",
+      "end": "00:00:24.400",
+      "text": "I'm doing awesome and I just learned that you actually"
+    },
+    {
+      "id": 11,
+      "start": "00:00:24.400",
+      "end": "00:00:25.680",
+      "text": "have been at Microsoft that a while,"
+    },
+    {
+      "id": 12,
+      "start": "00:00:25.680",
+      "end": "00:00:29.600",
+      "text": "but you've actually interned on multiple teams,"
+    },
+    {
+      "id": 13,
+      "start": "00:00:29.600",
+      "end": "00:00:32.160",
+      "text": "like in the editor space before which I had no idea"
+    },
+    {
+      "id": 14,
+      "start": "00:00:32.160",
+      "end": "00:00:33.520",
+      "text": "which is so cool."
+    },
+    {
+      "id": 15,
+      "start": "00:00:33.520",
+      "end": "00:00:35.520",
+      "text": "Yeah, yeah, it's been a great time."
+    },
+    {
+      "id": 16,
+      "start": "00:00:35.520",
+      "end": "00:00:37.920",
+      "text": "I think what I initially joined as an intern"
+    },
+    {
+      "id": 17,
+      "start": "00:00:37.920",
+      "end": "00:00:40.880",
+      "text": "from Microsoft in 2018, I believe."
+    },
+    {
+      "id": 18,
+      "start": "00:00:40.880",
+      "end": "00:00:42.880",
+      "text": "I thought developer tooling was kind of lame"
+    },
+    {
+      "id": 19,
+      "start": "00:00:42.880",
+      "end": "00:00:44.400",
+      "text": "and like I was like, this is not exciting."
+    },
+    {
+      "id": 20,
+      "start": "00:00:44.400",
+      "end": "00:00:46.160",
+      "text": "Like, I want to work on Xbox,"
+    },
+    {
+      "id": 21,
+      "start": "00:00:46.160",
+      "end": "00:00:48.640",
+      "text": "but it's been amazing to see how passionate"
+    },
+    {
+      "id": 22,
+      "start": "00:00:48.640",
+      "end": "00:00:50.640",
+      "text": "everyone has in the developer space in every day"
+    },
+    {
+      "id": 23,
+      "start": "00:00:50.640",
+      "end": "00:00:53.360",
+      "text": "that I get to work with people who are like myself."
+    },
+    {
+      "id": 24,
+      "start": "00:00:53.360",
+      "end": "00:00:55.280",
+      "text": "Like, I am the customer kind of up this product"
+    },
+    {
+      "id": 25,
+      "start": "00:00:55.280",
+      "end": "00:00:58.400",
+      "text": "and it makes it much easier to connect with them."
+    },
+    {
+      "id": 26,
+      "start": "00:00:58.480",
+      "end": "00:01:00.400",
+      "text": "That's awesome, yeah, when we just had Tyler on,"
+    },
+    {
+      "id": 27,
+      "start": "00:01:00.400",
+      "end": "00:01:02.960",
+      "text": "I think that was, he said the exact same thing,"
+    },
+    {
+      "id": 28,
+      "start": "00:01:02.960",
+      "end": "00:01:06.720",
+      "text": "which is like, I am building the tool that I want to use"
+    },
+    {
+      "id": 29,
+      "start": "00:01:06.720",
+      "end": "00:01:09.360",
+      "text": "with a team that once used the tools every single day"
+    },
+    {
+      "id": 30,
+      "start": "00:01:09.360",
+      "end": "00:01:11.200",
+      "text": "to make the tool better, which is so cool."
+    },
+    {
+      "id": 31,
+      "start": "00:01:11.200",
+      "end": "00:01:13.280",
+      "text": "And I agree with you, I started my career"
+    },
+    {
+      "id": 32,
+      "start": "00:01:13.280",
+      "end": "00:01:15.840",
+      "text": "making video games for the Xbox 360"
+    },
+    {
+      "id": 33,
+      "start": "00:01:15.840",
+      "end": "00:01:19.440",
+      "text": "and then I became a win-forms developer building desktop apps"
+    },
+    {
+      "id": 34,
+      "start": "00:01:19.440",
+      "end": "00:01:22.640",
+      "text": "and then I fell into loving dev tools in the space."
+    },
+    {
+      "id": 35,
+      "start": "00:01:22.640",
+      "end": "00:01:23.520",
+      "text": "I don't know, just something about it."
+    },
+    {
+      "id": 36,
+      "start": "00:01:23.520",
+      "end": "00:01:25.520",
+      "text": "Just collect, I'm out of the video game space,"
+    },
+    {
+      "id": 37,
+      "start": "00:01:25.520",
+      "end": "00:01:29.600",
+      "text": "but, yeah, for some reason,"
+    },
+    {
+      "id": 38,
+      "start": "00:01:29.600",
+      "end": "00:01:31.760",
+      "text": "desktop applications were calling my name."
+    },
+    {
+      "id": 39,
+      "start": "00:01:31.760",
+      "end": "00:01:34.960",
+      "text": "And apparently yours is well, which is awesome."
+    },
+    {
+      "id": 40,
+      "start": "00:01:34.960",
+      "end": "00:01:38.480",
+      "text": "I wonder if you want because there's been a feature"
+    },
+    {
+      "id": 41,
+      "start": "00:01:38.480",
+      "end": "00:01:42.160",
+      "text": "that a lot of people talk about inside of VS Code,"
+    },
+    {
+      "id": 42,
+      "start": "00:01:42.160",
+      "end": "00:01:45.680",
+      "text": "which has a funky name, and I don't actually think describes"
+    },
+    {
+      "id": 43,
+      "start": "00:01:45.680",
+      "end": "00:01:47.680",
+      "text": "maybe what the feature, I mean, it does describe"
+    },
+    {
+      "id": 44,
+      "start": "00:01:47.680",
+      "end": "00:01:50.000",
+      "text": "like what the implementation of the feature is,"
+    },
+    {
+      "id": 45,
+      "start": "00:01:50.000",
+      "end": "00:01:52.960",
+      "text": "but maybe not why you would want to use it"
+    },
+    {
+      "id": 46,
+      "start": "00:01:52.960",
+      "end": "00:01:54.560",
+      "text": "and like, on the podcast, we want to talk about like,"
+    },
+    {
+      "id": 47,
+      "start": "00:01:54.640",
+      "end": "00:01:56.400",
+      "text": "not what the feature does, like, why?"
+    },
+    {
+      "id": 48,
+      "start": "00:01:56.400",
+      "end": "00:01:58.240",
+      "text": "Why was this thing even put into the product?"
+    },
+    {
+      "id": 49,
+      "start": "00:01:58.240",
+      "end": "00:02:00.400",
+      "text": "How is it evolving? How are we getting feedback?"
+    },
+    {
+      "id": 50,
+      "start": "00:02:00.400",
+      "end": "00:02:03.200",
+      "text": "And this is something that people see as BYOK"
+    },
+    {
+      "id": 51,
+      "start": "00:02:03.200",
+      "end": "00:02:08.080",
+      "text": "or bring your own key, which, I guess you're bringing a key,"
+    },
+    {
+      "id": 52,
+      "start": "00:02:08.080",
+      "end": "00:02:10.800",
+      "text": "but it's kind of in the model selection."
+    },
+    {
+      "id": 53,
+      "start": "00:02:10.800",
+      "end": "00:02:12.560",
+      "text": "Like, what is bring your own key?"
+    },
+    {
+      "id": 54,
+      "start": "00:02:12.560",
+      "end": "00:02:16.000",
+      "text": "Like, how is it thought about like, why is it in the product?"
+    },
+    {
+      "id": 55,
+      "start": "00:02:16.000",
+      "end": "00:02:18.080",
+      "text": "And why was someone even used this thing?"
+    },
+    {
+      "id": 56,
+      "start": "00:02:18.080",
+      "end": "00:02:20.560",
+      "text": "Before we talk about how it's evolving in the latest versions?"
+    },
+    {
+      "id": 57,
+      "start": "00:02:20.560",
+      "end": "00:02:23.440",
+      "text": "Yeah, yeah, so I mean, I think I named it bring your"
+    },
+    {
+      "id": 58,
+      "start": "00:02:23.440",
+      "end": "00:02:25.440",
+      "text": "and key when I first started implementing it."
+    },
+    {
+      "id": 59,
+      "start": "00:02:25.440",
+      "end": "00:02:26.160",
+      "text": "It's a burn-out."
+    },
+    {
+      "id": 60,
+      "start": "00:02:26.160",
+      "end": "00:02:27.600",
+      "text": "It's the air, not a marketer,"
+    },
+    {
+      "id": 61,
+      "start": "00:02:27.600",
+      "end": "00:02:29.600",
+      "text": "and maybe it should have been called bring your own model,"
+    },
+    {
+      "id": 62,
+      "start": "00:02:29.600",
+      "end": "00:02:31.920",
+      "text": "but that's what we've been calling it since."
+    },
+    {
+      "id": 63,
+      "start": "00:02:31.920",
+      "end": "00:02:34.880",
+      "text": "It's official name is language model chat providers."
+    },
+    {
+      "id": 64,
+      "start": "00:02:34.880",
+      "end": "00:02:37.200",
+      "text": "So there's actually a full vehicle API"
+    },
+    {
+      "id": 65,
+      "start": "00:02:37.200",
+      "end": "00:02:39.280",
+      "text": "that we could talk about at some point."
+    },
+    {
+      "id": 66,
+      "start": "00:02:39.280",
+      "end": "00:02:42.160",
+      "text": "But the reason for this comes down to VS Code"
+    },
+    {
+      "id": 67,
+      "start": "00:02:42.160",
+      "end": "00:02:44.080",
+      "text": "has always been about developer choice,"
+    },
+    {
+      "id": 68,
+      "start": "00:02:44.080",
+      "end": "00:02:45.760",
+      "text": "our extension ecosystem, et cetera."
+    },
+    {
+      "id": 69,
+      "start": "00:02:45.760",
+      "end": "00:02:48.880",
+      "text": "And while GitHub co-pilot gives you some amazing models"
+    },
+    {
+      "id": 70,
+      "start": "00:02:48.880",
+      "end": "00:02:50.960",
+      "text": "to work with out of the box, the truth is,"
+    },
+    {
+      "id": 71,
+      "start": "00:02:50.960",
+      "end": "00:02:54.160",
+      "text": "there's just, it's impossible for us to support every model."
+    },
+    {
+      "id": 72,
+      "start": "00:02:54.160",
+      "end": "00:02:55.680",
+      "text": "Every model you add to GitHub co-pilot"
+    },
+    {
+      "id": 73,
+      "start": "00:02:55.680",
+      "end": "00:02:57.520",
+      "text": "bifurcates your GPU capacity, right?"
+    },
+    {
+      "id": 74,
+      "start": "00:02:57.520",
+      "end": "00:03:00.000",
+      "text": "So if you have 1000 GPUs and you have two models,"
+    },
+    {
+      "id": 75,
+      "start": "00:03:00.000",
+      "end": "00:03:01.680",
+      "text": "you know, then maybe 500 model,"
+    },
+    {
+      "id": 76,
+      "start": "00:03:01.680",
+      "end": "00:03:03.760",
+      "text": "if you're doing 50, 50 balancing."
+    },
+    {
+      "id": 77,
+      "start": "00:03:03.760",
+      "end": "00:03:06.640",
+      "text": "So every day, a brand new LM comes out."
+    },
+    {
+      "id": 78,
+      "start": "00:03:06.640",
+      "end": "00:03:08.800",
+      "text": "I mean, I'm sure you see all the articles."
+    },
+    {
+      "id": 79,
+      "start": "00:03:08.800",
+      "end": "00:03:11.520",
+      "text": "And so some people are really passionate about wanting to be on the cutting edge"
+    },
+    {
+      "id": 80,
+      "start": "00:03:11.520",
+      "end": "00:03:12.800",
+      "text": "and trying new things."
+    },
+    {
+      "id": 81,
+      "start": "00:03:12.800",
+      "end": "00:03:16.800",
+      "text": "And it's just not something we're able to provide with the subscription."
+    },
+    {
+      "id": 82,
+      "start": "00:03:16.800",
+      "end": "00:03:19.120",
+      "text": "And so bring your own key or bring your own model,"
+    },
+    {
+      "id": 83,
+      "start": "00:03:19.200",
+      "end": "00:03:24.240",
+      "text": "allows you to add any model you want to get up co-pilot"
+    },
+    {
+      "id": 84,
+      "start": "00:03:24.240",
+      "end": "00:03:26.560",
+      "text": "and speak to it through the chat interfaces,"
+    },
+    {
+      "id": 85,
+      "start": "00:03:26.560",
+      "end": "00:03:30.800",
+      "text": "through the agent, treating it as if it came right with the product."
+    },
+    {
+      "id": 86,
+      "start": "00:03:30.800",
+      "end": "00:03:32.400",
+      "text": "So it's a really cool feature."
+    },
+    {
+      "id": 87,
+      "start": "00:03:32.400",
+      "end": "00:03:35.760",
+      "text": "Now, these models from any provider,"
+    },
+    {
+      "id": 88,
+      "start": "00:03:35.760",
+      "end": "00:03:37.760",
+      "text": "like what's in the box, like here,"
+    },
+    {
+      "id": 89,
+      "start": "00:03:37.760",
+      "end": "00:03:39.680",
+      "text": "because like I out of the box today,"
+    },
+    {
+      "id": 90,
+      "start": "00:03:39.680",
+      "end": "00:03:44.000",
+      "text": "I go in, I select my models, I got GPT-5, I got clawed,"
+    },
+    {
+      "id": 91,
+      "start": "00:03:44.000",
+      "end": "00:03:45.840",
+      "text": "I got Gemini in there."
+    },
+    {
+      "id": 92,
+      "start": "00:03:45.840",
+      "end": "00:03:50.000",
+      "text": "Like, is it also sort of like that today,"
+    },
+    {
+      "id": 93,
+      "start": "00:03:50.000",
+      "end": "00:03:55.840",
+      "text": "where there is just additional models or like the users can figure it,"
+    },
+    {
+      "id": 94,
+      "start": "00:03:55.840",
+      "end": "00:03:57.920",
+      "text": "or like what's that setup process look like?"
+    },
+    {
+      "id": 95,
+      "start": "00:03:57.920",
+      "end": "00:04:01.520",
+      "text": "Yeah, yeah. So I mean, the bring your own key arc started with"
+    },
+    {
+      "id": 96,
+      "start": "00:04:01.520",
+      "end": "00:04:04.160",
+      "text": "it was all done in the chat extension."
+    },
+    {
+      "id": 97,
+      "start": "00:04:04.160",
+      "end": "00:04:07.200",
+      "text": "But what we found is because there's so many different model providers."
+    },
+    {
+      "id": 98,
+      "start": "00:04:07.200",
+      "end": "00:04:10.000",
+      "text": "I mean, you've been drop it, Google,"
+    },
+    {
+      "id": 99,
+      "start": "00:04:10.000",
+      "end": "00:04:12.480",
+      "text": "opening eye, you know, deep sea,"
+    },
+    {
+      "id": 100,
+      "start": "00:04:12.480",
+      "end": "00:04:15.040",
+      "text": "call these other ones that keep appearing."
+    },
+    {
+      "id": 101,
+      "start": "00:04:15.040",
+      "end": "00:04:17.280",
+      "text": "It's just unsustainable for us to maintain the model."
+    },
+    {
+      "id": 102,
+      "start": "00:04:17.280",
+      "end": "00:04:20.320",
+      "text": "So we've put a few in out at the box at the moment,"
+    },
+    {
+      "id": 103,
+      "start": "00:04:20.320",
+      "end": "00:04:24.960",
+      "text": "that provide pretty much the most commonly used ones,"
+    },
+    {
+      "id": 104,
+      "start": "00:04:24.960",
+      "end": "00:04:26.720",
+      "text": "based on popularity."
+    },
+    {
+      "id": 105,
+      "start": "00:04:26.720",
+      "end": "00:04:29.840",
+      "text": "And then the idea is that other extensions can go and implement theirs as well,"
+    },
+    {
+      "id": 106,
+      "start": "00:04:29.840",
+      "end": "00:04:32.640",
+      "text": "and contribute to the growing ecosystem."
+    },
+    {
+      "id": 107,
+      "start": "00:04:32.640",
+      "end": "00:04:35.920",
+      "text": "So pretty much any opening eye compatible model will be support,"
+    },
+    {
+      "id": 108,
+      "start": "00:04:35.920",
+      "end": "00:04:41.040",
+      "text": "and that happens to be kind of the spec that a lot of model providers have decided on."
+    },
+    {
+      "id": 109,
+      "start": "00:04:41.040",
+      "end": "00:04:43.280",
+      "text": "Now, are these models, like,"
+    },
+    {
+      "id": 110,
+      "start": "00:04:43.360",
+      "end": "00:04:45.200",
+      "text": "someone want to use this because they're on the cutting edge,"
+    },
+    {
+      "id": 111,
+      "start": "00:04:45.200",
+      "end": "00:04:48.080",
+      "text": "but also like, are they all cloud models?"
+    },
+    {
+      "id": 112,
+      "start": "00:04:48.080",
+      "end": "00:04:49.840",
+      "text": "Like, like, where do these things run?"
+    },
+    {
+      "id": 113,
+      "start": "00:04:49.840",
+      "end": "00:04:51.840",
+      "text": "Like, who's paying for them as well?"
+    },
+    {
+      "id": 114,
+      "start": "00:04:51.840",
+      "end": "00:04:56.880",
+      "text": "Like, or if I have four, I have five, I've 18 machines in front of me,"
+    },
+    {
+      "id": 115,
+      "start": "00:04:56.880",
+      "end": "00:04:59.680",
+      "text": "and 76 Nintendo Switches."
+    },
+    {
+      "id": 116,
+      "start": "00:04:59.680",
+      "end": "00:05:02.000",
+      "text": "Can I just like run a model on my Nintendo Switch,"
+    },
+    {
+      "id": 117,
+      "start": "00:05:02.000",
+      "end": "00:05:03.360",
+      "text": "and then like plug that in?"
+    },
+    {
+      "id": 118,
+      "start": "00:05:03.360",
+      "end": "00:05:03.840",
+      "text": "Yes."
+    },
+    {
+      "id": 119,
+      "start": "00:05:03.840",
+      "end": "00:05:09.120",
+      "text": "Yeah, there's two conflicting kind of opinions on what you bring your own key is good for."
+    },
+    {
+      "id": 120,
+      "start": "00:05:09.120",
+      "end": "00:05:12.640",
+      "text": "The first is model access, and the second is privacy."
+    },
+    {
+      "id": 121,
+      "start": "00:05:12.720",
+      "end": "00:05:15.200",
+      "text": "And so there's an idea, especially in, you know,"
+    },
+    {
+      "id": 122,
+      "start": "00:05:15.200",
+      "end": "00:05:18.800",
+      "text": "some of these more regulated spaces, like health care, et cetera,"
+    },
+    {
+      "id": 123,
+      "start": "00:05:18.800",
+      "end": "00:05:21.280",
+      "text": "that maybe a local LLM is what you want."
+    },
+    {
+      "id": 124,
+      "start": "00:05:21.280",
+      "end": "00:05:26.880",
+      "text": "And so being open and compatible, we support LM Studio,"
+    },
+    {
+      "id": 125,
+      "start": "00:05:26.880",
+      "end": "00:05:31.920",
+      "text": "you know, like LM, Alama, and all these common local LM providers,"
+    },
+    {
+      "id": 126,
+      "start": "00:05:31.920",
+      "end": "00:05:35.360",
+      "text": "and I've been able to run, you know, the latest GFT or SES models"
+    },
+    {
+      "id": 127,
+      "start": "00:05:35.360",
+      "end": "00:05:38.160",
+      "text": "that came out of opening eye recently, a straight online hackbook,"
+    },
+    {
+      "id": 128,
+      "start": "00:05:38.160",
+      "end": "00:05:42.080",
+      "text": "and actually pretty decent, and do a good job."
+    },
+    {
+      "id": 129,
+      "start": "00:05:42.080",
+      "end": "00:05:45.360",
+      "text": "I would say that, you know, the local models don't quite compete with the fact"
+    },
+    {
+      "id": 130,
+      "start": "00:05:45.360",
+      "end": "00:05:49.840",
+      "text": "that these cloud models are using such massive amounts of GPU compute,"
+    },
+    {
+      "id": 131,
+      "start": "00:05:49.840",
+      "end": "00:05:54.480",
+      "text": "but it does have the benefit of being privacy first and fully on their machine."
+    },
+    {
+      "id": 132,
+      "start": "00:05:54.480",
+      "end": "00:05:56.320",
+      "text": "That makes sense. Maybe I can run on my Series X,"
+    },
+    {
+      "id": 133,
+      "start": "00:05:56.320",
+      "end": "00:05:58.080",
+      "text": "and I get a little bit more news in the power there."
+    },
+    {
+      "id": 134,
+      "start": "00:05:58.080",
+      "end": "00:06:00.880",
+      "text": "Now, the one other question I had, too, is,"
+    },
+    {
+      "id": 135,
+      "start": "00:06:00.880",
+      "end": "00:06:04.960",
+      "text": "so I go into VS code, and then how you see this is,"
+    },
+    {
+      "id": 136,
+      "start": "00:06:04.960",
+      "end": "00:06:07.520",
+      "text": "you select a model, and there's managed models."
+    },
+    {
+      "id": 137,
+      "start": "00:06:07.520",
+      "end": "00:06:09.760",
+      "text": "Now, I actually love a feature that people don't know about,"
+    },
+    {
+      "id": 138,
+      "start": "00:06:09.760",
+      "end": "00:06:12.560",
+      "text": "as it doesn't do with bring your own key, but it's in the bring your own key selector,"
+    },
+    {
+      "id": 139,
+      "start": "00:06:12.560",
+      "end": "00:06:16.160",
+      "text": "which is managing the models that show up in the model selector with copilot."
+    },
+    {
+      "id": 140,
+      "start": "00:06:16.160",
+      "end": "00:06:17.600",
+      "text": "You can manage and pick those."
+    },
+    {
+      "id": 141,
+      "start": "00:06:17.600",
+      "end": "00:06:20.560",
+      "text": "But when you're inside of there, yeah, you get this drop down today,"
+    },
+    {
+      "id": 142,
+      "start": "00:06:21.440",
+      "end": "00:06:25.680",
+      "text": "which is Azure and Thropic, XA, Alama, OpenAI, Google,"
+    },
+    {
+      "id": 143,
+      "start": "00:06:25.680",
+      "end": "00:06:29.760",
+      "text": "Grock with Q, OpenRouter, OpenAI compatible, and you can configure."
+    },
+    {
+      "id": 144,
+      "start": "00:06:29.760",
+      "end": "00:06:33.040",
+      "text": "So if I select Azure, I'm going to type in, like, my endpoint,"
+    },
+    {
+      "id": 145,
+      "start": "00:06:33.040",
+      "end": "00:06:35.040",
+      "text": "and my API key, basically, into that."
+    },
+    {
+      "id": 146,
+      "start": "00:06:35.040",
+      "end": "00:06:37.920",
+      "text": "So for example, if I wanted to use GPT-5 Nano,"
+    },
+    {
+      "id": 147,
+      "start": "00:06:38.000",
+      "end": "00:06:41.280",
+      "text": "some of the big fan of, I could just spin up,"
+    },
+    {
+      "id": 148,
+      "start": "00:06:41.280",
+      "end": "00:06:44.480",
+      "text": "I'm thinking of practical insins, like I have my model."
+    },
+    {
+      "id": 149,
+      "start": "00:06:44.480",
+      "end": "00:06:49.200",
+      "text": "I have spin up Nano, grab the URL, grab my key boom,"
+    },
+    {
+      "id": 150,
+      "start": "00:06:49.200",
+      "end": "00:06:52.640",
+      "text": "and then now all my requests are going to be routed through my Azure OpenAI."
+    },
+    {
+      "id": 151,
+      "start": "00:06:52.640",
+      "end": "00:06:55.120",
+      "text": "I am pointed to articulate what you said correctly."
+    },
+    {
+      "id": 152,
+      "start": "00:06:55.120",
+      "end": "00:06:56.720",
+      "text": "Yes, yep, that's correct."
+    },
+    {
+      "id": 153,
+      "start": "00:06:58.160",
+      "end": "00:07:00.240",
+      "text": "And yeah, you can either do it through Azure,"
+    },
+    {
+      "id": 154,
+      "start": "00:07:00.240",
+      "end": "00:07:03.440",
+      "text": "or there's open analyst directly if you don't want to do the whole data"
+    },
+    {
+      "id": 155,
+      "start": "00:07:03.600",
+      "end": "00:07:05.440",
+      "text": "of setting up your own compute,"
+    },
+    {
+      "id": 156,
+      "start": "00:07:05.440",
+      "end": "00:07:08.240",
+      "text": "I think on your use cases, that makes a lot of sense."
+    },
+    {
+      "id": 157,
+      "start": "00:07:08.240",
+      "end": "00:07:14.480",
+      "text": "Now, on top of that, though, how do then the system prompts work"
+    },
+    {
+      "id": 158,
+      "start": "00:07:14.480",
+      "end": "00:07:16.400",
+      "text": "in this model, right?"
+    },
+    {
+      "id": 159,
+      "start": "00:07:16.400",
+      "end": "00:07:18.960",
+      "text": "Because the team fine tunes, and they're all open,"
+    },
+    {
+      "id": 160,
+      "start": "00:07:18.960",
+      "end": "00:07:20.480",
+      "text": "so as you can see, the system prompts,"
+    },
+    {
+      "id": 161,
+      "start": "00:07:20.480",
+      "end": "00:07:22.000",
+      "text": "are they using the same system prompts?"
+    },
+    {
+      "id": 162,
+      "start": "00:07:22.000",
+      "end": "00:07:26.960",
+      "text": "Like if I configure, you know, OpenAI or O-Lama,"
+    },
+    {
+      "id": 163,
+      "start": "00:07:26.960",
+      "end": "00:07:32.960",
+      "text": "or Anthropic with these keys in the bring your own key model,"
+    },
+    {
+      "id": 164,
+      "start": "00:07:32.960",
+      "end": "00:07:37.120",
+      "text": "is it one to one kind of, or is it going down different path based"
+    },
+    {
+      "id": 165,
+      "start": "00:07:37.120",
+      "end": "00:07:40.640",
+      "text": "on kind of the models that are there, or how's that work?"
+    },
+    {
+      "id": 166,
+      "start": "00:07:40.640",
+      "end": "00:07:43.200",
+      "text": "Yeah, yeah, I mean, we try our best to make it one to one."
+    },
+    {
+      "id": 167,
+      "start": "00:07:43.200",
+      "end": "00:07:46.160",
+      "text": "We want to bring your key to feel like a first, you know,"
+    },
+    {
+      "id": 168,
+      "start": "00:07:46.160",
+      "end": "00:07:50.160",
+      "text": "class experience, we're not looking to treat copilot favorably,"
+    },
+    {
+      "id": 169,
+      "start": "00:07:50.160",
+      "end": "00:07:50.960",
+      "text": "one way or the other."
+    },
+    {
+      "id": 170,
+      "start": "00:07:50.960",
+      "end": "00:07:53.680",
+      "text": "It's all about whatever makes the developer the most efficient"
+    },
+    {
+      "id": 171,
+      "start": "00:07:53.680",
+      "end": "00:07:57.360",
+      "text": "and enabling them to use AI in their day to day jobs."
+    },
+    {
+      "id": 172,
+      "start": "00:07:57.360",
+      "end": "00:08:00.000",
+      "text": "So, we do try to use a custom prompts, of course,"
+    },
+    {
+      "id": 173,
+      "start": "00:08:00.000",
+      "end": "00:08:03.440",
+      "text": "for something, you know, that just came out that we don't have,"
+    },
+    {
+      "id": 174,
+      "start": "00:08:03.440",
+      "end": "00:08:05.840",
+      "text": "like, you know, some of these new moonshot models, et cetera."
+    },
+    {
+      "id": 175,
+      "start": "00:08:05.840",
+      "end": "00:08:07.600",
+      "text": "Like, we will have custom prompts for them,"
+    },
+    {
+      "id": 176,
+      "start": "00:08:07.600",
+      "end": "00:08:10.560",
+      "text": "so they will fall back to some default prompt that we have,"
+    },
+    {
+      "id": 177,
+      "start": "00:08:10.560",
+      "end": "00:08:14.000",
+      "text": "kind of decided that works well for generic use cases."
+    },
+    {
+      "id": 178,
+      "start": "00:08:15.040",
+      "end": "00:08:16.400",
+      "text": "That makes a lot of sense, go."
+    },
+    {
+      "id": 179,
+      "start": "00:08:16.400",
+      "end": "00:08:18.880",
+      "text": "So, today the team has been adding them."
+    },
+    {
+      "id": 180,
+      "start": "00:08:18.880",
+      "end": "00:08:20.960",
+      "text": "So, like, I noticed that in the latest rev,"
+    },
+    {
+      "id": 181,
+      "start": "00:08:20.960",
+      "end": "00:08:25.040",
+      "text": "there's like OpenAI compatible models, like, obviously,"
+    },
+    {
+      "id": 182,
+      "start": "00:08:25.040",
+      "end": "00:08:27.520",
+      "text": "a few other ones were recently added in there."
+    },
+    {
+      "id": 183,
+      "start": "00:08:27.520",
+      "end": "00:08:29.920",
+      "text": "Every time I open that, it seems like there's a drop down there,"
+    },
+    {
+      "id": 184,
+      "start": "00:08:30.080",
+      "end": "00:08:32.480",
+      "text": "but you said that there's an API, I mean,"
+    },
+    {
+      "id": 185,
+      "start": "00:08:32.480",
+      "end": "00:08:35.120",
+      "text": "that actually VS code itself is like a series of APIs that developers"
+    },
+    {
+      "id": 186,
+      "start": "00:08:35.120",
+      "end": "00:08:38.720",
+      "text": "have been to for extensions, and I think not a lot of people need that,"
+    },
+    {
+      "id": 187,
+      "start": "00:08:38.720",
+      "end": "00:08:40.720",
+      "text": "know that maybe of how the thing works."
+    },
+    {
+      "id": 188,
+      "start": "00:08:40.720",
+      "end": "00:08:43.200",
+      "text": "And we were talking about the iteration planning,"
+    },
+    {
+      "id": 189,
+      "start": "00:08:43.200",
+      "end": "00:08:45.680",
+      "text": "recently, on a podcast, and Pierce was talking about things,"
+    },
+    {
+      "id": 190,
+      "start": "00:08:45.680",
+      "end": "00:08:49.520",
+      "text": "and we were talking about, oh, there's all these APIs that are being built in."
+    },
+    {
+      "id": 191,
+      "start": "00:08:49.520",
+      "end": "00:08:52.720",
+      "text": "So, you all on the team have to add one."
+    },
+    {
+      "id": 192,
+      "start": "00:08:52.720",
+      "end": "00:08:56.160",
+      "text": "So, if Moonchart comes out or whatever, you have to manually add one today."
+    },
+    {
+      "id": 193,
+      "start": "00:08:56.160",
+      "end": "00:08:58.160",
+      "text": "And for my understanding, that is changing."
+    },
+    {
+      "id": 194,
+      "start": "00:08:59.120",
+      "end": "00:09:01.280",
+      "text": "Yeah, so, bring your own key."
+    },
+    {
+      "id": 195,
+      "start": "00:09:01.280",
+      "end": "00:09:02.880",
+      "text": "First, started not with an API."
+    },
+    {
+      "id": 196,
+      "start": "00:09:02.880",
+      "end": "00:09:06.400",
+      "text": "It started as just a custom experience built into the copilot chat extension."
+    },
+    {
+      "id": 197,
+      "start": "00:09:06.400",
+      "end": "00:09:08.400",
+      "text": "The downside is exactly what you're saying."
+    },
+    {
+      "id": 198,
+      "start": "00:09:08.400",
+      "end": "00:09:12.800",
+      "text": "It started to get out from under us with the space of the AI space,"
+    },
+    {
+      "id": 199,
+      "start": "00:09:12.800",
+      "end": "00:09:14.880",
+      "text": "it's just moving so incredibly fast,"
+    },
+    {
+      "id": 200,
+      "start": "00:09:14.880",
+      "end": "00:09:18.560",
+      "text": "that it's kind of impossible for, you know, one engineer to keep up with all that."
+    },
+    {
+      "id": 201,
+      "start": "00:09:18.560",
+      "end": "00:09:20.560",
+      "text": "So, what we decided to do is kind of pivot,"
+    },
+    {
+      "id": 202,
+      "start": "00:09:20.560",
+      "end": "00:09:26.320",
+      "text": "and we've now developed a full, accessible surface for people to contribute to this."
+    },
+    {
+      "id": 203,
+      "start": "00:09:26.320",
+      "end": "00:09:30.240",
+      "text": "And now we've started reaching out to some of the more popular, you know, LLM providers,"
+    },
+    {
+      "id": 204,
+      "start": "00:09:30.240",
+      "end": "00:09:34.240",
+      "text": "and we're going to start working on helping them get extensions into the marketplace."
+    },
+    {
+      "id": 205,
+      "start": "00:09:34.240",
+      "end": "00:09:37.360",
+      "text": "So, then, when you download VS code and download copilot chat,"
+    },
+    {
+      "id": 206,
+      "start": "00:09:37.360",
+      "end": "00:09:42.080",
+      "text": "if you wanted to say get a different provider's models, you'd go to the marketplace and install"
+    },
+    {
+      "id": 207,
+      "start": "00:09:42.080",
+      "end": "00:09:45.120",
+      "text": "their extension as well, and then they would just automatically print a list,"
+    },
+    {
+      "id": 208,
+      "start": "00:09:45.120",
+      "end": "00:09:48.320",
+      "text": "and be treated properly like that as well."
+    },
+    {
+      "id": 209,
+      "start": "00:09:48.320",
+      "end": "00:09:50.480",
+      "text": "The benefit to this as well."
+    },
+    {
+      "id": 210,
+      "start": "00:09:50.480",
+      "end": "00:09:53.600",
+      "text": "The benefit to this is that some providers are not open-animal."
+    },
+    {
+      "id": 211,
+      "start": "00:09:54.240",
+      "end": "00:09:59.760",
+      "text": "Uh, for example, in PropEx, a good one, it uses their custom API surface,"
+    },
+    {
+      "id": 212,
+      "start": "00:09:59.760",
+      "end": "00:10:03.520",
+      "text": "and therefore maintaining, you know, six different API shapes,"
+    },
+    {
+      "id": 213,
+      "start": "00:10:03.520",
+      "end": "00:10:05.200",
+      "text": "et cetera, is really difficult."
+    },
+    {
+      "id": 214,
+      "start": "00:10:05.200",
+      "end": "00:10:07.920",
+      "text": "So, we end up collapsing to a common open-an AI shape,"
+    },
+    {
+      "id": 215,
+      "start": "00:10:07.920",
+      "end": "00:10:12.560",
+      "text": "which loses some of the capabilities of these model providers like custom features."
+    },
+    {
+      "id": 216,
+      "start": "00:10:13.440",
+      "end": "00:10:18.240",
+      "text": "Yeah, so if I'm James, James AI, and I come along, and I'm like, you know, I have the best"
+    },
+    {
+      "id": 217,
+      "start": "00:10:18.240",
+      "end": "00:10:20.240",
+      "text": "new model in the entire world."
+    },
+    {
+      "id": 218,
+      "start": "00:10:20.320",
+      "end": "00:10:23.600",
+      "text": "I want people to use this, and it's not open-an AI compatible."
+    },
+    {
+      "id": 219,
+      "start": "00:10:23.600",
+      "end": "00:10:26.640",
+      "text": "It's my own custom James surface, right?"
+    },
+    {
+      "id": 220,
+      "start": "00:10:26.640",
+      "end": "00:10:31.280",
+      "text": "In some of that, what's the process look like now for me, James developer,"
+    },
+    {
+      "id": 221,
+      "start": "00:10:31.280",
+      "end": "00:10:34.880",
+      "text": "James LLC AI, that I want to come in and do this."
+    },
+    {
+      "id": 222,
+      "start": "00:10:34.880",
+      "end": "00:10:38.400",
+      "text": "You said that I've created an extension, there's APIs on top of it,"
+    },
+    {
+      "id": 223,
+      "start": "00:10:38.400",
+      "end": "00:10:42.080",
+      "text": "am I writing it in TypeScript, like what's the, what's the jam?"
+    },
+    {
+      "id": 224,
+      "start": "00:10:42.080",
+      "end": "00:10:46.560",
+      "text": "Yeah, step one is to offer your model for free, because that's the best way to get people to use it."
+    },
+    {
+      "id": 225,
+      "start": "00:10:46.560",
+      "end": "00:10:48.960",
+      "text": "Uh, so you know, you might lose a lot of money,"
+    },
+    {
+      "id": 226,
+      "start": "00:10:48.960",
+      "end": "00:10:52.080",
+      "text": "but it seems to make things very popular, people like free."
+    },
+    {
+      "id": 227,
+      "start": "00:10:52.080",
+      "end": "00:10:57.040",
+      "text": "Uh, but yeah, we have extension samples in our VS Code Extension sample repository."
+    },
+    {
+      "id": 228,
+      "start": "00:10:57.040",
+      "end": "00:11:02.320",
+      "text": "And we also have a, a doc that'll drop soon on our website for people to read about,"
+    },
+    {
+      "id": 229,
+      "start": "00:11:02.320",
+      "end": "00:11:05.440",
+      "text": "uh, how to implement these providers, but it's pretty simple."
+    },
+    {
+      "id": 230,
+      "start": "00:11:05.440",
+      "end": "00:11:09.840",
+      "text": "It's just, you have to provide a list of your models, and some metadata about them, like, you know,"
+    },
+    {
+      "id": 231,
+      "start": "00:11:09.840",
+      "end": "00:11:12.800",
+      "text": "how many tokens can it take in, how many tokens can take out,"
+    },
+    {
+      "id": 232,
+      "start": "00:11:12.800",
+      "end": "00:11:15.680",
+      "text": "but let's support processing images and tools."
+    },
+    {
+      "id": 233,
+      "start": "00:11:15.680",
+      "end": "00:11:18.080",
+      "text": "And that helps us show the models in the right context."
+    },
+    {
+      "id": 234,
+      "start": "00:11:18.080",
+      "end": "00:11:20.880",
+      "text": "For example, if you don't support tool calling, we can't show you in our agent mode,"
+    },
+    {
+      "id": 235,
+      "start": "00:11:20.880",
+      "end": "00:11:23.040",
+      "text": "because that is a tool driven flow."
+    },
+    {
+      "id": 236,
+      "start": "00:11:24.080",
+      "end": "00:11:26.640",
+      "text": "Uh, so then you just go and quickly implement the extension."
+    },
+    {
+      "id": 237,
+      "start": "00:11:26.640",
+      "end": "00:11:28.480",
+      "text": "A lot of them will be pretty similar."
+    },
+    {
+      "id": 238,
+      "start": "00:11:28.480",
+      "end": "00:11:33.360",
+      "text": "I would say, and then boom your, after the races, I was going to ask that because, yeah,"
+    },
+    {
+      "id": 239,
+      "start": "00:11:33.360",
+      "end": "00:11:38.320",
+      "text": "when I go in and I'd like, for example, if I can figure, you know, GPT 5 mini,"
+    },
+    {
+      "id": 240,
+      "start": "00:11:38.320",
+      "end": "00:11:41.760",
+      "text": "it's going to support some inputs and not other inputs, right?"
+    },
+    {
+      "id": 241,
+      "start": "00:11:41.760",
+      "end": "00:11:46.160",
+      "text": "Or like, James, AI, LLM model, maybe not support images, or something like that."
+    },
+    {
+      "id": 242,
+      "start": "00:11:46.160",
+      "end": "00:11:47.600",
+      "text": "Like you said, tool calling."
+    },
+    {
+      "id": 243,
+      "start": "00:11:47.600",
+      "end": "00:11:53.440",
+      "text": "So from a user's perspective, I'm now, you, Logan, you, in some of my extension,"
+    },
+    {
+      "id": 244,
+      "start": "00:11:54.320",
+      "end": "00:11:56.400",
+      "text": "does that, what's that experience look like?"
+    },
+    {
+      "id": 245,
+      "start": "00:11:56.400",
+      "end": "00:11:59.280",
+      "text": "From a user's perspective, do I need to know a lot about the model?"
+    },
+    {
+      "id": 246,
+      "start": "00:11:59.280",
+      "end": "00:12:01.840",
+      "text": "Or like am I just slapping an API key and I'm good?"
+    },
+    {
+      "id": 247,
+      "start": "00:12:01.840",
+      "end": "00:12:04.080",
+      "text": "Or how is, how is the user experience go?"
+    },
+    {
+      "id": 248,
+      "start": "00:12:04.080",
+      "end": "00:12:06.080",
+      "text": "Yeah, it really depends on the extension."
+    },
+    {
+      "id": 249,
+      "start": "00:12:06.080",
+      "end": "00:12:09.200",
+      "text": "I mean, we try to leave things as customizable as possible."
+    },
+    {
+      "id": 250,
+      "start": "00:12:09.200",
+      "end": "00:12:14.560",
+      "text": "For, we have a provider built in right now called OpenAI compatible."
+    },
+    {
+      "id": 251,
+      "start": "00:12:14.640",
+      "end": "00:12:17.120",
+      "text": "And that one, you have to know everything about the model because we don't know anything."
+    },
+    {
+      "id": 252,
+      "start": "00:12:17.120",
+      "end": "00:12:19.760",
+      "text": "So we're going to ask you, you know, first token limits,"
+    },
+    {
+      "id": 253,
+      "start": "00:12:19.760",
+      "end": "00:12:21.520",
+      "text": "fourths, vision capabilities."
+    },
+    {
+      "id": 254,
+      "start": "00:12:21.520",
+      "end": "00:12:24.960",
+      "text": "But if I download James AI and theory, James should know everything about the model,"
+    },
+    {
+      "id": 255,
+      "start": "00:12:24.960",
+      "end": "00:12:28.880",
+      "text": "and I should just be throwing an API key and boom, my model has configured properly,"
+    },
+    {
+      "id": 256,
+      "start": "00:12:28.880",
+      "end": "00:12:31.760",
+      "text": "ready to talk to and very simple to use."
+    },
+    {
+      "id": 257,
+      "start": "00:12:33.040",
+      "end": "00:12:34.560",
+      "text": "I like that, that makes sense."
+    },
+    {
+      "id": 258,
+      "start": "00:12:34.560",
+      "end": "00:12:38.160",
+      "text": "Now, there are all of these existing ones in here."
+    },
+    {
+      "id": 259,
+      "start": "00:12:38.160",
+      "end": "00:12:42.160",
+      "text": "Are these existing ones using the new API, or like, where they're using an API that"
+    },
+    {
+      "id": 260,
+      "start": "00:12:42.160",
+      "end": "00:12:45.600",
+      "text": "I got exposed, like, because there's a bunch in there,"
+    },
+    {
+      "id": 261,
+      "start": "00:12:45.600",
+      "end": "00:12:49.120",
+      "text": "and you said it's impossible to maintain all of these and things like that."
+    },
+    {
+      "id": 262,
+      "start": "00:12:49.120",
+      "end": "00:12:53.120",
+      "text": "But like, are we using the our own APIs basically?"
+    },
+    {
+      "id": 263,
+      "start": "00:12:53.840",
+      "end": "00:12:58.160",
+      "text": "Yeah, I mean, as I'm sure speaking to every developer you'll see is we're all very"
+    },
+    {
+      "id": 264,
+      "start": "00:12:58.160",
+      "end": "00:12:59.200",
+      "text": "pro dog foodings."
+    },
+    {
+      "id": 265,
+      "start": "00:12:59.200",
+      "end": "00:13:01.040",
+      "text": "So we are dog fooding our own stuff here."
+    },
+    {
+      "id": 266,
+      "start": "00:13:01.040",
+      "end": "00:13:03.280",
+      "text": "So we're using the API testing it."
+    },
+    {
+      "id": 267,
+      "start": "00:13:03.280",
+      "end": "00:13:06.240",
+      "text": "We fixed many bugs and had some pain points."
+    },
+    {
+      "id": 268,
+      "start": "00:13:06.240",
+      "end": "00:13:10.480",
+      "text": "So hopefully it's easy for you now and everything goes to the same flow."
+    },
+    {
+      "id": 269,
+      "start": "00:13:10.480",
+      "end": "00:13:14.160",
+      "text": "And nothing is treated, especially every extension should get the same access"
+    },
+    {
+      "id": 270,
+      "start": "00:13:15.360",
+      "end": "00:13:19.120",
+      "text": "to be able to belong in the VS code AI ecosystem."
+    },
+    {
+      "id": 271,
+      "start": "00:13:19.120",
+      "end": "00:13:23.520",
+      "text": "When you're working with developers and speaking with different customers"
+    },
+    {
+      "id": 272,
+      "start": "00:13:23.520",
+      "end": "00:13:26.640",
+      "text": "and different use cases, you talk about a lot of different use cases for it."
+    },
+    {
+      "id": 273,
+      "start": "00:13:26.640",
+      "end": "00:13:33.440",
+      "text": "Like in the real world, how are we seeing usage and adoption of built-in models,"
+    },
+    {
+      "id": 274,
+      "start": "00:13:33.440",
+      "end": "00:13:36.560",
+      "text": "these custom models, these extensions, like, you know,"
+    },
+    {
+      "id": 275,
+      "start": "00:13:36.560",
+      "end": "00:13:42.000",
+      "text": "they're different use cases people are using them for, like, you know, you obviously are like,"
+    },
+    {
+      "id": 276,
+      "start": "00:13:42.000",
+      "end": "00:13:44.400",
+      "text": "in it, right? So you're hearing back from people that are using it."
+    },
+    {
+      "id": 277,
+      "start": "00:13:44.400",
+      "end": "00:13:46.560",
+      "text": "If you break something, they'll probably let you know, right?"
+    },
+    {
+      "id": 278,
+      "start": "00:13:46.560",
+      "end": "00:13:51.280",
+      "text": "Like, how is the feedback since this feature kind of rolled out a while ago,"
+    },
+    {
+      "id": 279,
+      "start": "00:13:51.280",
+      "end": "00:13:52.640",
+      "text": "kind of been for you and the team?"
+    },
+    {
+      "id": 280,
+      "start": "00:13:53.600",
+      "end": "00:13:58.240",
+      "text": "Yeah, it's been really great. I mean, we've, it's been a very passionate feature."
+    },
+    {
+      "id": 281,
+      "start": "00:13:58.240",
+      "end": "00:14:01.200",
+      "text": "I think it definitely invites the tinker at the moment."
+    },
+    {
+      "id": 282,
+      "start": "00:14:01.200",
+      "end": "00:14:02.800",
+      "text": "I think it's still a bit new."
+    },
+    {
+      "id": 283,
+      "start": "00:14:02.800",
+      "end": "00:14:05.920",
+      "text": "So enterprises have not really started picking it up as much yet,"
+    },
+    {
+      "id": 284,
+      "start": "00:14:06.080",
+      "end": "00:14:07.520",
+      "text": "but I have seen some playing around with it."
+    },
+    {
+      "id": 285,
+      "start": "00:14:07.520",
+      "end": "00:14:11.120",
+      "text": "And it's also taught me that these model providers are super finicky."
+    },
+    {
+      "id": 286,
+      "start": "00:14:11.120",
+      "end": "00:14:13.600",
+      "text": "And everyone treats the parameters just slightly different."
+    },
+    {
+      "id": 287,
+      "start": "00:14:13.600",
+      "end": "00:14:16.720",
+      "text": "And supporting all of them has been quite challenging."
+    },
+    {
+      "id": 288,
+      "start": "00:14:16.720",
+      "end": "00:14:20.880",
+      "text": "But I see people who super excited, you know, the second a new model drops,"
+    },
+    {
+      "id": 289,
+      "start": "00:14:20.880",
+      "end": "00:14:23.440",
+      "text": "you know, they're having it running in a cup of a chat and like, oh my gosh,"
+    },
+    {
+      "id": 290,
+      "start": "00:14:23.440",
+      "end": "00:14:26.800",
+      "text": "look at these, you know, 10 things as part of their, you know,"
+    },
+    {
+      "id": 291,
+      "start": "00:14:26.800",
+      "end": "00:14:30.640",
+      "text": "thread engagement farming they're doing. They'll show you all the fun different things"
+    },
+    {
+      "id": 292,
+      "start": "00:14:30.640",
+      "end": "00:14:31.680",
+      "text": "they're doing with the AM model."
+    },
+    {
+      "id": 293,
+      "start": "00:14:32.480",
+      "end": "00:14:33.440",
+      "text": "Wow, that's really cool."
+    },
+    {
+      "id": 294,
+      "start": "00:14:33.520",
+      "end": "00:14:36.320",
+      "text": "Anything else you want to talk about the new API or the new models or anything like that?"
+    },
+    {
+      "id": 295,
+      "start": "00:14:36.320",
+      "end": "00:14:37.280",
+      "text": "How do we kind of cover it all?"
+    },
+    {
+      "id": 296,
+      "start": "00:14:38.480",
+      "end": "00:14:41.200",
+      "text": "Yeah, I mean, I think that pretty much covers it all."
+    },
+    {
+      "id": 297,
+      "start": "00:14:41.200",
+      "end": "00:14:45.520",
+      "text": "I definitely would tell everyone to go out and try implementing their own"
+    },
+    {
+      "id": 298,
+      "start": "00:14:45.520",
+      "end": "00:14:49.440",
+      "text": "extension and see what's what it's like. It's really exciting."
+    },
+    {
+      "id": 299,
+      "start": "00:14:49.440",
+      "end": "00:14:51.200",
+      "text": "And if you have any feedback, of course,"
+    },
+    {
+      "id": 300,
+      "start": "00:14:51.200",
+      "end": "00:14:53.040",
+      "text": "I'll let us know and I'm happy to hear it."
+    },
+    {
+      "id": 301,
+      "start": "00:14:53.040",
+      "end": "00:14:55.680",
+      "text": "And if you have an existing extension that's doing something,"
+    },
+    {
+      "id": 302,
+      "start": "00:14:55.680",
+      "end": "00:14:58.000",
+      "text": "some other integration of the terminal or something like that,"
+    },
+    {
+      "id": 303,
+      "start": "00:14:58.000",
+      "end": "00:15:02.400",
+      "text": "is an AI extension. I'm imagining you want to create another extension."
+    },
+    {
+      "id": 304,
+      "start": "00:15:02.400",
+      "end": "00:15:04.080",
+      "text": "You could just build into your extension."
+    },
+    {
+      "id": 305,
+      "start": "00:15:04.640",
+      "end": "00:15:07.440",
+      "text": "The support for this, or would it be its own standalone extension?"
+    },
+    {
+      "id": 306,
+      "start": "00:15:07.440",
+      "end": "00:15:11.280",
+      "text": "Yeah, there's no reason that you have to build your own a completely new extension."
+    },
+    {
+      "id": 307,
+      "start": "00:15:11.280",
+      "end": "00:15:14.240",
+      "text": "So, for example, if the Azure extension, you know,"
+    },
+    {
+      "id": 308,
+      "start": "00:15:14.240",
+      "end": "00:15:18.080",
+      "text": "wanted to start contributing Azure language models, they could just add it so that you download"
+    },
+    {
+      "id": 309,
+      "start": "00:15:18.080",
+      "end": "00:15:22.640",
+      "text": "Azure and you get all Azure stuff. It's just yet another API surface you can talk to."
+    },
+    {
+      "id": 310,
+      "start": "00:15:22.640",
+      "end": "00:15:25.600",
+      "text": "Very cool. This is awesome. I'm really excited to see how it evolves."
+    },
+    {
+      "id": 311,
+      "start": "00:15:25.600",
+      "end": "00:15:29.920",
+      "text": "And to see that list fill up with fun and funky stuff."
+    },
+    {
+      "id": 312,
+      "start": "00:15:29.920",
+      "end": "00:15:32.880",
+      "text": "Because like you said, there's so many models."
+    },
+    {
+      "id": 313,
+      "start": "00:15:32.880",
+      "end": "00:15:35.760",
+      "text": "And when I talk to different developers and friends,"
+    },
+    {
+      "id": 314,
+      "start": "00:15:35.760",
+      "end": "00:15:37.040",
+      "text": "they're always like, oh, yeah, I try it out."
+    },
+    {
+      "id": 315,
+      "start": "00:15:37.040",
+      "end": "00:15:39.680",
+      "text": "This thing is really good for this specific thing."
+    },
+    {
+      "id": 316,
+      "start": "00:15:39.680",
+      "end": "00:15:43.600",
+      "text": "Right. I think that's the type of thing that intrigues me is like when I'm doing"
+    },
+    {
+      "id": 317,
+      "start": "00:15:43.600",
+      "end": "00:15:47.040",
+      "text": "different data processing, different things like this model is really good at this thing."
+    },
+    {
+      "id": 318,
+      "start": "00:15:47.040",
+      "end": "00:15:51.280",
+      "text": "And it's really fast at this specific thing besides like a more general model."
+    },
+    {
+      "id": 319,
+      "start": "00:15:51.280",
+      "end": "00:15:52.960",
+      "text": "So, yeah, this is awesome."
+    },
+    {
+      "id": 320,
+      "start": "00:15:53.040",
+      "end": "00:15:54.240",
+      "text": "Well, I'm excited to see it fill up."
+    },
+    {
+      "id": 321,
+      "start": "00:15:54.240",
+      "end": "00:15:58.400",
+      "text": "And we'll put in the show notes, links to all the issues in the development in real time."
+    },
+    {
+      "id": 322,
+      "start": "00:15:58.400",
+      "end": "00:16:00.080",
+      "text": "You can follow the team, build the thing in real time."
+    },
+    {
+      "id": 323,
+      "start": "00:16:00.080",
+      "end": "00:16:03.920",
+      "text": "I think that was the most fun. I think it's like getting on the call and updates and seeing"
+    },
+    {
+      "id": 324,
+      "start": "00:16:03.920",
+      "end": "00:16:06.000",
+      "text": "those checkbox updates as well that are there."
+    },
+    {
+      "id": 325,
+      "start": "00:16:06.000",
+      "end": "00:16:10.000",
+      "text": "So, well, look at things so much for coming on and talking through not only"
+    },
+    {
+      "id": 326,
+      "start": "00:16:10.000",
+      "end": "00:16:14.960",
+      "text": "what bring your own key models are, but like actually how it's evolved to be even more open."
+    },
+    {
+      "id": 327,
+      "start": "00:16:14.960",
+      "end": "00:16:17.200",
+      "text": "So, everyone can kind of grow this out."
+    },
+    {
+      "id": 328,
+      "start": "00:16:17.200",
+      "end": "00:16:20.320",
+      "text": "Yeah, it's very exciting. And as you say, as that list will fill up,"
+    },
+    {
+      "id": 329,
+      "start": "00:16:20.960",
+      "end": "00:16:25.440",
+      "text": "we will have something fun and store called Automode and hopes to make the selecting"
+    },
+    {
+      "id": 330,
+      "start": "00:16:25.440",
+      "end": "00:16:29.440",
+      "text": "of the models even easier because there's a benefit and a downside to model choice,"
+    },
+    {
+      "id": 331,
+      "start": "00:16:29.440",
+      "end": "00:16:31.680",
+      "text": "which is, you know, this idea of choice fatigue."
+    },
+    {
+      "id": 332,
+      "start": "00:16:31.680",
+      "end": "00:16:35.600",
+      "text": "So, if you don't like to choose a model, keep it eye out for that as well."
+    },
+    {
+      "id": 333,
+      "start": "00:16:35.600",
+      "end": "00:16:36.880",
+      "text": "That should be coming soon."
+    },
+    {
+      "id": 334,
+      "start": "00:16:36.880",
+      "end": "00:16:42.000",
+      "text": "Very cool. We'll deep dive on that in upcoming VS Code Insiders podcast Logan."
+    },
+    {
+      "id": 335,
+      "start": "00:16:42.000",
+      "end": "00:16:46.240",
+      "text": "Just did the perfect little cliffhanger that I really appreciate it."
+    },
+    {
+      "id": 336,
+      "start": "00:16:46.320",
+      "end": "00:16:48.400",
+      "text": "Logan, you have to set it out for me, perfect."
+    },
+    {
+      "id": 337,
+      "start": "00:16:48.400",
+      "end": "00:16:52.400",
+      "text": "So, make sure you subscribe on your favorite podcast applications, Spotify,"
+    },
+    {
+      "id": 338,
+      "start": "00:16:52.400",
+      "end": "00:16:56.240",
+      "text": "YouTube. If you want the video version of this, we'll put in little images and little"
+    },
+    {
+      "id": 339,
+      "start": "00:16:56.240",
+      "end": "00:16:59.760",
+      "text": "screenshots and little videos until like that in there, but we make these to be audio first."
+    },
+    {
+      "id": 340,
+      "start": "00:16:59.760",
+      "end": "00:17:01.520",
+      "text": "So, subscribe on your favorite podcast application."
+    },
+    {
+      "id": 341,
+      "start": "00:17:01.520",
+      "end": "00:17:05.120",
+      "text": "But let's go to this VS Code Insiders podcast until next time, James."
+    },
+    {
+      "id": 342,
+      "start": "00:17:05.120",
+      "end": "00:17:07.760",
+      "text": "Thanks for watching and listening and happy coding."
+    }
+  ]
+}

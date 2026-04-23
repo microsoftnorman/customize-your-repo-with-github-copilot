@@ -2,7 +2,7 @@
 
 [← Skills](primitive-4-skills.md) | [Part II Overview](part-2-primitives.md)
 
-*Updated: April 17, 2026. This guide serves as a primer for GitHub Copilot customization. File paths, configuration options, and feature availability may change as Copilot evolves. Always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
+*Updated: April 22, 2026. This guide serves as a primer for GitHub Copilot customization. File paths, configuration options, and feature availability may change as Copilot evolves. Always verify against the [official documentation](https://code.visualstudio.com/docs/copilot).*
 
 ---
 
@@ -19,13 +19,15 @@ Custom Agents provide specialized AI personas with constrained tool access and d
 
 **Official docs:** [Custom agents](https://code.visualstudio.com/docs/copilot/customization/custom-agents)
 
+**Code to study:** [VS Code Copilot Chat source](https://github.com/microsoft/vscode-copilot-chat) for the open-source agent host, [Awesome Copilot agents](https://github.com/github/awesome-copilot/tree/main/agents) for real agent files, and [GitHub Copilot CLI repository](https://github.com/github/copilot-cli) for a second public surface that consumes custom agents.
+
 **See it in action:** [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=585s) — Courtney Webster starts the custom-agent section by opening a built-in plan agent and explaining how specialized agents constrain behavior and context.
 
 **Location:** `.github/agents/*.md` (any `.md` file except `README.md`) or `**/*.agent.md` anywhere in the workspace. Configure additional search paths with the `chat.agentFilesLocations` setting to share agents across projects or keep them in a central location.
 
 ### Creating This Primitive
 
-Sound off before you steer — let Copilot draft the agent. Custom agent files have a broad frontmatter surface (`tools`, `model`, `handoffs`, `user-invocable`, `disable-model-invocation`, `target`, `mcp-servers`) and small mistakes, like an unknown tool name or the wrong `target`, cause the agent to fail to register. Use the built-in authoring paths and read the draft before committing. See [Don't Hand-Type Primitives — Let the Helmsman Repeat the Order](part-2-primitives.md#dont-hand-type-primitives--let-the-helmsman-repeat-the-order) for the rationale.
+Start with the built-in authoring paths and review the generated draft before committing. Custom agent files have a broad frontmatter surface (`tools`, `model`, `handoffs`, `user-invocable`, `disable-model-invocation`, `target`, `mcp-servers`) and small mistakes, like an unknown tool name or the wrong `target`, cause the agent to fail to register. See [Don't Hand-Type Primitives — Let the Helmsman Repeat the Order](part-2-primitives.md#dont-hand-type-primitives--let-the-helmsman-repeat-the-order) for the rationale.
 
 ### Authoring Paths in VS Code
 
@@ -243,9 +245,13 @@ You are a meticulous code reviewer focused on code quality and team standards.
 
 [Sub-agents](https://code.visualstudio.com/docs/copilot/agents/subagents) run tasks in a **dedicated, isolated context window** separate from the main chat session. The main agent delegates work to a sub-agent, which executes autonomously and returns only its final result, keeping the primary context clean and focused.
 
-By default, sub-agents inherit the model and tools from the main chat session but start with a clean context window. They don't inherit instructions or conversation history from the parent agent. Running a custom agent as a sub-agent applies specialized behavior, tools, and models to a specific sub-task.
+For the broader mental model, see [The Agent Loop](agent-loop.md). Sub-agents make more sense once they are understood as delegated loops with isolated context, not just as extra prompts.
 
-**See it in action:** [Customize Your Agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=679s) — Courtney Webster explains sub-agent context isolation and then demos three sub-agents (game maker, accessibility expert, universal janitor) running in parallel from a single orchestrator prompt.
+By default, sub-agents inherit the model and tools from the main chat session but start with a clean context window. They do not inherit the parent's accumulated working context. Instead, they receive the delegated task, gather their own evidence, and return a summarized result. Running a custom agent as a sub-agent applies that agent's specialized instructions, tools, and model preferences to the delegated sub-task.
+
+Harald Kirschner makes this especially clear in [VS Code Insiders Podcast Episode 19: Subagents: Parallel Execution and Context Isolation](https://www.vscodepodcast.com/19): the sub-agent is its own agent loop, spun up for one focused job, then discarded after it reports back. The repo keeps a local copy of that discussion in the [episode transcript](../references/transcripts/vscode-podcast/2026-02-09-subagents-parallel-execution-and-context-isolation-updated.md).
+
+**See it in action:** [Subagents: Parallel Execution and Context Isolation](https://www.youtube.com/watch?v=GMAoTeD9siU&t=0s) — Harald Kirschner explains why sub-agents help with context isolation and parallel execution. [Customize Your Agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=679s) then shows the concrete workflow: three sub-agents running in parallel from a single orchestrator prompt.
 
 **Why Sub-Agents Matter:**
 
@@ -256,6 +262,8 @@ By default, sub-agents inherit the model and tools from the main chat session bu
 | **Isolate experimental work** | Sub-agents are ideal for exploration. If a sub-agent's research leads to a dead end, only the final summary affects the main context, not all the intermediate steps. |
 | **Specialized behavior** | Combine sub-agents with custom agents to apply different tools, instructions, and models per sub-task. A security agent reviews for vulnerabilities while a docs agent generates user guides. |
 | **Reduce token usage** | Sub-agents have their own context windows and don't add full conversation history to the main agent. Only the final result returns, significantly reducing token consumption for complex tasks. |
+
+The official podcast discussion adds one practical nuance that is easy to miss in product docs: a sub-agent often spends many turns exploring dead ends, checking alternate file paths, and testing hypotheses that the parent agent should never have to carry. That is the real win. Context isolation is not only about performance. It is about keeping the coordinator's reasoning surface clean.
 
 **The Pattern:**
 ```

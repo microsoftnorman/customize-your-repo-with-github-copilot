@@ -1,0 +1,1908 @@
+{
+  "source_file": "2025-09-15-life-of-a-vs-code-swe-intern-with-christy-nguyen.md",
+  "transcript_format": "local_stt_segments",
+  "segment_count": 269,
+  "metadata": {
+    "series": "VS Code Insiders Podcast",
+    "episode": 5,
+    "title": "Life of a VS Code SWE Intern with Christy Nguyen",
+    "url": "https://www.vscodepodcast.com/5",
+    "transcript_url": "",
+    "audio_url": "https://aphid.fireside.fm/d/1437767933/fc261209-0765-4b49-be13-c610671ae141/a2b72692-7b43-4c5f-816b-6108e4063c61.mp3",
+    "published": "2025-09-15",
+    "duration": "25:57",
+    "transcript_available": false,
+    "source_file": "2025-09-15-life-of-a-vs-code-swe-intern-with-christy-nguyen.md",
+    "source_path": "references\\transcripts\\vscode-podcast\\2025-09-15-life-of-a-vs-code-swe-intern-with-christy-nguyen.md",
+    "local_stt": true,
+    "local_stt_model": "tiny",
+    "local_stt_language": "en",
+    "local_stt_device": "cpu",
+    "local_stt_compute_type": "auto"
+  },
+  "segments": [
+    {
+      "speaker": null,
+      "text": "Welcome back everyone to the VS code insider's podcast or behind the scenes with the VS code team",
+      "start": "00:00:00.240",
+      "end": "00:00:06.120",
+      "id": 1
+    },
+    {
+      "speaker": null,
+      "text": "I'm your host James Montemagno and today. I have a super exclusive",
+      "start": "00:00:06.120",
+      "end": "00:00:10.960",
+      "id": 2
+    },
+    {
+      "speaker": null,
+      "text": "exclusive",
+      "start": "00:00:12.160",
+      "end": "00:00:14.160",
+      "id": 3
+    },
+    {
+      "speaker": null,
+      "text": "Interview with one of the most amazing people in the entire world in fact",
+      "start": "00:00:14.160",
+      "end": "00:00:18.000",
+      "id": 4
+    },
+    {
+      "speaker": null,
+      "text": "It is her last day an internship here at Microsoft on the VS code team Christie no in",
+      "start": "00:00:18.280",
+      "end": "00:00:24.320",
+      "id": 5
+    },
+    {
+      "speaker": null,
+      "text": "Thank you so much for coming on your very last day. I'm like sad",
+      "start": "00:00:24.320",
+      "end": "00:00:27.120",
+      "id": 6
+    },
+    {
+      "speaker": null,
+      "text": "That like you're like, it's my last day. This is happening, but I think exciting",
+      "start": "00:00:27.120",
+      "end": "00:00:31.880",
+      "id": 7
+    },
+    {
+      "speaker": null,
+      "text": "No, yeah, you caught me on a good day",
+      "start": "00:00:32.400",
+      "end": "00:00:34.400",
+      "id": 8
+    },
+    {
+      "speaker": null,
+      "text": "But hi James, thanks so much for having me. I'm Christie. I'm",
+      "start": "00:00:35.040",
+      "end": "00:00:39.080",
+      "id": 9
+    },
+    {
+      "speaker": null,
+      "text": "Rising junior at the University of Washington and I'm VS code sweet and turn in the summer",
+      "start": "00:00:40.080",
+      "end": "00:00:45.040",
+      "id": 10
+    },
+    {
+      "speaker": null,
+      "text": "That is awesome. I'm super excited the team",
+      "start": "00:00:45.480",
+      "end": "00:00:48.600",
+      "id": 11
+    },
+    {
+      "speaker": null,
+      "text": "Love's you and I was like like, you know",
+      "start": "00:00:49.320",
+      "end": "00:00:51.760",
+      "id": 12
+    },
+    {
+      "speaker": null,
+      "text": "I was just like I was on the call on Tuesday and just like the gushing amount",
+      "start": "00:00:51.760",
+      "end": "00:00:56.760",
+      "id": 13
+    },
+    {
+      "speaker": null,
+      "text": "I'm just like how amazing Christie is this is so cool. I'm super interested in your background even before going on to",
+      "start": "00:00:56.760",
+      "end": "00:01:03.840",
+      "id": 14
+    },
+    {
+      "speaker": null,
+      "text": "The internship and we'll talk about that. I'm super excited because I did an internship",
+      "start": "00:01:05.280",
+      "end": "00:01:09.120",
+      "id": 15
+    },
+    {
+      "speaker": null,
+      "text": "You know, I'm old so like I like way long ago and it was one of the coolest things I ever did like my my college required me to do it",
+      "start": "00:01:09.720",
+      "end": "00:01:17.720",
+      "id": 16
+    },
+    {
+      "speaker": null,
+      "text": "But yeah, what got you into the space like what are you doing at the at the University of Washington?",
+      "start": "00:01:17.920",
+      "end": "00:01:23.880",
+      "id": 17
+    },
+    {
+      "speaker": null,
+      "text": "Like you know, how did you get into the tech? I'm interested everything, Christie. Awesome. Yes, so I first started coding in my junior year of high school",
+      "start": "00:01:23.880",
+      "end": "00:01:34.080",
+      "id": 18
+    },
+    {
+      "speaker": null,
+      "text": "I basically was just trying to stack as many classes as I could just for college purposes and I randomly just chose AP computer science",
+      "start": "00:01:34.080",
+      "end": "00:01:44.120",
+      "id": 19
+    },
+    {
+      "speaker": null,
+      "text": "A I believe and I just thought it was super cool that I could even print hello world",
+      "start": "00:01:44.400",
+      "end": "00:01:50.360",
+      "id": 20
+    },
+    {
+      "speaker": null,
+      "text": "So because obviously from an outsider for fact, if you have no idea what's happening",
+      "start": "00:01:50.360",
+      "end": "00:01:55.920",
+      "id": 21
+    },
+    {
+      "speaker": null,
+      "text": "So I thought that was really cool. We got to make games. We got to program stuff. Like",
+      "start": "00:01:56.080",
+      "end": "00:02:03.080",
+      "id": 22
+    },
+    {
+      "speaker": null,
+      "text": "I don't know printing random numbers even. I thought that was pretty cool to me",
+      "start": "00:02:03.800",
+      "end": "00:02:07.400",
+      "id": 23
+    },
+    {
+      "speaker": null,
+      "text": "So that's where my journey started and then I went on to go to computing for all just to get my hands on more like website work",
+      "start": "00:02:08.360",
+      "end": "00:02:18.720",
+      "id": 24
+    },
+    {
+      "speaker": null,
+      "text": "Because I know computing for all this a program that trains students like me to",
+      "start": "00:02:18.720",
+      "end": "00:02:24.640",
+      "id": 25
+    },
+    {
+      "speaker": null,
+      "text": "Get more into dev work",
+      "start": "00:02:25.680",
+      "end": "00:02:27.680",
+      "id": 26
+    },
+    {
+      "speaker": null,
+      "text": "So after that that's a Microsoft sponsored organization. Okay. I was gonna ask a little bit more",
+      "start": "00:02:28.080",
+      "end": "00:02:34.000",
+      "id": 27
+    },
+    {
+      "speaker": null,
+      "text": "That's the first time I've heard of it actually, which is funding seven year for ten years",
+      "start": "00:02:34.000",
+      "end": "00:02:36.800",
+      "id": 28
+    },
+    {
+      "speaker": null,
+      "text": "You think I would know everything, but we're a huge company. It's like what was it?",
+      "start": "00:02:36.960",
+      "end": "00:02:40.320",
+      "id": 29
+    },
+    {
+      "speaker": null,
+      "text": "What did you do during that? Yeah, so computing for all it's a virtual",
+      "start": "00:02:40.320",
+      "end": "00:02:44.640",
+      "id": 30
+    },
+    {
+      "speaker": null,
+      "text": "Programs and basically they just give you a project",
+      "start": "00:02:44.960",
+      "end": "00:02:48.400",
+      "id": 31
+    },
+    {
+      "speaker": null,
+      "text": "You can work on whatever you want and you present it to your peers and that's a Microsoft sponsored organization",
+      "start": "00:02:48.480",
+      "end": "00:02:55.360",
+      "id": 32
+    },
+    {
+      "speaker": null,
+      "text": "So that's how I was eligible to apply for the Microsoft Discovery internship. How cool?",
+      "start": "00:02:55.360",
+      "end": "00:03:01.360",
+      "id": 33
+    },
+    {
+      "speaker": null,
+      "text": "Which is for graduating high school seniors now? Is that the one where you pick",
+      "start": "00:03:02.080",
+      "end": "00:03:07.440",
+      "id": 34
+    },
+    {
+      "speaker": null,
+      "text": "Like PM or engineering role like what is so people pot? I mean, I think hopefully a lot of people listen isn't like the like wow",
+      "start": "00:03:08.320",
+      "end": "00:03:14.320",
+      "id": 35
+    },
+    {
+      "speaker": null,
+      "text": "Like I want to be an intern on the VS code team like what were the steps you did so is discovery program?",
+      "start": "00:03:14.320",
+      "end": "00:03:19.040",
+      "id": 36
+    },
+    {
+      "speaker": null,
+      "text": "Because I know the one that's like you pick and you get to choose is that the same one?",
+      "start": "00:03:19.040",
+      "end": "00:03:22.800",
+      "id": 37
+    },
+    {
+      "speaker": null,
+      "text": "No, so that's a different one. So it went discovery and then explore which is the pick PM or sweet and then",
+      "start": "00:03:23.360",
+      "end": "00:03:31.520",
+      "id": 38
+    },
+    {
+      "speaker": null,
+      "text": "It's the regular swear PM internship. So you know my journey started a couple years ago",
+      "start": "00:03:32.800",
+      "end": "00:03:40.000",
+      "id": 39
+    },
+    {
+      "speaker": null,
+      "text": "Very cool. So was this the discovery internship then?",
+      "start": "00:03:40.720",
+      "end": "00:03:43.440",
+      "id": 40
+    },
+    {
+      "speaker": null,
+      "text": "Which which one so you did the so you had the discovery the discovery internship? That's what was eligible for this one is that correct?",
+      "start": "00:03:45.280",
+      "end": "00:03:52.720",
+      "id": 41
+    },
+    {
+      "speaker": null,
+      "text": "So let me take a little step back. Okay. Yeah, so I did computing for all then that made me eligible for discovery got it then that gave me kind of",
+      "start": "00:03:54.160",
+      "end": "00:04:05.120",
+      "id": 42
+    },
+    {
+      "speaker": null,
+      "text": "Like a",
+      "start": "00:04:07.120",
+      "end": "00:04:09.120",
+      "id": 43
+    },
+    {
+      "speaker": null,
+      "text": "Which I guess to explore and then I returned from explore for the internship and to both of the VS code team",
+      "start": "00:04:09.120",
+      "end": "00:04:16.720",
+      "id": 44
+    },
+    {
+      "speaker": null,
+      "text": "I guess I just asked for it. I was like or they asked what I wanted and I was like",
+      "start": "00:04:16.720",
+      "end": "00:04:23.440",
+      "id": 45
+    },
+    {
+      "speaker": null,
+      "text": "I really want to work on something that I use so I asked for VS code or VS code EDU because I'm also really interested in ed tech",
+      "start": "00:04:23.440",
+      "end": "00:04:31.120",
+      "id": 46
+    },
+    {
+      "speaker": null,
+      "text": "And I guess they placed me here and I got really lucky. That's awesome. Okay, so that makes sense now",
+      "start": "00:04:31.680",
+      "end": "00:04:36.400",
+      "id": 47
+    },
+    {
+      "speaker": null,
+      "text": "I know the whole journey. That's like a pretty awesome journey like in each of those different steps where they're parts of like",
+      "start": "00:04:36.480",
+      "end": "00:04:42.080",
+      "id": 48
+    },
+    {
+      "speaker": null,
+      "text": "Discover you're just explorers like where you're at now like like what how it how did there's all differ like from from your experience going through the programs?",
+      "start": "00:04:42.480",
+      "end": "00:04:50.400",
+      "id": 49
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, so discovery is a lot less technical so I was I was on figma. I was making storyboards",
+      "start": "00:04:50.640",
+      "end": "00:04:59.600",
+      "id": 50
+    },
+    {
+      "speaker": null,
+      "text": "Thinking about the user experience and how to solve their pain points, but I wasn't actually coding anything",
+      "start": "00:05:00.160",
+      "end": "00:05:05.040",
+      "id": 51
+    },
+    {
+      "speaker": null,
+      "text": "Well, I think it was a really good look into what working at Microsoft looks like by just observing my mentors",
+      "start": "00:05:05.680",
+      "end": "00:05:12.240",
+      "id": 52
+    },
+    {
+      "speaker": null,
+      "text": "emails lots of emails lots of emails lots of meetings",
+      "start": "00:05:12.800",
+      "end": "00:05:15.840",
+      "id": 53
+    },
+    {
+      "speaker": null,
+      "text": "So that's that so I got to learn about that and then explore was kind of I don't want to say baby, but",
+      "start": "00:05:17.840",
+      "end": "00:05:25.280",
+      "id": 54
+    },
+    {
+      "speaker": null,
+      "text": "it was",
+      "start": "00:05:26.000",
+      "end": "00:05:28.000",
+      "id": 55
+    },
+    {
+      "speaker": null,
+      "text": "It was definitely for first and second years so I got to learn about the PM process",
+      "start": "00:05:28.080",
+      "end": "00:05:33.040",
+      "id": 56
+    },
+    {
+      "speaker": null,
+      "text": "Make some specs learn more about the user experience and what their pain points are and how to solve them",
+      "start": "00:05:33.600",
+      "end": "00:05:39.360",
+      "id": 57
+    },
+    {
+      "speaker": null,
+      "text": "Conducted some interviews to really learn about their experience and that was when I also got into dev work",
+      "start": "00:05:40.080",
+      "end": "00:05:47.600",
+      "id": 58
+    },
+    {
+      "speaker": null,
+      "text": "So I got to help code this like date picker, which is similar to if you choose",
+      "start": "00:05:47.600",
+      "end": "00:05:54.560",
+      "id": 59
+    },
+    {
+      "speaker": null,
+      "text": "Like just a calendar pop up and then you choose a date",
+      "start": "00:05:55.040",
+      "end": "00:05:58.320",
+      "id": 60
+    },
+    {
+      "speaker": null,
+      "text": "So that was really cool and then my sweet internship was",
+      "start": "00:05:58.960",
+      "end": "00:06:02.720",
+      "id": 61
+    },
+    {
+      "speaker": null,
+      "text": "Definitely really different from all those other ones. I really got to",
+      "start": "00:06:03.440",
+      "end": "00:06:07.840",
+      "id": 62
+    },
+    {
+      "speaker": null,
+      "text": "Code the entire time basically and I felt like I was pushing out work to users immediately",
+      "start": "00:06:08.640",
+      "end": "00:06:15.680",
+      "id": 63
+    },
+    {
+      "speaker": null,
+      "text": "So that was really cool. That's awesome. Yeah, I didn't get to intern until like I was almost done with college",
+      "start": "00:06:15.680",
+      "end": "00:06:21.200",
+      "id": 64
+    },
+    {
+      "speaker": null,
+      "text": "So like I like the progression because it feels like you",
+      "start": "00:06:21.200",
+      "end": "00:06:23.840",
+      "id": 65
+    },
+    {
+      "speaker": null,
+      "text": "I'm thinking about like my tenure here at Microsoft and like kind of",
+      "start": "00:06:24.560",
+      "end": "00:06:27.680",
+      "id": 66
+    },
+    {
+      "speaker": null,
+      "text": "Funnily enough like when I got thrown into Microsoft like you know I was doing dev advocacy and that already was",
+      "start": "00:06:27.680",
+      "end": "00:06:32.960",
+      "id": 67
+    },
+    {
+      "speaker": null,
+      "text": "It's often generic but I don't really know anything about PM work or like user research or customer interviews",
+      "start": "00:06:32.960",
+      "end": "00:06:38.480",
+      "id": 68
+    },
+    {
+      "speaker": null,
+      "text": "I never done any of that so I felt like everything that you just said like I also did that stuff like you know",
+      "start": "00:06:38.480",
+      "end": "00:06:43.920",
+      "id": 69
+    },
+    {
+      "speaker": null,
+      "text": "As someone that you know has been in career for a bit like",
+      "start": "00:06:43.920",
+      "end": "00:06:47.680",
+      "id": 70
+    },
+    {
+      "speaker": null,
+      "text": "That part well it doesn't seem super interesting. It's super important right like actually talking to",
+      "start": "00:06:48.320",
+      "end": "00:06:52.560",
+      "id": 71
+    },
+    {
+      "speaker": null,
+      "text": "Our developers and understand like the problem that's there, but Plina is fun to write in the code",
+      "start": "00:06:52.960",
+      "end": "00:06:57.360",
+      "id": 72
+    },
+    {
+      "speaker": null,
+      "text": "for sure and also just the PM world I feel like",
+      "start": "00:06:58.080",
+      "end": "00:07:02.800",
+      "id": 73
+    },
+    {
+      "speaker": null,
+      "text": "It's still kind of new even though it's been here for a while like the there's not a definite",
+      "start": "00:07:04.000",
+      "end": "00:07:09.200",
+      "id": 74
+    },
+    {
+      "speaker": null,
+      "text": "Idea what responsibilities they have it really differs for team. So I also think that was super",
+      "start": "00:07:11.120",
+      "end": "00:07:16.560",
+      "id": 75
+    },
+    {
+      "speaker": null,
+      "text": "Interesting to see the differences. I",
+      "start": "00:07:16.560",
+      "end": "00:07:18.560",
+      "id": 76
+    },
+    {
+      "speaker": null,
+      "text": "When I came in to Microsoft I have a PM title. I do 0 PM work like a normal PM wood because I did it for a while",
+      "start": "00:07:20.400",
+      "end": "00:07:29.440",
+      "id": 77
+    },
+    {
+      "speaker": null,
+      "text": "And I was like I do not like this. It's not what I'm good at. I said I love advocacy community",
+      "start": "00:07:30.000",
+      "end": "00:07:35.600",
+      "id": 78
+    },
+    {
+      "speaker": null,
+      "text": "Engagement and that it's a different type of PM work like you're saying it's like it's a wall. It's kind of different",
+      "start": "00:07:36.240",
+      "end": "00:07:40.560",
+      "id": 79
+    },
+    {
+      "speaker": null,
+      "text": "Partime even too",
+      "start": "00:07:40.640",
+      "end": "00:07:42.640",
+      "id": 80
+    },
+    {
+      "speaker": null,
+      "text": "And I said I got a code my I'm an engineer. I got a code. I got I got a slang code",
+      "start": "00:07:42.640",
+      "end": "00:07:48.800",
+      "id": 81
+    },
+    {
+      "speaker": null,
+      "text": "I got to do some stuff. I got to use the tools so it's awesome. So you came in for your sweet internship",
+      "start": "00:07:48.800",
+      "end": "00:07:53.520",
+      "id": 82
+    },
+    {
+      "speaker": null,
+      "text": "And you're just like I just want to use the the VS code team or the EDU team and there's like boom go",
+      "start": "00:07:53.520",
+      "end": "00:07:58.080",
+      "id": 83
+    },
+    {
+      "speaker": null,
+      "text": "I mean did you get to pick like what part of it? It was just like general like where that process looked like",
+      "start": "00:07:58.080",
+      "end": "00:08:03.440",
+      "id": 84
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, so it was definitely a boom go situation",
+      "start": "00:08:03.760",
+      "end": "00:08:07.520",
+      "id": 85
+    },
+    {
+      "speaker": null,
+      "text": "So I just went into it and then they're like here's what we need this is if you see on get hub",
+      "start": "00:08:08.400",
+      "end": "00:08:14.960",
+      "id": 86
+    },
+    {
+      "speaker": null,
+      "text": "There's um there's a feature where someone can file like a feature request and this specific feature request",
+      "start": "00:08:14.960",
+      "end": "00:08:21.520",
+      "id": 87
+    },
+    {
+      "speaker": null,
+      "text": "Was probably filed six years ago and it has like a hundred upboats and they're like we don't have the time for this",
+      "start": "00:08:21.760",
+      "end": "00:08:27.120",
+      "id": 88
+    },
+    {
+      "speaker": null,
+      "text": "You got this so that was my experience",
+      "start": "00:08:27.520",
+      "end": "00:08:30.480",
+      "id": 89
+    },
+    {
+      "speaker": null,
+      "text": "So yes, it was definitely very much like",
+      "start": "00:08:32.480",
+      "end": "00:08:35.440",
+      "id": 90
+    },
+    {
+      "speaker": null,
+      "text": "Drinking from a fire hose, but I learned a lot so",
+      "start": "00:08:36.080",
+      "end": "00:08:39.280",
+      "id": 91
+    },
+    {
+      "speaker": null,
+      "text": "worth it I guess that's awesome. So you get in day one. They're like here's the thing go",
+      "start": "00:08:40.080",
+      "end": "00:08:45.600",
+      "id": 92
+    },
+    {
+      "speaker": null,
+      "text": "Like do you know any of these team members? You know any of the process because like everything",
+      "start": "00:08:46.080",
+      "end": "00:08:49.440",
+      "id": 93
+    },
+    {
+      "speaker": null,
+      "text": "I'm like your on the VS code team which like is shipping",
+      "start": "00:08:49.440",
+      "end": "00:08:52.080",
+      "id": 94
+    },
+    {
+      "speaker": null,
+      "text": "I mean daily right I mean like every single day right you know I mean with within centers. Yeah",
+      "start": "00:08:52.640",
+      "end": "00:08:56.720",
+      "id": 95
+    },
+    {
+      "speaker": null,
+      "text": "I think I get to know the team just from asking for help like if if someone is with the need like three feet",
+      "start": "00:08:57.440",
+      "end": "00:09:04.960",
+      "id": 96
+    },
+    {
+      "speaker": null,
+      "text": "Then I'm gonna like",
+      "start": "00:09:05.040",
+      "end": "00:09:07.040",
+      "id": 97
+    },
+    {
+      "speaker": null,
+      "text": "Chase after them and ask them for help. So that was the way I got to know the team members and then",
+      "start": "00:09:07.360",
+      "end": "00:09:12.880",
+      "id": 98
+    },
+    {
+      "speaker": null,
+      "text": "For learning about the team's workflows. I think VS code does a really good job of having good documentation",
+      "start": "00:09:13.840",
+      "end": "00:09:19.680",
+      "id": 99
+    },
+    {
+      "speaker": null,
+      "text": "everything's super updated because",
+      "start": "00:09:20.560",
+      "end": "00:09:22.560",
+      "id": 100
+    },
+    {
+      "speaker": null,
+      "text": "Obviously the community can contribute. So I just followed that",
+      "start": "00:09:24.160",
+      "end": "00:09:27.520",
+      "id": 101
+    },
+    {
+      "speaker": null,
+      "text": "That's awesome. So what did you work on? What is this ticket? What is this magical six year old feature?",
+      "start": "00:09:28.560",
+      "end": "00:09:34.080",
+      "id": 102
+    },
+    {
+      "speaker": null,
+      "text": "That Christy crushed. Oh, yeah, so I worked on the get extensions",
+      "start": "00:09:34.720",
+      "end": "00:09:40.880",
+      "id": 103
+    },
+    {
+      "speaker": null,
+      "text": "Specifically implementing this long-saving feature request of adding support for get work trees",
+      "start": "00:09:41.520",
+      "end": "00:09:46.880",
+      "id": 104
+    },
+    {
+      "speaker": null,
+      "text": "So James have you ever wanted to",
+      "start": "00:09:47.600",
+      "end": "00:09:49.760",
+      "id": 105
+    },
+    {
+      "speaker": null,
+      "text": "Stash your changes or check out multiple branches at a time or",
+      "start": "00:09:50.480",
+      "end": "00:09:54.240",
+      "id": 106
+    },
+    {
+      "speaker": null,
+      "text": "You just didn't want to stash your changes. Well, you see one",
+      "start": "00:09:55.200",
+      "end": "00:09:59.360",
+      "id": 107
+    },
+    {
+      "speaker": null,
+      "text": "It's nearly impossible to know and understand how to stash and pop",
+      "start": "00:10:00.320",
+      "end": "00:10:04.800",
+      "id": 108
+    },
+    {
+      "speaker": null,
+      "text": "So I only let copilot do it for me by the way and copilot's sling and whatever",
+      "start": "00:10:05.600",
+      "end": "00:10:11.840",
+      "id": 109
+    },
+    {
+      "speaker": null,
+      "text": "You know, I actually crazy what's really fascinating when I saw this feature so when we were talking about what we were working on",
+      "start": "00:10:12.880",
+      "end": "00:10:18.960",
+      "id": 110
+    },
+    {
+      "speaker": null,
+      "text": "I didn't ever in my mind really think about using multiple branches because I would work on multiple branches",
+      "start": "00:10:20.880",
+      "end": "00:10:27.600",
+      "id": 111
+    },
+    {
+      "speaker": null,
+      "text": "Funnily enough like I would go to get have.com and I would like work on a branch",
+      "start": "00:10:28.080",
+      "end": "00:10:32.000",
+      "id": 112
+    },
+    {
+      "speaker": null,
+      "text": "Like maybe make a small little change to the reindeer do something because in my VS code and since here",
+      "start": "00:10:32.000",
+      "end": "00:10:36.720",
+      "id": 113
+    },
+    {
+      "speaker": null,
+      "text": "I would have a single branch that that's there. Unless I had another machine",
+      "start": "00:10:37.280",
+      "end": "00:10:40.240",
+      "id": 114
+    },
+    {
+      "speaker": null,
+      "text": "I couldn't really be on all the branches. Wow, but it actually hasn't been I'll be super honest with you until like this year",
+      "start": "00:10:40.240",
+      "end": "00:10:45.840",
+      "id": 115
+    },
+    {
+      "speaker": null,
+      "text": "And when I saw this feature that I was like, oh, that makes sense because I am working with",
+      "start": "00:10:46.480",
+      "end": "00:10:52.160",
+      "id": 116
+    },
+    {
+      "speaker": null,
+      "text": "Copilot and AI and a bunch of different things all at once",
+      "start": "00:10:52.800",
+      "end": "00:10:55.280",
+      "id": 117
+    },
+    {
+      "speaker": null,
+      "text": "Right and to be able to do that you don't want to do it all in the same brand really at the same time",
+      "start": "00:10:55.920",
+      "end": "00:11:00.880",
+      "id": 118
+    },
+    {
+      "speaker": null,
+      "text": "Or like or for example",
+      "start": "00:11:02.480",
+      "end": "00:11:06.320",
+      "id": 119
+    },
+    {
+      "speaker": null,
+      "text": "Like if I am",
+      "start": "00:11:07.440",
+      "end": "00:11:09.440",
+      "id": 120
+    },
+    {
+      "speaker": null,
+      "text": "Working and and not quite done on something. I'm actually like",
+      "start": "00:11:09.680",
+      "end": "00:11:12.320",
+      "id": 121
+    },
+    {
+      "speaker": null,
+      "text": "Committing that code and then I'm like switching to a branch. It's like a big overhead on it",
+      "start": "00:11:12.880",
+      "end": "00:11:17.360",
+      "id": 122
+    },
+    {
+      "speaker": null,
+      "text": "So I guess like how does this",
+      "start": "00:11:17.360",
+      "end": "00:11:18.640",
+      "id": 123
+    },
+    {
+      "speaker": null,
+      "text": "Feature work in",
+      "start": "00:11:19.440",
+      "end": "00:11:20.960",
+      "id": 124
+    },
+    {
+      "speaker": null,
+      "text": "Practicality right because you're not changing the brand like it kind of blows my mind to think about work on multiple branches like I can't even understand you're going to explain it too",
+      "start": "00:11:20.960",
+      "end": "00:11:28.560",
+      "id": 125
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, yeah, yeah, so that was actually one of the main motivation for implementing this feature request because of all the agent work that's being done so",
+      "start": "00:11:28.560",
+      "end": "00:11:38.080",
+      "id": 126
+    },
+    {
+      "speaker": null,
+      "text": "One workflow that I like to do is check out",
+      "start": "00:11:39.920",
+      "end": "00:11:42.640",
+      "id": 127
+    },
+    {
+      "speaker": null,
+      "text": "Or create multiple different work trees, which are on a different branch of the current branch that I'm on in my main repository",
+      "start": "00:11:43.600",
+      "end": "00:11:51.280",
+      "id": 128
+    },
+    {
+      "speaker": null,
+      "text": "And then I'll I might try out different models in each branch. So let's say like I try out solution one",
+      "start": "00:11:51.840",
+      "end": "00:11:57.680",
+      "id": 129
+    },
+    {
+      "speaker": null,
+      "text": "using GBT in one work tree and then send off",
+      "start": "00:11:58.160",
+      "end": "00:12:01.520",
+      "id": 130
+    },
+    {
+      "speaker": null,
+      "text": "So on it to do work in another work tree and then I can look at all those changes that were made",
+      "start": "00:12:03.040",
+      "end": "00:12:09.440",
+      "id": 131
+    },
+    {
+      "speaker": null,
+      "text": "And test out the solutions in those independent work trees and then once I'm happy with one then I'll tweak it a little bit",
+      "start": "00:12:09.840",
+      "end": "00:12:16.400",
+      "id": 132
+    },
+    {
+      "speaker": null,
+      "text": "And then pull those changes back into my",
+      "start": "00:12:16.640",
+      "end": "00:12:18.640",
+      "id": 133
+    },
+    {
+      "speaker": null,
+      "text": "Main like branch",
+      "start": "00:12:19.440",
+      "end": "00:12:21.440",
+      "id": 134
+    },
+    {
+      "speaker": null,
+      "text": "So that's one workflow that I really like to use and I think that they're going to use work trees as kind of the underlying infrastructure",
+      "start": "00:12:21.440",
+      "end": "00:12:29.360",
+      "id": 135
+    },
+    {
+      "speaker": null,
+      "text": "To do that parallel agent work, so that's super exciting as well. So how does this show up inside of vs",
+      "start": "00:12:29.920",
+      "end": "00:12:35.920",
+      "id": 136
+    },
+    {
+      "speaker": null,
+      "text": "What should we like look for if I open up vs code today? So I've been up inside we're doing this in real time. I just open up",
+      "start": "00:12:36.480",
+      "end": "00:12:44.480",
+      "id": 137
+    },
+    {
+      "speaker": null,
+      "text": "You know honestly I love like the get integration the pulling the the whole thing is the life. Okay, so I'm in here",
+      "start": "00:12:45.680",
+      "end": "00:12:52.720",
+      "id": 138
+    },
+    {
+      "speaker": null,
+      "text": "Where do I got to go? What do I got to see? Yes, okay, so do you have the SEM view showing up on your left?",
+      "start": "00:12:53.120",
+      "end": "00:13:00.880",
+      "id": 139
+    },
+    {
+      "speaker": null,
+      "text": "So to have the view of your repositories have the view the changes in your files. Yes, so yes, so that's the main area where you can view your work trees",
+      "start": "00:13:00.880",
+      "end": "00:13:10.480",
+      "id": 140
+    },
+    {
+      "speaker": null,
+      "text": "And a really easy way to access creating a work tree is just through the command palette called create work tree",
+      "start": "00:13:11.040",
+      "end": "00:13:16.560",
+      "id": 141
+    },
+    {
+      "speaker": null,
+      "text": "Um, and then from there you can choose which branch you want to check out in that work tree",
+      "start": "00:13:17.440",
+      "end": "00:13:22.720",
+      "id": 142
+    },
+    {
+      "speaker": null,
+      "text": "Doing it. Yeah, okay. And then yeah, yeah, yeah, and then you choose the path that the work tree lives in and that will be the folder that the branch will be",
+      "start": "00:13:23.120",
+      "end": "00:13:36.800",
+      "id": 143
+    },
+    {
+      "speaker": null,
+      "text": "Okay, so I'm on main today. I'm going to go in so everyone can try this and follow along at home",
+      "start": "00:13:38.320",
+      "end": "00:13:43.360",
+      "id": 144
+    },
+    {
+      "speaker": null,
+      "text": "I'm going to go and I'm going to say yeah work tree create work tree create a new branch",
+      "start": "00:13:43.840",
+      "end": "00:13:48.640",
+      "id": 145
+    },
+    {
+      "speaker": null,
+      "text": "I'm going to call it VS Code podcast them. Oh, oh, yeah, okay. So now you see",
+      "start": "00:13:48.640",
+      "end": "00:13:57.760",
+      "id": 146
+    },
+    {
+      "speaker": null,
+      "text": "Now you just created a work tree that is checking out",
+      "start": "00:13:59.520",
+      "end": "00:14:02.640",
+      "id": 147
+    },
+    {
+      "speaker": null,
+      "text": "The same commit that main has",
+      "start": "00:14:03.760",
+      "end": "00:14:05.760",
+      "id": 148
+    },
+    {
+      "speaker": null,
+      "text": "And it asks me for a folder location, which is now creating a new folder called feedback flow.worktrees slash",
+      "start": "00:14:07.680",
+      "end": "00:14:13.360",
+      "id": 149
+    },
+    {
+      "speaker": null,
+      "text": "And I call the VS Code podcast. Yeah. Yeah, so your work tree will now be called the VS Code dash podcast and it will live in the VS or your",
+      "start": "00:14:13.920",
+      "end": "00:14:23.760",
+      "id": 150
+    },
+    {
+      "speaker": null,
+      "text": "Parent folder that you have because a lot of people like to create a bunch of work trees and create them in a separate folder",
+      "start": "00:14:24.960",
+      "end": "00:14:31.040",
+      "id": 151
+    },
+    {
+      "speaker": null,
+      "text": "That's dedicated towards work trees. Wow. It's kind of like",
+      "start": "00:14:31.440",
+      "end": "00:14:34.960",
+      "id": 152
+    },
+    {
+      "speaker": null,
+      "text": "This is cool. Yeah, these are blue my mind right now. Like this is like I'm like trying to I'm trying to comprehend",
+      "start": "00:14:35.520",
+      "end": "00:14:42.000",
+      "id": 153
+    },
+    {
+      "speaker": null,
+      "text": "Christy like one. I'm trying to figure out like how you even implement it and I don't even want to like think about that",
+      "start": "00:14:42.320",
+      "end": "00:14:47.520",
+      "id": 154
+    },
+    {
+      "speaker": null,
+      "text": "It's got to be crazy, but like I'm trying to wrap my head around like what just happened and how cool that was",
+      "start": "00:14:47.520",
+      "end": "00:14:52.240",
+      "id": 155
+    },
+    {
+      "speaker": null,
+      "text": "So is it duplicating my code basically over there is just like a",
+      "start": "00:14:52.480",
+      "end": "00:14:55.520",
+      "id": 156
+    },
+    {
+      "speaker": null,
+      "text": "What now that I did that what what actually happened. Yeah, so so",
+      "start": "00:14:56.640",
+      "end": "00:15:01.120",
+      "id": 157
+    },
+    {
+      "speaker": null,
+      "text": "the",
+      "start": "00:15:02.320",
+      "end": "00:15:03.280",
+      "id": 158
+    },
+    {
+      "speaker": null,
+      "text": "The thing about work trees is that one of the benefits is that it's not cloning your repository",
+      "start": "00:15:03.920",
+      "end": "00:15:08.640",
+      "id": 159
+    },
+    {
+      "speaker": null,
+      "text": "So it's it's having just its own checkout of files and in the work tree it has a small like dot get file that",
+      "start": "00:15:09.200",
+      "end": "00:15:18.480",
+      "id": 160
+    },
+    {
+      "speaker": null,
+      "text": "points back to the main repositories object database",
+      "start": "00:15:18.480",
+      "end": "00:15:22.080",
+      "id": 161
+    },
+    {
+      "speaker": null,
+      "text": "So it's sharing the same get history like",
+      "start": "00:15:22.720",
+      "end": "00:15:25.680",
+      "id": 162
+    },
+    {
+      "speaker": null,
+      "text": "Like it's all the get object data like the commits blob trees like basically the history and the file contents",
+      "start": "00:15:26.560",
+      "end": "00:15:32.320",
+      "id": 163
+    },
+    {
+      "speaker": null,
+      "text": "But yeah",
+      "start": "00:15:32.800",
+      "end": "00:15:34.800",
+      "id": 164
+    },
+    {
+      "speaker": null,
+      "text": "So work is not cloning the main repository that's honestly the benefit of it that you're saving a lot of this usage",
+      "start": "00:15:34.800",
+      "end": "00:15:41.840",
+      "id": 165
+    },
+    {
+      "speaker": null,
+      "text": "That is awesome. So now that I'm on like a work tree. I can just start to make changes and start to iterate on stuff",
+      "start": "00:15:42.480",
+      "end": "00:15:47.600",
+      "id": 166
+    },
+    {
+      "speaker": null,
+      "text": "It's gonna be on that specific work tree in that specific branch in the work tree. Yeah, it's not touching your",
+      "start": "00:15:47.840",
+      "end": "00:15:54.000",
+      "id": 167
+    },
+    {
+      "speaker": null,
+      "text": "main",
+      "start": "00:15:54.640",
+      "end": "00:15:56.000",
+      "id": 168
+    },
+    {
+      "speaker": null,
+      "text": "Repository at all so that's really cool wow that is",
+      "start": "00:15:56.000",
+      "end": "00:15:59.840",
+      "id": 169
+    },
+    {
+      "speaker": null,
+      "text": "Super neat and then I can just easily switch back and forth between them basically. Yeah, yeah, did you open the work tree yet?",
+      "start": "00:16:00.560",
+      "end": "00:16:06.560",
+      "id": 170
+    },
+    {
+      "speaker": null,
+      "text": "I did",
+      "start": "00:16:06.960",
+      "end": "00:16:08.960",
+      "id": 171
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, so",
+      "start": "00:16:08.960",
+      "end": "00:16:10.480",
+      "id": 172
+    },
+    {
+      "speaker": null,
+      "text": "We're also implementing or it is already implemented but still continue iterating on it",
+      "start": "00:16:10.480",
+      "end": "00:16:16.000",
+      "id": 173
+    },
+    {
+      "speaker": null,
+      "text": "Is that let's say you wanted an agent to do work in that work tree send a request saying like create a read me file and then back in your main repository",
+      "start": "00:16:16.240",
+      "end": "00:16:24.880",
+      "id": 174
+    },
+    {
+      "speaker": null,
+      "text": "You can migrate the changes from the work tree to your main repository",
+      "start": "00:16:24.880",
+      "end": "00:16:29.200",
+      "id": 175
+    },
+    {
+      "speaker": null,
+      "text": "So that you know you can have like a guinea pig work tree and then you're like, okay, this is real",
+      "start": "00:16:29.920",
+      "end": "00:16:35.280",
+      "id": 176
+    },
+    {
+      "speaker": null,
+      "text": "This legit I'm moving it back in",
+      "start": "00:16:35.680",
+      "end": "00:16:37.680",
+      "id": 177
+    },
+    {
+      "speaker": null,
+      "text": "Okay, so I have two VS codes open",
+      "start": "00:16:38.400",
+      "end": "00:16:41.680",
+      "id": 178
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, one is on main yeah, and then one is on this work tree",
+      "start": "00:16:42.320",
+      "end": "00:16:47.760",
+      "id": 179
+    },
+    {
+      "speaker": null,
+      "text": "Inside of this other",
+      "start": "00:16:48.880",
+      "end": "00:16:50.880",
+      "id": 180
+    },
+    {
+      "speaker": null,
+      "text": "branch all in real time. Yes, yes",
+      "start": "00:16:50.880",
+      "end": "00:16:53.600",
+      "id": 181
+    },
+    {
+      "speaker": null,
+      "text": "No, I can't believe work trees wasn't really known until I guess a couple like not a lot of people know about it",
+      "start": "00:16:53.920",
+      "end": "00:17:05.040",
+      "id": 182
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, this is crazy. Okay, so how did you go about so you're assigned this ticket?",
+      "start": "00:17:05.600",
+      "end": "00:17:10.400",
+      "id": 183
+    },
+    {
+      "speaker": null,
+      "text": "Not even know this feature is people are trying it out. Hopefully I'll point to documentation when we have for it",
+      "start": "00:17:10.400",
+      "end": "00:17:14.720",
+      "id": 184
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, what was it like to be like head is like you're in turn and you're on the team you're",
+      "start": "00:17:14.720",
+      "end": "00:17:20.000",
+      "id": 185
+    },
+    {
+      "speaker": null,
+      "text": "Did your team member right your team member on the team you was super important big feature there's been around people want it like",
+      "start": "00:17:20.000",
+      "end": "00:17:26.720",
+      "id": 186
+    },
+    {
+      "speaker": null,
+      "text": "Now what I mean you're so you're dropped into a code base like what did it go what is happening like what how how was that experience?",
+      "start": "00:17:27.680",
+      "end": "00:17:33.760",
+      "id": 187
+    },
+    {
+      "speaker": null,
+      "text": "Yeah, it was definitely overwhelming at first",
+      "start": "00:17:34.160",
+      "end": "00:17:36.800",
+      "id": 188
+    },
+    {
+      "speaker": null,
+      "text": "But I have to give a big shout out to lad who's in the Zurich team. He",
+      "start": "00:17:36.800",
+      "end": "00:17:42.320",
+      "id": 189
+    },
+    {
+      "speaker": null,
+      "text": "He's owns the get extension of VS code and he really helped me throughout everything",
+      "start": "00:17:43.120",
+      "end": "00:17:49.360",
+      "id": 190
+    },
+    {
+      "speaker": null,
+      "text": "He explained like broke the big task down into little steps",
+      "start": "00:17:49.360",
+      "end": "00:17:53.440",
+      "id": 191
+    },
+    {
+      "speaker": null,
+      "text": "The team is just super supportive and they'll repeat things to me like a million times until I understand something",
+      "start": "00:17:55.520",
+      "end": "00:18:01.280",
+      "id": 192
+    },
+    {
+      "speaker": null,
+      "text": "So that was extremely helpful",
+      "start": "00:18:02.560",
+      "end": "00:18:04.240",
+      "id": 193
+    },
+    {
+      "speaker": null,
+      "text": "Did you so as we're going through this process with the team?",
+      "start": "00:18:05.280",
+      "end": "00:18:08.880",
+      "id": 194
+    },
+    {
+      "speaker": null,
+      "text": "What did it look like from your experience doing any of your other internships doing anything in",
+      "start": "00:18:09.520",
+      "end": "00:18:15.200",
+      "id": 195
+    },
+    {
+      "speaker": null,
+      "text": "University to your high school like how did it how did it differ how did it work like working on projects like being on a team for the first time",
+      "start": "00:18:15.600",
+      "end": "00:18:22.800",
+      "id": 196
+    },
+    {
+      "speaker": null,
+      "text": "Like actually like committing this code like was it scary was it exciting was it fun like what was that like oh my gosh",
+      "start": "00:18:23.040",
+      "end": "00:18:29.440",
+      "id": 197
+    },
+    {
+      "speaker": null,
+      "text": "It was so scary. I remember my first PR and I was just like anxiously logging in to get hub to see what comments",
+      "start": "00:18:29.440",
+      "end": "00:18:37.920",
+      "id": 198
+    },
+    {
+      "speaker": null,
+      "text": "My team members made but it was all fine in the end, but I do want to call out that this team definitely ships things really fast and it's I don't I'm not sure the model off the top of my head",
+      "start": "00:18:38.800",
+      "end": "00:18:50.560",
+      "id": 199
+    },
+    {
+      "speaker": null,
+      "text": "But it's like",
+      "start": "00:18:50.560",
+      "end": "00:18:51.840",
+      "id": 200
+    },
+    {
+      "speaker": null,
+      "text": "Build fast break",
+      "start": "00:18:51.840",
+      "end": "00:18:53.840",
+      "id": 201
+    },
+    {
+      "speaker": null,
+      "text": "Break thing. Do you know the model James?",
+      "start": "00:18:53.840",
+      "end": "00:18:55.840",
+      "id": 202
+    },
+    {
+      "speaker": null,
+      "text": "I don't know it. I'm like shit fast and don't break anything. Yeah, right, but I do remember I introduced one regression and",
+      "start": "00:18:55.840",
+      "end": "00:19:04.480",
+      "id": 203
+    },
+    {
+      "speaker": null,
+      "text": "The community member immediately flagged me so that was also pretty scary, but then I guess",
+      "start": "00:19:05.440",
+      "end": "00:19:11.440",
+      "id": 204
+    },
+    {
+      "speaker": null,
+      "text": "It's not how you I guess make those mistakes but how you bounce back. So",
+      "start": "00:19:12.160",
+      "end": "00:19:16.640",
+      "id": 205
+    },
+    {
+      "speaker": null,
+      "text": "That was also a really good learning lesson",
+      "start": "00:19:18.000",
+      "end": "00:19:20.000",
+      "id": 206
+    },
+    {
+      "speaker": null,
+      "text": "And to your other point remind me again",
+      "start": "00:19:22.000",
+      "end": "00:19:24.640",
+      "id": 207
+    },
+    {
+      "speaker": null,
+      "text": "What you were asking oh just like in general like working on a team structure getting that feedback like",
+      "start": "00:19:25.520",
+      "end": "00:19:30.880",
+      "id": 208
+    },
+    {
+      "speaker": null,
+      "text": "Something you were getting feedback through the process on iterating, but like you know and on and your PRs as they were coming in, but like you know",
+      "start": "00:19:31.280",
+      "end": "00:19:37.680",
+      "id": 209
+    },
+    {
+      "speaker": null,
+      "text": "What was that feedback like were you in the office was remote like what was that kind of like",
+      "start": "00:19:38.720",
+      "end": "00:19:42.880",
+      "id": 210
+    },
+    {
+      "speaker": null,
+      "text": "You know the team is spread out all over the place like what was that experience like because I think a lot like my first job",
+      "start": "00:19:43.760",
+      "end": "00:19:48.880",
+      "id": 211
+    },
+    {
+      "speaker": null,
+      "text": "on a college and even my internship was you know when into the office every single day",
+      "start": "00:19:49.280",
+      "end": "00:19:53.520",
+      "id": 212
+    },
+    {
+      "speaker": null,
+      "text": "drove in did thing you know and then eventually I had a team that was was hybrid and then I'm remote like I just",
+      "start": "00:19:53.840",
+      "end": "00:20:00.160",
+      "id": 213
+    },
+    {
+      "speaker": null,
+      "text": "haven't been my entire team solid for the country and then people are in the office but then there's team members all over the the world right like",
+      "start": "00:20:00.160",
+      "end": "00:20:06.960",
+      "id": 214
+    },
+    {
+      "speaker": null,
+      "text": "Like what what did that experience look like because it's very different than like",
+      "start": "00:20:07.760",
+      "end": "00:20:11.360",
+      "id": 215
+    },
+    {
+      "speaker": null,
+      "text": "You know going into a class and like turning in your assignment at the end of the day for sure",
+      "start": "00:20:12.320",
+      "end": "00:20:16.880",
+      "id": 216
+    },
+    {
+      "speaker": null,
+      "text": "I went in every day basically because I thought that was a really good way to make",
+      "start": "00:20:18.160",
+      "end": "00:20:22.640",
+      "id": 217
+    },
+    {
+      "speaker": null,
+      "text": "Friends and I feel like I achieved that like I got to meet the designers the pms all the engineers",
+      "start": "00:20:23.440",
+      "end": "00:20:29.040",
+      "id": 218
+    },
+    {
+      "speaker": null,
+      "text": "and we got really close they're very funny so that was also a perk",
+      "start": "00:20:29.600",
+      "end": "00:20:34.000",
+      "id": 219
+    },
+    {
+      "speaker": null,
+      "text": "And also I did work with lad in Zurich he's in Zurich right now so there were like 7 a.m. meetings or he",
+      "start": "00:20:35.040",
+      "end": "00:20:42.960",
+      "id": 220
+    },
+    {
+      "speaker": null,
+      "text": "had to hop on call in the evening so it was definitely a lot of flexibility",
+      "start": "00:20:42.960",
+      "end": "00:20:47.520",
+      "id": 221
+    },
+    {
+      "speaker": null,
+      "text": "on both of our ends and just the team",
+      "start": "00:20:48.800",
+      "end": "00:20:51.760",
+      "id": 222
+    },
+    {
+      "speaker": null,
+      "text": "dynamic is really it really encourages learning and trying new things and asking for help so",
+      "start": "00:20:52.720",
+      "end": "00:20:58.960",
+      "id": 223
+    },
+    {
+      "speaker": null,
+      "text": "that was also I felt really welcome to talk to everyone",
+      "start": "00:20:59.520",
+      "end": "00:21:03.760",
+      "id": 224
+    },
+    {
+      "speaker": null,
+      "text": "That's awesome did you have any other lessons learned kind of from your internship like things",
+      "start": "00:21:04.320",
+      "end": "00:21:08.560",
+      "id": 225
+    },
+    {
+      "speaker": null,
+      "text": "it maybe you would do different or do with the same maybe like I mean this decision really on",
+      "start": "00:21:08.560",
+      "end": "00:21:13.200",
+      "id": 226
+    },
+    {
+      "speaker": null,
+      "text": "like really glad I did that like I made a decision maybe if I came back I'd do something a little bit different",
+      "start": "00:21:13.840",
+      "end": "00:21:18.240",
+      "id": 227
+    },
+    {
+      "speaker": null,
+      "text": "yeah um so one thing that was really",
+      "start": "00:21:18.720",
+      "end": "00:21:22.400",
+      "id": 228
+    },
+    {
+      "speaker": null,
+      "text": "encouraged was the use of AI in my coding so I guess in school and",
+      "start": "00:21:23.760",
+      "end": "00:21:29.440",
+      "id": 229
+    },
+    {
+      "speaker": null,
+      "text": "other aspects of the tech world but previously it was kind of forbidden or you you",
+      "start": "00:21:30.720",
+      "end": "00:21:38.240",
+      "id": 230
+    },
+    {
+      "speaker": null,
+      "text": "probably shouldn't be using these AI features because I guess it's not it's not encouraged but this",
+      "start": "00:21:38.240",
+      "end": "00:21:45.440",
+      "id": 231
+    },
+    {
+      "speaker": null,
+      "text": "team really really encourages using and supposing all of the AI features that they are showing",
+      "start": "00:21:45.440",
+      "end": "00:21:51.760",
+      "id": 232
+    },
+    {
+      "speaker": null,
+      "text": "up meaning like trying out all the different models using agent mode um even for making if I",
+      "start": "00:21:51.760",
+      "end": "00:22:00.720",
+      "id": 233
+    },
+    {
+      "speaker": null,
+      "text": "got PR comments they would recommend putting all the PR comments in a Markdown file and",
+      "start": "00:22:00.720",
+      "end": "00:22:05.600",
+      "id": 234
+    },
+    {
+      "speaker": null,
+      "text": "using that as a prompt for editing my code so just a lot of these new things that I never thought to",
+      "start": "00:22:06.720",
+      "end": "00:22:12.960",
+      "id": 235
+    },
+    {
+      "speaker": null,
+      "text": "use with AI I would definitely take with me because I honestly I've just been using like ask mode",
+      "start": "00:22:13.520",
+      "end": "00:22:19.440",
+      "id": 236
+    },
+    {
+      "speaker": null,
+      "text": "or like chat to BT or something previously but there's a lot of unique ways that you can use AI",
+      "start": "00:22:19.440",
+      "end": "00:22:25.840",
+      "id": 237
+    },
+    {
+      "speaker": null,
+      "text": "yeah on the podcast we talked to Tyler and Logan recently and I think what they said and kind",
+      "start": "00:22:26.560",
+      "end": "00:22:32.080",
+      "id": 238
+    },
+    {
+      "speaker": null,
+      "text": "of what I'm kind of hearing from you is how the team you know builds the product that they want to",
+      "start": "00:22:32.080",
+      "end": "00:22:36.640",
+      "id": 239
+    },
+    {
+      "speaker": null,
+      "text": "use and they're using it to build the product and and like you know actually like iterate and",
+      "start": "00:22:36.720",
+      "end": "00:22:44.240",
+      "id": 240
+    },
+    {
+      "speaker": null,
+      "text": "dog food so actively because it's like they want to make an amazing for themselves right and I think",
+      "start": "00:22:44.240",
+      "end": "00:22:48.800",
+      "id": 241
+    },
+    {
+      "speaker": null,
+      "text": "that's like a cool sort of vibe I guess yeah yeah it feels so meta because every time I tell",
+      "start": "00:22:48.800",
+      "end": "00:22:57.840",
+      "id": 242
+    },
+    {
+      "speaker": null,
+      "text": "someone I'm on the VS code team they're like wait so you use VS code to make VS code or like how do",
+      "start": "00:22:57.840",
+      "end": "00:23:05.120",
+      "id": 243
+    },
+    {
+      "speaker": null,
+      "text": "you even test VS code so I thought that was also really cool that's awesome so if anyone's in",
+      "start": "00:23:05.120",
+      "end": "00:23:11.440",
+      "id": 244
+    },
+    {
+      "speaker": null,
+      "text": "there career journey either getting started maybe like in high school or in in uni or or maybe",
+      "start": "00:23:11.440",
+      "end": "00:23:17.840",
+      "id": 245
+    },
+    {
+      "speaker": null,
+      "text": "how do you need like do you have any like advice like what you know for them like to to kind of",
+      "start": "00:23:17.840",
+      "end": "00:23:23.920",
+      "id": 246
+    },
+    {
+      "speaker": null,
+      "text": "follow some path like you sort of have so far yeah um I'd say one of the biggest things that",
+      "start": "00:23:23.920",
+      "end": "00:23:34.960",
+      "id": 247
+    },
+    {
+      "speaker": null,
+      "text": "I'm going to take away with me is contributing to open source projects specifically I know I'll be",
+      "start": "00:23:34.960",
+      "end": "00:23:41.440",
+      "id": 248
+    },
+    {
+      "speaker": null,
+      "text": "on the VS code repo seeing making power credits like peeing see seeing lad and all the people",
+      "start": "00:23:41.440",
+      "end": "00:23:48.400",
+      "id": 249
+    },
+    {
+      "speaker": null,
+      "text": "and seeing all the issues that they haven't seen if I can fix it a little bit even would just like",
+      "start": "00:23:48.800",
+      "end": "00:23:54.640",
+      "id": 250
+    },
+    {
+      "speaker": null,
+      "text": "co-pile it because I think that's also a really cool way to say like hey I contribute to VS code like",
+      "start": "00:23:54.640",
+      "end": "00:24:00.000",
+      "id": 251
+    },
+    {
+      "speaker": null,
+      "text": "you don't have to be an intern to contribute to VS code so that's something that I'll definitely",
+      "start": "00:24:00.000",
+      "end": "00:24:06.800",
+      "id": 252
+    },
+    {
+      "speaker": null,
+      "text": "take with me I love that well what's next for you and your journey what's next for me I'm going to",
+      "start": "00:24:06.800",
+      "end": "00:24:12.480",
+      "id": 253
+    },
+    {
+      "speaker": null,
+      "text": "be off the college I'm finishing my I'm doing my junior year next I'm starting my junior year and three weeks",
+      "start": "00:24:12.480",
+      "end": "00:24:21.280",
+      "id": 254
+    },
+    {
+      "speaker": null,
+      "text": "so I'll definitely be in my classes missing doing work on VS code but the fundamentals are important",
+      "start": "00:24:21.280",
+      "end": "00:24:34.000",
+      "id": 255
+    },
+    {
+      "speaker": null,
+      "text": "though okay do you have the opportunity to come back or like what's the for internships or for",
+      "start": "00:24:34.000",
+      "end": "00:24:40.400",
+      "id": 256
+    },
+    {
+      "speaker": null,
+      "text": "other things or like how does that work like yeah come forward um yes so they said I could return as an",
+      "start": "00:24:40.400",
+      "end": "00:24:49.200",
+      "id": 257
+    },
+    {
+      "speaker": null,
+      "text": "intern I haven't gotten the official email yet so but it was recorded so no take flex so",
+      "start": "00:24:49.200",
+      "end": "00:24:56.000",
+      "id": 258
+    },
+    {
+      "speaker": null,
+      "text": "it's been transcribed it's recorded it's an external crazy thing is so much for coming on and talking",
+      "start": "00:24:56.880",
+      "end": "00:25:01.680",
+      "id": 259
+    },
+    {
+      "speaker": null,
+      "text": "about your journey like your internship the features blowing my mind this is amazing and yeah",
+      "start": "00:25:01.680",
+      "end": "00:25:09.440",
+      "id": 260
+    },
+    {
+      "speaker": null,
+      "text": "great luck in university hopefully get to see you back on the team and hopefully be on internship as",
+      "start": "00:25:09.440",
+      "end": "00:25:16.640",
+      "id": 261
+    },
+    {
+      "speaker": null,
+      "text": "well yeah thank you so much James for having me like this was so fun I love working with work trees",
+      "start": "00:25:16.640",
+      "end": "00:25:23.120",
+      "id": 262
+    },
+    {
+      "speaker": null,
+      "text": "well thank you for spending your last day taking some time out to spend it with all of us and learning",
+      "start": "00:25:23.120",
+      "end": "00:25:29.360",
+      "id": 263
+    },
+    {
+      "speaker": null,
+      "text": "about it and well put links to all the stuff that you worked on all the stuff in the tree and we'll",
+      "start": "00:25:29.360",
+      "end": "00:25:33.840",
+      "id": 264
+    },
+    {
+      "speaker": null,
+      "text": "put a whole bunch of stuff down there as well so uh crazy thank you so much again I really appreciate it",
+      "start": "00:25:33.840",
+      "end": "00:25:37.920",
+      "id": 265
+    },
+    {
+      "speaker": null,
+      "text": "thank you all right thanks for all of you for tuning in and listening never get you can watch and get",
+      "start": "00:25:37.920",
+      "end": "00:25:43.120",
+      "id": 266
+    },
+    {
+      "speaker": null,
+      "text": "some insight and we put some screenshots on the YouTube and on Spotify of course you can subscribe",
+      "start": "00:25:43.200",
+      "end": "00:25:48.560",
+      "id": 267
+    },
+    {
+      "speaker": null,
+      "text": "on your favorite podcast application like subscribe do all the things that's going to do it for",
+      "start": "00:25:48.560",
+      "end": "00:25:52.560",
+      "id": 268
+    },
+    {
+      "speaker": null,
+      "text": "this VS Code Insiders podcast until next time I'm James happy coding",
+      "start": "00:25:52.560",
+      "end": "00:25:56.240",
+      "id": 269
+    }
+  ]
+}

@@ -2,13 +2,17 @@
 
 [← Back to Guide](../ReadMe.md) | [← Part I: What Copilot Is](part-1-foundations.md)
 
-*Updated: April 17, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
+*Updated: April 22, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
 
 ---
 
 [Part I: Foundations](part-1-foundations.md) covered *what* GitHub Copilot is and *where* it runs. This half covers *why* [customization](https://code.visualstudio.com/docs/copilot/customization/overview) matters, how to iterate on it, and where rollout and measurement fit once the team starts treating customization as shared infrastructure.
 
+Read this chapter as the human half of the guide. It explains the friction the team is trying to remove before [The Agent Loop](agent-loop.md) explains the runtime mechanics and before [Part II: The Primitives](part-2-primitives.md) turns those mechanics into concrete configuration choices.
+
 **Official docs:** [Customize AI in Visual Studio Code](https://code.visualstudio.com/docs/copilot/customization/overview) · [Add repository custom instructions](https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions) · [Copilot Memory](https://docs.github.com/en/copilot/concepts/agents/copilot-memory)
+
+**See it in action:** [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=29s) — Courtney Webster frames customization as the layer that teaches GitHub Copilot a team's tools, workflows, and guardrails.
 
 ---
 
@@ -74,6 +78,8 @@ Most teams get 80% of the value from 20% of the configuration:
 Prompt files (`.prompt.md`) still work well for simple, single-purpose slash commands, but skills and agents handle most repeatable workflows with better portability and discoverability. MCP, hooks, and the platform extensions add leverage once the baseline is working.
 
 See the [Getting Started](../ReadMe.md#getting-started) section for the step-by-step path, then use Part II to decide which primitive should carry each rule.
+
+If the team is rolling customization out beyond one repo, read [Measuring Success](measuring-success.md) next. Then move to [The Agent Loop](agent-loop.md) to see where the same guidance enters an agentic workflow turn by turn.
 
 ### Memory Is Not Enough on Its Own
 

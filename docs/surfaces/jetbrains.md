@@ -6,6 +6,8 @@
 
 GitHub Copilot ships as a first-party plugin on the JetBrains Marketplace: [GitHub Copilot](https://plugins.jetbrains.com/plugin/17718-github-copilot) (Plugin ID `com.github.copilot`, vendor GitHub, Inc.). A single binary installs into any compatible JetBrains IDE from the IntelliJ Platform family, which means teams that standardize on JetBrains get the same Copilot experience across every editor their organization uses. They also get the same customization model as VS Code. The `.github/copilot-instructions.md`, `.github/instructions/`, `.github/prompts/`, `.github/agents/`, `.github/skills/`, and `.vscode/mcp.json` files that drive a VS Code workspace drive a JetBrains workspace too. There is no second source of truth to maintain.
 
+**Official docs:** [Install in JetBrains IDEs](https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-extension?tool=jetbrains) · [Copilot feature matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=jetbrains) · [JetBrains Marketplace listing](https://plugins.jetbrains.com/plugin/17718-github-copilot)
+
 The rest of this page covers what ships in the plugin, how it diverges from VS Code, where customization primitives land in Preview versus Supported status, and the operational details (file paths, settings panels, release cadence) that JetBrains-first teams need to run Copilot confidently.
 
 ## Supported IDEs
