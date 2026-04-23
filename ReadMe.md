@@ -38,8 +38,6 @@ It starts with the runtime, then moves into the control points that change behav
 
 ## How This Guide Is Organized
 
-- The agent loop is the organizing spine, not a side chapter.
-- The primitives are taught as levers on the loop, not as eight disconnected file formats.
-- Composition patterns appear early, before the file-by-file deep dives.
-- Videos, transcripts, and podcast episodes are treated as proof points and demos, not decorative links.
-- Cross-runtime chapters such as GitHub Copilot code review, Agentic Workflows, the GitHub Copilot SDK, and the surface guides are treated as places where the same primitive layer runs.
+The guide is organized around the agent loop, not around a pile of disconnected configuration files. The eight primitives are introduced as control points on that loop, so readers can see how each one changes behavior in context instead of memorizing formats in isolation.
+
+Composition patterns appear early, before the file-by-file deep dives, because the real value comes from how these pieces work together. Videos, transcripts, and podcast episodes are used as evidence and demos, not as decorative extras. Cross-runtime chapters such as GitHub Copilot code review, Agentic Workflows, the GitHub Copilot SDK, and the surface guides are included to show that the same primitive layer keeps showing up in different places.
