@@ -16,6 +16,10 @@ The GitHub Copilot agent loop works the same way — except one runtime plays ev
 
 The VS Code team calls the machinery around the model the **harness** — the prompts, context-gathering strategies, tools, and custom models that combine to make the agent loop actually produce good results. The harness is not the model. It is everything the team has built so the model can do useful work: dynamically assembled system prompts tuned per model, tool schemas, context strategies, and a 15–20 person team continuously optimizing the path the agent takes to solve a problem. When a new model ships, the harness is fresh. Within weeks, the team refines prompts, runs thousands of evaluation cases on their own benchmark, and tunes the trajectory — not just whether the task succeeded, but whether the agent took a good path to get there.
 
+The results of that optimization are measurable. As of April 2026, the VS Code harness achieves roughly 90% code acceptance with Claude Opus 4.6 — up from around 52–53% when the team first started working on the harness a year earlier. That gap is not the model improving alone. It is the harness improving: better prompts, better tool design, better context strategies, and purpose-built custom models behind the scenes for tasks like code retrieval. The benchmark the team uses is not SWE-bench — they built their own, with custom problems, specifically to avoid the data pollution issues that affect public benchmarks.
+
+That acceptance rate also explains why the harness does not use the most expensive model for every call. Generating a chat session title, renaming a symbol, or running a focused subagent search does not need a frontier model. Those tasks route to faster, cheaper models — Haiku, a mini variant, or a purpose-built retrieval model — because the benchmarks show they perform well enough for the job and free up capacity and latency budget for the turns that actually need deep reasoning.
+
 That harness is what a request enters when a developer hits Enter. It is a `while` loop. The system assembles the prompt. The model picks a tool or writes a response. The tool result comes back. The loop continues with better evidence. It keeps going until the task converges or is stopped.
 
 That is the agent loop. It is not one giant opaque prompt. It is a sequence of model invocations, tool calls, and state updates — the same pattern a human team follows, compressed into a runtime. Once that clicks, the primitives stop looking like a pile of unrelated files and start reading as levers that change how the loop behaves.
@@ -86,6 +90,10 @@ Both views are documented at [Debug chat interactions](https://code.visualstudio
 The Chat Debug view shows what the model actually receives. Here is a simplified example of a single turn's assembled prompt for a repository that uses several customization layers. The real payload is longer, but the structure is the same.
 
 ```text
+── Model ──────────────────────────────────────────────────────
+
+Claude Opus 4.6 (copilot)
+
 ── System Prompt ──────────────────────────────────────────────
 
 You are a helpful AI assistant integrated into VS Code.
@@ -138,7 +146,9 @@ Now check whether the discount code parameter is sanitized
 before it reaches the database query.
 ```
 
-Every customization primitive shows up somewhere in that payload. Always-on instructions set the baseline. File-based instructions add path-specific rules. The custom agent changes the persona and behavior. MCP tools extend what the model can reach. The conversation history carries forward evidence from earlier turns. And the user prompt at the bottom is the specific task for this turn.
+Every customization primitive shows up somewhere in that payload. The model line at the top determines which language model reasons over everything below it — and the system prompt is dynamically tuned for that specific model. Always-on instructions set the baseline. File-based instructions add path-specific rules. The custom agent changes the persona and behavior. MCP tools extend what the model can reach. The conversation history carries forward evidence from earlier turns. And the user prompt at the bottom is the specific task for this turn.
+
+The model choice ripples through the entire session. Different models get different system prompts, and subagents may run on a different model entirely. The harness section above explains why: not every turn needs the same reasoning depth, and the benchmarks back that up.
 
 That is the prompt the model reasons over. Every turn rebuilds it with the latest evidence, which is why each decision is better informed than the last.
 
