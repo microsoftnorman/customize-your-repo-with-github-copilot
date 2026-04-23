@@ -24,7 +24,7 @@ They do not know:
 
 GitHub Copilot starts in exactly that position.
 
-The bad output people call hallucination is often a weaker problem than that. The model is usually making a reasonable choice for a generic public codebase. It is wrong only because the repository's local rules were never made explicit.
+The bad output people call "hallucination" is usually not the model being broken. It is the model making the best guess it can from whatever context it has — the same way a competent new hire might confidently suggest the wrong file because nobody showed them the project structure first. When the context is thin, the model fills gaps with plausible-sounding assumptions drawn from public patterns. When the context is strong — clear instructions, the right files, relevant tool results — those assumptions get replaced by evidence, and the guesses get dramatically better. Most hallucination problems are not intelligence problems. They are context problems, and context is exactly what customization provides.
 
 That is the real bespoke-software story. Most production repositories are not built from textbook defaults. They carry years of local decisions, and the failure modes are often weirdly specific. A generic model might wire up a `saveDraft()` path that also clears the published record because another codebase used the same helper for cleanup. It might call a `deleteUser()` routine that does not delete anything at all here because the team turned it into a soft-delete years ago and left the name behind. It might create a neat new caching layer that quietly bypasses the audit trail everyone is required to preserve. Code can look clean, compile, and even pass tests while still being bad code for that repository.
 

@@ -12,7 +12,7 @@ Think about a small team shipping a feature together. Nobody works alone. The te
 
 The GitHub Copilot agent loop works the same way — except one runtime plays every role.
 
-**See it in action:** [Inside The Agent Loop](https://www.youtube.com/watch?v=ENxVTtLW_Bc&t=0s) — A walkthrough of the agent loop as a runtime model of model calls, tools, context, and subagents.
+**See it in action:** [Inside The Agent Loop](https://www.youtube.com/watch?v=ENxVTtLW_Bc&t=0s) — A walkthrough of the agent loop as a runtime model of model calls, tools, context, and subagents. Local transcripts of that talk and related demos are in this repo: [Inside The Agent Loop](../references/transcripts/code-channel/2026-04-20-inside-the-agent-loop-with-pierce-boggan.md), [Your first agent session in action](../references/transcripts/code-channel/2026-04-06-your-first-agent-session-in-action.md), and [DEMO - Build your first app with agent mode](../references/transcripts/code-channel/2026-04-06-demo-build-your-first-app-with-agent-mode.md).
 
 The VS Code team calls the machinery around the model the **harness** — the prompts, context-gathering strategies, tools, and custom models that combine to make the agent loop actually produce good results. The harness is not the model. It is everything the team has built so the model can do useful work: dynamically assembled system prompts tuned per model, tool schemas, context strategies, and a 15–20 person team continuously optimizing the path the agent takes to solve a problem. When a new model ships, the harness is fresh. Within weeks, the team refines prompts, runs thousands of evaluation cases on their own benchmark, and tunes the trajectory — not just whether the task succeeded, but whether the agent took a good path to get there.
 
@@ -26,11 +26,11 @@ That is the agent loop. It is not one giant opaque prompt. It is a sequence of m
 
 Once that picture is clear, the primitives become easier to reason about:
 
-- Always-on Instructions and File-based Instructions change what the loop sees.
-- Prompts, Skills, and Custom Agents change how the loop is framed.
-- MCP changes what the loop can reach.
-- Hooks change what the loop is allowed to do at execution time.
-- Memory changes what the loop already knows before it starts asking questions.
+- [Always-on Instructions](primitive-1-always-on-instructions.md) and [File-based Instructions](primitive-2-file-based-instructions.md) change what the loop sees.
+- [Prompts](primitive-3-prompts.md), [Skills](primitive-4-skills.md), and [Custom Agents](primitive-5-custom-agents.md) change how the loop is framed.
+- [MCP](primitive-6-mcp.md) changes what the loop can reach.
+- [Hooks](primitive-7-hooks.md) change what the loop is allowed to do at execution time.
+- [Memory](primitive-8-memory.md) changes what the loop already knows before it starts asking questions.
 
 ## The Easiest Mental Model: A Working Conversation
 
@@ -58,22 +58,7 @@ Finally, once the loop has enough context and the action succeeds, it stops. The
 
 That is the science of it. First the system frames the turn. Then it gathers evidence. Then it acts. Then it checks what came back. Then it either continues or stops. Once that clicks, the runtime stops feeling mystical and starts feeling inspectable.
 
-## A Session from Start to Finish
-
-The demo transcripts in this repo show the same shape every time. See [Your first agent session in action](../references/transcripts/code-channel/2026-04-06-your-first-agent-session-in-action.md), [DEMO - Build your first app with agent mode](../references/transcripts/code-channel/2026-04-06-demo-build-your-first-app-with-agent-mode.md), and [Inside The Agent Loop](../references/transcripts/code-channel/2026-04-20-inside-the-agent-loop-with-pierce-boggan.md).
-
-The user types a product-level goal — not a list of files to create:
-
-> 💬 **Try this prompt:**
-> "Build a URL shortener with a simple frontend."
-
-The system assembles the first turn: conversation history, open files, terminal state, repository instructions, and the full set of tools the model may call. That assembled turn is the starting context, and it already includes every customization layer that applies.
-
-The model's first move is almost never "write the answer." It searches for existing code, reads candidate files, and checks constraints. Those tool results flow back into the conversation as new evidence, so the next decision is grounded in the actual codebase rather than assumptions. The session narrows: this file owns the route, that one owns the styles, this command confirms the change works.
-
-Once the model has enough signal, it acts — creating files, wiring pieces together, running verification commands. The visible answer the user sees is the last step, not the first. It is the product of several smaller turns that each added evidence and removed ambiguity.
-
-That is what the loop looks like in practice. Not a single burst, but a session that keeps improving its own footing.
+This also demystifies what people call "hallucination." The model is not lying. It is making the best guess it can from whatever evidence it has at that moment — the same way a new team member might confidently suggest the wrong file if nobody showed them the actual project structure first. When the loop has thin context, the model fills gaps with plausible-sounding assumptions. When the loop has strong context — good instructions, the right files read, relevant tool results — those assumptions get replaced by evidence, and the guesses get dramatically better. Most hallucination problems are not intelligence problems. They are context problems.
 
 ## See the Full Prompt Yourself
 
@@ -171,14 +156,14 @@ Another way to say it: the model is not solving the whole task in one leap. It i
 
 | Primitive | Primary Effect on the Loop |
 |-----------|----------------------------|
-| **Always-on Instructions** | Establish base rules on every turn |
-| **File-based Instructions** | Add scoped rules only when matching files are relevant |
-| **Prompts** | Frame a specific task and often constrain tool use |
-| **Skills** | Inject reusable procedure when intent matches |
-| **Custom Agents** | Change role, toolset, and behavior across a conversation or delegated task |
-| **MCP** | Expand the loop beyond the local workspace |
-| **Hooks** | Intercept lifecycle boundaries outside the model |
-| **Memory** | Contribute repository knowledge learned over time |
+| **[Always-on Instructions](primitive-1-always-on-instructions.md)** | Establish base rules on every turn |
+| **[File-based Instructions](primitive-2-file-based-instructions.md)** | Add scoped rules only when matching files are relevant |
+| **[Prompts](primitive-3-prompts.md)** | Frame a specific task and often constrain tool use |
+| **[Skills](primitive-4-skills.md)** | Inject reusable procedure when intent matches |
+| **[Custom Agents](primitive-5-custom-agents.md)** | Change role, toolset, and behavior across a conversation or delegated task |
+| **[MCP](primitive-6-mcp.md)** | Expand the loop beyond the local workspace |
+| **[Hooks](primitive-7-hooks.md)** | Intercept lifecycle boundaries outside the model |
+| **[Memory](primitive-8-memory.md)** | Contribute repository knowledge learned over time |
 
 That breakdown is the reason this guide teaches composition early. A team almost never has a problem that is solved by one isolated file type in the abstract. It has a problem somewhere in this loop.
 
@@ -196,6 +181,20 @@ Use that model when the task benefits from:
 - parallel exploration,
 - specialized review,
 - or different permissions and models for different branches of the same job.
+
+## Context Grows — and That Changes Everything
+
+Every turn adds to the conversation: the user prompt, the system prompt, tool calls, tool results, and the model's own responses. That accumulation is the context window, and it is finite.
+
+Early in a session, the context is small and focused. The model's decisions are fast and sharp. As the session progresses — more searches, more file reads, more edits — the context fills up. Each new turn costs more tokens, and the model has more text to reason over. Eventually the context approaches its limit.
+
+When that happens, the harness has to **compact** the conversation: summarize older turns to free space for new ones. Compaction works, but it loses fidelity. Details from earlier turns get compressed into summaries, and the model may lose track of constraints or decisions that mattered.
+
+That is exactly why subagents exist as a strategy. Instead of doing all exploratory work in the main loop — reading dozens of files, running searches, checking constraints — the main loop delegates that work to a subagent. The subagent uses its own isolated context window, does the research, and returns only a summary. The main loop stays fresh. It never saw the intermediate searches, so it never has to compact them away.
+
+The practical takeaway: if a session starts drifting or the agent seems to forget earlier decisions, the context window is probably full and compaction is losing important details. The fix is not "try harder." It is decompose the task so the main loop stays focused and let subagents carry the exploratory weight.
+
+That said, as of April 2026, context limits are far less of a daily concern than they were a year ago. Models ship with much larger context windows, the harness is smarter about what it includes, and subagent delegation handles most of the heavy lifting automatically. Most developers will never hit the wall. This section exists so that when a long session does start to drift, the explanation makes sense instead of feeling like a mystery.
 
 ## Hooks Change the Control Model
 
