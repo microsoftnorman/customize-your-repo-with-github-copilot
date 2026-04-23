@@ -1,6 +1,6 @@
 # Foundations
 
-[← Back to Guide](README.md) | [Next: Why Customization Matters →](why-customization-matters.md)
+[← Back to Guide](../README.md) | [Next: Why Customization Matters →](why-customization-matters.md)
 
 *Updated: April 22, 2026.*
 

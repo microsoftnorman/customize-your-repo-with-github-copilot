@@ -1,6 +1,6 @@
 # Appendix: Diagnosing Loop Failures
 
-[← Back to Guide](README.md) | [← Operational Reference](operational-reference.md)
+[← Back to Guide](../README.md) | [← Debugging the Agent Loop](debugging-the-agent-loop.md)
 
 *Updated: April 22, 2026.*
 
@@ -47,4 +47,4 @@ That is the practical value of the loop model. It gives the team a way to diagno
 ## Where to Read Next
 
 - Revisit [Debugging the Agent Loop](debugging-the-agent-loop.md) when you need to inspect a specific trajectory in the Chat Debug View or Agent Debug Logs.
-- Use [Operational Reference](operational-reference.md) when the question shifts from diagnosis to file paths, support boundaries, or configuration lookup.
+- Use [Operational Reference](part-3-reference.md) when the question shifts from diagnosis to file paths, support boundaries, or configuration lookup.

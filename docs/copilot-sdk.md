@@ -1,55 +1,110 @@
 # GitHub Copilot SDK
 
-[← Agentic Workflows](agentic-workflows.md) | [Part II Overview](part-2-primitives.md)
+[← Back to Guide](../README.md) | [← Agentic Workflows](agentic-workflows.md) | [Next: GitHub Copilot Code Review →](code-review.md)
 
-*Updated: April 22, 2026 · Validated against the [Copilot SDK public preview](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/) as of this date.*
-
----
-
-## Scope of This Page
-
-This page is a **brief orientation** to the Copilot SDK: what it is, when to reach for it, and how it fits alongside the eight primitives. It is **not** a full SDK guide. API surface area, authentication flows, tool-definition schemas, streaming semantics, error handling, and language-specific idioms live in the official SDK documentation and change frequently during public preview.
-
-For anything beyond "should I use this, and where does it sit in the stack," go straight to the source:
-
-- [github.com/github/copilot-sdk](https://github.com/github/copilot-sdk): Canonical repository, per-language READMEs, API reference, and examples
-- [Public preview announcement](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/): Release notes and capability scope at launch
-- [github.blog/changelog (Copilot label)](https://github.blog/changelog/label/copilot/): Ongoing SDK updates
+*Updated: April 22, 2026.*
 
 ---
 
-## Overview
+## What This Page Covers
 
-Read this page as "the same agent runtime, but embedded in your own application." If Agentic Workflows are the GitHub-hosted execution model, the Copilot SDK is the version teams own directly. The customization story stays recognizable: the repo still needs clear instructions, task boundaries, and tool definitions. The difference is that your application becomes the surface.
+The Copilot SDK is the same agent runtime carried into application code.
 
-The eight customization primitives shape Copilot where it already runs: in the editor, in the terminal, and on GitHub. The Copilot SDK lets developers bring that same agent runtime into their own applications and workflows.
+For current API shape, language support, and preview status, use the official [GitHub Copilot SDK repository](https://github.com/github/copilot-sdk) rather than this chapter.
 
-The [Copilot SDK](https://github.com/github/copilot-sdk) is the runtime that powers [GitHub Copilot CLI](https://github.com/github/copilot-cli) and the Copilot cloud agent, packaged as libraries for five languages. Teams can embed the runtime directly instead of building agent orchestration from scratch (tool routing, context management, permission handling, streaming).
+If Agentic Workflows are the GitHub-hosted form of remote execution, the Copilot SDK is the version a team embeds and owns directly.
 
-**See it in action:** [Let it Cook - This changes EVERYTHING](https://www.youtube.com/watch?v=uquSQY10AGM&t=1946s) — Pierce Boggan demos `agentrc eval`, a tool built on the Copilot SDK that generates and runs evals to compare customization changes against measurable outcomes.
+That makes this page less about file formats and more about where the agent loop lives when the application, not GitHub or an editor, becomes the host.
 
-**Status:** Public preview (April 2, 2026)
-**Best For:** Embedding Copilot agent capabilities in custom tools, internal platforms, CI pipelines, and developer workflows
-**Location:** External dependency, installed via package managers rather than configured in-repo
+## Why This Matters
 
-**Official docs:** [Copilot SDK](https://github.com/github/copilot-sdk) · [Changelog](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/)
+The earlier chapters teach how to shape repository knowledge. The SDK chapter answers the next portability question:
 
----
+**What if the team needs GitHub Copilot behavior in a surface GitHub does not already provide?**
 
-## When to Use the SDK
+Examples include:
 
-Use the Copilot SDK when the agent needs to run *outside* the surfaces GitHub already provides (VS Code, CLI, cloud agent, GitHub Actions).
+- an internal developer portal,
+- a CI helper service,
+- a Slack or web-based engineering assistant,
+- a platform workflow runner,
+- or a custom evaluation and measurement tool.
 
-| Scenario | Example |
-|----------|---------|
-| **Internal developer tools** | A team portal that generates boilerplate, runs migrations, or provisions environments using Copilot's reasoning |
-| **CI/CD integration** | A pipeline step that uses agent intelligence to triage build failures or generate changelogs |
-| **Custom chat interfaces** | A Slack bot or web UI that delegates coding tasks to the Copilot agent runtime |
-| **Platform engineering** | A self-service platform where teams request infrastructure changes described in natural language |
+This is where the runtime becomes an application concern instead of only a user-surface concern.
 
-If the use case fits inside VS Code, CLI, or GitHub Actions, use the existing primitives instead. They require zero custom code.
+## How It Reuses the Primitive Layer
 
----
+The strongest conceptual point here is continuity.
+
+The SDK does not replace the repository-level teaching layer. It gives that layer another place to run.
+
+That means the repo still benefits from:
+
+- explicit instructions,
+- packaged procedures,
+- role definitions,
+- and the same architectural clarity that makes local Copilot behavior better.
+
+The host changes. The value of repository knowledge does not.
+
+## What Changes When the Application Owns the Runtime
+
+When a team uses the SDK, it is taking ownership of concerns that a built-in surface normally hides:
+
+- tool definitions,
+- session management,
+- streaming,
+- permissions,
+- observability,
+- and often authentication or BYOK strategy.
+
+That means the SDK belongs to teams that are building a platform or product, not just configuring one.
+
+## When the SDK Is the Right Tool
+
+Use the SDK when the agent needs to live inside a custom application or service the team controls directly.
+
+Good fits:
+
+- internal developer tooling,
+- custom operational assistants,
+- bespoke workflow runners,
+- organization-specific eval systems,
+- or interfaces where the agent is a product capability rather than a feature in someone else's UI.
+
+If the workflow fits naturally inside VS Code, GitHub Copilot CLI, the Cloud Coding Agent, or GitHub Actions, the SDK is usually unnecessary overhead.
+
+## How It Differs from MCP
+
+MCP extends what an existing agent can reach.
+
+The SDK changes where the agent lives.
+
+That is the cleanest distinction.
+
+Use MCP when the surface already exists and just needs external tools.
+Use the SDK when the team is building a new surface or runtime host.
+
+Many mature systems will use both.
+
+## How It Differs from Agentic Workflows
+
+Agentic Workflows are repository automation inside GitHub's execution model.
+
+The SDK is the choice for application-owned execution.
+
+The split is not only technical. It is organizational:
+
+- Agentic Workflows keep the workflow close to the repository.
+- The SDK moves the runtime closer to product or platform code.
+
+## Why This Page Stays High Level
+
+The SDK is a fast-moving preview surface, and its API details belong in the official SDK materials rather than in a long-lived repository guide.
+
+The [Getting Started guide](https://github.com/github/copilot-sdk/blob/main/docs/getting-started.md) is the best official next step once the architectural decision is made.
+
+That is why this chapter is intentionally architectural. It should help a reader decide whether the SDK belongs in their solution space at all, not try to become a competing API reference.
 
 ## Supported Languages
 
@@ -57,19 +112,15 @@ If the use case fits inside VS Code, CLI, or GitHub Actions, use the existing pr
 |----------|---------|---------|
 | **Node.js / TypeScript** | `npm install @github/copilot-sdk` | [@github/copilot-sdk](https://www.npmjs.com/package/@github/copilot-sdk) |
 | **Python** | `pip install github-copilot-sdk` | [github-copilot-sdk](https://pypi.org/project/github-copilot-sdk/) |
-| **Go** | `go get github.com/github/copilot-sdk/go` | [github/copilot-sdk/go](https://github.com/github/copilot-sdk) |
+| **Go** | `go get github.com/github/copilot-sdk/go` | [github/copilot-sdk/go](https://github.com/github/copilot-sdk/tree/main/go) |
 | **.NET** | `dotnet add package GitHub.Copilot.SDK` | [GitHub.Copilot.SDK](https://www.nuget.org/packages/GitHub.Copilot.SDK) |
 | **Java** | Maven dependency | [github/copilot-sdk](https://github.com/github/copilot-sdk) |
 
----
+## Example: Agent Runtime
 
-## Key Capabilities
+The SDK exposes the same agent loop used by the Copilot CLI. Developers define tools and the runtime handles orchestration.
 
-### Agent Runtime
-
-The SDK exposes the same agent loop used by Copilot CLI: receive a prompt, reason about the task, invoke tools, iterate on results, and return a response. Developers define tools (functions the agent can call) and the runtime handles orchestration.
-
-*The examples below are illustrative. API names and signatures may differ from the current SDK — consult the [SDK repository](https://github.com/github/copilot-sdk) for the latest API reference.*
+*API names and signatures may differ from the current SDK — consult the [SDK repository](https://github.com/github/copilot-sdk) for the latest reference.*
 
 ```typescript
 import { CopilotAgent, defineTool } from '@github/copilot-sdk';
@@ -99,128 +150,22 @@ const agent = new CopilotAgent({
 const response = await agent.run('Create a new TypeScript project with tests');
 ```
 
-### Multi-Turn Sessions
+## Concrete Use-Case Scenarios
 
-The SDK maintains conversation context across turns, enabling interactive workflows where the user and agent iterate on a task:
+| Scenario | Example |
+|----------|---------|
+| **Internal developer tools** | A team portal that scaffolds projects or provisions environments |
+| **CI/CD integration** | A pipeline step that triages build failures |
+| **Custom chat interfaces** | A Slack bot delegating coding tasks to the Copilot runtime |
+| **Platform engineering** | A self-service platform for infra changes described in natural language |
 
-```typescript
-const session = agent.createSession();
+## The Most Useful Mental Model
 
-// First turn
-const plan = await session.send('Analyze this codebase and suggest improvements');
+The shortest useful explanation is this:
 
-// Follow-up turn with full context
-const result = await session.send('Implement suggestion #3');
-```
+**The SDK is what teams use when they need the agent loop as an application building block rather than as a feature inside an existing GitHub Copilot surface.**
 
-### Streaming
+## Where to Read Next
 
-Token-by-token streaming lets a CLI, chat UI, or web front-end render the agent's output as it is generated, so users see progress on long-running tasks instead of waiting for the full response:
-
-```typescript
-const stream = agent.stream('Explain the authentication flow in this codebase');
-
-for await (const chunk of stream) {
-  process.stdout.write(chunk.text);
-}
-```
-
-### Permission Framework
-
-Gate sensitive operations so the agent requests approval before executing them:
-
-```typescript
-const deployTool = defineTool({
-  name: 'deploy',
-  description: 'Deploy to staging',
-  permissions: { requiresApproval: true },
-  execute: async (params) => { /* ... */ }
-});
-```
-
-### Bring Your Own Key (BYOK)
-
-Enterprises can use their own API keys for supported model providers (OpenAI, Anthropic, Azure) instead of routing through GitHub's infrastructure:
-
-```typescript
-const agent = new CopilotAgent({
-  tools: [/* ... */],
-  modelProvider: {
-    type: 'anthropic',
-    apiKey: process.env.ANTHROPIC_API_KEY,
-    model: 'claude-opus-4.7'
-  }
-});
-```
-
-### Observability
-
-Built-in [OpenTelemetry](https://opentelemetry.io/) support provides distributed tracing across agent sessions. That makes it easier to debug complex workflows and understand tool invocation patterns in production.
-
----
-
-## SDK vs. Other Primitives
-
-The SDK complements the in-repo primitives rather than replacing them.
-
-| Factor | Use In-Repo Primitives | Use the SDK |
-|--------|----------------------|-------------|
-| **Where it runs** | VS Code, CLI, cloud agent, GitHub Actions | Your own applications and services |
-| **Configuration** | Markdown/JSON files in the repo | Code in your application |
-| **Who builds it** | Anyone who can write Markdown | Developers building tools and platforms |
-| **Authentication** | Handled by GitHub/VS Code | Your app manages auth (GitHub token or BYOK) |
-| **Tool access** | VS Code tools, MCP servers, built-in skills | Custom tools you define in code |
-| **Best for** | Customizing Copilot's existing surfaces | Embedding Copilot in new surfaces |
-
-### SDK vs. MCP
-
-MCP and the SDK solve different integration problems:
-
-- **[MCP](https://modelcontextprotocol.io)** connects Copilot (running in VS Code or CLI) to external tools and data sources. The agent stays in its existing surface; MCP extends what it can reach.
-- **The SDK** brings the agent runtime itself into a new application. The agent runs inside your code.
-
-Use MCP when the agent needs to *call* your system. Use the SDK when your system needs to *be* the agent.
-
-### SDK + Customization Primitives
-
-SDK-powered applications can still benefit from the repo-level primitives. When the SDK agent operates on a repository, it can read `copilot-instructions.md`, discover skills, and apply the same conventions that guide Copilot in VS Code. The primitives travel with the repository, so any agent that works on the code benefits from them.
-
----
-
-## Getting Started
-
-1. **Install the SDK** for your language (see table above)
-2. **Authenticate** with a GitHub token (Copilot subscription required) or configure BYOK
-3. **Define tools**: functions the agent can call during its reasoning loop
-4. **Create an agent** with a system prompt and tool list
-5. **Run or stream** a prompt and handle the response
-
-For detailed setup, API reference, and examples, see the [Copilot SDK repository](https://github.com/github/copilot-sdk).
-
----
-
-## Limitations
-
-The Copilot SDK is in public preview. Current constraints:
-
-| Limitation | Detail |
-|-----------|--------|
-| **Preview status** | APIs may change. Pin dependency versions and monitor the changelog |
-| **Copilot subscription required** | Unless using BYOK, a Copilot Pro, Pro+, Business, or Enterprise subscription is needed |
-| **Premium request quotas** | SDK calls consume Copilot premium requests. BYOK users pay their model provider directly |
-| **No built-in VS Code tools** | The SDK doesn't include VS Code's file editing, terminal, or search tools. Define your own equivalents |
-| **Model availability** | Available models depend on your subscription tier and region |
-
----
-
-## Further Reading
-
-- [Copilot SDK repository](https://github.com/github/copilot-sdk): Source code, API reference, and examples
-- [Copilot SDK public preview announcement](https://github.blog/changelog/2026-04-02-copilot-sdk-in-public-preview/): Changelog entry
-- [MCP (Model Context Protocol)](primitive-6-mcp.md): Connect Copilot to external tools (complementary to the SDK)
-- [Agentic Workflows](agentic-workflows.md): Run coding agents in GitHub Actions (alternative for CI/CD use cases)
-- [Custom Agents](primitive-5-custom-agents.md): Define specialized personas for the agent runtime
-
----
-
-[← Agentic Workflows](agentic-workflows.md) | [Next: Part III - Reference →](part-3-reference.md)
+- Read [GitHub Copilot Code Review](code-review.md) next for another environment that consumes repository knowledge without being a primitive.
+- Revisit [MCP](primitive-6-mcp.md) if the line between extending an existing surface and embedding a new runtime is still unclear.

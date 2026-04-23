@@ -1,6 +1,6 @@
 # Debugging the Agent Loop
 
-[← Back to Guide](README.md) | [← Tool Calling in Depth](tool-calling-in-depth.md) | [Next: Measuring Success →](measuring-success.md)
+[← Back to Guide](../README.md) | [← Tool Calling in Depth](tool-calling-in-depth.md) | [Next: Appendix: Diagnosing Loop Failures →](appendix-diagnosing-loop-failures.md)
 
 *Updated: April 22, 2026.*
 

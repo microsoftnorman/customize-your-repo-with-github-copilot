@@ -1,6 +1,6 @@
 # Primitives in Action
 
-[← Back to Guide](README.md) | [← The Agent Loop](agent-loop.md) | [Next: The Eight Primitives →](part-2-primitives.md)
+[← Back to Guide](../README.md) | [← The Agent Loop](agent-loop.md) | [Next: The Eight Primitives →](eight-primitives.md)
 
 *Updated: April 22, 2026.*
 

@@ -1,6 +1,6 @@
 # Why Customization Matters
 
-[← Back to Guide](README.md) | [← Foundations](foundations.md) | [Next: The Agent Loop →](agent-loop.md)
+[← Back to Guide](../README.md) | [← Foundations](foundations.md) | [Next: The Agent Loop →](agent-loop.md)
 
 *Updated: April 22, 2026.*
 

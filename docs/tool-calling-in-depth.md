@@ -1,6 +1,6 @@
 # Tool Calling in Depth
 
-[← Back to Guide](README.md) | [← GitHub Copilot SDK](copilot-sdk.md) | [Next: Debugging the Agent Loop →](debugging-the-agent-loop.md)
+[← Back to Guide](../README.md) | [← Where GitHub Copilot Runs](where-github-copilot-runs.md) | [Next: Debugging the Agent Loop →](debugging-the-agent-loop.md)
 
 *Updated: April 22, 2026.*
 

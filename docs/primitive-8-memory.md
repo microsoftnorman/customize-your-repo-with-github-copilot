@@ -1,248 +1,212 @@
-# Copilot Memory
+# Primitive 8: Memory
 
-[← Hooks](primitive-7-hooks.md) | [Part II Overview](part-2-primitives.md)
+[← Back to The Eight Primitives](eight-primitives.md) | [← Hooks](primitive-7-hooks.md) | [Next: Measuring Success →](measuring-success.md)
 
-*Updated: April 22, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
-
----
-
-## Overview
-
-The customization primitives covered in this guide (instructions, prompts, skills, agents, MCP, and hooks) are all *explicit*. Developers write these files, commit them to the repo, and keep them current as the codebase evolves. They capture what a team *wants* Copilot to know.
-
-[Copilot Memory](https://docs.github.com/en/copilot/concepts/agents/copilot-memory) works differently. It lets Copilot build its own understanding of a repository by automatically discovering and storing facts as it works: coding conventions, architectural patterns, cross-file dependencies, and other details that emerge from real activity. No one writes these down. Copilot notices them during real work, then applies them on the next task.
-
-**Status:** Public preview (on by default for Pro/Pro+ users as of [March 4, 2026](https://github.blog/changelog/2026-03-04-copilot-memory-now-on-by-default-for-pro-and-pro-users-in-public-preview))
-**Best For:** Supplementing explicit customization with learned context that's hard to document manually
-**Location:** Managed by GitHub. No repo file to configure.
-**Ownership:** Memory has no repo file to own, but **Security / Compliance** owns the enablement policy (enterprise or org setting), and **repository admins** own the periodic review-and-delete cadence for stored memories.
-
-**Official docs:** [Copilot Memory](https://docs.github.com/en/copilot/concepts/agents/copilot-memory) · [Managing memories](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory)
-
-**Code to study:** [GitHub Copilot CLI repository](https://github.com/github/copilot-cli) for one public surface that consumes Memory. The Memory service itself is GitHub-managed, so there is no repo-local implementation to inspect.
-
-**See it in action:** [VS Code Insiders Podcast Episode 9: Building agent memory for VS Code](https://www.vscodepodcast.com/9) — Harald Kirschner explains the mental model behind repository memory and why learned context complements explicit customization.
-
-### Quick Reference: View, Edit, or Disable
-
-| Action | Where |
-|--------|-------|
-| **View or delete memories for a repo** | Repository → **Settings** → **Copilot** → **Memory** (requires repo owner). See [Viewing and Deleting Memories](#viewing-and-deleting-memories). |
-| **Turn Memory off for yourself** | [github.com/settings/copilot](https://github.com/settings/copilot) → Features → Copilot Memory → **Disabled**. See [Enabling or Disabling Memory](#enabling-or-disabling-memory). |
-| **Turn Memory off for an organization** | Org Settings → Copilot → Policies → Copilot Memory (org owners only). |
-| **Turn Memory off enterprise-wide** | Enterprise → AI controls → Copilot → **Disabled everywhere**. |
-
-Memories also auto-expire after 28 days and are re-validated against current code before every use. Stale or incorrect memories are discarded automatically. Manual deletion is only needed for memories you want gone immediately.
-
-Think of the relationship this way:
-
-- **Primitives** shape what Copilot is *told*: explicit rules, procedures, and tools
-- **Memory** captures what Copilot *learns*: patterns discovered through use
-
-A well-configured repository uses both. Explicit customization prevents mistakes from day one. Memory fills in the nuances that accumulate over time. Memory also carries into [Copilot code review](code-review.md). Patterns the team has corrected across many PRs get surfaced automatically in future reviews, even when they aren't written into an instruction file.
+*Updated: April 22, 2026.*
 
 ---
+
+## Where It Enters the Loop
+
+Memory enters the loop during context assembly and reasoning, but unlike the other primitives, it is not authored in the repository as a file.
+
+That is what makes it unusual.
+
+Always-on Instructions, File-based Instructions, Prompts, Skills, Agents, MCP, and Hooks all represent knowledge or control the team defines explicitly. Memory represents repository knowledge GitHub Copilot learns over time from actual work.
+
+## What This Primitive Is For
+
+Use Memory to supplement explicit customization with patterns that are easier to observe than to document.
+
+GitHub's canonical reference is [About agentic memory for GitHub Copilot](https://docs.github.com/en/copilot/concepts/agents/copilot-memory), which is also the place to check preview status and current rollout scope.
+
+Examples include:
+
+- naming patterns that recur across modules,
+- cross-file relationships the team rarely writes down,
+- architectural habits that are stable but tedious to explain explicitly,
+- and conventions that repeatedly surface in code review or implementation work.
+
+The question Memory answers is: "What has the system learned from how this repository actually behaves?"
+
+## Why Memory Does Not Replace Explicit Customization
+
+Memory is useful precisely because it is not the same thing as authored instructions.
+
+It is weaker in one sense and stronger in another.
+
+- Weaker because it is learned over time, expires, and depends on observed activity.
+- Stronger because it can capture patterns no one would realistically maintain by hand.
+
+That is why the right pairing is explicit plus learned, not one or the other.
+
+Write down what must be true from day one. Let Memory reinforce the patterns that emerge from real repository work.
+
+## What Makes Memory Different from the Other Seven
+
+It has no repository file to create.
+
+That changes how the primitive should be taught.
+
+The story is no longer about file location and frontmatter. It is about lifecycle:
+
+- how memories are created,
+- where they are used,
+- how they are validated,
+- how they expire,
+- and when humans should review or delete them.
+
+That is why Memory belongs at the end of the primitive sequence. It makes the most sense once the reader already understands the authored layer it complements.
+
+## The Relationship to Instructions
+
+Always-on Instructions tell GitHub Copilot what the team already knows it wants.
+
+Memory captures what GitHub Copilot keeps discovering through repeated work.
+
+If the rule is explicit, important, and should apply immediately, write it down.
+
+If the pattern is real but difficult to document exhaustively, let Memory help.
+
+The strongest repositories use both.
+
+## Surface Reality
+
+The current guide positions Memory most clearly in places where repository knowledge needs to persist across work:
+
+- Cloud Coding Agent sessions,
+- code review,
+- and CLI-based workflows.
+
+That usage pattern matters because it reinforces one of the big themes of this guide: the primitive layer is portable, but not every part of it applies in every surface in the same way.
+
+## What Good Memory Hygiene Looks Like
+
+Good Memory hygiene means:
+
+- using explicit customization for critical rules,
+- periodically reviewing stored memories,
+- deleting misleading or stale memories when needed,
+- and understanding that expiration and validation are features, not bugs.
+
+For the operational details on validation, retention, and manual cleanup, see [Managing and curating Copilot Memory](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory).
+
+Memory is most useful when it follows the living code rather than becoming another undocumented system that accumulates stale assumptions.
+
+## How It Composes with Other Primitives
+
+| Primitive | Relationship |
+|-----------|--------------|
+| [Always-on Instructions](primitive-1-always-on-instructions.md) | Define the explicit rules Memory should reinforce, not replace |
+| [File-based Instructions](primitive-2-file-based-instructions.md) | Capture scoped truths that should not wait to be learned |
+| [Code Review](code-review.md) | Learned repository patterns can surface during review |
+| [Cloud Coding Agent](surfaces/cloud-coding-agent.md) | Memory becomes especially valuable when work happens remotely over time |
+
+## The Most Useful Mental Model
+
+The shortest accurate explanation is this:
+
+**Instructions are what the team tells GitHub Copilot. Memory is what GitHub Copilot learns from the team.**
+
+That is the distinction to keep.
 
 ## How Memory Works
 
-As Copilot works in a repository (implementing a feature or reviewing a pull request, for example), it may notice patterns worth remembering. Each memory is a tightly scoped piece of information about the repository, such as a naming convention or a non-obvious architectural rule.
+As GitHub Copilot works in a repository, it notices patterns worth remembering. Each memory is a tightly scoped fact: a naming convention, an architectural rule, a cross-file relationship.
 
 ### Lifecycle
 
 ```text
 Copilot works in repo
-     ↓
-Discovers useful fact
-     ↓
-Stores memory with citations (references to specific code locations)
-     ↓
-Next session: validates citations against current codebase
-     ↓
-  ┌── Valid → Memory applied to current task
-  └── Invalid → Memory discarded (code changed, no longer relevant)
-     ↓
-After 28 days → Memory auto-expires
+     → Discovers useful fact
+     → Stores memory with citations (references to specific code locations)
+     → Next session: validates citations against current codebase
+     → Valid → Memory applied
+     → Invalid → Memory discarded
+     → After 28 days → Memory auto-expires
 ```
 
 ### Key Properties
 
 | Property | Detail |
 |----------|--------|
-| **Scope** | Repository-level: memories are tied to a single repo, not to a user or organization |
-| **Creation** | Automatic: Copilot creates memories during normal operations, not from manual input |
-| **Validation** | Citation-based: each memory references specific code locations; Copilot checks these against the current codebase before using a memory |
-| **Expiration** | 28 days: prevents stale context from affecting decisions |
-| **Renewal** | If a memory is validated and used, a new memory with the same details may be stored, extending its effective lifetime |
-| **Permissions** | Only created from activity by users with write access to the repository |
-
-Memories created from unmerged pull requests won't affect behavior. The validation step ensures the supporting code must exist in the current codebase.
-
-### Inspecting Memory Through Chat
-
-Memory is the one primitive that isn't authored. There is no file to scaffold, no `/create-memory` command, no helmsman to repeat the order at creation time — Copilot writes memories as a side effect of doing real work. What the repeat-back pattern still offers is *inspection*: ask Copilot what it has learned, and correct it when the answer is wrong. Manual deletion still happens in the UI (see [Viewing and Deleting Memories](#viewing-and-deleting-memories)), but a quick chat interrogation often surfaces stale memories before they cause problems.
-
-> **💬 Try this prompt:**
->
-> *Summarize the memories you currently have for this repository. Group them by topic (conventions, architecture, tooling) and flag any that might be out of date based on the current code.*
-
-> **💬 Try this prompt:**
->
-> *We migrated from Jest to Vitest two weeks ago. Check what you remember about our testing setup and point out anything that still references Jest so I can delete those memories in the repo settings.*
-
----
+| **Scope** | Repository-level: tied to a single repo, not a user or org |
+| **Creation** | Automatic from normal operations, not manual input |
+| **Validation** | Citation-based: checks referenced code locations before use |
+| **Expiration** | 28 days; frequently-used memories get refreshed |
+| **Permissions** | Only created from activity by users with write access |
 
 ## Where Memory Is Used
 
-Memory currently works across three Copilot surfaces:
-
 | Surface | How Memory Helps |
 |---------|-----------------|
-| **[Copilot cloud agent](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory)** | Applies learned conventions when implementing features and opening PRs |
-| **[Copilot code review](https://docs.github.com/en/copilot/concepts/agents/copilot-memory#where-is-copilot-memory-used)** | Uses learned patterns to give more targeted review feedback |
-| **[Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli)** | Brings repository awareness to terminal workflows |
+| **Cloud Coding Agent** | Applies learned conventions when implementing features and opening PRs |
+| **Copilot code review** | Uses learned patterns to give more targeted review feedback |
+| **GitHub Copilot CLI** | Brings repository awareness to terminal workflows |
 
-Memories are shared across surfaces. If the coding agent discovers how your repository handles database connections, code review can apply that knowledge to spot inconsistent patterns in a pull request. If code review learns that two config files must stay synchronized, the coding agent will know to update both.
+Memory is shared across surfaces. If the coding agent discovers how the repo handles database connections, code review applies that knowledge when spotting inconsistencies.
 
-Memory is not yet available in VS Code Chat, Completions, or Inline Chat. GitHub has indicated it will extend to additional surfaces and scopes in future releases.
+Memory is not yet available in VS Code Chat, Completions, or Inline Chat.
 
----
+## Availability by Plan
+
+| Plan | Default State | Who Controls |
+|------|--------------|--------------|
+| **Copilot Pro / Pro+** | Enabled by default | Individual user |
+| **Copilot Business** | **Disabled** by default | Organization owner |
+| **Copilot Enterprise** | **Disabled** by default | Enterprise owner |
+
+**Precedence:** If a user receives Copilot from multiple organizations, the most restrictive setting wins. Enterprise `Disabled everywhere` overrides any org-level choice.
+
+## Viewing and Deleting Memories
+
+Only repository owners can view and delete stored memories:
+
+1. Repository → **Settings** → **Copilot** → **Memory**
+2. Review the chronological list
+3. Delete individual memories or select multiple
+
+Manual deletion is only needed for incorrect or misleading memories. Auto-expiration handles the rest.
+
+> 💬 **Try this prompt:**
+> "Summarize the memories you currently have for this repository. Group them by topic and flag any that might be out of date."
 
 ## Memory vs. Explicit Customization
 
-Memory and explicit customization solve different problems. Neither replaces the other.
-
 | | Explicit Customization | Copilot Memory |
 |-|----------------------|----------------|
-| **Source** | Written by developers, committed to repo | Automatically discovered by Copilot |
-| **When it helps** | From the first interaction | After enough activity to learn from |
-| **What it captures** | Deliberate rules and decisions | Emergent patterns and nuances |
-| **Maintenance** | Manual: update instructions as codebase evolves | Automatic: expires stale memories, learns new ones |
-| **Scope** | Varies by primitive (session, file, task) | Repository-wide |
-| **Reliability** | Deterministic: same rules every time | Probabilistic: depends on what Copilot has observed |
-| **Best for** | Must-follow rules, security requirements, architectural decisions | Coding style nuances, cross-file relationships, non-obvious conventions |
+| **Source** | Written by developers | Automatically discovered |
+| **When it helps** | From the first interaction | After enough activity |
+| **Maintenance** | Manual | Automatic (expires stale, learns new) |
+| **Reliability** | Deterministic | Probabilistic |
+| **Best for** | Must-follow rules, security, architecture | Style nuances, cross-file relationships |
 
-### When to Write Instructions vs. Let Memory Learn
+**Write instructions** when the rule must be followed from day one or getting it wrong has consequences.
 
-**Write explicit customization when:**
-- The rule must be followed from day one (no ramp-up period acceptable)
-- Getting it wrong has consequences (security, data integrity, compliance)
-- The pattern is a deliberate team decision, not an emergent convention
-- Consistency across all contributors matters more than flexibility
+**Let Memory handle it** when the pattern is hard to articulate but easy to observe, or the convention is stable in the existing code.
 
-**Let Memory handle it when:**
-- The pattern is hard to articulate but easy to observe ("we tend to organize tests this way")
-- The knowledge is cross-file and would be tedious to document exhaustively
-- The convention is stable and well-established in the existing code
-- You want Copilot to adapt to how the codebase actually works, not how the docs describe it
-
-**Use both when:**
-- Instructions set the rule ("use React Query, not Redux"), Memory learns the specific patterns ("in this repo, React Query hooks follow this naming convention and live in `src/hooks/queries/`")
-- Skills encode the procedure ("deploy using these steps"), Memory learns the environment-specific details ("this repo deploys to three staging environments before production")
-
----
-
-## Enabling and Managing Memory
-
-Memory is granted at the **user** level, not the repository level. Once a user has Memory enabled, Copilot may create and use memories in any repository that user works in with Copilot cloud agent, Copilot code review, or Copilot CLI. The repository is the *scope* of a memory. The user is the *subject* of the enablement policy.
-
-### Availability by Plan
-
-| Plan | Default State | Who Controls | Where |
-|------|--------------|--------------|-------|
-| **Copilot Pro / Pro+** | Enabled by default | Individual user | Personal [Copilot settings](https://github.com/settings/copilot) |
-| **Copilot Business** | **Disabled** by default | Organization owner | Organization Settings → Copilot → Policies |
-| **Copilot Enterprise** | **Disabled** by default | Enterprise owner (may delegate) | Enterprise → AI controls → Copilot |
-
-**Precedence rule:** If a user receives Copilot from multiple organizations, the **most restrictive** setting wins. Memory is only active when *every* assigning organization has it enabled. Enterprise-level `Disabled everywhere` overrides any org-level choice.
-
-### Enabling or Disabling Memory
-
-**Enterprise owners (enterprise-wide policy):**
-
-1. Navigate to **Enterprise** → **AI controls** → **Copilot**
-2. Under **Features**, scroll to **Copilot Memory**
-3. Select a policy from the dropdown:
-   - **Let organizations decide**: each org owner chooses independently
-   - **Enabled everywhere**: on for every licensed member across every org in the enterprise
-   - **Disabled everywhere**: off everywhere, and org owners cannot re-enable it
-
-**Organization owners (Business, or Enterprise with `Let organizations decide`):**
-
-1. Go to **Organization Settings** → **Copilot** → **Policies**
-2. Under **Features**, scroll to **Copilot Memory**
-3. Select **Enabled** from the dropdown. This applies to all licensed members of the org.
-
-**Individual users (Pro / Pro+, or users whose org has enabled Memory):**
-
-1. Click your profile picture → **Copilot settings**
-2. Under **Features**, scroll to **Copilot Memory**
-3. Select **Enabled** or **Disabled**
-
-Users whose Copilot license comes from an org can only *opt out*. They cannot opt in if the org or enterprise has Memory disabled.
-
-### Viewing and Deleting Memories
-
-Only **repository owners** can view and manually delete the memories stored for a repository:
-
-1. Go to the repository → **Settings** → **Copilot** → **Memory** (in the **Code & automation** section of the sidebar)
-2. A chronological list of stored memories is displayed, newest first
-3. Click the trashcan icon next to a memory to delete it, or use the checkboxes to select multiple memories and click **Delete**
-
-Manual deletion is only needed to remove memories that are incorrect, outdated, or misleading. Memories auto-expire on a 28-day cycle.
-
-For full details, see [Managing and curating Copilot Memory](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory).
-
-### Retention, Validation, and Renewal
-
-Three mechanisms keep stored memories from going stale:
-
-| Mechanism | How It Works | Effect |
-|-----------|--------------|--------|
-| **28-day expiration** | Every memory has a hard time-to-live. Unused memories are automatically deleted after 28 days. | Prevents old assumptions from affecting decisions indefinitely |
-| **Citation validation** | Each memory is stored with citations, which are references to specific code locations that justify it. Before a memory is used, Copilot re-checks those citations against the current codebase and branch. | A memory whose supporting code has been deleted or changed is discarded rather than applied. That includes memories derived from PRs that were closed without merging |
-| **Renewal on use** | When a memory is validated and used, a new memory with the same details may be stored, resetting the clock. | Memories that continue to match the codebase persist; memories no one hits quietly expire |
-
-Memory follows the living code. Accurate facts stick around, and obsolete ones fall off without needing human cleanup.
-
----
+**Use both** when instructions set the rule ("use React Query, not Redux") and Memory learns the specific patterns ("in this repo, React Query hooks follow this naming convention and live in `src/hooks/queries/`").
 
 ## Best Practices
 
-1. **Don't skip explicit customization because Memory exists.** Memory takes time to build up. A new repository has zero memories. Instructions and skills work from the first interaction.
-
-2. **Use instructions for guardrails, Memory for nuance.** Put security requirements, architectural rules, and technology choices in `copilot-instructions.md`. Let Memory learn the subtleties: naming patterns and file conventions that are "obvious" to the team but not documented anywhere.
-
-3. **Review stored memories periodically.** Check what Copilot has learned about your repository. Delete memories that are misleading or based on patterns you're moving away from.
-
-4. **Treat Memory as a complement to good onboarding.** Memory helps Copilot work the way your team works. It doesn't replace a well-structured `copilot-instructions.md` any more than institutional knowledge replaces a README.
-
-5. **Consider the 28-day window.** Memories expire if not refreshed. For critical conventions, don't rely on Memory alone. Write them down in instructions or skills where they persist indefinitely.
-
----
+1. **Do not skip explicit customization because Memory exists.** A new repository has zero memories. Instructions work from the first interaction.
+2. **Use instructions for guardrails, Memory for nuance.** Security requirements and tech stack choices belong in `copilot-instructions.md`. Let Memory learn the subtleties.
+3. **Review stored memories periodically.** Delete memories that are misleading or based on patterns the team is moving away from.
+4. **Consider the 28-day window.** For critical conventions, do not rely on Memory alone.
 
 ## Limitations
 
-Copilot Memory is in public preview. Current limitations:
-
 | Limitation | Detail |
 |-----------|--------|
-| **Preview status** | Behavior may change. Verify current capabilities against [official documentation](https://docs.github.com/en/copilot/concepts/agents/copilot-memory) |
-| **Repository scope only** | Memories don't carry across repositories. No user-level or organization-level memory yet |
-| **28-day expiration** | Memories auto-delete after 28 days. Frequently-used ones get refreshed, but rarely-relevant facts may not persist |
-| **Limited surfaces** | Currently works with coding agent, code review, and Copilot CLI only. Not yet in VS Code Chat, Completions, or Inline Chat |
-| **Write access required** | Memories are only created from activity by users with write permission in the repository |
-| **Owner-only review** | Only repository owners can list or delete stored memories. Team members and contributors cannot audit what Copilot has learned |
-| **Org enablement required** | Users on Business / Enterprise plans cannot opt themselves in. Memory must first be enabled at the enterprise or organization level |
-| **No manual creation** | You can view and delete memories, but you can't manually add them. Use instructions, skills, or agents for knowledge you want to inject directly |
+| Preview status | Behavior may change |
+| Repository scope only | No user-level or org-level memory yet |
+| 28-day expiration | Rarely-relevant facts may not persist |
+| Limited surfaces | Not yet in VS Code Chat or IDE-specific chat |
+| Write access required | Only created from activity by users with write permission |
+| Owner-only review | Only repo owners can list or delete memories |
+| No manual creation | Cannot manually add memories; use instructions for injected knowledge |
 
----
+## Where to Read Next
 
-## Further Reading
-
-- [About agentic memory for GitHub Copilot](https://docs.github.com/en/copilot/concepts/agents/copilot-memory). Concepts and architecture.
-- [Managing and curating Copilot Memory](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory). Enablement, viewing, and deleting memories.
-- [Copilot Memory now on by default for Pro and Pro+ users](https://github.blog/changelog/2026-03-04-copilot-memory-now-on-by-default-for-pro-and-pro-users-in-public-preview). Changelog announcement.
-
----
-
-[← Hooks](primitive-7-hooks.md) | [Next: Agentic Workflows →](agentic-workflows.md)
+- Go back to [The Eight Primitives](part-2-primitives.md) if you want to compare all eight as one system again.
+- Use [Code Review](code-review.md), [Agentic Workflows](agentic-workflows.md), and the surface guides to see where explicit and learned repository knowledge show up outside the editor.

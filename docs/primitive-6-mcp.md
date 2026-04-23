@@ -1,379 +1,221 @@
-# MCP (Model Context Protocol)
+# Primitive 6: MCP
 
-[← Custom Agents](primitive-5-custom-agents.md) | [Part II Overview](part-2-primitives.md)
+[← Back to The Eight Primitives](eight-primitives.md) | [← Custom Agents](primitive-5-custom-agents.md) | [Next: Hooks →](primitive-7-hooks.md)
 
-*Updated: April 22, 2026 · Validated against VS Code 1.116 and GitHub Copilot docs as of April 16, 2026.*
+*Updated: April 22, 2026.*
 
 ---
 
-## Overview
+## Where It Enters the Loop
 
-MCP (Model Context Protocol) connects Copilot to external tools and live data sources. Instructions, prompts, and custom agents give Copilot knowledge. MCP lets Copilot take real actions against systems like GitHub, databases, issue trackers, and internal APIs.
+MCP changes the loop at action selection and tool execution.
 
-**Loading:** Session start
-**Best For:** Calling external APIs and reading live data from outside systems
-**Ownership:** MCP server configuration is typically owned by the **Platform / DevEx team** for production integrations (databases, internal APIs), and by **Security** for approved-server allowlists. Individual developers may add personal MCP servers via user configuration.
+Instructions, Prompts, Skills, and Agents tell GitHub Copilot how to think. MCP changes what it can reach.
 
-**Official docs:** [MCP servers](https://code.visualstudio.com/docs/copilot/customization/mcp-servers)
+That is the central distinction to preserve. MCP is not more context. It is more capability.
 
-**Code to study:** [VS Code Copilot Chat source](https://github.com/microsoft/vscode-copilot-chat) for a public MCP client host, and [GitHub Copilot CLI repository](https://github.com/github/copilot-cli) for another MCP-capable surface with its own configuration and runtime behavior.
+## What This Primitive Is For
 
-**See it in action:** [Extend Agents with MCP](https://www.youtube.com/watch?v=_g29UQjIAeI&t=180s) — Connor Peet demos an MCP server returning resources and interactive UI back into chat during a live workflow.
+Use MCP when the task depends on systems outside the local workspace:
 
-**Scope:** This section covers how GitHub Copilot *consumes* MCP servers — configuration, tool discovery, and invocation. It does not cover MCP server security, authentication implementation, or building custom MCP servers. For those topics, see the [MCP specification](https://modelcontextprotocol.io).
+- issue trackers,
+- GitHub APIs,
+- databases,
+- internal search services,
+- browser automation,
+- deployment systems,
+- or any other tool surface the agent needs to call directly.
 
-### How MCP Servers Expose Tools
+The question MCP answers is: "What real systems can the loop act on or inspect?"
 
-MCP servers expose capabilities as **tools** that Copilot can discover and invoke. When Copilot starts a session with an MCP server configured, it queries the server for its available tools.
+## What This Looks Like in Practice
 
-**The discovery flow:**
+Without MCP, a prompt like "check the latest checkout failures and open the preview build" can only produce advice.
 
-1. **Copilot connects** to the MCP server at session start
-2. **Server responds** with a list of tools, each with:
-   - Tool name (e.g., `create_issue`, `query_database`)
-   - Description (helps Copilot decide when to use it)
-   - Input schema (JSON Schema defining required parameters)
-3. **Copilot adds tools** to its available capabilities
-4. **During conversation**, Copilot matches user requests to tool descriptions
-5. **When invoked**, Copilot constructs the parameters and calls the tool
+With MCP, the same request can become action:
 
-**Example tool definition (from server's perspective):**
+- a GitHub server can inspect the issue or pull request,
+- a browser server can open the preview deployment,
+- and a database or internal API server can fetch the live context the agent needs.
 
-```json
-{
-  "name": "create_issue",
-  "description": "Create a new GitHub issue in a repository",
-  "inputSchema": {
-    "type": "object",
-    "properties": {
-      "owner": { "type": "string", "description": "Repository owner" },
-      "repo": { "type": "string", "description": "Repository name" },
-      "title": { "type": "string", "description": "Issue title" },
-      "body": { "type": "string", "description": "Issue body (markdown)" }
-    },
-    "required": ["owner", "repo", "title"]
-  }
-}
-```
+That is the practical difference. MCP moves the loop from explanation to live reach.
 
-**What Copilot sees:** A tool called `create_issue` that it can call when users want to create GitHub issues. Copilot reads the description and schema to understand when and how to use it.
+## The Fastest Comparison That Matters
 
-**What you see:** When Copilot decides to use the tool, it shows you the tool name and parameters before execution, giving you a chance to approve or modify.
+Instructions provide knowledge.
 
-### Configuring MCP Servers
+MCP provides reach.
 
-Start with the built-in MCP commands instead of hand-authoring `mcp.json`. The file has strict syntax for transport types, environment variable substitution, and secret references; a single misquoted value or the wrong `type` and the server fails to start. VS Code ships built-in commands that scaffold servers correctly:
+If the repository says, "we use PostgreSQL," that is knowledge.
+If the agent can actually query PostgreSQL, that is MCP.
 
-- **MCP: Add Server** (Command Palette) walks through adding a server interactively — pick the transport type, paste the command or URL, and VS Code writes the JSON.
-- **MCP: Open User Configuration** opens `~/.vscode/mcp.json` for user-level servers.
-- **MCP: Open Workspace Folder Configuration** opens `.vscode/mcp.json` for repo-level servers.
-- In Chat, describe the server in plain English and let Copilot write the block; it knows the schema for stdio, http, and sse transports.
+That difference is large enough to change architecture, risk, and trust boundaries. This guide treats it as one of the cleanest dividing lines in the whole primitive set.
 
-See [Don't Hand-Type Primitives — Let the Helmsman Repeat the Order](part-2-primitives.md#dont-hand-type-primitives--let-the-helmsman-repeat-the-order) for the rationale.
+## Configuration Shape
 
-> **💬 Try this prompt:**
->
-> *Add a GitHub MCP server to `.vscode/mcp.json` using the official `@modelcontextprotocol/server-github` package over stdio. Read the token from the `GITHUB_TOKEN` environment variable so it's not committed.*
+In VS Code, repository-level MCP configuration usually lives in `.vscode/mcp.json`. User-level MCP configuration can also live in the developer profile. In remote development, a remote user configuration can run on the attached host instead of the laptop.
 
-> **💬 Try this prompt:**
->
-> *Configure an HTTP MCP server pointing at our internal search service at `https://search.internal/mcp` with a bearer token from the `SEARCH_TOKEN` environment variable. Add it to the workspace `.vscode/mcp.json`, not the user config.*
+The current canonical references are VS Code's [Add and manage MCP servers](https://code.visualstudio.com/docs/copilot/customization/mcp-servers) page, the [MCP configuration reference](https://code.visualstudio.com/docs/copilot/reference/mcp-configuration), and the [Model Context Protocol specification](https://modelcontextprotocol.io/).
 
-MCP servers are configured in dedicated `mcp.json` files:
+That is the first boundary to keep straight: the file location is not the same thing as the execution location.
 
-**Workspace Configuration (.vscode/mcp.json):**
-```json
-{
-  "servers": {
-    "my-mcp-server": {
-      "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "@example/mcp-server"],
-      "env": {
-        "API_KEY": "${env:API_KEY}"
-      }
-    }
-  }
-}
-```
+MCP servers can expose more than tools. In current VS Code guidance, a server can provide:
 
-**User Configuration:** Use Command Palette > **"MCP: Open User Configuration"** to edit `~/.vscode/mcp.json`.
+- tools for live actions,
+- resources for read-only context,
+- prompts for server-defined task templates,
+- and apps for richer interactive UI inside chat.
 
-**Additional fields for stdio servers:** `envFile` (path to .env file).
+That broader shape matters because the team is not only deciding what the agent can do. It is also deciding what live context enters the loop, which UI affordances appear, and which trust decisions users will have to make.
 
-**The `dev` key:** For MCP servers under active development, use the `dev` object to specify a file watch pattern and enable debugging:
+The operational details matter as much as the conceptual role. Bad instructions create poor output. Bad MCP configuration creates broken or risky capability.
+
+## Local to What?
+
+This is the part many teams get wrong on the first pass.
+
+- In a normal local editor session, a local stdio server runs on the workstation.
+- In a dev container, WSL session, SSH session, or Codespace, that same "local" server runs in the remote environment.
+- In a GitHub-hosted Cloud Coding Agent flow, the runtime is GitHub-hosted. It cannot call a process running only on a developer laptop.
+
+That is why reproducible MCP use depends on environment bootstrapping, not just on committing `.vscode/mcp.json`. The repo can describe the server. The runtime still has to be able to start it.
+
+## The Smallest Working Path
+
+Start with one server, one narrow task, and one verification step.
 
 ```json
 {
-  "servers": {
-    "my-dev-server": {
-      "type": "stdio",
-      "command": "node",
-      "args": ["dist/server.js"],
-      "dev": {
-        "watch": "src/**/*.ts",
-        "debug": true
-      }
-    }
-  }
+	"servers": {
+		"playwright": {
+			"type": "stdio",
+			"command": "npx",
+			"args": ["-y", "@microsoft/mcp-server-playwright"]
+		}
+	}
 }
 ```
 
-**Input variables:** Use `${input:variableName}` to prompt the user for values at startup. This is useful for configuration that varies per developer:
-
-```json
-{
-  "servers": {
-    "database": {
-      "type": "stdio",
-      "command": "npx",
-      "args": ["-y", "@example/db-mcp"],
-      "env": {
-        "DB_HOST": "${input:databaseHost}",
-        "DB_PORT": "${input:databasePort}"
-      }
-    }
-  }
-}
-```
-
-When the server starts, VS Code prompts for `databaseHost` and `databasePort` values. Combine with `${env:VAR}` for secrets that should come from the environment.
-
-**Variable syntax reference:** MCP configuration supports the following substitution patterns in `env` values and HTTP `headers`:
-
-| Syntax | Where | Resolves To |
-|--------|-------|-------------|
-| `${env:VAR}` | Workspace and user MCP | Local environment variable |
-| `${env:VAR:-default}` | Workspace and user MCP | Environment variable with a fallback default |
-| `${input:name}` | Workspace and user MCP | Prompts the user once per session |
-| `$VAR` / `${VAR}` | Cloud agent / custom-agent MCP | Environment variable from the Copilot environment (Claude Code compatibility) |
-| `${VAR:-default}` | Cloud agent / custom-agent MCP | Environment variable with a fallback default |
-| `${{ secrets.NAME }}` | Cloud agent custom-agent YAML | Secret from the repository's `copilot` environment |
-| `${{ vars.NAME }}` | Cloud agent custom-agent YAML | Variable from the repository's `copilot` environment |
-
-The `${{ secrets.* }}` and `${{ vars.* }}` forms intentionally mirror GitHub Actions syntax and are recognized inside `.github/agents/*.agent.md` frontmatter for MCP server configuration. For full details, see the [custom agents configuration reference](https://docs.github.com/en/copilot/reference/custom-agents-configuration#mcp-server-environment-variables-and-secrets).
-
-**For HTTP servers:**
-```json
-{
-  "servers": {
-    "remote-server": {
-      "type": "http",
-      "url": "https://example.com/mcp",
-      "headers": { "Authorization": "Bearer ${env:TOKEN}" }
-    }
-  }
-}
-```
+Then verify three things in order:
 
-**For SSE (Server-Sent Events) servers:**
-```json
-{
-  "servers": {
-    "sse-server": {
-      "type": "sse",
-      "url": "https://example.com/mcp/sse",
-      "headers": { "Authorization": "Bearer ${env:TOKEN}" }
-    }
-  }
-}
-```
+1. The runtime can start the server.
+2. The user has explicitly trusted the server.
+3. GitHub Copilot can perform one narrow action, such as opening a known page and taking a screenshot.
 
-The `http` transport uses the newer MCP streamable HTTP protocol. Use `sse` for servers that expose the older Server-Sent Events transport.
+If that fails, the first checks are not prompt quality. They are startup logs, missing runtime dependencies, trust state, and whether the server is running in the environment the agent actually controls.
 
-### Keep Your Tool Count Low
+For shell-first or automation-heavy teams, the same rule applies: script setup if needed, but validate the smallest safe tool call before assuming the workflow is now portable.
 
-Copilot performs best with fewer tools available. Each tool's name, description, and schema consumes context and increases decision complexity. **The hard limit is 128 tools per request, but fewer is better. Disable servers not actively in use to keep the tool list focused.**
+## Why It Feels Powerful So Quickly
 
-**Only run the MCP servers you actually need:**
+Once the loop can reach live systems, the task stops being hypothetical.
 
-- Working on frontend? Disable database MCP servers.
-- Not deploying to Azure this sprint? Disable the server from VS Code's MCP management UI.
-- Done with a Jira integration? Remove it from config.
+The agent can:
 
-Fewer tools means faster, more accurate tool selection.
+- inspect real issues,
+- query live data,
+- interact with internal services,
+- or verify behavior against external environments.
 
-### Example Use Cases
+That is why MCP is often the point where teams first feel both the upside and the risk of agentic work at the same time.
 
-- **"What's the status of issue #234?"** → GitHub MCP
-- **"Show me all users who signed up this week"** → Database MCP
-- **"Test this API endpoint"** → Fetch MCP
-- **"Take a screenshot of the login page"** → Puppeteer MCP
+## When to Use MCP Instead of a Skill
 
-### Instructions vs. MCP Comparison
+Use MCP when the missing piece is authenticated access or live system interaction.
 
-| | Custom Instructions | MCP |
-|-|---------------------|-----|
-| **What** | Text context for AI | External tool access |
-| **How** | Just knowledge | Actual capabilities |
-| **Example** | "We use PostgreSQL" | Can query PostgreSQL |
-| **Updates** | Manual | Real-time |
+Use a Skill when the missing piece is procedure, convention, or template.
 
-**Instructions provide knowledge. MCP provides capabilities.**
+Most serious integrations need both.
 
-### MCP vs. Skills: Complementary, Not Competing
+Example:
 
-MCP servers and skills serve different purposes, but the two are complementary. **Use both together.**
+- MCP can connect to GitHub, Jira, or a database.
+- A Skill can encode how the team triages issues, formats tickets, or interprets query results.
 
-- **MCP servers** provide *access* — authentication, API connections, external integrations
-- **Skills** provide *knowledge* — templates, conventions, workflows, domain expertise
+That pairing is one of the strongest recurring patterns in the current guide and in the local demo material.
 
-The best setups combine them: an MCP server handles "how to connect to Jira" while a skill handles "how our team formats Jira tickets."
+## What Good MCP Use Looks Like
 
-**Quick guidance:** Reach for an MCP server when you need to authenticate or call an external API. Reach for a skill when you need to encode team conventions or workflows. Most serious integrations use both.
+Good MCP use is narrow and intentional.
 
-**Infrastructure and DevOps MCP servers** demonstrate how this pattern extends to operations workflows. If your team uses (or builds) MCP servers for infrastructure tools, the same skill-plus-MCP architecture applies:
+The team enables the systems the workflow actually needs, keeps secret handling explicit, and avoids flooding the loop with unnecessary tool descriptions.
 
-| Use Case | MCP Server Would Provide | Pair With |
-|----------|------------------------|-----------| 
-| **Kubernetes** | Cluster state, pod logs, scaling, rollouts | Deployment skill for team conventions |
-| **Terraform / IaC** | Plan, apply, state queries | Infrastructure review agent |
-| **Cloud Provider** (Azure, AWS, GCP) | Resource management, metrics, cost data | Operations agent for infrastructure tasks |
-| **Monitoring** (Datadog, Grafana, Prometheus) | Alerts, dashboards, metric queries | Triage skill for runbook-based workflows |
+That is why the current guide's advice to keep tool count low matters so much. More tools do not automatically make the loop smarter. They often make tool choice noisier.
 
-The same principle applies: the MCP server provides *access* to infrastructure APIs, while skills and instructions encode *how your team uses them*.
+Good segmentation usually follows three boundaries at once:
 
-For a detailed exploration with practical examples (Git, Jira, file operations, incident response), see [Skills vs. MCP Servers: When to Use Which](primitive-4-skills.md#skills-vs-mcp-servers-when-to-use-which).
+- trust boundary: which servers are safe to enable by default,
+- runtime boundary: which servers can run locally, remotely, or only in cloud-hosted flows,
+- audience boundary: which servers are for everyone, and which are for a smaller role such as release engineering or data operations.
 
-### Out-of-the-Box MCP Servers (Cloud Agent)
+That is a better architecture pattern than dumping every possible integration into one shared file.
 
-The Copilot cloud agent ships with two MCP servers pre-configured, with no setup required:
+## Trust Boundaries Matter Here More Than Anywhere Else
 
-| Server | Scope | What It Provides |
-|--------|-------|------------------|
-| `github/*` | Read-only by default, scoped to the source repository | Issues, PRs, code search, commits, workflow runs, and other GitHub resources. Reference the whole server with `github/*` in a custom agent's `tools` list, or target a specific tool with `github/<tool-name>`. |
-| `playwright/*` | Localhost only | Browser automation for testing and verification tasks (navigate, screenshot, inspect). Useful for cloud-agent workflows that validate a running preview deployment. |
+MCP is where prompt engineering stops being the whole conversation.
 
-Both servers are processed before any custom-agent or repository-level MCP configuration, so custom servers can override or extend the defaults. Authentication tokens issued to these servers are **scoped to the source repository**. They cannot reach other repos or org resources.
+Once a server can expose live data or actions, the team needs to think about:
 
-```yaml
----
-name: triage-agent
-tools: ['github/*', 'read', 'search']
----
-```
+- credential scope,
+- what the server is allowed to do,
+- whether the output can contain prompt-injection content,
+- and whether the workflow needs Hooks or infrastructure controls on top.
 
-For the full list of tools each out-of-box server exposes and the most current scopes, see the [custom agents configuration reference](https://docs.github.com/en/copilot/reference/custom-agents-configuration#tool-names-for-out-of-the-box-mcp-servers).
+That is why MCP pairs naturally with both Skills and Hooks: one adds procedure, the other adds enforcement.
 
-### Security Considerations: Tool Output and Prompt Injection
+For enterprise rollout, the minimum control set is usually straightforward:
 
-MCP tools return content that is fed back into the model's context window. That content can carry instructions, intentional or adversarial, that try to steer Copilot away from the user's request. A support-ticket description, a fetched web page, or a free-text database field can all become **prompt-injection vectors**.
+- separate dev, staging, and production access,
+- keep server allowlists explicit,
+- scope credentials to the narrowest environment and action set,
+- classify which data may enter the prompt,
+- and require a review path before a repo gains production-facing MCP reach.
 
-Practical defenses when consuming MCP tools:
+For public repositories, add one more rule: `.vscode/mcp.json` is code-review-sensitive. It is capability-granting configuration, not passive documentation. Treat changes to it like changes to automation or deployment scripts.
 
-- **Treat tool output as untrusted input.** The MCP protocol does not sign or validate tool responses. Anything a server returns is, from the model's perspective, additional context.
-- **Pin servers to specific versions and review updates.** A compromised or updated server can change the meaning of a tool response without changing its name.
-- **Prefer scoped tokens.** Give the server the minimum permissions it needs. A read-only GitHub token limits the blast radius of a successful injection.
-- **Sandbox untrusted stdio servers.** On macOS and Linux, VS Code 1.111+ can run local stdio servers in a restricted sandbox (see [Sandbox MCP Servers](#sandbox-mcp-servers) below).
-- **Don't echo tool output verbatim into approvals.** When a hook or agent uses tool output to make a security decision, extract structured fields rather than concatenating text.
+## Surface Reality
 
-For MCP's overall threat model and the spec's stance on authentication and trust, see the [MCP specification](https://modelcontextprotocol.io).
+`.vscode/mcp.json` is the primary repository path in VS Code. Other surfaces can support MCP without honoring the exact same repository setup flow.
 
-### MCP in GitHub Copilot CLI
+That means cross-surface rollout should assume this sequence:
 
-[GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) comes with the GitHub MCP server pre-configured. From the terminal, Copilot can merge pull requests, create issues, and manage repositories against GitHub.com without any extra setup.
+1. author the intended MCP contract in the repository,
+2. verify how each target surface exposes or installs the server,
+3. and document the fallback when the surface needs local or per-install setup.
 
-**Adding MCP servers in the CLI:**
+For example, Xcode currently supports MCP, but it is still a local macOS surface with a narrower integration model. JetBrains and Visual Studio can use MCP, but the team should verify the exact plugin or IDE build they standardize on rather than assuming perfect VS Code parity from the file path alone.
 
-1. Type `/mcp add` in an interactive session
-2. Fill in the server details using Tab to navigate between fields
-3. Press Ctrl+S to save
+## One Concrete Example
 
-CLI-specific server configurations are stored in `~/.copilot/mcp-config.json` (or the location specified by `XDG_CONFIG_HOME`). The CLI uses the same JSON structure as VS Code's `mcp.json` for server definitions.
+A strong real-world pattern is `MCP + procedure + guardrails`.
 
-**Checking available MCP tools:** Type `/mcp` in interactive mode to see configured servers and their available tools.
+Example: a data team connects GitHub Copilot to a warehouse query server through MCP, uses a Skill to enforce how analysts frame and summarize production queries, and adds Hooks or external controls to block risky access paths. The same pattern works for frontend preview environments, release tooling, or issue triage. The shape stays constant: reach, procedure, enforcement.
 
-**Shared configuration with VS Code:** Since the VS Code March 2026 releases, MCP servers configured in `.vscode/mcp.json` also work in Copilot CLI and Claude agent sessions. The same file serves all three surfaces, so teams that maintain a workspace `mcp.json` get CLI and agent parity for free.
+## How It Composes with Other Primitives
 
-### Beyond Tools: Resources, Prompts, and Apps
+| Primitive | Relationship |
+|-----------|--------------|
+| [Skills](primitive-4-skills.md) | Skills explain how to use the external capability consistently |
+| [Custom Agents](primitive-5-custom-agents.md) | Agents define which role gets to use which reach |
+| [Hooks](primitive-7-hooks.md) | Hooks constrain risky execution once the loop has real capability |
+| [Agentic Workflows](agentic-workflows.md) | Workflows often consume the same MCP-style reach in a remote runtime |
 
-MCP servers expose more than just tools. Three additional capability types extend what servers can provide:
+## See It in Action
 
-#### MCP Resources
+**See it in action:** [Extend Agents with MCP](https://www.youtube.com/watch?v=_g29UQjIAeI&t=33s) — Connor Peet demos MCP extending the agent loop with external tools, resources, and asynchronous tasks.
 
-MCP servers can give direct access to **resources** — structured data that can be used as context in chat prompts. For example, a file system MCP server might expose files and directories, or a database MCP server might provide access to table schemas.
+## Configuring MCP Servers
 
-To add a resource from an MCP server to a chat prompt: select **Add Context** > **MCP Resources** in the Chat view, then choose a resource type.
+Start with the built-in MCP commands instead of hand-authoring `mcp.json`. The file has strict syntax for transport types, environment variable substitution, and secret references. VS Code ships built-in commands that scaffold servers correctly:
 
-Resources are useful when Copilot needs reference data without executing a tool call — schema definitions, configuration files, or documentation that informs the conversation.
+- **MCP: Add Server** (Command Palette) walks through adding a server interactively
+- **MCP: Open User Configuration** opens `~/.vscode/mcp.json` for user-level servers
+- **MCP: Open Workspace Folder Configuration** opens `.vscode/mcp.json` for repo-level servers
 
-**See it in action:** [Extend Agents with MCP](https://www.youtube.com/watch?v=_g29UQjIAeI&t=230s) — Connor Peet demos a site-builder MCP server returning project metadata and a sketched layout as resources that flow directly into chat context.
+> 💬 **Try this prompt:**
+> "Add a GitHub MCP server to `.vscode/mcp.json` using the official `@modelcontextprotocol/server-github` package over stdio. Read the token from the `GITHUB_TOKEN` environment variable so it is not committed."
 
-#### MCP Prompts
-
-MCP servers can provide preconfigured **prompts** for common tasks, invoked in chat as slash commands. The format is `/mcp.servername.promptname` — type `/` in the chat input to see available MCP prompts alongside regular prompt files and skills.
-
-MCP prompts may request input parameters. They serve a similar purpose to prompt files but are defined and maintained by the MCP server rather than stored in the workspace.
-
-#### MCP Apps (Interactive UI)
-
-MCP Apps let tools return **interactive UI components** that render directly in chat. Instead of text-only responses, tools can display drag-and-drop lists, visualizations, or forms.
-
-When an MCP server supports apps, the UI appears inline in the chat conversation and the user interacts with it directly. Reordering a task list, configuring settings, or reviewing structured data all land better as UI than as text.
-
-**See it in action:** For a live demo, watch Connor Peet in [Extend Agents with MCP](https://www.youtube.com/watch?v=_g29UQjIAeI).
-
-### Tool Sets
-
-As MCP server count grows, so does the list of available tools. **Tool sets** group related tools for easier management and reference. Instead of toggling individual tools on and off, select or reference an entire tool set.
-
-Tool sets are defined alongside other tool configurations. Learn more about [creating and using tool sets](https://code.visualstudio.com/docs/copilot/agents/agent-tools#_group-tools-with-tool-sets).
-
-### Sandbox MCP Servers
-
-VS Code 1.111+ supports running local stdio MCP servers in a restricted sandbox on macOS and Linux. The sandbox limits file system and network access, reducing the risk of a malicious or buggy server affecting the host machine.
-
-This is useful in two scenarios:
-
-- **Evaluating untrusted servers** — Run a community MCP server in the sandbox before granting it full access. If it behaves well, promote it to unrestricted.
-- **Enforcing security policies** — Teams can require sandbox mode for all non-approved MCP servers, limiting blast radius even if a server is compromised.
-
-Sandbox mode is a VS Code-level feature, not part of the MCP protocol itself. It applies only to local stdio servers. HTTP servers connect over the network and are not sandboxed by this mechanism.
-
-### Chat Customizations Editor (Preview)
-
-VS Code 1.111+ includes a unified **Chat Customizations** editor that consolidates management of instructions, MCP servers, and other Copilot configuration in one place. The editor also lets teams browse MCP and plugin marketplaces directly from VS Code, making it easier to discover and add servers without editing JSON files manually.
-
-Open it via Command Palette > **"Chat Customizations"**.
-
-### Centrally Control MCP Access
-
-Organizations can centrally manage access to MCP servers via GitHub policies. This enables administrators to:
-- Restrict which MCP servers team members can use
-- Enforce approved server lists across repositories
-- Block unapproved external integrations
-
-Learn more about [enterprise management of MCP servers](https://code.visualstudio.com/docs/enterprise/ai-settings#_configure-mcp-server-access).
-
-### Synchronize MCP Servers Across Devices
-
-With [Settings Sync](https://code.visualstudio.com/docs/configure/settings-sync) enabled, MCP server configurations can be synchronized across devices. To enable MCP server synchronization, run **Settings Sync: Configure** from the Command Palette and ensure **MCP Servers** is included in the list of synchronized configurations.
-
-This maintains a consistent MCP environment across workstations. Useful for developers who work from multiple machines.
-
----
-
-## Credential Management
-
-MCP servers frequently require API keys, tokens, or other credentials. Follow these practices to keep secrets out of version control:
-
-- **Never hardcode secrets in `mcp.json`.** Use `${env:VAR_NAME}` to reference environment variables.
-- **Use `.env` files for local development.** Point to them with the `envFile` field in your server configuration. Add `.env` to `.gitignore`.
-- **Rotate credentials on a schedule.** Treat MCP server tokens like any other service credential. Rotate them on a cadence and revoke immediately if compromised.
-- **Limit token scope.** Create tokens with the minimum permissions the MCP server needs. A GitHub MCP server that only reads issues does not need `repo` write access.
-- **MCP server authors are responsible for secure credential handling.** The MCP protocol does not enforce credential security. It passes environment variables straight to the server process, so review how a server uses credentials before granting sensitive tokens.
-
-For VS Code’s secret storage and environment variable handling, see [Variables reference](https://code.visualstudio.com/docs/reference/variables-reference).
-
----
-
-## End-to-End Tutorial: Adding a GitHub MCP Server
-
-This walkthrough covers every step from zero to a working [GitHub MCP](https://github.com/github/github-mcp-server) integration.
-
-### Step 1: Create the Configuration File
-
-Create `.vscode/mcp.json` in your workspace root. Pin the server package to a specific version so `npx` can't silently pull in a new release between sessions:
+**Workspace configuration (`.vscode/mcp.json`):**
 
 ```json
 {
@@ -390,65 +232,99 @@ Create `.vscode/mcp.json` in your workspace root. Pin the server package to a sp
 }
 ```
 
-Replace `2026.4.0` with the version you actually verified. Check the package's releases page and update deliberately. Unpinned `npx -y <package>` is a supply-chain risk; the agent will run whatever the package currently resolves to.
+Pin to a specific version. Unpinned `npx -y <package>` is a supply-chain risk.
 
-### Step 2: Create a Narrowly Scoped Token
+**HTTP server:**
 
-Create a [fine-grained personal access token](https://github.com/settings/personal-access-tokens/new) rather than a classic PAT:
+```json
+{
+  "servers": {
+    "remote-server": {
+      "type": "http",
+      "url": "https://example.com/mcp",
+      "headers": { "Authorization": "Bearer ${env:TOKEN}" }
+    }
+  }
+}
+```
 
-- **Resource owner** — the account or org that owns the target repositories.
-- **Repository access** — select only the specific repositories you need the agent to reach, not "All repositories."
-- **Permissions** — grant only what your workflow requires. A read-only triage tool needs `Contents: Read` and `Metadata: Read`; a tool that opens issues adds `Issues: Read and write`. Avoid `Administration`, `Secrets`, and `Actions` unless the workflow truly requires them.
-- **Expiration** — set the shortest expiration that fits your workflow; rotate when it expires.
+**Variable syntax reference:**
 
-Classic PATs with `repo` scope grant read/write access to every repository the user can see — a blast radius that rarely matches what an MCP server actually needs.
+| Syntax | Where | Resolves To |
+|--------|-------|-------------|
+| `${env:VAR}` | Workspace / user MCP | Local environment variable |
+| `${env:VAR:-default}` | Workspace / user MCP | Environment variable with fallback |
+| `${input:name}` | Workspace / user MCP | Prompts the user once per session |
+| `${{ secrets.NAME }}` | Cloud agent custom-agent YAML | Repository `copilot` environment secret |
+| `${{ vars.NAME }}` | Cloud agent custom-agent YAML | Repository `copilot` environment variable |
 
-### Step 3: Set the Environment Variable
+## Credential Management
 
-Export the token into your shell, **not** into `mcp.json`:
+- **Never hardcode secrets in `mcp.json`.** Use `${env:VAR_NAME}` for environment variables.
+- **Use `.env` files for local development.** Point to them with the `envFile` field. Add `.env` to `.gitignore`.
+- **Rotate credentials on a schedule.** Treat MCP server tokens like any other service credential.
+- **Limit token scope.** Create tokens with the minimum permissions the server needs. A read-only GitHub token limits blast radius.
 
-**macOS/Linux:**
+## Security: Tool Output and Prompt Injection
+
+MCP tools return content that enters the model's context. That content can carry instructions — intentional or adversarial — that try to steer the agent.
+
+Practical defenses:
+
+- Treat tool output as untrusted input.
+- Pin servers to specific versions and review updates.
+- Prefer scoped tokens.
+- Sandbox untrusted stdio servers (VS Code 1.111+, macOS and Linux).
+- Do not echo tool output verbatim into security decisions.
+
+## End-to-End Tutorial: GitHub MCP Server
+
+### Step 1: Create the configuration
+
+Create `.vscode/mcp.json` pinned to a specific version:
+
+```json
+{
+  "servers": {
+    "github": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github@2026.4.0"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${env:GITHUB_TOKEN}"
+      }
+    }
+  }
+}
+```
+
+### Step 2: Create a narrowly scoped token
+
+Create a [fine-grained personal access token](https://github.com/settings/personal-access-tokens/new):
+
+- Scope to only the specific repositories the agent needs
+- Grant the minimum permissions for the task (read-only if possible)
+- Set an expiration
+
+### Step 3: Export the token
+
 ```bash
-export GITHUB_TOKEN=ghp_your_token_here
+export GITHUB_TOKEN="github_pat_..."
 ```
 
-**Windows (PowerShell):**
-```powershell
-$env:GITHUB_TOKEN = "ghp_your_token_here"
-```
+Or add to a `.env` file referenced by `envFile` in the server config.
 
-For persistence, add the variable to your shell profile or use VS Code's `envFile` field pointing to a `.env` file.
+### Step 4: Trust and verify
 
-**🚨 Don't commit the token.** Before your next commit:
+Open VS Code, reload the window, and check the MCP output channel. The server should start and list its tools. Run one narrow operation to confirm connectivity.
 
-1. Confirm `.env` (and any other local secret file) is listed in `.gitignore`.
-2. Run `git status` — no `.env`, no `mcp.local.json`, no files containing `ghp_` or `github_pat_` should appear as tracked.
-3. `grep -RniE 'ghp_[a-z0-9]{36}|github_pat_[a-z0-9_]{22,}' .` should return zero matches in your working tree.
-4. If you use GitHub Codespaces, store the token as a [Codespaces secret](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces) scoped to the target repositories. It is injected as an environment variable and never touches the repo.
+## MCP in GitHub Copilot CLI
 
-`${env:GITHUB_TOKEN}` is the only reference that should appear in `mcp.json`.
+The CLI comes with the GitHub MCP server pre-configured. Type `/mcp` in interactive mode to see configured servers and their tools. Add servers with `/mcp add`. CLI-specific configs are stored in `~/.copilot/mcp-config.json`.
 
-### Step 4: Start the Server
+Since the VS Code March 2026 releases, MCP servers configured in `.vscode/mcp.json` also work in Copilot CLI sessions. The same file serves both surfaces.
 
-1. Open the Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
-2. Run **MCP: List Servers**
-3. The GitHub server should appear. Click **Start** if it isn't running
-4. Verify the server shows a green status indicator
+## Where to Read Next
 
-### Step 5: Use It
-
-Open Copilot Chat and try:
-
-> **💬 Try this prompt:**
->
-> *What are the open issues labeled "bug" in this repository?*
-
-Copilot discovers the GitHub MCP tools, calls the appropriate one, and returns live data from the GitHub API.
-
-### Step 6: Combine with a Skill
-
-For team-consistent workflows, pair the MCP server with a skill that encodes your conventions. See [Skills vs. MCP Servers](primitive-4-skills.md#skills-vs-mcp-servers-when-to-use-which) for the hybrid pattern.
-
----
-
-[← Custom Agents](primitive-5-custom-agents.md) | [Next: Hooks →](primitive-7-hooks.md)
+- Read [Hooks](primitive-7-hooks.md) next for the enforcement layer that becomes more important once the loop has real reach.
+- Read [Code Review](code-review.md) and [Agentic Workflows](agentic-workflows.md) later to see where the same repository knowledge gets reused in other runtimes.

@@ -1,6 +1,6 @@
 # The Eight Primitives
 
-[← Back to Guide](README.md) | [← The Agent Loop](agent-loop.md) | [Next: Always-on Instructions →](primitive-1-always-on-instructions.md)
+[← Back to Guide](../README.md) | [← Primitives in Action](primitives-in-action.md) | [Next: Always-on Instructions →](primitive-1-always-on-instructions.md)
 
 *Updated: April 22, 2026.*
 

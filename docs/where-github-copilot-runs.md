@@ -1,6 +1,6 @@
 # Where GitHub Copilot Runs
 
-[← Back to Guide](README.md) | [← GitHub Copilot Code Review](code-review.md)
+[← Back to Guide](../README.md) | [← GitHub Copilot Code Review](code-review.md) | [Next: Tool Calling in Depth →](tool-calling-in-depth.md)
 
 *Updated: April 22, 2026.*
 

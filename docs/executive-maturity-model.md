@@ -1,6 +1,6 @@
 # The GitHub Copilot Executive Maturity Model
 
-[← Back to Guide](README.md) | [← Measuring Success](measuring-success.md) | [Next: Operational Reference →](part-3-reference.md)
+[← Back to Guide](../README.md) | [← Measuring Success](measuring-success.md) | [Next: Operational Reference →](part-3-reference.md)
 
 *Updated: April 22, 2026.*
 
@@ -168,4 +168,4 @@ This is not a tooling journey. It is an organizational design journey — one th
 
 - Read [Measuring Success](measuring-success.md) for the scorecard, metrics, and phased rollout that operationalize these maturity phases.
 - Read [Why Customization Matters](why-customization-matters.md) for the human-problem framing behind customization.
-- Read [Operational Reference](operational-reference.md) for lookup tables, frontmatter fields, and starter templates.
+- Read [Operational Reference](part-3-reference.md) for lookup tables, frontmatter fields, and starter templates.
