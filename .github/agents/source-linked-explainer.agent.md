@@ -7,7 +7,7 @@ tools:
   - usages
   - fetch
   - editFiles
-model: GPT-5.4 (copilot)
+model: GPT-5.5 (copilot)
 user-invocable: true
 agents: []
 ---

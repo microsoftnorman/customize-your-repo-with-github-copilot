@@ -1,8 +1,8 @@
 # Operational Reference
 
-[← Back to Guide](../README.md) | [← Measuring Success](measuring-success.md)
+[← Back to Guide](../ReadMe.md) | [← Measuring Success](measuring-success.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -64,13 +64,14 @@ This matters most for [MCP](primitive-6-mcp.md) and [Hooks](primitive-7-hooks.md
 | Always-on Instructions | `.github/copilot-instructions.md`, `AGENTS.md`, or `CLAUDE.md` | `.md` (specific name) |
 | File-based Instructions | `.github/instructions/` | `.instructions.md` |
 | Prompts | `.github/prompts/` | `.prompt.md` |
-| Skills | `.github/skills/*/` | `SKILL.md` |
+| Skills | `.github/skills/*/`, `.claude/skills/*/`, `.agents/skills/*/` | `SKILL.md` |
 | Custom Agents | `.github/agents/` or anywhere | `.agent.md` or any `.md` in agents/ |
-| MCP Servers | `.vscode/mcp.json` | `.json` |
+| MCP Servers | `.vscode/mcp.json` or workspace `.mcp.json` | `.json` |
 | Hooks | `.github/hooks/` | `.json` |
 | Memory | Managed by GitHub | N/A: no repo file |
 | Agentic Workflows | `.github/workflows/` | `.md` (workflow instructions) |
 | Copilot SDK | External dependency (npm, pip, etc.) | N/A: installed via package managers |
+| Agent Plugins | `plugin.json` in a plugin package | `.json` manifest plus bundled primitives |
 
 ---
 
@@ -93,13 +94,13 @@ This table answers the most common debugging question: "Why did my rule not appl
 
 ## Surface Support
 
-This is the rollout matrix used throughout this guide, not the upstream product contract. For IDE status, the source of truth is the [Copilot feature matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix). For GitHub Copilot CLI and the Cloud Coding Agent, use the current product docs. This snapshot was revalidated on April 22, 2026.
+This is the rollout matrix used throughout this guide, not the upstream product contract. For IDE status, the source of truth is the [Copilot feature matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix). For GitHub Copilot CLI and the Cloud Coding Agent, use the current product docs. This snapshot was revalidated on May 4, 2026.
 
 | Primitive | VS Code | JetBrains IDEs | Visual Studio | Eclipse | Xcode | GitHub Copilot CLI | Cloud Coding Agent |
 |-----------|---------|----------------|---------------|---------|-------|--------------------|-------------------|
 | Always-on Instructions | Supported | Preview | Supported | Preview | Preview | Supported | Supported |
 | File-based Instructions | Supported | Verify in plugin build | Verify in current release | Verify in current release | Not the primary path | Supported | Supported |
-| Prompt files | Supported | Preview | Supported in current release | Not supported | Preview | Not a prompt-file surface | Not a prompt-file surface |
+| Prompt files | Supported | Preview | Supported in current release | Not supported | Preview | Supported in VS Code-managed CLI sessions | Not a prompt-file surface |
 | Skills | Supported | Preview | Not supported | Not supported | Not supported | Supported | Supported |
 | Custom Agents | Supported | Preview | Preview | Supported | Preview | Supported | Supported |
 | MCP | Supported | Supported | Supported | Supported | Supported | Supported | Supported |
@@ -116,6 +117,8 @@ This is the rollout matrix used throughout this guide, not the upstream product 
 **Maintenance note:** Revalidate this matrix against the official feature matrix and the relevant surface docs before publishing changes. Preview rows move fast and are not safe to treat as timeless repository policy.
 
 **Memory note:** Copilot Memory is currently used by the Cloud Coding Agent, GitHub Copilot code review on GitHub, and GitHub Copilot CLI. It is not currently used by VS Code chat or other IDE chat surfaces.
+
+**Version note:** VS Code 1.118 adds Agent Plugins in preview, forked Skill context in preview, workspace `.mcp.json` support, MCP server deduplication by name, remote control for GitHub Copilot CLI sessions in preview, semantic indexing for non-GitHub repositories, `githubTextSearch`, and the Chat Customizations Evaluations extension. Visual Studio's April 30 update adds cloud agent sessions from the agent picker, user-level custom agents, a debugger agent workflow, C++ code editing tools for agent mode, and a chat history panel.
 
 **Contributor-safe baseline:** For mixed-editor or public-repo rollouts, standardize first on Always-on Instructions, then add prompt files, MCP, or preview features only where the team has tested the exact surface and version it supports.
 
@@ -188,6 +191,7 @@ Tool names are host-specific. The example above uses current VS Code tool IDs. D
 | `argument-hint` | No | string | Hint text when invoked as `/` command |
 | `user-invocable` | No | boolean | Show as `/` slash command (default: `true`) |
 | `disable-model-invocation` | No | boolean | Require manual invocation only (default: `false`) |
+| `context` | No | string | Experimental. Set to `fork` to run the Skill in a dedicated subagent context. Requires `github.copilot.chat.skillTool.enabled` in VS Code. |
 | `metadata` | No | object | Key-value pairs (author, version) |
 
 **Name validation rules:**
@@ -218,12 +222,14 @@ Tool names are host-specific. The example above uses current VS Code tool IDs. D
 
 ### MCP Configuration Fields
 
-Repository MCP configuration is usually stored in `.vscode/mcp.json`, but the runtime still matters:
+Repository MCP configuration is usually stored in `.vscode/mcp.json`. VS Code 1.118 also supports workspace-level `.mcp.json`, aligning with GitHub Copilot CLI and plugin-style distribution. The runtime still matters:
 
 - workspace configuration travels with the repo,
 - user configuration stays local to the developer profile,
 - remote configuration runs where the remote workspace runs,
 - and Cloud Coding Agent MCP uses the GitHub-hosted runtime, not a process on the laptop.
+
+Visual Studio has its own discovery order and treats `<SOLUTIONDIR>\.mcp.json` as the best source-controlled solution-level file. It can also read `%USERPROFILE%\.mcp.json`, `<SOLUTIONDIR>\.vs\mcp.json`, `<SOLUTIONDIR>\.vscode\mcp.json`, and `<SOLUTIONDIR>\.cursor\mcp.json`.
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -238,6 +244,26 @@ Repository MCP configuration is usually stored in `.vscode/mcp.json`, but the ru
 | `sandboxEnabled` | boolean | Run in the VS Code sandbox (macOS and Linux only) |
 | `sandbox` | object | File system and network rules for a sandboxed server |
 | `dev` | object | Development mode config with `watch` and `build` commands |
+
+When multiple MCP servers share the same name, VS Code deduplicates them and enables the most-specific server by default. Enabling one server disables the other servers with that name. Manage installed servers with `@mcp @installed` in the Extensions view or the Chat customizations UI.
+
+Plugin-provided MCP servers use a top-level `mcpServers` object, not the workspace `servers` object. Treat plugin MCP as implicitly trusted once the plugin is installed, because plugin servers do not show the same startup trust prompt as workspace servers.
+
+### Agent Plugins (Preview)
+
+Agent Plugins are a distribution mechanism, not a ninth primitive. A plugin packages one or more primitives so a team can install a versioned bundle instead of copying several files by hand.
+
+| Item | Detail |
+|------|--------|
+| Manifest | `plugin.json` at the plugin root or a supported compatibility path |
+| Can bundle | Slash commands, Skills, Custom Agents, Hooks, MCP servers |
+| VS Code enablement | `chat.plugins.enabled` |
+| Marketplace setting | `chat.plugins.marketplaces` |
+| Local plugin setting | `chat.pluginLocations` |
+| Workspace recommendations | `.claude/settings.json` or `.github/copilot/settings.json` with recommended marketplaces and enabled plugins |
+| Cross-tool story | Shared with VS Code, GitHub Copilot CLI, and Claude Code, with format-specific differences |
+
+Use Agent Plugins when the team wants to distribute a coherent operating package: a reviewer agent, the Skills it invokes, the hooks that guard it, and the MCP servers it needs. Review plugins like executable supply-chain artifacts. They can include hooks and MCP servers that run code on the developer's machine.
 
 **Variable syntax in `env` values:**
 
@@ -394,13 +420,14 @@ Every primitive consumes tokens. Target sizes:
 | **Has frontmatter** | ❌ | ✅ | ✅ | ✅ | ✅ | N/A | N/A |
 | **Can include files** | ❌ | ❌ | ❌ | ✅ | ❌ | N/A | N/A |
 | **External access** | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ |
-| **Portable** | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ✅ |
+| **Repo-authored artifact** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| **Uniform cross-surface behavior** | Partial | Partial | ❌ | Partial | Partial | Partial | Partial |
 | **Can block actions** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
 | **Visible to LLM** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
-| **CLI support** | ✅ | ✅ | ❌² | ✅ | ✅ | ✅ | ✅¹ |
+| **CLI support** | ✅ | ✅ | Partial² | ✅ | ✅ | ✅ | ✅¹ |
 
 ¹ Hooks are active during coding agent, GitHub Copilot CLI, and VS Code Chat agent sessions, not in inline completions.
-² Prompt files are a VS Code feature. GitHub Copilot CLI uses natural language prompts and custom agents instead.
+² Prompt files are supported in VS Code-managed GitHub Copilot CLI sessions. Terminal-native GitHub Copilot CLI workflows still center on natural language prompts, Skills, Custom Agents, MCP, Hooks, and plugins rather than VS Code prompt-file authoring UX.
 
 ---
 
@@ -408,7 +435,7 @@ Every primitive consumes tokens. Target sizes:
 
 ### Chat Customization Diagnostics
 
-VS Code 1.116 includes a diagnostics view:
+Current VS Code builds include a diagnostics view:
 
 1. Right-click in the Chat view.
 2. Select **Diagnostics**.
@@ -433,7 +460,7 @@ If the team works shell-first, use the equivalent runtime's inspection tools ins
 - Prompts: `.github/prompts/*.prompt.md`
 - Skills: `.github/skills/*/SKILL.md`
 - Agents: `.github/agents/*.md` or `**/*.agent.md`
-- MCP: `.vscode/mcp.json`
+- MCP: `.vscode/mcp.json` or workspace `.mcp.json`
 - Hooks: `.github/hooks/*.json`
 
 ---
@@ -666,7 +693,7 @@ You are a release-safety reviewer.
 | Resource | URL |
 |----------|-----|
 | GitHub Copilot Docs | https://docs.github.com/en/copilot |
-| VS Code Copilot Docs | https://code.visualstudio.com/docs/copilot |
+| VS Code Copilot Docs | https://code.visualstudio.com/docs/copilot/overview |
 | GitHub Copilot CLI | https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli |
 | MCP Specification | https://modelcontextprotocol.io |
 | Agent Skills Spec | https://agentskills.io |
@@ -676,4 +703,4 @@ You are a release-safety reviewer.
 
 ---
 
-[← Measuring Success](measuring-success.md) | [Back to Guide →](../README.md)
+[← Measuring Success](measuring-success.md) | [Back to Guide →](../ReadMe.md)

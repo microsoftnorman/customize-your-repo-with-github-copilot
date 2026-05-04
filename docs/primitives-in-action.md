@@ -1,8 +1,8 @@
 # Primitives in Action
 
-[← Back to Guide](../README.md) | [← The Agent Loop](agent-loop.md) | [Next: The Eight Primitives →](eight-primitives.md)
+[← Back to Guide](../ReadMe.md) | [← The Agent Loop](agent-loop.md) | [Next: The Eight Primitives →](eight-primitives.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -11,6 +11,8 @@
 Most guides explain the primitives one by one and only later hint that they can be combined. Real teams discover them the other way around. They start with a workflow, feel the friction, and then realize that multiple primitives solve different parts of the same problem.
 
 This chapter makes that composition visible early.
+
+**See it in action:** [Agent Mode with Customization | Ep 8 of 8](https://www.youtube.com/watch?v=Bb45ZoKfJf0&t=24s) — Reynald Adolphe demos prompt files, custom instructions, Agent Skills, Custom Agents, and hooks working together while building a repo analyzer app.
 
 ## Workflow 1: Teaching a New Repository to Stop Fighting Back
 
@@ -84,4 +86,4 @@ That pattern is the bridge into the next chapter.
 
 ## Where to Read Next
 
-Read [The Eight Primitives](part-2-primitives.md) next. That chapter takes these workflows apart and shows which primitive should carry which responsibility.
+Read [The Eight Primitives](eight-primitives.md) next. That chapter takes these workflows apart and shows which primitive should carry which responsibility.

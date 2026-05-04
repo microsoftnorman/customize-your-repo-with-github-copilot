@@ -67,6 +67,7 @@ The author speaks directly to experienced developers. The tone is:
 
 | Violation | Example | Fix |
 |-----------|---------|-----|
+| Em dash in prose | "This is the key point — remember it." | Rewrite as a period, comma, colon, or parenthetical: "This is the key point. Remember it." Em dashes (—) are banned in body prose. The only sanctioned use is the `**See it in action:** TITLE — Speaker demos ...` separator. |
 | Hedging | "It might be worth considering..." | "Use X when Y." |
 | Filler | "It's worth noting that..." | Delete and start with the point |
 | First person | "I recommend...", "We believe..." | Rewrite in third person or imperative |

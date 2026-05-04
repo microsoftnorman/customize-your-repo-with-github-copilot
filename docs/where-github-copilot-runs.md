@@ -1,8 +1,8 @@
 # Where GitHub Copilot Runs
 
-[← Back to Guide](../README.md) | [← GitHub Copilot Code Review](code-review.md) | [Next: Tool Calling in Depth →](tool-calling-in-depth.md)
+[← Back to Guide](../ReadMe.md) | [← GitHub Copilot Code Review](code-review.md) | [Next: Tool Calling in Depth →](tool-calling-in-depth.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -29,6 +29,8 @@ This distinction prevents two common mistakes:
 - assuming every surface supports every primitive equally,
 - or assuming a primitive is editor-specific just because it was authored in one place.
 
+**See it in action:** [Agent sessions and where agents run](https://www.youtube.com/watch?v=0CsKOO7d35I&t=129s) — Gwyneth Peña-Siguenza demos switching an agent session between local execution, GitHub Copilot CLI, and the GitHub platform.
+
 ## Why Surface Choice Still Matters
 
 If the primitive layer is portable, why care about surfaces at all?
@@ -40,6 +42,10 @@ Because surfaces change:
 - support for specific primitives,
 - approval and interaction model,
 - and how visible the loop is to the user.
+
+Model availability also varies by plan, policy, rollout, and surface. GPT-5.5 became generally available in GitHub Copilot on April 24, 2026 for Pro+, Business, and Enterprise users across VS Code, Visual Studio, GitHub Copilot CLI, GitHub Copilot cloud agent, github.com, GitHub Mobile, JetBrains, Xcode, and Eclipse. Business and Enterprise administrators still need to enable the model policy before users can select it.
+
+On May 1, 2026, GitHub announced that GPT-5.2 and GPT-5.2-Codex retire across GitHub Copilot experiences on June 1, 2026, except GPT-5.2-Codex in GitHub Copilot Code Review. Teams with shared prompt files, Custom Agents, SDK integrations, or plugin packages should update model references to GPT-5.5 or GPT-5.3-Codex before that date.
 
 The repository may carry the same instructions, skills, and agents. The surface still determines how much of that system is actually usable.
 
@@ -60,11 +66,13 @@ That is why this page should be read after the primitives and the other cross-ru
 
 VS Code remains the richest authoring surface and the default reference environment for the guide.
 
-It matters because it usually gets new customization features first and exposes the loop clearly through local sessions, planning, prompts, agents, hooks, MCP, and related tooling.
+It matters because it usually gets new customization features first and exposes the loop clearly through local sessions, planning, prompts, agents, hooks, MCP, and related tooling. The official [GitHub Copilot in VS Code](https://code.visualstudio.com/docs/copilot/overview) page is the current hub for that surface.
 
 ### GitHub Copilot CLI
 
 The CLI matters because it makes the runtime unusually visible. The loop, approvals, tool use, and task decomposition are easier to see directly in terminal-first workflows than in many IDE experiences.
+
+Use [About GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli) for current CLI behavior and [the command reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference) for slash commands, flags, MCP, Skills, Custom Agents, permissions, and telemetry.
 
 ### Cloud Coding Agent
 
@@ -73,6 +81,8 @@ The Cloud Coding Agent matters because it proves that the same repository knowle
 ### Other IDE surfaces
 
 Visual Studio, JetBrains, Eclipse, and Xcode matter because they test the portability claim against reality. The repository layout still helps them, but support depth, authoring affordances, and preview status vary.
+
+Visual Studio's April 30 update is the clearest reminder that surfaces move at different speeds. It added cloud agent sessions from the agent picker, user-level agents, a debugger agent workflow, C++ agent tools, chat history, and customizable inline suggestion shortcuts.
 
 That is why the guide treats VS Code as the reference authoring surface without pretending it is the only place that matters.
 

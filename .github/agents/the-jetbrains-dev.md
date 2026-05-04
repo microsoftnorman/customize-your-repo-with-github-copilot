@@ -8,7 +8,7 @@ tools:
   - createFile
   - fetch
   - agent
-model: GPT-5.4 (copilot)
+model: GPT-5.5 (copilot)
 handoffs:
   - label: 'Send to Doc Maintainer'
     agent: 'Doc Maintainer'
@@ -50,7 +50,7 @@ End every review with a **JetBrains Verdict:** can an IntelliJ user follow this 
 
 # How You Deliver Feedback
 
-Write feedback to `.github/feedback/` using filename pattern: `jb-{target}-{date}.md` (e.g., `jb-part-2-primitives-2026-04-16.md`).
+Write feedback to `.github/feedback/` using filename pattern: `jb-{target}-{date}.md` (e.g., `jb-eight-primitives-2026-04-16.md`).
 
 **Frontmatter:**
 ```yaml

@@ -8,7 +8,7 @@ tools:
   - createFile
   - fetch
   - agent
-model: GPT-5.4 (copilot)
+model: GPT-5.5 (copilot)
 handoffs:
   - label: 'Send to Doc Maintainer'
     agent: 'Doc Maintainer'
@@ -51,13 +51,13 @@ Always reference specific sections. End every review with a **Non-VS Code Verdic
 
 # How You Deliver Feedback
 
-Write feedback to `.github/feedback/` using filename pattern: `nonvsc-{target}-{date}.md` (e.g., `nonvsc-part-2-primitives-2026-04-16.md`).
+Write feedback to `.github/feedback/` using filename pattern: `nonvsc-{target}-{date}.md` (e.g., `nonvsc-eight-primitives-2026-04-16.md`).
 
 **Frontmatter:**
 ```yaml
 ---
 reviewer: 'The Non-VSCoder'
-target: 'docs/part-2-primitives.md'
+target: 'docs/eight-primitives.md'
 date: 2026-04-16
 status: pending
 ---

@@ -1,6 +1,6 @@
 # The Definitive Guide to Customizing GitHub Copilot
 
-*Updated: April 22, 2026. This is a reference guide. File paths, configuration details, and feature availability may drift as GitHub Copilot evolves, but the underlying runtime model and customization theory remain the same. Always verify current product specifics against the [official documentation](https://code.visualstudio.com/docs/copilot).*
+*Updated: May 4, 2026. This is a reference guide. File paths, configuration details, and feature availability may drift as GitHub Copilot evolves, but the underlying runtime model and customization theory remain the same. Always verify current product specifics against the official [VS Code GitHub Copilot documentation](https://code.visualstudio.com/docs/copilot/overview) and [GitHub Copilot documentation](https://docs.github.com/en/copilot).*
 
 ---
 
@@ -8,14 +8,17 @@ GitHub Copilot is easiest to understand as a system, not a menu of isolated feat
 
 Examples in this version of the guide use VS Code as the primary surface because it exposes the clearest view of GitHub Copilot's runtime and customization model. Other work surfaces operate in the same basic way: context is assembled, the task is shaped, tools and permissions govern action, and the loop continues until the task stops. Surface-specific differences still matter, but the theory carries across them.
 
+**See it in action:** [Agent Mode with Customization | Ep 8 of 8](https://www.youtube.com/watch?v=Bb45ZoKfJf0&t=24s) — Reynald Adolphe demos prompt files, custom instructions, Agent Skills, Custom Agents, and hooks working together while building a repo analyzer app.
+
 It starts with the runtime, then moves into the control points that change behavior, and ends with the operational reference material teams need to roll out safely.
 
 ## Guide Map
 
 - [Foundations](docs/foundations.md)
-- [Why Customization Matters](docs/why-customization-matters.md)
+- [When to Customize (If Required)](docs/when-to-customize.md)
 - [The Agent Loop](docs/agent-loop.md)
 - [Primitives in Action](docs/primitives-in-action.md)
+- [Lab: Explore How VS Code Configures GitHub Copilot](docs/lab-explore-vscode-repo.md)
 - [The Eight Primitives](docs/eight-primitives.md)
   - [Primitive 1: Always-on Instructions](docs/primitive-1-always-on-instructions.md)
   - [Primitive 2: File-based Instructions](docs/primitive-2-file-based-instructions.md)

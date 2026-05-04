@@ -1,8 +1,8 @@
 # GitHub Copilot SDK
 
-[← Back to Guide](../README.md) | [← Agentic Workflows](agentic-workflows.md) | [Next: GitHub Copilot Code Review →](code-review.md)
+[← Back to Guide](../ReadMe.md) | [← Agentic Workflows](agentic-workflows.md) | [Next: GitHub Copilot Code Review →](code-review.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -13,6 +13,10 @@ The Copilot SDK is the same agent runtime carried into application code.
 For current API shape, language support, and preview status, use the official [GitHub Copilot SDK repository](https://github.com/github/copilot-sdk) rather than this chapter.
 
 If Agentic Workflows are the GitHub-hosted form of remote execution, the Copilot SDK is the version a team embeds and owns directly.
+
+**See it in action:** [Multi-agent workflows in VS Code](https://www.youtube.com/watch?v=J5KTpq7hVn4&t=66s) — Kayla Cinnamon demos an app that starts a Copilot SDK session connected to GitHub Copilot CLI while multiple VS Code agent sessions run in parallel.
+
+**See it in action:** [The GitHub Copilot SDK IS INSANE! Put Copilot INSIDE Your Apps!](https://www.youtube.com/watch?v=GsEPS1yHaHQ&t=541s) — James Montemagno demos embedding the GitHub Copilot SDK inside a custom app and exposing tools to the agent.
 
 That makes this page less about file formats and more about where the agent loop lives when the application, not GitHub or an editor, becomes the host.
 
@@ -106,6 +110,14 @@ The [Getting Started guide](https://github.com/github/copilot-sdk/blob/main/docs
 
 That is why this chapter is intentionally architectural. It should help a reader decide whether the SDK belongs in their solution space at all, not try to become a competing API reference.
 
+## Current SDK Surface Is Moving Fast
+
+As of May 4, 2026, the SDK repository is in public preview and changing quickly. Recent repository activity includes support for `instructionDirectories` in session configuration, `copilotHome` as a configurable data directory, optional connection tokens for TCP server connections, and session title APIs used by VS Code to keep GitHub Copilot CLI session titles synchronized across chat surfaces and `copilot --resume`.
+
+Those examples are directional, not a stable API contract. Check the SDK repository before writing integration code, and pin SDK versions for any internal platform service.
+
+The default tool posture also matters. The SDK documentation says the SDK runs the GitHub Copilot CLI equivalent of `--allow-all` by default, which enables broad first-party tools such as file system, Git, and web access. Platform teams should explicitly decide which tools are allowed, how permission decisions are logged, and which actions require a human approval path before treating an SDK-hosted agent as production-ready.
+
 ## Supported Languages
 
 | Language | Install | Package |
@@ -120,7 +132,7 @@ That is why this chapter is intentionally architectural. It should help a reader
 
 The SDK exposes the same agent loop used by the Copilot CLI. Developers define tools and the runtime handles orchestration.
 
-*API names and signatures may differ from the current SDK — consult the [SDK repository](https://github.com/github/copilot-sdk) for the latest reference.*
+*API names and signatures may differ from the current SDK. This sample is illustrative only. Consult the [SDK repository](https://github.com/github/copilot-sdk) for the latest reference before copying any API shape into production code.*
 
 ```typescript
 import { CopilotAgent, defineTool } from '@github/copilot-sdk';

@@ -1,8 +1,8 @@
 # Foundations
 
-[← Back to Guide](../README.md) | [Next: Why Customization Matters →](why-customization-matters.md)
+[← Back to Guide](../ReadMe.md) | [Next: When to Customize (If Required) →](when-to-customize.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -16,9 +16,9 @@ That broader view matters because customization only makes sense at the platform
 
 ## What This Guide Teaches
 
-This guide is about the layer between a frontier model and a real codebase. Out of the box, GitHub Copilot already knows language syntax, common frameworks, and public patterns. It does not know the architectural choices, anti-patterns, review culture, or operational constraints that make one repository different from another.
+This guide is a pragmatic approach to the layer between a frontier model and a real codebase. As of April 2026, GitHub Copilot is already very good out of the box when it runs on frontier models: it knows language syntax, common frameworks, public patterns, and the basic shape of modern software work. The job of customization is not to make a weak model usable. It is to give a strong agent the local facts it cannot infer reliably: the architectural choices, anti-patterns, review culture, and operational constraints that make one repository different from another.
 
-The purpose of customization is to encode those differences explicitly.
+The purpose of customization is to encode those differences without overbuilding the system around them.
 
 This guide teaches that in four moves:
 
@@ -49,9 +49,11 @@ For day-to-day parity checks across IDEs and GitHub surfaces, use the live [GitH
 | **GitHub Copilot CLI** | Shows the agent model most clearly because the loop, tools, and approvals are visible at the terminal. |
 | **Cloud Coding Agent** | Demonstrates what happens when the same knowledge runs remotely and asynchronously. |
 | **GitHub.com** | Important for code review, repository policy, and workflow-triggered automation. |
-| **Other IDEs** | Useful reminder that the primitive layer is portable even when the authoring UX differs. |
+| **Other IDEs, including IntelliJ IDEA and Eclipse** | Useful reminder that the primitive layer is portable even when the authoring UX differs. |
 
 **See it in action:** [Agent sessions and where agents run](https://www.youtube.com/watch?v=0CsKOO7d35I&t=129s) — Gwyneth Peña-Siguenza demos switching an agent session between local execution, GitHub Copilot CLI, and the GitHub platform.
+
+**See it in action:** [Introduction to Agent-First Development](https://www.youtube.com/watch?v=uu4sf8z9n8c&t=110s) — Gwyneth Peña-Siguenza demos the five foundational concepts behind agent-first development: harness, model, prompts, tools, and context.
 
 ## Core Capabilities
 
@@ -66,6 +68,8 @@ GitHub Copilot assists developers across six interaction patterns:
 | **Agentic Workflows** | Coding agents inside GitHub Actions on schedules, events, or on demand | GitHub Actions (technical preview) |
 | **Custom integration** | Embed the agent runtime in custom tools via the [Copilot SDK](copilot-sdk.md) | Your applications |
 
+GitHub.com also supports structured debugging assistance. When a developer pastes a stack trace into GitHub Copilot Chat on the web with repository or file context, GitHub Copilot can guide the analysis from the failing frame toward likely root cause, evidence, suggested fix, and follow-up checks. That is a GitHub.com chat capability, not a replacement for local agent trajectory debugging in VS Code.
+
 **Agentic coding** is where customization has the most impact. The quality of instructions, skills, and guardrails in the repository directly determines the quality of the output.
 
 **Important:** The customization primitives in this guide affect **Copilot Chat and agent interactions only**. Inline suggestions (ghost text/autocomplete) operate on a separate pipeline. For convention-aware code generation, use Chat-based interactions.
@@ -74,7 +78,7 @@ GitHub Copilot assists developers across six interaction patterns:
 
 Model quality still changes the ceiling. Better reasoning models handle ambiguity, larger refactors, and more nuanced review. Faster models are useful for narrow loops and lightweight tasks. But model selection does not replace repository customization.
 
-A strong model with no repository context still defaults to public-code patterns. A repository with clear instructions, procedural knowledge, and guardrails makes every supported model more useful. The implementation layer for those controls is covered next in [Why Customization Matters](why-customization-matters.md) and later in [The Eight Primitives](eight-primitives.md).
+A strong model with no repository context still defaults to public-code patterns. A repository with clear instructions, procedural knowledge, and guardrails makes every supported model more useful. The implementation layer for those controls is covered next in [When to Customize (If Required)](when-to-customize.md) and later in [The Eight Primitives](eight-primitives.md).
 
 The practical rule is simple: choose the best model the task justifies, then teach that model how your repository works.
 
@@ -120,6 +124,6 @@ A repository cannot override an enterprise policy. If the enterprise disables Me
 
 ## Where to Read Next
 
-- Read [Why Customization Matters](why-customization-matters.md) next for the human problem, the bespoke-code examples, and the argument for keeping the signal sharp.
+- Read [When to Customize (If Required)](when-to-customize.md) next for the human problem, the bespoke-code examples, and the argument for keeping the signal sharp.
 - Read [The Agent Loop](agent-loop.md) after that for the runtime model behind every later chapter.
 - Use [Where GitHub Copilot Runs](where-github-copilot-runs.md) when the question becomes surface differences rather than foundations.

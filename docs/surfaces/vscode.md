@@ -2,7 +2,7 @@
 
 [← Where GitHub Copilot Runs](../where-github-copilot-runs.md) | [Next: GitHub Copilot CLI →](copilot-cli.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -15,6 +15,10 @@ The canonical starting points are VS Code's [Customize AI in Visual Studio Code]
 That is not because every team should switch to it. It is because VS Code exposes the broadest visible implementation of the customization model: instructions, prompts, skills, custom agents, MCP, hooks, and the surrounding UX for creating and debugging them.
 
 If a team wants to understand what the full primitive layer looks like when it is most mature, VS Code is the clearest place to study it.
+
+**See it in action:** [The Agent Customizations UI Nobody Knows About | Ep 1 of 8](https://www.youtube.com/watch?v=AZzCk-WGks4&t=136s) — Reynald Adolphe demos the VS Code Chat Customizations UI for managing agents, skills, instructions, prompt files, and hooks.
+
+**See it in action:** [Mastering AI with VS Code's New Agent Customizations](https://www.youtube.com/watch?v=os2eqa69gko&t=83s) — James Montemagno tours the unified Chat Customizations panel for agents, skills, instructions, prompts, hooks, MCP, and plugins.
 
 ## Why It Matters
 
@@ -30,6 +34,10 @@ As of April 2026, GitHub Copilot is built into VS Code. More importantly for thi
 - and the surrounding controls for approvals, hooks, and tool use are the least ambiguous.
 
 The current VS Code docs also expose a Chat Customizations editor in preview. It is the clearest single UI for browsing instructions, prompts, skills, custom agents, MCP, and hooks without hunting through the file tree or settings one feature at a time.
+
+VS Code 1.118 adds one more authoring and distribution layer: Agent Plugins in preview. Plugins can bundle slash commands, Skills, Custom Agents, Hooks, and MCP servers behind a `plugin.json` manifest, then install from marketplaces, source repositories, or local plugin locations. Use `chat.plugins.enabled` to enable the feature, `chat.plugins.marketplaces` to add marketplaces, and `chat.pluginLocations` for local plugin directories. Workspace recommendations can point teams to approved plugins through `.claude/settings.json` or `.github/copilot/settings.json`.
+
+For operational safety, pair those authoring features with VS Code's [Security](https://code.visualstudio.com/docs/copilot/security) guidance on workspace trust, tool approvals, MCP trust, sandboxing, and hooks.
 
 ## Why This Guide Uses VS Code as the Reference Environment
 
@@ -59,6 +67,10 @@ VS Code is usually ahead in three ways:
 
 It also has the clearest model-selection story. The customization overview now explicitly calls out choosing different models for different tasks and bringing an API key for access to additional models. That matters because model selection is part of customization, not a separate concern outside the operating model.
 
+GPT-5.5 is generally available in GitHub Copilot as of April 24, 2026 for Pro+, Business, and Enterprise users, including in VS Code. Business and Enterprise administrators must enable the GPT-5.5 policy in Copilot settings before users can select it, and rollout is gradual.
+
+The May 1 model retirement notice matters for shared customizations: GPT-5.2 and GPT-5.2-Codex retire on June 1, 2026, except GPT-5.2-Codex in GitHub Copilot Code Review. Prefer GPT-5.5 and GPT-5.3-Codex in new shared agents or prompt files.
+
 That does not make other surfaces second-class. It means VS Code is the least lossy place to create the source of truth.
 
 ## When a Team Should Prefer VS Code
@@ -77,6 +89,23 @@ That recommendation is about capability, not ideology.
 The risk of using VS Code as the reference surface is overgeneralization.
 
 A feature that works beautifully in VS Code may be missing, preview-only, or differently authored in another surface. That is why the rest of this section exists. The repository layer is portable, but the UX and support depth are not identical.
+
+## Recent VS Code 1.118 Changes
+
+For customization teams, the April 29, 2026 VS Code 1.118 release matters in several places:
+
+| Area | Change |
+|------|--------|
+| Agent Plugins | Preview support for installable bundles with `plugin.json`, marketplaces, local plugin locations, and workspace recommendations |
+| Skills | Experimental `context: fork` runs a Skill in a dedicated subagent context when `github.copilot.chat.skillTool.enabled` is enabled |
+| MCP | Workspace `.mcp.json` support and deduplication by server name; manage installed servers with `@mcp @installed` or Chat customizations |
+| GitHub Copilot CLI sessions | Experimental remote control with `github.copilot.chat.cli.remote.enabled` and `/remote on`; session titles now sync across chat surfaces and `copilot --resume` |
+| Search context | Semantic indexing now works for non-GitHub repositories, and the `githubTextSearch` tool adds exact grep-style search across GitHub repos or orgs |
+| Evaluation | Chat Customizations Evaluations extension (`ms-vscode.vscode-chat-customizations-evaluations`) analyzes prompt files, custom agents, instructions, and Skills |
+| Git commits | `git.addAICoAuthor` now defaults to adding GitHub Copilot as a co-author when it makes changes |
+| Deprecation | Edit Mode remains deprecated and is scheduled for removal in VS Code 1.125 |
+
+These are high-drift features. Keep preview features out of org-wide baselines until the target VS Code version, settings policy, and fallback behavior are tested.
 
 ## The Short Version
 

@@ -1,8 +1,8 @@
 # Measuring Success
 
-[← Back to Guide](../README.md) | [← The Eight Primitives](eight-primitives.md) | [Next: Executive Maturity Model →](executive-maturity-model.md)
+[← Back to Guide](../ReadMe.md) | [← The Eight Primitives](eight-primitives.md) | [Next: Executive Maturity Model →](executive-maturity-model.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -15,6 +15,8 @@ This chapter turns customization from a configuration exercise into an engineeri
 The earlier chapters teach how to build the system. This chapter teaches how to prove the system is working.
 
 Without measurement, customization stays faith-based. A team may author instructions, create skills, and wire up MCP servers, but if nobody can say whether friction actually decreased, the effort has no defensible value. That is where most Copilot customization stories stall: the technical work is done, but nobody can explain what changed.
+
+**See it in action:** [How we ship models](https://www.youtube.com/watch?v=nD1U_wggrQM&t=365s) — the Visual Studio Code team demos using repeatable evals to measure model quality before shipping GitHub Copilot experiences.
 
 ## Baselines and Business Outcomes
 
@@ -55,6 +57,7 @@ Baseline these for two weeks before changing the repo:
 - time spent restating repo rules in chat or review comments
 - cycle time for one recurring workflow the team actually cares about
 - one quality signal that matters in that stack, such as test churn, accessibility regressions, or unsafe query review
+- GitHub Copilot code review volume and Actions-minute impact for private repositories where automatic reviews are enabled. Use [About GitHub Copilot code review](https://docs.github.com/en/copilot/concepts/agents/code-review) as the source for current quota, billing, and runner behavior.
 
 Then check again two weeks after rollout.
 
@@ -91,7 +94,7 @@ Start with the highest-value baseline: `copilot-instructions.md`. Each phase bui
 Do not read the phase table as "every surface should do every phase."
 
 - VS Code, GitHub Copilot CLI, and Cloud Coding Agent heavy teams can usually follow the full sequence.
-- Visual Studio teams should usually start with Always-on Instructions, prompt files, and MCP. Skills are not the default path there, and Hooks are not the local IDE story.
+- Visual Studio teams should usually start with Always-on Instructions, prompt files, and MCP. Skills are not currently listed as supported in the official feature matrix, and Hooks are not the local IDE story.
 - JetBrains and Xcode teams should treat preview-heavy primitives as pilot-only until the exact plugin or extension version is tested.
 - Memory is currently relevant in GitHub Copilot CLI, the Cloud Coding Agent, and GitHub Copilot code review on GitHub, not as a general IDE-chat primitive.
 
@@ -114,10 +117,10 @@ How do shared patterns reach many repos? Three mechanisms do most of the work:
 | Pattern | Best for | Tradeoffs |
 |---------|----------|-----------|
 | **Org-level `.github` repo** | Baseline rules every repo inherits (security policies, commit conventions, PR templates) | Only covers community health files natively; Copilot instructions must be copied via template, sync action, or agent plugin |
-| **Agent Plugins (Preview)** | Bundling related primitives (skills + agents + hooks + instructions) as a versioned, installable package | Preview feature; plugin format still stabilizing. Best for opt-in adoption per repo |
+| **Agent Plugins (Preview)** | Bundling related primitives (slash commands + Skills + Custom Agents + Hooks + MCP servers) as a versioned, installable package | Preview feature; review publisher and contents before installation because plugins can run hooks and MCP servers |
 | **Template repositories** | New repos that should start with a full customization set | One-time imprint; drift starts on day one. Good for greenfield projects |
 
-A common blended model: distribute a baseline `copilot-instructions.md` from a central repo with a sync action, deliver domain-specific skills and agents as opt-in agent plugins, and use template repos for new services.
+A common blended model: distribute a baseline `copilot-instructions.md` from a central repo with a sync action, deliver domain-specific Skills, agents, hooks, and MCP servers as opt-in Agent Plugins, and use template repos for new services. In VS Code, marketplaces are configured with `chat.plugins.marketplaces`, local plugin folders with `chat.pluginLocations`, and workspace recommendations through `.claude/settings.json` or `.github/copilot/settings.json`.
 
 ### Ownership and CODEOWNERS
 
@@ -150,11 +153,16 @@ Per-team metrics scale directly. Organization-level visibility comes from GitHub
 - **[Copilot Usage API](https://docs.github.com/en/rest/copilot/copilot-usage).** Seat-level data for billing and license management.
 - **[Audit log](https://docs.github.com/en/enterprise-cloud@latest/admin/monitoring-activity-in-your-enterprise/reviewing-audit-logs-for-your-enterprise/audit-log-events-for-your-enterprise#copilot-events).** Copilot events in the enterprise audit log for compliance and incident response.
 
-For a leadership-oriented view of how these metrics map to organizational maturity — from scattered usage through frictionless delivery — see the [Executive Maturity Model](executive-maturity-model.md).
+Two April 2026 updates matter for dashboards:
+
+- GitHub Copilot code review starts consuming GitHub Actions minutes on private repositories on June 1, 2026. Track review volume, automatic-review coverage, and Actions budget impact together.
+- The user-level usage reports now include `used_copilot_cloud_agent` for single-day and 28-day enterprise and organization reports. It mirrors `used_copilot_coding_agent`; the older field remains for compatibility until August 1, 2026.
+
+For a leadership-oriented view of how these metrics map to organizational maturity: from scattered usage through frictionless delivery: see the [Executive Maturity Model](executive-maturity-model.md).
 
 ## Where to Read Next
 
-- Read the [Executive Maturity Model](executive-maturity-model.md) for the leadership perspective — how to move from scattered tool usage to system-level delivery outcomes.
+- Read the [Executive Maturity Model](executive-maturity-model.md) for the leadership perspective: how to move from scattered tool usage to system-level delivery outcomes.
 - Read [Operational Reference](part-3-reference.md) next for the lookup tables, frontmatter fields, and starter templates.
-- Revisit [Foundations](foundations.md) and [Why Customization Matters](why-customization-matters.md) if the human-problem framing is still missing from the team's measurement story.
+- Revisit [Foundations](foundations.md) and [When to Customize (If Required)](when-to-customize.md) if the human-problem framing is still missing from the team's measurement story.
 - Revisit [Primitives in Action](primitives-in-action.md) for concrete workflows worth measuring.

@@ -2,7 +2,7 @@
 
 [← Back to The Eight Primitives](eight-primitives.md) | [Next: File-based Instructions →](primitive-2-file-based-instructions.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -66,6 +66,16 @@ The practical rule is simple: use Chat, agent mode, or prompt-driven workflows w
 The repository-level home is `.github/copilot-instructions.md`.
 
 The current guide also documents `AGENTS.md` and `CLAUDE.md` as recognized workspace instruction files in supported environments. That flexibility is useful when a team already has one of those conventions in place, but the main teaching path in this guide remains `.github/copilot-instructions.md` because it is the clearest cross-team default.
+
+## Every Repository Should Have Its Own
+
+The instructions file should live with the code it describes. That means each repository gets its own `.github/copilot-instructions.md`, not a shared one copied from a central template or maintained in a separate governance repo.
+
+The reason is the same reason code and tests live together: coupling. A shared instructions file creates a hidden dependency between repositories. When one team updates the shared file, every repo that consumes it inherits those changes: whether they apply or not. The instructions drift from the actual codebase, the model gets conflicting signals, and the team loses trust in the system.
+
+Instead, treat instructions the way the team treats configuration: co-located, version-controlled, and reviewed alongside the code they affect. Organization-level instructions exist for company-wide standards that genuinely apply everywhere. But the repository file is where the real leverage lives, because that is where the local decisions are: the stack choices, the architectural patterns, the deprecated libraries, and the review comments that keep coming back.
+
+If two repositories share a framework, they can share a few lines of guidance. They should not share the same file. The moment the instructions stop describing the repository they live in, they stop being useful.
 
 ## Anatomy of a Good Instructions File
 
@@ -157,7 +167,7 @@ The first failure mode is usually not wording. It is scaffolding: wrong path, wr
 
 ## See It in Action
 
-**See it in action:** [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=367s) — Courtney Webster demos a repo-level instructions file loading as always-on context and surfacing in the chat debug view.
+**See it in action:** [Custom Instructions: How I Really Made Copilot Listen! | Ep 2 of 8](https://www.youtube.com/watch?v=dk2biPguo_E&t=40s) — Reynald Adolphe demos custom instructions guiding refactoring so GitHub Copilot applies the project's SOLID principles automatically.
 
 ## Creating the File
 
@@ -178,7 +188,7 @@ Small tweaks to an existing file are fine to make by hand. The generator matters
 
 ## Complete Example: Production Next.js Project
 
-``````markdown
+````markdown
 # Project Guidelines for Copilot
 
 ## Project Overview
@@ -252,12 +262,12 @@ Use our custom error hierarchy:
 - All queries must include `organizationId` filter
 - Validate ALL external input with Zod schemas
 
-## Dependencies — Do Not Use
+## Dependencies: Do Not Use
 - `moment.js` → use `date-fns`
 - `axios` → use native `fetch`
 - `lodash` → use native methods or `es-toolkit`
 - Class components → use functional components
-``````
+````
 
 ## Anti-Patterns to Avoid
 

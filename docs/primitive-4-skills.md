@@ -2,7 +2,7 @@
 
 [← Back to The Eight Primitives](eight-primitives.md) | [← Prompts](primitive-3-prompts.md) | [Next: Custom Agents →](primitive-5-custom-agents.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -10,11 +10,15 @@
 
 Skills enter the loop at task shaping and decision support.
 
+The current official references are VS Code's [Use Agent Skills in VS Code](https://code.visualstudio.com/docs/copilot/customization/agent-skills) page, GitHub's [About agent skills](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills), and the open [Agent Skills specification](https://agentskills.io/).
+
 They do not establish the repository's baseline. They do not create a persistent persona. They do not connect new tools. They package reusable procedure so the agent can load it when the task calls for it.
 
 That is why Skills are one of the most misunderstood primitives. They sit in the same neighborhood as Prompts, but they solve a different problem.
 
 ## What This Primitive Is For
+
+Skills help agent sessions. They do not feed the dedicated GitHub Copilot code review pipeline. If a standard must be reviewed on a pull request, put that standard in Always-on Instructions or File-based Instructions and let the Skill reference it.
 
 Use a Skill when the repository needs reusable know-how rather than reusable wording.
 
@@ -36,11 +40,13 @@ That distinction matters more than it first appears.
 
 A Prompt is great when a human wants an explicit slash command for a one-shot workflow. A Skill is better when the procedure should also be available to the agent when the user asks for the task in normal language.
 
+For example, a user can type, "draft release notes for the latest release." GitHub Copilot sees a `release-notes` Skill whose description says it generates release notes from merged pull requests and changelog conventions, then loads `SKILL.md` because the normal-language request matches that capability.
+
 That makes Skills especially valuable in surfaces beyond one chat picker. They package knowledge in a way that can travel.
 
 ## The Unit of a Skill Is a Folder, Not Just a File
 
-This primitive lives under `.github/skills/`, with one folder per skill and a `SKILL.md` at the center.
+This primitive usually lives under `.github/skills/`, with one folder per skill and a `SKILL.md` at the center. VS Code also discovers project Skills from `.claude/skills/` and `.agents/skills/`, and personal Skills from `~/.copilot/skills/`, `~/.claude/skills/`, and `~/.agents/skills/`. Additional locations can be configured with `chat.agentSkillsLocations`; see the official [Create a skill](https://code.visualstudio.com/docs/copilot/customization/agent-skills#_create-a-skill) section for the current discovery paths.
 
 That folder shape is important because it lets the procedure carry supporting assets:
 
@@ -122,9 +128,55 @@ The value is not the markdown alone. The value is that the procedure becomes reu
 | Primitive | Relationship |
 |-----------|--------------|
 | [Always-on Instructions](primitive-1-always-on-instructions.md) | Provide repo-wide context the Skill assumes |
+| [File-based Instructions](primitive-2-file-based-instructions.md) | Provide file-scoped conventions the Skill can reference |
 | [Prompts](primitive-3-prompts.md) | Sometimes overlap; a Skill can also be exposed through a slash-style experience depending on configuration |
 | [Custom Agents](primitive-5-custom-agents.md) | Agents change role; Skills provide the reusable procedure that role may invoke |
 | [MCP](primitive-6-mcp.md) | Skills often pair with MCP when the procedure needs access to external systems |
+
+### Using a Skill to Reference File-based Instructions
+
+A Skill defines *how* to carry out a task. File-based Instructions define *what conventions apply* when touching specific files. The most useful composition is a Skill that explicitly tells the agent to read and follow the relevant instruction file as part of its procedure.
+
+This avoids duplicating conventions inside the Skill and keeps the conventions co-located with the code they apply to. The Skill owns the workflow; the instruction file owns the rules.
+
+```markdown
+---
+name: scaffold-api-route
+description: Scaffold a new API route following the project's route conventions. Use when the user asks to create or add a route, endpoint, or handler.
+metadata:
+  author: platform-team
+  version: "1.0"
+---
+
+# Scaffold API Route
+
+## Before You Start
+
+Read `.github/instructions/api-routes.instructions.md` before generating any code.
+That file defines the validation, error-handling, and documentation conventions
+for all files under `src/routes/`. Follow those rules exactly.
+
+## Steps
+
+1. Ask which resource the route serves and which HTTP methods it needs.
+2. Create the route handler in `src/routes/{resource}.ts`.
+3. Create or update the Zod schema in `src/schemas/{resource}.ts`.
+4. Add an OpenAPI JSDoc comment above each handler (per the instruction file).
+5. Register the route in `src/routes/index.ts`.
+6. Add a co-located test file at `src/routes/__tests__/{resource}.test.ts`.
+```
+
+The key line is `Read .github/instructions/api-routes.instructions.md before generating any code.` That tells the agent to load the instruction file as context before it starts writing. The Skill does not repeat the validation rules or error-handling patterns: those live in the instruction file and stay in sync with the code they govern.
+
+This pattern scales cleanly. A deployment Skill can reference `ops.instructions.md`. A test-scaffolding Skill can reference `testing.instructions.md`. The Skill stays focused on the procedure; the instruction file stays focused on the conventions.
+
+### Why This Matters for Code Review
+
+GitHub Copilot code review currently loads only [Always-on Instructions](primitive-1-always-on-instructions.md), [File-based Instructions](primitive-2-file-based-instructions.md), and [Memory](primitive-8-memory.md). It does not load Skills. That means any coding standard that lives only inside a Skill will be enforced when the agent writes code but silently ignored when Copilot reviews a PR.
+
+The practical rule: if a convention matters enough to catch in code review, it must live in an instruction file, not in a Skill. Skills can reference instruction files to stay aligned during agent-assisted coding, but the instruction file is what makes the same standard visible to both pipelines.
+
+This is not a workaround. It is the intended layering. Instruction files own the standards. Skills own the workflows. The instruction file is the contract between writing and reviewing. See [GitHub Copilot Code Review](code-review.md) for the full pipeline details.
 
 ## Why Skills Matter in This Guide
 
@@ -134,11 +186,13 @@ They are also one of the strongest examples of the central claim in this guide: 
 
 ## See It in Action
 
-**See it in action:** [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=487s) — Courtney Webster demos GitHub Copilot auto-loading a debug Skill when the task matches its description.
+**See it in action:** [Agent Skills Explained in 5 Minutes | Ep 3 of 8](https://www.youtube.com/watch?v=mPjTZviv23s&t=40s) — Reynald Adolphe demos creating an Agent Skill that updates a README when a project feature changes.
+
+**See it in action:** [The complete guide to Agent Skills](https://www.youtube.com/watch?v=fabAI1OKKww&t=99s) — Burke Holland walks through building a Hello World skill from scratch and shows how skill descriptions trigger the model to load them.
 
 ## Creating Skills
 
-In VS Code, run `/create-skill` in Chat. The command scaffolds the folder under `.github/skills/`, writes `SKILL.md` with valid frontmatter, and prompts for the metadata that drives discovery. In the Copilot CLI, ask the agent to create the skill directly.
+In VS Code, run `/create-skill` in Chat. The command scaffolds the folder under `.github/skills/`, writes `SKILL.md` with valid frontmatter, and prompts for the metadata that drives discovery. In the GitHub Copilot CLI, ask the agent to create the Skill directly.
 
 > 💬 **Try this prompt:**
 > "Create a skill at `.github/skills/debug-flaky-tests/SKILL.md` that walks through our playbook for diagnosing flaky tests: re-run with `--repeat`, check for unmocked network calls, check test ordering, and bisect with `git`. Write a description that fires when someone asks to debug a flaky test."
@@ -147,7 +201,7 @@ In VS Code, run `/create-skill` in Chat. The command scaffolds the folder under 
 
 Every skill lives in its own folder with a `SKILL.md` file:
 
-```
+```text
 .github/
 └── skills/
     ├── image-manipulation/
@@ -165,6 +219,8 @@ Every skill lives in its own folder with a `SKILL.md` file:
 
 Complex skills include supporting scripts, templates, and reference docs alongside `SKILL.md`.
 
+An agent host is the application that discovers and runs the Skill, such as VS Code, GitHub Copilot CLI, the Cloud Coding Agent, Claude Code, or another skills-compatible runtime. That host determines which Skill locations, tool names, and installation commands apply.
+
 ## Frontmatter Fields
 
 | Field | Required | Description |
@@ -174,6 +230,7 @@ Complex skills include supporting scripts, templates, and reference docs alongsi
 | `argument-hint` | No | Hint text shown in the chat input field when invoked as `/` command |
 | `user-invocable` | No | Show as `/` slash command (default: `true`). Set to `false` to hide from the menu while still allowing automatic loading |
 | `disable-model-invocation` | No | Require manual `/` invocation only (default: `false`) |
+| `context` | No | Experimental. Set to `fork` to run the Skill in a dedicated subagent context. Requires `github.copilot.chat.skillTool.enabled` in VS Code |
 | `metadata` | No | Key-value pairs (author, version) |
 
 **Name validation rules:**
@@ -183,7 +240,7 @@ Complex skills include supporting scripts, templates, and reference docs alongsi
 ## Complete Example: GitHub Issues Skill
 
 **Directory:**
-```
+```text
 github-issues/
 ├── SKILL.md
 └── templates/
@@ -249,10 +306,24 @@ Skills are installed into the correct directory for the target host. `--pin <tag
 
 **Security:** Skills are executable instructions that shape agent behavior. Before installing from a repository you do not control, run `gh skill preview` first and prefer pinned versions.
 
+## Forked Skill Context
+
+By default, a Skill loads inline into the parent agent's context. VS Code 1.118 adds an experimental alternative for large or investigative Skills:
+
+```yaml
+---
+name: review-pr
+description: Review a pull request for code quality, style, and correctness. Use when asked to review a PR.
+context: fork
+---
+```
+
+Use `context: fork` when the Skill needs to read many files, run a lengthy investigation, or produce a focused report whose intermediate context should not crowd the parent conversation. Only the final result returns to the parent agent. This requires the `github.copilot.chat.skillTool.enabled` setting in VS Code and should be treated as preview behavior.
+
 ## Skills vs. MCP: Complementary, Not Competing
 
-- **Skills** provide *knowledge* — templates, conventions, workflows, domain expertise
-- **MCP servers** provide *access* — authentication, API connections, live system interaction
+- **Skills** provide *knowledge*: templates, conventions, workflows, domain expertise
+- **MCP servers** provide *access*: authentication, API connections, live system interaction
 
 Most serious integrations use both: an MCP server handles "how to connect to Jira" while a skill handles "how our team formats Jira tickets."
 

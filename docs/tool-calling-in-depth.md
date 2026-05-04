@@ -1,8 +1,8 @@
 # Tool Calling in Depth
 
-[← Back to Guide](../README.md) | [← Where GitHub Copilot Runs](where-github-copilot-runs.md) | [Next: Debugging the Agent Loop →](debugging-the-agent-loop.md)
+[← Back to Guide](../ReadMe.md) | [← Where GitHub Copilot Runs](where-github-copilot-runs.md) | [Next: Debugging the Agent Loop →](debugging-the-agent-loop.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -11,6 +11,8 @@
 The agent loop explains where decisions happen. Tool calling explains how those decisions become action.
 
 Without tools, the model can only produce text. With tools, the runtime can read files, search the workspace, run commands, fetch web content, call external systems, or delegate work to subagents. That makes tool calling one of the main boundaries between a chat response and an agentic workflow.
+
+**See it in action:** [Your first agent session in action](https://www.youtube.com/watch?v=WcN74XvZGes&t=196s) — Gwyneth Peña-Siguenza demos inspecting tool calls and using explicit tool references inside a VS Code agent session.
 
 The official VS Code docs describe this in two complementary ways. [Tools](https://code.visualstudio.com/docs/copilot/concepts/tools) explains the conceptual model: tools are the mechanism that lets the model act on the development environment. [Use tools with agents](https://code.visualstudio.com/docs/copilot/agents/agent-tools) explains the operational model: how tools are enabled, chosen, approved, and surfaced in chat.
 

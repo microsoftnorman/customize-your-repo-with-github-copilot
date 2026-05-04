@@ -25,6 +25,19 @@ For videos without a prepared stub, create one with the standard frontmatter, th
 
 ## Index
 
+### Week of Apr 21-27, 2026
+
+| Date | Video | Topics | File |
+|------|-------|--------|------|
+| Apr 24 | [The Agent Customizations UI Nobody Knows About](https://www.youtube.com/watch?v=AZzCk-WGks4) | Chat Customizations UI, agents, skills, instructions, prompt files, hooks | 2026-04-24-agent-customizations-ui-nobody-knows-about.md |
+| Apr 24 | [Custom Instructions: How I Really Made Copilot Listen!](https://www.youtube.com/watch?v=dk2biPguo_E) | Custom instructions, coding standards, accessibility | 2026-04-24-custom-instructions-made-copilot-listen.md |
+| Apr 24 | [Agent Skills Explained in 5 Minutes](https://www.youtube.com/watch?v=mPjTZviv23s) | Agent Skills, reusable workflows, documentation | 2026-04-24-agent-skills-explained.md |
+| Apr 24 | [Let's Build a Custom Agent!](https://www.youtube.com/watch?v=Y7MPeZTIgqo) | Custom Agents, security reviewer, specialized agents | 2026-04-24-lets-build-a-custom-agent.md |
+| Apr 24 | [Hooks: The Underestimated Feature](https://www.youtube.com/watch?v=ZsyiRa91XZg) | Hooks, lifecycle events, formatting automation | 2026-04-24-hooks-underestimated-feature.md |
+| Apr 24 | [Stop Prompting So Much. Do This Instead!](https://www.youtube.com/watch?v=d37Y28uU2JY) | Prompt files, reusable prompts, slash commands | 2026-04-24-stop-prompting-so-much.md |
+| Apr 24 | [Instructions vs Skills vs Hooks & More Explained By Copilot Itself](https://www.youtube.com/watch?v=oyMMotLlcgQ) | Primitive comparison, instructions, prompt files, skills, agents, hooks | 2026-04-24-instructions-vs-skills-vs-hooks.md |
+| Apr 24 | [Agent Mode with Customization](https://www.youtube.com/watch?v=Bb45ZoKfJf0) | Agent mode, instructions, prompt files, skills, agents, hooks | 2026-04-24-agent-mode-with-customization.md |
+
 ### Week of Apr 14-20, 2026
 
 | Date | Video | Topics | File |
@@ -99,11 +112,12 @@ Use this to find which transcripts cover specific guide sections:
 
 | Guide Section | Relevant Transcripts |
 |---------------|---------------------|
-| Custom Agents | [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q) — Courtney Webster; [Subagents: Parallel Execution and Context Isolation](https://www.youtube.com/watch?v=GMAoTeD9siU) — Harald Kirschner; [Inside The Agent Loop with Pierce Boggan](https://www.youtube.com/watch?v=ENxVTtLW_Bc) — Pierce Boggan, James Montemagno |
+| Custom Agents | [Let's Build a Custom Agent!](https://www.youtube.com/watch?v=Y7MPeZTIgqo) — Reynald Adolphe; [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q) — Courtney Webster; [Subagents: Parallel Execution and Context Isolation](https://www.youtube.com/watch?v=GMAoTeD9siU) — Harald Kirschner; [Inside The Agent Loop with Pierce Boggan](https://www.youtube.com/watch?v=ENxVTtLW_Bc) — Pierce Boggan, James Montemagno |
 | MCP | [Extend Agents with MCP](https://www.youtube.com/watch?v=_g29UQjIAeI) — Connor Peet; [Kafka MCP](https://www.youtube.com/watch?v=KRBqLjRjX70) — Reynald Adolphe, Viktor Gamov; [Create and install an F1 inspired MCP Server in VS Code](https://www.youtube.com/watch?v=ZPaF_6mSp8I) — Liam Conroy Hampton |
-| Skills | [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q) — Courtney Webster; [5 New VS Code Features for Smarter Agents](https://www.youtube.com/watch?v=MvwcWWp1NFs) — Olivia Guzzardo McVicker |
-| Hooks | [Let it Cook (Feb 13)](https://www.youtube.com/watch?v=FjvtWeG6EEo) — Pierce Boggan, James Montemagno; [5 New VS Code Features for Smarter Agents](https://www.youtube.com/watch?v=MvwcWWp1NFs) — Olivia Guzzardo McVicker |
+| Skills | [Agent Skills Explained in 5 Minutes](https://www.youtube.com/watch?v=mPjTZviv23s) — Reynald Adolphe; [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q) — Courtney Webster; [5 New VS Code Features for Smarter Agents](https://www.youtube.com/watch?v=MvwcWWp1NFs) — Olivia Guzzardo McVicker |
+| Hooks | [Hooks: The Underestimated Feature](https://www.youtube.com/watch?v=ZsyiRa91XZg) — Reynald Adolphe; [Let it Cook (Feb 13)](https://www.youtube.com/watch?v=FjvtWeG6EEo) — Pierce Boggan, James Montemagno; [5 New VS Code Features for Smarter Agents](https://www.youtube.com/watch?v=MvwcWWp1NFs) — Olivia Guzzardo McVicker |
 | Foundations / AI SDLC | [Welcome to VS Code Live: Agent Sessions Day!](https://www.youtube.com/watch?v=njbObo0fyhM) — Kyle Daigle; [Agent Sessions Day — Closing with Kai Maetzel](https://www.youtube.com/watch?v=0JPODfK8t5o) — Kai Maetzel, James Montemagno; [Agent Sessions Day Keynote](https://www.youtube.com/watch?v=2-Q_sdJ5H2c) — Harald Kirschner; [How VS Code Builds with AI](https://www.youtube.com/watch?v=ee-obY-4rqk) — Pierce Boggan, Peng Lyu; [Introduction to Agent-First Development](https://www.youtube.com/watch?v=uu4sf8z9n8c) — Gwyneth Peña-Siguenza; [Inside The Agent Loop with Pierce Boggan](https://www.youtube.com/watch?v=ENxVTtLW_Bc) — Pierce Boggan, James Montemagno |
 | Model Selection | [Bring Your Own Model in VS Code](https://www.youtube.com/watch?v=VBSVSxs16_I) — Sandeep Somavarapu; [How we ship models](https://www.youtube.com/watch?v=nD1U_wggrQM) — Visual Studio Code team; [GPT-5.4 just landed in VS Code!](https://www.youtube.com/watch?v=A8LiOBd5AgQ) — Olivia Guzzardo McVicker; [VS Code Release Highlights - March 2026](https://www.youtube.com/watch?v=bZJAxvGmRO8) — Reynald Adolphe; [Inside The Agent Loop with Pierce Boggan](https://www.youtube.com/watch?v=ENxVTtLW_Bc) — Pierce Boggan, James Montemagno |
-| Prompts | [Introduction to Agent-First Development](https://www.youtube.com/watch?v=uu4sf8z9n8c) — Gwyneth Peña-Siguenza; [Reviewing and controlling agent changes](https://www.youtube.com/watch?v=oFSJs6RnFt4) — Gwyneth Peña-Siguenza; [DEMO - Build your first app with agent mode](https://www.youtube.com/watch?v=hmfldW7dmgw) — Gwyneth Peña-Siguenza |
+| Prompts | [Stop Prompting So Much. Do This Instead!](https://www.youtube.com/watch?v=d37Y28uU2JY) — Reynald Adolphe; [Introduction to Agent-First Development](https://www.youtube.com/watch?v=uu4sf8z9n8c) — Gwyneth Peña-Siguenza; [Reviewing and controlling agent changes](https://www.youtube.com/watch?v=oFSJs6RnFt4) — Gwyneth Peña-Siguenza; [DEMO - Build your first app with agent mode](https://www.youtube.com/watch?v=hmfldW7dmgw) — Gwyneth Peña-Siguenza |
 | Sub-agents | [Subagents: Parallel Execution and Context Isolation](https://www.youtube.com/watch?v=GMAoTeD9siU) — Harald Kirschner; [Multi-agent development in VS Code](https://www.youtube.com/watch?v=BsAHunfVwNs) — Olivia Guzzardo McVicker; [Multi-agent workflows in VS Code](https://www.youtube.com/watch?v=J5KTpq7hVn4) — Kayla Cinnamon; [Inside The Agent Loop with Pierce Boggan](https://www.youtube.com/watch?v=ENxVTtLW_Bc) — Pierce Boggan, James Montemagno |
+| Primitive Comparison | [Instructions vs Skills vs Hooks & More Explained By Copilot Itself](https://www.youtube.com/watch?v=oyMMotLlcgQ) — Reynald Adolphe; [Agent Mode with Customization](https://www.youtube.com/watch?v=Bb45ZoKfJf0) — Reynald Adolphe |

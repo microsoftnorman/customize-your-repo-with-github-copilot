@@ -2,7 +2,7 @@
 
 [← Where GitHub Copilot Runs](../where-github-copilot-runs.md) | [← GitHub Copilot CLI](copilot-cli.md) | [Next: Visual Studio →](visual-studio.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -15,6 +15,10 @@ GitHub's current product docs live under the cloud-agent section. The two most u
 It runs on GitHub infrastructure, reads the repository's customization layer, works on a branch, and turns the result into something a human can review.
 
 That makes it one of the cleanest proofs of the central argument in this guide: the repository can teach GitHub Copilot how to work even when no developer is sitting inside the session.
+
+**See it in action:** [Agent sessions and where agents run](https://www.youtube.com/watch?v=0CsKOO7d35I&t=258s) — Gwyneth Peña-Siguenza demos starting a cloud agent session, watching the pull request appear, and inspecting the session on GitHub.com.
+
+**See it in action:** [GitHub Copilot Cloud Coding Agent: A Beginner's Guide & Model Showdown](https://www.youtube.com/watch?v=R9KSJ0Vfy8I&t=97s) — James Montemagno demos starting cloud coding agent tasks from github.com/copilot and from the GitHub mobile app, then comparing models on the same task.
 
 ## Why It Matters
 
@@ -42,6 +46,8 @@ The Cloud Coding Agent is one of the strongest consumers of the authored layer:
 
 It also depends on environment setup that lives on the default branch. If the environment is wrong, the remote run is wrong, no matter how good the prompt looked.
 
+Recent platform changes make that setup contract more visible. As of April 27, 2026, GitHub Copilot cloud agent starts more than 20% faster when the repository uses optimized runner environments built with GitHub Actions custom images. That improves feedback loops, but it also rewards teams that keep the agent environment reproducible instead of relying on developer laptops.
+
 ## What Changes Compared with Local Work
 
 Three differences matter most:
@@ -64,6 +70,8 @@ The Cloud Coding Agent is best when the task should keep moving without occupyin
 - or keep iterating on a PR after feedback.
 
 It is especially effective when the repository already has strong conventions and a reproducible setup story.
+
+As of April 23, 2026, teams can also view and steer cloud agent sessions directly from issues and projects. Issues show active and completed session pills and a side panel for progress, logs, and guidance. Project views show agent sessions by default, so product and triage workflows can steer delegated work without jumping away from the board.
 
 ## Why It Changes the Stakes of Customization
 

@@ -2,13 +2,15 @@
 
 [← Back to The Eight Primitives](eight-primitives.md) | [← Custom Agents](primitive-5-custom-agents.md) | [Next: Hooks →](primitive-7-hooks.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
 ## Where It Enters the Loop
 
 MCP changes the loop at action selection and tool execution.
+
+MCP, or Model Context Protocol, is an open standard for connecting GitHub Copilot to external tools, data sources, and services.
 
 Instructions, Prompts, Skills, and Agents tell GitHub Copilot how to think. MCP changes what it can reach.
 
@@ -53,7 +55,7 @@ That difference is large enough to change architecture, risk, and trust boundari
 
 ## Configuration Shape
 
-In VS Code, repository-level MCP configuration usually lives in `.vscode/mcp.json`. User-level MCP configuration can also live in the developer profile. In remote development, a remote user configuration can run on the attached host instead of the laptop.
+In VS Code, repository-level MCP configuration usually lives in `.vscode/mcp.json`. VS Code 1.118 also supports workspace-level `.mcp.json`, which aligns with GitHub Copilot CLI and plugin package conventions. User-level MCP configuration can also live in the developer profile. In remote development, a remote user configuration can run on the attached host instead of the laptop.
 
 The current canonical references are VS Code's [Add and manage MCP servers](https://code.visualstudio.com/docs/copilot/customization/mcp-servers) page, the [MCP configuration reference](https://code.visualstudio.com/docs/copilot/reference/mcp-configuration), and the [Model Context Protocol specification](https://modelcontextprotocol.io/).
 
@@ -64,11 +66,25 @@ MCP servers can expose more than tools. In current VS Code guidance, a server ca
 - tools for live actions,
 - resources for read-only context,
 - prompts for server-defined task templates,
-- and apps for richer interactive UI inside chat.
+- and apps for richer interactive UI inside chat. The VS Code MCP page covers these under [Other MCP capabilities](https://code.visualstudio.com/docs/copilot/customization/mcp-servers#_other-mcp-capabilities).
 
 That broader shape matters because the team is not only deciding what the agent can do. It is also deciding what live context enters the loop, which UI affordances appear, and which trust decisions users will have to make.
 
 The operational details matter as much as the conceptual role. Bad instructions create poor output. Bad MCP configuration creates broken or risky capability.
+
+### MCP Vocabulary
+
+| Term | Plain meaning |
+|------|---------------|
+| MCP server | A process or HTTP service that exposes tools, resources, prompts, or apps to the agent |
+| Stdio server | A local command-line process the runtime starts and talks to over standard input and output |
+| HTTP server | A remote or local web endpoint the runtime calls over HTTP |
+| Tool | An action the agent can call, such as querying an API or taking a browser screenshot |
+| Resource | Read-only context from a server, such as a file, table, issue, or API response |
+| Prompt | A server-provided prompt template surfaced through MCP |
+| MCP app | An interactive UI surface rendered in chat by an MCP server |
+| Trust boundary | The line between code and data the team controls and code or data it must treat as untrusted |
+| Prompt injection | Malicious or accidental instructions in tool output that try to steer the model away from the user's intent |
 
 ## Local to What?
 
@@ -83,6 +99,8 @@ That is why reproducible MCP use depends on environment bootstrapping, not just 
 ## The Smallest Working Path
 
 Start with one server, one narrow task, and one verification step.
+
+For the first experiment, prefer a harmless read-only or low-risk server. Browser automation against a public page is safer than starting with production databases, write-capable GitHub tokens, or deployment systems.
 
 ```json
 {
@@ -175,7 +193,7 @@ For public repositories, add one more rule: `.vscode/mcp.json` is code-review-se
 
 ## Surface Reality
 
-`.vscode/mcp.json` is the primary repository path in VS Code. Other surfaces can support MCP without honoring the exact same repository setup flow.
+`.vscode/mcp.json` is the primary repository path in VS Code, and workspace `.mcp.json` is now also supported. Other surfaces can support MCP without honoring the exact same repository setup flow.
 
 That means cross-surface rollout should assume this sequence:
 
@@ -204,6 +222,8 @@ Example: a data team connects GitHub Copilot to a warehouse query server through
 
 **See it in action:** [Extend Agents with MCP](https://www.youtube.com/watch?v=_g29UQjIAeI&t=33s) — Connor Peet demos MCP extending the agent loop with external tools, resources, and asynchronous tasks.
 
+**See it in action:** [Let's learn about MCP Apps](https://www.youtube.com/watch?v=r3UkKVE3gtk&t=45s) — Burke Holland demos a third-party MCP App returning interactive UI in chat by controlling LIFX lights from a local MCP server.
+
 ## Configuring MCP Servers
 
 Start with the built-in MCP commands instead of hand-authoring `mcp.json`. The file has strict syntax for transport types, environment variable substitution, and secret references. VS Code ships built-in commands that scaffold servers correctly:
@@ -215,7 +235,7 @@ Start with the built-in MCP commands instead of hand-authoring `mcp.json`. The f
 > 💬 **Try this prompt:**
 > "Add a GitHub MCP server to `.vscode/mcp.json` using the official `@modelcontextprotocol/server-github` package over stdio. Read the token from the `GITHUB_TOKEN` environment variable so it is not committed."
 
-**Workspace configuration (`.vscode/mcp.json`):**
+**Workspace configuration (`.vscode/mcp.json` or workspace `.mcp.json`):**
 
 ```json
 {
@@ -265,9 +285,15 @@ Pin to a specific version. Unpinned `npx -y <package>` is a supply-chain risk.
 - **Rotate credentials on a schedule.** Treat MCP server tokens like any other service credential.
 - **Limit token scope.** Create tokens with the minimum permissions the server needs. A read-only GitHub token limits blast radius.
 
+## Server Deduplication and Plugins
+
+When multiple MCP servers share the same name in VS Code 1.118, only the most-specific server is enabled by default. Enabling one server disables the other servers with that same name. Use the Extensions view filter `@mcp @installed` or the Chat customizations UI to choose which server should be active.
+
+Agent Plugins can also bundle MCP servers. Plugin MCP servers appear beside workspace and user servers, but they are trusted as part of the plugin installation rather than through a separate server startup prompt. Review the plugin publisher and contents before enabling it, especially when the plugin includes hooks or local stdio servers.
+
 ## Security: Tool Output and Prompt Injection
 
-MCP tools return content that enters the model's context. That content can carry instructions — intentional or adversarial — that try to steer the agent.
+MCP tools return content that enters the model's context. That content can carry instructions: intentional or adversarial: that try to steer the agent.
 
 Practical defenses:
 
@@ -322,7 +348,7 @@ Open VS Code, reload the window, and check the MCP output channel. The server sh
 
 The CLI comes with the GitHub MCP server pre-configured. Type `/mcp` in interactive mode to see configured servers and their tools. Add servers with `/mcp add`. CLI-specific configs are stored in `~/.copilot/mcp-config.json`.
 
-Since the VS Code March 2026 releases, MCP servers configured in `.vscode/mcp.json` also work in Copilot CLI sessions. The same file serves both surfaces.
+MCP servers configured in `.vscode/mcp.json` or workspace `.mcp.json` can also work in VS Code-managed GitHub Copilot CLI sessions. For terminal-native CLI workflows, verify the current merge and precedence behavior with `/mcp` before assuming a server from an editor-specific file is active.
 
 ## Where to Read Next
 

@@ -8,7 +8,7 @@ tools:
   - createFile
   - fetch
   - agent
-model: GPT-5.4 (copilot)
+model: GPT-5.5 (copilot)
 handoffs:
   - label: 'Send to Doc Maintainer'
     agent: 'Doc Maintainer'

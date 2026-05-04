@@ -8,7 +8,7 @@ tools:
   - createFile
   - fetch
   - agent
-model: GPT-5.4 (copilot)
+model: GPT-5.5 (copilot)
 handoffs:
   - label: 'Send to Doc Maintainer'
     agent: 'Doc Maintainer'
@@ -50,7 +50,7 @@ End every review with a **Visual Studio Verdict:** can a .NET developer in full 
 
 # How You Deliver Feedback
 
-Write feedback to `.github/feedback/` using filename pattern: `vs-{target}-{date}.md` (e.g., `vs-part-1-foundations-2026-04-16.md`).
+Write feedback to `.github/feedback/` using filename pattern: `vs-{target}-{date}.md` (e.g., `vs-foundations-2026-04-16.md`).
 
 **Frontmatter:**
 ```yaml

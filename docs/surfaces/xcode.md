@@ -2,7 +2,7 @@
 
 [← Where GitHub Copilot Runs](../where-github-copilot-runs.md) | [← Eclipse](eclipse.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 

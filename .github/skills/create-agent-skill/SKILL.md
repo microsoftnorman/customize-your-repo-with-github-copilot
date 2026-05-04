@@ -170,7 +170,7 @@ Use this skill when:
 When referencing other files, use relative paths from skill root:
 
 ```markdown
-See [the reference guide](references/REFERENCE.md) for details.
+See `references/{topic}.md` for details when the skill includes supporting reference files.
 
 Run the extraction script:
 scripts/extract.py

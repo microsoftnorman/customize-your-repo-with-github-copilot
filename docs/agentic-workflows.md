@@ -1,8 +1,8 @@
 # GitHub Agentic Workflows
 
-[← Back to Guide](../README.md) | [← Operational Reference](part-3-reference.md) | [Next: GitHub Copilot SDK →](copilot-sdk.md)
+[← Back to Guide](../ReadMe.md) | [← Operational Reference](part-3-reference.md) | [Next: GitHub Copilot SDK →](copilot-sdk.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 

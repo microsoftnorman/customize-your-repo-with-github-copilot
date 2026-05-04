@@ -8,7 +8,7 @@ tools:
   - createFile
   - runInTerminal
   - fetch
-model: GPT-5.4 (copilot)
+model: GPT-5.5 (copilot)
 ---
 
 # Who You Are

@@ -2,7 +2,7 @@
 
 [← Where GitHub Copilot Runs](../where-github-copilot-runs.md) | [← VS Code](vscode.md) | [Next: Cloud Coding Agent →](cloud-coding-agent.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -15,6 +15,10 @@ For current capabilities, security controls, and customization behavior, use [Ab
 If VS Code is the richest authoring environment, the CLI is often the clearest runtime environment. The loop is harder to hide in a terminal. Approvals, tool calls, command output, retries, and delegation are all more visible.
 
 That makes the CLI useful for both adoption and diagnosis.
+
+**See it in action:** [How to use agents, skills, and instructions in Copilot CLI | Tutorial for beginners](https://www.youtube.com/watch?v=-yKALFS5ewY&t=64s) — GitHub (Copilot CLI for Beginners series) demos adding project instructions so GitHub Copilot CLI follows team standards.
+
+**See it in action:** [You need to try the GitHub Copilot CLI right now](https://www.youtube.com/watch?v=CqcqWLv-sDM&t=1055s) — Burke Holland demos plan mode and Autopilot inside GitHub Copilot CLI for terminal-first agent sessions.
 
 ## Why It Matters
 
@@ -40,6 +44,7 @@ The important carryovers are:
 - Custom Agents,
 - MCP,
 - Hooks,
+- Agent Plugins,
 - and Memory.
 
 That is why terminal-first teams can participate in the same customization strategy instead of maintaining a parallel one.
@@ -87,11 +92,26 @@ The CLI is often the better teaching surface for how the loop actually behaves.
 
 That distinction matters. Teams do not need to pick one permanently. Many will author in VS Code and execute heavy operational work in the CLI.
 
-## The Main Caveat
+## VS Code-Managed CLI Sessions vs Terminal-Native CLI
 
-Prompts are the main notable gap compared with the broadest VS Code customization story.
+There are two common CLI experiences now, and they should not be collapsed into one sentence.
 
-That does not weaken the CLI's value. It just means the terminal portability story is strongest around repository rules, procedures, tools, and runtime controls rather than every authoring affordance available in VS Code.
+VS Code-managed GitHub Copilot CLI sessions run in the background through the GitHub Copilot CLI agent harness while VS Code starts, monitors, and resumes them through the Chat view. In that session context, GitHub Copilot CLI supports slash commands, reusable prompts, Skills, Hooks, `/compact`, and approval toggles such as `/yolo` or `/autoApprove`.
+
+Terminal-native CLI remains the shell-first experience. It is still strongest around natural-language prompts, repository instructions, Skills, Custom Agents, MCP, Hooks, plugins, approvals, and visible command execution. It may not expose every VS Code authoring affordance the same way.
+
+## Recent CLI Changes
+
+VS Code 1.118 and the current GitHub Copilot CLI docs add several operational details worth knowing. For command names, permission flags, MCP configuration, Skills, Custom Agents, and telemetry, use the official [GitHub Copilot CLI command reference](https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference).
+
+| Area | Change |
+|------|--------|
+| Remote control | Experimental remote control lets a developer monitor and steer a running CLI session from GitHub.com or GitHub Mobile. Enable `github.copilot.chat.cli.remote.enabled`, then run `/remote on`. |
+| Session titles | VS Code now uses the GitHub Copilot SDK session title APIs so Chat view titles, editor tabs, terminal session titles, and `copilot --resume` stay synchronized. |
+| Plugins | GitHub Copilot CLI plugins install from marketplaces or direct sources and can bundle agents, Skills, hooks, MCP servers, commands, and LSP servers behind `plugin.json`. |
+| MCP | Workspace `.mcp.json` support in VS Code aligns better with GitHub Copilot CLI, but teams should still verify active servers with `/mcp` in terminal-native sessions. |
+
+Remote control is useful for long-running work, but it changes the operating model. A session can now ask for approval while the developer is away from the machine that started it. Teams should decide which repos and approval modes are acceptable before making it a default workflow.
 
 ## The Short Version
 

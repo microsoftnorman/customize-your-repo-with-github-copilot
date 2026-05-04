@@ -2,7 +2,7 @@
 
 [← Where GitHub Copilot Runs](../where-github-copilot-runs.md) | [← JetBrains IDEs](jetbrains.md) | [Next: Xcode →](xcode.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 

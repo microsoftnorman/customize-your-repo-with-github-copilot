@@ -15,7 +15,7 @@ tools:
   - mcp_microsoft-doc_microsoft_docs_search
   - mcp_microsoft-doc_microsoft_docs_fetch
   - mcp_microsoft-doc_microsoft_code_sample_search
-model: GPT-5.4 (copilot)
+model: GPT-5.5 (copilot)
 handoffs:
   - label: 'Doc Maintainer: What''s New'
     agent: 'Doc Maintainer'
@@ -163,7 +163,7 @@ Each persona will itself spawn sub-agents per documentation file, creating a two
 **Sub-agent strategy:** This phase runs two specialized agents in parallel — they edit different line types and do not conflict:
 
 1. **Doc Maintainer** handles **official documentation links**. It reviews every section in `docs/` and `ReadMe.md` and adds links to the trusted doc sources listed in `.github/copilot-instructions.md` where they are missing.
-2. **Video Linker** handles **YouTube demo enrichment**. It walks every section, searches the trusted channels (`@code` and `@GitHub`) — checking the local transcript cache at `references/transcripts/` first, then fetching if needed — and adds a `**See it in action:** [Title](url&t=Xs) — Speaker demos {what}.` line wherever a real, verified demo exists. It caches newly fetched transcripts for future runs.
+2. **Video Linker** handles **YouTube demo enrichment**. It walks every section, searches the trusted channels (`@code` and `@GitHub`) — checking the local transcript cache at `references/transcripts/` first, then fetching if needed — and adds a `**See it in action:** Title — Speaker demos {what}.` line with a real video URL and timestamp wherever a verified demo exists. It caches newly fetched transcripts for future runs.
 
 Spawn both as sub-agents at the same time.
 

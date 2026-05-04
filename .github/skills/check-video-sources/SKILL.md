@@ -143,7 +143,8 @@ Map transcript content to guide sections:
 | docs/primitive-6-mcp.md | Videos about MCP servers, MCP apps, external integrations |
 | docs/primitive-4-skills.md | Videos about agent skills, skill creation |
 | docs/primitive-7-hooks.md | Videos about hooks, security enforcement |
-| docs/part-1-foundations.md | Keynotes, overview talks, AI SDLC discussions |
+| docs/foundations.md | Product overview talks, surface overviews, platform framing |
+| docs/when-to-customize.md | AI SDLC discussions, customization value, adoption framing |
 | docs/primitive-1-always-on-instructions.md | Videos about copilot-instructions.md |
 | docs/primitive-2-file-based-instructions.md | Videos about .instructions.md files |
 | docs/primitive-3-prompts.md | Videos about prompt files |

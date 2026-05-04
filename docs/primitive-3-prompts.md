@@ -2,7 +2,7 @@
 
 [← Back to The Eight Primitives](eight-primitives.md) | [← File-based Instructions](primitive-2-file-based-instructions.md) | [Next: Skills →](primitive-4-skills.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -135,7 +135,7 @@ Each one removes repeated setup friction without pretending to be a universal re
 
 ## See It in Action
 
-**See it in action:** [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=524s) — Courtney Webster demos prompt files as slash-command workflows for one-shot tasks like PR cleanup and test generation.
+**See it in action:** [Stop Prompting So Much. Do This Instead! | Ep 6 of 8](https://www.youtube.com/watch?v=d37Y28uU2JY&t=39s) — Reynald Adolphe demos a prompt file exposed as a slash command for repeatedly quizzing the code in open files.
 
 ## Creating Prompt Files
 
@@ -250,6 +250,64 @@ description: 'Analyze and fix a bug with explanation'
 3. Related issues this might cause
 4. Suggested regression test
 ```
+
+### Primitive Maintenance Review
+
+**File:** `.github/prompts/improve-primitives.prompt.md`
+
+This prompt turns real work into better customization. Use it after a meaningful feature branch, a messy agent session, or a release cycle where the same corrections kept appearing. It should review evidence first, then propose the smallest changes to the primitive layer.
+
+```markdown
+---
+name: 'improve-primitives'
+agent: 'agent'
+description: 'Use when reviewing primitives, improving instructions, analyzing recent commits, or learning from chat sessions'
+tools: ['changes', 'search', 'readFile', 'editFiles', 'runInTerminal']
+---
+
+# Improve Primitives
+
+Review this repository's GitHub Copilot customization system.
+
+Use these inputs:
+
+1. Recent commits, staged changes, and unstaged changes.
+2. Recent chat, agent, or debug sessions if they are available in the workspace.
+3. Current customization files:
+   - `.github/copilot-instructions.md`
+   - `.github/instructions/*.instructions.md`
+   - `.github/prompts/*.prompt.md`
+   - `.github/skills/*/SKILL.md`
+   - `.github/agents/*.md`
+   - `.vscode/mcp.json`
+   - `.github/hooks/*.json`
+
+For each finding, decide whether the right action is to:
+
+- add a missing primitive,
+- edit an existing primitive,
+- delete stale or redundant guidance,
+- move guidance to a better primitive,
+- or leave the system unchanged.
+
+Prefer small, reactive changes. Do not add rules unless recent work shows real friction.
+
+Before editing, produce this triage table:
+
+| Evidence | Problem | Recommended primitive | Action | Rationale |
+|----------|---------|-----------------------|--------|-----------|
+
+Ask for approval before changing files.
+
+After approval:
+
+1. Apply the approved edits.
+2. Delete obsolete files if removal was approved.
+3. Run the smallest validation checks available for changed files.
+4. Summarize what changed, why each primitive changed, what evidence supported it, and what the team should watch in the next few sessions.
+```
+
+This is deliberately stricter than a generic "improve our instructions" request. It asks GitHub Copilot to look for evidence, choose the right primitive, and delete stale guidance when the model no longer needs it.
 
 ### GitHub Issue Creator (MCP Integration)
 

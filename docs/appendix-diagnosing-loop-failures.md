@@ -1,8 +1,8 @@
 # Appendix: Diagnosing Loop Failures
 
-[← Back to Guide](../README.md) | [← Debugging the Agent Loop](debugging-the-agent-loop.md)
+[← Back to Guide](../ReadMe.md) | [← Debugging the Agent Loop](debugging-the-agent-loop.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 

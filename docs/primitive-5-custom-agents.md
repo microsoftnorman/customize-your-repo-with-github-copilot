@@ -2,13 +2,15 @@
 
 [← Back to The Eight Primitives](eight-primitives.md) | [← Skills](primitive-4-skills.md) | [Next: MCP →](primitive-6-mcp.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
 ## Where It Enters the Loop
 
 Custom Agents change the loop at the level of role, posture, and available capabilities for an ongoing conversation or delegated task.
+
+The current official references are VS Code's [Custom agents in VS Code](https://code.visualstudio.com/docs/copilot/customization/custom-agents) page and GitHub's [custom agents configuration reference](https://docs.github.com/en/copilot/reference/custom-agents-configuration).
 
 That is different from a Prompt, which frames one task, and different from a Skill, which packages one procedure. A Custom Agent changes who GitHub Copilot is acting as for a stretch of work.
 
@@ -56,7 +58,7 @@ That is why the rewrite treats agents as operational controls, not just personal
 
 ## Where the File Lives
 
-Custom Agents usually live in `.github/agents/*.md`, though the ecosystem supports additional locations and `.agent.md` conventions.
+Custom Agents usually live in `.github/agents/*.md`, though the ecosystem supports additional locations and `.agent.md` conventions. VS Code supports workspace agents from `.github/agents/` and `.claude/agents/`, user-level agents in the user profile, organization-level agents when enabled by policy, and additional locations through `chat.agentFilesLocations`. Visual Studio's April 2026 update also added user-level agents under `%USERPROFILE%/.github/agents/`.
 
 The durable asset is still a markdown file with frontmatter and body instructions. The important part is not the syntax alone. It is the combination of tool scope, posture, and handoff logic.
 
@@ -125,7 +127,9 @@ Agents are strong medicine. Use them when the role and constraints should persis
 
 ## See It in Action
 
-**See it in action:** [Customize your agents](https://www.youtube.com/watch?v=flpKLkZla2Q&t=578s) — Courtney Webster demos a planner Custom Agent with its own tools, model choices, and handoff into implementation.
+**See it in action:** [Let's Build a Custom Agent! | Ep 4 of 8](https://www.youtube.com/watch?v=Y7MPeZTIgqo&t=54s) — Reynald Adolphe demos invoking a security reviewer Custom Agent to review a JavaScript file for vulnerabilities.
+
+**See it in action:** [After This Video, You'll Actually Understand Agent Orchestration](https://www.youtube.com/watch?v=-BhfcPseWFQ&t=218s) — Burke Holland builds an orchestrator agent that delegates to a planner, designer, and coder, demoing how custom agents compose into a real workflow.
 
 ## Creating Agents
 
@@ -143,7 +147,7 @@ Host differences matter here. In VS Code and other IDEs, fields like `argument-h
 | `name` | Display name in the agent picker |
 | `description` | Placeholder text in chat input |
 | `tools` | Available tools for this agent |
-| `model` | AI model; supports arrays for fallback: `['Claude Sonnet 4.7 (copilot)', 'GPT-5 (copilot)']` |
+| `model` | AI model; supports arrays for fallback: `['GPT-5.5 (copilot)', 'Claude Sonnet 4.7 (copilot)']` |
 | `handoffs` | Transitions to other agents |
 | `argument-hint` | Hint text for user input in supported IDE surfaces |
 | `user-invocable` | Whether it appears in the picker (default: `true`) |
@@ -153,6 +157,10 @@ Host differences matter here. In VS Code and other IDEs, fields like `argument-h
 | `mcp-servers` | Cloud-agent MCP configuration for `github-copilot` target |
 | `metadata` | Cloud-agent metadata annotations |
 | `hooks` | Agent-scoped hooks in VS Code preview |
+
+Model names age quickly. As of April 24, 2026, GPT-5.5 is generally available in GitHub Copilot for Pro+, Business, and Enterprise users across VS Code, Visual Studio, GitHub Copilot CLI, GitHub Copilot cloud agent, github.com, GitHub Mobile, JetBrains, Xcode, and Eclipse. Business and Enterprise administrators must enable the GPT-5.5 policy before users can select it, and rollout is gradual.
+
+On May 1, 2026, GitHub announced that GPT-5.2 and GPT-5.2-Codex retire across GitHub Copilot experiences on June 1, 2026, except GPT-5.2-Codex in GitHub Copilot Code Review. Use GPT-5.5 instead of GPT-5.2, and GPT-5.3-Codex instead of GPT-5.2-Codex. Avoid hard-coding retiring model names in shared agents; prefer either the current model picker default or a short fallback list using currently available models.
 
 ## Example Agents
 
@@ -198,11 +206,11 @@ model: 'Claude Opus 4.7'
 You are a meticulous code reviewer.
 
 ## Review Priorities (in order)
-1. Correctness — Does it work?
-2. Security — Is it safe?
-3. Performance — Is it efficient?
-4. Maintainability — Can others understand it?
-5. Style — Does it follow conventions?
+1. Correctness: Does it work?
+2. Security: Is it safe?
+3. Performance: Is it efficient?
+4. Maintainability: Can others understand it?
+5. Style: Does it follow conventions?
 
 ## Feedback Style
 - Use conventional comments: `nit:`, `suggestion:`, `question:`, `issue:`

@@ -2,7 +2,7 @@
 
 [← Back to The Eight Primitives](eight-primitives.md) | [← Hooks](primitive-7-hooks.md) | [Next: Measuring Success →](measuring-success.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -64,7 +64,9 @@ Always-on Instructions tell GitHub Copilot what the team already knows it wants.
 
 Memory captures what GitHub Copilot keeps discovering through repeated work.
 
-If the rule is explicit, important, and should apply immediately, write it down.
+Memory is still part of the GitHub Copilot customization toolbox. In supported agent surfaces, GitHub Copilot can call or surface Memory as a runtime capability. Treat it as learned context to review and curate, not as a user-authored instruction file, repository-configured MCP server or tool, or slash command the user normally invokes manually.
+
+If the rule is explicit, important, and should apply immediately, write it down. Memory should not be used as a policy layer.
 
 If the pattern is real but difficult to document exhaustively, let Memory help.
 
@@ -171,6 +173,11 @@ Manual deletion is only needed for incorrect or misleading memories. Auto-expira
 > 💬 **Try this prompt:**
 > "Summarize the memories you currently have for this repository. Group them by topic and flag any that might be out of date."
 
+Memory review can also feed explicit customization, but only after human judgment. Do not copy Memory wholesale. Promote only stable rules, recurring conventions, or policy-like patterns that should become authoritative instructions.
+
+> 💬 **Try this prompt:**
+> "Review the repository memories you can access in this GitHub Copilot surface. Identify any stable rules, recurring conventions, or policy-like patterns that should be written down. If a rule applies broadly, propose an edit to `.github/copilot-instructions.md`. If it only applies to specific files or folders, propose the right `.github/instructions/*.instructions.md` file and `applyTo` pattern. Skip anything speculative, stale, or too narrow to become an instruction."
+
 ## Memory vs. Explicit Customization
 
 | | Explicit Customization | Copilot Memory |
@@ -208,5 +215,5 @@ Manual deletion is only needed for incorrect or misleading memories. Auto-expira
 
 ## Where to Read Next
 
-- Go back to [The Eight Primitives](part-2-primitives.md) if you want to compare all eight as one system again.
+- Go back to [The Eight Primitives](eight-primitives.md) if you want to compare all eight as one system again.
 - Use [Code Review](code-review.md), [Agentic Workflows](agentic-workflows.md), and the surface guides to see where explicit and learned repository knowledge show up outside the editor.

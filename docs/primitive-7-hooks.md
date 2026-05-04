@@ -2,7 +2,7 @@
 
 [← Back to The Eight Primitives](eight-primitives.md) | [← MCP](primitive-6-mcp.md) | [Next: Memory →](primitive-8-memory.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -22,7 +22,9 @@ Hooks are not an IDE-wide baseline primitive.
 
 In VS Code, the current canonical reference is [Agent hooks in Visual Studio Code](https://code.visualstudio.com/docs/copilot/customization/hooks), which also documents the preview status and current lifecycle events.
 
-In current official guidance, VS Code hooks are a preview feature. Hooks are also part of the GitHub Copilot CLI and Cloud Coding Agent story. They are not the normal path in JetBrains IDEs, Visual Studio, Eclipse, or Xcode.
+In current official guidance, VS Code hooks are a preview feature. Hooks are also part of the GitHub Copilot CLI and Cloud Coding Agent story. They are not the normal path in JetBrains IDEs, Visual Studio, Eclipse, or Xcode. VS Code's [Security](https://code.visualstudio.com/docs/copilot/security#_hooks) documentation also frames hooks as deterministic controls for enforcement and audit.
+
+VS Code 1.118 also lets Agent Plugins include hooks. Plugin hooks run alongside workspace and user hooks for the same lifecycle events. For `PreToolUse`, the most restrictive permission decision wins: `deny` beats `ask`, and `ask` beats `allow`. Disabling the plugin disables its hooks.
 
 That matters because rollout advice changes by surface. A VS Code, CLI, or Cloud Coding Agent team can use Hooks as a live enforcement layer. A mixed-IDE team still needs instructions, CI, and repository protections as the broader baseline.
 
@@ -141,6 +143,8 @@ Weak Hook usage tries to express broad natural-language policy through brittle d
 
 For CLI-heavy teams, Hooks are often most legible here because the runtime is already command-centric. That makes approval shaping, deny lists, and audit output easier to reason about. It also raises the cost of mistakes when headless or lower-friction execution is enabled, which is exactly why the policy needs to stay narrow and explicit.
 
+For plugin-distributed hooks, keep one extra rule: the hook file may live outside the workspace after installation. Do not depend on relative workspace paths unless the plugin format provides a root token and the command uses it correctly.
+
 Frontend and QA teams can use the same primitive for practical gates, not just security policy. A hook can require lint or test verification after large UI edits, block risky writes to generated design-token outputs, or record whether a test gate actually ran.
 
 ## How It Composes with Other Primitives
@@ -194,7 +198,9 @@ This is one reason remote-first teams should keep hook behavior easy to inspect 
 
 ## See It in Action
 
-**See it in action:** [Let it cook: Agent Steering, Queueing, Hooks, CLI Integration, & more!](https://www.youtube.com/watch?v=FjvtWeG6EEo&t=1975s) — Pierce Boggan demos hooks wired to agent lifecycle events through `.github/hooks` definitions for session start, tool use, and stop behavior.
+**See it in action:** [Hooks: The Underestimated Feature | Ep 5 of 8](https://www.youtube.com/watch?v=ZsyiRa91XZg&t=88s) — Reynald Adolphe demos creating a post-tool-use hook that runs Prettier after GitHub Copilot modifies files.
+
+**See it in action:** [Completely understand hooks in less than 20 minutes](https://www.youtube.com/watch?v=03CfGf9iw_U&t=0s) — Burke Holland explains where hooks attach in the agent lifecycle and why pre-tool-use hooks are the enforcement point that matters most.
 
 ## Creating Hooks
 
@@ -207,7 +213,7 @@ In VS Code, hooks can be created from the UI or from chat. Use `/hooks`, run **C
 
 ### Step 1: Create the hook file
 
-```
+```text
 .github/
 └── hooks/
     └── my-first-hook.json
@@ -250,7 +256,7 @@ For the Copilot Cloud Coding Agent, hooks are only loaded from the default branc
 
 ## The Hook Lifecycle
 
-```
+```text
 Session Start
   → User Prompt Submit
     → Agent Reasoning Loop
@@ -280,8 +286,11 @@ Session Start
 
 ```json
 {
-  "permissionDecision": "deny",
-  "permissionDecisionReason": "Destructive operations require approval"
+  "hookSpecificOutput": {
+    "hookEventName": "PreToolUse",
+    "permissionDecision": "deny",
+    "permissionDecisionReason": "Destructive operations require approval"
+  }
 }
 ```
 
@@ -308,7 +317,7 @@ All `.json` files in `.github/hooks/` are loaded. A repository can contain multi
 
 VS Code can discover hooks from parent folders up to the repository root, but only when `chat.useCustomizationsInParentRepositories` is enabled. That setting is off by default. It matters most when a team opens a package subfolder instead of the repo root. Root-level hooks can then carry shared policy while package-level hooks handle context-specific concerns:
 
-```
+```text
 my-monorepo/
 ├── .github/hooks/security.json       # Applies to ALL packages
 ├── packages/frontend/.github/hooks/lint.json
@@ -375,10 +384,11 @@ Every hook receives JSON on stdin describing the event. All events include `time
 
 | Field | Values | Effect |
 |-------|--------|--------|
-| `permissionDecision` | `"allow"`, `"deny"` | Allow or block the tool call |
-| `permissionDecisionReason` | string | Explanation shown to the agent |
-| `updatedInput` | object | Rewrite the tool input before execution |
-| `additionalContext` | string | Inject context for the next model turn |
+| `hookSpecificOutput.hookEventName` | `"PreToolUse"` | Identifies the event-specific output payload |
+| `hookSpecificOutput.permissionDecision` | `"allow"`, `"deny"`, `"ask"` | Controls tool approval |
+| `hookSpecificOutput.permissionDecisionReason` | string | Explanation shown to the user |
+| `hookSpecificOutput.updatedInput` | object | Rewrite the tool input before execution |
+| `hookSpecificOutput.additionalContext` | string | Inject context for the next model turn |
 
 **PostToolUse** can also return `decision` and `reason` to block follow-on processing, and `hookSpecificOutput.additionalContext` to feed validation results back to the model.
 

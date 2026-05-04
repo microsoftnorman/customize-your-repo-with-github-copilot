@@ -2,7 +2,7 @@
 
 [← Where GitHub Copilot Runs](../where-github-copilot-runs.md) | [← Visual Studio](visual-studio.md) | [Next: Eclipse →](eclipse.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -25,6 +25,17 @@ For current support state, use the [JetBrains slice of the Copilot feature matri
 | Not supported as a standard path | Hooks, Memory as an IDE-chat feature |
 
 Plugin version matters. Treat preview rows as pilot-only until the exact IDE and plugin build the team relies on have been tested.
+
+## April 2026 JetBrains Updates
+
+On April 24, 2026, GitHub Copilot for JetBrains IDEs added several workflow updates:
+
+- Inline agent mode is available in public preview from Inline Chat. Business and Enterprise administrators must enable the Editor preview features policy before users can use it.
+- Next Edit Suggestions now include inline edit previews and far-away edit navigation indicators. These also require the Editor preview features policy for Business and Enterprise users.
+- Global Auto Approve can approve all tool calls across all workspaces, including file edits, terminal commands, and external tool calls. Treat it as a high-risk setting.
+- Granular auto-approve settings now cover terminal commands and file edits not matched by explicit rules.
+
+These updates make JetBrains a stronger agentic surface, but they also make approval policy more important. Teams should pilot the exact plugin build and decide which auto-approve settings are acceptable before documenting JetBrains as equivalent to VS Code for autonomous work.
 
 ## Why It Matters
 

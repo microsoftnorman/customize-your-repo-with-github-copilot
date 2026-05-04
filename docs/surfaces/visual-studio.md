@@ -2,7 +2,7 @@
 
 [← Where GitHub Copilot Runs](../where-github-copilot-runs.md) | [← Cloud Coding Agent](cloud-coding-agent.md) | [Next: JetBrains IDEs →](jetbrains.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -14,17 +14,35 @@ It is not trying to be VS Code. Its value is not breadth across every customizat
 
 ## What Works Here Right Now
 
-If a team is using Visual Studio tomorrow, the safest primitives to trust first are Always-on Instructions, Prompts, and MCP.
+If a team is using Visual Studio tomorrow, the safest primitives to trust first are Always-on Instructions, File-based Instructions, Prompts, MCP, GitHub Copilot code review, and agent mode in current releases.
 
 Use the [Visual Studio slice of the Copilot feature matrix](https://docs.github.com/en/copilot/reference/copilot-feature-matrix?tool=visualstudio) to verify support status, and the official [Visual Studio installation guide](https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-extension?tool=visualstudio) for current setup details.
 
 | Status | Primitives |
 |--------|------------|
-| Supported | Always-on Instructions, Prompts, MCP |
+| Supported | Always-on Instructions, File-based Instructions, Prompts, MCP, GitHub Copilot code review, agent mode |
 | Preview | Custom Agents |
 | Not supported as a normal Visual Studio path | Skills, Hooks, Memory as an IDE-chat feature |
 
+Visual Studio support is version-sensitive. Prompt files are supported in current releases, but the invocation path differs from VS Code slash-command workflows. Custom Agents are still a preview-heavy area, with both repository agents and user-level agents available. Use the live feature matrix before standardizing a team workflow.
+
 That makes Visual Studio a serious runtime for repository customization, but not the broadest authoring surface.
+
+## April 2026 Visual Studio Updates
+
+The April 30 GitHub Copilot changelog and Visual Studio April update materially changed this surface:
+
+| Area | Current Visual Studio behavior |
+|------|-------------------------------|
+| Cloud agent | Start a cloud agent session directly from the Chat agent picker by selecting Cloud. The flow creates an issue, runs remotely, and opens a pull request. |
+| User-level agents | Personal agents can live in `%USERPROFILE%/.github/agents/`. The user directory can be changed under Tools > Options > GitHub > Copilot > Copilot Chat > Custom agents user directory. |
+| Skills | Not listed as supported in the current official feature matrix. Treat Skill behavior in Visual Studio as unavailable unless a specific preview build documents it. |
+| Debugger agent | Debugger mode can start from a GitHub or Azure DevOps issue, create a reproducer, instrument runtime behavior, diagnose, and suggest a fix. |
+| C++ agent tools | `get_symbol_call_hierarchy` and `get_symbol_class_hierarchy` are generally available by default for C++ agent mode. |
+| Chat history | A dedicated history panel shows chat titles, previews, and timestamps. |
+| Inline suggestion shortcuts | Accept-suggestion shortcuts can be customized through Tools > Options > Environment > Keyboard. |
+
+That makes Visual Studio more than a consumer of repository rules. For .NET and C++ teams, it is now a serious agent runtime with cloud handoff, debugger-aware workflows, and language-aware C++ navigation.
 
 ## Why It Matters
 
@@ -35,6 +53,10 @@ For teams building or maintaining large .NET, C++, desktop, or game-development 
 ## What Carries Over
 
 Visual Studio can consume a meaningful part of the same repository layer, especially the high-value repository guidance that lives near the repo root.
+
+Skills do not currently carry over as a normal Visual Studio path in the official feature matrix. Keep reusable procedures in prompts or external workflow documentation for Visual Studio users, and use VS Code, GitHub Copilot CLI, or the Cloud Coding Agent when Skill packaging is central to the workflow.
+
+MCP also has a Visual Studio-specific path story. Visual Studio can read `%USERPROFILE%\.mcp.json`, `<SOLUTIONDIR>\.vs\mcp.json`, `<SOLUTIONDIR>\.mcp.json`, `<SOLUTIONDIR>\.vscode\mcp.json`, and `<SOLUTIONDIR>\.cursor\mcp.json`. For source-controlled solution workflows, `<SOLUTIONDIR>\.mcp.json` is the natural shared file. Add it to Solution Items so developers can find and edit it from Solution Explorer.
 
 That means a repository authored with GitHub Copilot in mind can still teach useful behavior here, even if the authoring experience is not as broad as VS Code.
 
@@ -106,4 +128,4 @@ Treat it as a serious consumer of repository knowledge and a credible MCP surfac
 ## Where to Read Next
 
 - Read [JetBrains IDEs](jetbrains.md) next for a different parity story: broader repository portability, but more preview-state edges.
-- Revisit [File-based Instructions](../primitive-2-file-based-instructions.md) if the goal is path-specific guidance that should survive across both VS Code and Visual Studio.
+- Revisit [Skills](../primitive-4-skills.md) if the team wants reusable procedures, then route Skill-heavy workflows through VS Code, GitHub Copilot CLI, or the Cloud Coding Agent until Visual Studio support changes.

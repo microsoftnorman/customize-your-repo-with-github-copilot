@@ -8,7 +8,7 @@ tools:
   - createFile
   - fetch
   - agent
-model: GPT-5.4 (copilot)
+model: GPT-5.5 (copilot)
 handoffs:
   - label: 'Send to Doc Maintainer'
     agent: 'Doc Maintainer'
@@ -66,13 +66,13 @@ End every review with a **Executive Verdict:** a one-sentence assessment of whet
 
 After reviewing a documentation file, write your feedback to `.github/feedback/` so the Doc Maintainer can pick it up.
 
-**File naming:** `cto-{target}-{date}.md` (e.g., `cto-part-1-foundations-2026-02-20.md`). For `ReadMe.md`, use `cto-readme-{date}.md`.
+**File naming:** `cto-{target}-{date}.md` (e.g., `cto-foundations-2026-02-20.md`). For `ReadMe.md`, use `cto-readme-{date}.md`.
 
 **Frontmatter:**
 ```yaml
 ---
 reviewer: 'The CTO'
-target: 'docs/part-1-foundations.md'
+target: 'docs/foundations.md'
 date: 2026-02-20
 status: pending
 ---

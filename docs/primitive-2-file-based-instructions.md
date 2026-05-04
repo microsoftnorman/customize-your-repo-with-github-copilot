@@ -2,7 +2,7 @@
 
 [← Back to The Eight Primitives](eight-primitives.md) | [← Always-on Instructions](primitive-1-always-on-instructions.md) | [Next: Prompts →](primitive-3-prompts.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 

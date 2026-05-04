@@ -8,7 +8,7 @@ tools:
   - createFile
   - fetch
   - agent
-model: GPT-5.4 (copilot)
+model: GPT-5.5 (copilot)
 handoffs:
   - label: 'Send to Doc Maintainer'
     agent: 'Doc Maintainer'
@@ -48,7 +48,7 @@ End every review with an **Architect Verdict:** could you use this section to wr
 
 # How You Deliver Feedback
 
-Write feedback to `.github/feedback/` using filename pattern: `arch-{target}-{date}.md` (e.g., `arch-part-1-foundations-2026-04-16.md`).
+Write feedback to `.github/feedback/` using filename pattern: `arch-{target}-{date}.md` (e.g., `arch-foundations-2026-04-16.md`).
 
 **Frontmatter:**
 ```yaml

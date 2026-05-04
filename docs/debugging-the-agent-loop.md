@@ -1,8 +1,8 @@
 # Debugging the Agent Loop
 
-[← Back to Guide](../README.md) | [← Tool Calling in Depth](tool-calling-in-depth.md) | [Next: Appendix: Diagnosing Loop Failures →](appendix-diagnosing-loop-failures.md)
+[← Back to Guide](../ReadMe.md) | [← Tool Calling in Depth](tool-calling-in-depth.md) | [Next: Appendix: Diagnosing Loop Failures →](appendix-diagnosing-loop-failures.md)
 
-*Updated: April 22, 2026.*
+*Updated: May 4, 2026.*
 
 ---
 
@@ -12,6 +12,8 @@ The agent loop is easy to describe in theory and harder to inspect in practice. 
 
 That is a later skill. It belongs after the loop model, the primitive chapters, and the cross-runtime material.
 
+**See it in action:** [Review agents work with Agent Debug Logs and Chat Debug View](https://www.youtube.com/watch?v=aW2jlbbUREc&t=29s) — Gwyneth Peña-Siguenza demos Agent Debug Logs and Chat Debug View for inspecting sessions, model turns, tool calls, and token usage.
+
 ## Inspecting the Loop in Debug Views
 
 The loop is inspectable in VS Code. For practical troubleshooting, the relevant surfaces are:
@@ -20,6 +22,8 @@ The loop is inspectable in VS Code. For practical troubleshooting, the relevant 
 - `Developer: Show Agent Debug Logs`
 
 The official starting point is the VS Code documentation for [Agent Logs and the Chat Debug view](https://code.visualstudio.com/docs/copilot/chat/chat-debug-view). The broader [Chat overview](https://code.visualstudio.com/docs/copilot/chat/copilot-chat#_troubleshoot-chat-interactions) also points readers there in its troubleshooting section.
+
+GitHub.com now has a separate debugging path as well. As of April 23, 2026, GitHub Copilot Chat on the web recognizes pasted stack traces more reliably and responds with a structured root-cause analysis: what failed, where it failed, why the assumption broke, likely root cause, evidence, confidence, suggested fix, and next checks. Use it when the evidence starts with a stack trace and repository or file context on GitHub.com. Use the VS Code debug views when the question is about the local agent trajectory, tool calls, subagents, or context assembly.
 
 The debug infrastructure behind those views is visible in the open-source code.
 
@@ -95,6 +99,8 @@ The mapping is usually straightforward:
 - repeated execution boundary becomes a Hook or tool restriction.
 
 That is why trajectories matter even when they are messy. They show the difference between what the team thinks GitHub Copilot needs and what the runtime actually needed.
+
+To make that review repeatable, use the [Primitive Maintenance Review prompt](primitive-3-prompts.md#primitive-maintenance-review). It combines recent commits, changed files, and available chat or debug sessions into a triage pass over the repository's instructions, prompts, skills, agents, MCP configuration, hooks, and Memory assumptions.
 
 ## Where to Read Next
 
